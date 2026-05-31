@@ -1,0 +1,53 @@
+{
+  "version": "2026-06-01",
+  "articles": [
+    {
+      "date": "2026-06-03",
+      "day": "Tuesday",
+      "headline": "Six-Month EVE Online Player Wins $7,000 Ship From Free Loot Box, Immediately Asks If He Can Fit It In A Cormorant",
+      "file": "output/eveonion_article_1.md",
+      "source": "Real event: Capsuleer Day loot boxes, May 2026",
+      "status": "ready"
+    },
+    {
+      "date": "2026-06-06",
+      "day": "Friday",
+      "headline": "Fenris Creations Unveils Four Military Campaigns With Stakes Ranging From 'Reclaim Ancestral Homeland' To 'Slightly Shorter Commute'",
+      "file": "output/eveonion_article_2.md",
+      "source": "Real event: Military Campaigns reveal",
+      "status": "ready"
+    },
+    {
+      "date": "2026-06-10",
+      "day": "Tuesday",
+      "headline": "Fenris Creations Launches EVE's First Safe Zone; 23-Year Veterans Immediately Announce They're Moving to Star Citizen",
+      "file": "output/eveonion_article_3.md",
+      "source": "Real event: Exordium launch controversy",
+      "status": "ready"
+    },
+    {
+      "date": "2026-06-13",
+      "day": "Friday",
+      "headline": "Six-Month Player Wins $7,000 Titan From Free Loot Box, Immediately Asks If He Can Fit It In A Frigate",
+      "file": "output/eveonion_article_4.md",
+      "source": "Real event: Molok BPC from Capsuleer Day (alternate angle)",
+      "status": "ready"
+    }
+  ],
+  "tweets": [
+    {"date": "2026-06-02", "text": "BREAKING: CCP confirms next expansion will finally add 'queue for all regional servers' button to login screen. Players stunned. 'I thought it was a feature,' says 14-year veteran. #EVEOnline"},
+    {"date": "2026-06-03", "text": "Newbro pulls $7K Titan BPC from free loot box, asks if it fits in a Cormorant. Full story at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_1.md"},
+    {"date": "2026-06-04", "text": "Local man loses 3 billion ISK hauling PLEX through Uedama in a T1 industrial. 'I thought the skull icon was a decoration,' he told CONCORD. #EVEOnline"},
+    {"date": "2026-06-05", "text": "r/Eve user discovers ship fitting window. 'I've been right-clicking everything for 6 years,' he admits in emotional post. #EVEOnline"},
+    {"date": "2026-06-06", "text": "Fenris reveals military campaigns: Minmatar reclaim ancestral systems, Gallente shorten commute. Both 'equally important,' says CONCORD. Full satire at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_2.md"},
+    {"date": "2026-06-07", "text": "Weekend forecast for Jita: 4,200 in local, 800 scammers, 3 actual trades, and one guy who definitely just bought a Machariel with his mom's credit card. #EVEOnline"},
+    {"date": "2026-06-08", "text": "Pochven resident explains why he lives in Triglavian space: 'It's like nullsec but the locals are politer and the loot is weirder.' #EVEOnline"},
+    {"date": "2026-06-09", "text": "CCP adds 'Are you sure?' dialog to undock button. Veteran rage-quits: 'I've clicked through 847 warnings today. This is the last straw.' #EVEOnline"},
+    {"date": "2026-06-10", "text": "Fenris launches Exordium safe zone. Veterans immediately threaten to quit. 'I trashed all my stuff,' says 23-year vet. Full satire at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_3.md"},
+    {"date": "2026-06-11", "text": "Study finds 94% of EVE players who say 'small gang PvP' actually mean 'we brought 60 Tengus but it felt intimate.' #EVEOnline"},
+    {"date": "2026-06-12", "text": "Man who bought 500 PLEX to 'support CCP' now using them to wallpaper his Captain's Quarters. 'It seemed like a good investment at the time.' #EVEOnline"},
+    {"date": "2026-06-13", "text": "Six-month newbie wins $7K Molok BPC, sells it, buys Vexor Navy Issue. 'It's green. I like it.' Full story at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_4.md"},
+    {"date": "2026-06-14", "text": "Saturday night in New Eden: someone's losing a Titan, someone's mining in highsec while watching Netflix, and someone's writing a 15-page forum post about why the Stabber needs a buff. #EVEOnline"},
+    {"date": "2026-06-15", "text": "Kybernauts recruitment officer: 'We offer small gang PvP, blops drops, and a therapist who specializes in Pochven-induced anxiety.' #EVEOnline"}
+  ]
+}
