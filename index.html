@@ -803,8 +803,14 @@ function loadTracker() {
   const exercises = EXERCISES[day];
   const container = document.getElementById('trackerExercises');
 
+  // Determine header based on units in this day's exercises
+  const units = exercises.map(ex => ex.unit || 'lbs');
+  const allTime = units.every(u => u === 'min' || u === 'sec');
+  const allWeight = units.every(u => u === 'lbs' || u === 'kg');
+  const header = allTime ? 'Duration' : allWeight ? 'Weight (lbs)' : 'Value';
+
   let html = '<table class="exercise-table">';
-  html += '<tr><th>Exercise</th><th>Sets</th><th>Weight</th></tr>';
+  html += `<tr><th>Exercise</th><th>Sets</th><th>${header}</th></tr>`;
 
   exercises.forEach((ex, i) => {
     const unit = ex.unit || 'lbs';
@@ -816,7 +822,7 @@ function loadTracker() {
       <td>${ex.sets}</td>
       <td>
         <div class="input-group">
-          <input type="number" id="w-${i}" placeholder="${unit === 'min' || unit === 'sec' ? '0' : '0'}" step="${unit === 'min' || unit === 'sec' ? '1' : '5'}">
+          <input type="number" id="w-${i}" placeholder="0" step="${unit === 'min' || unit === 'sec' ? '1' : '5'}">
           <span style="color: var(--text2); font-size: 0.85rem;">${unit}</span>
         </div>
       </td>
@@ -847,7 +853,7 @@ function logWorkout() {
   });
 
   if (entries.length === 0) {
-    alert('Enter at least one weight/value!');
+    alert('Enter at least one value!');
     return;
   }
 
