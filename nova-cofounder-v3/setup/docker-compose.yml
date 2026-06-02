@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  gateway:
+    image: openclaw/gateway:latest
+    container_name: openclaw-gateway
+    ports:
+      - "3000:3000"
+    volumes:
+      - gateway_data:/data
+      - ~/.openclaw/workspace:/workspace
+    environment:
+      - NODE_ENV=production
+      - WORKSPACE_DIR=/workspace
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: openclaw-redis
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  lancedb:
+    image: lancedb/lancedb:latest
+    container_name: openclaw-lancedb
+    volumes:
+      - lancedb_data:/data
+    restart: unless-stopped
+
+volumes:
+  gateway_data:
+  redis_data:
+  lancedb_data:
