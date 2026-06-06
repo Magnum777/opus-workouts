@@ -32,6 +32,38 @@
       "file": "output/eveonion_article_4.md",
       "source": "Real event: Molok BPC from Capsuleer Day (alternate angle)",
       "status": "ready"
+    },
+    {
+      "date": "2026-06-16",
+      "day": "Tuesday",
+      "headline": "Fenris Creations Hosts Mandatory War Celebration; Employees Remind Attendees That Attendance Is Technically Voluntary",
+      "file": "output/eveonion_article_5.md",
+      "source": "Satire: Fanfest launch event low attendance",
+      "status": "ready"
+    },
+    {
+      "date": "2026-06-19",
+      "day": "Friday",
+      "headline": "Veteran EVE Player Who Announced He Was Quitting Over Exordium Safezone Spotted Training Newbro In Rookie Help Channel",
+      "file": "output/eveonion_article_6.md",
+      "source": "Satire: Exordium drama - quit Threats vs reality",
+      "status": "ready"
+    },
+    {
+      "date": "2026-06-23",
+      "day": "Tuesday",
+      "headline": "EVE Online Player Discovers He Has Been Playing Wrong Game For 14 Years, Actually Thought He Was Playing Starfield",
+      "file": "output/eveonion_article_7.md",
+      "source": "Satire: Reddit copypasta gold",
+      "status": "ready"
+    },
+    {
+      "date": "2026-06-26",
+      "day": "Friday",
+      "headline": "EVE Online's Largest Scam in History Reportedly Only Netted Scammer $400 And A Sense Of Achievement",
+      "file": "output/eveonion_article_8.md",
+      "source": "Satire: Ponzi scheme + $400 haul",
+      "status": "ready"
     }
   ],
   "tweets": [
@@ -48,6 +80,16 @@
     {"date": "2026-06-12", "text": "Man who bought 500 PLEX to 'support CCP' now using them to wallpaper his Captain's Quarters. 'It seemed like a good investment at the time.' #EVEOnline"},
     {"date": "2026-06-13", "text": "Six-month newbie wins $7K Molok BPC, sells it, buys Vexor Navy Issue. 'It's green. I like it.' Full story at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_4.md"},
     {"date": "2026-06-14", "text": "Saturday night in New Eden: someone's losing a Titan, someone's mining in highsec while watching Netflix, and someone's writing a 15-page forum post about why the Stabber needs a buff. #EVEOnline"},
-    {"date": "2026-06-15", "text": "Kybernauts recruitment officer: 'We offer small gang PvP, blops drops, and a therapist who specializes in Pochven-induced anxiety.' #EVEOnline"}
+    {"date": "2026-06-16", "text": "Fanfest attendance 'spectacular' says Fenris, citing the three people who showed up voluntarily. Full story at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_5.md"},
+    {"date": "2026-06-17", "text": "Local ganker explains that his killboard is 'actually very wholesome if you read the开心comments section.' #EVEOnline"},
+    {"date": "2026-06-18", "text": "BREAKING: EVE player discovers industry jobs exist. 'I've been mining for 6 years and no one told me,' he says, devastated. #EVEOnline"},
+    {"date": "2026-06-19", "text": "23-year veteran who 'trashed everything' over Exordium seen helping newbies in rookie chat. 'It's a long story,' he says. Full at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_6.md"},
+    {"date": "2026-06-20", "text": "Pochven update: still weird, still Triglavian, still nobody fully understands it. 'That's the charm,' say locals. #EVEOnline"},
+    {"date": "2026-06-21", "text": "Sunday in New Eden: someone's in a local chat bragging about their killboard, someone's mining Veldspar and questioning life choices. #EVEOnline"},
+    {"date": "2026-06-22", "text": "EVE player discovers he bought Starfield 2 years ago and forgot. 'I have been playing the correct game this whole time,' he realizes, devastated. #EVEOnline"},
+    {"date": "2026-06-23", "text": "Man who played EVE for 14 years thinking it was Starfield realizes his mistake, sells everything for 45B ISK. Full at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_7.md"},
+    {"date": "2026-06-24", "text": "Study: 89% of EVE Online 'economic collapse' posts are made by people who still have their wallet open. #EVEOnline"},
+    {"date": "2026-06-25", "text": "EVE's largest Ponzi scheme nets scammer $400 and 'unprecedented psychological efficiency.' Full story at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_8.md"},
+    {"date": "2026-06-26", "text": "Friday forecast: someone is about to lose a Titan, someone's filing a petition to nerf highsec ganking, and one guy is definitely getting married irl and can't be reached. #EVEOnline"}
   ]
 }

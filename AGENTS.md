@@ -22,6 +22,22 @@ Do not manually reread startup files unless:
 2. The provided context is missing something you need
 3. You need a deeper follow-up read beyond the provided startup context
 
+## Scheduler — MUST Check Before Cron Changes
+
+Before **adding, updating, or rescheduling any cron job**, read `docs/scheduler.md` to verify:
+- No time conflicts with existing jobs
+- Model load is balanced (`kimi-k2.6` ×8, `deepseek-v4-flash` ×14)
+- 15-minute minimum gap between jobs in the same block
+
+**Model selection:**
+- Use `kimi-k2.6` for creative writing (articles, satire, propaganda, content)
+- Use `deepseek-v4-flash` for ops/scans (checks, sweeps, data pulls, simple reports)
+- If an ops job genuinely needs reasoning quality, use `kimi-k2.6` — don't default to a weaker model just because it's cheaper
+
+After any cron change, update `docs/scheduler.md` to reflect the new schedule.
+
+**Rule: If I don't read the scheduler, I don't touch the crons.**
+
 ## Memory
 
 You wake up fresh each session. These files are your continuity:

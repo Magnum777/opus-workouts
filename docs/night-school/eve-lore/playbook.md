@@ -44,11 +44,11 @@ Each night, pick **one item** from the Research Queue below. Research it thoroug
 - [x] Minmatar Republic — tribes, Great Rebellion, Shakor era
 - [x] Caldari State — megacorps, Heth era, Kyonoke Crisis
 - [x] Gallente Federation — democracy, multiculturalism, Caldari Prime
-- [ ] Amarr Theology Council structure
-- [ ] Minmatar Seven Tribes details
-- [ ] Caldari Big Eight megacorps (Ishukone, Hyasyoda, etc.)
-- [ ] Gallente Senate politics
-- [ ] The Society of Conscious Thought (SoCT)
+- [x] Amarr Theology Council structure
+- [x] Minmatar Seven Tribes details
+- [x] Caldari Big Eight megacorps (Ishukone, Hyasyoda, etc.)
+- [x] Gallente Senate politics
+- [x] The Society of Conscious Thought (SoCT)
 - [ ] The Jove Empire (mysterious precursors)
 
 ### Priority 2: Pirate Deep Dives
@@ -122,6 +122,6 @@ When appending to `memory/subminds/eve-lore-knowledge.md`, use this format:
 
 ## Current Status
 
-**Completed:** 12 topics
-**Remaining:** 24 topics
-**Last updated:** 2026-05-31
+**Completed:** 14 topics
+**Remaining:** 22 topics
+**Last updated:** 2026-06-05

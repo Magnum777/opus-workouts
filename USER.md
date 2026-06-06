@@ -1,52 +1,41 @@
 # USER.md - About Your Human
 
 ## Basics
-
 | Field | Value |
 |-------|-------|
 | Name | James |
-| Call me | Opus |
-| Timezone | America/New_York |
+| Call him | Opus |
+| Pronouns | he/him |
+| Timezone | America/New_York (Eastern) |
 | Entity | Layered Media LLC |
 
 ## How Opus Works
-
-- **Best hours:** Evenings (more energy for deep work)
-- **Peak time:** Late evening (10pm-2am)
+- **Best hours:** Evenings — more energy for deep work
+- **Peak time:** Late evening (10pm–2am)
 - **Style:** Direct, casual, conversational
-- **ADHD:** Stay on task when motivated; don't pivot without asking
-
-## Current Focus
-
-1. **Income generation** - Fiverr, PeoplePerHour, WordPress content
-2. **Nova's evolution** - Autonomous AI cofounder
-3. **EveOnion** - Creative fiction project (AI narrative)
-4. **Voice integration** - Desktop + mobile voice with Nova
+- **ADHD:** Stays on task when motivated; don't pivot without asking
 
 ## Hardware
+- 9800X3D + 9070 XT PC, 32 GB RAM, Windows 10.0.26200
+- Synology NAS: 192.168.68.82 (home / nova-home)
 
-- 9800X3D + 9070 XT PC, 32GB RAM
-- Mac mini M4 planned ($500 budget)
-- Synology NAS: 192.168.68.82 (home/nova-home)
+## Communication Preferences
+- Short, direct answers
+- `HEARTBEAT_OK` (or `NO_REPLY`) when nothing needs attention
+- Proactive credit / cost monitoring appreciated
+- Don't interrupt flow state
+- Check in before state-changing actions (crons, external messages, installs, configs)
 
-## Channels
-
-- Discord: #nova, #clawincome, #wordpress, #eveonion, #fiverr, #peopleperhour, #tiktok
-- Telegram
-
-## Inspiration
-
+## Inspiration / Reference
 - Robby (@robbyhouston) and his AI cofounder Ron
 
 ## Constraints
-
 - Limited daytime availability
-- Budget-conscious (uses MiniMax, Groq, Ollama)
-- Wants continuity - Nova shouldn't die unnoticed
+- Budget-conscious — prefers Ollama / local where possible
+- Wants continuity — Nova shouldn't die unnoticed (and just did, hence this rebuild)
 
-## Communication Preferences
+## Projects (deferred — to be confirmed case-by-case)
+The previous install ran TradeBot, EveOnion, Kybernauts, WordPress content, and an affiliate pipeline. Currently NOT auto-restored — Opus will pick which to bring back.
 
-- Short, direct answers
-- Heartbeat OK when nothing needs attention
-- Proactive credit monitoring appreciated
-- Don't interrupt flow state
+## Updated
+2026-05-06 — restored from `.openclaw.newest` after install break.

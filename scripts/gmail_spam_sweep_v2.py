@@ -70,6 +70,10 @@ SPAM_DOMAINS = {
     "elalina.vip", "freesapa.com", "andavtis.com", "carmenko.com",
     "elitemarine.com.br", "mixcloudmail.com",
     "roxoweb.com", "hostroh.com",
+    "cupidconnectnag.ru", "kisswisp.ru", "meetglownow.ru",
+    "romanticluster.ru", "greatxdatefinder.com", "hellopromo.info",
+    "soontoday.info", "freshday.info", "flirtwiththestars.com",
+    "checkoutgirlsnow.com", "heytherelab.com", "thexdate.net",
     ".ru", ".biz", ".top", ".pp.ua", ".co.nl", ".org.uk",
 }
 
@@ -80,7 +84,9 @@ RE_SEXUAL = re.compile(
     r"available tonight|bored and lonely|looking for fun|reply for pics|"
     r"click to see|view profile|spice it up|trouble in the best way|"
     r"bet you.*trouble|wanna chat|feel like talking|just relocated|"
-    r"love some help|onlyfans|fansly|hot.*milf|iflirt|flirt|"
+    r"love some help|onlyfans|fansly|hot.*milf|iflirt|flirt|flirty|"
+    r"booty shorts|flirty dm|flirty note|flirty photos|flirty message|"
+    r"touching (myself|herself|himself)|is touching|"
     r"dating|night\s*alert|tabl-",
     re.IGNORECASE,
 )
@@ -179,6 +185,12 @@ DATING = {"wants to meet you", "likes your profile", "feels the attraction",
           "a new message to read",
           "bet you're trouble", "trouble in the best way", "you're trouble",
           "wanna chat", "feel like talking", "just relocated", "love some help",
+          "fast \u0026 flirty", "flirty flings", "flirty edition",
+          "flirty connection", "flirty dm", "flirty note",
+          "flirty photos", "flirty message", "flirty and",
+          "fun and flirty", "sent a flirty",
+          "is touching herself", "is touching himself", "touching myself",
+          "match update:", "deletes in", "sent message",
           }
 
 LEGIT = {"discord.com", "google.com", "microsoft.com", "apple.com", "amazon.com",
@@ -195,6 +207,7 @@ LEGIT = {"discord.com", "google.com", "microsoft.com", "apple.com", "amazon.com"
          "cigaraficionado.com", "greentoe.com", "qalo.com", "vevor.com",
          "chewy.com", "dominos.com", "papajohns.com", "walmart.com",
          "bestbuy.com", "target.com", "costco.com", "lowes.com",
+         "bjswholesaleclub.com",
          "homedepot.com", "nbc.com", "nbcsports.com", "twitch.tv",
          "wizards.com", "experian.com", "canva.com", "lg.com",
          "samsung.com", "disneypinnacle.com", "ifttt.com",
@@ -296,7 +309,8 @@ def sweep_one(email_addr):
         return 0, 0
 
     mail.select("INBOX")
-    since_date = (datetime.now() - timedelta(days=7)).strftime("%d-%b-%Y")
+    # Check last 14 days, up to 200 messages for heavy-spam accounts
+    since_date = (datetime.now() - timedelta(days=14)).strftime("%d-%b-%Y")
     _, data = mail.search(None, f"(SINCE {since_date})")
     all_ids = data[0].split()
     if not all_ids:
@@ -304,8 +318,9 @@ def sweep_one(email_addr):
         mail.logout()
         return 0, 0
 
-    # Take last 50 UIDs
-    uids = all_ids[-50:]
+    # Take last N UIDs -- more for compjunkie which gets heavy spam
+    max_msgs = 100 if "compjunkie" in email_addr else 50
+    uids = all_ids[-max_msgs:]
     uid_str = ",".join([b.decode() if isinstance(b, bytes) else b for b in uids])
 
     print(f"  Checking {len(uids)} messages (last 7 days)...")

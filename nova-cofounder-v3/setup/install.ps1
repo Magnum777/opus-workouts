@@ -229,7 +229,7 @@ Write-Host "  2. Or start manually: openclaw chat" -ForegroundColor White
 Write-Host "`nDocumentation:" -ForegroundColor Cyan
 Write-Host "  - Setup guide: $PSScriptRoot\..\docs\PDF\setup-guide.pdf" -ForegroundColor White
 Write-Host "  - Prompt reference: $PSScriptRoot\..\docs\PDF\prompt-reference.pdf" -ForegroundColor White
-Write-Host "  - Discord: https://discord.gg/clawd" -ForegroundColor White
+Write-Host "  - Discord: https://discord.gg/XxDCEwg7Wh" -ForegroundColor White
 Write-Host "`nNeed help? Post in #nova-help on Discord." -ForegroundColor DarkGray
 
 # Launch intake unless skipped

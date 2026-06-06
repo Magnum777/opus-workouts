@@ -31,7 +31,7 @@
 - **Nova AI Cofounder V3** — Self-hosted AI assistant package
 - **Price:** $149 launch, $249 regular
 - **Includes:** Setup scripts, templates, skills, PDF guide, videos
-- **Community:** https://discord.gg/clawd
+- **Community:** https://discord.gg/XxDCEwg7Wh
 
 ## Custom Systems
 [Any systems you've built or configured]

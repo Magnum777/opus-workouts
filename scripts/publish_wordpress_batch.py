@@ -7,12 +7,12 @@ SITES = {
     "aitoolalliance": {
         "url": "https://aitoolalliance.com",
         "user": "aitoolalliance_u6cbhe",
-        "pass": "aX9$E$4lyyj2AWgp"
+        "pass": "PXop SzVQ b6wX IAyr FSig 8ZfL"
     },
     "aibusinessinsider": {
         "url": "https://aibusinessinsider.org",
-        "user": "jessica_nova",
-        "pass": "Ro7IoPncBKoMmaWP"
+        "user": "nova.cofounder@gmail.com",
+        "pass": "sDLx Ja22 YxcI QAok gu8u xRXI"
     },
     "aicofounderstack": {
         "url": "https://aicofounderstack.com",
@@ -117,7 +117,7 @@ def publish_article(site_key, title, content_html):
     auth = base64.b64encode(f"{site['user']}:{site['pass']}".encode()).decode()
     headers = {
         'Authorization': f'Basic {auth}',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'User-Agent': 'ContentNovaBot/2.0',
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     }

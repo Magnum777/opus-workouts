@@ -97,3 +97,40 @@ All sites use WordPress REST API with Application Passwords (not regular login).
 ---
 
 _Last updated: 2026-02-15_
+
+
+## AgentMail
+
+| Item | Value |
+|------|-------|
+| API Key | m_us_b943e77d67e3a966379887fbe1338695462f970ad2ffe3961df2e155343a1c11 |
+| Inbox | wittyspeech685@agentmail.to |
+| Organization ID | 23e9f73c-1a18-4b3c-830e-3f1c98f9d634 |
+
+_Last updated: 2026-04-07_
+
+
+
+## Tavily (Web Search)
+
+| Item | Value |
+|------|-------|
+| API Key | 	vly-dev-1RNFpr-hFFVvifBTREeBkgdNKD8MFBRGYZw3cler9TTZxnvNA |
+| Base URL | https://api.tavily.com |
+| Free tier | 1,000 searches/month |
+
+_Last updated: 2026-04-07_
+
+
+
+## Ollama Pro (Cloud Models)
+
+| Item | Value |
+|------|-------|
+| API Key | 89cb21d18ccd4822956fae99a65b7bed.doEM4KtS2ibbLl2fSqeK7yFZ |
+| Base URL | https://ollama.com/api/chat |
+| Auth | Bearer token |
+| Plan | Pro (50x more usage than free) |
+
+_Last updated: 2026-04-07_
+
