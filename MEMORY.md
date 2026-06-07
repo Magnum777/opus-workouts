@@ -34,6 +34,25 @@
 | WordPress Empire | Partial | aicofounderstack.com publishing. aitoolalliance (401), aibusinessinsider (403) |
 | Affiliate Pipeline | Stalled | 11 applications, 0 approvals (as of May 6) |
 
+## Spam Defense System (2026-06-07)
+Self-learning spam pipeline:
+
+1. **Spam sweep** (`gmail_spam_sweep_v2.py`) — runs every 4h, trashes known spam across 4 accounts
+2. **Pattern discovery** (`discover_spam_patterns.py`) — runs daily at 6:45 AM, scans Spam folders, finds new recurring patterns, auto-injects them into sweep script, and commits to git
+3. **False-positive filtering** — LEGIT domain whitelist, spam signal heuristics (sexual/dating keywords, verification code patterns, etc.)
+
+Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY-MM-DD)`
+
+### Schedule
+- 6:45 AM — pattern discovery (auto-update)
+- 7:15 AM — spam sweep (uses updated script)
+- Every 4h — spam sweep
+
+### Files
+- `scripts/gmail_spam_sweep_v2.py` — sweep logic
+- `scripts/discover_spam_patterns.py` — pattern discovery + auto-update
+- `scripts/.spam_patterns_found.json` — last discovery output
+
 ## Key Rules (non-negotiable)
 - "Mental notes" don't survive restart. WRITE IT DOWN.
 - Act first, report after; quiet mode; short direct answers

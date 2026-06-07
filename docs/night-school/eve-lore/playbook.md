@@ -49,7 +49,7 @@ Each night, pick **one item** from the Research Queue below. Research it thoroug
 - [x] Caldari Big Eight megacorps (Ishukone, Hyasyoda, etc.)
 - [x] Gallente Senate politics
 - [x] The Society of Conscious Thought (SoCT)
-- [ ] The Jove Empire (mysterious precursors)
+- [x] The Jove Empire (mysterious precursors)
 
 ### Priority 2: Pirate Deep Dives
 - [x] Sansha's Nation — Kuvakei, True Creations, incursions
