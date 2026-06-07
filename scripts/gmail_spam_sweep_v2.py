@@ -81,7 +81,7 @@ RE_SEXUAL = re.compile(
     r"hottie|booty|nibble|bedroom|scoop|stretched|oral|fixation|"
     r"can we make love|naked|nude|horny|porn|xxx|sexy|dtf|hookup|"
     r"casual sex|adult dating|hot affair|sexy singles|play with me|"
-    r"available tonight|bored and lonely|looking for fun|reply for pics|"
+    r"available tonight|wanting a crazy night|wants a crazy night|wanting a wild night|wants a wild night|wanting some fun|wants some fun|wants to party|wanting to party|bored and lonely|looking for fun|reply for pics|"
     r"click to see|view profile|spice it up|trouble in the best way|"
     r"bet you.*trouble|wanna chat|feel like talking|just relocated|"
     r"love some help|onlyfans|fansly|hot.*milf|iflirt|flirt|flirty|"
@@ -101,7 +101,7 @@ RE_SEXUAL = re.compile(
 RE_FAKE_SENDER = re.compile(
     r"telegram|whatsapp|signal\s*<|discord\s*<|messenger\s*<|direct\s*<|"
     r"missedcall|new\s*match|iwant|naughty|tabl-|hottie|porn|xxx|naughty|"
-    r"sexy|horny|booty|nibble|bedroom|scoop|hot tonight|are you single|"
+    r"sexy|horny|booty|nibble|bedroom|scoop|hot tonight|wanting a crazy night|wants a crazy night|are you single|"
     r"wants to chat|send pics|meetup|snapchat|kik|onlyfans|fansly",
     re.IGNORECASE,
 )
@@ -133,7 +133,7 @@ DATING = {"wants to meet you", "likes your profile", "feels the attraction",
           "open minded", "attached female", "married but", "discreet",
           "sugar baby", "sugar daddy", "allowance", "spoiled",
           "send money", "need $", "broke and",
-          "bored and lonely", "looking for fun", "reply for pics",
+          "bored and lonely", "wanting a crazy night", "wants a crazy night", "wanting a wild night", "wants a wild night", "wanting some fun", "wants some fun", "wants to party", "wanting to party", "looking for fun", "reply for pics",
           "click to see", "view profile", "claim your", "you won",
           "free gift", "act now", "missed call", "unread message",
           "instagram direct", "reply to an important message",
@@ -338,7 +338,7 @@ def sweep_one(email_addr):
         return 0, 0
 
     # Take last N UIDs -- more for compjunkie which gets heavy spam
-    max_msgs = 500 if "compjunkie" in email_addr else 300
+    max_msgs = 200 if "compjunkie" in email_addr else 100
     uids = all_ids[-max_msgs:]
     uid_str = ",".join([b.decode() if isinstance(b, bytes) else b for b in uids])
 
