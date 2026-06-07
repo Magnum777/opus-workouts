@@ -1,0 +1,27 @@
+# Workspace secrets — NEVER commit
+/credentials/
+*.env
+.env
+
+# Output/temp files
+/output/
+*.log
+*.tmp
+data/kybernauts/*.json
+scripts/__pycache__/
+
+# Node
+node_modules/
+
+# Generated artifacts
+*.pdf
+*.docx
+*.html
+!/docs/*.html
+!/docs/night-school-html/*.html
+!/docs/kybernauts-*.html
+!/docs/the-bind-doctrine*.html
+
+# OS
+.DS_Store
+Thumbs.db
