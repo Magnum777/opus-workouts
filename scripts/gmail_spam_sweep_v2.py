@@ -8,7 +8,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 START_TIME = time.time()
-MAX_RUNTIME = 150
+MAX_RUNTIME = 300
 
 def should_exit():
     return time.time() - START_TIME > MAX_RUNTIME
@@ -87,14 +87,22 @@ RE_SEXUAL = re.compile(
     r"love some help|onlyfans|fansly|hot.*milf|iflirt|flirt|flirty|"
     r"booty shorts|flirty dm|flirty note|flirty photos|flirty message|"
     r"touching (myself|herself|himself)|is touching|"
-    r"dating|night\s*alert|tabl-",
+    r"dating|night\s*alert|tabl-|hot tonight|are you single|"
+    r"wants to chat|send pics|send nudes|meetup|hangout|get together|"
+    r"just moved|new in town|lonely|need company|waiting for you|"
+    r"thinking of you|saw your pic|cute pic|you look good|handsome man|"
+    r"snap me|snapchat|kik me|telegram me|whatsapp me|text me|txt me|"
+    r"call me|hit me up|hmu|dm me|dont be shy|no strings|nothing serious|"
+    r"down for anything|open minded|attached female|married but|discreet|"
+    r"sugar baby|sugar daddy|allowance|spoiled|send money|need \$|broke and",
     re.IGNORECASE,
 )
 
 RE_FAKE_SENDER = re.compile(
     r"telegram|whatsapp|signal\s*<|discord\s*<|messenger\s*<|direct\s*<|"
     r"missedcall|new\s*match|iwant|naughty|tabl-|hottie|porn|xxx|naughty|"
-    r"sexy|horny|booty|nibble|bedroom|scoop",
+    r"sexy|horny|booty|nibble|bedroom|scoop|hot tonight|are you single|"
+    r"wants to chat|send pics|meetup|snapchat|kik|onlyfans|fansly",
     re.IGNORECASE,
 )
 
@@ -114,7 +122,17 @@ DATING = {"wants to meet you", "likes your profile", "feels the attraction",
           "feel your breasts", "soft for your fingers", "meet her before bed",
           "get to know you", "spice it up", "hot affair", "sexy singles",
           "i want hookups", "iflirts", "play with me", "available tonight",
-          "hot tonight", "are you single",
+          "hot tonight", "are you single", "wants to chat", "send pics",
+          "send nudes", "trade pics", "meet up", "meetup", "hangout",
+          "get together", "just moved", "new in town", "lonely and",
+          "so lonely", "need company", "waiting for you", "thinking of you",
+          "saw your pic", "cute pic", "you look good", "handsome man",
+          "snap me", "snapchat", "kik me", "telegram me", "whatsapp me",
+          "text me", "txt me", "call me", "hit me up", "hmu", "dm me",
+          "dont be shy", "no strings", "nothing serious", "down for anything",
+          "open minded", "attached female", "married but", "discreet",
+          "sugar baby", "sugar daddy", "allowance", "spoiled",
+          "send money", "need $", "broke and",
           "bored and lonely", "looking for fun", "reply for pics",
           "click to see", "view profile", "claim your", "you won",
           "free gift", "act now", "missed call", "unread message",
@@ -311,7 +329,7 @@ def sweep_one(email_addr):
 
     mail.select("INBOX")
     # Check last 14 days, up to 200 messages for heavy-spam accounts
-    since_date = (datetime.now() - timedelta(days=14)).strftime("%d-%b-%Y")
+    since_date = (datetime.now() - timedelta(days=30)).strftime("%d-%b-%Y")
     _, data = mail.search(None, f"(SINCE {since_date})")
     all_ids = data[0].split()
     if not all_ids:
@@ -320,11 +338,11 @@ def sweep_one(email_addr):
         return 0, 0
 
     # Take last N UIDs -- more for compjunkie which gets heavy spam
-    max_msgs = 100 if "compjunkie" in email_addr else 50
+    max_msgs = 500 if "compjunkie" in email_addr else 300
     uids = all_ids[-max_msgs:]
     uid_str = ",".join([b.decode() if isinstance(b, bytes) else b for b in uids])
 
-    print(f"  Checking {len(uids)} messages (last 7 days)...")
+    print(f"  Checking {len(uids)} messages (last 30 days)...")
 
     # Batch fetch headers
     _, fetched = mail.fetch(uid_str, "(BODY.PEEK[HEADER.FIELDS (FROM SUBJECT)])")
