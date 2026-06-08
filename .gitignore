@@ -1,9 +1,9 @@
-# Workspace secrets - NEVER commit
+# Workspace secrets — NEVER commit
 /credentials/
 *.env
 .env
 
-# Output/temp files
+# Output / temp files
 /output/
 *.log
 *.tmp
@@ -13,12 +13,6 @@ tmp_*
 daemon_*.txt
 daemon-output.txt
 _tmp_*.*
-
-# Screenshots and images
-*.png
-!/media/avatars/*
-!/docs/*.png
-!/media/generated/*
 
 # Python artifacts
 __pycache__/
@@ -34,6 +28,12 @@ node_modules/
 # Generated artifacts
 *.pdf
 *.docx
+*.png
+!/media/avatars/*
+!/docs/*.png
+!/media/generated/*
+
+# HTML — allow docs/*.html and specific pages
 *.html
 !/docs/*.html
 !/docs/night-school-html/*.html
@@ -43,3 +43,60 @@ node_modules/
 # OS
 .DS_Store
 Thumbs.db
+
+# Session artifacts — auto-generated, ephemeral
+AGENT-*.md
+SESSION-STATE.md
+SD-FIX-REPORT.md
+SKILLS_INVENTORY.md
+NIL
+null
+
+# Auth / secrets
+eve_auth.json
+
+# One-off temp files
+fix_markdown_posts*.ps1
+_tweet_eveonion.py
+
+# Large / one-off data files
+crackerbarrel_data.json
+
+# Sweep outputs
+spam_sweep_output.txt
+
+# One-off artifacts
+followup_david_cole.txt
+final_result.txt
+
+# Personal / non-project
+gym-plan.md
+home-gym-plan.md
+interview-prep-*.md
+inbox_report_*.md
+
+# Content drafts (ephemeral)
+article_aibusinessinsider.md
+temp_article_aicofounderstack.md
+temp-article.md
+eveonion_article_*.md
+
+# Temp / debug scripts
+scripts/_*.py
+scripts/_*.js
+scripts/_*.ps1
+scripts/all4.txt
+scripts/all_remaining_spam.txt
+scripts/compjunkie_emails*.txt
+scripts/filter_spam.ps1
+scripts/legit_emails.txt
+scripts/move_to_trash.ps1
+scripts/real_spam_remaining.txt
+scripts/remaining_spam_ids.txt
+scripts/spam_emails.txt
+scripts/spam_ids.txt
+scripts/ollama_test.json
+scripts/test_deepseek.json
+scripts/test_ollama_pro.json
+scripts/test_qwen.json
+
