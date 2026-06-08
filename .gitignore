@@ -1,4 +1,4 @@
-# Workspace secrets — NEVER commit
+# Workspace secrets - NEVER commit
 /credentials/
 *.env
 .env
@@ -7,8 +7,26 @@
 /output/
 *.log
 *.tmp
-data/kybernauts/*.json
-scripts/__pycache__/
+*.tmp.*
+tmp_*
+*.out
+daemon_*.txt
+daemon-output.txt
+_tmp_*.*
+
+# Screenshots and images
+*.png
+!/media/avatars/*
+!/docs/*.png
+!/media/generated/*
+
+# Python artifacts
+__pycache__/
+*.pyc
+
+# Generated data dirs
+data/
+discord/
 
 # Node
 node_modules/
