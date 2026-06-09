@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Bind v3 — Anti-Kikimora Doctrine</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    background: #fff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 22pt;
+    color: #1a0a2e;
+    border-bottom: 3px solid #00d4aa;
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 11pt;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+  .warning {
+    background: #fff0f0;
+    border: 2px solid #c00;
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin: 14px 0;
+    font-weight: 600;
+    color: #800;
+  }
+  h2 {
+    font-size: 14pt;
+    color: #1a0a2e;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    border-left: 4px solid #00d4aa;
+    padding-left: 10px;
+  }
+  h3 {
+    font-size: 11.5pt;
+    color: #2d1b4e;
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+  pre {
+    background: #1e1e2e;
+    color: #c7d1e8;
+    padding: 12px 14px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 9pt;
+    line-height: 1.45;
+    margin: 10px 0;
+  }
+  code { font-family: "Consolas", "Monaco", monospace; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 7px 10px;
+    text-align: left;
+  }
+  th {
+    background: #1a0a2e;
+    color: #fff;
+    font-weight: 600;
+  }
+  tr:nth-child(even) { background: #f8f8fc; }
+  ul, ol { margin: 8px 0; padding-left: 22px; }
+  li { margin-bottom: 4px; }
+  .phase {
+    background: #f4f0fa;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 8px 0;
+  }
+  .phase-title {
+    font-weight: 700;
+    color: #1a0a2e;
+    margin-bottom: 4px;
+  }
+  .footer {
+    margin-top: 30px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+    font-size: 9pt;
+    color: #777;
+    text-align: center;
+    font-style: italic;
+  }
+  .checklist {
+    background: #fff8f0;
+    border: 1px solid #f0d0a0;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+  .checklist li {
+    list-style: none;
+    margin-left: -8px;
+  }
+  .checklist li::before {
+    content: "\2610  ";
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<h1>The Bind v3</h1>
+<div class="subtitle">Anti-Kikimora Doctrine — Corrected for Actual BR</div>
+
+<div class="warning">
+  <strong>REALITY CHECK:</strong> Otela BR (2026-05-27) — They lost 1 Deacon (18M). We lost 3 Dictors + 1 T3C + pods (808M).<br>
+  We brought utility. They brought DPS. DPS won.
+</div>
+
+<h2>What Actually Happened</h2>
+
+<h3>Their Comp (36 involved, 1 loss):</h3>
+<ul>
+  <li><strong>~13 Kikimoras</strong> — all survived</li>
+  <li><strong>2 Deacons</strong> — 1 died, 1 survived</li>
+  <li><strong>Dictors</strong> — bubbled, held us in place</li>
+  <li><strong>Bifrosts</strong> — boosh support</li>
+</ul>
+
+<h3>Our Comp (6 involved, 8 losses):</h3>
+<ul>
+  <li><strong>3 Interdictors</strong> — died immediately (primaried, no buffer)</li>
+  <li><strong>1 Strategic Cruiser</strong> — died (primaried, expensive, slow)</li>
+  <li><strong>4 Capsules</strong> — pods</li>
+</ul>
+
+<h3>Why We Lost:</h3>
+<ol>
+  <li><strong>Dictors are paper</strong> — 2 volleys from a Kiki and they pop</li>
+  <li><strong>No actual DPS</strong> — T3C isn't DPS, it's a utility brick</li>
+  <li><strong>No buffer</strong> — our ships had no tank</li>
+  <li><strong>They held the field</strong> — bubbles trapped us, Kikis spooled freely</li>
+</ol>
+
+<h2>The Real Problem</h2>
+<p>We brought utility. They brought DPS. <strong>DPS won.</strong></p>
+
+<h2>Doctrine v3: The Bind</h2>
+
+<h3>Core Principle: Match Their DPS, Exploit Their Fragility</h3>
+<p>Kikis are fragile destroyers. Deacons are fragile frigates. We need ships that:</p>
+<ol>
+  <li>Can <strong>tank</strong> an unspooled Kiki</li>
+  <li>Can <strong>alpha</strong> a Deacon in 1-2 volleys</li>
+  <li>Can <strong>spread tackle</strong> across multiple Kikis</li>
+  <li>Can <strong>survive</strong> long enough for our alpha to work</li>
+</ol>
+
+<h3>Primary: Stabber Fleet Issue (10-12)</h3>
+<p><strong>Role:</strong> DPS + Tackle + Tank</p>
+
+<pre><code>[Stabber Fleet Issue, Bind — Anti-Kiki]
+
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+
+50MN Quad LiF Restrained Microwarpdrive
+Large Azeotropic Restrained Shield Extender
+Large Azeotropic Restrained Shield Extender
+Faint Epsilon Warp Scrambler I
+Fleeting Propulsion Inhibitor I
+
+Gyrostabilizer II
+Gyrostabilizer II
+Tracking Enhancer II
+Damage Control II
+
+Medium Core Defense Field Extender I
+Medium Projectile Ambit Extension I
+Medium Polycarbon Engine Housing I
+
+Warrior II x5</code></pre>
+
+<p><strong>Stats:</strong></p>
+<ul>
+  <li>Speed: ~1,700-1,800 m/s with MWD</li>
+  <li>Buffer: ~22-25k EHP (dual LSE + extender rig)</li>
+  <li>Alpha: ~2,000-2,400 per volley</li>
+  <li>10 SFIs = ~20,000-24,000 alpha</li>
+</ul>
+
+<p><strong>Why SFI Works:</strong></p>
+<ul>
+  <li><strong>Buffer</strong>: 22-25k EHP tanks multiple unspooled Kikis</li>
+  <li><strong>Speed</strong>: Faster than Kikis (~900 m/s), we dictate range</li>
+  <li><strong>Scram + Web</strong>: Holds Kikis, prevents escape</li>
+  <li><strong>Autocannons</strong>: No tracking issues, good falloff</li>
+</ul>
+
+<h3>Secondary: Deacon Hunters (3-4x Jaguar)</h3>
+<p><strong>Role:</strong> Kill Deacons in the opening seconds</p>
+
+<pre><code>[Jaguar, Deacon Hunter]
+
+200mm AutoCannon II, Republic Fleet Phased Plasma S
+200mm AutoCannon II, Republic Fleet Phased Plasma S
+200mm AutoCannon II, Republic Fleet Phased Plasma S
+200mm AutoCannon II, Republic Fleet Phased Plasma S
+
+5MN Quad LiF Restrained Microwarpdrive
+Faint Epsilon Warp Scrambler I
+Stasis Webifier II
+
+Gyrostabilizer II
+Gyrostabilizer II
+Tracking Enhancer II
+
+Small Core Defense Field Extender I
+Small Projectile Ambit Extension I
+Small Polycarbon Engine Housing I
+
+Warrior II x3</code></pre>
+
+<p><strong>Role:</strong></p>
+<ul>
+  <li>Land, immediately burn to Deacons</li>
+  <li>Scram + web Deacon</li>
+  <li>Alpha with 4x 200mm autos</li>
+  <li>3 Jaguars x ~1,200 alpha = ~3,600 volley</li>
+  <li>Deacon buffer = ~3,500 EHP</li>
+  <li><strong>Deacon dies in 1 volley</strong></li>
+</ul>
+
+<p><strong>Key: Deacons must die in the first 10 seconds.</strong></p>
+
+<h3>Support: Anti-Dictor Screen (2x Stiletto)</h3>
+<p><strong>Role:</strong> Kill dictors before they bubble, or die trying</p>
+
+<pre><code>[Stiletto, Anti-Dictor]
+
+125mm Gatling AutoCannon II
+
+5MN Quad LiF Restrained Microwarpdrive
+Faint Epsilon Warp Scrambler I
+Fleeting Propulsion Inhibitor I
+Medium Azeotropic Restrained Shield Extender
+
+Nanofiber Internal Structure II
+Nanofiber Internal Structure II
+
+Small Polycarbon Engine Housing I
+Small Polycarbon Engine Housing I
+Small Auxiliary Thrusters I
+
+Warrior II x3</code></pre>
+
+<p><strong>Role:</strong></p>
+<ul>
+  <li>Land first</li>
+  <li>Priority target: <strong>Dictors</strong></li>
+  <li>If dictor bubbles: accept it, fight in the bubble</li>
+  <li><strong>Do not warp out</strong> — our fleet needs to fight</li>
+  <li>Kill dictors so our SFIs can MWD away if needed later</li>
+</ul>
+
+<h2>Engagement Sequence: The Bind</h2>
+
+<div class="phase">
+  <div class="phase-title">Phase 1: The Alpha (0:00-0:10)</div>
+  <ol>
+    <li><strong>Jaguars burn to Deacons immediately</strong></li>
+    <li><strong>Stilettos lock dictors</strong></li>
+    <li><strong>SFIs land, spread scrams across Kikis</strong></li>
+    <li>Jaguars alpha Deacons — they die in 1 volley</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-title">Phase 2: The Lock (0:10-0:30)</div>
+  <ol>
+    <li><strong>Deacons are dead</strong></li>
+    <li>SFIs have scrams on multiple Kikis</li>
+    <li>FC calls primary Kiki</li>
+    <li>All SFIs fire on primary</li>
+    <li>No Deacon reps = Kiki dies in 2-3 volleys</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-title">Phase 3: The Grind (0:30-1:30)</div>
+  <ol>
+    <li>Continue target swaps every 15-20 seconds</li>
+    <li>Every Kiki swap = respool for them</li>
+    <li>Our autos keep firing (no spool)</li>
+    <li>Stilettos clean up dictors</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-title">Phase 4: The Break (If Needed)</div>
+  <ol>
+    <li>If we're losing SFIs: FC calls "break"</li>
+    <li>SFIs MWD away — Kikis have no scrams, can't hold us</li>
+    <li>Reform, re-engage with surviving ships</li>
+  </ol>
+</div>
+
+<h2>Why This Works Now</h2>
+
+<table>
+  <tr>
+    <th>Our Old Comp</th>
+    <th>Why It Failed</th>
+    <th>Our New Comp</th>
+    <th>Why It Works</th>
+  </tr>
+  <tr>
+    <td>Dictors (no buffer)</td>
+    <td>Died to 2 Kiki volleys</td>
+    <td>SFI (22-25k EHP)</td>
+    <td>Tanks unspooled fire</td>
+  </tr>
+  <tr>
+    <td>T3C (slow, expensive)</td>
+    <td>Primaried, expensive loss</td>
+    <td>SFI (fast, cheap)</td>
+    <td>Dictates range, replaceable</td>
+  </tr>
+  <tr>
+    <td>No DPS</td>
+    <td>Couldn't kill anything</td>
+    <td>10 SFIs (20k alpha)</td>
+    <td>Kills Deacons, then Kikis</td>
+  </tr>
+  <tr>
+    <td>No tackle</td>
+    <td>Couldn't hold them</td>
+    <td>Scram + web on every SFI</td>
+    <td>Holds Kikis, prevents escape</td>
+  </tr>
+</table>
+
+<h2>The Deacon Problem (Solved)</h2>
+<ul>
+  <li>2 Deacons = 400-500 HP/s rep</li>
+  <li>But: Deacon buffer = ~3,500 EHP</li>
+  <li>3 Jaguars x ~1,200 alpha = ~3,600 volley</li>
+  <li><strong>Deacon dies before reps matter</strong></li>
+</ul>
+
+<h2>The Dictor Problem (Managed)</h2>
+<ul>
+  <li>Dictors will bubble. Accept it.</li>
+  <li>Our SFIs have 22-25k EHP. We can tank in the bubble.</li>
+  <li>Kill dictors with Stilettos while SFIs fight Kikis.</li>
+  <li>Once dictors are dead, we can MWD out if needed.</li>
+</ul>
+
+<h2>The Bifrost Problem (Ignored)</h2>
+<ul>
+  <li>Bifrost boosh = they escape</li>
+  <li>Accept it. We got the ISK trade.</li>
+  <li>Reform and re-engage.</li>
+</ul>
+
+<h2>Economic Math</h2>
+
+<table>
+  <tr>
+    <th>Ship</th>
+    <th>Cost</th>
+    <th>Role</th>
+  </tr>
+  <tr>
+    <td>SFI</td>
+    <td>~35-40M</td>
+    <td>DPS + Tank + Tackle</td>
+  </tr>
+  <tr>
+    <td>Jaguar</td>
+    <td>~15-20M</td>
+    <td>Deacon Hunter</td>
+  </tr>
+  <tr>
+    <td>Stiletto</td>
+    <td>~10-15M</td>
+    <td>Anti-Dictor</td>
+  </tr>
+  <tr>
+    <td><strong>Fleet (12+4+2)</strong></td>
+    <td><strong>~600-700M</strong></td>
+    <td></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Target</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Kikimora</td>
+    <td>~80-100M</td>
+  </tr>
+  <tr>
+    <td>Deacon</td>
+    <td>~30-40M</td>
+  </tr>
+  <tr>
+    <td>Dictor</td>
+    <td>~50-70M</td>
+  </tr>
+</table>
+
+<p><strong>Break-even:</strong> Kill 7 Kikis, or 6 Kikis + 2 Deacons</p>
+
+<h2>Key Differences from v1/v2</h2>
+<ol>
+  <li><strong>No more ECM</strong> — Deacons are hard to ECM, better to just alpha them</li>
+  <li><strong>No more dictors as primary fleet</strong> — dictors die too fast, they're support only</li>
+  <li><strong>No T3C</strong> — expensive, slow, primary target</li>
+  <li><strong>Actual DPS</strong> — 12 SFIs with 220mm autos</li>
+  <li><strong>Actual buffer</strong> — 22-25k EHP per SFI</li>
+</ol>
+
+<h2>FC Callouts</h2>
+<ol>
+  <li><strong>"Alpha Deacons"</strong> — Jaguars burn immediately</li>
+  <li><strong>"Spread scrams"</strong> — Every SFI on a different Kiki</li>
+  <li><strong>"Primary [name]"</strong> — Focus fire, no reps</li>
+  <li><strong>"Kill dictors"</strong> — Stilettos clean up</li>
+  <li><strong>"Break"</strong> — MWD away, reform</li>
+</ol>
+
+<h2>Validation</h2>
+<div class="checklist">
+  <ul>
+    <li>Confirm Jaguar alpha vs Deacon buffer (should be 1 volley)</li>
+    <li>Confirm SFI buffer vs 2 unspooled Kikis (should survive 30s+)</li>
+    <li>Confirm SFI speed vs Kiki speed (should be 2:1)</li>
+    <li>Practice "alpha Deacons immediately" — 10 second window</li>
+    <li>Confirm Stiletto vs dictor (dictor should die in 1-2 volleys)</li>
+  </ul>
+</div>
+
+<div class="footer">
+  Based on actual Otela BR (2026-05-27)<br>
+  We lost 808M. They lost 18M. Never again.
+</div>
+
+</body>
+</html>

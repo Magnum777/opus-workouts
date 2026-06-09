@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anti-Kikimora Counter-Doctrine — Alpha Force Tactical Briefing</title>
+<style>
+  @page {
+    size: letter;
+    margin: 0.75in;
+  }
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    background: #fff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 22pt;
+    color: #1a0a2e;
+    border-bottom: 3px solid #00d4aa;
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .subtitle {
+    font-size: 11pt;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+  h2 {
+    font-size: 14pt;
+    color: #1a0a2e;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    border-left: 4px solid #00d4aa;
+    padding-left: 10px;
+  }
+  h3 {
+    font-size: 11.5pt;
+    color: #2d1b4e;
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+  .classification {
+    background: #f4f0fa;
+    border: 1px solid #d0c4e0;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    font-size: 9.5pt;
+  }
+  .classification strong {
+    color: #1a0a2e;
+  }
+  blockquote {
+    border-left: 3px solid #00d4aa;
+    margin: 12px 0;
+    padding: 8px 14px;
+    background: #f8fdfb;
+    font-style: italic;
+    color: #333;
+  }
+  pre {
+    background: #1e1e2e;
+    color: #c7d1e8;
+    padding: 12px 14px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 9pt;
+    line-height: 1.45;
+    margin: 10px 0;
+  }
+  code {
+    font-family: "Consolas", "Monaco", monospace;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 7px 10px;
+    text-align: left;
+  }
+  th {
+    background: #1a0a2e;
+    color: #fff;
+    font-weight: 600;
+  }
+  tr:nth-child(even) {
+    background: #f8f8fc;
+  }
+  ul, ol {
+    margin: 8px 0;
+    padding-left: 22px;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+  .phase {
+    background: #f4f0fa;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 8px 0;
+  }
+  .phase-title {
+    font-weight: 700;
+    color: #1a0a2e;
+    margin-bottom: 4px;
+  }
+  .footer {
+    margin-top: 30px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+    font-size: 9pt;
+    color: #777;
+    text-align: center;
+    font-style: italic;
+  }
+  .checklist {
+    background: #fff8f0;
+    border: 1px solid #f0d0a0;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+  .checklist li {
+    list-style: none;
+    margin-left: -8px;
+  }
+  .checklist li::before {
+    content: "\2610  ";
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<h1>Anti-Kikimora Counter-Doctrine</h1>
+<div class="subtitle">Alpha Force Tactical Briefing — Internal Doctrine</div>
+
+<div class="classification">
+  <strong>Classification:</strong> Internal Doctrine — Alpha Force<br>
+  <strong>Threat:</strong> INIT Kikimora + 5-6x Scimitar Logi Packs<br>
+  <strong>Last Updated:</strong> 2026-06-01
+</div>
+
+<h2>The Problem (Splatterbug's Intel)</h2>
+<p>INIT Kikimora packs operate with specific mechanics that pure stat-block analysis misses:</p>
+<ol>
+  <li><strong>Respool Penalty</strong> — Kikimora disintegrators lose all spool on target swap. They must rebuild damage ramp from zero each time.</li>
+  <li><strong>Heavy Logi Presence</strong> — 5-6 Scimitars means raw alpha is the only way to break their tank. Sustained DPS gets out-repped.</li>
+  <li><strong>No Scrams</strong> — Most Kiki doctrines don't fit scrams. They rely on webs and disintegrator application, not hard tackle.</li>
+  <li><strong>Range Control</strong> — Kikis pull to optimal and out-apply. If you let them dictate range, you die.</li>
+  <li><strong>Flight Dynamics</strong> — This is not a spreadsheet at 0km. It's a 3D kiting problem with traverse angles, falloff curves, and timing windows.</li>
+</ol>
+
+<p><strong>What Doesn't Work:</strong> Brawling them head-on, relying on sustained DPS races, expecting webs to matter when they don't fit scrams.</p>
+
+<h2>Core Principle: Attrition Through Range Control</h2>
+<blockquote>
+  "Make them run into a further attrition opportunity."<br>
+  — Splatterbug
+</blockquote>
+<p>The goal is NOT to hold the field in a set-piece brawl. The goal is to force the Kiki fleet into a series of unfavorable micro-engagements where their spool mechanic works against them and our speed/falloff works for us.</p>
+
+<h2>Fleet Composition: "Splatterbug's Reavers"</h2>
+
+<h3>Primary: Rupture Wing (8-10)</h3>
+<p><strong>Role:</strong> Main DPS + Tackle + Range Control</p>
+
+<pre><code>[Rupture, Reaver — Anti-Kiki]
+
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M
+
+50MN Quad LiF Restrained Microwarpdrive
+Faint Epsilon Warp Scrambler I
+Fleeting Propulsion Inhibitor I (or Fed Navy Web)
+Medium Electrochemical Capacitor Booster II, Navy Cap Booster 800
+
+Gyrostabilizer II
+Gyrostabilizer II
+Tracking Enhancer II
+Nanofiber Internal Structure II
+
+Medium Projectile Ambit Extension I
+Medium Projectile Metastasis Adjuster I
+Medium Polycarbon Engine Housing I
+
+Warrior II x5</code></pre>
+
+<p><strong>Key Stats (approx):</strong></p>
+<ul>
+  <li>Speed: ~1,400 m/s with MWD (nano + polycarbon)</li>
+  <li>Falloff: ~20km with Phased Plasma</li>
+  <li>Optimal: ~3km (irrelevant — we fight in falloff)</li>
+  <li>Alpha: ~2,000 HP per volley per ship</li>
+  <li>10 Ruptures = ~20,000 alpha volley</li>
+</ul>
+
+<p><strong>Tactics:</strong></p>
+<ul>
+  <li>Orbit at <strong>15-18km</strong> — inside Kiki optimal (~20km Mystic), outside their web range if possible</li>
+  <li>Use speed to maintain traverse — harder for disintegrators to track than stationary targets</li>
+  <li>Spread points across multiple Kikis — don't cluster on one target</li>
+  <li>When a Kiki turns to burn away, tail it with point + falloff fire into its MWDing rear</li>
+</ul>
+
+<h3>Secondary: ECM Wing (2-3 Blackbirds or 1 Scorpion)</h3>
+<p><strong>Role:</strong> Logi Suppression</p>
+
+<pre><code>[Blackbird, Jammer — Anti-Scimi]
+
+Rocket Launcher II, Caldari Navy Scourge Rocket
+
+Large Azeotropic Restrained Shield Extender
+Large Azeotropic Restrained Shield Extender
+50MN Quad LiF Restrained Microwarpdrive
+Initiated Compact Warp Disruptor
+Enfeebling Scoped Ladar ECM
+Enfeebling Scoped Ladar ECM
+Enfeebling Scoped Ladar ECM
+Enfeebling Scoped Ladar ECM
+
+Signal Distortion Amplifier II
+Signal Distortion Amplifier II
+
+Medium Particle Dispersion Augmentor I
+Medium Particle Dispersion Augmentor I
+Medium Particle Dispersion Augmentor I
+
+Hornet EC-300 x5</code></pre>
+
+<p><strong>Tactics:</strong></p>
+<ul>
+  <li><strong>Priority target: Scimitars</strong> — jam as many as possible, as consistently as possible</li>
+  <li>Scimitars are Ladar (Minmatar) — fit Ladar jammers</li>
+  <li>Stay at 70-90km range, keep transversal up</li>
+  <li>If Scimitars are jammed, Kikis die to alpha</li>
+  <li><strong>Coordinate jams</strong> — don't overlap, spread across different Scimitars</li>
+</ul>
+
+<h3>Tertiary: Fast Tackle / Scout (2-3 Stilettos or Claws)</h3>
+<p><strong>Role:</strong> Initial tackle, screening, target identification</p>
+
+<pre><code>[Stiletto, Scout-Tackle]
+
+125mm Gatling AutoCannon II
+
+5MN Quad LiF Restrained Microwarpdrive
+Faint Epsilon Warp Scrambler I
+Fleeting Propulsion Inhibitor I
+Medium Azeotropic Restrained Shield Extender
+
+Nanofiber Internal Structure II
+Nanofiber Internal Structure II
+
+Small Polycarbon Engine Housing I
+Small Polycarbon Engine Housing I
+Small Auxiliary Thrusters I
+
+Warrior II x3</code></pre>
+
+<p><strong>Tactics:</strong></p>
+<ul>
+  <li>Land first, get initial scram on a Kiki before they burn</li>
+  <li>Call target for Rupture wing</li>
+  <li>If the Kiki fleet warps, these guys follow to re-tackle at the next beacon</li>
+  <li><strong>Survival rule:</strong> Don't hero tackle. Get point, survive, let Ruptures apply.</li>
+</ul>
+
+<h2>Engagement Sequence</h2>
+
+<div class="phase">
+  <div class="phase-title">Phase 1: The Bait (0:00-0:30)</div>
+  <ol>
+    <li><strong>Stilettos land on grid</strong> — identify Kiki fleet composition, count Scimitars</li>
+    <li><strong>Call primary</strong> — FC picks a Kiki on the edge of their blob, NOT the center</li>
+    <li><strong>Stiletto gets scram</strong> — forces that Kiki to burn or fight</li>
+    <li><strong>Ruptures land 30km off</strong> — MWD on, approach to 18km falloff range</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-title">Phase 2: The Pin (0:30-1:00)</div>
+  <ol>
+    <li><strong>Blackbirds start cycling jams</strong> on Scimitars immediately</li>
+    <li><strong>Ruptures spread points</strong> — 2-3 Ruptures per Kiki on different targets</li>
+    <li><strong>First volley fires</strong> — ~20,000 alpha lands on a Kiki with no logi</li>
+    <li><strong>Kiki dies or burns</strong> — if it burns, Ruptures tail with point + falloff fire</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-title">Phase 3: The Attrition (1:00-2:00)</div>
+  <ol>
+    <li><strong>Kikis must choose:</strong>
+      <ul>
+        <li>Stay and fight → they have to respool on new targets as we spread points</li>
+        <li>Burn away → Ruptures chase at 1,400 m/s with falloff fire</li>
+        <li>Warp out → if we have points, they can't</li>
+      </ul>
+    </li>
+    <li><strong>FC calls target swaps</strong> — every 15-20 seconds, switch primary to a new Kiki. This forces respool on THEIR side, not ours.</li>
+    <li><strong>Blackbirds keep Scimitars jammed</strong> — if jams break, call for secondary jam</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-title">Phase 4: The Break (2:00+)</div>
+  <ol>
+    <li><strong>If Kikis are breaking:</strong>
+      <ul>
+        <li>Ruptures tail runners with points</li>
+        <li>Stilettos follow warps to next beacon</li>
+        <li><strong>Re-engage before they regroup</strong></li>
+      </ul>
+    </li>
+    <li><strong>If we're losing Ruptures:</strong>
+      <ul>
+        <li>FC calls "break break break"</li>
+        <li>Ruptures MWD away, keep falloff fire on pursuing Kikis</li>
+        <li>Stilettos hold points as long as possible, then bail</li>
+        <li><strong>Live to re-engage</strong> — this is attrition, not a duel</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+<h2>Why This Works (Mechanics Breakdown)</h2>
+
+<table>
+  <tr>
+    <th>Mechanic</th>
+    <th>Kiki Fleet</th>
+    <th>Reaver Fleet</th>
+  </tr>
+  <tr>
+    <td><strong>Spool</strong></td>
+    <td>Resets on every target swap</td>
+    <td>N/A (projectiles have no spool)</td>
+  </tr>
+  <tr>
+    <td><strong>Range</strong></td>
+    <td>Wants 0-20km brawl</td>
+    <td>Fights at 15-20km falloff</td>
+  </tr>
+  <tr>
+    <td><strong>Speed</strong></td>
+    <td>Slow (~900 m/s)</td>
+    <td>Fast (~1,400 m/s)</td>
+  </tr>
+  <tr>
+    <td><strong>Logi dependency</strong></td>
+    <td>5-6 Scimitars = massive logi</td>
+    <td>0 logi = self-sufficient</td>
+  </tr>
+  <tr>
+    <td><strong>Alpha vs Sustained</strong></td>
+    <td>Sustained DPS when spooled</td>
+    <td>Pure alpha volleys</td>
+  </tr>
+  <tr>
+    <td><strong>Tackle</strong></td>
+    <td>No scrams (mostly)</td>
+    <td>Scrams + long points</td>
+  </tr>
+  <tr>
+    <td><strong>Apply when chasing</strong></td>
+    <td>Poor (disintegrator tracking)</td>
+    <td>Good (falloff into rear)</td>
+  </tr>
+</table>
+
+<p><strong>The asymmetry:</strong> We win by NOT giving them the fight they want. We win by making them chase us, swap targets, and re-spool while our projectiles just keep firing.</p>
+
+<h2>Critical FC Callouts</h2>
+<ol>
+  <li><strong>"Spread points"</strong> — Don't dogpile one Kiki. Force them to split spool.</li>
+  <li><strong>"Jam logi"</strong> — First words out of FC's mouth after primary call.</li>
+  <li><strong>"Tail the runner"</strong> — When a Kiki burns, nearest Rupture chases with point.</li>
+  <li><strong>"Break break break"</strong> — Disengage before we lose critical mass. We can re-engage.</li>
+  <li><strong>"Re-engage"</strong> — The Kikis that ran are now out of position. Hunt them.</li>
+</ol>
+
+<h2>Counter-Counter: What If They Adapt?</h2>
+
+<h3>If they bring Keres (damped tackle):</h3>
+<ul>
+  <li>Stilettos die first. Acceptable loss.</li>
+  <li>Ruptures need to be more cautious on approach — use bookmarks, not direct warps.</li>
+</ul>
+
+<h3>If they bring their own ECM:</h3>
+<ul>
+  <li>Blackbirds become primary. Acceptable — every jam on us is a jam not on our DPS.</li>
+  <li>Ruptures are cheap. Blackbirds are cheap. Trade efficiently.</li>
+</ul>
+
+<h3>If they swap to long-range ammo (Tetryon):</h3>
+<ul>
+  <li>Tetryon has worse tracking. Our traverse matters MORE.</li>
+  <li>Stay at 18km, their tracking is worse than Mystic.</li>
+</ul>
+
+<h3>If they bring a Huggin/Rapier (webs):</h3>
+<ul>
+  <li>This is the real threat. If they web our Ruptures, we lose the speed advantage.</li>
+  <li>Primary the web ship immediately. It's now higher priority than Kikis.</li>
+</ul>
+
+<h2>Splatterbug's Rupture Plan (Referenced)</h2>
+<p>Splatterbug's original concept: <strong>"Inversion order jam and long point spread"</strong></p>
+<ul>
+  <li><strong>Inversion order jam</strong> = Blackbirds jam in reverse priority (jam the Kikis closest to death, forcing logi to choose)</li>
+  <li><strong>Long point spread</strong> = Ruptures with Federation Navy Warp Disruptors (24km point range) instead of scrams. This lets Ruptures point from further out, safer from Kiki optimal.</li>
+</ul>
+
+<p><strong>Trade-off:</strong> Scram shuts down MWD, Disruptor doesn't. But against Kikis with no scrams, the longer point range is more valuable.</p>
+
+<p><strong>Variant fit (Long Point):</strong> Replace scram with Federation Navy Warp Disruptor (24km range) on half the Ruptures.</p>
+<ul>
+  <li><strong>Scram Ruptures (4-5):</strong> Hold tackle on committed targets</li>
+  <li><strong>Long Point Ruptures (4-5):</strong> Point from 20km, never enter Kiki optimal</li>
+</ul>
+
+<h2>Key Takeaways</h2>
+<ol>
+  <li><strong>Don't brawl.</strong> Kikis win brawls. We win kiting.</li>
+  <li><strong>Alpha &gt; Sustained.</strong> Volley fire, not DPS races.</li>
+  <li><strong>Jam logi or die.</strong> 5-6 Scimitars will out-rep anything if not jammed.</li>
+  <li><strong>Speed is tank.</strong> 1,400 m/s Ruptures don't need buffer if they can't be hit.</li>
+  <li><strong>Attrition, not annihilation.</strong> Break, re-engage, break again. Make them bleed ISK.</li>
+</ol>
+
+<h2>Validation Needed</h2>
+<div class="checklist">
+  <ul>
+    <li>Pyfa the Rupture fit — confirm 1,400 m/s and 18km falloff with actual skills</li>
+    <li>Test Rupture tracking vs Kiki at 15km with MWD traverse</li>
+    <li>Confirm Blackbird jam strength vs Scimitar sensor strength</li>
+    <li>Practice target swap timing with fleet</li>
+    <li>Establish bookmark patterns for Pochven filament landing zones</li>
+  </ul>
+</div>
+
+<div class="footer">
+  Document compiled from splatterbug's flight-experience feedback and Alpha Force tactical principles.<br>
+  "Flight dynamics, not raw numbers."
+</div>
+
+</body>
+</html>

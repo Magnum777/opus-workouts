@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stripe Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Stripe Integration Playbook</h1>
+
+<h2>Overview</h2>
+
+<p>Stripe API integration for the AI Co-Founder Stack product. Enables invoicing, payments, and subscription management for the autonomous AI business assistant.</p>
+
+<h2>Quick Start</h2>
+
+<h3>1. Get API Keys</h3>
+<ul>
+<li>Sign up at stripe.com</li>
+<li>Go to Dashboard → Developers → API keys</li>
+<li><strong>Secret Key</strong> (sk_test_xxx) - Server-side only</li>
+<li><strong>Publishable Key</strong> (pk_test_xxx) - Client-side</li>
+</ul>
+
+<h3>2. Install Library</h3>
+<pre><code>npm install stripe
+<p>pip install stripe</p>
+</code></pre>
+
+<h3>3. Initialize Client</h3>
+<pre><code>const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+</code></pre>
+
+<pre><code>import stripe
+<p>stripe.api_key = os.getenv("STRIPE_SECRET_KEY")</p>
+</code></pre>
+
+<h2>Core Use Cases</h2>
+
+<h3>Create Customer</h3>
+<pre><code>const customer = await stripe.customers.create({
+<p>name: 'Acme Corp',</p>
+<p>email: 'billing@acme.com',</p>
+<p>description: 'AI Co-Founder Pro Subscriber'</p>
+<p>});</p>
+<p>// Store customer.id in your database</p>
+</code></pre>
+
+<h3>Create Product & Price</h3>
+<pre><code>// Create product
+<p>const product = await stripe.products.create({</p>
+<p>name: 'AI Co-Founder Pro'</p>
+<p>});</p>
+
+<p>// Create price (subscription)</p>
+<p>const price = await stripe.prices.create({</p>
+<p>product: product.id,</p>
+<p>unit_amount: 7900, // $79.00 in cents</p>
+<p>currency: 'usd',</p>
+<p>recurring: { interval: 'month' }</p>
+<p>});</p>
+</code></pre>
+
+<h3>Create Invoice</h3>
+<pre><code>const invoice = await stripe.invoices.create({
+<p>customer: customerId,</p>
+<p>collection_method: 'send_invoice',</p>
+<p>days_until_due: 30</p>
+<p>});</p>
+
+<p>// Add line item</p>
+<p>await stripe.invoiceItems.create({</p>
+<p>customer: customerId,</p>
+<p>price: priceId,</p>
+<p>invoice: invoice.id</p>
+<p>});</p>
+
+<p>// Finalize and send</p>
+<p>await stripe.invoices.finalizeInvoice(invoice.id);</p>
+<p>await stripe.invoices.sendInvoice(invoice.id);</p>
+</code></pre>
+
+<h3>Handle Webhooks (Critical)</h3>
+<pre><code>const endpoint = stripe.webhookEndpoints.create({
+<p>url: 'https://your-domain.com/webhook',</p>
+<p>enabled_events: [</p>
+<p>'invoice.paid',</p>
+<p>'invoice.payment_failed',</p>
+<p>'customer.subscription.updated',</p>
+<p>'customer.subscription.deleted'</p>
+<p>]</p>
+<p>});</p>
+
+<p>// Webhook handler</p>
+<p>app.post('/webhook', express.raw({type: 'application/json'}), (req, res) => {</p>
+<p>const sig = req.headers['stripe-signature'];</p>
+<p>let event;</p>
+  
+<p>try {</p>
+<p>event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);</p>
+<p>} catch (err) {</p>
+<p>return res.status(400).send(<code>Webhook Error: ${err.message}</code>);</p>
+<p>}</p>
+  
+<p>switch (event.type) {</p>
+<p>case 'invoice.paid':</p>
+<p>// Grant access, update database</p>
+<p>const invoice = event.data.object;</p>
+<p>console.log('Invoice paid:', invoice.id);</p>
+<p>break;</p>
+<p>case 'invoice.payment_failed':</p>
+<p>// Revoke access, notify user</p>
+<p>break;</p>
+<p>case 'customer.subscription.updated':</p>
+<p>// Handle plan changes</p>
+<p>break;</p>
+<p>}</p>
+  
+<p>res.json({ received: true });</p>
+<p>});</p>
+</code></pre>
+
+<h2>Key Events to Handle</h2>
+
+<p>| Event | Action |</p>
+<p>|-------|--------|</p>
+<p>| <code>invoice.paid</code> | Grant/extend access |</p>
+<p>| <code>invoice.payment_failed</code> | Revoke access, email user |</p>
+<p>| <code>customer.subscription.updated</code> | Handle plan changes |</p>
+<p>| <code>customer.subscription.deleted</code> | Revoke all access |</p>
+<p>| <code>charge.refunded</code> | Handle partial/full refunds |</p>
+
+<h2>Best Practices</h2>
+
+<p>1. <strong>Never expose secret key</strong> - Use environment variables only</p>
+<p>2. <strong>Validate webhook signatures</strong> - Always verify stripe-signature header</p>
+<p>3. <strong>Store customer IDs</strong> - Link to your users for quick lookups</p>
+<p>4. <strong>Use idempotency keys</strong> - For retry-safe API calls</p>
+<p>5. <strong>Set up retry logic</strong> - Webhooks can fail; Stripe retries automatically</p>
+<p>6. <strong>Test with webhooks</strong> - Use Stripe CLI: <code>stripe listen</code></p>
+
+<h2>For AI Co-Founder Stack</h2>
+
+<h3>V1 Integration (Basic)</h3>
+<ul>
+<li>Manual invoice creation via dashboard</li>
+<li>Simple webhook for payment confirmation</li>
+<li>Customer portal link for self-service</li>
+</ul>
+
+<h3>V2 Integration (Pro)</h3>
+<ul>
+<li>Full API invoice automation</li>
+<li>Subscription management</li>
+<li>Usage-based billing support</li>
+</ul>
+
+<h3>V3 Integration (Enterprise)</h3>
+<ul>
+<li>Multi-currency support</li>
+<li>Connect for marketplace/partner splits</li>
+<li>Advanced fraud detection (Radar)</li>
+</ul>
+
+<h2>Testing</h2>
+
+<ul>
+<li>Use Stripe Test Mode (sk_test_xxx)</li>
+<li>Test card numbers: 4242424242424242</li>
+<li>Webhook CLI: <code>stripe listen --forward-to localhost:3000/webhook</code></li>
+</ul>
+
+<h2>Resources</h2>
+
+<ul>
+<li>Docs: https://docs.stripe.com</li>
+<li>API Reference: https://docs.stripe.com/api</li>
+<li>Webhook Quickstart: https://docs.stripe.com/webhooks/quickstart</li>
+</ul>
+
+---
+
+<em>Researched: February 20, 2026</em>
+
+</body>
+</html>

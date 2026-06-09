@@ -100,3 +100,11 @@ scripts/test_deepseek.json
 scripts/test_ollama_pro.json
 scripts/test_qwen.json
 
+
+# Archives
+*.zip
+
+
+# Temp summaries
+propaganda_post_summary.txt
+

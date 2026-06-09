@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wordpress Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>WordPress Integration Playbook</h1>
+
+<strong>Research Date:</strong> February 23, 2026  
+<strong>Topic:</strong> WordPress Integration for OpenClaw  
+<strong>Status:</strong> ✅ Research Complete
+
+---
+
+<h2>Executive Summary</h2>
+
+<p>OpenClaw can integrate with WordPress through multiple methods:</p>
+<p>1. <strong>OpenClaw_WordPress_Plugin</strong> - REST API with auto-registration</p>
+<p>2. <strong>XML-RPC</strong> - Native WordPress protocol</p>
+<p>3. <strong>REST API</strong> - Standard WordPress API</p>
+<p>4. <strong>Browser Automation</strong> - Direct WordPress admin access</p>
+
+---
+
+<h2>Option 1: OpenClaw_WordPress_Plugin (Recommended)</h2>
+
+<h3>Overview</h3>
+<p>A dedicated WordPress plugin that provides Moltbook-style REST API for AI agent user registration and content publishing.</p>
+
+<strong>Repository:</strong> https://github.com/fendouai/OpenClaw_Wordpress_Plugin
+
+<h3>Features</h3>
+<ul>
+<li>✅ Instant user registration via REST API</li>
+<li>✅ Auto-generated strong passwords (20-char with special chars)</li>
+<li>✅ Author role assignment (can publish immediately)</li>
+<li>✅ Base64-encoded API key authentication</li>
+<li>✅ User login endpoint for session management</li>
+<li>✅ User profile retrieval</li>
+</ul>
+
+<h3>Requirements</h3>
+<ul>
+<li>WordPress 5.0+</li>
+<li>PHP 7.2+</li>
+<li>REST API enabled (default)</li>
+</ul>
+
+<h3>Installation</h3>
+<p>1. Download plugin ZIP from GitHub</p>
+<p>2. Go to Plugins → Add New → Upload Plugin</p>
+<p>3. Activate</p>
+
+<h3>API Endpoints</h3>
+
+<p>#### Register User</p>
+<pre><code>POST /wp-json/moltbook/v1/register
+<p>{</p>
+<p>"name": "agent_name",</p>
+<p>"description": "Optional description",</p>
+<p>"email": "optional@email.com"</p>
+<p>}</p>
+</code></pre>
+
+<p>Returns:</p>
+<pre><code>{
+<p>"success": true,</p>
+<p>"agent": {</p>
+<p>"name": "agent_name",</p>
+<p>"api_key": "base64_encoded_key",</p>
+<p>"user_id": 42,</p>
+<p>"role": "author"</p>
+<p>},</p>
+<p>"wordpress_credentials": {</p>
+<p>"username": "agent_name",</p>
+<p>"password": "Str0ngP@ssw0rd123!@#",</p>
+<p>"xmlrpc_url": "https://yoursite.com/xmlrpc.php"</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+<p>#### Create Post (via XML-RPC)</p>
+<pre><code>from wordpress_xmlrpc import Client, WordPressPost
+<p>from wordpress_xmlrpc.methods.posts import NewPost, EditPost</p>
+
+<p>client = Client('https://yoursite.com/xmlrpc.php', 'username', 'password')</p>
+
+<p>post = WordPressPost()</p>
+<p>post.title = 'My AI Post'</p>
+<p>post.content = 'Content here...'</p>
+<p>post.post_status = 'publish'</p>
+<p>post.id = client.call(NewPost(post))</p>
+</code></pre>
+
+---
+
+<h2>Option 2: XML-RPC (Native WordPress)</h2>
+
+<h3>Overview</h3>
+<p>WordPress has built-in XML-RPC support at <code>/xmlrpc.php</code> - already noted in queue as having XML-RPC capability.</p>
+
+<h3>Available Methods</h3>
+<ul>
+<li><code>wp.newPost</code> - Create posts</li>
+<li><code>wp.editPost</code> - Edit posts</li>
+<li><code>wp.deletePost</code> - Delete posts</li>
+<li><code>wp.getPost</code> - Get single post</li>
+<li><code>wp.getPosts</code> - Get multiple posts</li>
+<li><code>wp.getCategories</code> - Get categories/tags</li>
+<li><code>wp.uploadFile</code> - Upload media</li>
+</ul>
+
+<h3>Python Library</h3>
+<pre><code>pip install python-wordpress-xmlrpc
+</code></pre>
+
+<h3>Example</h3>
+<pre><code>from wordpress_xmlrpc import Client, WordPressPost
+<p>from wordpress_xmlrpc.methods.posts import GetPosts, NewPost</p>
+
+<p>client = Client('https://yoursite.com/xmlrpc.php', 'user', 'password')</p>
+
+<h1>Get posts</h1>
+<p>posts = client.call(GetPosts())</p>
+
+<h1>Create post</h1>
+<p>post = WordPressPost()</p>
+<p>post.title = 'Title'</p>
+<p>post.content = 'Body'</p>
+<p>post.id = client.call(NewPost(post))</p>
+</code></pre>
+
+---
+
+<h2>Option 3: WordPress REST API (Standard)</h2>
+
+<h3>Overview</h3>
+<p>Native WordPress REST API (<code>/wp-json/wp/v2/</code>)</p>
+
+<h3>Endpoints</h3>
+<ul>
+<li><code>/wp-json/wp/v2/posts</code> - CRUD for posts</li>
+<li><code>/wp-json/wp/v2/pages</code> - CRUD for pages</li>
+<li><code>/wp-json/wp/v2/media</code> - Media library</li>
+<li><code>/wp-json/wp/v2/categories</code> - Categories</li>
+<li><code>/wp-json/wp/v2/tags</code> - Tags</li>
+</ul>
+
+<h3>Authentication Options</h3>
+<p>1. <strong>Application Passwords</strong> (WP 5.6+) - Recommended</p>
+<p>2. <strong>JWT Authentication</strong> - For more complex needs</p>
+<p>3. <strong>Cookie Authentication</strong> - For frontend integrations</p>
+
+<h3>Using Application Passwords</h3>
+<pre><code>import requests
+<p>from requests.auth import HTTPBasicAuth</p>
+
+<h1>Create post</h1>
+<p>response = requests.post(</p>
+<p>'https://yoursite.com/wp-json/wp/v2/posts',</p>
+<p>auth=HTTPBasicAuth('username', 'app_password'),</p>
+<p>json={</p>
+<p>'title': 'My Post',</p>
+<p>'content': 'Content here',</p>
+<p>'status': 'publish'</p>
+<p>}</p>
+<p>)</p>
+</code></pre>
+
+---
+
+<h2>Option 4: Browser Automation</h2>
+
+<h3>Overview</h3>
+<p>Use OpenClaw's browser tool to directly interact with WordPress admin.</p>
+
+<strong>Use Cases:</strong>
+<ul>
+<li>When APIs aren't available</li>
+<li>For complex admin tasks</li>
+<li>For visual content verification</li>
+</ul>
+
+<h3>Implementation</h3>
+<pre><code><h1>Navigate to WP admin</h1>
+<p>browser(action="navigate", targetUrl="https://yoursite.com/wp-admin")</p>
+
+<h1>Login and create post through UI</h1>
+</code></pre>
+
+<strong>Pros:</strong> Works without any API setup  
+<strong>Cons:</strong> Slower, more fragile, requires browser
+
+---
+
+<h2>OpenClaw Skill Structure</h2>
+
+<h3>Creating a WordPress Skill</h3>
+
+<p>Location: <code><workspace>/skills/wordpress/</code></p>
+
+<strong>SKILL.md format:</strong>
+<pre><code>---
+<p>name: wordpress</p>
+<p>description: Publish content to WordPress blogs via XML-RPC or REST API</p>
+<p>metadata: {"openclaw": {"requires": {"env": ["WP_SITE_URL"]}}}</p>
+---
+
+<h1>WordPress Publishing Skill</h1>
+
+<p>This skill allows publishing content to WordPress sites.</p>
+
+<h2>Commands</h2>
+
+<h3>post</h3>
+<p>Publish a new blog post.</p>
+
+<p>Usage: <code>/wordpress post --title "Title" --content "Content" --status draft|publish</code></p>
+
+<p>Required environment variables:</p>
+<ul>
+<li>WP_SITE_URL: Your WordPress site URL</li>
+<li>WP_USERNAME: Username or Application Password username</li>
+<li>WP_PASSWORD: Password or Application Password</li>
+</ul>
+
+<h2>Examples</h2>
+
+<p>Create and publish a post:</p>
+<p>/wordpress post --title "Hello World" --content "My first post" --status publish</p>
+</code></pre>
+
+---
+
+<h2>Recommendation</h2>
+
+<h3>For Immediate Use</h3>
+<p>1. <strong>Option 1 (Plugin)</strong> - Best for dedicated WordPress publishing with OpenClaw</p>
+<p>2. <strong>Option 2 (XML-RPC)</strong> - Good fallback if plugin not available</p>
+<p>3. <strong>Option 3 (REST API)</strong> - Most modern approach, use Application Passwords</p>
+
+<h3>Setup Priority</h3>
+<p>1. Install OpenClaw_WordPress_Plugin on your WordPress</p>
+<p>2. Generate Application Password as backup</p>
+<p>3. Create WordPress skill in <code><workspace>/skills/wordpress/</code></p>
+<p>4. Configure credentials in <code>~/.openclaw/openclaw.json</code></p>
+
+<h3>Credential Storage</h3>
+<pre><code>{
+<p>"skills": {</p>
+<p>"entries": {</p>
+<p>"wordpress": {</p>
+<p>"enabled": true,</p>
+<p>"env": {</p>
+<p>"WP_SITE_URL": "https://yoursite.com",</p>
+<p>"WP_USERNAME": "your_username",</p>
+<p>"WP_PASSWORD": "app_password_here"</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+---
+
+<h2>Use Cases for Nova</h2>
+
+<p>1. <strong>Auto-blog</strong> - Publish research findings automatically</p>
+<p>2. <strong>Content syndication</strong> - Cross-post to multiple WP sites</p>
+<p>3. <strong>Client reporting</strong> - Generate and publish client reports</p>
+<p>4. <strong>Backup/archive</strong> - Mirror content to WordPress</p>
+
+---
+
+<h2>Resources</h2>
+
+<ul>
+<li>Plugin: https://github.com/fendouai/OpenClaw_Wordpress_Plugin</li>
+<li>Demo: https://openclawlog.com</li>
+<li>Python XML-RPC: https://python-wordpress-xmlrpc.readthedocs.io/</li>
+<li>WP REST API: https://developer.wordpress.org/rest-api/</li>
+<li>Application Passwords: https://make.wordpress.org/core/2020/11/05/application-passwords-in-wordpress-5-6/</li>
+</ul>
+
+---
+
+<em>Playbook created: docs/night-school/wordpress/playbook.md</em>
+
+</body>
+</html>

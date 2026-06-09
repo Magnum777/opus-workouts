@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>openai-tts Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>OpenAI TTS Integration</h1>
+
+<strong>Setup Date:</strong> 2026-04-26
+<strong>Service:</strong> OpenAI Text-to-Speech
+<strong>Models:</strong> tts-1, tts-1-hd
+
+<h2>Voices Available</h2>
+
+<p>| Voice | Style | Best For |</p>
+<p>|-------|-------|----------|</p>
+<p>| <strong>alloy</strong> | Neutral, balanced | General purpose |</p>
+<p>| <strong>echo</strong> | Warm, friendly | Conversational |</p>
+<p>| <strong>fable</strong> | British, professional | Narration |</p>
+<p>| <strong>onyx</strong> | Deep, authoritative | Serious content |</p>
+<p>| <strong>nova</strong> | Bright, energetic | Friendly/helpful |</p>
+<p>| <strong>shimmer</strong> | Soft, warm | Storytelling |</p>
+
+<strong>Recommendation:</strong> <code>nova</code> for Nova AI (matches name), <code>echo</code> for warm assistant feel
+
+<h2>API Endpoint</h2>
+
+<pre><code>curl https://api.openai.com/v1/audio/speech \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+<p>"model": "tts-1",</p>
+<p>"input": "Hello, I am Nova!",</p>
+<p>"voice": "nova",</p>
+<p>"response_format": "mp3"</p>
+<p>}' \</p>
+  --output speech.mp3
+</code></pre>
+
+<h2>Python Integration</h2>
+
+<pre><code>from openai import OpenAI
+<p>import os</p>
+
+<p>client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))</p>
+
+<p>def generate_voice(text, voice="nova", output_file="output.mp3"):</p>
+<p>response = client.audio.speech.create(</p>
+<p>model="tts-1",</p>
+<p>voice=voice,</p>
+<p>input=text,</p>
+<p>response_format="mp3"</p>
+<p>)</p>
+<p>response.stream_to_file(output_file)</p>
+<p>return output_file</p>
+
+<h1>Example usage</h1>
+<h1>generate_voice("Hello Opus, I'm ready to help!", voice="echo")</h1>
+</code></pre>
+
+<h2>Pricing</h2>
+
+<ul>
+<li><strong>tts-1:</strong> $0.015 / 1K characters</li>
+<li><strong>tts-1-hd:</strong> $0.030 / 1K characters (higher quality)</li>
+</ul>
+
+<h2>Discord Integration</h2>
+
+<p>1. Generate voice file</p>
+<p>2. Post to channel with <code>MEDIA:path</code> directive</p>
+<p>3. Or use <code>[[audio_as_voice]]</code> for voice-note style</p>
+
+<h2>Test Commands</h2>
+
+<pre><code><h1>Quick test</h1>
+<p>from openai import OpenAI</p>
+<p>client = OpenAI()</p>
+
+<p>speech = client.audio.speech.create(</p>
+<p>model="tts-1",</p>
+<p>voice="nova",</p>
+<p>input="This is Nova, testing OpenAI text to speech!"</p>
+<p>)</p>
+<p>speech.stream_to_file("test.mp3")</p>
+</code></pre>
+
+<h2>Config</h2>
+
+<p>Add to <code>.env</code>:</p>
+<pre><code>OPENAI_API_KEY=your_key_here
+</code></pre>
+
+<p>Already configured in OpenClaw via model providers.</p>
+
+</body>
+</html>

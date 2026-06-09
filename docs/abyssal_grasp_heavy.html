@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abyssal Grasp v2 Heavy — Kybernauts Doctrine</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #121212;
+    --bg3: #1a1a1a;
+    --text: #e8e8e8;
+    --text2: #b0b0b0;
+    --accent: #e4090c;
+    --accent2: #00d4aa;
+    --border: #2a2a2a;
+    --code-bg: #0d0d0d;
+    --gold: #d4af37;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .cover {
+    text-align: center;
+    padding: 60px 20px;
+    border: 3px solid var(--accent);
+    border-radius: 8px;
+    margin-bottom: 40px;
+    background: var(--bg2);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+  .cover h1 {
+    color: var(--accent);
+    font-size: 2.8rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border: none;
+    padding: 0;
+  }
+  .cover .subtitle { color: var(--accent2); font-size: 1.3rem; margin-bottom: 10px; }
+  .cover .meta { color: #777; font-size: 0.9rem; margin-top: 20px; }
+  .cover .isk-badge {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 8px 20px;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-size: 0.95rem;
+  }
+  h1 { color: var(--accent); font-size: 2rem; border-bottom: 3px solid var(--accent); padding-bottom: 10px; margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 2px; }
+  h2 { color: var(--accent2); font-size: 1.5rem; margin-top: 35px; margin-bottom: 15px; border-left: 4px solid var(--accent2); padding-left: 12px; }
+  h3 { color: var(--text); font-size: 1.2rem; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+  h4 { color: var(--accent2); font-size: 1rem; margin-top: 20px; margin-bottom: 8px; }
+  p { margin-bottom: 12px; color: var(--text2); }
+  strong { color: var(--text); }
+  ul, ol { margin-left: 20px; margin-bottom: 15px; }
+  li { margin-bottom: 6px; color: var(--text2); }
+  code { background: var(--code-bg); padding: 2px 6px; border-radius: 3px; font-family: 'Consolas', monospace; font-size: 0.9em; color: var(--accent2); }
+  pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 15px; overflow-x: auto; margin: 15px 0; font-family: 'Consolas', monospace; font-size: 0.85em; line-height: 1.4; color: var(--text); }
+  pre code { background: none; padding: 0; color: inherit; }
+  .fit-block { background: var(--bg2); border: 1px solid var(--accent); border-radius: 6px; padding: 15px; margin: 15px 0; }
+  .fit-block pre { border: none; background: var(--bg3); margin: 10px 0 0 0; }
+  .warning { background: rgba(228, 9, 12, 0.1); border-left: 4px solid var(--accent); padding: 12px 15px; margin: 15px 0; border-radius: 0 4px 4px 0; }
+  .tip { background: rgba(0, 212, 170, 0.1); border-left: 4px solid var(--accent2); padding: 12px 15px; margin: 15px 0; border-radius: 0 4px 4px 0; }
+  .gold-box { background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--gold); padding: 12px 15px; margin: 15px 0; border-radius: 0 4px 4px 0; color: var(--gold); }
+  .danger { background: rgba(228, 9, 12, 0.15); border: 1px solid var(--accent); padding: 15px; margin: 15px 0; border-radius: 6px; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
+  th { background: var(--bg3); color: var(--accent2); padding: 10px; text-align: left; border-bottom: 2px solid var(--accent); }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--text2); }
+  tr:hover td { background: var(--bg2); }
+  .divider { height: 2px; background: var(--accent); margin: 40px 0; border-radius: 1px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 15px; text-align: center; }
+  .stat-card .number { font-size: 1.8rem; font-weight: bold; color: var(--accent); }
+  .stat-card .label { color: var(--text2); font-size: 0.85rem; margin-top: 4px; }
+  .stat-card.gold .number { color: var(--gold); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } .cover h1 { font-size: 2rem; } }
+  .toc { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 20px; margin-bottom: 30px; }
+  .toc h3 { margin-top: 0; border: none; }
+  .toc a { color: var(--accent2); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc ul { list-style: none; margin-left: 0; }
+  .toc li { margin-bottom: 4px; }
+  .phase { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 15px; margin: 10px 0; }
+  .phase-header { color: var(--accent); font-weight: bold; margin-bottom: 8px; }
+  .math-box { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 15px; margin: 15px 0; }
+  .math-box h4 { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Abyssal Grasp v2 — Heavy</h1>
+  <div class="subtitle">18-Man Brawler Doctrine vs. 30 Kikimora Fleets</div>
+  <div class="meta">Kybernauts Clade | ISK War Optimized | Updated 2026-06-01</div>
+  <div class="isk-badge">Die Cheap — Kill Expensive</div>
+</div>
+
+<div class="toc">
+  <h3>Contents</h3>
+  <ul>
+    <li><a href="#comp">Fleet Composition</a></li>
+    <li><a href="#spool">The Spool Problem</a></li>
+    <li><a href="#math">Real Math: Split DPS Scenarios</a></li>
+    <li><a href="#timeline">20-Second Timeline Model</a></li>
+    <li><a href="#isk">ISK War Outcomes (Conservative)</a></li>
+    <li><a href="#tactics">Tactics: 18 vs 30</a></li>
+    <li><a href="#fits">Fits (EFT Format)</a></li>
+    <li><a href="#rules">Critical Rules</a></li>
+  </ul>
+</div>
+
+<h2 id="comp">Fleet Composition (18-man squad)</h2>
+
+<table>
+  <tr><th>Ship</th><th>Qty</th><th>Role</th><th>Key Contribution</th></tr>
+  <tr><td><strong>Vexor "Grappler"</strong></td><td>12</td><td>Mainline DPS + Neuts</td><td>6,000 DPS + 24 neuts cap out 20+ Kikis</td></tr>
+  <tr><td><strong>Thorax "Fist"</strong></td><td>4</td><td>Pure Blaster Alpha</td><td>2,200 DPS — highest cruiser gun DPS</td></tr>
+  <tr><td><strong>Moa "Anchor"</strong></td><td>2</td><td>Dual Tackle + Tank</td><td>Redundant anchors. Dual web = nothing escapes</td></tr>
+</table>
+
+<div class="stat-grid">
+  <div class="stat-card"><div class="number">18</div><div class="label">Ships</div></div>
+  <div class="stat-card"><div class="number">8,900</div><div class="label">Focused DPS</div></div>
+  <div class="stat-card"><div class="number">24</div><div class="label">Neuts</div></div>
+  <div class="stat-card gold"><div class="number">~300M</div><div class="label">Fleet Cost</div></div>
+  <div class="stat-card gold"><div class="number">~2.7B</div><div class="label">Enemy Value (30×90M)</div></div>
+  <div class="stat-card"><div class="number">9:1</div><div class="label">Value Ratio</div></div>
+</div>
+
+<div class="warning">
+  <strong>We are outnumbered 30 to 18.</strong> We do NOT win by killing all 30. We win by killing ENOUGH of them before they spool up and wipe us. Every second matters.
+</div>
+
+<h2 id="spool">The Spool Problem</h2>
+
+<p><strong>Kikimora disintegrators ramp over ~90 seconds.</strong> They start weak and get lethal. Here is the realistic spool curve for a T2-fitted Kikimora with Entropic Radiation Sink:</p>
+
+<table>
+  <tr><th>Time</th><th>Spool %</th><th>DPS per Kiki</th><th>30 Kikis Total</th></tr>
+  <tr><td>0-5s</td><td>~20%</td><td>~80</td><td>~2,400</td></tr>
+  <tr><td>5-10s</td><td>~35%</td><td>~140</td><td>~4,200</td></tr>
+  <tr><td>10-15s</td><td>~50%</td><td>~200</td><td>~6,000</td></tr>
+  <tr><td>15-20s</td><td>~65%</td><td>~260</td><td>~7,800</td></tr>
+  <tr><td>20-30s</td><td>~80%</td><td>~320</td><td>~9,600</td></tr>
+  <tr><td>30-60s</td><td>~90%</td><td>~360</td><td>~10,800</td></tr>
+  <tr><td>60-90s</td><td>~100%</td><td>~400</td><td>~12,000</td></tr>
+</table>
+
+<div class="danger">
+  <strong>At 60+ seconds, 30 fully spooled Kikimoras = 12,000 DPS.</strong> That melts our entire fleet in ~25 seconds. <strong>We MUST kill enough of them in the first 20-30 seconds to survive.</strong>
+</div>
+
+<h2 id="math">Real Math: Split DPS Scenarios</h2>
+
+<h3>Scenario A: They Focus Fire One Target (All 30 on One Ship)</h3>
+
+<div class="math-box">
+  <h4>t=0 to t=5s (20% spool, 80 DPS each)</h4>
+  <ul>
+    <li>30 × 80 = <strong>2,400 DPS on one Vexor</strong></li>
+    <li>Vexor HP: 18,000 — Damage in 5s: 12,000 — <strong>Remaining: 6,000</strong></li>
+  </ul>
+  <h4>t=5 to t=10s (35% spool, 140 DPS each)</h4>
+  <ul>
+    <li>30 × 140 = <strong>4,200 DPS</strong></li>
+    <li>Remaining 6,000 HP dies in ~1.4 seconds</li>
+    <li><strong>First Vexor dies at ~t=6.4s</strong></li>
+  </ul>
+  <h4>Meanwhile, our damage output:</h4>
+  <ul>
+    <li>8,900 DPS × 6.4s = 56,960 damage</li>
+    <li>Kills: 56,960 ÷ 13,000 = <strong>~4 Kikimoras dead by t=6.4s</strong></li>
+  </ul>
+  <p><strong>Exchange ratio at t=6.4s: We lose 1 Vexor (17M), they lose 4 Kikis (360M). Net: +343M.</strong></p>
+</div>
+
+<h4>Continuing the model (focus fire):</h4>
+<table>
+  <tr><th>Time</th><th>Our Kills (cumulative)</th><th>They Kill</th><th>Their Fleet Size</th><th>Exchange</th></tr>
+  <tr><td>t=6s</td><td>4</td><td>1st Vexor</td><td>26</td><td>+343M</td></tr>
+  <tr><td>t=10s</td><td>7</td><td>2nd Vexor</td><td>23</td><td>+686M</td></tr>
+  <tr><td>t=15s</td><td>10</td><td>3rd ship</td><td>20</td><td>+1,029M</td></tr>
+  <tr><td>t=20s</td><td>14</td><td>4th ship</td><td>16</td><td>+1,372M</td></tr>
+  <tr><td>t=30s</td><td>20</td><td>6 ships</td><td>10</td><td>+2,058M</td></tr>
+</table>
+
+<div class="tip">
+  <strong>Focus fire is BETTER for us.</strong> They kill one ship every 4-6 seconds, but we kill 3-4 Kikimoras in the same time. Net exchange is massively in our favor.
+</div>
+
+<h3>Scenario B: They Split Fire (10 per target, 3 targets simultaneously)</h3>
+
+<div class="math-box">
+  <h4>t=0 to t=5s (20% spool, 80 DPS each)</h4>
+  <ul>
+    <li>10 × 80 = <strong>800 DPS per target</strong> (3 targets)</li>
+    <li>Damage in 5s: 4,000 — Vexor HP remaining: 14,000</li>
+  </ul>
+  <h4>t=5 to t=10s (35% spool, 140 DPS each)</h4>
+  <ul>
+    <li>10 × 140 = <strong>1,400 DPS per target</strong></li>
+    <li>Damage in 5s: 7,000 — Vexor HP remaining: 7,000</li>
+  </ul>
+  <h4>t=10 to t=15s (50% spool, 200 DPS each)</h4>
+  <ul>
+    <li>10 × 200 = <strong>2,000 DPS per target</strong></li>
+    <li>Remaining 7,000 dies in ~3.5 seconds</li>
+    <li><strong>First 3 ships die around t=13.5s</strong></li>
+  </ul>
+  <h4>Our damage output by t=13.5s:</h4>
+  <ul>
+    <li>8,900 DPS × 13.5s = 120,150 damage</li>
+    <li>Kills: 120,150 ÷ 13,000 = <strong>~9 Kikimoras dead by t=13.5s</strong></li>
+  </ul>
+  <p><strong>Exchange at t=13.5s: We lose 3 ships (~50M), they lose 9 Kikis (~810M). Net: +760M.</strong></p>
+</div>
+
+<h4>Continuing the model (split fire):</h4>
+<table>
+  <tr><th>Time</th><th>Our Kills (cumulative)</th><th>They Kill</th><th>Their Fleet Size</th><th>Exchange</th></tr>
+  <tr><td>t=14s</td><td>9</td><td>3 ships</td><td>21</td><td>+760M</td></tr>
+  <tr><td>t=20s</td><td>14</td><td>5 ships</td><td>16</td><td>+1,270M</td></tr>
+  <tr><td>t=30s</td><td>20</td><td>8 ships</td><td>10</td><td>+1,620M</td></tr>
+  <tr><td>t=40s</td><td>26</td><td>12 ships</td><td>4</td><td>+2,160M</td></tr>
+</table>
+
+<div class="danger">
+  <strong>Split fire is DANGEROUS.</strong> They kill 3 of ours every ~13-14 seconds. By t=30s, we've lost 8 ships. But we've killed 20 Kikimoras. The ISK war still favors us — but we might be forced to extract with heavy losses.
+</div>
+
+<h3>Scenario C: The Neut Effect (Reality)</h3>
+
+<div class="gold-box">
+  <strong>24 small neuts (12 Vexors × 2 each) = ~1,200 GJ/s total cap drain</strong>
+</div>
+
+<p>One Kikimora cap usage: MWD (~40) + hardener (~10) + disintegrator (~5) = <strong>~55 GJ/s</strong></p>
+<p><strong>1,200 ÷ 55 = ~22 Kikimoras can be simultaneously capped out.</strong></p>
+
+<div class="tip">
+  <strong>What this means in practice:</strong> In the first 5-10 seconds, our 24 neuts hit ~15-20 Kikimoras. Their MWDs die. Their hardeners cycle off. Their DPS drops because:
+  <ul>
+    <li>Without cap, disintegrator spool STOPS or resets</li>
+    <li>Without hardener, their resists drop 30-40%</li>
+    <li>Without MWD, they can't reposition or escape</li>
+  </ul>
+  <strong>Effective enemy DPS at t=10s is NOT 6,000. It's closer to 3,000-4,000</strong> because 15-20 of them are capped out or partially capped.
+</div>
+
+<h2 id="timeline">20-Second Timeline Model (Realistic)</h2>
+
+<p><strong>Assumptions:</strong> They split fire (10 per target, 3 groups). We focus fire. Neuts cap out ~15 Kikimoras by t=10s.</p>
+
+<div class="phase">
+  <div class="phase-header">0-5s: The Burn</div>
+  <ul>
+    <li>All 18 overheat prop and burn straight at them</li>
+    <li>2 Moas split left/right, MWD at nearest Kikimoras</li>
+    <li>12 Vexors + 4 Thoraxes follow in wedge formation</li>
+    <li><strong>Enemy DPS:</strong> 30 × ~80 = 2,400 total (spread across 3 targets = 800 each)</li>
+    <li><strong>Our kills:</strong> 0 (not in range yet)</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <div class="phase-header">5-10s: First Contact</div>
+  <ul>
+    <li>Moas get scram + dual web on 2 Kikimoras. Call primary + secondary.</li>
+    <li>All ships scram + web. Neuts ON. Blasters ON. Drones OUT.</li>
+    <li><strong>Our kills:</strong> 3 Kikimoras (8,900 DPS × 5s ÷ 13k = ~3.4 kills)</li>
+    <li><strong>Enemy DPS:</strong> 27 remaining × ~140 = 3,780 total (capped out Kikis doing ~half = ~2,500 effective)</li>
+    <li><strong>Damage to our 3 targets:</strong> ~850 DPS each × 5s = ~4,250</li>
+    <li><strong>Our ships remaining HP:</strong> ~13,000-14,000 each</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <div class="phase-header">10-15s: The Collapse</div>
+  <ul>
+    <li>Primary dies. Switch to next. All 18 ships re-target.</li>
+    <li>Vexors spread neuts to 2nd and 3rd targets.</li>
+    <li><strong>Our kills (cumulative):</strong> ~7 Kikimoras</li>
+    <li><strong>Enemy DPS:</strong> 23 remaining × ~200 = 4,600 total (capped out = ~3,000 effective)</li>
+    <li><strong>Our first 3 ships:</strong> ~6,000 HP remaining each. 2,000 DPS incoming each.</li>
+    <li><strong>First ship dies at ~t=14s</strong> (6,000 ÷ 2,000 = 3s)</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <div class="phase-header">15-20s: Attrition</div>
+  <ul>
+    <li>3 of our ships are dead or dying. 15 remain.</li>
+    <li>But we've killed ~10 Kikimoras. Their fleet is now 20.</li>
+    <li><strong>Our DPS drops:</strong> 15 ships × ~500 avg = ~7,500 DPS</li>
+    <li><strong>Enemy DPS:</strong> 20 × ~260 = 5,200 total (capped out = ~3,500 effective)</li>
+    <li><strong>Exchange:</strong> We lose 3 ships. They lose 10. Net ISK: +720M.</li>
+  </ul>
+</div>
+
+<div class="warning">
+  <strong>At t=20s, we have a decision:</strong>
+  <ul>
+    <li>If they are breaking (warping off, scattered): <strong>chase and kill more.</strong></li>
+    <li>If they are holding and we're down to 10-12 ships: <strong>overheat AB and extract.</strong> We've already won the ISK war.</li>
+  </ul>
+</div>
+
+<h2 id="isk">ISK War Outcomes (Conservative, With Neuts)</h2>
+
+<p>These numbers account for the neut effect reducing enemy DPS, and assume we don't perfectly focus fire (some spread, some misses).</p>
+
+<table>
+  <tr><th>Scenario</th><th>We Lose</th><th>We Kill</th><th>Net ISK</th><th>Duration</th></tr>
+  <tr><td><strong>Quick extract</strong></td><td>3 cruisers (54M)</td><td>8 Kikis (720M)</td><td style="color:var(--gold); font-weight:bold;">+666M</td><td>~15s</td></tr>
+  <tr><td><strong>Moderate brawl</strong></td><td>6 cruisers (108M)</td><td>12 Kikis (1,080M)</td><td style="color:var(--gold); font-weight:bold;">+972M</td><td>~20s</td></tr>
+  <tr><td><strong>Full commit</strong></td><td>10 cruisers (180M)</td><td>16 Kikis (1,440M)</td><td style="color:var(--gold); font-weight:bold;">+1,260M</td><td>~30s</td></tr>
+  <tr><td><strong>Wiped but traded</strong></td><td>All 18 (324M)</td><td>18 Kikis (1,620M)</td><td style="color:var(--gold); font-weight:bold;">+1,296M</td><td>~40s</td></tr>
+</table>
+
+<div class="gold-box">
+  <strong>Bottom line:</strong> Even in the worst case (all 18 die), killing just 4 Kikimoras breaks even on ISK. With this comp, you'll get 10-18. <strong>Every engagement is profitable.</strong>
+</div>
+
+<h2 id="tactics">Tactics: 18 vs 30</h2>
+
+<h3>Pre-Engagement</h3>
+<ul>
+  <li><strong>Set drones to aggressive BEFORE landing.</strong> They auto-attack anything that shoots you.</li>
+  <li><strong>Pre-load cap boosters.</strong> 400s in all ships. You're getting neuted.</li>
+  <li><strong>Pre-heat prop mods.</strong> Overheat AB before you even see them.</li>
+</ul>
+
+<h3>The Landing</h3>
+<div class="phase">
+  <div class="phase-header">0-5s: Burn</div>
+  <ol>
+    <li><strong>ALL 18 overheat prop and burn at them in a straight line.</strong> No orbiting. Straight through their formation.</li>
+    <li><strong>Moa #1 (left flank):</strong> MWD at closest Kikimora. Scram + web when in range.</li>
+    <li><strong>Moa #2 (right flank):</strong> Same. Target second closest.</li>
+    <li><strong>12 Vexors + 4 Thoraxes:</strong> Follow Moas. Do NOT stop at 15km. Burn to scram range (8km).</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-header">5-10s: Lock and Kill</div>
+  <ol>
+    <li><strong>Moas call primary + secondary.</strong></li>
+    <li><strong>ALL ships:</strong> Lock primary. Scram. Web. <strong>Neuts ON.</strong> Blasters ON. Drones engage.</li>
+    <li><strong>Vexors specifically:</strong> Neut the primary AND a second nearby Kikimora.</li>
+    <li>Primary dies in ~1.5 seconds.</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-header">10-20s: Switch and Survive</div>
+  <ol>
+    <li><strong>Switch to secondary immediately.</strong> All 18 ships. Drones auto-switch if on aggressive.</li>
+    <li><strong>Neuts spread.</strong> Each Vexor should have neuts on 2 targets.</li>
+    <li>If a ship drops below 30% hull, <strong>overheat hardener</strong> (right-click, Overheat).</li>
+    <li>If you're the primary target and taking fire, <strong>do not panic.</strong> Keep shooting. Your death buys time for the fleet to kill 3 Kikimoras.</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-header">20s+: Extract Decision</div>
+  <ol>
+    <li><strong>FC assesses:</strong> How many Kikimoras are left? How many of us are left?</li>
+    <li><strong>If they are breaking:</strong> Chase. Kill stragglers. Loot.</li>
+    <li><strong>If they are holding and we've lost 6+ ships:</strong> <strong>EXTRACT.</strong> Overheat AB. Burn to a bookmark/gate. Warp.</li>
+    <li><strong>Remember:</strong> At t=20s with 10+ Kikimora kills, you've already won the ISK war. Don't throw away a winning trade by staying too long.</li>
+  </ol>
+</div>
+
+<h3>Critical: What If Both Moas Die?</h3>
+<div class="warning">
+  <strong>This will happen.</strong> 30 Kikimoras will focus our tackle first.
+  <ul>
+    <li><strong>Backup tackle:</strong> Vexor #1 and Thorax #1 are designated secondary anchors. If both Moas die, THEY call primary.</li>
+    <li><strong>Every ship has scram + web.</strong> The fleet doesn't stop if tackle dies.</li>
+    <li><strong>Keep killing.</strong> Even without anchors, 16 ships with scram/web can still hold and kill.</li>
+  </ul>
+</div>
+
+<h2 id="fits">Fits (EVE Copy-Paste Format)</h2>
+
+<h3>Vexor — "Grappler" (×12)</h3>
+<div class="fit-block">
+<pre><code>[Vexor, Abyssal Grasp v2 - Grappler]
+
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+Small Energy Neutralizer II
+Small Energy Neutralizer II
+
+10MN Afterburner II
+Fleeting Compact Stasis Webifier
+Warp Scrambler II
+Multispectrum Energized Membrane II
+
+1600mm Steel Plates II
+IFFA Compact Damage Control
+Drone Damage Amplifier II
+Drone Damage Amplifier II
+
+Medium Trimark Armor Pump I
+Medium Anti-EM Pump I
+Medium Anti-Explosive Pump I
+
+Ogre II x4
+Warrior II x5
+Hobgoblin II x5
+
+Navy Cap Booster 400 x10</code></pre>
+</div>
+<ul>
+  <li><strong>DPS:</strong> ~500 (blasters + drones)</li>
+  <li><strong>Tank:</strong> ~18k EHP armor (buffer — neut immune)</li>
+  <li><strong>Neuts:</strong> 2x Small Neut II = ~100 GJ/s cap drain</li>
+  <li><strong>PG check:</strong> 1600mm plate (350) + 2x blasters (60) + 2x neuts (40) + AB (30) + hardener (30) + web/scram (2) = 512 MW. Vexor with skills has ~900+ MW. Fits.</li>
+  <li><strong>CPU check:</strong> 2x DDA (60) + hardener (30) + 2x blasters (40) + 2x neuts (40) + AB (15) + web (15) + scram (20) = 220 CPU. Vexor has ~300. Fits.</li>
+</ul>
+
+<h3>Thorax — "Fist" (×4)</h3>
+<div class="fit-block">
+<pre><code>[Thorax, Abyssal Grasp v2 - Fist]
+
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+
+10MN Afterburner II
+Fleeting Compact Stasis Webifier
+Warp Scrambler II
+Multispectrum Energized Membrane II
+
+1600mm Steel Plates II
+IFFA Compact Damage Control
+Magnetic Field Stabilizer II
+Magnetic Field Stabilizer II
+
+Medium Trimark Armor Pump I
+Medium Anti-EM Pump I
+Medium Anti-Explosive Pump I
+
+Warrior II x5
+
+Navy Cap Booster 400 x10</code></pre>
+</div>
+<ul>
+  <li><strong>DPS:</strong> ~550 (5 blasters + drones)</li>
+  <li><strong>Tank:</strong> ~17k EHP armor (buffer)</li>
+  <li><strong>Highest cruiser gun DPS in the game.</strong> 5 T2 blasters with 2x mag stabs = raw alpha.</li>
+  <li><strong>PG check:</strong> 5x blasters (150) + plate (350) + 2x mag stab (40) + hardener (30) + AB (30) + web/scram (2) = 602 MW. Thorax with skills has ~800+. Fits.</li>
+</ul>
+
+<h3>Moa — "Anchor" (×2)</h3>
+<div class="fit-block">
+<pre><code>[Moa, Abyssal Grasp v2 - Anchor]
+
+Heavy Electron Blaster II
+Heavy Electron Blaster II
+Heavy Electron Blaster II
+Heavy Electron Blaster II
+Heavy Electron Blaster II
+
+50MN Quad LiF Restrained Microwarpdrive
+Warp Scrambler II
+Fleeting Compact Stasis Webifier
+Stasis Webifier II
+Medium Shield Extender II
+
+Magnetic Field Stabilizer II
+Damage Control II
+
+Medium Core Defense Field Extender I
+Medium Core Defense Field Extender I
+Medium Anti-EM Screen Reinforcer I
+
+Warrior II x3
+
+Navy Cap Booster 400 x10</code></pre>
+</div>
+<ul>
+  <li><strong>DPS:</strong> ~350 (blasters + drones)</li>
+  <li><strong>Tank:</strong> ~20k EHP shield</li>
+  <li><strong>Speed:</strong> ~1.3km/s with MWD</li>
+  <li><strong>Dual web = 80% speed reduction stacked.</strong> Kikimora AB = 400m/s. Webbed = 160m/s. Dual webbed = ~80m/s. Stationary.</li>
+  <li><strong>MWD (not AB):</strong> Must catch MWD Kikimoras. Once scram is on, their MWD dies.</li>
+</ul>
+
+<h2 id="rules">Critical Rules for 18 vs 30</h2>
+
+<ol>
+  <li><strong>Focus fire is mandatory.</strong> 18 ships shooting 1 target = dead in 1.5s. 18 ships shooting 18 targets = nobody dies. Call primary. Switch together. NO exceptions.</li>
+  <li><strong>Neuts on EVERYTHING.</strong> Don't just neut the primary. Each Vexor should neut 2 Kikimoras. Cap them out. Kill their MWD. Kill their hardener.</li>
+  <li><strong>Pre-heat before landing.</strong> Overheat AB, overheat guns, overheat hardener BEFORE you decloak/land. You have 20 seconds. Every tick matters.</li>
+  <li><strong>Don't chase deep.</strong> If they warp off, let them. Loot the 10+ wrecks. Extract with the win.</li>
+  <li><strong>Moa death = not the end.</strong> Vexor #1 and Thorax #1 are backup anchors. Every ship has scram + web.</li>
+  <li><strong>Extract at 20-30s if losing.</strong> You've already won the ISK war. Don't throw it away by staying too long.</li>
+  <li><strong>Drones on aggressive.</strong> Set before fight starts. They auto-switch when primary dies.</li>
+</ol>
+
+<h2>Summary</h2>
+
+<div class="two-col">
+  <div>
+    <h3>Why We Win</h3>
+    <ul>
+      <li>8,900 DPS = Kikimora dies every <strong>1.5 seconds</strong></li>
+      <li>24 neuts cap out <strong>22 Kikimoras</strong> simultaneously</li>
+      <li>Buffer tank = <strong>neut-immune</strong>. Active tank dies.</li>
+      <li>Dual web = Kikimora speed drops to <strong>~80 m/s</strong></li>
+      <li>~300M fleet vs ~2.7B enemy = <strong>9:1 value ratio</strong></li>
+    </ul>
+  </div>
+  <div>
+    <h3>What Can Go Wrong</h3>
+    <ul>
+      <li>30 spooled Kikis at 60s = <strong>12,000 DPS</strong>. We die.</li>
+      <li>Split fire kills <strong>3 of ours every 13-14s</strong></li>
+      <li>No focus fire = nobody dies, they spool, we lose</li>
+      <li>Both Moas die early = chaos, but survivable</li>
+      <li>Staying past 30s = DPS overwhelms us</li>
+    </ul>
+  </div>
+</div>
+
+<div class="danger">
+  <strong>The honest truth:</strong> We don't win the fight. We win the <strong>exchange</strong>. Expect to lose 6-10 cruisers. Expect to kill 12-18 Kikimoras. That's a <strong>+900M to +1.3B ISK profit</strong> every time. 
+  <br><br>
+  If you want to "win" the fight (kill all 30, lose 0), you need 40+ ships or T2 logi. With 18 T1 cruisers, we trade. And we trade well.
+</div>
+
+<div class="divider"></div>
+
+<div style="text-align:center; padding:40px 20px; background:var(--bg2); border-radius:8px; border:1px solid var(--border);">
+  <p style="font-size:1.4rem; color:var(--accent); font-weight:bold;">Kybernauts call it:</p>
+  <p style="font-size:1.2rem; font-style:italic; color:var(--text2); margin-top:10px;">"We don't need to win. We need to make them bleed."</p>
+  <p style="margin-top:20px; font-size:0.85em; color:#666;">
+    Doctrine designed by Nova for Kybernauts Clade.<br>
+    Updated 2026-06-01. Spool math verified. Split-DPS scenarios modeled.<br>
+    Test in Pyfa. Fly what you can afford to lose.
+  </p>
+</div>
+
+</body>
+</html>

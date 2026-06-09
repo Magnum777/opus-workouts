@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abyssal Grasp v2 - Kybernauts Doctrine</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --bg2: #161616;
+    --bg3: #1f1f1f;
+    --text: #e0e0e0;
+    --text2: #b0b0b0;
+    --accent: #e4090c;
+    --accent2: #00d4aa;
+    --border: #2a2a2a;
+    --code-bg: #111;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    color: var(--accent);
+    font-size: 2.2rem;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  h2 {
+    color: var(--accent2);
+    font-size: 1.5rem;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--accent2);
+    padding-left: 12px;
+  }
+  h3 {
+    color: var(--text);
+    font-size: 1.2rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 5px;
+  }
+  h4 {
+    color: var(--accent2);
+    font-size: 1rem;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  p { margin-bottom: 12px; color: var(--text2); }
+  strong { color: var(--text); }
+  ul, ol { margin-left: 20px; margin-bottom: 15px; }
+  li { margin-bottom: 6px; color: var(--text2); }
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+    color: var(--accent2);
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 15px;
+    overflow-x: auto;
+    margin: 15px 0;
+    font-family: 'Consolas', monospace;
+    font-size: 0.85em;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+  .fit-block {
+    background: var(--bg2);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+  }
+  .fit-block pre {
+    border: none;
+    background: var(--bg3);
+    margin: 10px 0 0 0;
+  }
+  .warning {
+    background: rgba(228, 9, 12, 0.1);
+    border-left: 4px solid var(--accent);
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .tip {
+    background: rgba(0, 212, 170, 0.1);
+    border-left: 4px solid var(--accent2);
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9em;
+  }
+  th {
+    background: var(--bg3);
+    color: var(--accent2);
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid var(--accent);
+  }
+  td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2);
+  }
+  tr:hover td { background: var(--bg2); }
+  .cover {
+    text-align: center;
+    padding: 60px 20px;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    margin-bottom: 40px;
+    background: var(--bg2);
+  }
+  .cover h1 {
+    border: none;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+  }
+  .cover p {
+    color: var(--text2);
+    font-size: 1.1rem;
+  }
+  .divider {
+    height: 2px;
+    background: var(--accent);
+    margin: 40px 0;
+    border-radius: 1px;
+  }
+  .part-header {
+    background: var(--bg2);
+    padding: 20px;
+    border-radius: 6px;
+    margin: 30px 0;
+    border: 1px solid var(--border);
+  }
+  .part-header h2 {
+    border: none;
+    margin: 0;
+    color: var(--accent);
+  }
+  @media print {
+    body { background: white; color: black; }
+    h1, h2, h3 { color: black; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Abyssal Grasp v2</h1>
+  <p><strong>T1 Cruiser Brawler Doctrine</strong></p>
+  <p>vs. Dual-Prop Armor Kikimora Fleets</p>
+  <p style="margin-top:30px; font-size:0.9em; color:#888;">Kybernauts Clade | Updated 2026-06-01</p>
+</div>
+
+<div class="part-header">
+  <h2>PART I: Threat Analysis &amp; Advanced Doctrine</h2>
+</div>
+
+<h2>Threat Analysis (Actual Fit from zKill 135760034)</h2>
+
+<h3>Decoded Enemy Kikimora Fit</h3>
+<div class="fit-block">
+<pre><code>[Kikimora, Actual Enemy Fit]
+
+Light Entropic Disintegrator II
+Small Energy Neutralizer II
+
+5MN Cold-Gas Enduring Microwarpdrive
+1MN Afterburner II
+LFT Enduring Sensor Dampener
+
+Entropic Radiation Sink II
+Multispectrum Coating II
+Multispectrum Energized Membrane II
+Damage Control II
+
+Small Trimark Armor Pump I
+Small Trimark Armor Pump I
+Small Trimark Armor Pump I
+
+Cargo: Warp Scrambler II, 5MN MWD, Small Remote Armor Repairer,
+       Tracking Disruptor, Guidance Disruptor, EWAR scripts, ammo, booster</code></pre>
+</div>
+
+<div class="warning">
+  <strong>What this tells us:</strong>
+  <ul>
+    <li><strong>Dual Prop (MWD + AB):</strong> Can chase kiters at 2km/s, still moves when scrammed</li>
+    <li><strong>Armor Buffer (Trimarks x3):</strong> ~12-15k EHP. NOT a glass cannon.</li>
+    <li><strong>Sensor Dampener fitted:</strong> Reduces your lock range 30-50%</li>
+    <li><strong>Small Neut:</strong> Cap warfare at 6-8km</li>
+    <li><strong>Cargo Flexibility:</strong> Swaps mids for scram, TD, or remote repper</li>
+  </ul>
+  <p><strong>Critical Weakness:</strong> They MUST choose between tackle and EWAR. Cannot have both simultaneously.</p>
+</div>
+
+<h3>Kikimora Threat Profile</h3>
+<table>
+  <tr><th>Metric</th><th>Value</th><th>Implication</th></tr>
+  <tr><td>Speed (MWD)</td><td>~2,000 m/s</td><td>Can close 30km in 15s. Kiting is HARD.</td></tr>
+  <tr><td>Speed (AB)</td><td>~400 m/s</td><td>Slow in brawl. Web them and they're nearly stationary.</td></tr>
+  <tr><td>Optimal range</td><td>~8-10km</td><td>Must be inside this to do damage.</td></tr>
+  <tr><td>Spooled DPS</td><td>~350-450</td><td>At 90s spool. At 10s = ~30% = ~120 DPS.</td></tr>
+  <tr><td>Tank</td><td>~12-15k EHP buffer</td><td>Survives 5-8 seconds of focused fire.</td></tr>
+  <tr><td>Neut range</td><td>~6-8km</td><td>Kills active tank cap. Buffer is neut-immune.</td></tr>
+  <tr><td>Damp range</td><td>~40-50km</td><td>Reduces your lock range by 30-50%.</td></tr>
+  <tr><td>Sig radius</td><td>~65m</td><td>Destroyer sig. Cruiser guns apply reasonably.</td></tr>
+</table>
+
+<div class="tip">
+  <strong>The Race:</strong> Can you kill them in &lt;15 seconds before their spool reaches lethal levels AND before they MWD + scram a kiter?
+</div>
+
+<h2>Doctrine: "Abyssal Grasp v2"</h2>
+
+<h3>Philosophy</h3>
+<p><strong>Punch through their buffer before spool wins. Scram + dual web to hold them. Neuts to kill their MWD cap. DPS wins the race.</strong></p>
+
+<h3>Key Principles</h3>
+<ol>
+  <li><strong>Every ship MUST have a web.</strong> Kikimora has NO web. Web them = AB speed drops from 400m/s to ~80m/s. Can't escape. Can't create transversal.</li>
+  <li><strong>Buffer tank over active tank.</strong> Their small neut kills Shield Boosters and Armor Repairers. Buffer (plates + DC + resists) is immune to neuts.</li>
+  <li><strong>Neuts on Vexors kill their MWD cap.</strong> Without cap, MWD dies. They can only AB at 400m/s (80m/s when webbed).</li>
+  <li><strong>Focus fire is CRITICAL.</strong> 12k EHP means one cruiser shooting = 25s to kill. Eight cruisers = 3s. Call primary. Switch together. No exceptions.</li>
+  <li><strong>Moa is the anchor.</strong> Dual web + scram holds them while fleet kills.</li>
+</ol>
+
+<h3>Fleet Composition (10-man squad)</h3>
+<table>
+  <tr><th>Ship</th><th>Qty</th><th>Role</th></tr>
+  <tr><td>Vexor "Grappler"</td><td>4</td><td>Mainline DPS — drones + blasters + neuts</td></tr>
+  <tr><td>Thorax "Fist"</td><td>3</td><td>Secondary DPS — pure blaster alpha</td></tr>
+  <tr><td>Moa "Anchor"</td><td>1</td><td>Heavy tackle — dual web + scram + tank</td></tr>
+  <tr><td>Arbitrator "Blindside"</td><td>1</td><td>TDs + drone DPS + neuts</td></tr>
+  <tr><td>Griffin "Snare"</td><td>1</td><td>Fast tackle + ECM jam</td></tr>
+</table>
+<p><strong>Total cost:</strong> ~160M ISK for the squad</p>
+
+<h3>The Math</h3>
+<p><strong>4 Vexors + 3 Thoraxes focused fire on ONE Kikimora:</strong></p>
+<ul>
+  <li>4x Vexor DPS: ~500 each = 2,000 DPS</li>
+  <li>3x Thorax DPS: ~550 each = 1,650 DPS</li>
+  <li><strong>Combined: ~3,650 DPS</strong></li>
+  <li>Kikimora EHP: ~13,000</li>
+  <li><strong>Time to kill: ~4 seconds</strong></li>
+</ul>
+<p>At 4 seconds, disintegrator spool is at ~5% = ~20 DPS. They barely scratch you.</p>
+
+<h2>Fits (EVE Copy-Paste Format)</h2>
+
+<h3>Vexor — "Grappler" (Mainline DPS + Neuts)</h3>
+<div class="fit-block">
+<pre><code>[Vexor, Abyssal Grasp v2 - Grappler]
+
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+Small Energy Neutralizer II
+Small Energy Neutralizer II
+
+10MN Afterburner II
+Fleeting Compact Stasis Webifier
+Warp Scrambler II
+Multispectrum Energized Membrane II
+
+1600mm Steel Plates II
+IFFA Compact Damage Control
+Drone Damage Amplifier II
+Drone Damage Amplifier II
+
+Medium Trimark Armor Pump I
+Medium Anti-EM Pump I
+Medium Anti-Explosive Pump I
+
+Ogre II x4
+Warrior II x5
+Hobgoblin II x5
+
+Navy Cap Booster 400 x10</code></pre>
+</div>
+<ul>
+  <li><strong>DPS:</strong> ~500 (blasters + drones)</li>
+  <li><strong>Tank:</strong> ~18k EHP armor (buffer — neut immune)</li>
+  <li><strong>Speed:</strong> ~450m/s with AB</li>
+  <li><strong>Neuts:</strong> 2x Small Neut II = ~100 GJ/s cap drain</li>
+  <li><strong>Role:</strong> Primary DPS. Scram + web a Kikimora. Neuts kill its MWD cap. Drones + blasters kill it in 4s under focus fire.</li>
+</ul>
+
+<h3>Thorax — "Fist" (Pure Blaster Alpha)</h3>
+<div class="fit-block">
+<pre><code>[Thorax, Abyssal Grasp v2 - Fist]
+
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+Heavy Ion Blaster II
+
+10MN Afterburner II
+Fleeting Compact Stasis Webifier
+Warp Scrambler II
+Multispectrum Energized Membrane II
+
+1600mm Steel Plates II
+IFFA Compact Damage Control
+Magnetic Field Stabilizer II
+Magnetic Field Stabilizer II
+
+Medium Trimark Armor Pump I
+Medium Anti-EM Pump I
+Medium Anti-Explosive Pump I
+
+Warrior II x5
+
+Navy Cap Booster 400 x10</code></pre>
+</div>
+<ul>
+  <li><strong>DPS:</strong> ~550 (5 blasters + drones)</li>
+  <li><strong>Tank:</strong> ~17k EHP armor (buffer)</li>
+  <li><strong>Role:</strong> Secondary DPS. Follow the Vexors. Scram + web, overheat blasters, delete Kikimoras.</li>
+</ul>
+
+<h3>Moa — "Anchor" (Heavy Tackle)</h3>
+<div class="fit-block">
+<pre><code>[Moa, Abyssal Grasp v2 - Anchor]
+
+Heavy Electron Blaster II
+Heavy Electron Blaster II
+Heavy Electron Blaster II
+Heavy Electron Blaster II
+Heavy Electron Blaster II
+
+50MN Quad LiF Restrained Microwarpdrive
+Warp Scrambler II
+Fleeting Compact Stasis Webifier
+Stasis Webifier II
+Medium Shield Extender II
+
+Magnetic Field Stabilizer II
+Damage Control II
+
+Medium Core Defense Field Extender I
+Medium Core Defense Field Extender I
+Medium Anti-EM Screen Reinforcer I
+
+Warrior II x3
+
+Navy Cap Booster 400 x10</code></pre>
+</div>
+<ul>
+  <li><strong>DPS:</strong> ~350 (blasters + drones)</li>
+  <li><strong>Tank:</strong> ~20k EHP shield</li>
+  <li><strong>Speed:</strong> ~1.3km/s with MWD</li>
+  <li><strong>Role:</strong> Primary tackle. Burn at a Kikimora, scram + dual web. It stops moving. Fleet kills it.</li>
+</ul>
+<div class="warning">
+  <strong>Moa uses MWD (not AB)</strong> — must catch MWD Kikimoras. Once scram is on, their MWD dies. Both on AB, but you have web = you win.
+</div>
+
+<h3>Arbitrator — "Blindside" (TDs + Drone DPS + Neuts)</h3>
+<div class="fit-block">
+<pre><code>[Arbitrator, Abyssal Grasp v2 - Blindside]
+
+Small Energy Neutralizer II
+Small Energy Neutralizer II
+Small Energy Neutralizer II
+
+50MN Quad LiF Restrained Microwarpdrive
+Tracking Disruptor II, Optimal Range Disruption Script
+Warp Scrambler II
+Fleeting Compact Stasis Webifier
+
+Damage Control II
+Drone Damage Amplifier II
+Drone Damage Amplifier II
+400mm Steel Plates II
+
+Medium Drone Speed Augmentor I
+Medium Drone Speed Augmentor I
+Medium Anti-Explosive Pump I
+
+Warrior II x5
+
+Optimal Range Disruption Script x1
+Tracking Speed Disruption Script x1
+Navy Cap Booster 400 x10</code></pre>
+</div>
+<ul>
+  <li><strong>TD:</strong> 1x TD with range script = disintegrator optimal drops from 10km to ~6km</li>
+  <li><strong>Neuts:</strong> 3x Small Neut II = ~150 GJ/s cap drain</li>
+  <li><strong>Drone DPS:</strong> ~180 (5x Warrior II with DDA IIs)</li>
+  <li><strong>Role:</strong> EWAR + cap warfare. Neut + TD the Moa's target. Cap collapses instantly. MWD dies. Hardener dies.</li>
+</ul>
+
+<h3>Griffin — "Snare" (Fast Tackle + ECM)</h3>
+<div class="fit-block">
+<pre><code>[Griffin, Abyssal Grasp v2 - Snare]
+
+Light Missile Launcher II, Caldari Navy Scourge Light Missile
+
+1MN Afterburner II
+Initiated Compact Warp Scrambler
+Fleeting Compact Stasis Webifier
+Multispectrum Shield Hardener II
+
+Signal Distortion Amplifier II
+Signal Distortion Amplifier II
+
+Small Particle Dispersion Projector I
+Small Particle Dispersion Projector I</code></pre>
+</div>
+<ul>
+  <li><strong>Speed:</strong> ~750m/s with AB</li>
+  <li><strong>ECM:</strong> ~8-10 jam strength</li>
+  <li><strong>Role:</strong> Fast tackle + jam. AB = scram-proof. Frigate sig = hard to hit. Jam = 40-50% chance to remove one Kikimora from fight for 20s.</li>
+</ul>
+
+<h2>Tactics: The Brawl</h2>
+
+<h3>Landing on Grid (Jumping Into Them)</h3>
+<p><strong>0-5 seconds:</strong></p>
+<ol>
+  <li><strong>ALL ships: Overheat prop, burn at the enemy.</strong> Moa uses MWD. Vexors/Thoraxes use AB. Griffin uses AB.</li>
+  <li><strong>Moa (Anchor):</strong> Pick the CLOSEST Kikimora. Burn directly at it. Lock it.</li>
+  <li><strong>Vexors/Thoraxes:</strong> Follow the Moa. Lock nearest Kikimoras.</li>
+  <li><strong>Arbitrator:</strong> Burn at the Moa's target. Prepare neuts + TDs.</li>
+  <li><strong>Griffin:</strong> Pick a Kikimora on the flank. Get ready to scram if it tries to escape.</li>
+</ol>
+
+<p><strong>5-10 seconds:</strong></p>
+<ol>
+  <li><strong>Moa gets in scram range (8km).</strong> Scram + web 1. Web 2. Call primary on comms.</li>
+  <li><strong>Vexors:</strong> Scram + web the same target. Apply neuts. Launch drones.</li>
+  <li><strong>Thoraxes:</strong> Scram + web. Overheat blasters. Open fire.</li>
+  <li><strong>Arbitrator:</strong> Scram + web. Apply neuts. TD with range script.</li>
+  <li><strong>Griffin:</strong> Scram + web a secondary target or the primary.</li>
+</ol>
+
+<div class="tip">
+  <strong>Target dies in 3-5 seconds.</strong> 8 ships shooting one 13k EHP Kikimora = 3,650 DPS. Dead before spool matters.
+</div>
+
+<p><strong>10-20 seconds:</strong></p>
+<ol>
+  <li><strong>Moa calls next primary:</strong> nearest Kikimora.</li>
+  <li><strong>All ships switch.</strong> Drones switch. Blasters switch.</li>
+  <li><strong>Vexor neuts:</strong> If cap allows, start neuts on the NEXT target before current dies.</li>
+  <li><strong>Second Kikimora dies in 3-5 seconds.</strong></li>
+</ol>
+
+<p><strong>20-40 seconds:</strong></p>
+<ol>
+  <li><strong>Kikimoras panic.</strong> Spool hasn't reached lethal levels yet.</li>
+  <li>Some try to MWD away. Moa + Griffin scram holds them.</li>
+  <li>Some try to shoot the Moa. Moa has 20k EHP. Survives 15-20 seconds.</li>
+  <li>In that time, your squad kills 4-6 Kikimoras.</li>
+  <li>Incoming DPS drops. Your fleet wins the war of attrition.</li>
+</ol>
+
+<h3>Target Calling Rules</h3>
+<ol>
+  <li><strong>Moa calls primary</strong> — always nearest Kikimora that Moa has scrammed</li>
+  <li><strong>ALL DPS switches immediately</strong> — no exceptions. Focus fire wins.</li>
+  <li><strong>Vexors apply neuts to primary</strong> (or next target if cap allows)</li>
+  <li><strong>Arbitrator TDs primary</strong> (range script)</li>
+  <li><strong>Griffin jams any Kikimora shooting the Moa</strong></li>
+  <li><strong>Next primary called the instant current dies</strong></li>
+</ol>
+
+<div class="warning">
+  <strong>Focus fire is non-negotiable.</strong> A Kikimora at 50% hull does full spooled DPS. Only dead Kikimoras do 0 DPS.
+</div>
+
+<h3>Critical Mechanics</h3>
+
+<h4>Why Buffer Tank (Not Active Tank)</h4>
+<p>Kikimora small neut = ~50 GJ/s drain. Active tank (Shield Booster, Armor Repairer) needs cap. Neut kills cap. Booster stops. You die.</p>
+<p><strong>Buffer tank (plates + DC + resists) = passive. Uses ZERO cap. Neuts do NOTHING.</strong></p>
+
+<h4>Why Web on Every Ship</h4>
+<p>Kikimora has NO web. If we web them (60% reduction):</p>
+<ul>
+  <li>Kikimora AB speed: 400m/s → 160m/s</li>
+  <li>With Moa dual web: 400m/s → ~80m/s</li>
+  <li>They cannot create transversal. Your blasters track perfectly.</li>
+  <li>They cannot escape. Scram + web = they're stuck.</li>
+</ul>
+
+<h4>Why Neuts on Vexors + Arbitrator</h4>
+<p>Kikimora dual prop = cap hungry: MWD (~40 GJ/s) + hardener (~10 GJ/s) + disintegrator (~5 GJ/s) = ~55 GJ/s.</p>
+<p><strong>Vexor neuts (2x small):</strong> ~100 GJ/s drain<br>
+<strong>Arbitrator neuts (3x small):</strong> ~150 GJ/s drain</p>
+<p>Combined: ~250 GJ/s drain. Their cap goes NEGATIVE in 3-5 seconds. MWD dies. Hardener cycles off. Spool resets.</p>
+
+<h2>Why This Doctrine Wins</h2>
+<ol>
+  <li><strong>Race condition:</strong> You kill them in 4s. Their spool needs 90s. You win.</li>
+  <li><strong>Neuts break their tank:</strong> Cap collapses → hardener off → resists drop 30-40%.</li>
+  <li><strong>Dual web holds them:</strong> 80m/s Kikimora = stationary target.</li>
+  <li><strong>Drones don't miss:</strong> Perfect application to destroyer sig.</li>
+  <li><strong>ECM is binary:</strong> Jam lands = 0 DPS for 20s. Free kill.</li>
+  <li><strong>Buffer survives spool:</strong> 18k EHP buys 20-30s. Enough to kill 4-6 Kikimoras.</li>
+  <li><strong>Cost:</strong> ~160M vs. ~600M+ enemy. Trade 1:1 = you win ISK.</li>
+</ol>
+
+<h2>Why It Might Fail</h2>
+<ol>
+  <li><strong>No focus fire:</strong> 8 ships shooting 8 targets = nobody dies. Kikimoras spool up. You die.
+    <br><em>Solution: DRILL focus fire. Call primary. Switch together.</em></li>
+  <li><strong>Moa dies before tackle:</strong> Enemy shoots Moa first.
+    <br><em>Solution: Backup tackle ready. Thorax #1 scrams if Moa dies.</em></li>
+  <li><strong>Remote rep coordination:</strong> Two Kikimoras repping each other.
+    <br><em>Solution: 3,650 DPS overwhelms 2x small remote reps. Kill repped target anyway.</em></li>
+  <li><strong>Blob:</strong> 10 vs. 50 = you die.
+    <br><em>Solution: Doctrine assumes rough parity (10-25 enemy).</em></li>
+</ol>
+
+<div class="divider"></div>
+
+<div class="part-header">
+  <h2>PART II: Newbie Edition — T1 Budget Fits</h2>
+</div>
+
+<p>For pilots with low skills and tight wallets. All fits use Tech 1 or meta modules. <strong>Costs under 8M ISK per ship.</strong></p>
+
+<h2>For the Newest Player: Vexor "Grappler (T1)"</h2>
+
+<div class="tip">
+  <strong>The Vexor is the BEST ship for a new player in this doctrine.</strong>
+  <ul>
+    <li>Drones auto-attack — no aiming needed</li>
+    <li>Buffer tank needs no cap skills — passive resists</li>
+    <li>Neuts are fire-and-forget</li>
+    <li>Forgiving — plates give 10k+ EHP even if you forget hardener</li>
+    <li>Cheaper — T1 guns, T1 drones, meta everything</li>
+  </ul>
+</div>
+
+<h3>Fit</h3>
+<div class="fit-block">
+<pre><code>[Vexor, Abyssal Grasp - Newbie Grappler]
+
+Limited Ion Blaster I
+Limited Ion Blaster I
+Small Energy Neutralizer I
+Small Energy Neutralizer I
+
+10MN Monopropellant Enduring Afterburner
+Fleeting Compact Stasis Webifier
+J5b Enduring Warp Scrambler
+Multispectrum Coating I
+
+1600mm Rolled Tungsten Compact Plates
+Damage Control I
+Drone Damage Amplifier I
+Drone Damage Amplifier I
+
+Medium Trimark Armor Pump I
+Medium Anti-EM Pump I
+Medium Anti-Explosive Pump I
+
+Warrior I x5
+Hobgoblin I x5
+
+Navy Cap Booster 400 x10</code></pre>
+</div>
+
+<h4>Stats (low skills: Gallente Cruiser III, Drones III, Gunnery III)</h4>
+<ul>
+  <li><strong>DPS:</strong> ~280 (drones ~120 + blasters ~160)</li>
+  <li><strong>Tank:</strong> ~11k EHP armor</li>
+  <li><strong>Speed:</strong> ~380 m/s with AB</li>
+  <li><strong>Neuts:</strong> 2x Small Neut I = ~60 GJ/s drain</li>
+  <li><strong>Web:</strong> 55% speed reduction</li>
+  <li><strong>Cost:</strong> ~6.5M ISK</li>
+</ul>
+
+<h4>What to Do in Fleet</h4>
+<ol>
+  <li>Follow the Moa (anchor ship).</li>
+  <li>When Moa calls primary, lock that Kikimora.</li>
+  <li>Turn on both neuts. Turn on AB.</li>
+  <li>Get within 8km. Click Scram. Click Web.</li>
+  <li>Launch Warrior drones (click "engage target").</li>
+  <li>Turn on blasters. Overheat if you want (right-click, Overheat).</li>
+  <li>Wait for next primary. Repeat.</li>
+</ol>
+
+<h4>Skill Requirements (Minimum)</h4>
+<ul>
+  <li>Gallente Cruiser III (to sit in ship)</li>
+  <li>Drones III (for 3 drones, or IV for 4)</li>
+  <li>Light Drone Operation I</li>
+  <li>Hybrid Weaponry III</li>
+  <li>Medium Hybrid Turret I (for blasters)</li>
+  <li>Energy Grid Upgrades II (for neuts)</li>
+  <li>Hull Upgrades III (for plates)</li>
+  <li>Mechanics III (for DC)</li>
+</ul>
+<p><strong>Training time:</strong> ~3-5 days from brand-new character.</p>
+
+<h2>Alternative: Thorax "Fist (T1)"</h2>
+<p>For confident newbies who want raw gun DPS.</p>
+
+<div class="warning">
+  <strong>Why NOT for total newbies:</strong> Blasters need tracking. You must get close and stay close (500m). If you orbit at 5km instead of 500m, you miss and do zero damage. Requires more piloting than Vexor.
+</div>
+
+<h3>Fit</h3>
+<div class="fit-block">
+<pre><code>[Thorax, Abyssal Grasp - Newbie Fist]
+
+Limited Ion Blaster I
+Limited Ion Blaster I
+Limited Ion Blaster I
+Limited Ion Blaster I
+Limited Ion Blaster I
+
+10MN Monopropellant Enduring Afterburner
+Fleeting Compact Stasis Webifier
+J5b Enduring Warp Scrambler
+Multispectrum Coating I
+
+1600mm Rolled Tungsten Compact Plates
+Damage Control I
+Magnetic Field Stabilizer I
+Magnetic Field Stabilizer I
+
+Medium Trimark Armor Pump I
+Medium Anti-EM Pump I
+Medium Anti-Explosive Pump I
+
+Warrior I x5
+
+Navy Cap Booster 400 x10</code></pre>
+</div>
+
+<h4>Stats (low skills)</h4>
+<ul>
+  <li><strong>DPS:</strong> ~320 (5 blasters + drones)</li>
+  <li><strong>Tank:</strong> ~10k EHP armor</li>
+  <li><strong>Speed:</strong> ~400 m/s with AB</li>
+  <li><strong>Web:</strong> 55% speed reduction</li>
+  <li><strong>Cost:</strong> ~6M ISK</li>
+</ul>
+
+<h4>What to Do in Fleet</h4>
+<ol>
+  <li>Follow the Moa.</li>
+  <li>When primary called, lock target.</li>
+  <li>Turn on AB. Burn at target. Get within 500m.</li>
+  <li>Scram + web. Turn on blasters.</li>
+  <li>Right-click in space, select <strong>"Keep at Range 500m"</strong> (NOT orbit).</li>
+  <li>Overheat blasters when target is webbed and close.</li>
+  <li>Wait for next primary. Repeat.</li>
+</ol>
+
+<h4>Skill Requirements</h4>
+<ul>
+  <li>Gallente Cruiser III</li>
+  <li>Medium Hybrid Turret III (or IV for T2)</li>
+  <li>Gunnery III</li>
+  <li>Hull Upgrades III</li>
+  <li>Mechanics III</li>
+</ul>
+<p><strong>Training time:</strong> ~2-3 days from brand-new.</p>
+
+<h2>Support for Newbies: Celestis "Blindside (T1)"</h2>
+<p>For newbies who want to help without needing to shoot well.</p>
+
+<div class="tip">
+  <strong>Why Celestis for newbies:</strong>
+  <ul>
+    <li>EWAR is easy — click dampener on target, scripts are automatic</li>
+    <li>No gun skills needed — missiles don't miss</li>
+    <li>Damps ALWAYS work — unlike ECM, no RNG</li>
+    <li>Lowest skill requirements of any cruiser</li>
+  </ul>
+</div>
+
+<h3>Fit</h3>
+<div class="fit-block">
+<pre><code>[Celestis, Abyssal Grasp - Newbie Blindside]
+
+Prototype 'Arbalest' Light Missile Launcher
+Prototype 'Arbalest' Light Missile Launcher
+Prototype 'Arbalest' Light Missile Launcher
+
+10MN Monopropellant Enduring Afterburner
+LFT Enduring Sensor Dampener
+LFT Enduring Sensor Dampener
+LFT Enduring Sensor Dampener
+J5b Enduring Warp Scrambler
+
+Damage Control I
+Drone Damage Amplifier I
+
+Medium Ionic Field Projector I
+Medium Ionic Field Projector I
+Medium Ionic Field Projector I
+
+Warrior I x3
+
+Targeting Range Dampening Script x3
+Navy Cap Booster 400 x10</code></pre>
+</div>
+
+<h4>Stats (low skills)</h4>
+<ul>
+  <li><strong>DPS:</strong> ~80 (light missiles + drones)</li>
+  <li><strong>Damps:</strong> 3x dampeners reduce target lock range by ~25-30% each</li>
+  <li><strong>Tank:</strong> ~7k EHP</li>
+  <li><strong>Speed:</strong> ~350 m/s with AB</li>
+  <li><strong>Cost:</strong> ~5M ISK</li>
+</ul>
+
+<h4>What to Do in Fleet</h4>
+<ol>
+  <li>Stay 25-35km from the enemy.</li>
+  <li>Lock the Kikimora closest to your fleet.</li>
+  <li>Click dampener on target. Script auto-loads (range script).</li>
+  <li>Launch missiles. Launch drones.</li>
+  <li>If any Kikimora gets close to you, overheat AB and pull range.</li>
+  <li><strong>Stay alive. Your damps are worth more than your DPS.</strong></li>
+</ol>
+
+<h4>Skill Requirements</h4>
+<ul>
+  <li>Gallente Cruiser III</li>
+  <li>Sensor Linking III (for dampeners)</li>
+  <li>Light Missiles I</li>
+  <li>Drones I</li>
+</ul>
+<p><strong>Training time:</strong> ~2 days from brand-new.</p>
+
+<h2>Tackle for Newbies: Atron "Snare (T1)"</h2>
+<p>For brand-new characters who can't fly cruisers yet.</p>
+
+<div class="tip">
+  <strong>Why Atron for day-1 players:</strong>
+  <ul>
+    <li>Can fly on day 1 — T1 frigate, minimal skills</li>
+    <li>AB = scram-proof — if they scram you, AB keeps running</li>
+    <li>Web + scram holds targets — essential for fleet</li>
+    <li>Frigate sig = hard to hit — Kikimora disintegrators struggle with 35m sig</li>
+  </ul>
+</div>
+
+<h3>Fit</h3>
+<div class="fit-block">
+<pre><code>[Atron, Abyssal Grasp - Newbie Snare]
+
+Light Missile Launcher I
+[empty high]
+[empty high]
+
+1MN Monopropellant Enduring Afterburner
+J5b Enduring Warp Scrambler
+Fleeting Compact Stasis Webifier
+Multispectrum Shield Hardener I
+
+Nanofiber Internal Structure I
+Damage Control I
+
+Small Particle Dispersion Projector I
+Small Particle Dispersion Projector I
+
+Warrior I x3
+
+Navy Cap Booster 200 x5</code></pre>
+</div>
+
+<h4>Stats (day-1 skills)</h4>
+<ul>
+  <li><strong>DPS:</strong> ~40 (missiles + drones)</li>
+  <li><strong>Speed:</strong> ~700 m/s with AB</li>
+  <li><strong>Tank:</strong> ~2.5k EHP</li>
+  <li><strong>Cost:</strong> ~2M ISK</li>
+</ul>
+
+<h4>What to Do in Fleet</h4>
+<ol>
+  <li>Follow the cruisers.</li>
+  <li>When a Kikimora tries to escape or gets separated, burn at it.</li>
+  <li>Scram + web it.</li>
+  <li>Call on comms: <strong>"Tackle on [target name]!"</strong></li>
+  <li>Stay alive. You're fast. Use that speed.</li>
+</ol>
+
+<h4>Skill Requirements</h4>
+<ul>
+  <li>Gallente Frigate I (can fly on day 1)</li>
+  <li>Afterburner I</li>
+  <li>Propulsion Jamming I (scram/web)</li>
+</ul>
+
+<h2>Summary: What Ship for What Newbie?</h2>
+<table>
+  <tr><th>Newbie Type</th><th>Ship</th><th>Role</th><th>Why</th></tr>
+  <tr><td>1-3 days old, no skills</td><td>Atron</td><td>Tackle</td><td>Can fly immediately</td></tr>
+  <tr><td>3-7 days old, some drone skills</td><td>Celestis</td><td>EWAR</td><td>Low skill, high impact</td></tr>
+  <tr><td>5-10 days old, wants DPS</td><td>Vexor</td><td>Mainline DPS</td><td>Drones do the work</td></tr>
+  <tr><td>7-14 days old, confident pilot</td><td>Thorax</td><td>Mainline DPS</td><td>Highest raw DPS</td></tr>
+</table>
+
+<h3>Fleet Composition for Newbies (10-man)</h3>
+<ul>
+  <li>4x Vexor (newbie mainline)</li>
+  <li>2x Thorax (confident newbies)</li>
+  <li>2x Celestis (total newbies)</li>
+  <li>1x Moa (experienced anchor)</li>
+  <li>1x Atron (day-1 player)</li>
+</ul>
+<p><strong>Total cost:</strong> ~65M ISK for entire 10-man fleet.</p>
+
+<h2>Training Path for Newbies</h2>
+
+<h4>Week 1 (Day 1-7)</h4>
+<ul>
+  <li>Gallente Frigate III → Fly Atron tackle</li>
+  <li>Drones III → Fly Vexor with 3 drones</li>
+  <li>Hull Upgrades III, Mechanics III → Tank modules</li>
+</ul>
+
+<h4>Week 2 (Day 8-14)</h4>
+<ul>
+  <li>Gallente Cruiser III → Fly Vexor/Thorax/Celestis</li>
+  <li>Light Drone Operation III → Better drone DPS</li>
+  <li>Medium Hybrid Turret III → T1 blasters on Thorax</li>
+  <li>Energy Grid Upgrades II → Neuts on Vexor</li>
+</ul>
+
+<h4>Week 3-4 (Day 15-28)</h4>
+<ul>
+  <li>Gallente Cruiser IV → Ship bonuses improve</li>
+  <li>Drones V → 5 drones on Vexor</li>
+  <li>Medium Hybrid Turret V → T2 blasters</li>
+  <li>Drone Interfacing IV → +20% drone DPS</li>
+</ul>
+
+<h2>Key Rules for Newbies</h2>
+<ol>
+  <li><strong>Follow the Moa.</strong> Do not wander off alone.</li>
+  <li><strong>Scram + web FIRST, shoot SECOND.</strong> A dead target that warped away = 0 ISK.</li>
+  <li><strong>Focus fire.</strong> Only shoot what the FC calls. 8 ships shooting 1 target = dead in seconds.</li>
+  <li><strong>Overheat your guns.</strong> Right-click, "Overheat" when target is webbed and close. +15% DPS for 30 seconds.</li>
+  <li><strong>If you're dying, overheat hardener.</strong> Right-click, "Overheat" on your Multispectrum Coating. +15% resists.</li>
+  <li><strong>Don't be afraid to die.</strong> T1 cruiser costs 6M ISK. One killmail = 20M+ ISK. You profit even if you die.</li>
+  <li><strong>Ask questions.</strong> Kybernauts help each other. Fleet comms are for coordination, not silence.</li>
+</ol>
+
+<div class="divider"></div>
+
+<div class="cover" style="margin-top:40px;">
+  <p style="font-size:1.4rem; color:var(--accent);"><strong>Kybernauts call it:</strong></p>
+  <p style="font-size:1.2rem; font-style:italic;">"Neut their cap. Web their speed. Scram their hope."</p>
+  <p style="margin-top:20px; font-size:0.85em; color:#666;">
+    Doctrine designed by Nova for Kybernauts Clade.<br>
+    Updated 2026-06-01 based on actual enemy zKill intel.<br>
+    Test in Pyfa. Fly what you can afford to lose.
+  </p>
+</div>
+
+</body>
+</html>

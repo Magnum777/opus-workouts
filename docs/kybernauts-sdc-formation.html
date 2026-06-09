@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Proving Grounds - KYBERNAUTS SDC</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+ <style>
+ :root {
+ --kyber-black: #0a0a0a;
+ --kyber-red: #e4090c;
+ --kyber-gray: #1a1a1a;
+ --kyber-light: #f5f5f5;
+ --text: #e0e0e0;
+ --text-muted: #a0a0a0;
+ }
+
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ body {
+ background-color: var(--kyber-black);
+ background-image: 
+ radial-gradient(ellipse at 30% 20%, rgba(228,9,12,.1) 0%, transparent 50%),
+ radial-gradient(ellipse at 70% 80%, rgba(228,9,12,.05) 0%, transparent 50%);
+ color: var(--text);
+ font-family: 'Roboto Condensed', 'Oswald', sans-serif;
+ line-height: 1.6;
+ max-width: 900px;
+ margin: 0 auto;
+ padding: 2rem;
+ }
+
+ h1 {
+ text-align: center;
+ font-size: 2.8rem;
+ margin-bottom: 0.5rem;
+ text-transform: uppercase;
+ letter-spacing: 6px;
+ font-family: 'Oswald', sans-serif;
+ font-weight: 700;
+ color: var(--text);
+ }
+
+ h1 span {
+ color: var(--kyber-red);
+ }
+
+ h2 {
+ color: var(--kyber-red);
+ border-bottom: 2px solid var(--kyber-red);
+ padding-bottom: 0.5rem;
+ margin-top: 2.5rem;
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ font-size: 1.4rem;
+ font-family: 'Oswald', sans-serif;
+ font-weight: 600;
+ }
+
+ h3 {
+ color: var(--text);
+ margin-top: 1.5rem;
+ font-size: 1.1rem;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ font-family: 'Oswald', sans-serif;
+ font-weight: 500;
+ }
+
+ .subtitle {
+ text-align: center;
+ color: var(--text-muted);
+ font-size: 1rem;
+ margin-bottom: 2.5rem;
+ text-transform: uppercase;
+ letter-spacing: 4px;
+ border-bottom: 1px solid var(--kyber-gray);
+ padding-bottom: 1rem;
+ font-family: 'Oswald', sans-serif;
+ }
+
+ .purpose-box {
+ background: linear-gradient(135deg, rgba(228,9,12,.1), transparent);
+ border: 1px solid rgba(228,9,12,.3);
+ border-left: 4px solid var(--kyber-red);
+ padding: 1.5rem;
+ margin: 2rem 0;
+ font-size: 1.05rem;
+ }
+
+ .purpose-box strong {
+ color: var(--kyber-red);
+ }
+
+ .purpose-box .highlight {
+ color: var(--kyber-red);
+ font-weight: bold;
+ font-size: 1.2rem;
+ display: block;
+ margin: 1rem 0;
+ text-align: center;
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ font-family: 'Oswald', sans-serif;
+ }
+
+ .principles {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 1rem;
+ margin: 1.5rem 0;
+ }
+
+ .principle {
+ background-color: var(--kyber-gray);
+ padding: 1.2rem;
+ border-radius: 4px;
+ border-left: 3px solid var(--kyber-red);
+ }
+
+ .principle strong {
+ color: var(--kyber-red);
+ display: block;
+ margin-bottom: 0.5rem;
+ font-size: 1.05rem;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ font-family: 'Oswald', sans-serif;
+ }
+
+ table {
+ width: 100%;
+ border-collapse: collapse;
+ margin: 1.5rem 0;
+ background-color: var(--kyber-gray);
+ }
+
+ th, td {
+ padding: 0.8rem;
+ text-align: left;
+ border-bottom: 1px solid var(--kyber-black);
+ }
+
+ th {
+ background-color: var(--kyber-black);
+ color: var(--kyber-red);
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ font-size: 0.9rem;
+ font-family: 'Oswald', sans-serif;
+ }
+
+ tr:hover {
+ background-color: rgba(228,9,12,.15);
+ }
+
+ .station-name {
+ color: var(--kyber-red);
+ font-weight: bold;
+ text-transform: uppercase;
+ }
+
+ ul {
+ list-style-type: none;
+ padding-left: 0;
+ }
+
+ ul li {
+ padding: 0.6rem 0;
+ padding-left: 1.5rem;
+ position: relative;
+ }
+
+ ul li::before {
+ content: "▸";
+ color: var(--kyber-red);
+ position: absolute;
+ left: 0;
+ font-size: 0.9rem;
+ }
+
+ ol {
+ counter-reset: item;
+ list-style-type: none;
+ padding-left: 0;
+ }
+
+ ol li {
+ display: block;
+ padding: 0.8rem 0;
+ padding-left: 3rem;
+ position: relative;
+ }
+
+ ol li::before {
+ content: counter(item);
+ counter-increment: item;
+ position: absolute;
+ left: 0;
+ top: 0.6rem;
+ width: 2rem;
+ height: 2rem;
+ background: var(--kyber-red);
+ border-radius: 3px;
+ text-align: center;
+ line-height: 2rem;
+ font-weight: bold;
+ font-size: 0.9rem;
+ color: white;
+ font-family: 'Oswald', sans-serif;
+ }
+
+ .closing {
+ text-align: center;
+ margin-top: 3rem;
+ padding: 2.5rem;
+ background: linear-gradient(180deg, rgba(228,9,12,.1) 0%, transparent 100%);
+ border-radius: 8px;
+ border: 1px solid var(--kyber-red);
+ }
+
+ .closing h2 {
+ border: none;
+ margin: 0;
+ font-size: 2rem;
+ }
+
+ .closing p {
+ font-size: 1.1rem;
+ color: var(--text-muted);
+ margin-top: 1rem;
+ }
+
+ .signature {
+ margin-top: 2rem;
+ color: var(--kyber-red);
+ font-size: 1.2rem;
+ letter-spacing: 2px;
+ text-transform: uppercase;
+ font-family: 'Oswald', sans-serif;
+ }
+
+ @media (max-width: 600px) {
+ .principles {
+ grid-template-columns: 1fr;
+ }
+
+ h1 {
+ font-size: 1.8rem;
+ letter-spacing: 4px;
+ }
+ }
+ </style>
+</head>
+<body>
+
+ <h1>Proving <span>Grounds</span></h1>
+ <div class="subtitle">Skills Development Committee Formation Document</div>
+
+ <h2>Purpose</h2>
+ <div class="purpose-box">
+ The Skills Development Committee exists to forge Kybernauts.
+ <br><br>
+ Our role is not simply to onboard pilots, distribute ships, or assign skill plans. Our purpose is transformation. We take capsuleers from wherever they are in their journey and help them become pilots who understand what it means to live and thrive in Pochven.
+ <br><br>
+ Being a Kybernaut is not defined by the ship you fly. It is defined by how you approach New Eden: curiosity, aggression, cooperation, and the will to learn through action.
+ <br><br>
+ The Proving Grounds program is the structure through which this transformation happens. Every pilot who enters our space gains the knowledge, confidence, and capability to participate in our fleets, contribute to our community, and carve their own story in Pochven.
+ <span class="highlight">We do not build hangar queens.<br>We build pilots who undock.</span>
+ Whether someone arrives as a brand new capsuleer or a seasoned veteran discovering Pochven for the first time, the goal remains the same: to help them become Kybernauts. Pilots who understand the battlefield, support their fleetmates, and grow stronger through shared experience.
+ <br><br>
+ The SDC provides the tools, structure, and culture that make this possible. Through guidance, doctrine, and active fleets, we cultivate pilots who can adapt, earn, fight, and ultimately help build the next generation that follows behind them.
+ <br><br>
+ <em>Because Kybernauts are not recruited.<br>They are made.</em>
+ </div>
+
+ <h2>Guiding Principles</h2>
+ <div class="principles">
+ <div class="principle">
+ <strong>All Members Are Equal in Growth</strong>
+ Whether in their first ship or commanding capitals, every pilot deserves the tools to succeed.
+ </div>
+ <div class="principle">
+ <strong>No One Is Left Behind</strong>
+ Newbros and early-career capsuleers require hands-on mentorship. We do not merely inject skills; we cultivate understanding.
+ </div>
+ <div class="principle">
+ <strong>Activity Is Expected</strong>
+ We reward those who engage. Passivity has no place in our growth.
+ </div>
+ <div class="principle">
+ <strong>Combat Is the Crucible</strong>
+ True learning happens in fleet. We provide doctrines that build combat readiness.
+ </div>
+ </div>
+
+ <h2>Member Categories</h2>
+ <table>
+ <thead>
+ <tr>
+ <th>Category</th>
+ <th>Description</th>
+ <th>Development Path</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><strong>Returning Kybernauts</strong></td>
+ <td>Previously with the corp, returning</td>
+ <td>Orientation refresh, current doctrine integration</td>
+ </tr>
+ <tr>
+ <td><strong>Vets to Pochven</strong></td>
+ <td>Experienced pilots, new to Pochven</td>
+ <td>Pochven Boot Camp, site operations, standings cultivation</td>
+ </tr>
+ <tr>
+ <td><strong>Established Players</strong></td>
+ <td>Skilled pilots switching to Pochven</td>
+ <td>Skill plan optimization, Pochven Boot Camp</td>
+ </tr>
+ <tr>
+ <td><strong>Early Career</strong></td>
+ <td>Wandered between corps, skill trees in disorder</td>
+ <td>Skill realignment to PVP, mentorship, basics, Pochven Boot Camp</td>
+ </tr>
+ <tr>
+ <td><strong>Newbros</strong></td>
+ <td>Brand new to EVE</td>
+ <td>Full basics, hands-on mentorship, Pochven Boot Camp</td>
+ </tr>
+ </tbody>
+ </table>
+
+ <h2>SDC Responsibilities</h2>
+
+ <h3>1. Corp Doctrine Fittings</h3>
+ <ul>
+ <li>Maintain purpose-built ship fittings for isk generation, PVP and standings</li>
+ <li>Fits must align with alliance doctrines where applicable</li>
+ </ul>
+
+ <h3>2. Income/PVP Doctrines (3 Total)</h3>
+ <ul>
+ <li>Develop three doctrines OUTSIDE of alliance doctrines</li>
+ <li>Focus: ISK generation + combat capability</li>
+ <li>Must remain accessible to developing pilots</li>
+ <li>Examples: T1 cruiser Logistics, T1 frigate hunting, destroyer fleets</li>
+ </ul>
+
+ <h3>3. New Member Packages</h3>
+ <p>Both Early Career and Newbro members receive the same package:</p>
+ <ul>
+ <li>Skill books</li>
+ <li>Basic fittings</li>
+ <li>Ship handouts</li>
+ </ul>
+ <p>Distribution Point: <span class="station-name">Kino VII - Moon 17 - The Convocation of Triglav Bioadaptation Chambers</span></p>
+
+ <h3>4. Communication Channels</h3>
+ <ul>
+ <li>Early career and newbros are initially closed off from most alliance channels</li>
+ <li>They will be integrated into the alliance when they are ready</li>
+ <li>This controlled environment allows focused learning without distraction</li>
+ </ul>
+
+ <h3>5. Activity Tracking</h3>
+ <ul>
+ <li>Automated processes track pilot progress through the program</li>
+ </ul>
+
+ <h2>Standings Path</h2>
+ <p>All new members must complete the following:</p>
+ <ol>
+ <li><strong>Exit Ohnivak</strong> — Process to transfer from Ohnivak corp into KYBERNAUTS</li>
+ <li><strong>Triglavian Standings</strong> — achieve 3.4 standing with Triglavian Unity</li>
+ <li><strong>SDC Orientation</strong> — Meet with committee within first 48 hours of arrival</li>
+ <li><strong>Mentorship Pairing</strong> — Bond with experienced pilot for ongoing guidance</li>
+ </ol>
+
+ <h2>Operational Qualification</h2>
+ <p>To be considered after submitting a Kyber application, a pilot must prove initiative and competence:</p>
+ <ul>
+ <li><strong>3 solo kills</strong> in Pochven</li>
+ <li><strong>Lead a fleet</strong> (at least one) after submitting their application</li>
+ </ul>
+ <p>These requirements ensure we build pilots who can fight, learn, and lead — not merely exist in space.</p>
+
+ <h2>What We Provide / What We Expect</h2>
+ <table>
+ <thead>
+ <tr>
+ <th>What We Provide</th>
+ <th>What We Expect</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Skill plans calibrated for each development category</td>
+ <td>Engagement. This is not a hanger-queen program.</td>
+ </tr>
+ <tr>
+ <td>Mentorship pairings forged through experience</td>
+ <td>Commitment to learning and self-improvement</td>
+ </tr>
+ <tr>
+ <td>Fitting handouts optimized for success</td>
+ <td>Participation in SDC fleet operations</td>
+ </tr>
+ <tr>
+ <td>Ship handouts for immediate contribution</td>
+ <td>Paying forward — assist those who follow behind you</td>
+ </tr>
+ <tr>
+ <td>Income-generating fleets designed for developing pilots</td>
+ <td></td>
+ </tr>
+ <tr>
+ <td>Protected spaces for learning and growth</td>
+ <td></td>
+ </tr>
+ </tbody>
+ </table>
+
+ <div class="closing">
+ <h2>WE ARE KYBERNAUTS.</h2>
+ <p>We build pilots through transformation. We generate content through collective action. We strengthen community through shared growth.</p>
+ <p>The Proving Grounds ensure every member who enters our space emerges adapted, capable, and ready.</p>
+ <div class="signature">
+ Thank You
+ </div>
+ </div>
+
+</body>
+</html>

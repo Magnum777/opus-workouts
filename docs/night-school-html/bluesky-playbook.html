@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bluesky Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Bluesky Integration Playbook</h1>
+
+<h2>Overview</h2>
+
+<p>Bluesky is an emerging decentralized social platform built on the AT Protocol. It's rapidly growing and valuable for marketing the AI Co-Founder Stack. The platform has excellent API support for bots and automation.</p>
+
+<h2>Use Cases for AI Co-Founder Stack</h2>
+
+<p>1. <strong>Automated posting</strong> - Cross-post blog content to Bluesky</p>
+<p>2. <strong>Engagement bots</strong> - Auto-like/repost content matching keywords</p>
+<p>3. <strong>Content discovery</strong> - Monitor feeds for relevant topics</p>
+<p>4. <strong>Scheduling</strong> - Queue posts for optimal times</p>
+<p>5. <strong>Analytics</strong> - Track engagement metrics</p>
+
+<h2>Technical Setup</h2>
+
+<h3>Prerequisites</h3>
+<ul>
+<li>Node.js + TypeScript</li>
+<li>Bluesky account (create at bsky.app)</li>
+<li><code>@atproto/api</code> npm package</li>
+</ul>
+
+<h3>Installation</h3>
+<pre><code>npm install @atproto/api dotenv cron
+</code></pre>
+
+<h3>Basic Bot Script</h3>
+<pre><code>import { BskyAgent } from '@atproto/api';
+<p>import * as dotenv from 'dotenv';</p>
+<p>import { CronJob } from 'cron';</p>
+<p>import * as process from 'process';</p>
+
+<p>dotenv.config();</p>
+
+<p>// Create a Bluesky Agent</p>
+<p>const agent = new BskyAgent({</p>
+<p>service: 'https://bsky.social',</p>
+<p>})</p>
+
+<p>async function main() {</p>
+<p>await agent.login({</p>
+<p>identifier: process.env.BLUESKY_USERNAME!,</p>
+<p>password: process.env.BLUESKY_PASSWORD!</p>
+<p>})</p>
+  
+<p>await agent.post({</p>
+<p>text: "Hello from my AI bot! 🚀"</p>
+<p>});</p>
+  
+<p>console.log("Just posted!");</p>
+<p>}</p>
+
+<p>main();</p>
+</code></pre>
+
+<h3>Session Management (Recommended)</h3>
+<pre><code>// Persist session to avoid login rate limits
+<p>const session = readSessionFromDisk()</p>
+<p>if (session) {</p>
+<p>agent.resumeSession(session)</p>
+<p>} else {</p>
+<p>await agent.login({</p>
+<p>identifier: process.env.BLUESKY_USERNAME!,</p>
+<p>password: process.env.BLUESKY_PASSWORD!</p>
+<p>})</p>
+<p>writeSessionToDisk(agent.session)</p>
+<p>}</p>
+</code></pre>
+
+<h2>API Capabilities</h2>
+
+<p>| Operation | Endpoint | Description |</p>
+<p>|-----------|----------|-------------|</p>
+<p>| Post | <code>agent.post()</code> | Create new post |</p>
+<p>| Like | <code>agent.like()</code> | Like a post |</p>
+<p>| Repost | <code>agent.repost()</code> | Share a post |</p>
+<p>| Reply | <code>agent.post()</code> with reply | Reply to thread |</p>
+<p>| Search | <code>agent.searchPosts()</code> | Find content |</p>
+<p>| Timeline | <code>agent.getTimeline()</code> | Home feed |</p>
+
+<h2>Rate Limits</h2>
+
+<ul>
+<li><strong>Login</strong>: Limited (persist sessions!)</li>
+<li><strong>Posting</strong>: ~300 posts/hour</li>
+<li><strong>Interactions</strong>: Opt-in only (don't spam)</li>
+</ul>
+
+<strong>Important</strong>: Only interact with users who have tagged your bot or opted in. Bluesky is strict about spam.
+
+<h2>Skill Implementation for OpenClaw</h2>
+
+<h3>Files Needed</h3>
+<p>1. <code>skills/bluesky/SKILL.md</code> - Instructions</p>
+<p>2. <code>skills/bluesky/index.js</code> - Integration code</p>
+<p>3. <code>.env</code> - Credentials (BLUESKY_USERNAME, BLUESKY_PASSWORD)</p>
+
+<h3>Key Features to Implement</h3>
+<ul>
+<li><code>post(text)</code> - Create post</li>
+<li><code>like(uri)</code> - Like a post</li>
+<li><code>repost(uri)</code> - Share a post</li>
+<li><code>search(query)</code> - Find posts</li>
+<li><code>getTimeline()</code> - Get home feed</li>
+</ul>
+
+<h2>Integration with Postiz</h2>
+
+<p>Bluesky can be added to Postiz for unified scheduling across platforms. This would allow:</p>
+<ul>
+<li>Schedule once → post to Bluesky + Twitter + LinkedIn</li>
+<li>Central analytics</li>
+<li>Queue management</li>
+</ul>
+
+<h2>Priority for AI Co-Founder Stack</h2>
+
+<strong>Rating: ⭐⭐⭐⭐ (4/5)</strong>
+
+<ul>
+<li>Growing platform with engaged tech audience</li>
+<li>Easy API, good docs</li>
+<li>Lower saturation than Twitter</li>
+<li>Great for AI/tech content marketing</li>
+</ul>
+
+<h2>Next Steps</h2>
+
+<p>1. Create Bluesky account for Layered Media</p>
+<p>2. Build basic posting bot</p>
+<p>3. Integrate with Postiz (or standalone skill)</p>
+<p>4. Test engagement automation</p>
+<p>5. Add to V2 skill recommendations</p>
+
+---
+
+<em>Created: 2026-02-22</em>
+<em>Source: docs.bsky.app, atproto.com</em>
+
+</body>
+</html>

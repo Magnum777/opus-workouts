@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solana-trading Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Solana Meme Token Trading Playbook</h1>
+
+<h2>Overview</h2>
+
+<p>Trading meme tokens on Solana requires understanding liquidity, slippage, and the Jupiter API aggregation system. This playbook covers reliable selling strategies and common failure modes.</p>
+
+<h2>Key Concepts</h2>
+
+<h3>Slippage</h3>
+
+<strong>What it is:</strong> The difference between expected price and executed price due to market movement between quote and execution.
+
+<strong>Why it matters for meme tokens:</strong>
+<ul>
+<li>Low liquidity pools = higher price impact</li>
+<li>High volatility = rapid price changes</li>
+<li>Multiple sellers = competition for limited buy orders</li>
+</ul>
+
+<strong>Typical slippage settings:</strong>
+<ul>
+<li>Normal tokens: 0.5-1%</li>
+<li>Meme tokens: 5-15% (sometimes higher)</li>
+<li>Illiquid/new tokens: 20-50% (risky)</li>
+</ul>
+
+<h3>Liquidity</h3>
+
+<strong>Types on Solana:</strong>
+<ul>
+<li><strong>Raydium AMM</strong> - Traditional liquidity pools</li>
+<li><strong>Pump.fun</strong> - Bonding curve launches</li>
+<li><strong>Orca</strong> - Concentrated liquidity</li>
+<li><strong>Meteora</strong> - Dynamic pools</li>
+</ul>
+
+<strong>Liquidity risks:</strong>
+<ul>
+<li>Rug pulls (dev removes liquidity)</li>
+<li>Low liquidity = high slippage = failed transactions</li>
+<li>Multiple sellers competing = worse fills</li>
+</ul>
+
+<h2>Jupiter API Deep Dive</h2>
+
+<h3>How Jupiter Works</h3>
+
+<p>Jupiter is a DEX aggregator that:</p>
+<p>1. Scans all liquidity sources</p>
+<p>2. Finds optimal routing (may split across multiple pools)</p>
+<p>3. Returns serialized transaction</p>
+<p>4. Minimizes slippage through smart routing</p>
+
+<h3>API Endpoints</h3>
+
+<pre><code>GET /quote?inputMint=SOL_MINT&outputMint=TOKEN_MINT&amount=1000000&slippageBps=50
+
+<p>POST /swap</p>
+<ul>
+<li>Takes quote response</li>
+<li>Returns serialized transaction</li>
+<li>Sign and send to Solana RPC</li>
+</ul>
+</code></pre>
+
+<h3>Common Failure: Error 0x1788</h3>
+
+<strong>What it means:</strong> Transaction simulation failed - Jupiter cannot route the swap.
+
+<strong>Common causes:</strong>
+<p>1. <strong>Token-2022 incompatibility</strong> - New token standard not fully supported</p>
+<p>2. <strong>No liquidity route</strong> - No viable path from token to SOL/USDC</p>
+<p>3. <strong>Slippage too low</strong> - Price moved beyond slippage tolerance</p>
+<p>4. <strong>Pool frozen/paused</strong> - Liquidity pool disabled</p>
+<p>5. <strong>Tax tokens</strong> - Buy/sell taxes break simulation</p>
+
+<strong>Solutions:</strong>
+<pre><code>// 1. Increase slippage dramatically
+<p>slippageBps: 1000  // 10%</p>
+<p>slippageBps: 3000  // 30% for very illiquid</p>
+
+<p>// 2. Check token standard</p>
+<p>// Token-2022 may need special handling</p>
+
+<p>// 3. Try alternative aggregators</p>
+<p>// - OpenOcean (meta-aggregator)</p>
+<p>// - SolXtence Swap API</p>
+<p>// - Direct Raydium pool interaction</p>
+
+<p>// 4. Check if liquidity exists</p>
+<p>// Use Jupiter price API to verify route</p>
+</code></pre>
+
+<h3>Improving Landing Rates</h3>
+
+<strong>From QuickNode docs:</strong>
+
+<p>1. <strong>Restrict intermediate tokens:</strong></p>
+<pre><code>// Prevent routing through low-liquidity pairs
+<p>restrictIntermediateTokens: true</p>
+<p>onlyDirectRoutes: false  // Allow multi-hop but control it</p>
+</code></pre>
+
+<p>2. <strong>Use priority fees:</strong></p>
+<pre><code>// Higher priority = faster inclusion
+<p>computeUnitPrice: 100000  // Adjust based on congestion</p>
+</code></pre>
+
+<p>3. <strong>Refresh quotes frequently:</strong></p>
+<ul>
+<li>Quotes expire quickly (seconds)</li>
+<li>Re-quote immediately before swap</li>
+<li>Monitor price trend (uptrend = better fills)</li>
+</ul>
+
+<h2>Practical Selling Strategy</h2>
+
+<h3>Pre-Sale Checklist</h3>
+
+<ul>
+<li>[ ] Check liquidity pool size (Raydium/Pump.fun)</li>
+<li>[ ] Verify Jupiter route exists</li>
+<li>[ ] Set appropriate slippage (start 10%, increase if failing)</li>
+<li>[ ] Check recent transactions (any successful sells?)</li>
+<li>[ ] Verify token isn't frozen/taxed</li>
+</ul>
+
+<h3>Execution Flow</h3>
+
+<pre><code>1. Get quote from Jupiter API
+<p>2. Check quoted amount vs expected</p>
+<p>3. If slippage > 20%, investigate (may be unsellable)</p>
+<p>4. Create swap transaction</p>
+<p>5. Add priority fee (0.0001-0.001 SOL)</p>
+<p>6. Sign and send</p>
+<p>7. If fails, increase slippage and retry</p>
+<p>8. After 3 failures, try alternative aggregator</p>
+</code></pre>
+
+<h3>Alternative Aggregators</h3>
+
+<strong>When Jupiter fails:</strong>
+
+<p>1. <strong>OpenOcean API</strong></p>
+<ul>
+<li>Meta-aggregator (Jupiter + Titan)</li>
+<li>Sometimes finds routes Jupiter misses</li>
+<li>URL: <code>apis.openocean.finance</code></li>
+</ul>
+
+<p>2. <strong>SolXtence Swap API</strong></p>
+<ul>
+<li>Handles Pump.fun, Moonshot, Raydium</li>
+<li>Good for meme coins</li>
+<li>Manages routing automatically</li>
+</ul>
+
+<p>3. <strong>Direct Pool Interaction</strong></p>
+<ul>
+<li>Raydium SDK</li>
+<li>Requires more code</li>
+<li>Last resort option</li>
+</ul>
+
+<h2>Red Flags</h2>
+
+<p>🚩 <strong>Do NOT buy if:</strong></p>
+<ul>
+<li>Liquidity < $10k (very hard to sell)</li>
+<li>Mint authority not revoked</li>
+<li>Freeze authority enabled</li>
+<li>High buy/sell tax (>10%)</li>
+<li>Dev wallet holds >20% supply</li>
+</ul>
+
+<p>🚩 <strong>Sell immediately if:</strong></p>
+<ul>
+<li>Liquidity being removed</li>
+<li>Dev wallet selling</li>
+<li>Social channels going silent</li>
+<li>Price down 50%+ from entry</li>
+</ul>
+
+<h2>Tools & Resources</h2>
+
+<ul>
+<li><strong>Jupiter Terminal:</strong> <code>terminal.jup.ag</code> - Test swaps manually</li>
+<li><strong>Solscan:</strong> Check token holders, transactions</li>
+<li><strong>RugCheck.xyz:</strong> Token security analysis</li>
+<li><strong>DexScreener:</strong> Chart + liquidity monitoring</li>
+<li><strong>Birdeye:</strong> Price + holder analytics</li>
+</ul>
+
+<h2>Key Takeaways</h2>
+
+<p>1. <strong>Slippage is your friend</strong> - Set it high enough to actually execute</p>
+<p>2. <strong>Liquidity = exit ability</strong> - Never buy what you can't sell</p>
+<p>3. <strong>Jupiter isn't perfect</strong> - Have fallback aggregators ready</p>
+<p>4. <strong>Token-2022 issues</strong> - New standard may break standard tools</p>
+<p>5. <strong>Speed matters</strong> - Quote and execute quickly in volatile markets</p>
+
+---
+
+<em>Generated by Night School - 2026-02-27</em>
+
+</body>
+</html>

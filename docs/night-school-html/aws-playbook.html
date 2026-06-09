@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Night School Playbook – AWS Basics & Cloud Solutions</h1>
+
+<strong>Purpose</strong>: Provide a concise, actionable reference for getting up‑to‑speed with Amazon Web Services (AWS) core services, security best practices, infrastructure‑as‑code, CI/CD pipelines, monitoring, cost optimization, and multi‑cloud considerations. Designed for nightly self‑study sessions and quick lookup while building or maintaining cloud‑enabled projects.
+
+---
+
+<h2>1. Core AWS Services Overview</h2>
+
+<p>| Service | Category | Typical Use‑Case |</p>
+<p>|--------|----------|-----------------|</p>
+<p>| <strong>EC2</strong> | Compute | Virtual servers, custom AMIs, auto‑scaling groups |</p>
+<p>| <strong>S3</strong> | Storage | Object storage, static website hosting, data lake |</p>
+<p>| <strong>Lambda</strong> | Serverless Compute | Event‑driven functions, API back‑ends, cron jobs |</p>
+<p>| <strong>RDS</strong> | Managed Databases | PostgreSQL, MySQL, Aurora – relational DBaaS |</p>
+<p>| <strong>DynamoDB</strong> | NoSQL Database | Key‑value / document store, high‑throughput apps |</p>
+<p>| <strong>VPC</strong> | Networking | Isolated networking, subnets, security groups, NAT |</p>
+<p>| <strong>IAM</strong> | Identity & Access | Users, roles, policies, temporary credentials |</p>
+<p>| <strong>CloudFront</strong> | CDN | Global content delivery, edge caching |</p>
+<p>| <strong>ECS / EKS</strong> | Container Orchestration | Docker containers on Fargate or EC2, Kubernetes |</p>
+<p>| <strong>SQS / SNS</strong> | Messaging | Queues, pub/sub, fan‑out patterns |</p>
+<p>| <strong>CloudWatch</strong> | Monitoring & Logging | Metrics, alarms, log groups |</p>
+<p>| <strong>AWS Config</strong> | Governance | Resource configuration history & compliance |</p>
+<p>| <strong>CodeCommit / CodeBuild / CodeDeploy / CodePipeline</strong> | CI/CD | Source control, build, deployment pipelines |</p>
+<p>| <strong>Route 53</strong> | DNS | Hosted zones, health‑checks, traffic routing |</p>
+
+---
+
+<h2>2. IAM – Security Foundations</h2>
+
+<p>1. <strong>Principle of Least Privilege</strong> – Grant only needed permissions.</p>
+<p>2. <strong>Use Roles over Users</strong> for services & EC2 instances.</p>
+<p>3. <strong>Managed Policies</strong> for common sets, custom policies for fine‑grained control.</p>
+<p>4. <strong>MFA</strong> for all privileged IAM users.</p>
+<p>5. <strong>Service‑Linked Roles</strong> for AWS services (e.g., Lambda, ECS).</p>
+<p>6. <strong>Permission Boundaries</strong> to limit maximum allowed actions.</p>
+<p>7. <strong>IAM Access Analyzer</strong> → detect unintended public access.</p>
+<p>8. <strong>Rotate Access Keys</strong> regularly; prefer IAM Roles + STS tokens.</p>
+
+---
+
+<h2>3. Networking Fundamentals (VPC)</h2>
+
+<ul>
+<li><strong>CIDR Planning</strong> – Use non‑overlapping ranges (e.g., 10.0.0.0/16).</li>
+<li><strong>Public vs Private Subnets</strong> – Public for ALBs/NAT, private for DB & app servers.</li>
+<li><strong>Security Groups</strong> – Stateful, attach to ENIs.</li>
+<li><strong>Network ACLs</strong> – Stateless, for subnet‑level filtering.</li>
+<li><strong>VPC Peering / Transit Gateway</strong> – Connect multiple VPCs.</li>
+<li><strong>Interface Endpoints (AWS PrivateLink)</strong> – Access AWS services without internet.</li>
+</ul>
+
+---
+
+<h2>4. Infrastructure as Code (IaC)</h2>
+
+<h3>Terraform (recommended)</h3>
+<pre><code>provider "aws" {
+<p>region = "us-east-1"</p>
+<p>}</p>
+
+<p>resource "aws_vpc" "main" {</p>
+<p>cidr_block = "10.0.0.0/16"</p>
+<p>}</p>
+<h1>… additional resources …</h1>
+</code></pre>
+<ul>
+<li>Store state in <strong>S3</strong> with <strong>DynamoDB table</strong> for locking.</li>
+<li>Use <strong>modules</strong> for reusable patterns (VPC, ECS cluster, etc.).</li>
+</ul>
+
+<h3>CloudFormation (AWS‑native)</h3>
+<pre><code>Resources:
+<p>MyBucket:</p>
+<p>Type: AWS::S3::Bucket</p>
+<p>Properties:</p>
+<p>BucketName: my-bucket-${AWS::Region}</p>
+</code></pre>
+<ul>
+<li>Leverage <strong>Change Sets</strong> for safe updates.</li>
+<li>Parameterize with <strong>SSM Parameter Store</strong>.</li>
+</ul>
+
+---
+
+<h2>5. CI/CD Pipelines</h2>
+
+<h3>CodePipeline Example (S3 → Lambda)</h3>
+<p>1. <strong>Source</strong> – CodeCommit repo.</p>
+<p>2. <strong>Build</strong> – CodeBuild (install deps, run tests).</p>
+<p>3. <strong>Deploy</strong> – CloudFormation stack update (Lambda function).</p>
+
+<h3>GitHub Actions + AWS CLI (cross‑platform)</h3>
+<pre><code>name: Deploy Lambda
+<p>on: push</p>
+<p>jobs:</p>
+<p>deploy:</p>
+<p>runs-on: ubuntu-latest</p>
+<p>steps:</p>
+<ul>
+<li>uses: actions/checkout@v3</li>
+<li>uses: aws-actions/configure-aws-credentials@v2</li>
+</ul>
+<p>with:</p>
+<p>aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}</p>
+<p>aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}</p>
+<p>aws-region: us-east-1</p>
+<ul>
+<li>run: sam build && sam deploy --no-confirm-changeset --stack-name my-stack --capabilities CAPABILITY_IAM</li>
+</ul>
+</code></pre>
+<ul>
+<li>Prefer <strong>IAM Role</strong> for GitHub OIDC rather than long‑lived keys.</li>
+</ul>
+
+---
+
+<h2>6. Monitoring, Logging & Alerting</h2>
+
+<ul>
+<li><strong>CloudWatch Metrics</strong> – CPU, Network, Lambda Duration, SQS ApproximateNumberOfMessages.</li>
+<li><strong>CloudWatch Alarms</strong> – Thresholds → SNS topics (email/Slack).</li>
+<li><strong>Logs</strong> – CloudWatch Log Groups; enable <strong>structured logging</strong> (JSON) for query.</li>
+<li><strong>X‑Ray</strong> – Distributed tracing for Lambda & ECS.</li>
+<li><strong>Grafana + Prometheus</strong> – For custom dashboards (via Managed Service Prometheus).</li>
+<li><strong>AWS Health Dashboard</strong> – Service‑level incidents.</li>
+</ul>
+
+---
+
+<h2>7. Cost Optimization</h2>
+
+<p>| Technique | Tool / Action |</p>
+<p>|-----------|----------------|</p>
+<p>| <strong>Right‑size</strong> instances | Compute Optimizer, Trusted Advisor |</p>
+<p>| <strong>Spot Instances</strong> for fault‑tolerant workloads |</p>
+<p>| <strong>Savings Plans</strong> – 1‑yr/3‑yr commitment |</p>
+<p>| <strong>S3 Lifecycle</strong> – Transition to IA/Glacier |</p>
+<p>| <strong>Lambda Power Tuning</strong> – Adjust memory for cost/performance |</p>
+<p>| <strong>Budget Alerts</strong> – Set budgets in Cost Explorer, SNS notifications |</p>
+<p>| <strong>Tagging</strong> – Enforce cost allocation tags (project, env) |</p>
+<p>| <strong>Serverless Off‑load</strong> – Replace idle EC2 with Lambda/ECS Fargate |</p>
+
+---
+
+<h2>8. Multi‑Cloud & Hybrid Considerations</h2>
+
+<ul>
+<li>Use <strong>Terraform</strong> as a single source of truth across AWS, GCP, Azure.</li>
+<li><strong>Data synchronization</strong> – AWS Direct Connect / VPN for on‑prem to VPC.</li>
+<li><strong>Identity federation</strong> – OIDC between AWS and Azure AD or Okta.</li>
+<li><strong>Cloud‑agnostic CI/CD</strong> – GitHub Actions, CircleCI with provider‑specific steps.</li>
+<li><strong>Observability stack</strong> – OpenTelemetry agents to send traces to a central collector.</li>
+</ul>
+
+---
+
+<h2>9. Study & Practice Checklist</h2>
+
+<p>1. <strong>Create a free AWS account</strong> (or use existing). Enable MFA.</p>
+<p>2. <strong>Set up CLI</strong> – <code>aws configure</code> with IAM user limited to <code>ReadOnlyAccess</code>.</p>
+<p>3. <strong>Launch a VPC</strong> via CloudFormation/Terraform.</p>
+<p>4. <strong>Deploy a simple EC2 + S3 static site</strong>.</p>
+<p>5. <strong>Create a Lambda function</strong> triggered by S3 upload (Hello‑World).</p>
+<p>6. <strong>Build a CI pipeline</strong> that updates the Lambda on push.</p>
+<p>7. <strong>Configure CloudWatch alarm</strong> for Lambda errors → SNS email.</p>
+<p>8. <strong>Run Cost Explorer</strong> to view free‑tier usage and set a budget.</p>
+<p>9. <strong>Document</strong> each step in a markdown file under <code>docs/night-school/aws/notes/</code>.</p>
+
+---
+
+<h2>10. References</h2>
+<ul>
+<li>AWS Well‑Architected Framework – https://aws.amazon.com/architecture/well-architected/</li>
+<li>Terraform AWS Provider Docs – https://registry.terraform.io/providers/hashicorp/aws/latest/docs</li>
+<li>AWS Serverless Application Model (SAM) – https://aws.amazon.com/serverless/sam/</li>
+<li>AWS Security Best Practices – https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-bestpractices.html</li>
+<li>Cost Optimization Guide – https://aws.amazon.com/pricing/cost-optimization/</li>
+</ul>
+
+---
+
+<em>End of Playbook – ready for the next NightSchool session.</em>
+</body>
+</html>

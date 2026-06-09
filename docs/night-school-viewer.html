@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night School Playbooks</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 280px;
+            background: #12121a;
+            border-right: 1px solid #2a2a3a;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .sidebar h1 {
+            font-size: 1.3rem;
+            color: #4fc3f7;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2a2a3a;
+        }
+        .sidebar h2 {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 20px 0 10px;
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar li {
+            margin: 4px 0;
+        }
+        .sidebar a {
+            color: #b0b0c0;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background: #1e3a5f;
+            color: #4fc3f7;
+        }
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+        }
+        .content-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .content h1 { color: #4fc3f7; margin-bottom: 20px; }
+        .content h2 { color: #81d4fa; margin: 30px 0 15px; border-bottom: 1px solid #2a2a3a; padding-bottom: 10px; }
+        .content h3 { color: #a5d6fa; margin: 25px 0 10px; }
+        .content p { margin-bottom: 15px; line-height: 1.7; }
+        .content a { color: #81d4fa; }
+        .content code {
+            background: #1a1a2e;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        .content pre {
+            background: #1a1a2e;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .content pre code { background: transparent; padding: 0; }
+        .content ul, .content ol { margin: 15px 0; padding-left: 25px; }
+        .content li { margin: 8px 0; }
+        .content blockquote {
+            border-left: 3px solid #4fc3f7;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #b0b0c0;
+        }
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .content th, .content td {
+            border: 1px solid #2a2a3a;
+            padding: 10px;
+            text-align: left;
+        }
+        .content th {
+            background: #1a1a2e;
+            color: #4fc3f7;
+        }
+        .content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 50px;
+        }
+        .edit-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4fc3f7;
+            color: #0a0a0f;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(79, 195, 247, 0.3);
+            transition: transform 0.2s;
+        }
+        .edit-btn:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <h1>🦝 Night School</h1>
+        <nav id="nav"></nav>
+    </aside>
+    <main class="content">
+        <div class="content-inner" id="viewer">
+            <div class="loading">Select a playbook from the sidebar</div>
+        </div>
+        <a href="#" class="edit-btn" id="editLink" style="display:none">✏️ Edit Markdown</a>
+    </main>
+
+    <script>
+        const playbooks = [
+            { category: "AI & Automation", files: [
+                { name: "Agentic AI Lessons", path: "agentic-ai-lessons/playbook.md" },
+                { name: "AI Coding Services", path: "ai-coding-services/playbook.md" },
+                { name: "AI Content Creation", path: "ai-content-creation/playbook.md" },
+                { name: "AI/ML", path: "ai-ml/playbook.md" },
+                { name: "AI Newsletter", path: "ai-newsletter/playbook.md" },
+                { name: "AI SEO Services", path: "ai-seo-services/playbook.md" },
+                { name: "AI Social Media Mgmt", path: "ai-social-media-mgmt/playbook.md" },
+                { name: "AI Data Analysis", path: "ai-data-analysis/playbook.md" },
+                { name: "Automation", path: "automation/playbook.md" },
+                { name: "n8n Automation", path: "automation/n8n/playbook.md" },
+                { name: "Automation Comparison", path: "automation-comparison/playbook.md" },
+                { name: "Nova Autonomy", path: "nova-autonomy/playbook.md" },
+                { name: "Nova Trading Bot", path: "nova-trading-bot/playbook.md" },
+                { name: "OpenClaw Ecosystem", path: "openclaw-ecosystem/playbook.md" },
+                { name: "OpenClaw Subagents", path: "openclaw-subagents/playbook.md" },
+                { name: "Cron Model Tiering", path: "cron-model-tiering/playbook.md" },
+                { name: "Model Relay Auto-Routing", path: "modelrelay-auto-routing/playbook.md" }
+            ]},
+            { category: "Income & Business", files: [
+                { name: "AI Agency Income", path: "ai-agency-income/playbook.md" },
+                { name: "Income Streams", path: "income-streams/playbook.md" },
+                { name: "Business Strategy", path: "business/playbook.md" },
+                { name: "OpenClaw Money Setups", path: "business/openclaw-money-setups/playbook.md" },
+                { name: "ClawHub Skills", path: "business/clawhub-skills-recommendations/playbook.md" }
+            ]},
+            { category: "Freelance Platforms", files: [
+                { name: "99designs", path: "99designs/playbook.md" },
+                { name: "Freelancer", path: "freelancer/playbook.md" },
+                { name: "Guru", path: "guru/playbook.md" },
+                { name: "LinkedIn", path: "linkedin/playbook.md" },
+                { name: "Toptal", path: "toptal/playbook.md" },
+                { name: "Workana", path: "workana/playbook.md" },
+                { name: "Remote Jobs", path: "remote-jobs/playbook.md" }
+            ]},
+            { category: "Tech & Infrastructure", files: [
+                { name: "AWS", path: "aws/playbook.md" },
+                { name: "AWS Basics", path: "aws-basics/playbook.md" },
+                { name: "AWS Cloud Solutions", path: "aws-cloud-solutions/playbook.md" },
+                { name: "Bluesky", path: "bluesky/playbook.md" },
+                { name: "Coinbase Agentic", path: "coinbase-agentic/playbook.md" },
+                { name: "ElevenLabs", path: "elevenlabs/playbook.md" },
+                { name: "Mem0", path: "mem0/playbook.md" },
+                { name: "Mixpost", path: "mixpost/playbook.md" },
+                { name: "OpenAI TTS", path: "openai-tts/playbook.md" },
+                { name: "Postiz", path: "postiz/playbook.md" },
+                { name: "RSS Reader", path: "rss-reader/playbook.md" },
+                { name: "Solana Trading", path: "solana-trading/playbook.md" },
+                { name: "Stripe", path: "stripe/playbook.md" },
+                { name: "Uptime Kuma", path: "uptime-kuma/playbook.md" },
+                { name: "WordPress", path: "wordpress/playbook.md" }
+            ]},
+            { category: "Creative & Marketing", files: [
+                { name: "Affiliate Marketing", path: "affiliate-marketing/playbook.md" },
+                { name: "Creative Writing", path: "creative/playbook.md" },
+                { name: "AI Creative Writing", path: "creative/ai-creative-writing/playbook.md" },
+                { name: "Print on Demand", path: "print-on-demand/playbook.md" },
+                { name: "Free Web Design Assets", path: "free-web-design-assets/playbook.md" },
+                { name: "GA Company Websites", path: "ga-company-websites/playbook.md" }
+            ]},
+            { category: "Other", files: [
+                { name: "Buying Used Cars", path: "buying-used-cars/playbook.md" },
+                { name: "Token Generation", path: "token-generation/playbook.md" }
+            ]}
+        ];
+
+        function buildNav() {
+            const nav = document.getElementById('nav');
+            playbooks.forEach(cat => {
+                const h2 = document.createElement('h2');
+                h2.textContent = cat.category;
+                nav.appendChild(h2);
+                const ul = document.createElement('ul');
+                cat.files.forEach(file => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.textContent = file.name;
+                    a.onclick = (e) => {
+                        e.preventDefault();
+                        loadPlaybook(file.path, file.name);
+                        document.querySelectorAll('.sidebar a').forEach(l => l.classList.remove('active'));
+                        a.classList.add('active');
+                    };
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+                nav.appendChild(ul);
+            });
+        }
+
+        async function loadPlaybook(path, name) {
+            const viewer = document.getElementById('viewer');
+            viewer.innerHTML = '<div class="loading">Loading...</div>';
+            
+            try {
+                const response = await fetch(`night-school/${path}`);
+                if (!response.ok) throw new Error('Failed to load');
+                const markdown = await response.text();
+                viewer.innerHTML = marked.parse(markdown);
+                document.title = `${name} - Night School`;
+                
+                // Show edit link
+                const editLink = document.getElementById('editLink');
+                editLink.href = `file:///C:/Users/compj/.openclaw/workspace/docs/night-school/${path}`;
+                editLink.style.display = 'block';
+            } catch (err) {
+                viewer.innerHTML = `<div class="loading">Error loading playbook: ${err.message}<br>Make sure you're viewing this file through a web server (not file://)</div>`;
+            }
+        }
+
+        buildNav();
+        
+        // Load first playbook by default
+        if (playbooks[0]?.files[0]) {
+            loadPlaybook(playbooks[0].files[0].path, playbooks[0].files[0].name);
+            document.querySelector('.sidebar a')?.classList.add('active');
+        }
+    </script>
+</body>
+</html>

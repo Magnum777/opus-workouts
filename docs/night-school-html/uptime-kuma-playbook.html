@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uptime-kuma Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Uptime Kuma - Health Monitoring</h1>
+
+<strong>Research Date:</strong> February 23, 2026  
+<strong>Topic:</strong> Self-hosted health monitoring on Synology NAS  
+<strong>Source:</strong> Marius Hosting Guide
+
+---
+
+<h2>What is Uptime Kuma?</h2>
+
+<p>Self-hosted monitoring tool that tracks your website/services uptime. Notifies you when things go down.</p>
+
+<strong>Features:</strong>
+<ul>
+<li>HTTP(s) / TCP / Ping monitoring</li>
+<li>20-second check interval</li>
+<li>Notifications: Webhook, Telegram, Discord, Email (SMTP)</li>
+<li>Dark mode UI</li>
+<li>Multiple monitors</li>
+</ul>
+
+<h2>Pricing</h2>
+
+<p>| Version | Cost |</p>
+<p>|---------|------|</p>
+<p>| <strong>Self-hosted</strong> | <strong>Free</strong> ✅ |</p>
+
+---
+
+<h2>Installation (Super Simple!)</h2>
+
+<h3>Prerequisites</h3>
+<ul>
+<li>Synology with Container Manager (or Docker)</li>
+<li>1 folder: <code>/volume1/docker/uptimekuma</code></li>
+</ul>
+
+<h3>Steps</h3>
+
+<p>1. <strong>Create folder</strong> in File Station:</p>
+<ul>
+<li><code>/volume1/docker/uptimekuma</code></li>
+</ul>
+
+<p>2. <strong>Create Task</strong> in Task Scheduler:</p>
+<ul>
+<li>Name: "Install Uptime Kuma"</li>
+<li>User: root</li>
+<li>Run command:</li>
+</ul>
+   <pre><code>   docker run -d --name=uptime_kuma \
+   -p 3444:3001 \
+   -e TZ=America/New_York \
+   -v /volume1/docker/uptimekuma:/app/data \
+   -v /var/run/docker.sock:/var/run/docker.sock \
+   --restart always \
+<p>louislam/uptime-kuma:2</p>
+   </code></pre>
+
+<p>3. <strong>Run the task</strong> - installs automatically</p>
+
+<p>4. <strong>Access</strong> at: <code>http://YOUR-NAS-IP:3444</code></p>
+
+<p>5. <strong>Setup:</strong></p>
+<ul>
+<li>Select SQLite database</li>
+<li>Create admin user</li>
+<li>Add monitors</li>
+</ul>
+
+---
+
+<h2>What to Monitor</h2>
+
+<p>| Monitor | URL | Interval |</p>
+<p>|---------|-----|----------|</p>
+<p>| aitoolalliance.com | https://aitoolalliance.com | 60s |</p>
+<p>| aibusinessinsideraibusinessins.org | https://ider.org | 60s |</p>
+<p>| aicofounderstack.com | https://aicofounderstack.com | 60s |</p>
+<p>| eveonion.com | https://eveonion.com | 60s |</p>
+<p>| NAS | 192.168.68.82 | 60s |</p>
+<p>| OpenClaw Gateway | localhost:18789 | 30s |</p>
+
+---
+
+<h2>Notifications</h2>
+
+<p>Set up in Settings:</p>
+<ul>
+<li><strong>Discord</strong> - Webhook</li>
+<li><strong>Telegram</strong> - Bot API</li>
+<li><strong>Email</strong> - SMTP</li>
+</ul>
+
+---
+
+<h2>For Nova</h2>
+
+<p>Uptime Kuma can alert Nova via webhook when sites go down!</p>
+
+<strong>Webhook URL:</strong> 
+<pre><code>http://YOUR-NAS-IP:3444/api/notification/push
+</code></pre>
+
+---
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://uptimekuma.org/">Official Site</a></li>
+<li><a href="https://github.com/louislam/uptime-kuma">GitHub</a></li>
+<li><a href="https://mariushosting.com/how-to-install-uptime-kuma-on-your-synology-nas/">Marius Hosting Guide</a></li>
+</ul>
+
+---
+
+<em>Last Updated: February 23, 2026</em>
+
+</body>
+</html>

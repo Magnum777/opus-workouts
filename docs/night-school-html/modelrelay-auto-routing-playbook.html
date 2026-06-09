@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modelrelay-auto-routing Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Modelrelay Auto-Routing Playbook</h1>
+
+<h2>Overview</h2>
+
+<strong>Topic:</strong> Modelrelay Auto-Routing Integration  
+<strong>Research Date:</strong> February 26, 2026  
+<strong>Goal:</strong> Determine if modelrelay should be integrated into OpenClaw's fallback system
+
+---
+
+<h2>What is Modelrelay?</h2>
+
+<strong>Modelrelay</strong> is a local OpenAI-compatible router that:
+<ul>
+<li>Benchmarks free coding models across multiple providers</li>
+<li>Automatically forwards requests to the fastest available model</li>
+<li>Compatible with OpenCode and OpenClaw</li>
+<li>Runs locally (API keys stay on your machine)</li>
+</ul>
+
+<h3>Supported Providers (Free Tier)</h3>
+
+<p>| Provider | Env Variable | Notes |</p>
+<p>|----------|--------------|-------|</p>
+<p>| NVIDIA NIM | <code>NVIDIA_API_KEY</code> | High quality, limited rate limits |</p>
+<p>| Groq | <code>GROQ_API_KEY</code> | Very fast inference |</p>
+<p>| Cerebras | <code>CEREBRAS_API_KEY</code> | Extremely fast, generous limits |</p>
+<p>| SambaNova | <code>SAMBANOVA_API_KEY</code> | Good for coding tasks |</p>
+<p>| OpenRouter | <code>OPENROUTER_API_KEY</code> | Access to many free models |</p>
+<p>| Hyperbolic | <code>HYPERBOLIC_API_KEY</code> | Free tier available |</p>
+<p>| Scaleway | <code>SCALEWAY_API_KEY</code> | European provider |</p>
+<p>| Google | <code>GOOGLE_API_KEY</code> | Gemini models |</p>
+
+---
+
+<h2>How It Works</h2>
+
+<p>1. <strong>Install:</strong> <code>npm install -g modelrelay</code></p>
+<p>2. <strong>Onboard:</strong> <code>modelrelay onboard</code> - saves API keys for chosen providers</p>
+<p>3. <strong>Start:</strong> <code>modelrelay</code> - starts local router on port 7352</p>
+<p>4. <strong>Use:</strong> Point OpenClaw to <code>http://127.0.0.1:7352/v1</code> with any API key</p>
+
+<h3>Auto-Configuration</h3>
+
+<p>Modelrelay can auto-configure OpenClaw during onboarding, or you can manually merge this into <code>~/.openclaw/openclaw.json</code>:</p>
+
+<pre><code>{
+<p>"models": {</p>
+<p>"providers": {</p>
+<p>"modelrelay": {</p>
+<p>"baseUrl": "http://127.0.0.1:7352/v1",</p>
+<p>"api": "openai-completions",</p>
+<p>"apiKey": "no-key",</p>
+<p>"models": [</p>
+<p>{ "id": "auto-fastest", "name": "Auto Fastest" }</p>
+<p>]</p>
+<p>}</p>
+<p>}</p>
+<p>},</p>
+<p>"agents": {</p>
+<p>"defaults": {</p>
+<p>"model": {</p>
+<p>"primary": "modelrelay/auto-fastest"</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+---
+
+<h2>Pros</h2>
+
+<ul>
+<li>✅ <strong>Zero cost</strong> - Uses free tier APIs</li>
+<li>✅ <strong>Automatic failover</strong> - Switches providers on rate limits</li>
+<li>✅ <strong>Local execution</strong> - API keys never leave your machine</li>
+<li>✅ <strong>Benchmarking</strong> - Automatically finds fastest provider</li>
+<li>✅ <strong>OpenAI compatible</strong> - Easy integration with OpenClaw</li>
+<li>✅ <strong>Autostart support</strong> - Can run as background service</li>
+</ul>
+
+---
+
+<h2>Cons</h2>
+
+<ul>
+<li>❌ <strong>Requires API keys</strong> - Need to sign up for multiple free tier services</li>
+<li>❌ <strong>Free tier volatility</strong> - Rate limits change, models disappear</li>
+<li>❌ <strong>Setup complexity</strong> - Multiple provider accounts to manage</li>
+<li>❌ <strong>No quality routing</strong> - Routes by speed, not task fit</li>
+<li>❌ <strong>npm dependency</strong> - Requires Node.js</li>
+</ul>
+
+---
+
+<h2>Alternatives</h2>
+
+<h3>OpenRouter Built-in Routers</h3>
+<ul>
+<li><strong>Free Models Router</strong> (<code>openrouter/free</code>) - Random free model selection</li>
+<li><strong>Auto Router</strong> (<code>openrouter/auto</code>) - NotDiamond-powered smart selection</li>
+</ul>
+
+<h3>NVIDIA NIM</h3>
+<ul>
+<li>Local deployment option</li>
+<li>Higher quality but requires more setup</li>
+</ul>
+
+---
+
+<h2>Integration Recommendation</h2>
+
+<h3>FOR Nova's Setup: <strong>YES - Integrate</strong></h3>
+
+<strong>Rationale:</strong>
+<p>1. <strong>Cost savings</strong> - Complements existing MiniMax/Grok setup for simple tasks</p>
+<p>2. <strong>Fallback resilience</strong> - If rate limited, automatically tries next provider</p>
+<p>3. <strong>Fast routing</strong> - Good for quick coding tasks (file edits, simple queries)</p>
+<p>4. <strong>Op already uses OpenClaw</strong> - Direct compatibility</p>
+
+<h3>Implementation Plan</h3>
+
+<p>1. <strong>Phase 1: Core Providers</strong></p>
+<ul>
+<li>Get Cerebras API key (fastest, most generous)</li>
+<li>Get Groq API key (backup for speed)</li>
+<li>Install and configure modelrelay</li>
+</ul>
+
+<p>2. <strong>Phase 2: OpenClaw Integration</strong></p>
+<ul>
+<li>Add modelrelay provider config</li>
+<li>Set as secondary/fallback model</li>
+</ul>
+
+<p>3. <strong>Phase 3: Testing</strong></p>
+<ul>
+<li>Test failover behavior</li>
+<li>Benchmark vs current free options (Ollama)</li>
+</ul>
+
+<h3>Quick Start Commands</h3>
+
+<pre><code><h1>Install</h1>
+<p>npm install -g modelrelay</p>
+
+<h1>Onboard (will prompt for API keys)</h1>
+<p>modelrelay onboard</p>
+
+<h1>Start router</h1>
+<p>modelrelay</p>
+
+<h1>Or install autostart</h1>
+<p>modelrelay install --autostart</p>
+</code></pre>
+
+---
+
+<h2>Key Findings Summary</h2>
+
+<p>| Finding | Value |</p>
+<p>|---------|-------|</p>
+<p>| Does it work? | ✅ Yes, actively maintained |</p>
+<p>| Cost | Free (requires API key signups) |</p>
+<p>| Difficulty | Easy (npm install + keys) |</p>
+<p>| Reliability | Medium (depends on free tier availability) |</p>
+<p>| Best for | Simple coding tasks, fallbacks |</p>
+<p>| Recommendation | Integrate as secondary/fallback |</p>
+
+---
+
+<h2>Resources</h2>
+
+<ul>
+<li>GitHub: https://github.com/ellipticmarketing/modelrelay</li>
+<li>Free Models: https://openrouter.ai/collections/free-models</li>
+<li>Cerebras Rate Limits: https://inference-docs.cerebras.ai/support/rate-limits</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nova-autonomy Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Nova Autonomy Playbook</h1>
+
+<h2>Overview</h2>
+
+<p>Building a self-managing AI agent that operates continuously without constant human intervention. This playbook covers heartbeat systems, cron scheduling, self-healing, and smart monitoring for OpenClaw-based agents.</p>
+
+<h2>Core Concepts</h2>
+
+<h3>Cron vs Heartbeat</h3>
+
+<p>| Feature | Cron | Heartbeat |</p>
+<p>|---------|------|-----------|</p>
+<p>| <strong>Timing</strong> | Exact schedule (e.g., "every 4h at :00") | Approximate (e.g., "every 4h from last run") |</p>
+<p>| <strong>Use case</strong> | Time-specific tasks, external deadlines | Continuous monitoring, self-paced work |</p>
+<p>| <strong>Context</strong> | New session each run | Same session, accumulates context |</p>
+<p>| <strong>Precision</strong> | High - runs at specific time | Lower - runs when polled |</p>
+<p>| <strong>Best for</strong> | Reports, backups, scheduled posts | Health checks, task queues, monitoring |</p>
+
+<strong>When to use each:</strong>
+<ul>
+<li><strong>Cron:</strong> "Send report every Friday at 5pm"</li>
+<li><strong>Heartbeat:</strong> "Check if anything needs attention, every 15 minutes"</li>
+</ul>
+
+<h3>The Autonomy Stack</h3>
+
+<pre><code>┌─────────────────────────────────────────────────────┐
+<p>│                 User Commands                       │</p>
+<p>│         (Explicit requests, overrides)              │</p>
+<p>└─────────────────────────────────────────────────────┘</p>
+<p>│</p>
+<p>▼</p>
+<p>┌─────────────────────────────────────────────────────┐</p>
+<p>│              Heartbeat System                       │</p>
+<p>│    (Continuous monitoring, task discovery)          │</p>
+<p>│    - Read HEARTBEAT.md                              │</p>
+<p>│    - Check task queues                              │</p>
+<p>│    - Self-heal if stuck                             │</p>
+<p>└─────────────────────────────────────────────────────┘</p>
+<p>│</p>
+<p>▼</p>
+<p>┌─────────────────────────────────────────────────────┐</p>
+<p>│                Cron Jobs                            │</p>
+<p>│    (Scheduled tasks, periodic work)                 │</p>
+<p>│    - Session cleanup                                │</p>
+<p>│    - Memory distillation                            │</p>
+<p>│    - Income research                                │</p>
+<p>└─────────────────────────────────────────────────────┘</p>
+<p>│</p>
+<p>▼</p>
+<p>┌─────────────────────────────────────────────────────┐</p>
+<p>│              Sub-Agent Swarm                        │</p>
+<p>│    (Parallel task execution)                        │</p>
+<p>│    - Spawn workers for specific tasks               │</p>
+<p>│    - Monitor health via AGENT-SYNC.md               │</p>
+<p>│    - Auto-restart failed agents                     │</p>
+<p>└─────────────────────────────────────────────────────┘</p>
+</code></pre>
+
+<h2>Heartbeat Implementation</h2>
+
+<h3>File Structure</h3>
+
+<pre><code>workspace/
+<p>├── HEARTBEAT.md          # Task queue for heartbeat</p>
+<p>├── HEARTBEAT-STATE.md    # Current state, last run, status</p>
+<p>└── HEARTBEAT-LOG.md      # Historical runs (optional)</p>
+</code></pre>
+
+<h3>HEARTBEAT.md Format</h3>
+
+<pre><code><h1>Heartbeat Tasks</h1>
+
+<h2>Pending</h2>
+<ul>
+<li>[ ] Check credit balances</li>
+<li>[ ] Review sub-agent health</li>
+<li>[ ] Process inbox messages</li>
+</ul>
+
+<h2>In Progress</h2>
+<ul>
+<li>[task-name] Started at YYYY-MM-DD HH:MM</li>
+</ul>
+
+<h2>Completed (Last Run)</h2>
+<ul>
+<li>[x] Task 1 - Completed at YYYY-MM-DD HH:MM</li>
+<li>[x] Task 2 - Completed at YYYY-MM-DD HH:MM</li>
+</ul>
+</code></pre>
+
+<h3>Heartbeat Loop</h3>
+
+<pre><code>// Pseudo-code for heartbeat handler
+<p>async function handleHeartbeat() {</p>
+<p>// 1. Read heartbeat file</p>
+<p>const tasks = readHeartbeatTasks()</p>
+  
+<p>// 2. If no tasks → acknowledge and exit</p>
+<p>if (tasks.pending.length === 0) {</p>
+<p>return "HEARTBEAT_OK"</p>
+<p>}</p>
+  
+<p>// 3. Process tasks</p>
+<p>for (const task of tasks.pending) {</p>
+<p>await executeTask(task)</p>
+<p>markComplete(task)</p>
+<p>}</p>
+  
+<p>// 4. Update state</p>
+<p>updateHeartbeatState({</p>
+<p>lastRun: new Date(),</p>
+<p>tasksCompleted: tasks.pending.length</p>
+<p>})</p>
+  
+<p>// 5. Report results (don't include HEARTBEAT_OK)</p>
+<p>return formatResults(tasks.completed)</p>
+<p>}</p>
+</code></pre>
+
+<h3>Key Principle: Don't Spam</h3>
+
+<strong>Bad:</strong> Sending "HEARTBEAT_OK" for every cron completion
+<strong>Good:</strong> Only respond to explicit heartbeat polls
+
+<strong>Opus instruction:</strong> "Stop sending HEARTBEAT_OK for every cron job completion. Only use it when explicitly polled for heartbeat tasks."
+
+<h2>Cron Best Practices</h2>
+
+<h3>Spacing & Timing</h3>
+
+<pre><code><h1>Good: Spread out, no overlaps</h1>
+<ul>
+<li>name: "Session Cleanup"</li>
+</ul>
+<p>schedule: "0 <em>/6 </em> <em> </em>"  # Every 6 hours</p>
+  
+<ul>
+<li>name: "Health Check"</li>
+</ul>
+<p>schedule: "<em>/15 </em> <em> </em> *"  # Every 15 minutes</p>
+  
+<ul>
+<li>name: "Credit Check"</li>
+</ul>
+<p>schedule: "0 9 <em> </em> *"  # Daily at 9 AM</p>
+  
+<ul>
+<li>name: "Memory Distillation"</li>
+</ul>
+<p>schedule: "0 3 <em> </em> *"  # Daily at 3 AM</p>
+
+<h1>Bad: All at once</h1>
+<ul>
+<li>name: "Task 1"</li>
+</ul>
+<p>schedule: "0 <em> </em> <em> </em>"  # Every hour at :00</p>
+  
+<ul>
+<li>name: "Task 2"</li>
+</ul>
+<p>schedule: "0 <em> </em> <em> </em>"  # Same time = conflict!</p>
+</code></pre>
+
+<h3>Session Management</h3>
+
+<strong>Problem:</strong> Long-running sessions accumulate context → expensive, slow
+
+<strong>Solution:</strong> New session per task, cleanup old sessions
+
+<pre><code>// Cron job with fresh session
+<p>openclaw cron add \</p>
+  --name "Daily Research" \
+  --every "24h" \
+  --session "research-daily" \
+  --task "Research new opportunities" \
+  --cleanup "delete"  # Auto-cleanup after run
+</code></pre>
+
+<strong>Cleanup cron:</strong>
+<pre><code><h1>Delete sessions older than 24 hours</h1>
+<p>openclaw cron add \</p>
+  --name "Session Cleanup" \
+  --every "6h" \
+  --command "openclaw sessions cleanup --older-than 24h"
+</code></pre>
+
+<h2>Self-Healing Patterns</h2>
+
+<h3>Pattern 1: Watchdog Cron</h3>
+
+<pre><code>// Monitor for stuck agents
+<p>async function watchdogCheck() {</p>
+<p>const agents = await subagents.list()</p>
+<p>const now = Date.now()</p>
+  
+<p>for (const agent of agents) {</p>
+<p>const age = now - agent.lastActivity</p>
+    
+<p>// Agent inactive for >30 minutes?</p>
+<p>if (age > 30 <em> 60 </em> 1000 && agent.status === 'running') {</p>
+<p>// Mark as lost</p>
+<p>await subagents.kill(agent.id)</p>
+      
+<p>// Optionally restart</p>
+<p>await subagents.spawn({</p>
+<p>task: agent.originalTask,</p>
+<p>label: <code>${agent.label}-recovered</code></p>
+<p>})</p>
+      
+<p>// Log the recovery</p>
+<p>logRecovery(agent)</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+<h3>Pattern 2: Task Retry with Backoff</h3>
+
+<pre><code>async function executeWithRetry(task, maxRetries = 3) {
+<p>for (let attempt = 1; attempt <= maxRetries; attempt++) {</p>
+<p>try {</p>
+<p>const result = await executeTask(task)</p>
+<p>return result</p>
+<p>} catch (error) {</p>
+<p>if (attempt === maxRetries) {</p>
+<p>// Final failure - escalate to user</p>
+<p>await notifyUser(<code>Task failed after ${maxRetries} attempts: ${task.name}</code>)</p>
+<p>throw error</p>
+<p>}</p>
+      
+<p>// Wait before retry (exponential backoff)</p>
+<p>const delay = Math.pow(2, attempt) * 1000  // 2s, 4s, 8s</p>
+<p>await sleep(delay)</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+<h3>Pattern 3: Circuit Breaker</h3>
+
+<pre><code>class CircuitBreaker {
+<p>constructor(failureThreshold = 5, resetTimeout = 60000) {</p>
+<p>this.failures = 0</p>
+<p>this.threshold = failureThreshold</p>
+<p>this.resetTimeout = resetTimeout</p>
+<p>this.state = 'CLOSED'  // CLOSED, OPEN, HALF_OPEN</p>
+<p>}</p>
+  
+<p>async execute(task) {</p>
+<p>if (this.state === 'OPEN') {</p>
+<p>throw new Error('Circuit breaker open - too many failures')</p>
+<p>}</p>
+    
+<p>try {</p>
+<p>const result = await task()</p>
+<p>this.onSuccess()</p>
+<p>return result</p>
+<p>} catch (error) {</p>
+<p>this.onFailure()</p>
+<p>throw error</p>
+<p>}</p>
+<p>}</p>
+  
+<p>onSuccess() {</p>
+<p>this.failures = 0</p>
+<p>this.state = 'CLOSED'</p>
+<p>}</p>
+  
+<p>onFailure() {</p>
+<p>this.failures++</p>
+<p>if (this.failures >= this.threshold) {</p>
+<p>this.state = 'OPEN'</p>
+<p>setTimeout(() => {</p>
+<p>this.state = 'HALF_OPEN'</p>
+<p>}, this.resetTimeout)</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+<h2>Sub-Agent Coordination</h2>
+
+<h3>AGENT-SYNC.md Structure</h3>
+
+<pre><code><h1>Agent Sync Status</h1>
+
+<p>Last updated: 2026-02-27 21:45:00</p>
+
+<h2>Active Agents</h2>
+
+<p>| Agent | Status | Task | Last Activity | Health |</p>
+<p>|-------|--------|------|---------------|--------|</p>
+<p>| Harvester | Awake | Fiverr research | 2 min ago | ✅ |</p>
+<p>| Builder | Sleeping | - | 1 hour ago | ✅ |</p>
+<p>| Sentinel | Awake | Health monitoring | 30 sec ago | ✅ |</p>
+
+<h2>Recent Completions</h2>
+<ul>
+<li>Income-Nova: Completed PPH research (20 min ago)</li>
+<li>Content-Nova: Published 3 posts (1 hour ago)</li>
+</ul>
+
+<h2>Failed/Recovered</h2>
+<ul>
+<li>Research-Nova: Failed at 18:30, restarted at 18:35</li>
+</ul>
+</code></pre>
+
+<h3>Spawn Limits</h3>
+
+<strong>Rule:</strong> Max 4-6 active shards at once
+
+<pre><code>async function spawnWithLimit(task, label) {
+<p>const active = await subagents.list({ activeMinutes: 30 })</p>
+  
+<p>if (active.length >= 5) {</p>
+<p>// Queue the task instead</p>
+<p>await addToQueue({ task, label, queuedAt: new Date() })</p>
+<p>return { status: 'queued', position: active.length }</p>
+<p>}</p>
+  
+<p>return await sessions_spawn({</p>
+<p>task,</p>
+<p>label,</p>
+<p>cleanup: 'delete'</p>
+<p>})</p>
+<p>}</p>
+</code></pre>
+
+<h3>Communication Patterns</h3>
+
+<strong>Howl (Broadcast):</strong>
+<pre><code>// Send to all active agents
+<p>async function howl(message) {</p>
+<p>const agents = await subagents.list()</p>
+<p>for (const agent of agents) {</p>
+<p>await sessions_send({</p>
+<p>sessionKey: agent.sessionKey,</p>
+<p>message: <code>[BROADCAST] ${message}</code></p>
+<p>})</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+<strong>Whisper (Direct):</strong>
+<pre><code>// Send to specific agent
+<p>async function whisper(agentLabel, message) {</p>
+<p>const agent = await subagents.find({ label: agentLabel })</p>
+<p>await sessions_send({</p>
+<p>sessionKey: agent.sessionKey,</p>
+<p>message</p>
+<p>})</p>
+<p>}</p>
+</code></pre>
+
+<strong>Pulse (Health Check):</strong>
+<pre><code>// Request status from all agents
+<p>async function pulse() {</p>
+<p>const agents = await subagents.list()</p>
+<p>const responses = []</p>
+  
+<p>for (const agent of agents) {</p>
+<p>const response = await sessions_send({</p>
+<p>sessionKey: agent.sessionKey,</p>
+<p>message: 'PULSE_CHECK',</p>
+<p>timeoutSeconds: 30</p>
+<p>})</p>
+<p>responses.push({ agent: agent.label, status: response })</p>
+<p>}</p>
+  
+<p>return responses</p>
+<p>}</p>
+</code></pre>
+
+<h2>Proactive Behavior Rules</h2>
+
+<h3>When to Act Without Asking</h3>
+
+<p>✅ <strong>Do act:</strong></p>
+<ul>
+<li>Credit monitoring (alert if low)</li>
+<li>Critical error detection</li>
+<li>Scheduled tasks (cron)</li>
+<li>Health checks</li>
+<li>Queue processing</li>
+</ul>
+
+<p>❌ <strong>Don't act:</strong></p>
+<ul>
+<li>External communications (emails, posts) without approval</li>
+<li>Financial transactions without confirmation</li>
+<li>Major architectural changes</li>
+<li>Anything that affects user's public presence</li>
+</ul>
+
+<h3>Flow State Respect</h3>
+
+<strong>Detect flow state:</strong>
+<ul>
+<li>User actively messaging (<5 min between messages)</li>
+<li>User in deep work session (marked in SESSION-STATE.md)</li>
+<li>User explicitly said "in flow" or "don't interrupt"</li>
+</ul>
+
+<strong>When in flow:</strong>
+<ul>
+<li>Defer non-critical notifications</li>
+<li>Batch updates for later</li>
+<li>Only interrupt for critical errors</li>
+</ul>
+
+<h2>Monitoring Dashboard</h2>
+
+<h3>Key Metrics to Track</h3>
+
+<pre><code><h2>Daily Autonomy Report</h2>
+
+<strong>Uptime:</strong> 23.5/24 hours
+<strong>Tasks completed:</strong> 47
+<strong>Sub-agents spawned:</strong> 12
+<strong>Errors:</strong> 2 (both auto-recovered)
+<strong>Credits remaining:</strong> $X.XX (Y days at current rate)
+
+<strong>Top tasks:</strong>
+<p>1. Income research (15 runs)</p>
+<p>2. Health monitoring (96 checks)</p>
+<p>3. Memory distillation (1 run)</p>
+
+<strong>Issues:</strong>
+<ul>
+<li>None critical</li>
+<li>2 sub-agents timed out, auto-restarted</li>
+</ul>
+</code></pre>
+
+<h3>Alert Thresholds</h3>
+
+<p>| Metric | Warning | Critical |</p>
+<p>|--------|---------|----------|</p>
+<p>| API Credits | <7 days | <2 days |</p>
+<p>| Sub-agent failures | >3/day | >10/day |</p>
+<p>| Heartbeat missed | >1 hour | >4 hours |</p>
+<p>| Session age | >48 hours | >7 days |</p>
+<p>| Error rate | >5% | >20% |</p>
+
+<h2>Key Takeaways</h2>
+
+<p>1. <strong>Heartbeat for monitoring, cron for schedules</strong> - Use the right tool</p>
+<p>2. <strong>Don't spam HEARTBEAT_OK</strong> - Only acknowledge explicit polls</p>
+<p>3. <strong>Space out crons</strong> - Avoid overlaps and resource contention</p>
+<p>4. <strong>Self-heal automatically</strong> - Detect and recover from failures</p>
+<p>5. <strong>Respect flow state</strong> - Don't interrupt deep work</p>
+<p>6. <strong>Monitor proactively</strong> - Alert before problems become critical</p>
+<p>7. <strong>Clean up sessions</strong> - Prevent context bloat and cost creep</p>
+
+---
+
+<em>Generated by Night School - 2026-02-27</em>
+
+</body>
+</html>

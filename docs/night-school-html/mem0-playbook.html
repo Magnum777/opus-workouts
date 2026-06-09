@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mem0 Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Mem0 Persistent Memory - Playbook</h1>
+
+<h2>Overview</h2>
+
+<strong>Mem0</strong> ("mem-zero") is a persistent memory layer for AI agents that enables personalized, context-aware interactions across sessions. It's directly relevant to Nova's V2 goal of "elite-longterm-memory."
+
+<h2>Why It Matters for Nova</h2>
+
+<p>| Problem | Mem0 Solution |</p>
+<p>|---------|---------------|</p>
+<p>| Context compaction wipes memories | External storage (outside context window) |</p>
+<p>| Session restart = memory loss | Auto-recall on session start |</p>
+<p>| Manual memory curation needed | Auto-capture extracts what's important |</p>
+<p>| No semantic search | Vector-based similarity search |</p>
+
+<h2>Key Features</h2>
+
+<ul>
+<li><strong>Multi-Level Memory</strong>: User, Session, and Agent state</li>
+<li><strong>Auto-Recall</strong>: Searches relevant memories before each response</li>
+<li><strong>Auto-Capture</strong>: Extracts and stores important facts after each exchange</li>
+<li><strong>Graph Memory</strong>: Tracks entity relationships (people, places, events)</li>
+<li><strong>Semantic Search</strong>: Find memories by meaning, not keywords</li>
+</ul>
+
+<h2>Performance Stats</h2>
+
+<ul>
+<li><strong>+26%</strong> accuracy vs OpenAI Memory on LOCOMO benchmark</li>
+<li><strong>91%</strong> faster than full-context approaches</li>
+<li><strong>90%</strong> lower token usage</li>
+</ul>
+
+<h2>OpenClaw Integration</h2>
+
+<strong>Great news</strong>: There's already an official Mem0 plugin for OpenClaw!
+
+<h3>Option 1: Mem0 Cloud (Easiest)</h3>
+
+<pre><code>openclaw plugins install @mem0/openclaw-mem0
+</code></pre>
+
+<p>Then add to <code>openclaw.json</code>:</p>
+<pre><code>{
+<p>"openclaw-mem0": {</p>
+<p>"enabled": true,</p>
+<p>"config": {</p>
+<p>"apiKey": "${MEM0_API_KEY}",</p>
+<p>"userId": "nova-user"</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+<p>Get API key at: https://app.mem0.ai</p>
+
+<h3>Option 2: Self-Hosted (Fully Local)</h3>
+
+<pre><code>{
+<p>"openclaw-mem0": {</p>
+<p>"enabled": true,</p>
+<p>"config": {</p>
+<p>"mode": "open-source",</p>
+<p>"userId": "nova-user",</p>
+<p>"oss": {</p>
+<p>"embedder": { "provider": "ollama", "config": { "model": "nomic-embed-text" } },</p>
+<p>"vectorStore": { "provider": "qdrant", "config": { "host": "localhost", "port": 6333 } },</p>
+<p>"llm": { "provider": "anthropic", "config": { "model": "claude-sonnet-4-20250514" } }</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+<p>No API key needed for self-hosted. Uses local Qdrant + Ollama.</p>
+
+<h2>Memory Scopes</h2>
+
+<p>| Scope | Description | Use Case |</p>
+<p>|-------|-------------|----------|</p>
+<p>| <strong>User (Long-term)</strong> | Persists across all sessions | Name, tech stack, preferences, decisions |</p>
+<p>| <strong>Session (Short-term)</strong> | Current session only | Active task, current project state |</p>
+
+<h2>Tools Available</h2>
+
+<ul>
+<li><code>memory_search</code> - Semantic query</li>
+<li><code>memory_store</code> - Save specific facts</li>
+<li><code>memory_list</code> - List all memories</li>
+<li><code>memory_get</code> - Retrieve specific memory</li>
+<li><code>memory_forget</code> - Delete memories</li>
+</ul>
+
+<h2>Installation Path for Nova</h2>
+
+<p>Since Nova V2 already has "elite-longterm-memory" via LanceDB, Mem0 would be a potential V3 upgrade or alternative:</p>
+
+<p>1. <strong>Try cloud version first</strong> - Quick test with API key</p>
+<p>2. <strong>Evaluate self-hosted</strong> - If privacy/control needed (Qdrant on NAS)</p>
+<p>3. <strong>Compare with LanceDB</strong> - Decide which provides better value</p>
+
+<h2>Resources</h2>
+
+<ul>
+<li>Website: https://mem0.ai</li>
+<li>GitHub: https://github.com/mem0ai/mem0</li>
+<li>OpenClaw Plugin: https://github.com/mem0ai/mem0/tree/main/openclaw</li>
+<li>Docs: https://docs.mem0.ai</li>
+<li>Discord: https://mem0.dev/DiG</li>
+</ul>
+
+<h2>Reading List</h2>
+
+<ul>
+<li><a href="https://github.com/mem0ai/mem0">Mem0 GitHub</a> - Full documentation</li>
+<li><a href="https://mem0.ai/blog/mem0-memory-for-openclaw">OpenClaw Integration Blog</a> - Specific setup guide</li>
+<li><a href="https://docs.mem0.ai/integrations/openclaw">Mem0 for OpenClaw Docs</a> - Official integration docs</li>
+</ul>
+
+</body>
+</html>

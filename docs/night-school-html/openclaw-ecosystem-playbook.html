@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>openclaw-ecosystem Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>OpenClaw Ecosystem Monitoring</h1>
+
+<strong>Purpose:</strong> Track OpenClaw updates, community issues, and best practices to keep our stack current and secure.
+
+<strong>Monitoring Schedule:</strong> Check during each Night School session (daily 8pm ET)
+
+<strong>Last Updated:</strong> 2026-04-29
+
+---
+
+<h2>Sources to Monitor</h2>
+
+<h3>Primary</h3>
+<p>1. <strong>GitHub</strong> - https://github.com/openclaw/openclaw</p>
+<ul>
+<li>Releases: New versions, breaking changes</li>
+<li>Issues: Common problems, workarounds</li>
+<li>Discussions: Community patterns</li>
+</ul>
+
+<p>2. <strong>Discord</strong> - OpenClaw official server</p>
+<ul>
+<li>#announcements: Critical updates</li>
+<li>#general: User-reported issues</li>
+<li>#dev: Technical discussions</li>
+</ul>
+
+<p>3. <strong>Documentation</strong> - https://docs.openclaw.ai</p>
+<ul>
+<li>Changelog: Feature additions</li>
+<li>Migration guides: Breaking changes</li>
+</ul>
+
+<h3>Secondary</h3>
+<ul>
+<li>Reddit r/OpenClaw (community tips)</li>
+<li>Twitter/X @openclaw (announcements)</li>
+<li>Blog posts and tutorials</li>
+</ul>
+
+---
+
+<h2>Monitoring Checklist</h2>
+
+<h3>Daily (During Night School)</h3>
+<ul>
+<li>[ ] Check GitHub releases for new versions</li>
+<li>[ ] Review recent GitHub issues (last 24h)</li>
+<li>[ ] Scan Discord #announcements</li>
+<li>[ ] Check our system against known issues</li>
+</ul>
+
+<h3>Weekly</h3>
+<ul>
+<li>[ ] Review closed issues for patterns</li>
+<li>[ ] Check if any deprecated features affect us</li>
+<li>[ ] Update AGENT-SYNC.md with relevant findings</li>
+<li>[ ] Review this playbook for needed updates</li>
+</ul>
+
+<h3>On New Release</h3>
+<ul>
+<li>[ ] Read release notes thoroughly</li>
+<li>[ ] Check for breaking changes</li>
+<li>[ ] Test in non-production first</li>
+<li>[ ] Update configs as needed</li>
+<li>[ ] Document any migration steps</li>
+</ul>
+
+---
+
+<h2>Known Issues & Workarounds</h2>
+
+<h3>Current Version: 2026.4.15</h3>
+
+<p>#### Issue: Cron jobs with <code>sessionTarget: "isolated"</code> may timeout</p>
+<strong>Status:</strong> Known, workaround exists  
+<strong>GitHub:</strong> Issue #44257  
+<strong>Workaround:</strong> Use explicit <code>timeoutSeconds</code> in payload, switch to <code>agent:</code> target if persistent needed  
+<strong>Our Status:</strong> ✅ Implemented - all crons have timeouts
+
+<p>#### Issue: gpt-oss:120b-cloud 500 errors</p>
+<strong>Status:</strong> Intermittent cloud endpoint issue  
+<strong>Workaround:</strong> Use kimi-k2.5:cloud as primary, gpt-oss as fallback  
+<strong>Our Status:</strong> ✅ Fixed - changed default model
+
+<p>#### Issue: Context overflow with qwen3:14b (24K limit)</p>
+<strong>Status:</strong> By design - small model  
+<strong>Workaround:</strong> Use compaction, switch to larger model for big sessions  
+<strong>Our Status:</strong> ✅ Documented in agentic-ai-lessons playbook
+
+<p>#### Issue: Browser automation flaky</p>
+<strong>Status:</strong> Known limitation  
+<strong>Workaround:</strong> Prefer APIs over browser when possible  
+<strong>Our Status:</strong> ⚠️ Monitoring - Reddit crons affected
+
+---
+
+<h2>Version Tracking</h2>
+
+<p>| Version | Date | Breaking Changes | Our Action |</p>
+<p>|---------|------|------------------|------------|</p>
+<p>| 2026.4.15 | Current | None major | Running stable |</p>
+<p>| 2026.3.13 | Apr 2026 | Cron behavior changed | Updated configs |</p>
+<p>| 2026.3.11 | Mar 2026 | Isolated session fixes | Added timeouts |</p>
+
+---
+
+<h2>Action Items</h2>
+
+<h3>Immediate</h3>
+<ul>
+<li>[ ] Monitor gpt-oss stability - if continues, remove from fallbacks</li>
+<li>[ ] Check if 2026.4.16 release imminent</li>
+</ul>
+
+<h3>Short Term</h3>
+<ul>
+<li>[ ] Evaluate new features in recent releases</li>
+<li>[ ] Consider migrating Reddit crons to API-based (not browser)</li>
+</ul>
+
+<h3>Long Term</h3>
+<ul>
+<li>[ ] Track multi-agent orchestration improvements</li>
+<li>[ ] Monitor for native tiering/routing features</li>
+</ul>
+
+---
+
+<h2>Integration Notes</h2>
+
+<h3>When to Update AGENT-SYNC.md</h3>
+<ul>
+<li>New security advisories → Immediate</li>
+<li>Performance improvements → Next maintenance window</li>
+<li>New features → Evaluate first, then document</li>
+<li>Bug fixes affecting us → After testing fix</li>
+</ul>
+
+<h3>When to Update Other Playbooks</h3>
+<ul>
+<li>Cron behavior changes → Update agentic-ai-lessons</li>
+<li>Model/provider changes → Update cron-model-tiering</li>
+<li>Trading/security changes → Update relevant playbooks</li>
+</ul>
+
+---
+
+<h2>Community Patterns Worth Adopting</h2>
+
+<h3>From GitHub Discussions</h3>
+<ul>
+<li><strong>Model routing:</strong> Some users use OpenRouter for automatic fallback</li>
+<li><strong>Session management:</strong> Compact aggressively, many small sessions > few large</li>
+<li><strong>Cron design:</strong> Keep payloads simple, do complex work in scripts</li>
+</ul>
+
+<h3>From Discord</h3>
+<ul>
+<li><strong>Debugging:</strong> Use <code>openclaw status --deep</code> for detailed diagnostics</li>
+<li><strong>Performance:</strong> Local Ollama for speed, cloud for quality</li>
+<li><strong>Security:</strong> Regular <code>openclaw security audit</code></li>
+</ul>
+
+---
+
+<em>Check during each Night School session. Update with findings.</em>
+
+</body>
+</html>

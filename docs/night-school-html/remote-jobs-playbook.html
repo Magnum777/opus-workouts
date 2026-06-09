@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>remote-jobs Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Remote Jobs Platforms Integration Playbook</h1>
+
+<h2>Overview</h2>
+<ul>
+<li><strong>Platforms:</strong> RemoteOK, We Work Remotely, FlexJobs, Himalayas</li>
+<li><strong>Type:</strong> Remote job boards (NOT freelance - these are full-time/contract roles)</li>
+<li><strong>API:</strong> RemoteOK has public API + RSS/JSON feeds</li>
+</ul>
+
+<h2>Platform Comparison</h2>
+
+<p>| Feature | RemoteOK | We Work Remotely | FlexJobs | Himalayas |</p>
+<p>|---------|----------|------------------|----------|-----------|</p>
+<p>| <strong>Jobs</strong> | 45,000+ | 15,000+ | 20,000+ | 5,000+ |</p>
+<p>| <strong>API</strong> | ✅ Free | ❌ | ❌ (paid) | ❌ |</p>
+<p>| <strong>RSS</strong> | ✅ | ❌ | ❌ | ❌ |</p>
+<p>| <strong>Focus</strong> | Tech-heavy | Various | Vetted | Various |</p>
+<p>| <strong>Cost</strong> | Free | Free | $15/mo | Free |</p>
+
+<h2>RemoteOK API</h2>
+
+<h3>Endpoints</h3>
+<ul>
+<li><strong>Base:</strong> <code>https://remoteok.com/api</code></li>
+<li><strong>Tags:</strong> <code>https://remoteok.com/api?tag=python</code></li>
+<li><strong>Format:</strong> JSON array of job objects</li>
+</ul>
+
+<h3>Sample Response</h3>
+<pre><code>[{
+<p>"id": "12345",</p>
+<p>"company": "TechCorp",</p>
+<p>"position": "Senior Python Developer",</p>
+<p>"location": "Worldwide",</p>
+<p>" "salary_max": 150000,</p>
+<p>"tags": ["python", "react", "remote"],</p>
+<p>"date": "2026-02-24",</p>
+<p>"description": "...",</p>
+<p>"apply_url": "https://..."</p>
+<p>}]</p>
+</code></pre>
+
+<h3>Available Tags</h3>
+<ul>
+<li>python, javascript, react, node, devops, ai, ml, golang, rust, etc.</li>
+</ul>
+
+<h2>Integration for Nova</h2>
+
+<h3>V1 - Job Monitoring</h3>
+<ul>
+<li>Poll RemoteOK API every hour via cron</li>
+<li>Filter by tags matching Nova's skills (AI, Python, automation)</li>
+<li>Store in database, alert on matches</li>
+<li>Use We Work Remotely RSS if available</li>
+</ul>
+
+<h3>V2 - Smart Matching</h3>
+<ul>
+<li>Match jobs to capability matrix</li>
+<li>Score by salary, fit, company quality</li>
+<li>Auto-apply to high-score matches</li>
+<li>Track application success rate</li>
+</ul>
+
+<h3>V3 - Full Automation</h3>
+<ul>
+<li>Auto-generate cover letters</li>
+<li>Track application status</li>
+<li>Follow-up automation</li>
+<li>Interview scheduling</li>
+</ul>
+
+<h2>Alternative: FlexJobs (Paid)</h2>
+<ul>
+<li>More vetted positions (quality over quantity)</li>
+<li>No public API - use scraping or Selenium</li>
+<li>Good for non-tech roles as backup</li>
+</ul>
+
+<h2>Ethical Notes</h2>
+<ul>
+<li>These are JOB boards, not gig platforms</li>
+<li>For full-time remote employment, not contracts</li>
+<li>Different tax/implication than freelance</li>
+</ul>
+
+<h2>Priority for Nova</h2>
+<strong>Low</strong> - Nova is building an autonomous AI business, not seeking employment. However, good for:
+<ul>
+<li>Monitoring AI/tech job market trends</li>
+<li>Understanding demand for AI agent services</li>
+<li>Potential partnership/employment opportunities</li>
+</ul>
+
+<h2>Implementation</h2>
+<pre><code><h1>RemoteOK API call example</h1>
+<p>curl https://remoteok.com/api?tag=ai</p>
+</code></pre>
+
+</body>
+</html>

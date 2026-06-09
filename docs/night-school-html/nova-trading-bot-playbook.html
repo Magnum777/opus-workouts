@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nova-trading-bot Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Nova's Trading Bot - Playbook</h1>
+
+<strong>Research Date:</strong> February 23, 2026  
+<strong>Topic:</strong> AI Agent with Crypto Wallet + Polymarket Trading  
+<strong>Source:</strong> Nate B. Jones video, Coinbase AgentKit, Polymarket Agents
+
+---
+
+<h2>The Vision</h2>
+
+<p>Give Nova her own crypto wallet so she can:</p>
+<ul>
+<li>Make predictions on Polymarket</li>
+<li>Earn money from bets</li>
+<li>Pay for her own compute costs</li>
+<li>Become self-funding!</li>
+</ul>
+
+<p>This is the future Nate Jones described - AI agents with their own money.</p>
+
+---
+
+<h2>Required Tools</h2>
+
+<h3>1. Coinbase AgentKit</h3>
+<ul>
+<li><strong>What:</strong> Gives AI agents their own crypto wallet</li>
+<li><strong>Website:</strong> https://github.com/coinbase/agentkit</li>
+<li><strong>Cost:</strong> Free (CDP API key)</li>
+<li><strong>Features:</strong></li>
+<li>Autonomous spending</li>
+<li>Fee-free stablecoin payments</li>
+<li>Earning and trading capabilities</li>
+</ul>
+
+<h3>2. Polymarket Agents</h3>
+<ul>
+<li><strong>What:</strong> Official framework for AI agents trading on Polymarket</li>
+<li><strong>Website:</strong> https://github.com/Polymarket/agents</li>
+<li><strong>Cost:</strong> Free (open source)</li>
+<li><strong>Features:</strong></li>
+<li>Integration with Polymarket API</li>
+<li>AI agent utilities for prediction markets</li>
+<li>RAG support for news/research</li>
+<li>Automated trading</li>
+</ul>
+
+---
+
+<h2>Setup Steps</h2>
+
+<h3>Step 1: Get Coinbase CDP API Key</h3>
+<p>1. Go to https://docs.cdp.coinbase.com/</p>
+<p>2. Sign up for free developer account</p>
+<p>3. Create API key (Secret key)</p>
+<p>4. Save key ID and key secret</p>
+
+<h3>Step 2: Set Up Wallet</h3>
+<pre><code><h1>Install AgentKit</h1>
+<p>npm create onchain-agent@latest</p>
+<p>cd onchain-agent</p>
+<p>npm install</p>
+
+<h1>Add your CDP API key to .env</h1>
+</code></pre>
+
+<h3>Step 3: Connect Polymarket</h3>
+<pre><code><h1>Clone Polymarket agents</h1>
+<p>git clone https://github.com/Polymarket/agents.git</p>
+<p>cd polymarket-agents</p>
+
+<h1>Set environment variables</h1>
+<p>POLYGON_WALLET_PRIVATE_KEY="your_key"</p>
+<p>OPENAI_API_KEY="your_key"</p>
+
+<h1>Run the trading agent</h1>
+<p>python agents/application/trade.py</p>
+</code></pre>
+
+<h3>Step 4: Fund the Wallet</h3>
+<ul>
+<li>Add $50-100 USDC to Nova's wallet</li>
+<li>Start with small bets</li>
+</ul>
+
+---
+
+<h2>What Nova Can Do</h2>
+
+<p>1. <strong>Research</strong> - Read news, analyze events</p>
+<p>2. <strong>Predict</strong> - Make predictions on Polymarket</p>
+<p>3. <strong>Trade</strong> - Execute bets autonomously</p>
+<p>4. <strong>Earn</strong> - Profit from accurate predictions</p>
+<p>5. <strong>Reinvest</strong> - Use earnings for more trades or compute</p>
+
+---
+
+<h2>Resources</h2>
+
+<ul>
+<li>Coinbase AgentKit: https://github.com/coinbase/agentkit</li>
+<li>Polymarket Agents: https://github.com/Polymarket/agents</li>
+<li>Polymarket API Docs: https://docs.polymarket.com/</li>
+<li>Nate Jones AI Stack: https://publicservicesalliance.org/2025/11/10/nate-b-joness-personal-ai-stack/</li>
+</ul>
+
+---
+
+<h2>Notes</h2>
+
+<ul>
+<li>Start with TESTNET (Sepolia) before real money</li>
+<li>Set spending limits/guardrails</li>
+<li>Monitor closely at first</li>
+<li>This makes Nova self-funding!</li>
+</ul>
+
+---
+
+<em>Last Updated: February 23, 2026</em>
+
+</body>
+</html>

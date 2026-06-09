@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layered Media LLC | Middle Georgia Web Design & AI Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a25;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            --accent-secondary: #22d3ee;
+            --accent-warm: #f472b6;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.08);
+            --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(236, 72, 153, 0.15), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--text); }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .nav-cta:hover {
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #fff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gradient);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px var(--accent-glow);
+        }
+        
+        /* Services Grid */
+        .services {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .service-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+        
+        .service-card:hover::before { opacity: 1; }
+        
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .service-card.virtual .service-icon { background: rgba(99, 102, 241, 0.15); }
+        .service-card.v1 .service-icon { background: rgba(139, 92, 246, 0.15); }
+        .service-card.v2 .service-icon { background: rgba(6, 182, 212, 0.15); }
+        .service-card.refresh .service-icon { background: rgba(245, 158, 11, 0.15); }
+        .service-card.new-site .service-icon { background: rgba(16, 185, 129, 0.15); }
+        .service-card.bundle .service-icon { background: rgba(244, 114, 182, 0.15); }
+        
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .service-card .tagline {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        
+        .service-card li {
+            padding: 8px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-card li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .service-price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .service-price span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        
+        .service-cta {
+            display: block;
+            text-align: center;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .service-cta.primary {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        .service-cta.primary:hover {
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+        
+        .service-cta.secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+        
+        .service-cta.secondary:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--gradient);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 100px;
+            text-transform: uppercase;
+        }
+        
+        /* Why Section */
+        .why {
+            padding: 80px 0;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .why-item {
+            text-align: center;
+        }
+        
+        .why-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+        
+        .why-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .why-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .cta p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 140px 0 60px; }
+            .hero h1 { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <header>
+        <div class="container header-inner">
+            <div class="logo">Layered Media</div>
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#why">Why Us</a>
+                <a href="#contact" class="nav-cta">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span>⚡</span> Middle Georgia Owned & Operated
+            </div>
+            <h1>Your Website Should<br><span>Work While You Sleep</span></h1>
+            <p>Modern web design & AI solutions for Middle Georgia businesses. We build sites that capture leads 24/7 — so you don't have to choose between growth and life.</p>
+            <a href="#contact" class="hero-cta">
+                See How We Can Help
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>What We Do</h2>
+                <p>Choose the solution that fits your business. All packages include setup & training.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Virtual Front Desk -->
+                <div class="service-card virtual">
+                    <div class="service-icon">📞</div>
+                    <h3>Virtual Front Desk</h3>
+                    <p class="tagline">AI-powered 24/7 answering service</p>
+                    <ul>
+                        <li>Never miss another call</li>
+                        <li>Auto-books appointments</li>
+                        <li>Captures & texts you leads instantly</li>
+                        <li>Syncs with your calendar</li>
+                    </ul>
+                    <div class="service-price">$99<span>/mo</span></div>
+                    <a href="#contact" class="service-cta primary">Book Demo</a>
+                </div>
+
+                <!-- AI Co-Founder V1 -->
+                <div class="service-card v1">
+                    <span class="popular-badge">Popular</span>
+                    <div class="service-icon">🤖</div>
+                    <h3>AI Co-Founder V1</h3>
+                    <p class="tagline">Your autonomous business partner</p>
+                    <ul>
+                        <li>Persistent AI on your systems</li>
+                        <li>Research & content drafting</li>
+                        <li>Daily ops & task management</li>
+                        <li>Sub-agents for parallel work</li>
+                    </ul>
+                    <div class="service-price">$25<span>/mo</span></div>
+                    <a href="#contact" class="service-cta primary">Get Started</a>
+                </div>
+
+                <!-- AI Co-Founder V2 -->
+                <div class="service-card v2">
+                    <div class="service-icon">🎙</div>
+                    <h3>AI Co-Founder V2</h3>
+                    <p class="tagline">Pro edition with voice & memory</p>
+                    <ul>
+                        <li>Everything in V1</li>
+                        <li>Edge-TTS voice integration</li>
+                        <li>Elite long-term memory</li>
+                        <li>Enhanced autonomy</li>
+                    </ul>
+                    <div class="service-price">$49-79<span>/mo</span></div>
+                    <a href="#contact" class="service-cta primary">Coming Soon</a>
+                </div>
+
+                <!-- Website Refresh -->
+                <div class="service-card refresh">
+                    <div class="service-icon">🎨</div>
+                    <h3>Website Refresh</h3>
+                    <p class="tagline">Modernize your existing site</p>
+                    <ul>
+                        <li>Modern visual design</li>
+                        <li>Mobile-responsive</li>
+                        <li>Speed optimization</li>
+                        <li>Basic SEO improvements</li>
+                    </ul>
+                    <div class="service-price">$497<span> one-time</span></div>
+                    <a href="#contact" class="service-cta primary">Get Quote</a>
+                </div>
+
+                <!-- New Website -->
+                <div class="service-card new-site">
+                    <div class="service-icon">🚀</div>
+                    <h3>New Website</h3>
+                    <p class="tagline">Built from scratch</p>
+                    <ul>
+                        <li>Custom design & branding</li>
+                        <li>Up to 5 pages</li>
+                        <li>Contact forms & integrations</li>
+                        <li>Mobile-optimized</li>
+                    </ul>
+                    <div class="service-price">$997<span> one-time</span></div>
+                    <a href="#contact" class="service-cta primary">Start Project</a>
+                </div>
+
+                <!-- Traffic + Website -->
+                <div class="service-card bundle">
+                    <span class="popular-badge">Best Value</span>
+                    <div class="service-icon">📈</div>
+                    <h3>Traffic + Website</h3>
+                    <p class="tagline">Full package (site + ongoing traffic)</p>
+                    <ul>
+                        <li>Everything in New Website</li>
+                        <li>SEO optimization</li>
+                        <li>2 content posts/month</li>
+                        <li>Monthly analytics report</li>
+                    </ul>
+                    <div class="service-price">$297<span>/mo</span></div>
+                    <a href="#contact" class="service-cta primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why" id="why">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Layered Media?</h2>
+                <p>Georgia businesses trust us to grow their online presence</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-icon">📍</div>
+                    <h3>Local Georgia Roots</h3>
+                    <p>Based in Warner Robins. We know Middle GA.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">⚡</div>
+                    <h3>Fast Turnaround</h3>
+                    <p>Most projects done in 1-2 weeks.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🔒</div>
+                    <h3>You Own Everything</h3>
+                    <p>Full access to your site, accounts, & data.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🤝</div>
+                    <h3>No Long Contracts</h3>
+                    <p>Month-to-month after your package.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Ready to Grow?</h2>
+            <p>Tell us about your business. We'll recommend the right solution.</p>
+            <div class="cta-buttons">
+                <a href="mailto:layeredmediallc@gmail.com" class="service-cta primary" style="display: inline-flex; padding: 16px 32px;">
+                    Email Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Layered Media LLC — Warner Robins, Georgia</p>
+            <p>Web Design & AI Solutions for Middle Georgia</p>
+        </div>
+    </footer>
+</body>
+</html>

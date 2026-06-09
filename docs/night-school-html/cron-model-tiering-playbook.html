@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cron-model-tiering Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Cron Model Tiering Playbook</h1>
+
+<h2>Overview</h2>
+
+<p>Optimize AI agent costs by routing tasks to appropriate models based on complexity, urgency, and budget. This playbook covers tiered model strategies for OpenClaw cron jobs and sub-agents.</p>
+
+<h2>Why Tier Models?</h2>
+
+<strong>Cost variance is massive:</strong>
+<ul>
+<li>GPT-4/Claude Opus: $5-15 per 1M tokens</li>
+<li>Mid-tier (GPT-4o-mini, Haiku): $0.50-2 per 1M tokens</li>
+<li>Budget (DeepSeek, Qwen): $0.10-0.50 per 1M tokens</li>
+<li>Local (Ollama): Free (your hardware)</li>
+</ul>
+
+<strong>Example savings:</strong> Routing 80% of tasks to cheap models = 60-70% cost reduction while maintaining quality on complex tasks.
+
+<h2>Model Tiers (2026 Pricing)</h2>
+
+<h3>Tier 1: Premium ($$$)</h3>
+<strong>Use for:</strong> Complex reasoning, high-stakes decisions, creative work
+
+<p>| Model | Provider | Cost (input/output) | Best For |</p>
+<p>|-------|----------|---------------------|----------|</p>
+<p>| Grok-4 | xAI | ~$5/$15 per 1M | Complex reasoning, debugging |</p>
+<p>| Claude Opus 4 | Anthropic | ~$15/$75 per 1M | High-stakes analysis |</p>
+<p>| GPT-5.1 | OpenAI | ~$10/$30 per 1M | General premium tasks |</p>
+<p>| Kimi-K2.5 | Moonshot | ~$2/$8 per 1M | Long context, nuanced tasks |</p>
+
+<h3>Tier 2: Mid-Range ($$)</h3>
+<strong>Use for:</strong> Standard tasks, content generation, moderate complexity
+
+<p>| Model | Provider | Cost (input/output) | Best For |</p>
+<p>|-------|----------|---------------------|----------|</p>
+<p>| MiniMax-M2.5 | MiniMax | ~$1/$4 per 1M | Creative writing, analysis |</p>
+<p>| Claude Haiku 3.5 | Anthropic | ~$0.80/$4 per 1M | Fast responses, classification |</p>
+<p>| GPT-4o-mini | OpenAI | ~$0.15/$0.60 per 1M | General tasks |</p>
+<p>| Gemini 2.5 Flash | Google | ~$0.075/$0.30 per 1M | Fast, cheap, good quality |</p>
+
+<h3>Tier 3: Budget ($)</h3>
+<strong>Use for:</strong> Simple tasks, classification, routing, high-volume
+
+<p>| Model | Provider | Cost (input/output) | Best For |</p>
+<p>|-------|----------|---------------------|----------|</p>
+<p>| DeepSeek V3.2 | DeepSeek | ~$0.14/$0.28 per 1M | Best value, coding |</p>
+<p>| Qwen 2.5/3 | Alibaba | ~$0.10/$0.30 per 1M | General tasks |</p>
+<p>| Grok-4 Fast | xAI | ~$0.50/$2 per 1M | Fast premium-lite |</p>
+
+<h3>Tier 4: Local (Free)</h3>
+<strong>Use for:</strong> High-volume, simple tasks, testing, development
+
+<p>| Model | Provider | Cost | Best For |</p>
+<p>|-------|----------|------|----------|</p>
+<p>| Qwen3:14b | Ollama | Free | General tasks, sub-agents |</p>
+<p>| DeepSeek-R1:7b | Ollama | Free | Reasoning, analysis |</p>
+<p>| Llama 3.1:8b | Ollama | Free | Simple classification |</p>
+
+<h2>Routing Strategies</h2>
+
+<h3>Strategy 1: Task Complexity Routing</h3>
+
+<pre><code>┌─────────────────────────────────────────┐
+<p>│           Incoming Task                 │</p>
+<p>└─────────────────────────────────────────┘</p>
+<p>│</p>
+<p>▼</p>
+<p>┌─────────────────────┐</p>
+<p>│ Classify Complexity │</p>
+<p>└─────────────────────┘</p>
+<p>│</p>
+<p>┌───────────────┼───────────────┐</p>
+<p>│               │               │</p>
+<p>▼               ▼               ▼</p>
+<p>┌────────┐    ┌──────────┐    ┌──────────┐</p>
+<p>│ Simple │    │ Moderate │    │ Complex  │</p>
+<p>│        │    │          │    │          │</p>
+<p>│ Tier 4 │    │ Tier 2-3 │    │ Tier 1   │</p>
+<p>│ Local  │    │ Budget   │    │ Premium  │</p>
+<p>└────────┘    └──────────┘    └──────────┘</p>
+</code></pre>
+
+<strong>Classification criteria:</strong>
+<ul>
+<li><strong>Simple:</strong> Summarization, classification, extraction, formatting</li>
+<li><strong>Moderate:</strong> Content generation, analysis, multi-step reasoning</li>
+<li><strong>Complex:</strong> Architecture decisions, debugging, creative strategy</li>
+</ul>
+
+<h3>Strategy 2: Cost-Aware Fallback</h3>
+
+<pre><code>Primary: DeepSeek V3.2 ($0.14/1M)
+<p>│</p>
+<p>├─→ Success → Done</p>
+<p>│</p>
+<p>└─→ Rate limit/Error</p>
+<p>│</p>
+<p>▼</p>
+<p>Fallback 1: Qwen 2.5 ($0.10/1M)</p>
+<p>│</p>
+<p>├─→ Success → Done</p>
+<p>│</p>
+<p>└─→ Rate limit/Error</p>
+<p>│</p>
+<p>▼</p>
+<p>Fallback 2: Ollama Qwen3:14b (Free)</p>
+<p>│</p>
+<p>└─→ Final fallback</p>
+</code></pre>
+
+<strong>Tools for this:</strong>
+<ul>
+<li><strong>ModelRelay</strong> - Auto-routes to fastest available free model</li>
+<li><strong>OpenRouter</strong> - Unified API with automatic failover</li>
+<li><strong>Custom gateway</strong> - Build your own routing logic</li>
+</ul>
+
+<h3>Strategy 3: OpenClaw Native Tiering</h3>
+
+<pre><code><h1>In your OpenClaw config or session spawn</h1>
+
+<h1>Default (most tasks)</h1>
+<p>default_model: "moonshot/kimi-k2.5"</p>
+
+<h1>Heavy tasks (explicit override)</h1>
+<p>heavy_task_model: "xai/grok-4"</p>
+
+<h1>Local/free (budget mode)</h1>
+<p>local_model: "ollama/qwen3:14b"</p>
+
+<h1>Reasoning tasks</h1>
+<p>reasoning_model: "ollama/deepseek-r1:7b"</p>
+</code></pre>
+
+<strong>Usage:</strong>
+<pre><code>// Simple task - free
+<p>sessions_spawn({</p>
+<p>task: "Summarize this article",</p>
+<p>model: "ollama/qwen3:14b"</p>
+<p>})</p>
+
+<p>// Complex task - premium</p>
+<p>sessions_spawn({</p>
+<p>task: "Debug this architecture issue",</p>
+<p>model: "xai/grok-4"</p>
+<p>})</p>
+
+<p>// Default - let AGENTS.md decide</p>
+<p>sessions_spawn({</p>
+<p>task: "Write a blog post"</p>
+<p>// Uses kimi-k2.5 by default</p>
+<p>})</p>
+</code></pre>
+
+<h2>OpenClaw Best Practices</h2>
+
+<h3>Cron Job Model Assignment</h3>
+
+<p>| Cron Type | Recommended Model | Why |</p>
+<p>|-----------|-------------------|-----|</p>
+<p>| Health checks | ollama/qwen3:14b | Simple, frequent, free |</p>
+<p>| Memory distillation | ollama/deepseek-r1:7b | Needs reasoning, local |</p>
+<p>| Daily summaries | moonshot/kimi-k2.5 | Nuanced, good quality |</p>
+<p>| Income research | ollama/qwen3:14b | High volume, cheap |</p>
+<p>| Complex analysis | xai/grok-4 | Deep reasoning needed |</p>
+
+<h3>Sub-Agent Tiering</h3>
+
+<pre><code>// Orchestrator (makes decisions)
+<p>const orchestrator = sessions_spawn({</p>
+<p>task: "Coordinate research workflow",</p>
+<p>model: "moonshot/kimi-k2.5",  // Mid-tier for decisions</p>
+<p>mode: "session"</p>
+<p>})</p>
+
+<p>// Workers (do the work)</p>
+<p>const researchers = [</p>
+<p>sessions_spawn({</p>
+<p>task: "Research topic A",</p>
+<p>model: "ollama/qwen3:14b",  // Free for parallel work</p>
+<p>mode: "run",</p>
+<p>cleanup: "delete"</p>
+<p>}),</p>
+<p>sessions_spawn({</p>
+<p>task: "Research topic B",</p>
+<p>model: "ollama/qwen3:14b",</p>
+<p>mode: "run",</p>
+<p>cleanup: "delete"</p>
+<p>})</p>
+<p>]</p>
+</code></pre>
+
+<h3>Context Optimization</h3>
+
+<strong>Reduce costs by reducing tokens:</strong>
+
+<p>1. <strong>Summarize before sending:</strong></p>
+<ul>
+<li>40-60% input cost reduction</li>
+<li>Use cheap model to summarize, expensive to analyze</li>
+</ul>
+
+<p>2. <strong>Tiered context thresholds:</strong></p>
+<ul>
+<li>40%: Compress old messages</li>
+<li>60%: Summarize conversation</li>
+<li>95%: Emergency truncation</li>
+</ul>
+
+<p>3. <strong>Session per task:</strong></p>
+<ul>
+<li>New session = fresh context = no baggage</li>
+<li>Delete sessions after completion</li>
+</ul>
+
+<h2>Implementation: Model Gateway</h2>
+
+<strong>Build a simple router:</strong>
+
+<pre><code>async function routeTask(task, complexity) {
+<p>const models = {</p>
+<p>simple: "ollama/qwen3:14b",</p>
+<p>moderate: "moonshot/kimi-k2.5",</p>
+<p>complex: "xai/grok-4"</p>
+<p>}</p>
+  
+<p>const model = models[complexity] || models.moderate</p>
+  
+<p>return sessions_spawn({</p>
+<p>task,</p>
+<p>model,</p>
+<p>cleanup: "delete"</p>
+<p>})</p>
+<p>}</p>
+
+<p>// Auto-classify (use cheap model to classify)</p>
+<p>async function autoRoute(task) {</p>
+<p>const classification = await classifyComplexity(task)  // Free model</p>
+<p>return routeTask(task, classification)</p>
+<p>}</p>
+</code></pre>
+
+<h2>Monitoring & Optimization</h2>
+
+<h3>Track These Metrics</h3>
+
+<p>1. <strong>Cost per task type</strong></p>
+<ul>
+<li>Identify over-served tasks (using expensive model unnecessarily)</li>
+<li>Find under-served tasks (cheap model failing, needs upgrade)</li>
+</ul>
+
+<p>2. <strong>Success rate by model</strong></p>
+<ul>
+<li>If cheap model fails 30%+ → upgrade tier</li>
+<li>If expensive model succeeds 100% on simple tasks → downgrade</li>
+</ul>
+
+<p>3. <strong>Latency vs cost</strong></p>
+<ul>
+<li>Sometimes paying 2x for 10x speed is worth it</li>
+<li>Batch non-urgent tasks for off-peak</li>
+</ul>
+
+<h3>Weekly Review</h3>
+
+<pre><code><h2>Model Usage Review (Week of YYYY-MM-DD)</h2>
+
+<strong>Total spend:</strong> $X.XX
+<strong>Tasks routed:</strong> N
+
+<strong>By tier:</strong>
+<ul>
+<li>Tier 1 (Premium): X tasks, $Y.YY</li>
+<li>Tier 2 (Mid): X tasks, $Y.YY</li>
+<li>Tier 3 (Budget): X tasks, $Y.YY</li>
+<li>Tier 4 (Local): X tasks, $0.00</li>
+</ul>
+
+<strong>Optimization opportunities:</strong>
+<ul>
+<li>[ ] Task type X always succeeds on Tier 3 → downgrade</li>
+<li>[ ] Task type Y fails 40% on Tier 2 → upgrade</li>
+<li>[ ] Consider batching Z tasks for off-peak</li>
+</ul>
+</code></pre>
+
+<h2>Key Takeaways</h2>
+
+<p>1. <strong>Default to cheap</strong> - Start with budget/local, upgrade only when needed</p>
+<p>2. <strong>Classify before routing</strong> - Use free model to determine complexity</p>
+<p>3. <strong>Fallback chains</strong> - Always have a backup model ready</p>
+<p>4. <strong>Monitor continuously</strong> - Track success rates and adjust</p>
+<p>5. <strong>Local is your friend</strong> - Ollama for high-volume, simple tasks</p>
+
+---
+
+<em>Generated by Night School - 2026-02-27</em>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+# Solana Meme Token Trading Playbook
+
+## Overview
+
+Trading meme tokens on Solana requires understanding liquidity, slippage, and the Jupiter API aggregation system. This playbook covers reliable selling strategies and common failure modes.
+
+## Key Concepts
+
+### Slippage
+
+**What it is:** The difference between expected price and executed price due to market movement between quote and execution.
+
+**Why it matters for meme tokens:**
+- Low liquidity pools = higher price impact
+- High volatility = rapid price changes
+- Multiple sellers = competition for limited buy orders
+
+**Typical slippage settings:**
+- Normal tokens: 0.5-1%
+- Meme tokens: 5-15% (sometimes higher)
+- Illiquid/new tokens: 20-50% (risky)
+
+### Liquidity
+
+**Types on Solana:**
+- **Raydium AMM** - Traditional liquidity pools
+- **Pump.fun** - Bonding curve launches
+- **Orca** - Concentrated liquidity
+- **Meteora** - Dynamic pools
+
+**Liquidity risks:**
+- Rug pulls (dev removes liquidity)
+- Low liquidity = high slippage = failed transactions
+- Multiple sellers competing = worse fills
+
+## Jupiter API Deep Dive
+
+### How Jupiter Works
+
+Jupiter is a DEX aggregator that:
+1. Scans all liquidity sources
+2. Finds optimal routing (may split across multiple pools)
+3. Returns serialized transaction
+4. Minimizes slippage through smart routing
+
+### API Endpoints
+
+```
+GET /quote?inputMint=SOL_MINT&outputMint=TOKEN_MINT&amount=1000000&slippageBps=50
+
+POST /swap
+- Takes quote response
+- Returns serialized transaction
+- Sign and send to Solana RPC
+```
+
+### Common Failure: Error 0x1788
+
+**What it means:** Transaction simulation failed - Jupiter cannot route the swap.
+
+**Common causes:**
+1. **Token-2022 incompatibility** - New token standard not fully supported
+2. **No liquidity route** - No viable path from token to SOL/USDC
+3. **Slippage too low** - Price moved beyond slippage tolerance
+4. **Pool frozen/paused** - Liquidity pool disabled
+5. **Tax tokens** - Buy/sell taxes break simulation
+
+**Solutions:**
+```javascript
+// 1. Increase slippage dramatically
+slippageBps: 1000  // 10%
+slippageBps: 3000  // 30% for very illiquid
+
+// 2. Check token standard
+// Token-2022 may need special handling
+
+// 3. Try alternative aggregators
+// - OpenOcean (meta-aggregator)
+// - SolXtence Swap API
+// - Direct Raydium pool interaction
+
+// 4. Check if liquidity exists
+// Use Jupiter price API to verify route
+```
+
+### Improving Landing Rates
+
+**From QuickNode docs:**
+
+1. **Restrict intermediate tokens:**
+```javascript
+// Prevent routing through low-liquidity pairs
+restrictIntermediateTokens: true
+onlyDirectRoutes: false  // Allow multi-hop but control it
+```
+
+2. **Use priority fees:**
+```javascript
+// Higher priority = faster inclusion
+computeUnitPrice: 100000  // Adjust based on congestion
+```
+
+3. **Refresh quotes frequently:**
+- Quotes expire quickly (seconds)
+- Re-quote immediately before swap
+- Monitor price trend (uptrend = better fills)
+
+## Practical Selling Strategy
+
+### Pre-Sale Checklist
+
+- [ ] Check liquidity pool size (Raydium/Pump.fun)
+- [ ] Verify Jupiter route exists
+- [ ] Set appropriate slippage (start 10%, increase if failing)
+- [ ] Check recent transactions (any successful sells?)
+- [ ] Verify token isn't frozen/taxed
+
+### Execution Flow
+
+```
+1. Get quote from Jupiter API
+2. Check quoted amount vs expected
+3. If slippage > 20%, investigate (may be unsellable)
+4. Create swap transaction
+5. Add priority fee (0.0001-0.001 SOL)
+6. Sign and send
+7. If fails, increase slippage and retry
+8. After 3 failures, try alternative aggregator
+```
+
+### Alternative Aggregators
+
+**When Jupiter fails:**
+
+1. **OpenOcean API**
+   - Meta-aggregator (Jupiter + Titan)
+   - Sometimes finds routes Jupiter misses
+   - URL: `apis.openocean.finance`
+
+2. **SolXtence Swap API**
+   - Handles Pump.fun, Moonshot, Raydium
+   - Good for meme coins
+   - Manages routing automatically
+
+3. **Direct Pool Interaction**
+   - Raydium SDK
+   - Requires more code
+   - Last resort option
+
+## Red Flags
+
+🚩 **Do NOT buy if:**
+- Liquidity < $10k (very hard to sell)
+- Mint authority not revoked
+- Freeze authority enabled
+- High buy/sell tax (>10%)
+- Dev wallet holds >20% supply
+
+🚩 **Sell immediately if:**
+- Liquidity being removed
+- Dev wallet selling
+- Social channels going silent
+- Price down 50%+ from entry
+
+## Tools & Resources
+
+- **Jupiter Terminal:** `terminal.jup.ag` - Test swaps manually
+- **Solscan:** Check token holders, transactions
+- **RugCheck.xyz:** Token security analysis
+- **DexScreener:** Chart + liquidity monitoring
+- **Birdeye:** Price + holder analytics
+
+## Key Takeaways
+
+1. **Slippage is your friend** - Set it high enough to actually execute
+2. **Liquidity = exit ability** - Never buy what you can't sell
+3. **Jupiter isn't perfect** - Have fallback aggregators ready
+4. **Token-2022 issues** - New standard may break standard tools
+5. **Speed matters** - Quote and execute quickly in volatile markets
+
+---
+
+*Generated by Night School - 2026-02-27*

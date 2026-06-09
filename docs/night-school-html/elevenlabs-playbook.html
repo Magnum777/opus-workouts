@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>elevenlabs Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>ElevenLabs Voice Integration - Playbook</h1>
+
+<h2>Overview</h2>
+
+<strong>ElevenLabs</strong> provides AI voice synthesis for natural, lifelike text-to-speech. Already have an API key configured. This skill enables OpenClaw to generate spoken audio from text.
+
+<h2>Use Cases for AI Co-Founder Stack</h2>
+
+<p>| Tier | Use Case |</p>
+<p>|------|----------|</p>
+<p>| <strong>V1</strong> | N/A - voice is V2 feature |</p>
+<p>| <strong>V2</strong> | Voice output for AI responses, audio notifications, podcast generation |</p>
+<p>| <strong>V3</strong> | Real-time conversational AI agents |</p>
+
+<h2>API Overview</h2>
+
+<h3>Authentication</h3>
+<ul>
+<li><strong>API Key</strong>: Stored in <code>CREDENTIALS.md</code> as <code>ELEVENLABS_API_KEY</code></li>
+<li>Environment variable: <code>ELEVENLABS_API_KEY</code></li>
+</ul>
+
+<h3>Available Models</h3>
+
+<p>| Model | Best For | Languages | Latency |</p>
+<p>|-------|----------|-----------|---------|</p>
+<p>| <code>eleven_v3</code> | Dramatic delivery, performances | 70+ | Higher |</p>
+<p>| <code>eleven_multilingual_v2</code> | Stability, accent accuracy | 29 | Medium |</p>
+<p>| <code>eleven_flash_v2_5</code> | Low latency, speed | 32 | <strong>Lowest</strong> |</p>
+<p>| <code>eleven_turbo_v2_5</code> | Developer use cases | 32 | Low |</p>
+
+<strong>Recommendation</strong>: Use <code>eleven_flash_v2_5</code> for quick TTS, <code>eleven_multilingual_v2</code> for quality.
+
+<h3>Voice IDs</h3>
+<ul>
+<li>Default voice: <code>JBFqnCBsd6RMkjVDRZzb</code> (Rachel - clear, neutral)</li>
+<li>Custom voices can be created via Voice Lab dashboard</li>
+<li>Voice cloning requires paid plan</li>
+</ul>
+
+<h2>Integration Methods</h2>
+
+<h3>1. Python SDK (Recommended)</h3>
+
+<pre><code>from elevenlabs.client import ElevenLabs
+<p>from elevenlabs.play import play</p>
+<p>import os</p>
+
+<h1>Initialize with API key from environment</h1>
+<p>elevenlabs = ElevenLabs(</p>
+<p>api_key=os.getenv("ELEVENLABS_API_KEY")</p>
+<p>)</p>
+
+<h1>Generate speech</h1>
+<p>audio = elevenlabs.text_to_speech.convert(</p>
+<p>text="Hello! I'm your AI assistant.",</p>
+<p>voice_id="JBFqnCBsd6RMkjVDRZzb",</p>
+<p>model_id="eleven_flash_v2_5",</p>
+<p>output_format="mp3_44100_128"</p>
+<p>)</p>
+
+<h1>Play locally</h1>
+<p>play(audio)</p>
+
+<h1>Save to file</h1>
+<p>with open("output.mp3", "wb") as f:</p>
+<p>f.write(audio)</p>
+</code></pre>
+
+<h3>2. Streaming (Real-time)</h3>
+
+<pre><code>from elevenlabs import stream
+
+<p>audio_stream = elevenlabs.text_to_speech.stream(</p>
+<p>text="This text will stream as it's generated.",</p>
+<p>voice_id="JBFqnCBsd6RMkjVDRZzb",</p>
+<p>model_id="eleven_flash_v2_5"</p>
+<p>)</p>
+
+<p>stream(audio_stream)  # Play as it streams</p>
+</code></pre>
+
+<h3>3. Command Line (curl)</h3>
+
+<pre><code>curl -X POST "https://api.elevenlabs.io/v1/text-to-speech/JBFqnCBsd6RMkjVDRZzb" \
+  -H "Accept: audio/mpeg" \
+  -H "Content-Type: application/json" \
+  -H "xi-api-key: $ELEVENLABS_API_KEY" \
+  -d '{
+<p>"text": "Hello from the command line!",</p>
+<p>"model_id": "eleven_flash_v2_5"</p>
+<p>}' \</p>
+  -o output.mp3
+</code></pre>
+
+<h2>OpenClaw Skill Implementation</h2>
+
+<h3>Skill Structure</h3>
+
+<pre><code>skills/elevenlabs/
+<p>├── SKILL.md</p>
+<p>├── elevenlabs.py</p>
+<p>└── requirements.txt</p>
+</code></pre>
+
+<h3>SKILL.md Template</h3>
+
+<pre><code>---
+<p>name: elevenlabs</p>
+<p>description: Generate natural AI voice audio from text using ElevenLabs TTS API.</p>
+<p>metadata: {</p>
+<p>"openclaw": {</p>
+<p>"emoji": "🎙️",</p>
+<p>"requires": {</p>
+<p>"env": ["ELEVENLABS_API_KEY"],</p>
+<p>"bins": ["python"]</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+---
+
+<h1>ElevenLabs TTS</h1>
+
+<p>Generate speech audio from text using ElevenLabs voice synthesis.</p>
+
+<h2>Commands</h2>
+
+<h3>speak <text></h3>
+<p>Generate and play audio from text.</p>
+
+<h3>speak-file <file></h3>
+<p>Read text from file and generate audio.</p>
+
+<h3>save <text> <filename></h3>
+<p>Generate audio and save to file.</p>
+
+<h3>voices</h3>
+<p>List available voices.</p>
+
+<h3>stream <text></h3>
+<p>Stream audio in real-time as it's generated.</p>
+</code></pre>
+
+<h3>Python Wrapper Script</h3>
+
+<pre><code>#!/usr/bin/env python3
+<p>"""ElevenLabs TTS skill for OpenClaw"""</p>
+
+<p>import sys</p>
+<p>import os</p>
+<p>import argparse</p>
+<p>from elevenlabs.client import ElevenLabs</p>
+<p>from elevenlabs.play import play</p>
+
+<p>API_KEY = os.getenv("ELEVENLABS_API_KEY")</p>
+<p>DEFAULT_VOICE = "JBFqnCBsd6RMkjVDRZzb"</p>
+<p>DEFAULT_MODEL = "eleven_flash_v2_5"</p>
+
+<p>def get_client():</p>
+<p>if not API_KEY:</p>
+<p>raise ValueError("ELEVENLABS_API_KEY not set")</p>
+<p>return ElevenLabs(api_key=API_KEY)</p>
+
+<p>def speak(text, voice=DEFAULT_VOICE, model=DEFAULT_MODEL):</p>
+<p>client = get_client()</p>
+<p>audio = client.text_to_speech.convert(</p>
+<p>text=text,</p>
+<p>voice_id=voice,</p>
+<p>model_id=model,</p>
+<p>output_format="mp3_44100_128"</p>
+<p>)</p>
+<p>play(audio)</p>
+
+<p>def save(text, filename, voice=DEFAULT_VOICE, model=DEFAULT_MODEL):</p>
+<p>client = get_client()</p>
+<p>audio = client.text_to_speech.convert(</p>
+<p>text=text,</p>
+<p>voice_id=voice,</p>
+<p>model_id=model</p>
+<p>)</p>
+<p>with open(filename, "wb") as f:</p>
+<p>f.write(audio)</p>
+<p>print(f"Saved to {filename}")</p>
+
+<p>def list_voices():</p>
+<p>client = get_client()</p>
+<p>response = client.voices.search()</p>
+<p>for voice in response.voices:</p>
+<p>print(f"{voice.voice_id}: {voice.name}")</p>
+
+<p>if __name__ == "__main__":</p>
+<p>parser = argparse.ArgumentParser()</p>
+<p>sub = parser.add_subcommands()</p>
+    
+<p>sub.add_parser("speak", help="Speak text aloud")</p>
+<p>sub.add_parser("save", help="Save to file")</p>
+<p>sub.add_parser("voices", help="List voices")</p>
+    
+<p>args = parser.parse_args()</p>
+</code></pre>
+
+<h2>Pricing</h2>
+
+<p>| Free Tier | Paid Plans |</p>
+<p>|-----------|-------------|</p>
+<p>| 10,000 characters/month | $5-330/month |</p>
+<p>| 3 custom voices | Unlimited voices |</p>
+<p>| - | Higher quality voices |</p>
+<p>| - | Priority support |</p>
+
+<h2>Security Notes</h2>
+
+<ul>
+<li>API key stored in environment variable, never in code</li>
+<li>Rate limits apply (based on plan)</li>
+<li>Audio output cannot contain harmful content (ElevenLabs content policy)</li>
+</ul>
+
+<h2>Next Steps for V2</h2>
+
+<p>1. <strong>Create skill folder</strong> in <code>skills/elevenlabs/</code></p>
+<p>2. <strong>Add API key</strong> to <code>CREDENTIALS.md</code></p>
+<p>3. <strong>Test with</strong>: <code>python elevenlabs.py speak "Hello world!"</code></p>
+<p>4. <strong>Integrate with OpenClaw</strong> via TTS tool (already exists)</p>
+<p>5. <strong>Optional</strong>: Create custom voice clone for Nova's persona</p>
+
+<h2>References</h2>
+
+<ul>
+<li>Docs: https://elevenlabs.io/docs/api-reference</li>
+<li>Python SDK: https://github.com/elevenlabs/elevenlabs-python</li>
+<li>Models: https://elevenlabs.io/docs/models</li>
+<li>Voice Lab: https://elevenlabs.io/voice-lab</li>
+</ul>
+
+</body>
+</html>

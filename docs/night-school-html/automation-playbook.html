@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>automation Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Automation Playbook</h1>
+
+<h2>Overview</h2>
+<p>AI automation in 2026 focuses on agentic workflows—systems that can take a goal and work through steps autonomously. The shift is from rigid scripts to flexible agents that understand intent, learn from context, and take initiative.</p>
+
+<h2>Key Concepts</h2>
+
+<h3>Agent vs Traditional Automation</h3>
+<ul>
+<li><strong>Traditional automation</strong>: Fixed path, struggles with messy inputs, fails on exceptions</li>
+<li><strong>Agentic automation</strong>: Chooses steps, handles variability, recovers from failures</li>
+</ul>
+
+<h3>The Agent Loop</h3>
+<pre><code>Goal → Decide next step → Use tool → Check result → Repeat → Done/Escalate
+</code></pre>
+
+<h2>Four Architecture Types</h2>
+
+<p>| Type | Best For | Main Risk |</p>
+<p>|------|----------|-----------|</p>
+<p>| <strong>Single Agent</strong> | Simple-medium tasks, fast iteration | Drift and looping |</p>
+<p>| <strong>Hierarchical (Manager + Workers)</strong> | Complex tasks that split into parts | Coordination overhead |</p>
+<p>| <strong>Sequential Pipeline</strong> | Repeatable processes with known path | Brittleness on edge cases |</p>
+<p>| <strong>Swarm (Decentralized)</strong> | Exploration, debate, broad coverage | Hard to predict/debug |</p>
+
+<h3>When to Use Each</h3>
+<ul>
+<li><strong>Single agent</strong>: Small tool set, linear tasks, well-defined goals</li>
+<li><strong>Hierarchical</strong>: Need parallelism, separation of duties, permission boundaries</li>
+<li><strong>Pipeline</strong>: Known fixed steps, validation requirements, fallback routes</li>
+<li><strong>Swarm</strong>: Research, creative exploration, multi-perspective analysis</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<h3>1. Start Simple</h3>
+<p>First working version = single agent. Add multi-agent structure only when you have a clear reason:</p>
+<ul>
+<li>Need parallelism</li>
+<li>Need separation of duties</li>
+<li>Need better reliability</li>
+<li>Need tighter permission boundaries</li>
+</ul>
+
+<h3>2. Match Architecture to Risk</h3>
+<p>Ask: "How risky is a mistake?"</p>
+<ul>
+<li>Small annoyance → more freedom OK</li>
+<li>Financial/legal/customer harm → strict guardrails, human approval gates</li>
+</ul>
+
+<h3>3. Tool Design Matters</h3>
+<ul>
+<li>Give smallest amount of freedom that delivers outcome</li>
+<li>Focus effort on tool design, safety, observability</li>
+</ul>
+
+<h3>4. Five Questions for Choosing Architecture</h3>
+<p>1. Do you already know the steps, or does the system need to figure them out?</p>
+<p>2. How risky is a mistake?</p>
+<p>3. How many systems does the agent need to touch?</p>
+<p>4. Will the task finish in one sitting, or need checkpoints?</p>
+<p>5. Do you need one capability, or many?</p>
+
+<h2>Nova-Specific Implementation</h2>
+
+<h3>Current Setup (Already Done)</h3>
+<ul>
+<li>AGENTS.md defines model tiering for cost efficiency</li>
+<li>Sub-agents (shards) for parallel task execution</li>
+<li>Heartbeat system for monitoring</li>
+</ul>
+
+<h3>Recommended Patterns</h3>
+<p>1. <strong>Single agent for cron tasks</strong>: Simple, predictable, low cost</p>
+<p>2. <strong>Hierarchical for complex workflows</strong>: Supervisor (qwen3.5-plus) delegates to workers (ollama)</p>
+<p>3. <strong>Swarm for research</strong>: Multiple ollama agents exploring different angles</p>
+
+<h3>Guardrails</h3>
+<ul>
+<li>Max 4-6 active sub-agents</li>
+<li>Space out cron jobs to avoid overlaps</li>
+<li>Circuit breakers on external API calls</li>
+<li>Human approval for financial actions</li>
+</ul>
+
+<h2>Tools & Platforms</h2>
+
+<h3>Build Your Own (Nova approach)</h3>
+<ul>
+<li>OpenClaw for orchestration</li>
+<li>Ollama for local free inference</li>
+<li>OpenRouter for API fallback</li>
+</ul>
+
+<h3>No-Code Platforms (2026)</h3>
+<ul>
+<li><strong>Vellum AI</strong>: Describe task, no code required</li>
+<li><strong>AutoGen</strong>: Microsoft open-source agent framework</li>
+<li><strong>LangChain</strong>: Full-stack agent development</li>
+</ul>
+
+<h2>Success Metrics</h2>
+<ul>
+<li>Track time saved AND output quality improvements</li>
+<li>Measure reduction in back-and-forth</li>
+<li>Monitor error rates and recovery time</li>
+</ul>
+
+<h2>Status</h2>
+<p>✅ PLAYBOOK COMPLETE - 2026-03-05</p>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agentic-ai-lessons Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Agentic AI Lessons Learned & Best Practices Playbook</h1>
+
+<h2>Goal</h2>
+<ul>
+<li>Capture operational lessons from running autonomous AI systems.</li>
+<li>Provide Nova (and future agents) with repeatable patterns for reliability, maintainability, and safety.</li>
+</ul>
+
+<h2>Core Topics</h2>
+<p>| Topic | Why It Matters | Key Practices |</p>
+<p>|-------|----------------|----------------|</p>
+<p>| <strong>Memory Management</strong> | Prevents bloat, ensures relevant context. | • Distinguish <strong>Long‑term</strong> (MEMORY.md) vs <strong>Short‑term</strong> (daily logs).\n• Store only essential facts; prune expired items.\n• Use <code>heartbeat</code> to rotate out stale entries. |</p>
+<p>| <strong>Error Recovery Patterns</strong> | Autonomous agents will encounter failures; graceful handling maintains trust. | • Wrap external calls in retries with exponential back‑off.\n• Circuit‑breaker: stop repeating failing actions after threshold.\n• Fallback to cheaper model or safe‑mode when critical errors occur. |</p>
+<p>| <strong>Context Overflow Prevention</strong> | Model token limits cause truncation → loss of important info. | • Summarize daily logs into MEMORY.md weekly.\n• Chunk large tasks into sub‑agents (TaskFlow) with explicit hand‑offs.\n• Use <code>compact_context</code> utility (if available) before each model call. |</p>
+<p>| <strong>Sub‑mind Communication Protocols</strong> | Multiple agents need coordinated state. | • Define a shared JSON schema for status (<code>submind_state.json</code>).\n• Use <code>sessions_send</code> with <code>await</code> to exchange messages synchronously.\n• Log all hand‑offs in <code>AGENTS.md</code> for audit. |</p>
+<p>| <strong>Self‑Diagnosis & Maintenance Routines</strong> | Detect drift, resource leaks, or mis‑behaviour early. | • Heartbeat checks for CPU, memory, cost metrics.\n• Automated run‑book: <code>nova self‑check</code> → runs healthcheck skill.\n• Record findings in <code>memory/heartbeat-state.json</code>. |</p>
+<p>| <strong>Escalation vs Local Handling</strong> | Know when to ask the human vs solve autonomously. | • Tiered decision matrix: \n  1️⃣ Low impact → auto‑resolve.\n  2️⃣ Medium impact → retry + log.\n  3️⃣ High impact → send alert (Discord/Email) before acting. |</p>
+<p>| <strong>Model Selection Heuristics</strong> | Balance cost, speed, and quality. | • Follow <strong>SOUL.md</strong> tiering table.\n• Quick queries → <code>qwen3:14b</code>.\n• Complex code/debug → <code>gpt-oss:120b</code>.\n• Privacy‑sensitive → <code>deepseek-r1</code>. |</p>
+<p>| <strong>Cron Job Reliability Patterns</strong> | Ensure scheduled tasks run predictably. | • Idempotent design – re‑running a cron should be safe.\n• Record last run timestamps in <code>cron-state.json</code>.\n• Use <code>cron-model-tiering</code> playbook to route heavy jobs to cheap models. |</p>
+
+<h2>Study & Review Checklist</h2>
+<ul>
+<li>[ ] Review the <strong>Memory Management</strong> section weekly and prune obsolete entries.</li>
+<li>[ ] Simulate a failure (e.g., network timeout) and verify retry + circuit‑breaker behavior.</li>
+<li>[ ] Run a <strong>context compaction</strong> script on a long‑running task and measure token reduction.</li>
+<li>[ ] Create a dummy sub‑mind JSON schema and exchange a status message via <code>sessions_send</code>.</li>
+<li>[ ] Execute <code>nova self‑check</code> (or run <code>healthcheck</code> skill) and confirm log output.</li>
+<li>[ ] Draft an escalation matrix for a hypothetical high‑impact data‑loss scenario.</li>
+<li>[ ] Verify model tiering by sending a cheap query and a complex debugging request.</li>
+<li>[ ] Inspect <code>cron-state.json</code> after a nightly run for correct timestamps.</li>
+</ul>
+
+<h2>Maintenance</h2>
+<ul>
+<li><strong>Quarterly Review:</strong> Add new patterns (e.g., meta‑learning, self‑prompt engineering).\n- <strong>Watchlist:</strong> Subscribe to OpenAI, Anthropic, Ollama release notes; update model selection heuristics accordingly.\n- <strong>Documentation:</strong> Keep this file in <code>docs/night-school/agentic-ai-lessons/playbook.md</code> and link from <code>AGENT-SYNC.md</code>.</li>
+</ul>
+
+---
+<em>Generated by Nova on 2026‑04‑30 based on Night School queue.</em>
+</body>
+</html>

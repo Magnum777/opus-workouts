@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Bind v4 — Two Hull Doctrine</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    background: #fff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 22pt;
+    color: #1a0a2e;
+    border-bottom: 3px solid #00d4aa;
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 11pt;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+  h2 {
+    font-size: 14pt;
+    color: #1a0a2e;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    border-left: 4px solid #00d4aa;
+    padding-left: 10px;
+  }
+  h3 {
+    font-size: 11.5pt;
+    color: #2d1b4e;
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+  pre {
+    background: #1e1e2e;
+    color: #c7d1e8;
+    padding: 12px 14px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 9pt;
+    line-height: 1.45;
+    margin: 10px 0;
+  }
+  code { font-family: "Consolas", "Monaco", monospace; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 7px 10px;
+    text-align: left;
+  }
+  th {
+    background: #1a0a2e;
+    color: #fff;
+    font-weight: 600;
+  }
+  tr:nth-child(even) { background: #f8f8fc; }
+  ul, ol { margin: 8px 0; padding-left: 22px; }
+  li { margin-bottom: 4px; }
+  .footer {
+    margin-top: 30px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+    font-size: 9pt;
+    color: #777;
+    text-align: center;
+    font-style: italic;
+  }
+  .checklist {
+    background: #fff8f0;
+    border: 1px solid #f0d0a0;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+  .checklist li {
+    list-style: none;
+    margin-left: -8px;
+  }
+  .checklist li::before {
+    content: "\2610  ";
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<h1>The Bind v4</h1>
+<div class="subtitle">Two Hull Doctrine — Simplified</div>
+
+<h2>Fleet Comp (Two Hulls Only)</h2>
+
+<h3>Primary: Stabber Fleet Issue (8-10)</h3>
+<p><strong>Role:</strong> DPS + Tackle + Tank</p>
+
+<pre><code>[Stabber Fleet Issue, Bind]
+
+220mm Vulcan AutoCannon II, Republic Fleet Phased Plasma M x6
+
+50MN Quad LiF Restrained Microwarpdrive
+Large Azeotropic Restrained Shield Extender x2
+Faint Epsilon Warp Scrambler I
+Fleeting Propulsion Inhibitor I
+
+Gyrostabilizer II x2
+Tracking Enhancer II
+Damage Control II
+
+Medium Core Defense Field Extender I
+Medium Projectile Ambit Extension I
+Medium Polycarbon Engine Housing I
+
+Warrior II x5</code></pre>
+
+<p><strong>What It Does:</strong></p>
+<ul>
+  <li><strong>DPS:</strong> 6x 220mm autos, ~2,200 alpha per volley</li>
+  <li><strong>Tank:</strong> Dual LSE + extender rig, ~22-25k EHP</li>
+  <li><strong>Tackle:</strong> Scram + web, holds Kikis/Deacons</li>
+  <li><strong>Speed:</strong> ~1,800 m/s MWD, faster than Kikis</li>
+</ul>
+
+<p><strong>Alpha Check:</strong></p>
+<ul>
+  <li>8 SFIs x ~2,200 alpha = ~17,600 volley</li>
+  <li>Deacon buffer = ~3,500 EHP</li>
+  <li><strong>Deacon dies in 1 volley from 4+ SFIs</strong></li>
+  <li>Kiki buffer = ~8-10k EHP</li>
+  <li><strong>Kiki dies in 1-2 volleys from full fleet</strong></li>
+</ul>
+
+<h3>Support: Blackbird (2-3)</h3>
+<p><strong>Role:</strong> ECM + Long Tackle + Screen</p>
+
+<pre><code>[Blackbird, Bind Screen]
+
+Rocket Launcher II, Caldari Navy Scourge Rocket
+
+Large Azeotropic Restrained Shield Extender x2
+50MN Quad LiF Restrained Microwarpdrive
+Initiated Compact Warp Disruptor
+Enfeebling Scoped Ladar ECM x4
+
+Signal Distortion Amplifier II x2
+
+Medium Particle Dispersion Augmentor I x3
+
+Hornet EC-300 x5</code></pre>
+
+<p><strong>What It Does:</strong></p>
+<ul>
+  <li><strong>ECM:</strong> 4x Ladar jammers on Deacons or Kikis</li>
+  <li><strong>Screen:</strong> Stays at 70-90km, jams from range</li>
+  <li><strong>Tackle:</strong> Long point (24km) to grab runners</li>
+  <li><strong>Survival:</strong> Aligned out, warps if chased</li>
+</ul>
+
+<p><strong>Jam Math:</strong></p>
+<ul>
+  <li>Deacon sensor (Ladar): ~20 points</li>
+  <li>Blackbird jam strength: ~7-9 per module</li>
+  <li>Jam probability: ~35-45% per cycle</li>
+  <li>3 Blackbirds x 4 modules = 12 attempts</li>
+  <li><strong>Statistically 4-5 permanent jams across their fleet</strong></li>
+</ul>
+
+<h2>Engagement: The Two-Step</h2>
+
+<h3>Step 1: Alpha Deacons (0:00-0:15)</h3>
+<ol>
+  <li>Fleet lands</li>
+  <li><strong>All SFIs lock Deacons</strong></li>
+  <li><strong>4 SFIs scram Deacons</strong> (2 per Deacon)</li>
+  <li><strong>All SFIs fire on Deacons</strong></li>
+  <li><strong>Blackbirds jam Kikis</strong> (prevent them from shooting back)</li>
+  <li>Deacons die in 1 volley</li>
+</ol>
+
+<h3>Step 2: Grind Kikis (0:15+)</h3>
+<ol>
+  <li>Deacons are dead — no reps</li>
+  <li><strong>SFIs spread scrams across Kikis</strong></li>
+  <li>FC calls primary</li>
+  <li>8 SFIs alpha one Kiki — dies in 1-2 volleys</li>
+  <li>Target swap — repeat</li>
+  <li><strong>Blackbirds continue jamming</strong> — either Kikis (resets spool) or any remaining support</li>
+</ol>
+
+<h3>Break (If Needed)</h3>
+<ol>
+  <li>FC calls "break"</li>
+  <li>SFIs MWD away</li>
+  <li>Kikis have no scrams — can't hold us</li>
+  <li>Blackbirds warp to ping</li>
+  <li>Reform, re-engage</li>
+</ol>
+
+<h2>Why Only Two Hulls</h2>
+
+<table>
+  <tr>
+    <th>Role</th>
+    <th>Stabber Fleet Issue</th>
+    <th>Blackbird</th>
+  </tr>
+  <tr>
+    <td>DPS</td>
+    <td>6x 220mm autos</td>
+    <td>Rocket (negligible)</td>
+  </tr>
+  <tr>
+    <td>Tank</td>
+    <td>22-25k EHP</td>
+    <td>8-10k EHP (screen)</td>
+  </tr>
+  <tr>
+    <td>Tackle</td>
+    <td>Scram + Web</td>
+    <td>Long point</td>
+  </tr>
+  <tr>
+    <td>EWAR</td>
+    <td>None</td>
+    <td>4x Ladar ECM</td>
+  </tr>
+</table>
+
+<p>Every ship contributes. No dead weight. No "utility only" ships that die before doing anything.</p>
+
+<h2>The Deacon Kill (The Whole Fight)</h2>
+
+<p><strong>This is the only thing that matters.</strong></p>
+
+<p><strong>Can we kill Deacons faster than they rep?</strong></p>
+<ul>
+  <li>Deacon reps: ~200-250 HP/s</li>
+  <li>Deacon buffer: ~3,500 EHP</li>
+  <li>4 SFIs alpha: ~8,800 volley</li>
+  <li><strong>Deacon dies in 1 volley. Reps don't matter.</strong></li>
+</ul>
+
+<p><strong>Can we survive while killing Deacons?</strong></p>
+<ul>
+  <li>8 unspooled Kikis = ~1,600-2,000 DPS total</li>
+  <li>SFI buffer: 22-25k EHP</li>
+  <li><strong>Survival time: 10-15 seconds</strong></li>
+  <li>Deacons die in 5 seconds</li>
+  <li><strong>Math checks out.</strong></li>
+</ul>
+
+<p><strong>Can they stop us?</strong></p>
+<ul>
+  <li>No scrams on Kikis — can't hold us</li>
+  <li>Blackbirds jamming — their DPS is erratic</li>
+  <li>We can always break if needed</li>
+</ul>
+
+<h2>Simplified Callouts</h2>
+
+<ol>
+  <li><strong>"Deacons"</strong> — All fire, SFIs tackle</li>
+  <li><strong>"Spread"</strong> — Scrams on Kikis</li>
+  <li><strong>"Primary"</strong> — Focus fire</li>
+  <li><strong>"Break"</strong> — MWD away</li>
+</ol>
+
+<p>That's it. Four calls.</p>
+
+<h2>Economic Check</h2>
+
+<table>
+  <tr>
+    <th>Ship</th>
+    <th>Cost</th>
+    <th>Role</th>
+  </tr>
+  <tr>
+    <td>SFI</td>
+    <td>~35-40M</td>
+    <td>Everything</td>
+  </tr>
+  <tr>
+    <td>Blackbird</td>
+    <td>~15-20M</td>
+    <td>Screen</td>
+  </tr>
+  <tr>
+    <td><strong>Fleet (10+3)</strong></td>
+    <td><strong>~400-500M</strong></td>
+    <td></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Target</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Kikimora</td>
+    <td>~80-100M</td>
+  </tr>
+  <tr>
+    <td>Deacon</td>
+    <td>~30-40M</td>
+  </tr>
+</table>
+
+<p><strong>Break-even:</strong> Kill 5 Kikis, or 4 Kikis + 2 Deacons</p>
+
+<p>If we alpha Deacons in the first 10 seconds, the rest is cleanup.</p>
+
+<h2>Validation</h2>
+<div class="checklist">
+  <ul>
+    <li>SFI alpha vs Deacon (1 volley = dead?)</li>
+    <li>SFI buffer vs 8 unspooled Kikis (10+ seconds?)</li>
+    <li>Blackbird jam vs Deacon/Kiki (reliable?)</li>
+    <li>MWD disengage vs no-scram Kikis (clean escape?)</li>
+  </ul>
+</div>
+
+<div class="footer">
+  Two hulls. Alpha Deacons. Grind Kikis. Done.
+</div>
+
+</body>
+</html>

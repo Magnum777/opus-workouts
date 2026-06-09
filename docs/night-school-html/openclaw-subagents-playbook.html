@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>openclaw-subagents Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>OpenClaw Sub-Agent Patterns - Playbook</h1>
+
+<strong>Research Date:</strong> February 23, 2026  
+<strong>Topic:</strong> OpenClaw Sub-Agent Patterns & Best Practices  
+<strong>Source:</strong> Night School Research (docs.openclaw.ai, Dev.to)
+
+---
+
+<h2>Executive Summary</h2>
+
+<p>This playbook covers OpenClaw's sub-agent system - how to spawn, manage, and orchestrate background agent runs. Sub-agents enable parallelization, isolation, and complex workflow automation for Nova V2.</p>
+
+---
+
+<h2>What Are Sub-Agents?</h2>
+
+<p>Sub-agents are <strong>background agent runs</strong> spawned from an existing agent. They:</p>
+<ul>
+<li>Run in their own session (<code>agent:<agentId>:subagent:<uuid></code>)</li>
+<li>Announce results back to the requester chat when complete</li>
+<li>Run in isolation (separate context, optional sandboxing)</li>
+<li>Do NOT get session tools by default (security)</li>
+</ul>
+
+---
+
+<h2>Core Concepts</h2>
+
+<h3>Session Hierarchy</h3>
+
+<p>| Depth | Session Key | Role | Can Spawn? |</p>
+<p>|-------|-------------|------|------------|</p>
+<p>| 0 | <code>agent:<id>:main</code> | Main agent | Always |</p>
+<p>| 1 | <code>agent:<id>:subagent:<uuid></code> | Sub-agent (orchestrator if depth=2) | Only if <code>maxSpawnDepth >= 2</code> |</p>
+<p>| 2 | <code>agent:<id>:subagent:<uuid>:subagent:<uuid></code> | Sub-sub-agent (leaf worker) | Never |</p>
+
+<h3>Tool Access by Depth</h3>
+
+<ul>
+<li><strong>Depth 1 (leaf):</strong> All tools EXCEPT session tools (<code>sessions_list</code>, <code>sessions_history</code>, <code>sessions_send</code>, <code>sessions_spawn</code>)</li>
+<li><strong>Depth 1 (orchestrator, when <code>maxSpawnDepth >= 2</code>):</strong> Gets <code>sessions_spawn</code>, <code>subagents</code>, <code>sessions_list</code>, <code>sessions_history</code></li>
+<li><strong>Depth 2 (leaf worker):</strong> No session tools - cannot spawn children</li>
+</ul>
+
+---
+
+<h2>Spawning Sub-Agents</h2>
+
+<h3>Tool: <code>sessions_spawn</code></h3>
+
+<pre><code>{
+<p>task: "Research X for the user",        // Required</p>
+<p>label: "researcher-1",                  // Optional identifier</p>
+<p>agentId: "other-agent-id",              // Optional: spawn under different agent</p>
+<p>model: "ollama/qwen3:14b",              // Optional: override model</p>
+<p>thinking: "on",                         // Optional: override thinking</p>
+<p>runTimeoutSeconds: 300,                 // Optional: max runtime (0=unlimited)</p>
+<p>thread: false,                          // Optional: bind to Discord thread</p>
+<p>mode: "run",                            // "run" (one-shot) or "session" (persistent)</p>
+<p>cleanup: "keep"                         // "delete" or "keep" after announce</p>
+<p>}</p>
+</code></pre>
+
+<h3>Slash Command: <code>/subagents spawn</code></h3>
+
+<pre><code>/subagents spawn <agentId> <task> [--model <model>] [--thinking <level>]
+</code></pre>
+
+<h3>Return Value</h3>
+
+<pre><code>{
+<p>status: "accepted",</p>
+<p>runId: "abc123",</p>
+<p>childSessionKey: "agent:main:subagent:uuid..."</p>
+<p>}</p>
+</code></pre>
+
+---
+
+<h2>Managing Sub-Agents</h2>
+
+<h3>Slash Commands</h3>
+
+<p>| Command | Description |</p>
+<p>|---------|-------------|</p>
+<p>| <code>/subagents list</code> | List all sub-agents for current session |</p>
+<p>| <code>/subagents kill <id\|#\|all></code> | Stop specific/all sub-agents |</p>
+<p>| <code>/subagents log <id\|#> [limit] [tools]</code> | View sub-agent logs |</p>
+<p>| <code>/subagents info <id\|#></code> | Show run metadata |</p>
+<p>| <code>/subagents send <id\|#> <message></code> | Send message to sub-agent |</p>
+<p>| <code>/subagents steer <id\|#> <message></code> | Steer/re-prompt sub-agent |</p>
+
+<h3>Thread Binding (Discord)</h3>
+
+<p>When <code>thread: true</code> is set:</p>
+<p>1. OpenClaw creates/binds a Discord thread to the sub-agent</p>
+<p>2. Follow-up messages in that thread route to the same session</p>
+<p>3. Use <code>/focus <target></code> to manually bind threads</p>
+<p>4. Use <code>/unfocus</code> to detach</p>
+<p>5. Use <code>/session ttl</code> to set auto-unfocus timeout</p>
+
+---
+
+<h2>Configuration</h2>
+
+<h3>Key Settings</h3>
+
+<pre><code>{
+<p>"agents": {</p>
+<p>"defaults": {</p>
+<p>"subagents": {</p>
+<p>"maxSpawnDepth": 2,           // Allow nesting (1-5, default: 1)</p>
+<p>"maxChildrenPerAgent": 5,     // Max active children (1-20, default: 5)</p>
+<p>"maxConcurrent": 8,           // Global concurrency (default: 8)</p>
+<p>"archiveAfterMinutes": 60,   // Auto-archive after (default: 60)</p>
+<p>"model": "ollama/qwen3:14b",  // Default sub-agent model</p>
+<p>"thinking": "off"             // Default thinking level</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+<h3>Tool Policy Override</h3>
+
+<pre><code>{
+<p>"tools": {</p>
+<p>"subagents": {</p>
+<p>"tools": {</p>
+<p>"deny": ["gateway", "cron"],  // Deny specific tools</p>
+<p>"allow": ["read", "exec"]    // Allow-only mode</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+---
+
+<h2>Patterns & Use Cases</h2>
+
+<h3>1. Research Pattern (Parallel)</h3>
+
+<p>Spawn multiple sub-agents to research different topics simultaneously:</p>
+
+<pre><code>Main Agent
+<p>├── Sub-agent 1 → Research competitor A</p>
+<p>├── Sub-agent 2 → Research competitor B</p>
+<p>└── Sub-agent 3 → Research competitor C</p>
+<p>↓</p>
+<p>All announce back → Main synthesizes results</p>
+</code></pre>
+
+<strong>Use when:</strong> Gathering multiple data sources, comparing options
+
+<h3>2. Orchestrator Pattern (Hierarchical)</h3>
+
+<p>Main spawns one orchestrator, which spawns workers:</p>
+
+<pre><code>Main
+<p>└── Orchestrator (depth 1)</p>
+<p>├── Worker 1 (depth 2)</p>
+<p>├── Worker 2 (depth 2)</p>
+<p>└── Worker 3 (depth 2)</p>
+</code></pre>
+
+<strong>Enable:</strong> <code>maxSpawnDepth: 2</code>
+
+<strong>Use when:</strong> Complex multi-step workflows with dependencies
+
+<h3>3. Long-Running Task Pattern</h3>
+
+<p>Spawn a persistent session for ongoing work:</p>
+
+<pre><code>sessions_spawn({
+<p>task: "Monitor X and report anomalies",</p>
+<p>thread: true,</p>
+<p>mode: "session",</p>
+<p>cleanup: "delete"</p>
+<p>})</p>
+</code></pre>
+
+<strong>Use when:</strong> Monitoring, ongoing analysis, cron alternatives
+
+<h3>4. Tool Worker Pattern</h3>
+
+<p>Sub-agent specialized for specific tool execution:</p>
+
+<pre><code>sessions_spawn({
+<p>task: "Use browser to scrape all product pages on example.com",</p>
+<p>model: "ollama/qwen3:14b"  // Cheaper model for simple tasks</p>
+<p>})</p>
+</code></pre>
+
+<strong>Use when:</strong> Heavy tool usage, scraping, automation
+
+---
+
+<h2>Cost Management</h2>
+
+<strong>Important:</strong> Each sub-agent has its <strong>own</strong> context and token usage.
+
+<p>| Strategy | How |</p>
+<p>|----------|-----|</p>
+<p>| <strong>Model tiering</strong> | Main = premium model, sub-agents = cheaper model |</p>
+<p>| <strong>Context limits</strong> | Set <code>runTimeoutSeconds</code> to prevent runaway |</p>
+<p>| <strong>Concurrency caps</strong> | Adjust <code>maxConcurrent</code> based on budget |</p>
+<p>| <strong>Archive quickly</strong> | Use <code>cleanup: "delete"</code> for one-shot tasks |</p>
+
+---
+
+<h2>Announce System</h2>
+
+<p>When a sub-agent finishes:</p>
+<p>1. <strong>Success:</strong> Announces with summary + stats (runtime, tokens, cost)</p>
+<p>2. <strong>Error:</strong> Announces with error details</p>
+<p>3. <strong>Timeout:</strong> Announces timeout status</p>
+<p>4. <strong>Skip:</strong> If sub-agent replies <code>ANNOUNCE_SKIP</code>, nothing posted</p>
+
+<strong>Announce template:</strong>
+<pre><code>Status: <success|error|timeout|unknown>
+<p>Result: <summary content></p>
+<p>Notes: <error details if any></p>
+
+<runtime> | <tokens> | <cost> | <sessionKey>
+</code></pre>
+
+---
+
+<h2>Nova-Specific Implementation</h2>
+
+<h3>Current Setup (from AGENTS.md)</h3>
+
+<p>| Agent | Type | Role |</p>
+<p>|-------|------|------|</p>
+<p>| <strong>Harvester</strong> | Nav | Gathers Fiverr/PPH opportunities |</p>
+<p>| <strong>Builder</strong> | Eng | WordPress content creation |</p>
+<p>| <strong>Storyweaver</strong> | Intel | Creative fiction analysis |</p>
+<p>| <strong>Sentinel</strong> | Ops | Health monitoring, cron watchdog |</p>
+
+<h3>Recommended Patterns for Nova</h3>
+
+<p>#### 1. Heartbeat-Driven Spawning</p>
+<pre><code>Heartbeat fires → Read HEARTBEAT.md → If tasks → sessions_spawn
+</code></pre>
+<ul>
+<li>Already implemented via cron + HEARTBEAT.md</li>
+</ul>
+
+<p>#### 2. Income Generation Swarm</p>
+<pre><code>Main
+<p>├── Harvester (sub-agent) → Find opportunities</p>
+<p>│   └── Builder (sub-sub-agent) → Create content</p>
+<p>└── Sentinel (sub-agent) → Verify delivery</p>
+</code></pre>
+
+<p>#### 3. Research Pipeline</p>
+<pre><code>Research Request
+<p>├── Web search sub-agent</p>
+<p>├── Web fetch sub-agent</p>
+<p>└── Synthesis (main agent)</p>
+</code></pre>
+
+---
+
+<h2>Best Practices Checklist</h2>
+
+<h3>✅ Spawning</h3>
+<ul>
+<li>[ ] Always set <code>cleanup: "delete"</code> for one-shot tasks</li>
+<li>[ ] Use <code>label</code> for easy identification</li>
+<li>[ ] Set <code>runTimeoutSeconds</code> for long-running tasks</li>
+<li>[ ] Use cheaper models for simple sub-agent tasks</li>
+</ul>
+
+<h3>✅ Security</h3>
+<ul>
+<li>[ ] Sub-agents don't get session tools by default (good!)</li>
+<li>[ ] Don't enable <code>maxSpawnDepth</code> unless needed</li>
+<li>[ ] Use tool policy overrides for sensitive operations</li>
+</ul>
+
+<h3>✅ Management</h3>
+<ul>
+<li>[ ] Use <code>/subagents list</code> to monitor active runs</li>
+<li>[ ] Set up auto-archive (<code>archiveAfterMinutes</code>)</li>
+<li>[ ] Use thread binding for persistent sub-agents</li>
+</ul>
+
+<h3>✅ Cost Control</h3>
+<ul>
+<li>[ ] Configure <code>agents.defaults.subagents.model</code></li>
+<li>[ ] Set <code>maxConcurrent</code> based on budget</li>
+<li>[ ] Monitor announce stats for token usage</li>
+</ul>
+
+---
+
+<h2>Common Pitfalls</h2>
+
+<p>| Pitfall | Solution |</p>
+<p>|---------|----------|</p>
+<p>| Too many concurrent sub-agents | Set <code>maxConcurrent</code> lower |</p>
+<p>| Sub-agents spawning unbounded | Set <code>maxChildrenPerAgent</code> limit |</p>
+<p>| High costs from premium models | Use tiered model strategy |</p>
+<p>| Lost announce on restart | Announce is best-effort - don't rely on it for critical flows |</p>
+<p>| Context not injected | Sub-agents only get AGENTS.md + TOOLS.md (no SOUL.md, etc.) |</p>
+
+---
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://docs.openclaw.ai/tools/subagents">Official Docs</a></li>
+<li><a href="https://dev.to/chx381/top-10-openclaw-development-patterns-and-architecture-best-practices-2l8e">Dev.to Patterns Article</a></li>
+<li><a href="https://docs.openclaw.ai/gateway/configuration-reference">Configuration Reference</a></li>
+</ul>
+
+---
+
+<h2>Action Items for Nova</h2>
+
+<ul>
+<li>[ ] Configure tiered model strategy (main = Kimi, sub-agents = Ollama)</li>
+<li>[ ] Set <code>maxSpawnDepth: 2</code> for orchestration experiments</li>
+<li>[ ] Update Harvester/Builder to use sub-agent patterns</li>
+<li>[ ] Add cost monitoring to sub-agent announces</li>
+<li>[ ] Document sub-agent naming conventions in AGENTS.md</li>
+</ul>
+
+---
+
+<em>Last Updated: February 23, 2026</em>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws-cloud-solutions Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>AWS & Cloud Solutions Playbook</h1>
+
+<h2>Goal</h2>
+<ul>
+<li>Build foundational knowledge of AWS services and cloud architecture.</li>
+<li>Enable job readiness for SRE/cloud roles.</li>
+</ul>
+
+<h2>Topics</h2>
+<p>1. <strong>AWS Core Services</strong></p>
+<ul>
+<li>EC2 (compute)</li>
+<li>S3 (object storage)</li>
+<li>RDS (managed databases)</li>
+<li>Lambda (serverless compute)</li>
+<li>VPC (networking)</li>
+</ul>
+<p>2. <strong>Identity & Access Management (IAM)</strong></p>
+<ul>
+<li>Users, groups, roles, policies</li>
+<li>Best practices: least‑privilege, role assumption, MFA</li>
+</ul>
+<p>3. <strong>Security</strong></p>
+<ul>
+<li>Security groups, NACLs, encryption at rest & in‑flight</li>
+<li>GuardDuty, IAM Access Analyzer, AWS Config</li>
+</ul>
+<p>4. <strong>Infrastructure as Code</strong></p>
+<ul>
+<li>CloudFormation basics (templates, stacks)</li>
+<li>AWS CDK (TypeScript/Python)</li>
+<li>Terraform fundamentals (provider, state, modules)</li>
+</ul>
+<p>5. <strong>CI/CD Pipelines</strong></p>
+<ul>
+<li>CodeCommit, CodeBuild, CodePipeline</li>
+<li>GitHub Actions + AWS deployments</li>
+</ul>
+<p>6. <strong>Monitoring & Logging</strong></p>
+<ul>
+<li>CloudWatch Metrics, Logs, Alarms</li>
+<li>X‑Ray, CloudTrail, AWS Config</li>
+</ul>
+<p>7. <strong>Cost Management</strong></p>
+<ul>
+<li>Cost Explorer, Budgets, Trusted Advisor, right‑sizing</li>
+</ul>
+<p>8. <strong>Multi‑Cloud & Hybrid Concepts</strong></p>
+<ul>
+<li>Brief overview of Azure & GCP equivalents</li>
+<li>Federation, workload migration strategies</li>
+</ul>
+<p>9. <strong>Practical Labs</strong></p>
+<ul>
+<li>Deploy a static website on S3 + CloudFront</li>
+<li>Launch a simple EC2 web server with security groups</li>
+<li>Create a Lambda function triggered by an S3 event</li>
+<li>Build a Terraform module for a VPC with subnets & IGW</li>
+</ul>
+
+<h2>Study Plan (Weekly)</h2>
+<ul>
+<li><strong>Day 1:</strong> Core services – read docs, hands‑on EC2 & S3.</li>
+<li><strong>Day 2:</strong> IAM & security fundamentals.</li>
+<li><strong>Day 3:</strong> IaC – CloudFormation basics, then Terraform intro.</li>
+<li><strong>Day 4:</strong> CI/CD pipeline setup using CodePipeline or GitHub Actions.</li>
+<li><strong>Day 5:</strong> Monitoring, logging, and cost‑optimisation basics.</li>
+<li><strong>Day 6:</strong> Multi‑cloud concepts & hybrid patterns.</li>
+<li><strong>Day 7:</strong> Mini‑project – deploy a full‑stack web app using S3, CloudFront, Lambda, and DynamoDB.</li>
+</ul>
+
+<h2>Resources</h2>
+<ul>
+<li>Official AWS Documentation (https://docs.aws.amazon.com)</li>
+<li>A Cloud Guru / Udemy courses on AWS Foundations</li>
+<li>AWS Well‑Architected Framework (PDF)</li>
+<li>qwiklab hands‑on labs (https://qwiklab.com)</li>
+</ul>
+
+<h2>Review Checklist</h2>
+<ul>
+<li>Launch and terminate an EC2 instance via CLI.</li>
+<li>Create an IAM role with a least‑privilege policy.</li>
+<li>Write a CloudFormation template that creates an S3 bucket and CloudFront distribution.</li>
+<li>Deploy infrastructure with Terraform and safely destroy it.</li>
+<li>Set up a CloudWatch alarm for CPU > 80% on an EC2 instance.</li>
+<li>Estimate monthly cost for a simple web application using the Cost Explorer.</li>
+</ul>
+
+<h2>Maintenance</h2>
+<ul>
+<li>Quarterly: add new services (e.g., SageMaker, Bedrock) and update best‑practice links.</li>
+<li>Subscribe to the AWS What's New RSS feed and add notable announcements to the playbook.</li>
+</ul>
+
+</body>
+</html>

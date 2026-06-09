@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plan xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <name>Raven RRR — Alpha 1M SP</name>
+  <description>1M free SP plan to fly Raven [RRR] torpedo remote-rep fit. Inject in order.</description>
+  <sortingCriteria>None</sortingCriteria>
+  <sortingOrder>Ascending</sortingOrder>
+  <entries>
+    <!-- PHASE 1: Core Ship &amp; Tank (Inject First) -->
+    <entry skillID="3328" skill="Caldari Frigate" level="3" priority="3" />
+    <entry skillID="3329" skill="Caldari Destroyer" level="3" priority="3" />
+    <entry skillID="3330" skill="Caldari Cruiser" level="3" priority="3" />
+    <entry skillID="3338" skill="Caldari Battleship" level="3" priority="1" />
+    <entry skillID="3416" skill="Shield Operation" level="3" priority="3" />
+    <entry skillID="3419" skill="Shield Management" level="3" priority="3" />
+    <entry skillID="3425" skill="Shield Upgrades" level="4" priority="1" />
+    <entry skillID="3394" skill="Hull Upgrades" level="4" priority="1" />
+    <entry skillID="3412" skill="Shield Emission Systems" level="3" priority="2" />
+    <entry skillID="3413" skill="Power Grid Management" level="4" priority="1" />
+    <entry skillID="3411" skill="CPU Management" level="4" priority="1" />
+    <entry skillID="3418" skill="Capacitor Management" level="3" priority="2" />
+    <entry skillID="3417" skill="Capacitor Systems Operation" level="3" priority="2" />
+
+    <!-- PHASE 2: Weapons &amp; DPS -->
+    <entry skillID="3300" skill="Gunnery" level="2" priority="3" />
+    <entry skillID="3319" skill="Missile Launcher Operation" level="4" priority="1" />
+    <entry skillID="3320" skill="Torpedoes" level="4" priority="1" />
+    <entry skillID="3318" skill="Weapon Upgrades" level="4" priority="1" />
+    <entry skillID="21071" skill="Rapid Launch" level="3" priority="2" />
+    <entry skillID="20314" skill="Target Navigation Prediction" level="3" priority="2" />
+    <entry skillID="20315" skill="Warhead Upgrades" level="3" priority="2" />
+
+    <!-- PHASE 3: Fitting (Remaining SP) -->
+    <entry skillID="3413" skill="Power Grid Management" level="5" priority="1" />
+
+    <!-- PHASE 4: Manual Train After Injection -->
+    <entry skillID="12441" skill="Missile Bombardment" level="4" priority="2" />
+    <entry skillID="12442" skill="Missile Projection" level="4" priority="2" />
+    <entry skillID="26252" skill="Jury Rigging" level="3" priority="3" />
+    <entry skillID="26254" skill="Shield Rigging" level="4" priority="2" />
+
+    <!-- PHASE 5: Drones -->
+    <entry skillID="3436" skill="Drones" level="5" priority="2" />
+    <entry skillID="3437" skill="Medium Drone Operation" level="1" priority="2" />
+    <entry skillID="3438" skill="Drone Interfacing" level="3" priority="2" />
+  </entries>
+</plan>

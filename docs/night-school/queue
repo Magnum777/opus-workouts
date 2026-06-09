@@ -1,0 +1,134 @@
+# Night School Queue
+
+## Pending
+
+### Agentic AI Lessons Learned & Best Practices (NEW)
+- **Focus:** Documenting operational lessons from running autonomous AI systems
+- **Goal:** Self-improvement — help Nova help herself through documented patterns
+- **Topics:**
+  - Memory management strategies (what to keep vs discard)
+  - Error recovery patterns (graceful degradation)
+  - Context overflow prevention (compaction strategies)
+  - Sub-mind communication protocols
+  - Self-diagnosis and maintenance routines
+  - When to escalate vs handle locally
+  - Model selection heuristics (speed vs quality vs cost)
+  - Cron job reliability patterns
+- **Status:** Ready to start — next NightSchool session
+- **Trigger:** After each major incident or system change, update this playbook
+
+### OpenClaw Ecosystem Monitoring (NEW)
+- **Focus:** Track OpenClaw updates, community issues, new features
+- **Goal:** Proactive awareness of fixes/changes needed in our stack
+- **Topics:**
+  - GitHub issues and releases (openclaw/openclaw)
+  - Discord announcements and breaking changes
+  - New provider integrations (Ollama, etc.)
+  - Security advisories and patches
+  - Performance optimizations from community
+  - Best practices emerging from user patterns
+- **Status:** Ready to start — check during each NightSchool session
+- **Action:** Update AGENT-SYNC.md with relevant findings
+
+### AWS & Cloud Solutions (NEW)
+- **Focus:** AWS basics, advanced cloud architecture, infrastructure as code
+- **Goal:** Job readiness — ace cloud/SRE roles
+- **Topics:**
+  - AWS core services (EC2, S3, Lambda, RDS, VPC)
+  - IAM, security best practices
+  - CloudFormation/Terraform
+  - CI/CD pipelines (CodePipeline, GitHub Actions)
+  - Monitoring (CloudWatch, Grafana)
+  - Cost optimization
+  - Multi-cloud considerations
+- **Status:** Ready to start — next NightSchool session
+
+---
+
+## Completed (2026-03-08)
+
+### Business ✅ COMPLETED
+- **Focus:** AI business transformation, strategy, governance, operational patterns
+- **Key findings:**
+  - AI transformation = coordination problem (strategy + data + tooling + governance)
+  - 95% of AI pilots fail due to lack of workflow integration and clear ownership
+  - Only 22% have defined AI strategy — those are 2x more likely to see revenue growth
+  - Four pillars: Strategy → Data → Tooling → Governance (in that order)
+  - Speed > scale in AI age; smaller players can challenge established leaders
+  - Shadow AI risk: 93% of ChatGPT use in enterprises is non-corporate
+  - For freelancers: AI as force multiplier, automate before scaling
+- **Status:** Playbook created at docs/night-school/business/playbook.md
+
+---
+
+## Completed (2026-03-05)
+
+### Automation ✅ COMPLETED
+- **Focus:** Agentic workflows, architecture types, best practices
+- **Key findings:**
+  - 4 architecture types: Single Agent, Hierarchical, Pipeline, Swarm
+  - Match architecture to risk level (more risk = more guardrails)
+  - Start simple: single agent first, add multi-agent only when needed
+  - Agent loop: Goal → Decide → Act → Check → Repeat
+  - Tool design matters more than model choice
+- **Status:** Playbook created at docs/night-school/automation/playbook.md
+
+### Creative AI ✅ COMPLETED
+- **Focus:** AI writing tools for fiction and nonfiction
+- **Key findings:**
+  - Two tool types: AI models (electricity) vs Specialist tools (appliances)
+  - Best for fiction: Sudowrite ($22/mo) for prose, Novelcrafter ($14/mo) for flexibility
+  - Best for nonfiction: Jasper, Surfer, Grammarly
+  - Workflow: Brainstorm → Outline → Draft → Edit
+  - AI as collaborator, not replacement - maintain your voice
+- **Status:** Playbook created at docs/night-school/creative/playbook.md
+
+---
+
+## Completed (2026-02-27)
+- Research: https://github.com/ellipticmarketing/modelrelay
+- What it does: Auto-routes OpenClaw prompts to fastest available free model
+- Monitors providers: NVIDIA NIM, OpenRouter, Scaleway
+- Auto-switches on rate limits
+- API keys stay local
+- Goal: Determine if we should integrate into our fallback system
+- **Status:** Playbook created at docs/night-school/modelrelay-auto-routing/playbook.md
+- **Recommendation:** INTEGRATE - Use as secondary/fallback for simple coding tasks
+
+---
+
+## Completed (2026-02-27)
+
+### Solana Trading ✅ COMPLETED
+- **Focus:** Jupiter API, slippage, liquidity, selling meme tokens reliably
+- **Key findings:**
+  - Error 0x1788 = Token-2022 incompatibility or no liquidity route
+  - Slippage for meme tokens: 10-50% (not 1%)
+  - Alternatives when Jupiter fails: OpenOcean, SolXtence, direct Raydium
+  - Pre-sale checklist: verify liquidity, route exists, recent successful sells
+- **Status:** Playbook created at docs/night-school/solana-trading/playbook.md
+
+### Cron Model Tiering ✅ COMPLETED
+- **Focus:** Route tasks to appropriate models based on complexity/cost
+- **Key findings:**
+  - 4 tiers: Premium ($$$), Mid ($$), Budget ($), Local (Free)
+  - Cost variance: $15/1M (Opus) vs $0.10/1M (Qwen) vs Free (Ollama)
+  - Strategy: Classify with cheap model, route accordingly
+  - OpenClaw native tiering via AGENTS.md model aliases
+  - Potential savings: 60-70% by routing 80% tasks to cheap models
+- **Status:** Playbook created at docs/night-school/cron-model-tiering/playbook.md
+
+### Nova Autonomy ✅ COMPLETED
+- **Focus:** Heartbeat systems, cron scheduling, self-healing, monitoring
+- **Key findings:**
+  - Cron = exact schedules, Heartbeat = continuous monitoring
+  - Don't spam HEARTBEAT_OK (only on explicit polls)
+  - Self-healing patterns: watchdog, retry with backoff, circuit breaker
+  - Max 4-6 active sub-agents, space out crons
+  - Proactive rules: monitor credits, detect errors, respect flow state
+- **Status:** Playbook created at docs/night-school/nova-autonomy/playbook.md
+
+---
+
+## Completed (2026-02-26)
+- Modelrelay Auto-Routing (playbook created)

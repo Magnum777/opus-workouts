@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clawhub-skills-recommendations Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>ClawHub Skills Recommendations for AI Co-Founder Stack</h1>
+
+<h2>Executive Summary</h2>
+
+<p>This playbook outlines recommended third-party integrations (skills) for the Nova AI Co-Founder product, organized by product tier (V1, V2, V3). These skills transform Nova from a chat assistant into a complete business co-founder.</p>
+
+---
+
+<h2>Priority Quick Wins</h2>
+
+<p>| Priority | Skill | Use Case | Complexity |</p>
+<p>|----------|-------|----------|------------|</p>
+<p>| 1 | <strong>Postiz</strong> | Auto-post blog → social (28+ platforms) | Medium |</p>
+<p>| 2 | <strong>Stripe</strong> | Invoicing/payments | Medium |</p>
+<p>| 3 | <strong>LinkedIn</strong> | Professional content automation | Medium |</p>
+<p>| 4 | <strong>ElevenLabs</strong> | Voice synthesis (V2) | Low |</p>
+<p>| 5 | <strong>Mem0</strong> | Persistent memory (V2) | Low |</p>
+
+---
+
+<h2>V1: Starter Tier ($25)</h2>
+
+<h3>Already Available (Built-in)</h3>
+<ul>
+<li><strong>Discord</strong> - Chat integration</li>
+<li><strong>Notion</strong> - Brain/knowledge management</li>
+<li><strong>GitHub</strong> - Version control</li>
+<li><strong>Slack</strong> - Team communications</li>
+<li><strong>Weather</strong> - Context awareness</li>
+</ul>
+
+<h3>Recommended for V1</h3>
+
+<p>#### 1. Postiz - Social Media Scheduling ⭐ TOP PRIORITY</p>
+<strong>What it does:</strong> All-in-one agentic social media scheduling tool
+<ul>
+<li>Schedule posts to 28+ platforms (X, LinkedIn, Reddit, Bluesky, etc.)</li>
+<li>AI-powered post ideation and content generation</li>
+<li>Built-in Canva-like AI image generator</li>
+<li>Auto-engagement (auto-like, auto-comment at milestones)</li>
+<li>Analytics dashboard</li>
+<li>Public API for automation</li>
+<li>n8n and Make.com integrations</li>
+</ul>
+
+<strong>Pricing:</strong> 
+<ul>
+<li>Free tier available</li>
+<li>7-day trial for $0</li>
+<li>Self-hosting option (avoid monthly fees)</li>
+</ul>
+
+<strong>Why it matters:</strong> Complete social media automation in one skill. Perfect for auto-blogging workflow: WordPress post → AI Polish → Postiz → 28 platforms.
+
+<strong>Implementation:</strong> Wrap existing Postiz API (docs.postiz.com/public-api)
+
+<p>#### 2. WordPress</p>
+<strong>What it does:</strong> Already have XML-RPC capability, wrap as formal skill
+<ul>
+<li>Create/update/publish posts</li>
+<li>Manage media library</li>
+<li>Handle comments</li>
+</ul>
+
+<strong>Status:</strong> Low priority - core functionality exists
+
+<p>#### 3. RSS Reader</p>
+<strong>What it does:</strong> Monitor industry feeds for content ideas
+<ul>
+<li>Track competitor blogs</li>
+<li>News aggregation</li>
+<li>Content inspiration pipeline</li>
+</ul>
+
+<p>#### 4. Stripe - Payments ⭐ HIGH VALUE</p>
+<strong>What it does:</strong> Payment processing and invoicing
+<ul>
+<li>Send invoices</li>
+<li>Process payments</li>
+<li>Subscription management</li>
+<li>Payment webhooks</li>
+</ul>
+
+<strong>Pricing:</strong> 2.9% + $0.30 per transaction (standard)
+
+<strong>Why it matters:</strong> Complete income stack with Gumroad. Nova can generate invoices and track payments.
+
+<p>#### 5. LinkedIn Automation</p>
+<strong>What it does:</strong> Professional networking automation
+<ul>
+<li>Post scheduling</li>
+<li>Connection requests</li>
+<li>Profile optimization suggestions</li>
+</ul>
+
+<strong>Status:</strong> Medium priority - consider Postiz covers most
+
+---
+
+<h2>V2: Pro Tier ($49-79)</h2>
+
+<h3>Voice & Communication</h3>
+
+<p>#### 6. ElevenLabs - Voice Synthesis ⭐ ALREADY HAVE KEY</p>
+<strong>What it does:</strong> State-of-the-art AI voice synthesis
+<ul>
+<li>Text-to-speech with lifelike voices</li>
+<li>Voice cloning (with consent)</li>
+<li>Multi-language support</li>
+<li>Low-latency API</li>
+<li>Speech to transcription</li>
+</ul>
+
+<strong>Pricing:</strong> Credit-based system
+<ul>
+<li>Character limit varies by tier</li>
+<li>v3 (alpha) at 80% fewer credits until June 2025</li>
+</ul>
+
+<strong>Why it matters:</strong> Transforms Nova from text-only to voice companion. User already has API key.
+
+<strong>Implementation:</strong> User has key - integrate with OpenClaw TTS
+
+<p>#### 7. Voice Call (Phone)</p>
+<strong>What it does:</strong> Handle incoming/outgoing phone calls
+<ul>
+<li>AI voice receptionist</li>
+<li>Call routing</li>
+<li>Voicemail transcription</li>
+</ul>
+
+<strong>Status:</strong> Future consideration
+
+<p>#### 8. Zoom Integration</p>
+<strong>What it does:</strong> Meeting automation
+<ul>
+<li>Schedule meetings</li>
+<li>Generate summaries</li>
+<li>Action items extraction</li>
+</ul>
+
+---
+
+<h3>Automation</h3>
+
+<p>#### 9. n8n - Self-Hosted Automation ⭐ HIGH VALUE</p>
+<strong>What it does:</strong> Connect 900+ services via workflows
+<ul>
+<li>Self-hosted (free) or cloud ($20+/month)</li>
+<li>Open source</li>
+<li>Extensive integrations</li>
+<li>Runs on NAS/server</li>
+</ul>
+
+<strong>Pricing:</strong>
+<ul>
+<li>Self-hosted: Free (but infrastructure ~$300-500/month for production)</li>
+<li>Cloud: $20/month (2,500 executions), $50/month (10,000 executions)</li>
+</ul>
+
+<strong>Why it matters:</strong> Core infrastructure for connecting all skills. Perfect for Nova's automation needs.
+
+<strong>Implementation:</strong> Can be wrapped as skill for common workflows
+
+<p>#### 10. Zapier</p>
+<strong>What it does:</strong> Cloud workflow automation
+<ul>
+<li>6,000+ app integrations</li>
+<li>No-code builder</li>
+<li>Cloud-hosted</li>
+</ul>
+
+<strong>Pricing:</strong> Free tier available, paid from $20/month
+
+<strong>Status:</strong> Alternative to n8n, easier but recurring cost
+
+<p>#### 11. IFTTT</p>
+<strong>What it does:</strong> Simple applets for consumer automation
+<ul>
+<li>900+ services</li>
+<li>Simple triggers/actions</li>
+</ul>
+
+<strong>Status:</strong> Lower priority - n8n more powerful
+
+---
+
+<h3>Research & Intelligence</h3>
+
+<p>#### 12. Perplexity - AI Research</p>
+<strong>What it does:</strong> AI-powered search and research
+<ul>
+<li>Web research with citations</li>
+<li>Source synthesis</li>
+<li>Topic deep dives</li>
+</ul>
+
+<strong>Status:</strong> Could wrap existing Brave Search (already configured)
+
+<p>#### 13. Tavily - Deep Research</p>
+<strong>What it does:</strong> Specialized AI research API
+<ul>
+<li>Academic and web research</li>
+<li>Structured outputs</li>
+<li>Multi-source synthesis</li>
+</ul>
+
+---
+
+<h2>V3: Enterprise Tier ($100+)</h2>
+
+<h3>Security & Monitoring</h3>
+
+<p>#### 14. Healthcheck - System Monitoring ⭐ ALREADY HAVE SKILL</p>
+<strong>What it does:</strong> Security hardening and risk-tolerance configuration
+<ul>
+<li>Host security audits</li>
+<li>Firewall/SSH/update hardening</li>
+<li>Periodic health checks</li>
+</ul>
+
+<strong>Status:</strong> Available as OpenClaw skill
+
+<p>#### 15. Uptime Kuma</p>
+<strong>What it does:</strong> Website monitoring
+<ul>
+<li>Self-hosted (free)</li>
+<li>Status pages</li>
+<li>Alert notifications</li>
+</ul>
+
+<strong>Implementation:</strong> Can run on NAS
+
+<p>#### 16. Sentinel - Security Alerting</p>
+<strong>What it does:</strong> Security monitoring and alerts
+<ul>
+<li>Anomaly detection</li>
+<li>Alert routing</li>
+<li>Compliance reporting</li>
+</ul>
+
+---
+
+<h3>Advanced AI</h3>
+
+<p>#### 17. Mem0 - Persistent Memory ⭐ CRITICAL FOR V2</p>
+<strong>What it does:</strong> Intelligent memory layer for AI agents
+<ul>
+<li>Compresses chat history into optimized memory</li>
+<li>90% lower token usage vs full context</li>
+<li>91% reduced latency</li>
+<li>User preference learning</li>
+<li>Cross-session continuity</li>
+</ul>
+
+<strong>Funding:</strong> $24M Series A (YC, Peak XV, Basis Set)
+
+<strong>Why it matters:</strong> KEY differentiator for V2. Solves the "forgetfulness" problem that makes AI assistants feel dumb.
+
+<strong>Implementation:</strong> Install via <code>npm install mem0ai</code> or cloud API
+
+<p>#### 18. Vector DB - Knowledge Retrieval</p>
+<strong>What it does:</strong> Semantic search over documents
+<ul>
+<li>Pinecone, Weaviate, Qdrant options</li>
+<li>Semantic caching</li>
+<li>RAG pipelines</li>
+</ul>
+
+---
+
+<h2>Implementation Roadmap</h2>
+
+<h3>Phase 1: V1 Skills (This Week)</h3>
+<p>1. <strong>Postiz</strong> - High impact, social media automation</p>
+<p>2. <strong>Stripe</strong> - Complete income stack</p>
+<p>3. Document existing capabilities</p>
+
+<h3>Phase 2: V2 Skills (Next Sprint)</h3>
+<p>1. <strong>ElevenLabs</strong> - Voice integration (key ready!)</p>
+<p>2. <strong>Mem0</strong> - Memory layer (critical)</p>
+<p>3. <strong>n8n</strong> - Automation infrastructure</p>
+
+<h3>Phase 3: V3 Skills (Future)</h3>
+<p>1. Security/hardening</p>
+<p>2. Advanced monitoring</p>
+<p>3. Enterprise features</p>
+
+---
+
+<h2>Skill Integration Complexity</h2>
+
+<p>| Skill | API Type | Wrapper Effort | Priority |</p>
+<p>|-------|----------|----------------|----------|</p>
+<p>| Postiz | REST | Medium | 1 |</p>
+<p>| Stripe | REST | Medium | 2 |</p>
+<p>| ElevenLabs | REST | Low | 4 |</p>
+<p>| Mem0 | Python/Cloud | Low | 5 |</p>
+<p>| n8n | REST | Medium | 3 |</p>
+<p>| LinkedIn | Graph API | High | 3 |</p>
+
+---
+
+<h2>Security Notes</h2>
+
+<ul>
+<li>Only install skills from trusted sources</li>
+<li>Recent malware issues reported in prompt injection attempts</li>
+<li>Keep API keys in secure credential storage</li>
+<li>Use environment variables for secrets</li>
+</ul>
+
+---
+
+<h2>Sources</h2>
+
+<ul>
+<li>Postiz: postiz.com</li>
+<li>ElevenLabs:icing</li>
+<li>Mem elevenlabs.io/pr0: mem0.ai, GitHub mem0ai/mem0</li>
+<li>n8n: n8n.io/pricing</li>
+<li>TechCrunch: Mem0 Series A coverage</li>
+</ul>
+
+---
+
+<em>Last Updated: 2026-02-18</em>
+<em>Topic: ClawHub Skills Recommendations</em>
+<em>Status: Research Complete</em>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layered Media LLC - Web Design & SEO Services</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+        
+        header { background: #7f2d91; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        .site-name { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .site-name img { height: 40px; background: white; padding: 3px; border-radius: 3px; }
+        .site-name span { color: #bc7b16; }
+        nav a { color: white; text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; }
+        nav a:hover { color: #bc7b16; }
+        
+        .hero { background: linear-gradient(135deg, #7f2d91 0%, #5a2169 100%); color: white; padding: 4rem 5%; text-align: center; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .hero h1 span { color: #bc7b16; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        
+        .pricing { padding: 3rem 5%; }
+        .pricing:nth-child(even) { background: #f8f9fa; }
+        .section-title { text-align: center; margin-bottom: 2rem; }
+        .section-title h2 { font-size: 2rem; color: #7f2d91; margin-bottom: 0.5rem; }
+        .section-title p { color: #666; }
+        
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+        
+        .pricing-card { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); text-align: center; }
+        .pricing-card.featured { border: 3px solid #bc7b16; }
+        .badge { display: inline-block; background: #bc7b16; color: white; padding: 0.3rem 1rem; border-radius: 15px; font-size: 0.8rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .price { font-size: 2.5rem; font-weight: 800; color: #7f2d91; margin: 0.5rem 0; }
+        .price span { font-size: 1rem; color: #666; font-weight: 400; }
+        .pricing-card h3 { color: #7f2d91; margin-bottom: 0.5rem; }
+        
+        .features { text-align: left; margin: 1rem 0; padding: 1rem 0; border-top: 1px solid #eee; }
+        .features li { padding: 0.4rem 0; list-style: none; }
+        .features li::before { content: '✓'; color: #bc7b16; margin-right: 8px; }
+        
+        .btn { display: inline-block; width: 100%; padding: 0.8rem; border-radius: 5px; text-decoration: none; font-weight: 600; margin-top: 1rem; }
+        .btn-primary { background: #bc7b16; color: white; }
+        .btn-outline { border: 2px solid #7f2d91; color: #7f2d91; }
+        .btn-outline:hover { background: #7f2d91; color: white; }
+        
+        .contact { background: #7f2d91; color: white; padding: 3rem 5%; text-align: center; }
+        .contact h2 { margin-bottom: 1rem; }
+        .contact-info { margin: 1.5rem 0; }
+        
+        footer { background: #4a1a5e; color: #aaa; padding: 1.5rem 5%; text-align: center; font-size: 0.9rem; }
+        
+        @media (max-width: 768px) { .hero h1 { font-size: 1.8rem; } nav a { margin-left: 1rem; font-size: 0.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="site-name">
+            <img src="https://www.aicofounderstack.com/wp-content/uploads/2026/02/layered-media-logo.png" alt="Layered Media">
+            Layered<span>Media</span>
+        </div>
+        <nav>
+            <a href="#refresh">Refresh</a>
+            <a href="#new-websites">New Sites</a>
+            <a href="#bundles">Bundles</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Modern Websites That <span>Drive Results</span></h1>
+        <p>Professional web design & SEO services for Georgia businesses.</p>
+    </section>
+
+    <!-- OFFERING 1: WEBSITE REFRESH -->
+    <section class="pricing" id="refresh">
+        <div class="section-title">
+            <h2>Website Refresh</h2>
+            <p>Already have a website? We'll make it modern.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Refresh</h3>
+                <div class="price">$250</div>
+                <ul class="features">
+                    <li>Modern, mobile-responsive</li>
+                    <li>Basic SEO</li>
+                    <li>Speed optimization</li>
+                    <li>Contact form</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Get Started</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Growth</h3>
+                <div class="price">$500</div>
+                <ul class="features">
+                    <li>Everything in Refresh</li>
+                    <li>1 month SEO</li>
+                    <li>Google Business</li>
+                    <li>Traffic report</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
+            <div class="pricing-card featured">
+                <span class="badge">POPULAR</span>
+                <h3>Dominate</h3>
+                <div class="price">$750</div>
+                <ul class="features">
+                    <li>Everything in Growth</li>
+                    <li>2 months SEO</li>
+                    <li>Content updates</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFERING 2: NEW WEBSITES -->
+    <section class="pricing" id="new-websites">
+        <div class="section-title">
+            <h2>New Websites</h2>
+            <p>Build from scratch. Professional & conversion-focused.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$497</div>
+                <ul class="features">
+                    <li>5 custom pages</li>
+                    <li>Mobile-responsive</li>
+                    <li>Contact form</li>
+                    <li>Basic SEO</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Get Started</a>
+            </div>
+            <div class="pricing-card featured">
+                <span class="badge">POPULAR</span>
+                <h3>Business</h3>
+                <div class="price">$797</div>
+                <ul class="features">
+                    <li>10 custom pages</li>
+                    <li>Lead capture forms</li>
+                    <li>Advanced SEO</li>
+                    <li>Google Business</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Premium</h3>
+                <div class="price">$1,247</div>
+                <ul class="features">
+                    <li>Unlimited pages</li>
+                    <li>E-commerce ready</li>
+                    <li>Full SEO package</li>
+                    <li>Email marketing</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFERING 3: TRAFFIC + WEBSITE BUNDLES -->
+    <section class="pricing" id="bundles">
+        <div class="section-title">
+            <h2>Traffic + Website</h2>
+            <p>We build your site AND drive traffic to it.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter Bundle</h3>
+                <div class="price">$797<span> one-time</span></div>
+                <ul class="features">
+                    <li>5-page new website</li>
+                    <li>6 month Traffic Driver bundle</li>
+                    <li>Monthly reports</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Get Started</a>
+            </div>
+            <div class="pricing-card featured">
+                <span class="badge">POPULAR</span>
+                <h3>Growth Bundle</h3>
+                <div class="price">$1,297<span> one-time</span></div>
+                <ul class="features">
+                    <li>10-page new website</li>
+                    <li>6 month Traffic Driver bundle</li>
+                    <li>Lead capture</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Dominate Bundle</h3>
+                <div class="price">$1,747<span> one-time</span></div>
+                <ul class="features">
+                    <li>Unlimited pages</li>
+                    <li>6 month Traffic Driver bundle</li>
+                    <li>Dedicated manager</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ONGOING SERVICES -->
+    <section class="pricing" id="ongoing">
+        <div class="section-title">
+            <h2>Ongoing Services</h2>
+            <p>Keep your site performing at its best.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Traffic Driver</h3>
+                <div class="price">$500<span>/6 mo</span></div>
+                <ul class="features">
+                    <li>6 months SEO</li>
+                    <li>Content updates</li>
+                    <li>Traffic growth</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>Maintenance</h3>
+                <div class="price">$500<span>/mo</span></div>
+                <ul class="features">
+                    <li>Security updates</li>
+                    <li>Backups</li>
+                    <li>Content changes</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Bundle Both</h3>
+                <div class="price">$600<span>/mo</span></div>
+                <ul class="features">
+                    <li>Traffic Driver + Maintenance</li>
+                    <li>Everything included</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Ready to Grow?</h2>
+        <p>Let's build something great for your business.</p>
+        <div class="contact-info">
+            <p>📧 layeredmediallc@gmail.com</p>
+            <p>📍 Serving All of Georgia</p>
+        </div>
+        <a href="mailto:layeredmediallc@gmail.com" class="btn btn-primary" style="width: auto; padding: 1rem 2rem;">Email Us</a>
+    </section>
+
+    <footer>
+        <p>© 2026 Layered Media LLC. All rights reserved.</p>
+    </footer>
+</body>
+</html>

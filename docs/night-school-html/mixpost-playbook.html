@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mixpost Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Mixpost Social Media Scheduler - Playbook</h1>
+
+<strong>Research Date:</strong> February 23, 2026  
+<strong>Topic:</strong> Self-hosted social media scheduling on Synology NAS  
+<strong>Source:</strong> Marius Hosting Guide, Mixpost Docs
+
+---
+
+<h2>What is Mixpost?</h2>
+
+<p>Mixpost is a self-hosted, open-source social media management tool. Schedule, publish, and manage social media content in one place - no monthly fees.</p>
+
+<h2>Pricing</h2>
+
+<p>| Version | Cost | Features |</p>
+<p>|---------|------|----------|</p>
+<p>| <strong>Lite (Self-hosted)</strong> | <strong>Free</strong> ✅ | Basic scheduling |</p>
+<p>| Pro | $19/mo | Advanced features |</p>
+
+<h2>Prerequisites</h2>
+
+<p>| Item | Notes |</p>
+<p>|------|-------|</p>
+<p>| Synology NAS | Docker support required |</p>
+<p>| Portainer | Docker GUI (need to install) |</p>
+<p>| synology.me DDNS | For wildcard certificate |</p>
+<p>| Reverse Proxy | Configure in Control Panel |</p>
+
+---
+
+<h2>Installation Steps</h2>
+
+<h3>Step 1: Install Portainer</h3>
+<ul>
+<li>Use Marius Hosting guide: "Synology 30 Second Portainer Install"</li>
+<li>Or use Task Scheduler + Docker</li>
+</ul>
+
+<h3>Step 2: Set up Wildcard Certificate</h3>
+<ul>
+<li>Get free synology.me DDNS</li>
+<li>Create wildcard certificate in Control Panel</li>
+</ul>
+
+<h3>Step 3: Configure Reverse Proxy</h3>
+<ul>
+<li>Go to Control Panel → Login Portal → Advanced → Reverse Proxy</li>
+<li>Create new rule:</li>
+<li><strong>Source:</strong> HTTPS, hostname: <code>mixpost.yourname.synology.me</code>, port: 443</li>
+<li><strong>Destination:</strong> HTTP, hostname: localhost, port: 9831</li>
+<li>Enable WebSocket in Custom Headers</li>
+</ul>
+
+<h3>Step 4: Create Folders</h3>
+<p>In File Station, create:</p>
+<pre><code>/volume1/docker/mixpost/
+<p>├── db/</p>
+<p>├── logs/</p>
+<p>├── redis/</p>
+<p>└── storage/</p>
+</code></pre>
+
+<h3>Step 5: Deploy via Portainer</h3>
+<p>1. Open Portainer → Stacks → + Add stack</p>
+<p>2. Name: <code>mixpost</code></p>
+<p>3. Paste docker-compose (see below)</p>
+<p>4. Update APP_KEY and APP_URL</p>
+<p>5. Deploy</p>
+
+<h3>Docker Compose</h3>
+<pre><code>services:
+<p>mixpost:</p>
+<p>image: inovector/mixpost:latest</p>
+<p>container_name: Mixpost</p>
+<p>user: 0:0</p>
+<p>environment:</p>
+<p>APP_NAME: Mixpost</p>
+<p>APP_KEY: base64:YOUR_GENERATED_KEY</p>
+<p>APP_URL: https://mixpost.yourname.synology.me</p>
+<p>DB_DATABASE: mixpost</p>
+<p>DB_USERNAME: mixpostuser</p>
+<p>DB_PASSWORD: mixpostpass</p>
+<p>ports:</p>
+<ul>
+<li>9831:80</li>
+</ul>
+<p>volumes:</p>
+<ul>
+<li>/volume1/docker/mixpost/storage:/var/www/html/storage/app:rw</li>
+<li>/volume1/docker/mixpost/logs:/var/www/html/storage/logs:rw</li>
+</ul>
+<p>depends_on:</p>
+<p>mysql:</p>
+<p>condition: service_healthy</p>
+<p>redis:</p>
+<p>condition: service_healthy</p>
+<p>restart: on-failure:5</p>
+
+<p>mysql:</p>
+<p>image: mysql/mysql-server:8.0</p>
+<p>container_name: Mixpost-DB</p>
+<p>environment:</p>
+<p>MYSQL_DATABASE: mixpost</p>
+<p>MYSQL_USER: mixpostuser</p>
+<p>MYSQL_PASSWORD: mixpostpass</p>
+<p>volumes:</p>
+<ul>
+<li>/volume1/docker/mixpost/db:/var/lib/mysql:rw</li>
+</ul>
+<p>restart: on-failure:5</p>
+
+<p>redis:</p>
+<p>image: redis:latest</p>
+<p>container_name: Mixpost-REDIS</p>
+<p>command: redis-server --appendonly yes --replica-read-only no</p>
+<p>volumes:</p>
+<ul>
+<li>/volume1/docker/mixpost/redis:/data:rw</li>
+</ul>
+<p>restart: on-failure:5</p>
+</code></pre>
+
+<h3>Step 6: Access Mixpost</h3>
+<ul>
+<li>URL: https://mixpost.yourname.synology.me</li>
+<li>Default login: admin@example.com / changeme</li>
+</ul>
+
+<h3>Step 7: Configure</h3>
+<p>1. Change default password</p>
+<p>2. Add social media accounts</p>
+<p>3. Set up posting schedule</p>
+
+---
+
+<h2>Generate APP_KEY</h2>
+
+<p>Use: https://mixpost.app/encryption-key-generator</p>
+
+---
+
+<h2>OpenClaw Integration</h2>
+
+<p>To integrate with OpenClaw:</p>
+<p>1. Use Mixpost API (has public API)</p>
+<p>2. Create OpenClaw skill wrapper</p>
+<p>3. Connect via HTTP requests</p>
+
+<strong>API Endpoints:</strong>
+<ul>
+<li>POST /api/v1/posts - Create post</li>
+<li>GET /api/v1/posts - List posts</li>
+<li>DELETE /api/v1/posts/{id} - Delete post</li>
+</ul>
+
+---
+
+<h2>Troubleshooting</h2>
+
+<ul>
+<li><strong>Login timeout:</strong> Ensure MySQL/Redis are healthy</li>
+<li><strong>Can't connect:</strong> Check reverse proxy and firewall</li>
+<li><strong>Images not loading:</strong> Check storage folder permissions</li>
+</ul>
+
+---
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://docs.mixpost.app/">Official Docs</a></li>
+<li><a href="https://mariushosting.com/how-to-install-mixpost-on-your-synology-nas/">Marius Hosting Guide</a></li>
+<li><a href="https://github.com/inovector/mixpost">GitHub</a></li>
+</ul>
+
+---
+
+<em>Last Updated: February 23, 2026</em>
+
+</body>
+</html>

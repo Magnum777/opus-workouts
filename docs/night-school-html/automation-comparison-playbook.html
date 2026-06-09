@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>automation-comparison Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Automation Tools Comparison</h1>
+
+<strong>Research Date:</strong> February 23, 2026  
+<strong>Topic:</strong> IFTTT vs Zapier vs n8n vs Make  
+<strong>Source:</strong> Web Research
+
+---
+
+<h2>Quick Comparison</h2>
+
+<p>| Tool | Cost | Best For | Complexity |</p>
+<p>|------|------|----------|------------|</p>
+<p>| <strong>IFTTT</strong> | Free (limited) | Simple 1-step automations | Very Easy |</p>
+<p>| <strong>Zapier</strong> | $20+/mo | Mainstream, lots of integrations | Easy |</p>
+<p>| <strong>Make</strong> | $9+/mo | Visual workflows, intermediate | Medium |</p>
+<p>| <strong>n8n</strong> | <strong>Free</strong> (self-hosted) | Advanced, custom, free | Medium-Hard |</p>
+
+---
+
+<h2>For Our Stack</h2>
+
+<h3>We Already Have: n8n</h3>
+<ul>
+<li><strong>Self-hosted on NAS</strong> (free!)</li>
+<li><strong>Highly customizable</strong></li>
+<li><strong>API access</strong></li>
+<li><strong>Can connect to everything</strong></li>
+</ul>
+
+<h3>When to Use What</h3>
+
+<p>| Scenario | Tool |</p>
+<p>|----------|------|</p>
+<p>| Simple: If this → that | IFTTT |</p>
+<p>| Mainstream integrations | Zapier |</p>
+<p>| Visual complex workflows | Make |</p>
+<p>| <strong>Our choice: Custom automation</strong> | <strong>n8n</strong> ✅ |</p>
+
+---
+
+<h2>n8n Capabilities</h2>
+
+<p>n8n can already:</p>
+<ul>
+<li>Watch RSS feeds → Post to social</li>
+<li>Webhook triggers → Send notifications</li>
+<li>HTTP requests → API integrations</li>
+<li>Schedule tasks → Run automatically</li>
+</ul>
+
+---
+
+<h2>Recommendation</h2>
+
+<strong>Stick with n8n</strong> - we already have it! 
+
+<p>We can build:</p>
+<ul>
+<li>WordPress → Postiz → Social (when we install Mixpost)</li>
+<li>Webhook → Discord notification</li>
+<li>Schedule → Check sites → Alert</li>
+</ul>
+
+<p>No need for Zapier/IFTTT when n8n is free and powerful.</p>
+
+---
+
+<em>Last Updated: February 23, 2026</em>
+
+</body>
+</html>

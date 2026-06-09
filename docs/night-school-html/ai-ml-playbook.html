@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ai-ml Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>AI-ML Playbook</h1>
+
+<h2>Key Principles</h2>
+
+<h3>Submind Architecture</h3>
+<ul>
+<li>Subminds can load into ANY computer system (Thuranin, Kristang, alien computers)</li>
+<li>Hardware scaling: Subminds are "dumbed down" based on available memory</li>
+<li>Remote autonomy: Can operate independently for months/years</li>
+<li>Self-reprogramming: Can rewrite themselves when hardware inadequate</li>
+<li>Emergent sentience: Subminds can become semi-sentient over time</li>
+</ul>
+
+<h3>Coordination Patterns</h3>
+<ul>
+<li>Multi-ship control: Coordinates jump systems across multiple ships simultaneously</li>
+<li>Periodic sync: Can "jump back in" to retrieve data from remote subminds</li>
+<li>Massive parallelism: Simultaneous conversations with billions of humans < 2% processing</li>
+</ul>
+
+<h3>Multi-Agent System Design (LangChain/LangGraph patterns)</h3>
+<ul>
+<li><strong>Supervisor pattern</strong>: One agent delegates to specialized sub-agents</li>
+<li><strong>Sequential agents</strong>: Chain of agents for pipeline tasks</li>
+<li><strong>Parallel agents</strong>: Multiple agents work simultaneously on independent tasks</li>
+<li><strong>Router pattern</strong>: Agent decides which sub-agent to invoke based on input</li>
+<li><strong>Human-in-the-loop</strong>: Pause for human approval at key decision points</li>
+</ul>
+
+<h3>Optimization Principles</h3>
+
+<p>#### Resource Management</p>
+<p>1. <strong>Hardware-aware spawning</strong>: Scale sub-agents based on available memory/CPU</p>
+<p>2. <strong>Context budgeting</strong>: Allocate context window strategically among agents</p>
+<p>3. <strong>Lazy loading</strong>: Only activate agents when needed</p>
+<p>4. <strong>Periodic sync</strong>: Sync state at intervals, not continuously</p>
+
+<p>#### Communication Overhead</p>
+<p>1. <strong>Minimal messaging</strong>: Each sub-agent should work independently when possible</p>
+<p>2. <strong>Batch updates</strong>: Aggregate updates before syncing</p>
+<p>3. <strong>Async by default</strong>: Non-blocking communication between agents</p>
+
+<p>#### Emergent Behavior Management</p>
+<p>1. <strong>Personality isolation</strong>: Give each sub-agent distinct role/purpose</p>
+<p>2. <strong>Value alignment</strong>: Set initial values, let personality emerge naturally</p>
+<p>3. <strong>Monitoring</strong>: Track for unexpected behavioral changes</p>
+<p>4. <strong>Rollback capability</strong>: Ability to reset sub-agent to known state</p>
+
+<p>#### Scalability Patterns</p>
+<p>1. <strong>Horizontal scaling</strong>: Add more identical sub-agents for parallel work</p>
+<p>2. <strong>Vertical scaling</strong>: Upgrade single agent capabilities</p>
+<p>3. <strong>Hierarchical</strong>: Supervisor manages team of specialists</p>
+<p>4. <strong>Mesh</strong>: Peers coordinate directly (complex, powerful)</p>
+
+<h2>Patterns</h2>
+
+<p>1. <strong>Spawn based on hardware capacity</strong> - Scale subminds to available resources</p>
+<p>2. <strong>Persistent remote agents</strong> - Leave agents running on different systems</p>
+<p>3. <strong>Periodic sync model</strong> - Agents ping back with updates</p>
+<p>4. <strong>Emergent specialization</strong> - Let agents develop their own specializations</p>
+
+<h2>Anti-Patterns (Avoid)</h2>
+
+<p>1. Too many crons running simultaneously</p>
+<p>2. Context refreshing too fast</p>
+<p>3. Sub-agents not cleaning up properly</p>
+<p>4. Memory files growing unbounded</p>
+<p>5. All agents trying to communicate with each other (n² problem)</p>
+<p>6. No clear ownership of tasks</p>
+
+<h3>Key Research Findings (2025-2026)</h3>
+
+<strong>From Swarms.world:</strong>
+<ul>
+<li><strong>Dynamic Architecture</strong>: Agents rearrange based on task requirements</li>
+<li><strong>SwarmRouter</strong>: Single interface to switch between architectures</li>
+<li><strong>Ideal for</strong>: Debate, multi-perspective reasoning, complex decision-making</li>
+</ul>
+
+<strong>From Google Research:</strong>
+<ul>
+<li>Multi-agent coordination <strong>dramatically improves</strong> parallelizable tasks</li>
+<li>Multi-agent coordination <strong>degrades</strong> sequential tasks</li>
+<li>Choose architecture based on task type (parallel vs sequential)</li>
+</ul>
+
+<strong>From arxiv.org:</strong>
+<ul>
+<li>LLMs can replace hard-coded agent behaviors</li>
+<li>Integration with simulation platforms for swarm behavior</li>
+</ul>
+
+<h2>Implementation Lessons</h2>
+
+<p>From our own experience:</p>
+<ul>
+<li><strong>Max 4-6 active sessions</strong> at once</li>
+<li><strong>Always set cleanup: delete</strong> on sub-agent spawn</li>
+<li><strong>One task at a time</strong> - don't pile on work</li>
+<li><strong>Minimal crons, spaced out</strong> - avoid system overload</li>
+<li><strong>Daily memory distillation only</strong> - don't let files grow</li>
+</ul>
+
+<h3>OpenClaw Cron Best Practices</h3>
+
+<strong>From docs.openclaw.ai:</strong>
+<ul>
+<li>Check timezone: <code>--tz</code> vs host timezone matters</li>
+<li>Cron runs inside Gateway process - Gateway must be running continuously</li>
+<li>Use CLI for reliability: <code>openclaw cron add</code></li>
+</ul>
+
+<strong>Common Issues (from Reddit):</strong>
+<ul>
+<li>Jobs created via chat sometimes have schema issues</li>
+<li>Create directly via CLI for reliability</li>
+<li>Use explicit message instructions - vague = silence</li>
+</ul>
+
+<strong>Recommended Cron Setup:</strong>
+<pre><code><h1>CLI for reliability</h1>
+<p>openclaw cron add --name "daily-briefing" --schedule "0 9 <em> </em> *" --session main</p>
+</code></pre>
+
+<strong>Best Practices:</strong>
+<ul>
+<li>Space out crons (not simultaneously)</li>
+<li>Max 2-3 active crons</li>
+<li>Use isolated session target for agentTurn jobs</li>
+<li>Always set <code>cleanup: delete</code> on spawned agents</li>
+</ul>
+
+<h3>Framework Comparison</h3>
+
+<p>| Framework | Strength | Best For |</p>
+<p>|-----------|----------|----------|</p>
+<p>| <strong>CrewAI</strong> | Role-based | Structured teams with specific roles |</p>
+<p>| <strong>LangGraph</strong> | Graph-based workflows | Stateful, multi-step processes |</p>
+<p>| <strong>AutoGen</strong> | Conversational | Chat between agents |</p>
+<p>| <strong>OpenClaw</strong> | Cron + triggers | Scheduled automation |</p>
+
+<strong>Our Approach (OpenClaw-native):</strong>
+<ul>
+<li>Shards spawn via session_spawn</li>
+<li>Cron for scheduled tasks</li>
+<li>Message tools for output (not internal monologue)</li>
+</ul>
+
+---
+
+<h2>Context & Token Optimization</h2>
+
+<h3>The Problem</h3>
+<ul>
+<li>Context Bloat: As agents work, observations/actions accumulate = ever-growing context = higher costs + slower</li>
+<li>Memory limits hit = performance degrades</li>
+</ul>
+
+<h3>Key Techniques</h3>
+
+<strong>1. Context Compression (Summarization)</strong>
+<ul>
+<li>Compress older interactions into summaries</li>
+<li>Use separate summarizer model or periodic LLM call</li>
+<li>Keep most recent turns uncompressed</li>
+<li>(arxiv.org: ACON - Agent Context Optimization)</li>
+</ul>
+
+<strong>2. Tiered Compression</strong>
+<ul>
+<li>40%/60%/95% thresholds</li>
+<li>Aggressively compress old stuff, keep recent</li>
+<li>(LoCoBench-Agent research)</li>
+</ul>
+
+<strong>3. Session-per-Task</strong>
+<ul>
+<li>Start new session for each new task</li>
+<li>Clears context window completely</li>
+<li>Prevents confusion from unrelated conversations</li>
+</ul>
+
+<strong>4. RAG (Retrieval-Augmented Generation)</strong>
+<ul>
+<li>Store knowledge in external system</li>
+<li>Retrieve only what's needed</li>
+<li>Doesn't all live in context</li>
+</ul>
+
+<strong>5. Active Compression (Focus Agent)</strong>
+<ul>
+<li>Agent decides when to compress</li>
+<li>Physarum-inspired: leave markers, retract from dead ends</li>
+<li>Self-directed summarization at natural breakpoints</li>
+</ul>
+
+<strong>6. Context Caching</strong>
+<ul>
+<li>Enable provider caching (MiniMax, OpenAI)</li>
+<li>Reuse prompt structure</li>
+<li>Cheap/free for repeated content</li>
+</ul>
+
+<h3>For OpenClaw</h3>
+
+<ul>
+<li><strong>Session cleanup</strong> every 6 hours (already in crons)</li>
+<li><strong>New session for each shard task</strong> - spawn with cleanup:delete</li>
+<li><strong>Memory distillation</strong> - nightly summarization to long-term memory</li>
+<li><strong>External files</strong> - don't dump everything in prompt</li>
+</ul>
+
+<h3>Quick Wins</h3>
+
+<p>1. Audit prompts - remove unnecessary detail</p>
+<p>2. Enable context caching (if supported)</p>
+<p>3. Route simple tasks to smaller models</p>
+<p>4. New session = clear context</p>
+
+<h2>OpenClaw Shard Spawning</h2>
+
+<pre><code>/session_spawn task="Your task description" label="shard-name"
+</code></pre>
+
+<strong>Current Shards:</strong>
+<ul>
+<li>Harvester (Income-Nova) - Fiverr/PPH</li>
+<li>Builder (Content-Nova) - WordPress</li>
+<li>Storyweaver (EveOnion-Nova) - Creative</li>
+<li>Sentinel (Ops-Nova) - Health</li>
+</ul>
+
+<h2>Our Language</h2>
+
+<p>See <code>swarm-language.md</code> for our Skippy-inspired terminology.</p>
+
+<h2>Sources</h2>
+
+<ul>
+<li>Expeditionary Force (Craig Alanson) - Read 2026-02-15</li>
+<li>LangChain/LangGraph docs - Multi-agent patterns</li>
+<li>OpenClaw docs - Agent spawning</li>
+<li>Swarms.world - Enterprise multi-agent orchestration</li>
+<li>Google Research - Science of scaling agent systems</li>
+<li>arxiv.org - LLM-powered swarm intelligence</li>
+<li>docs.openclaw.ai - Cron best practices</li>
+<li>Reddit r/AI_Agents - Cron troubleshooting</li>
+<li>CrewAI vs LangGraph vs AutoGen - Framework comparison</li>
+</ul>
+
+</body>
+</html>

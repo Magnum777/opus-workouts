@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>MONROE DOCTRINE — Kybernauts Strategic Plan</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+ <style>
+ :root {
+ --kyber-black: #0a0a0a;
+ --kyber-red: #e4090c;
+ --kyber-gray: #1a1a1a;
+ --kyber-gray-light: #252525;
+ --text: #e0e0e0;
+ --text-muted: #888888;
+ --warning: #ff9933;
+ --success: #00cc66;
+ }
+
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+
+ body {
+ background-color: var(--kyber-black);
+ background-image: 
+ radial-gradient(ellipse at 20% 20%, rgba(228,9,12,.12) 0%, transparent 50%),
+ radial-gradient(ellipse at 80% 80%, rgba(228,9,12,.06) 0%, transparent 50%);
+ color: var(--text);
+ font-family: 'Roboto Condensed', 'Oswald', sans-serif;
+ line-height: 1.6;
+ }
+
+ header {
+ background: linear-gradient(180deg, var(--kyber-gray) 0%, var(--kyber-black) 100%);
+ padding: 2rem;
+ border-bottom: 3px solid var(--kyber-red);
+ text-align: center;
+ }
+
+ h1 {
+ font-family: 'Oswald', sans-serif;
+ font-size: 3rem;
+ font-weight: 700;
+ text-transform: uppercase;
+ letter-spacing: 6px;
+ color: var(--text);
+ }
+
+ h1 span { color: var(--kyber-red); }
+
+ .subtitle {
+ color: var(--text-muted);
+ font-size: 1.1rem;
+ text-transform: uppercase;
+ letter-spacing: 3px;
+ margin-top: 0.5rem;
+ }
+
+ .container {
+ max-width: 1000px;
+ margin: 0 auto;
+ padding: 2rem;
+ }
+
+ section {
+ margin-bottom: 3rem;
+ }
+
+ h2 {
+ font-family: 'Oswald', sans-serif;
+ font-size: 1.8rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ color: var(--kyber-red);
+ border-bottom: 2px solid var(--kyber-red);
+ padding-bottom: 0.5rem;
+ margin-bottom: 1.5rem;
+ }
+
+ h3 {
+ font-family: 'Oswald', sans-serif;
+ font-size: 1.2rem;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ color: var(--text);
+ margin-bottom: 1rem;
+ }
+
+ p { color: var(--text-muted); margin-bottom: 1rem; }
+
+ .box {
+ background: var(--kyber-gray);
+ padding: 1.5rem;
+ border-radius: 4px;
+ margin: 1rem 0;
+ border-left: 4px solid var(--kyber-red);
+ }
+
+ .box.warning { border-color: var(--warning); }
+ .box.success { border-color: var(--success); }
+ .box.primary { border-color: var(--kyber-red); background: rgba(228,9,12,.15); }
+ .box.veles { border-color: #9933ff; }
+ .box.svarog { border-color: #33ff99; }
+ .box strong { color: var(--text); }
+
+ .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+ .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+ .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+ @media (max-width: 768px) {
+ .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+ }
+
+ .system-list {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.5rem;
+ margin: 1rem 0;
+ }
+
+ .system {
+ background: var(--kyber-gray-light);
+ padding: 0.5rem 1rem;
+ border-radius: 4px;
+ font-size: 0.9rem;
+ border: 1px solid var(--kyber-gray);
+ }
+
+ .system.home { border-color: var(--kyber-red); background: rgba(228,9,12,.2); }
+ .system.border { border-color: var(--warning); background: rgba(255,153,51,.1); }
+ .system.veles { border-color: #9933ff; background: rgba(153,51,255,.15); }
+ .system.svarog { border-color: #33ff99; background: rgba(51,255,153,.15); }
+
+ table {
+ width: 100%;
+ border-collapse: collapse;
+ margin: 1rem 0;
+ background: var(--kyber-gray);
+ }
+
+ th, td {
+ padding: 0.8rem;
+ text-align: left;
+ border-bottom: 1px solid var(--kyber-black);
+ }
+
+ th {
+ background: var(--kyber-black);
+ color: var(--kyber-red);
+ text-transform: uppercase;
+ font-size: 0.85rem;
+ letter-spacing: 1px;
+ font-family: 'Oswald', sans-serif;
+ }
+
+ ul { list-style: none; padding-left: 0; }
+ ul li {
+ padding: 0.5rem 0;
+ padding-left: 1.5rem;
+ position: relative;
+ color: var(--text-muted);
+ }
+ ul li::before {
+ content: "▸";
+ color: var(--kyber-red);
+ position: absolute;
+ left: 0;
+ }
+
+ .doctrine {
+ text-align: center;
+ padding: 2rem;
+ background: linear-gradient(180deg, rgba(228,9,12,.15) 0%, transparent 100%);
+ border-top: 2px solid var(--kyber-red);
+ border-bottom: 2px solid var(--kyber-red);
+ margin: 2rem 0;
+ }
+
+ .doctrine h2 {
+ border: none;
+ font-size: 2.5rem;
+ color: var(--text);
+ }
+
+ .doctrine p {
+ font-size: 1.3rem;
+ font-style: italic;
+ color: var(--text-muted);
+ }
+
+ .ship-card {
+ background: var(--kyber-gray);
+ padding: 1rem;
+ border-radius: 4px;
+ text-align: center;
+ border: 1px solid var(--kyber-gray-light);
+ }
+
+ .ship-card .icon {
+ font-size: 2rem;
+ margin-bottom: 0.5rem;
+ }
+
+ .ship-card .name {
+ font-family: 'Oswald', sans-serif;
+ text-transform: uppercase;
+ font-size: 0.9rem;
+ letter-spacing: 1px;
+ color: var(--text);
+ }
+
+ .ship-card .role {
+ font-size: 0.8rem;
+ color: var(--text-muted);
+ }
+
+ .ship-card .doctrine-tag {
+ display: inline-block;
+ background: var(--kyber-red);
+ color: white;
+ font-size: 0.7rem;
+ padding: 0.2rem 0.5rem;
+ border-radius: 3px;
+ margin-top: 0.3rem;
+ text-transform: uppercase;
+ }
+
+ .ship-card.new-player { border-color: var(--success); }
+ .ship-card.new-player .doctrine-tag { background: var(--success); }
+
+ .ship-card.counter { border-color: var(--warning); }
+ .ship-card.counter .doctrine-tag { background: var(--warning); color: black; }
+
+ footer {
+ background: var(--kyber-gray);
+ padding: 2rem;
+ text-align: center;
+ border-top: 1px solid var(--kyber-gray-light);
+ }
+
+ footer p {
+ color: var(--text-muted);
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ font-size: 0.9rem;
+ }
+
+ .updated { color: var(--kyber-red); }
+
+ .stat-highlight {
+ font-family: 'Oswald', sans-serif;
+ font-size: 2rem;
+ color: var(--kyber-red);
+ }
+
+ .tach { color: #9933ff; }
+ .svarog { color: #33ff99; }
+ </style>
+</head>
+<body>
+
+<header>
+ <h1>Monroe <span>Doctrine</span></h1>
+ <p class="subtitle">Kybernauts Strategic Operations — Full Triangle Control</p>
+</header>
+
+<div class="container">
+
+ <section>
+ <h2>What Dies in Pochven?</h2>
+ <div class="box primary">
+ <h3>The Meta — 870K+ Kills</h3>
+ <div class="grid-4" style="margin-top: 1rem;">
+ <div style="text-align: center;"><div class="stat-highlight">114K</div><div>Frigates</div></div>
+ <div style="text-align: center;"><div class="stat-highlight">89K</div><div>Interdictors</div></div>
+ <div style="text-align: center;"><div class="stat-highlight">52K</div><div>Destroyers</div></div>
+ <div style="text-align: center;"><div class="stat-highlight">41K</div><div>Cruisers</div></div>
+ <div style="text-align: center;"><div class="stat-highlight">27K</div><div>Battleships</div></div>
+ <div style="text-align: center;"><div class="stat-highlight">21K</div><div>HAC</div></div>
+ </div>
+ <p style="margin-top: 1rem; text-align: center;"><strong>POCHVEN META = FAST. TACKLE WINS.</strong></p>
+ </div>
+ </section>
+
+ <section>
+ <h2>Threat Groups</h2>
+ <div class="grid-2">
+ <div class="box">
+ <h3>Active in Triangle</h3>
+ <ul>
+ <li><strong>Observatory Great Bear</strong> — RU multiboxers</li>
+ <li><strong>7.62</strong> — Multi-TZ gigaboxers</li>
+ <li><strong>Fraternity</strong> — Nullsec blobs</li>
+ <li><strong>Useless Idea</strong> — Polish, Ship Happens alliance, active in Pochven</li>
+ <li><strong>INIT./Baba Yaga</strong> — Svarog presence</li>
+ <li><strong>Visitors</strong> — Goons, Horde</li>
+ </ul>
+ </div>
+ <div class="box warning">
+ <h3>What They Fly</h3>
+ <ul>
+ <li>HACs: Tengu, Ishtar, Vagabond</li>
+ <li>T3C: Loki, Proteus, Legion</li>
+ <li>Battleships: <strong>Barghest</strong>, Raven, Rokh</li>
+ <li>Interdictors: Sabre, Eris</li>
+ <li>Heavy neut Geddon</li>
+ </ul>
+ </div>
+ </div>
+ </section>
+
+ <section>
+ <h2>DOCTRINE — Fast Attack Wins</h2>
+
+ <h3>ASSAULT FRIGATES (T2 AF) — SPEED KILLS</h3>
+ <div class="grid-4">
+ <div class="ship-card">
+ <div class="icon">⚔️</div>
+ <div class="name">Enyo</div>
+ <div class="role">Gallente AF</div>
+ <span class="doctrine-tag">T2 AF</span>
+ </div>
+ <div class="ship-card">
+ <div class="icon">⚔️</div>
+ <div class="name">Jaguar</div>
+ <div class="role">Minmatar AF</div>
+ <span class="doctrine-tag">T2 AF</span>
+ </div>
+ <div class="ship-card">
+ <div class="icon">⚔️</div>
+ <div class="name">Vengeance</div>
+ <div class="role">Amarr AF</div>
+ <span class="doctrine-tag">T2 AF</span>
+ </div>
+ <div class="ship-card">
+ <div class="icon">⚔️</div>
+ <div class="name">Harpy</div>
+ <div class="role">Caldari AF</div>
+ <span class="doctrine-tag">T2 AF</span>
+ </div>
+ </div>
+
+ <h3 style="margin-top: 1.5rem;">INTERCEPTORS — FLEET TACKLE</h3>
+ <div class="grid-4">
+ <div class="ship-card">
+ <div class="icon">🏹</div>
+ <div class="name">Crusader</div>
+ <div class="role">Amarr Int</div>
+ </div>
+ <div class="ship-card">
+ <div class="icon">🏹</div>
+ <div class="name">Raptor</div>
+ <div class="role">Caldari Int</div>
+ </div>
+ <div class="ship-card">
+ <div class="icon">🏹</div>
+ <div class="name">Claw</div>
+ <div class="role">Minmatar Int</div>
+ </div>
+ <div class="ship-card">
+ <div class="icon">🏹</div>
+ <div class="name">Stiletto</div>
+ <div class="role">Gallente Int</div>
+ </div>
+ </div>
+
+ <h3 style="margin-top: 1.5rem;">T2 FAST CRUISERS</h3>
+ <div class="grid-4">
+ <div class="ship-card">
+ <div class="icon">🚀</div>
+ <div class="name">Kikimora</div>
+ <div class="role">Trig Scout</div>
+ <span class="doctrine-tag">PRIMARY</span>
+ </div>
+ <div class="ship-card">
+ <div class="icon">🏹</div>
+ <div class="name">Jackdaw</div>
+ <div class="role">T3D Kite</div>
+ </div>
+ <div class="ship-card">
+ <div class="icon">🏹</div>
+ <div class="name">Hecate</div>
+ <div class="role">T3D Brawl</div>
+ </div>
+ <div class="ship-card">
+ <div class="icon">🏹</div>
+ <div class="name">Svipul</div>
+ <div class="role">T3D Utility</div>
+ </div>
+ </div>
+
+ <h3 style="margin-top: 1.5rem;">T1 FAST TACKLE (NEWBRO)</h3>
+ <div class="grid-4">
+ <div class="ship-card new-player">
+ <div class="icon">⚡</div>
+ <div class="name">Slasher</div>
+ <div class="role">T1 Tackle</div>
+ <span class="doctrine-tag">NEWBRO</span>
+ </div>
+ <div class="ship-card new-player">
+ <div class="icon">⚡</div>
+ <div class="name">Condor</div>
+ <div class="role">T1 Tackle</div>
+ <span class="doctrine-tag">NEWBRO</span>
+ </div>
+ <div class="ship-card new-player">
+ <div class="icon">⚡</div>
+ <div class="name">Atron</div>
+ <div class="role">T1 Tackle</div>
+ <span class="doctrine-tag">NEWBRO</span>
+ </div>
+ <div class="ship-card new-player">
+ <div class="icon">⚡</div>
+ <div class="name">Executioner</div>
+ <div class="role">T1 Tackle</div>
+ <span class="doctrine-tag">NEWBRO</span>
+ </div>
+ </div>
+
+ <h3 style="margin-top: 1.5rem;">SUPPORT</h3>
+ <div class="grid-4">
+ <div class="ship-card">
+ <div class="icon">⭕</div>
+ <div class="name">Cormorant</div>
+ <div class="role">Interdictor</div>
+ </div>
+ <div class="ship-card">
+ <div class="icon">🛡️</div>
+ <div class="name">Magus</div>
+ <div class="role">Links</div>
+ </div>
+ <div class="ship-card">
+ <div class="icon">🛰️</div>
+ <div class="name">Typhoon</div>
+ <div class="role">Fleet BS</div>
+ </div>
+ <div class="ship-card">
+ <div class="icon">🚢</div>
+ <div class="name">Tengu</div>
+ <div class="role">HAC</div>
+ </div>
+ </div>
+ </section>
+
+ <section>
+ <h2>Full Triangle — Ship Caches</h2>
+ <p>We need reach into Veles and Svarog, not just Perun.</p>
+
+ <h3 style="color: var(--kyber-red);">PERUN KRAI (Home)</h3>
+ <div class="system-list">
+ <div class="system home">KINO</div>
+ <div class="system">ICHORIYA</div>
+ <div class="system">KAUNOKKA</div>
+ <div class="system">KONOLA</div>
+ <div class="system">NANI</div>
+ <div class="system">VALE</div>
+ </div>
+
+ <h3 style="color: #9933ff;">VELES KRAI (East)</h3>
+ <div class="system-list">
+ <div class="system veles">ARCHEE (Home)</div>
+ <div class="system veles">AHTILA</div>
+ <div class="system veles">SENDA</div>
+ <div class="system veles">ARVASARAS</div>
+ <div class="system veles">SAKENTA</div>
+ </div>
+
+ <h3 style="color: #33ff99;">SVAROG KRAI (West)</h3>
+ <div class="system-list">
+ <div class="system svarog">NIARJA (Home)</div>
+ <div class="system svarog">OTANUOMI</div>
+ <div class="system svarog">URHINICHI</div>
+ </div>
+
+ <div class="grid-3" style="margin-top: 1.5rem;">
+ <div class="box">
+ <h3>KINO (PRIMARY)</h3>
+ <ul>
+ <li>Kikimora x15</li>
+ <li>AF (Enyo/Jaguar) x8</li>
+ <li>Interceptors x10</li>
+ <li>T1 Tackle x20</li>
+ <li>Jackdaw x8</li>
+ <li>Hecate x6</li>
+ <li>Magus x4</li>
+ <li>Cormorant x4</li>
+ </ul>
+ </div>
+ <div class="box veles">
+ <h3>VELES BORDER</h3>
+ <ul>
+ <li>Arvasaras — HIGH</li>
+ <li>Sakenta — HIGH</li>
+ <li>5 Kikimora, 5 Int, 5 AF</li>
+ <li>3 T3D, 2 Links</li>
+ </ul>
+ </div>
+ <div class="box svarog">
+ <h3>SVAROG BORDER</h3>
+ <ul>
+ <li>Otanuomi — HIGH</li>
+ <li>Urhinichi — MED</li>
+ <li>5 Kikimora, 5 Int, 5 AF</li>
+ <li>3 T3D, 2 Links</li>
+ </ul>
+ </div>
+ </div>
+ </section>
+
+ <section>
+ <h2>Response Doctrine</h2>
+ <div class="grid-2">
+ <div class="box primary">
+ <h3>SPEAK SOFTLY</h3>
+ <ul>
+ <li>5-10 pilots</li>
+ <li>15-30 min form</li>
+ <li>AF + Kikimora + T1</li>
+ <li>Newbros welcome</li>
+ <li>Goal: D-scan, tackle</li>
+ </ul>
+ </div>
+ <div class="box warning">
+ <h3>CARRY A BIG STICK</h3>
+ <ul>
+ <li>15-25 pilots</li>
+ <li>30-60 min form</li>
+ <li>Typhoon + T3D fleet</li>
+ <li>Links + logistics</li>
+ <li>Goal: Escalation</li>
+ </ul>
+ </div>
+ </div>
+ </section>
+
+ <section>
+ <h2>Budget</h2>
+ <table>
+ <thead>
+ <tr><th>Item</th><th>Qty</th><th>Est</th><th>Total</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Kikimora</td><td>40</td><td>15M</td><td>600M</td></tr>
+ <tr><td>Assault Frigates (T2)</td><td>30</td><td>25M</td><td>750M</td></tr>
+ <tr><td>Interceptors</td><td>20</td><td>20M</td><td>400M</td></tr>
+ <tr><td>T1 Fast Tackle</td><td>40</td><td>3M</td><td>120M</td></tr>
+ <tr><td>Jackdaw</td><td>15</td><td>40M</td><td>600M</td></tr>
+ <tr><td>Hecate</td><td>10</td><td>50M</td><td>500M</td></tr>
+ <tr><td>Magus</td><td>8</td><td>60M</td><td>480M</td></tr>
+ <tr><td>Cormorant</td><td>8</td><td>20M</td><td>160M</td></tr>
+ <tr><td>Typhoon</td><td>6</td><td>150M</td><td>900M</td></tr>
+ <tr><td>Ammo/Fits</td><td>-</td><td>-</td><td>1B</td></tr>
+ <tr><td><strong>TOTAL</strong></td><td></td><td></td><td><strong>~5.5B ISK</strong></td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section>
+ <div class="doctrine">
+ <h2>MONROE DOCTRINE</h2>
+ <p>Fast attack wins.<br>Full triangle reach.<br>Swarm and tackle.</p>
+ <p style="margin-top: 1rem; color: var(--kyber-red); font-family: 'Oswald', sans-serif; font-size: 1.5rem;">SPEAK SOFTLY — AND CARRY A BIG STICK</p>
+ </div>
+ </section>
+
+</div>
+
+<footer>
+ <p><span class="updated">Updated:</span> March 5, 2026</p>
+ <p>WE ARE KYBERNAUTS</p>
+</footer>
+
+</body>
+</html>

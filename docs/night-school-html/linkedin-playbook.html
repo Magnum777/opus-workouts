@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>linkedin Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>LinkedIn Integration Playbook</h1>
+
+<strong>Research Date:</strong> February 21, 2026  
+<strong>Topic:</strong> LinkedIn Automation & API Integration for AI Agents  
+<strong>Tier:</strong> V1-V2 (Starter to Pro)
+
+---
+
+<h2>Executive Summary</h2>
+
+<p>LinkedIn offers a Marketing API program that allows authorized developers to build automation tools for posting, advertising, lead generation, and analytics. However, LinkedIn has strict policies against unauthorized automation—using unofficial tools can result in account restrictions. For the AI Co-Founder Stack, the recommended approach combines LinkedIn's official Marketing API for authorized use cases, supplemented by safe automation tools for content scheduling and engagement.</p>
+
+---
+
+<h2>LinkedIn Marketing API Overview</h2>
+
+<h3>Official Capabilities (via Marketing API Program)</h3>
+
+<p>LinkedIn's Marketing API provides access to:</p>
+
+<p>| Capability | Description |</p>
+<p>|------------|-------------|</p>
+<p>| <strong>Ad Management</strong> | Create, manage, and optimize advertising campaigns |</p>
+<p>| <strong>Lead Gen Forms</strong> | Submit leads directly from LinkedIn forms to CRMs |</p>
+<p>| <strong>Organization Pages</strong> | Manage company pages and employees |</p>
+<p>| <strong>Content Publishing</strong> | Post updates, articles, and media (requires approval) |</p>
+<p>| <strong>Analytics</strong> | Fetch performance metrics for organic and paid content |</p>
+<p>| <strong>Audiences</strong> | Create and manage target audiences |</p>
+
+<h3>Access Requirements</h3>
+
+<p>1. <strong>LinkedIn Developer Account</strong> - Free to apply</p>
+<p>2. <strong>Marketing API Program</strong> - Requires business justification</p>
+<p>3. <strong>App Review</strong> - LinkedIn reviews each use case</p>
+<p>4. <strong>Partner Program</strong> - For full access (typically for agencies/marketing platforms)</p>
+
+<strong>Note:</strong> Individual developer accounts have limited API quotas. Full posting capabilities require partnership approval.
+
+---
+
+<h2>Automation Tools Comparison</h2>
+
+<h3>Official/Compliant Options</h3>
+
+<p>| Tool | Type | Key Features | Pricing |</p>
+<p>|------|------|--------------|---------|</p>
+<p>| <strong>LinkedIn Native Scheduler</strong> | Built-in | Schedule posts up to 3 months ahead, free | Free |</p>
+<p>| <strong>LinkedIn Marketing API</strong> | Official API | Full automation, requires approval | Free (API) + partnership fees |</p>
+<p>| <strong>Postiz</strong> | Third-party | 28+ platform scheduling, LinkedIn included | Free tier, $15+/mo pro |</p>
+<p>| <strong>Buffer</strong> | Third-party | Simple scheduling, LinkedIn supported | Free tier, $15+/mo |</p>
+
+<h3>Third-Party Automation Tools (Use with Caution)</h3>
+
+<p>| Tool | Features | Safety Rating | Pricing |</p>
+<p>|------|----------|---------------|---------|</p>
+<p>| <strong>HeyReach</strong> | Multi-account, campaigns, CRM integration | ⚠️ Medium | $39/mo |</p>
+<p>| <strong>Taplio</strong> | AI content generation, scheduling | ⚠️ Medium | $29/mo |</p>
+<p>| <strong>Supergrow</strong> | AI post creation, analytics | ⚠️ Medium | $25/mo |</p>
+<p>| <strong>Dux-Soup</strong> | Automated connection requests | ⚠️ Low | €30/mo |</p>
+<p>| <strong>PhantomBuster</strong> | Data extraction, outreach | ⚠️ Medium | €29/mo |</p>
+
+<strong>⚠️ Warning:</strong> LinkedIn actively detects and penalizes automation that violates Terms of Service. Use official APIs or trusted tools with rate limiting.
+
+---
+
+<h2>Recommended Stack for AI Co-Founder</h2>
+
+<h3>V1 (Starter - $25)</h3>
+
+<strong>Approach:</strong> Manual + LinkedIn Native Tools
+<ul>
+<li>Use LinkedIn's built-in scheduler for content planning</li>
+<li>Manually engage with comments and messages</li>
+<li>Track analytics via LinkedIn native analytics</li>
+</ul>
+
+<h3>V2 (Pro - $49-79)</h3>
+
+<strong>Approach:</strong> API + Postiz Integration
+<p>1. <strong>Apply for LinkedIn Marketing API</strong> - Submit developer app with business justification</p>
+<p>2. <strong>Use Postiz</strong> - Schedule posts across platforms including LinkedIn</p>
+<p>3. <strong>AI Content Generation</strong> - Use GPT/Claude to generate LinkedIn posts, then schedule</p>
+<p>4. <strong>Basic Analytics</strong> - Pull engagement metrics weekly</p>
+
+<h3>V3 (Enterprise - $100+)</h3>
+
+<strong>Approach:</strong> Full API Integration
+<ul>
+<li>Custom LinkedIn API integration (requires partnership)</li>
+<li>Lead capture automation via Lead Gen Forms</li>
+<li>CRM integration (HubSpot, Pipedream)</li>
+<li>Advanced analytics dashboard</li>
+</ul>
+
+---
+
+<h2>Implementation Guide</h2>
+
+<h3>Option 1: Postiz Integration (Recommended for V2)</h3>
+
+<p>Postiz supports LinkedIn along with 28+ other platforms:</p>
+
+<p>1. <strong>Sign up</strong> at postiz.app</p>
+<p>2. <strong>Connect LinkedIn</strong> via OAuth (company page + personal account)</p>
+<p>3. <strong>Create workspace</strong> for Layered Media LLC</p>
+<p>4. <strong>Schedule content</strong> using AI-generated posts</p>
+
+<strong>OpenClaw Skill Opportunity:</strong> Create a <code>postiz</code> skill that:
+<ul>
+<li>Authenticates via Postiz API</li>
+<li>Creates posts from AI-generated content</li>
+<li>Fetches analytics data</li>
+</ul>
+
+<h3>Option 2: LinkedIn Marketing API (For V3)</h3>
+
+<p>Steps to access:</p>
+<p>1. Create developer.linkedin.com account</p>
+<p>2. Create app in "My Apps"</p>
+<p>3. Apply for Marketing API product</p>
+<p>4. Submit business justification (Layered Media marketing)</p>
+<p>5. Wait for approval (2-4 weeks typically)</p>
+
+<strong>API Endpoints:</strong>
+<ul>
+<li><code>POST /ugcPosts</code> - Create organic posts</li>
+<li><code>GET /organizationalEntityShare</code> - Get post analytics</li>
+<li><code>POST /adAnalyticsV2</code> - Fetch ad performance</li>
+</ul>
+
+<h3>Option 3: n8n LinkedIn Integration (Self-Hosted)</h3>
+
+<p>n8n has LinkedIn nodes:</p>
+<ul>
+<li><strong>LinkedIn Node</strong> - Post updates, fetch company data</li>
+<li><strong>Custom OAuth</strong> - Requires LinkedIn app credentials</li>
+<li>Rate limited to avoid account restrictions</li>
+</ul>
+
+---
+
+<h2>AI Content Strategy for LinkedIn</h2>
+
+<h3>Post Types That Work</h3>
+
+<p>| Type | Engagement | Best For |</p>
+<p>|------|------------|----------|</p>
+<p>| <strong>Hot Takes</strong> | 🔥🔥🔥 | Thought leadership |</p>
+<p>| <strong>Behind-the-Scenes</strong> | 🔥🔥 | Personal brand |</p>
+<p>| <strong>Tips/Lists</strong> | 🔥🔥 | Value content |</p>
+<p>| <strong>Case Studies</strong> | 🔥🔥 | Proof/credibility |</p>
+<p>| <strong>Questions</strong> | 🔥 | Engagement |</p>
+
+<h3>AI Prompt for LinkedIn Posts</h3>
+
+<pre><code>Write a LinkedIn post about [TOPIC].
+<ul>
+<li>Tone: Professional but conversational</li>
+<li>Length: 150-300 words</li>
+<li>Include: 1-2 line breaks, 3-5 relevant hashtags</li>
+<li>Hook: Start with a compelling statement</li>
+<li>CTA: End with a question or invitation to connect</li>
+</ul>
+</code></pre>
+
+---
+
+<h2>Risk Management</h2>
+
+<h3>What to Avoid</h3>
+
+<p>| ❌ Don't Do | ✅ Instead |</p>
+<p>|-------------|------------|</p>
+<p>| Mass connection requests | Personalized outreach |</p>
+<p>| Automated direct messages | Respond manually to engaged prospects |</p>
+<p>| Scraping member data | Use official APIs |</p>
+<p>| Exceed rate limits | Space out actions (10-15/min max) |</p>
+<p>| Buy connections/followers | Organic growth |</p>
+
+<h3>Account Safety Best Practices</h3>
+
+<p>1. <strong>Warm up new accounts</strong> - Post organically for 2-4 weeks before automating</p>
+<p>2. <strong>Limit actions</strong> - Max 50-100 actions/day initially</p>
+<p>3. <strong>Use official tools</strong> - LinkedIn Scheduler, Marketing API</p>
+<p>4. <strong>Avoid third-party bots</strong> - High ban risk</p>
+<p>5. <strong>Engage authentically</strong> - Real interactions matter</p>
+
+---
+
+<h2>Next Steps</h2>
+
+<p>1. <strong>Immediate:</strong> Set up LinkedIn native scheduler for content</p>
+<p>2. <strong>Short-term:</strong> Create Postiz account, connect LinkedIn</p>
+<p>3. <strong>Medium-term:</strong> Apply for LinkedIn Marketing API</p>
+<p>4. <strong>Long-term:</strong> Build custom OpenClaw skill for LinkedIn posting</p>
+
+---
+
+<h2>Resources</h2>
+
+<ul>
+<li>LinkedIn Developer Portal: developer.linkedin.com</li>
+<li>Marketing API Docs: learn.microsoft.com/en-us/linkedin/marketing</li>
+<li>Postiz: postiz.app</li>
+<li>OpenClaw Skills: Create via skill-creator tool</li>
+</ul>
+
+---
+
+<em>Playbook created: Night School - LinkedIn Integration</em>
+
+</body>
+</html>

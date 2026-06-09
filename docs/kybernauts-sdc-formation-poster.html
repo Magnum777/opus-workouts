@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en" data-route="sdc">
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>Proving Grounds — SDC Formation (KYBERNAUTS)</title>
+
+ <!-- Bootstrap 5.3.3 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+ <!-- Poster Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+ <style>
+ :root{
+ /* Slightly different palette vs Field Guide: more "ink + brass" with trig accents */
+ --paper: #f2e7cf;
+ --paper2:#eadbbd;
+ --ink: #0b0b0e;
+ --ink2: rgba(11,11,14,.84);
+
+ --red: #d61f26;
+ --red2: #ff2a2a;
+ --brass: #caa24a; /* NEW: warm propaganda accent */
+ --brass2:#8b6b22;
+ --line: rgba(11,11,14,.18);
+ --line2: rgba(11,11,14,.32);
+ --white: #ffffff;
+
+ --display: "Oswald", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+ --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+ --wrap: 1120px;
+ --header-h: 78px;
+ }
+
+ html, body { height: 100%; }
+ html { scroll-behavior: smooth; }
+
+ body{
+ background: var(--paper);
+ color: var(--ink);
+ overflow-x: hidden;
+ }
+
+ /* Paper + halftone texture (slightly different vibe) */
+ body::before{
+ content:"";
+ position: fixed;
+ inset: 0;
+ pointer-events: none;
+ background:
+ radial-gradient(circle at 18% 18%, rgba(0,0,0,.05), transparent 54%),
+ radial-gradient(circle at 82% 26%, rgba(0,0,0,.04), transparent 56%),
+ radial-gradient(circle at 35% 78%, rgba(0,0,0,.04), transparent 60%),
+ linear-gradient(180deg, rgba(255,255,255,.22), transparent 40%),
+ repeating-radial-gradient(circle at 12% 18%, rgba(0,0,0,.022) 0 1px, transparent 1px 6px),
+ repeating-linear-gradient(135deg, rgba(11,11,14,.03) 0 2px, transparent 2px 10px);
+ mix-blend-mode: multiply;
+ opacity: .60;
+ z-index: 0;
+ }
+ body > * { position: relative; z-index: 1; }
+
+ .k-wrap{ max-width: var(--wrap); }
+
+ .k-kicker{
+ font-family: var(--mono);
+ text-transform: uppercase;
+ letter-spacing: .18em;
+ font-size: .78rem;
+ color: var(--ink2);
+ }
+
+ .k-title{
+ font-family: var(--display);
+ text-transform: uppercase;
+ letter-spacing: .08em;
+ line-height: .92;
+ margin: 0;
+ }
+ .k-title-xl{
+ font-size: clamp(2.2rem, 4.1vw, 4.2rem);
+ font-weight: 700;
+ }
+ .k-title-lg{
+ font-size: clamp(1.35rem, 2.0vw, 2.1rem);
+ font-weight: 700;
+ }
+
+ .k-body{
+ font-family: var(--mono);
+ color: var(--ink2);
+ font-size: .98rem;
+ line-height: 1.58;
+ }
+
+ .k-rule{ height: 2px; background: var(--ink); opacity: .92; }
+ .k-rule-soft{ height: 1px; background: var(--line2); }
+
+ .k-band{
+ background: var(--ink);
+ color: var(--paper);
+ }
+ .k-band a{
+ color: var(--paper);
+ text-decoration: none;
+ }
+ .k-band a:hover{
+ text-decoration: underline;
+ text-underline-offset: 3px;
+ }
+
+ /* Sticky header */
+ .k-header{
+ position: sticky;
+ top: 0;
+ z-index: 9999;
+ border-bottom: 1px solid rgba(242,231,207,.15);
+ }
+
+ .k-nav{
+ font-family: var(--display);
+ text-transform: uppercase;
+ letter-spacing: .10em;
+ font-weight: 700;
+ font-size: .90rem;
+ }
+ .k-nav .nav-link{
+ color: var(--paper);
+ padding: .55rem .75rem;
+ border: 1px solid rgba(242,231,207,.22);
+ border-radius: 0;
+ margin-right: .35rem;
+ }
+ .k-nav .nav-link:hover{ background: rgba(242,231,207,.08); }
+ .k-nav .nav-link.active{
+ background: var(--red);
+ border-color: var(--red);
+ color: var(--white);
+ }
+
+ section[id]{ scroll-margin-top: calc(var(--header-h) + 14px); }
+
+ /* Poster hero (different geometry) */
+ .k-hero{
+ position: relative;
+ padding: 2.95rem 0 2.25rem;
+ }
+ .k-hero::before{
+ content:"";
+ position:absolute;
+ top: -140px;
+ left: -200px;
+ width: 920px;
+ height: 560px;
+ background: var(--red);
+ transform: rotate(-12deg);
+ opacity: .98;
+ z-index: 0;
+ clip-path: polygon(0 0, 100% 0, 88% 100%, 0 86%);
+ }
+ .k-hero::after{
+ content:"";
+ position:absolute;
+ right: -260px;
+ top: -160px;
+ width: 560px;
+ height: 780px;
+ background: var(--ink);
+ transform: rotate(18deg);
+ z-index: 0;
+ opacity: .98;
+ clip-path: polygon(10% 0, 100% 12%, 90% 100%, 0 88%);
+ }
+
+ .k-circle{
+ position:absolute;
+ right: 7%;
+ top: 54px;
+ width: min(420px, 44vw);
+ aspect-ratio: 1 / 1;
+ border-radius: 999px;
+ background: var(--paper2);
+ border: 6px solid var(--ink);
+ z-index: 1;
+ box-shadow: 0 0 0 2px rgba(0,0,0,.05) inset;
+ }
+
+ .k-beam{
+ position:absolute;
+ left: 7%;
+ top: 162px;
+ width: 74%;
+ height: 10px;
+ background: var(--ink);
+ transform: rotate(-10deg);
+ z-index: 2;
+ opacity: .92;
+ }
+ .k-beam::after{
+ content:"";
+ position:absolute;
+ right: -30px;
+ top: -10px;
+ width: 0;
+ height: 0;
+ border-left: 40px solid var(--ink);
+ border-top: 15px solid transparent;
+ border-bottom: 15px solid transparent;
+ }
+
+ .k-hero-inner{ position: relative; z-index: 3; }
+
+ .k-poster{
+ border-left: 2px solid var(--line);
+ border-right: 2px solid var(--line);
+ }
+
+ .k-block{
+ border: 2px solid var(--ink);
+ background: rgba(255,255,255,.56);
+ padding: 1.1rem 1.1rem;
+ }
+
+ .k-block-ink{
+ background: var(--ink);
+ color: var(--paper);
+ border-color: var(--ink);
+ }
+ .k-block-ink .k-body{ color: rgba(242,231,207,.86); }
+
+ .k-block-brass{
+ background: linear-gradient(135deg, rgba(202,162,74,.18), rgba(255,255,255,.18));
+ border-left: 10px solid var(--brass);
+ }
+
+ .k-stamp{
+ display:inline-block;
+ border: 2px solid var(--ink);
+ background: var(--paper2);
+ padding: .35rem .65rem;
+ font-family: var(--mono);
+ text-transform: uppercase;
+ letter-spacing: .14em;
+ font-size: .78rem;
+ box-shadow: 0 10px 0 rgba(0,0,0,.18);
+ }
+ .k-stamp.red{
+ background: var(--red);
+ color: var(--white);
+ }
+ .k-stamp.brass{
+ background: var(--brass);
+ color: var(--ink);
+ border-color: var(--ink);
+ }
+
+ .k-section-title{
+ display:flex;
+ align-items:flex-end;
+ gap: .85rem;
+ margin: 0 0 .75rem;
+ }
+ .k-section-title .bar{
+ height: 14px;
+ width: 104px;
+ background: var(--red);
+ border: 2px solid var(--ink);
+ }
+ .k-section-title .bar.brass{
+ background: var(--brass);
+ }
+
+ .k-label{
+ font-family: var(--mono);
+ text-transform: uppercase;
+ letter-spacing: .16em;
+ font-size: .78rem;
+ color: var(--ink2);
+ padding-top: .25rem;
+ }
+
+ .k-jumplist a{
+ color: var(--ink);
+ text-decoration: none;
+ border-bottom: 1px solid rgba(11,11,14,.28);
+ }
+ .k-jumplist a:hover{
+ border-bottom-color: rgba(11,11,14,.62);
+ }
+
+ .k-callout{
+ border: 2px dashed rgba(11,11,14,.55);
+ background: rgba(255,255,255,.45);
+ padding: .9rem 1.0rem;
+ }
+
+ .k-bullets li{ margin-bottom: .35rem; }
+
+ /* Footer */
+ .k-footer-meta{
+ font-family: var(--mono);
+ color: rgba(242,231,207,.78);
+ font-size: .88rem;
+ }
+ </style>
+</head>
+
+<body>
+
+ <!-- STICKY HEADER BAND -->
+ <header class="k-band k-header">
+ <div class="container k-wrap py-3">
+ <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between">
+ <div class="d-flex align-items-center gap-3">
+ <div class="k-title" style="font-size:1.35rem; font-weight:700; letter-spacing:.12em;">
+ KYBERNAUTS<span style="color:var(--red2)">CLADE</span>
+ </div>
+ <div class="k-kicker" style="color:rgba(242,231,207,.75)">
+ Proving Grounds — SDC Charter
+ </div>
+ </div>
+
+ <nav aria-label="Primary" class="k-nav">
+ <ul class="nav flex-wrap justify-content-end">
+ <li class="nav-item"><a class="nav-link active" href="#top">Home</a></li>
+ <li class="nav-item"><a class="nav-link" href="#purpose">Purpose</a></li>
+ <li class="nav-item"><a class="nav-link" href="#principles">Principles</a></li>
+ <li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
+ <li class="nav-item"><a class="nav-link" href="#responsibilities">Responsibilities</a></li>
+ <li class="nav-item"><a class="nav-link" href="#path">Path</a></li>
+ <li class="nav-item"><a class="nav-link" href="#provide-expect">Provide/Expect</a></li>
+ </ul>
+ </nav>
+ </div>
+ </div>
+ </header>
+
+ <!-- HERO POSTER -->
+ <section class="k-hero" id="top">
+ <div class="k-circle" aria-hidden="true"></div>
+ <div class="k-beam" aria-hidden="true"></div>
+
+ <div class="container k-wrap k-poster">
+ <div class="k-hero-inner py-4 px-2 px-md-3">
+
+ <div class="d-flex flex-wrap align-items-end justify-content-between gap-3">
+ <div>
+ <div class="k-kicker">A STANDARD IS SET</div>
+ <h1 class="k-title k-title-xl mt-2">
+ PROVING<br>
+ GROUNDS
+ </h1>
+ <div class="k-label">Skills Development Committee — formation charter & operating intent.</div>
+ </div>
+
+ <div class="d-flex gap-2 flex-wrap">
+ <span class="k-stamp red">SDC</span>
+ <span class="k-stamp brass">POCHVEN</span>
+ <span class="k-stamp">DISCIPLINE</span>
+ </div>
+ </div>
+
+ <div class="mt-4 k-rule"></div>
+
+ <div class="row g-3 mt-2">
+ <div class="col-lg-7">
+ <div class="k-block k-block-brass">
+ <div class="k-section-title">
+ <div class="bar brass" aria-hidden="true"></div>
+ <h2 class="k-title k-title-lg">Mission</h2>
+ </div>
+ <p class="k-body mb-0">
+ The Skills Development Committee exists to <strong>forge Kybernauts</strong> — pilots who undock, adapt,
+ and fight with purpose in Pochven. We do not hand out fantasies. We build capability.
+ </p>
+ </div>
+ </div>
+
+ <div class="col-lg-5">
+ <div class="k-block k-block-ink">
+ <div class="k-section-title">
+ <div class="bar" style="background:var(--brass)" aria-hidden="true"></div>
+ <h2 class="k-title k-title-lg">Non‑Negotiable</h2>
+ </div>
+ <p class="k-body mb-0">
+ The program produces pilots who can <strong>immediately contribute</strong> to corp operations:
+ fleets, standings growth, and culture that scales.
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <div class="mt-3 k-rule-soft"></div>
+
+ <div class="row g-3 mt-1">
+ <div class="col-lg-12">
+ <div class="k-block">
+ <div class="k-kicker mb-2">Jump Links</div>
+ <div class="k-body k-jumplist d-flex flex-wrap gap-3 mb-0">
+ <a href="#purpose">Purpose</a>
+ <a href="#principles">Guiding Principles</a>
+ <a href="#categories">Member Categories</a>
+ <a href="#responsibilities">SDC Responsibilities</a>
+ <a href="#path">Standings & Kyber Path</a>
+ <a href="#provide-expect">Provide / Expect</a>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ </div>
+ </div>
+ </section>
+
+ <!-- PURPOSE -->
+ <section id="purpose">
+ <div class="container k-wrap k-poster pb-4">
+ <div class="px-2 px-md-3">
+ <div class="k-block">
+ <div class="k-section-title">
+ <div class="bar" aria-hidden="true"></div>
+ <h2 class="k-title k-title-lg">Purpose</h2>
+ </div>
+
+ <p class="k-body mb-2">
+ The Skills Development Committee exists to <strong>forge Kybernauts</strong>.
+ </p>
+
+ <p class="k-body mb-2">
+ Our role is not simply onboarding, ship contracts, or skill plans. Our purpose is transformation —
+ taking capsuleers from wherever they are in their journey and helping them become pilots who understand
+ what it means to live and thrive in Pochven.
+ </p>
+
+ <p class="k-body mb-2">
+ Being a Kybernaut is not defined by the ship you fly. It is defined by <strong>how you approach New Eden</strong>:
+ curiosity, aggression, cooperation, and the will to learn through action.
+ </p>
+
+ <div class="k-callout mt-3">
+ <div class="k-kicker mb-2">Standard</div>
+ <div class="k-body mb-0">
+ We do not build hangar queens. We build pilots who undock. Because Kybernauts are not recruited —
+ <strong>they are made</strong>.
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- PRINCIPLES -->
+ <section id="principles">
+ <div class="container k-wrap k-poster pb-4">
+ <div class="px-2 px-md-3">
+ <div class="k-block">
+ <div class="k-section-title">
+ <div class="bar" aria-hidden="true"></div>
+ <h2 class="k-title k-title-lg">Guiding Principles</h2>
+ </div>
+
+ <div class="row g-3">
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">It's Not What You Fly</div>
+ <p class="k-body mb-0">
+ Ships are tools. Skills are tools. Doctrine is guidance. What matters is whether a pilot understands
+ <strong>why</strong> they are flying what they are flying — and can execute under pressure.
+ </p>
+ </div>
+ </div>
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">All Members Are Equal in Growth</div>
+ <p class="k-body mb-0">
+ Skillpoints do not define value. A newbro and a veteran both deserve the tools to succeed.
+ </p>
+ </div>
+ </div>
+
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">No One Is Left Behind</div>
+ <p class="k-body mb-0">
+ We do not merely inject skills. We cultivate understanding — explanation, demonstration, repetition.
+ </p>
+ </div>
+ </div>
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">Activity Is Expected</div>
+ <p class="k-body mb-0">
+ This is not a passive program. Growth comes from participation. Undock. Ask. Fly. Improve.
+ </p>
+ </div>
+ </div>
+
+ <div class="col-lg-12">
+ <div class="k-block k-block-brass">
+ <div class="k-kicker mb-2">Combat Is the Crucible</div>
+ <p class="k-body mb-0">
+ True learning happens in fleet. We teach through action: doctrine discipline, positioning, and execution.
+ </p>
+ </div>
+ </div>
+ </div>
+
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- CATEGORIES -->
+ <section id="categories">
+ <div class="container k-wrap k-poster pb-4">
+ <div class="px-2 px-md-3">
+ <div class="k-block">
+ <div class="k-section-title">
+ <div class="bar" aria-hidden="true"></div>
+ <h2 class="k-title k-title-lg">Member Categories</h2>
+ </div>
+
+ <div class="row g-3">
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">Returning Kybernauts</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Orientation refresh</li>
+ <li>Current doctrine integration</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">Vets to Pochven</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Pochven Boot Camp</li>
+ <li>Site operations</li>
+ <li>Standings cultivation</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">Established Players</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Skill plan optimization</li>
+ <li>Pochven Boot Camp</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">Early Career</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Skill realignment to PVP</li>
+ <li>Mentorship via fleet habits</li>
+ <li>Basics, then Boot Camp</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="col-lg-12">
+ <div class="k-block k-block-ink">
+ <div class="k-kicker mb-2" style="color: rgba(242,231,207,.78)">Newbros</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Full basics</li>
+ <li>Hands-on mentorship</li>
+ <li>Pochven Boot Camp</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- RESPONSIBILITIES -->
+ <section id="responsibilities">
+ <div class="container k-wrap k-poster pb-4">
+ <div class="px-2 px-md-3">
+ <div class="k-block">
+ <div class="k-section-title">
+ <div class="bar" aria-hidden="true"></div>
+ <h2 class="k-title k-title-lg">SDC Responsibilities</h2>
+ </div>
+
+ <div class="row g-3">
+ <div class="col-lg-12">
+ <div class="k-block k-block-brass">
+ <div class="k-kicker mb-2">1 — Corp Doctrine Fittings</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Maintain purpose-built ship fittings for this isk generation, PVP and standings</li>
+ <li>Fits must align with alliance doctrines where applicable</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="col-lg-12">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">2 — Income / PVP Doctrines (3 Total)</div>
+ <div class="k-body mb-2">Develop three doctrines outside alliance doctrines.</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Focus: ISK generation + combat capability</li>
+ <li>Must remain accessible to developing pilots</li>
+ <li>Examples: T1 cruiser logistics, T1 frigate hunting, destroyer fleets</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="col-lg-12">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">3 — New Member Packages</div>
+ <div class="k-body mb-2">Early Career and Newbros receive the same package:</div>
+ <ul class="k-body ps-3 mb-2 k-bullets">
+ <li>Skill books</li>
+ <li>Basic fittings</li>
+ <li>Ship handouts</li>
+ </ul>
+ <div class="k-callout">
+ <div class="k-kicker mb-2">Distribution Point</div>
+ <div class="k-body mb-0">
+ <strong>Kino VII — Moon 17</strong><br>
+ The Convocation of Triglav Bioadaptation Chambers
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">4 — Communication Channels</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Early Career and Newbros are initially closed off from most alliance channels</li>
+ <li>They are integrated into the alliance when ready</li>
+ <li>Controlled environment enables focused learning without distraction</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="col-lg-6">
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">5 — Activity Tracking</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Automated processes track pilot progress through the program</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- PATH -->
+ <section id="path">
+ <div class="container k-wrap k-poster pb-4">
+ <div class="px-2 px-md-3">
+ <div class="k-block">
+ <div class="k-section-title">
+ <div class="bar" aria-hidden="true"></div>
+ <h2 class="k-title k-title-lg">Standings & Kyber Path</h2>
+ </div>
+
+ <div class="k-body mb-2">
+ All new members must complete the following:
+ </div>
+
+ <div class="row g-3">
+ <div class="col-lg-6">
+ <div class="k-block k-block-brass">
+ <div class="k-kicker mb-2">Standing Gates</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li><strong>Exit Ohnivak</strong> — transfer into KYBERNAUTS</li>
+ <li><strong>Triglavian Standings</strong> — achieve <strong>3.4</strong> standing with Triglavian Unity</li>
+ <li><strong>SDC Orientation</strong> — meet within <strong>48 hours</strong> of arrival</li>
+ <li><strong>Mentorship Pairing</strong> — bond with an experienced pilot for ongoing guidance</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="col-lg-6">
+ <div class="k-block k-block-ink">
+ <div class="k-kicker mb-2" style="color: rgba(242,231,207,.78)">Operational Qualification</div>
+ <p class="k-body mb-2">
+ To be considered after submitting a Kyber application, a pilot must prove initiative and competence:
+ </p>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li><strong>3 solo kills</strong> in Pochven</li>
+ <li><strong>Lead a fleet</strong> (at least one) after submitting their application</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+
+ <div class="k-rule-soft my-3"></div>
+
+ <div class="k-callout">
+ <div class="k-kicker mb-2">Intent</div>
+ <div class="k-body mb-0">
+ These gates ensure we build pilots who can <strong>fight</strong>, <strong>learn</strong>, and <strong>lead</strong> —
+ not merely exist in space.
+ </div>
+ </div>
+
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- PROVIDE / EXPECT -->
+ <section id="provide-expect">
+ <div class="container k-wrap k-poster pb-5">
+ <div class="px-2 px-md-3">
+ <div class="k-block">
+ <div class="k-section-title">
+ <div class="bar" aria-hidden="true"></div>
+ <h2 class="k-title k-title-lg">What We Provide / What We Expect</h2>
+ </div>
+
+ <div class="row g-3">
+ <div class="col-lg-6">
+ <div class="k-block k-block-brass">
+ <div class="k-kicker mb-2">What We Provide</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li>Skill plans calibrated for each development category</li>
+ <li>Mentorship pairings forged through experience</li>
+ <li>Fitting handouts optimized for success</li>
+ <li>Ship handouts for immediate contribution</li>
+ <li>Income-generating fleets designed for developing pilots</li>
+ <li>Protected spaces for learning and growth</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="col-lg-6">
+ <div class="k-block k-block-ink">
+ <div class="k-kicker mb-2" style="color: rgba(242,231,207,.78)">What We Expect</div>
+ <ul class="k-body ps-3 mb-0 k-bullets">
+ <li><strong>Engagement.</strong> This is not a hanger-queen program.</li>
+ <li>Commitment to learning and self-improvement</li>
+ <li>Participation in SDC fleet operations</li>
+ <li><strong>Pay it forward</strong> — assist those who follow behind you</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+
+ <div class="k-rule-soft my-3"></div>
+
+ <div class="k-block" style="background: rgba(255,255,255,.10);">
+ <div class="k-kicker mb-2">Final Principle</div>
+ <div class="k-title" style="font-size:1.65rem;">WE ARE KYBERNAUTS.</div>
+ <p class="k-body mt-2 mb-0">
+ We build pilots through transformation. We generate content through collective action.
+ We strengthen community through shared growth. The Proving Grounds ensure every member who enters our space
+ emerges adapted, capable, and ready.
+ </p>
+ </div>
+
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- FOOTER BAND -->
+ <footer class="k-band mt-4">
+ <div class="container k-wrap py-4">
+ <div class="d-flex flex-column flex-lg-row gap-3 align-items-lg-center justify-content-between">
+ <div>
+ <div class="k-kicker" style="color:rgba(242,231,207,.75)">Proving Grounds — SDC Charter</div>
+ <div class="k-footer-meta mt-1">
+ © <span id="year"></span>, Printed doctrine. Digital execution.
+ </div>
+ </div>
+
+ <nav aria-label="Footer" class="k-nav">
+ <ul class="nav flex-wrap justify-content-lg-end">
+ <li class="nav-item"><a class="nav-link" href="#purpose">Purpose</a></li>
+ <li class="nav-item"><a class="nav-link" href="#principles">Principles</a></li>
+ <li class="nav-item"><a class="nav-link" href="#responsibilities">Responsibilities</a></li>
+ <li class="nav-item"><a class="nav-link" href="#path">Path</a></li>
+ <li class="nav-item"><a class="nav-link" href="#top">Back to Top</a></li>
+ </ul>
+ </nav>
+ </div>
+
+ <div class="mt-3" style="height:6px; background:linear-gradient(90deg, var(--red), var(--brass), var(--ink));"></div>
+ </div>
+ </footer>
+
+ <script>
+ (function(){
+ var el = document.getElementById('year');
+ if (el) el.textContent = new Date().getFullYear();
+
+ // Tiny nav "active" behavior (scrollspy-lite)
+ var links = Array.prototype.slice.call(document.querySelectorAll('.k-nav .nav-link'));
+ function setActive(hash){
+ links.forEach(function(a){
+ if (!a.getAttribute('href')) return;
+ if (a.getAttribute('href') === hash) a.classList.add('active');
+ else a.classList.remove('active');
+ });
+ }
+ function onScroll(){
+ var ids = ['#top','#purpose','#principles','#categories','#responsibilities','#path','#provide-expect'];
+ var best = '#top';
+ for (var i=0;i<ids.length;i++){
+ var el = document.querySelector(ids[i]);
+ if (!el) continue;
+ var r = el.getBoundingClientRect();
+ if (r.top <= 120) best = ids[i];
+ }
+ setActive(best);
+ }
+ window.addEventListener('scroll', onScroll, { passive:true });
+ onScroll();
+ })();
+ </script>
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

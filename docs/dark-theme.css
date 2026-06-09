@@ -1,0 +1,224 @@
+/* AI Co-Founder Stack - Dark Theme */
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #818cf8;
+    --accent-color: #22d3ee;
+    --background-color: #0f0f1a;
+    --text-color: #e2e8f0;
+    --heading-color: #ffffff;
+    --card-background: #1a1a2e;
+    --border-color: #334155;
+}
+
+/* Base html/body - fixes outer white */
+html, body, .site, .site-inner {
+    background: #0f0f1a !important;
+}
+
+/* Fix white bands/banners */
+.page-banner,
+.page-header,
+.page-title-wrapper,
+.entry-header,
+.single-post-header,
+.post-header,
+.archive-header,
+.search-header,
+.blog-header,
+.site-breadcrumb,
+.breadcrumb-wrapper {
+    background: #1a1a2e !important;
+    padding: 2rem !important;
+    margin-bottom: 2rem !important;
+}
+
+/* Fix white on sides of content */
+.site-main,
+.main-content,
+.content-area,
+#primary,
+#main,
+.site-content,
+.page-content,
+.entry-content {
+    background: #0f0f1a !important;
+}
+
+/* Container/ wrapper fixes */
+.container,
+.container-fluid,
+.wrap,
+.site-wrap,
+.page-wrap,
+.site-container,
+.inner-wrap {
+    background: #0f0f1a !important;
+    max-width: 100% !important;
+}
+
+/* WordPress theme fixes */
+#page,
+.site-content,
+#content,
+#primary-content,
+.main-site-content,
+body.home .site-inner,
+body.page .site-inner,
+body.single .site-inner,
+.ast-container,
+.ast-main-header-wrap,
+.site-header-section,
+.ast-hfb-header-area {
+    background: #0f0f1a !important;
+}
+
+/* Astra theme specific */
+.ast-container,
+.ast-col-md-12,
+.ast-row {
+    background: #0f0f1a !important;
+}
+
+/* Full width sections */
+.section,
+.hero-section,
+.banner-section {
+    background: #0f0f1a !important;
+}
+
+/* Page title fix */
+.page-title,
+.entry-title,
+.post-title,
+h1.entry-title,
+h1.page-title,
+.archive-title,
+.search-title {
+    color: #ffffff !important;
+    background: #1a1a2e !important;
+    padding: 1rem !important;
+}
+
+/* If title is in a white container */
+.page .entry-content > .entry-header,
+.single .entry-header,
+.article-header {
+    background: #1a1a2e !important;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: var(--secondary-color);
+}
+
+.site-header,
+.header-wrapper,
+.site-branding {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #334155;
+}
+
+.site-header h1,
+.site-header .site-title,
+.site-header .site-description {
+    color: white !important;
+}
+
+.main-navigation,
+.primary-menu {
+    background: #0f0f1a !important;
+}
+
+.main-navigation a,
+.primary-menu a {
+    color: #e2e8f0 !important;
+}
+
+.main-navigation a:hover,
+.primary-menu a:hover {
+    color: #22d3ee !important;
+}
+
+button,
+input[type="submit"],
+.btn,
+.button,
+.wp-block-button__link {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1.5rem !important;
+    border: none !important;
+}
+button:hover,
+input[type="submit"]:hover,
+.btn:hover,
+.button:hover,
+.wp-block-button__link:hover {
+    background: var(--secondary-color) !important;
+}
+
+.entry-content > *,
+.wp-block-group {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    color: #e2e8f0;
+}
+
+.post,
+.article,
+article {
+    background: #1a1a2e !important;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #334155;
+}
+
+.sidebar,
+.widget {
+    background: #1a1a2e !important;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #334155;
+}
+
+.site-footer,
+.footer-widgets {
+    background: #0f0f1a !important;
+    border-top: 1px solid #334155;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="search"],
+textarea,
+select {
+    background: #1a1a2e !important;
+    border: 1px solid #334155 !important;
+    color: #e2e8f0 !important;
+    border-radius: 8px;
+}
+input::placeholder {
+    color: #64748b !important;
+}

@@ -54,7 +54,7 @@ Each night, pick **one item** from the Research Queue below. Research it thoroug
 ### Priority 2: Pirate Deep Dives
 - [x] Sansha's Nation — Kuvakei, True Creations, incursions
 - [x] Blood Raider Covenant — Sarikusa, blood harvesting rituals
-- [ ] Guristas Pirates — "Rabbit" and "Vexor" founders' story
+- [x] Guristas Pirates — "Rabbit" and "Vexor" founders' story
 - [ ] Serpentis / The Syndicate — Salvador Sarpati
 - [ ] Angel Cartel — hierarchy, Dramiel ships
 - [ ] Mordu's Legion — mercenary history
@@ -122,6 +122,6 @@ When appending to `memory/subminds/eve-lore-knowledge.md`, use this format:
 
 ## Current Status
 
-**Completed:** 15 topics
-**Remaining:** 21 topics
-**Last updated:** 2026-06-07
+**Completed:** 16 topics
+**Remaining:** 20 topics
+**Last updated:** 2026-06-08

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postiz Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Postiz - Social Media Scheduling Tool</h1>
+
+<h2>What is Postiz?</h2>
+
+<p>Postiz is an all-in-one, agentic social media scheduling tool with AI capabilities. It's open-source and can be either hosted (SaaS) or self-hosted. The platform enables scheduling, analytics, AI content generation, and automation across 28+ social media platforms.</p>
+
+<h2>Key Features</h2>
+
+<p>| Feature | Description |</p>
+<p>|---------|-------------|</p>
+<p>| <strong>Multi-platform scheduling</strong> | Facebook, Instagram, TikTok, YouTube, Reddit, LinkedIn, Dribbble, Threads, Pinterest, X (Twitter) |</p>
+<p>| <strong>AI Content Assistant</strong> | AI agent that helps generate post ideas and content |</p>
+<p>| <strong>AI Image Generator</strong> | Built-in Canva-like design tool + AI image generation |</p>
+<p>| <strong>Cross-posting</strong> | Post to multiple channels simultaneously |</p>
+<p>| <strong>Analytics</strong> | Comprehensive performance tracking |</p>
+<p>| <strong>Team Collaboration</strong> | Invite team members, comment, and schedule together |</p>
+<p>| <strong>Auto-actions</strong> | Auto-post, auto-like, auto-comment when reaching milestones |</p>
+<p>| <strong>Public API</strong> | Full API access for custom integrations |</p>
+<p>| <strong>Automation</strong> | Native integrations with n8n, Make.com, Zapier |</p>
+
+<h2>Pricing</h2>
+
+<p>| Option | Cost | Details |</p>
+<p>|--------|------|---------|</p>
+<p>| <strong>Self-hosted (Open Source)</strong> | <strong>Free</strong> | Deploy on your own cloud (Docker/Cloudflare) |</p>
+<p>| <strong>Starter</strong> | ~$15/mo | Basic features, limited channels |</p>
+<p>| <strong>Standard</strong> | $23/mo | AI features + 5 channels |</p>
+<p>| <strong>Agency</strong> | $79/mo | Full features, unlimited channels |</p>
+
+<strong>Note:</strong> 7-day free trial available. No permanent free plan, but self-hosting is free forever.
+
+<h2>Integration with AI Co-Founder Stack</h2>
+
+<h3>For V1 (Starter - $25)</h3>
+<p>Postiz would be a <strong>critical addition</strong> for automating the content pipeline:</p>
+<ul>
+<li>Connect WordPress blog → auto-post to social platforms</li>
+<li>Use AI to generate platform-specific variations</li>
+<li>Schedule content in advance for consistent posting</li>
+</ul>
+
+<h3>Integration Options</h3>
+
+<p>1. <strong>API Integration</strong> (Recommended for OpenClaw)</p>
+<ul>
+<li>Use Postiz Public API to schedule posts</li>
+<li>Connect from any agent via HTTP requests</li>
+<li>Can be wrapped as an OpenClaw skill</li>
+</ul>
+
+<p>2. <strong>n8n Integration</strong></p>
+<ul>
+<li>Postiz has native n8n node</li>
+<li>Build workflows: WordPress → Postiz → Social</li>
+<li>Already on the V2 recommended skills list</li>
+</ul>
+
+<p>3. <strong>Automation Triggers</strong></p>
+<ul>
+<li>New blog post → automatically schedule to LinkedIn, X, Reddit</li>
+<li>Content recycling for older posts</li>
+</ul>
+
+<h2>Implementation Notes</h2>
+
+<ul>
+<li><strong>Self-hosting recommended</strong> for free unlimited use</li>
+<li>Docker deployment is straightforward</li>
+<li>API key required for integrations</li>
+<li>Supports webhooks for real-time triggers</li>
+</ul>
+
+<h2>Risks / Considerations</h2>
+
+<ul>
+<li>Requires OAuth setup for each social platform</li>
+<li>Self-hosting needs maintenance (updates, etc.)</li>
+<li>API rate limits may apply on hosted plans</li>
+</ul>
+
+<h2>Next Steps</h2>
+
+<p>1. Test Postiz API with a free self-hosted instance</p>
+<p>2. Create OpenClaw skill wrapper for scheduling posts</p>
+<p>3. Build n8n workflow: WordPress webhook → AI reformat → Postiz → publish</p>
+
+---
+
+<em>Research completed: 2026-02-18</em>
+
+</body>
+</html>

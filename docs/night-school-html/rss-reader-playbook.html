@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rss-reader Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>RSS Reader Integration - Night School Playbook</h1>
+
+<h2>Overview</h2>
+
+<p>RSS (Really Simple Syndication) enables automated content monitoring from blogs, news sites, and newsletters. For the AI Co-Founder Stack, RSS feeds provide a continuous stream of industry content for research, content creation, and competitive intelligence.</p>
+
+<h2>Use Cases</h2>
+
+<p>1. <strong>Content Discovery</strong> - Monitor industry blogs for trending topics</p>
+<p>2. <strong>Competitive Intelligence</strong> - Track competitor announcements</p>
+<p>3. <strong>News Aggregation</strong> - Stay informed on AI/tech news</p>
+<p>4. <strong>Newsletter Harvesting</strong> - Capture curated content from trusted sources</p>
+<p>5. <strong>AI Feeding</strong> - Supply LLM pipelines with fresh content</p>
+
+---
+
+<h2>Implementation Options</h2>
+
+<h3>Option 1: Python Script (Recommended for OpenClaw)</h3>
+
+<strong>Libraries:</strong>
+<ul>
+<li><code>feedparser</code> - Most mature RSS/Atom parser (PyPI: feedparser)</li>
+<li><code>rss-parser</code> - Alternative with different API (PyPI: rss-parser)</li>
+</ul>
+
+<strong>Basic Implementation:</strong>
+<pre><code>import feedparser
+<p>import json</p>
+<p>from datetime import datetime</p>
+
+<p>def fetch_feed(url, limit=10):</p>
+<p>"""Fetch and parse RSS feed"""</p>
+<p>feed = feedparser.parse(url)</p>
+<p>articles = []</p>
+    
+<p>for entry in feed.entries[:limit]:</p>
+<p>articles.append({</p>
+<p>'title': entry.get('title', ''),</p>
+<p>'link': entry.get('link', ''),</p>
+<p>'published': entry.get('published', ''),</p>
+<p>'summary': entry.get('summary', ''),</p>
+<p>'source': feed.feed.get('title', url)</p>
+<p>})</p>
+    
+<p>return articles</p>
+
+<h1>Example usage</h1>
+<p>feeds = [</p>
+<p>'https://www.reddit.com/r/ArtificialIntelligence/.rss',</p>
+<p>'https://news.ycombinator.com/rss',</p>
+<p>'https://www.AINewsBrief.com/feed'</p>
+<p>]</p>
+
+<p>for feed_url in feeds:</p>
+<p>articles = fetch_feed(feed_url)</p>
+<p>print(f"Found {len(articles)} articles from {feed_url}")</p>
+</code></pre>
+
+<h3>Option 2: Self-Hosted Aggregators</h3>
+
+<p>| Tool | Type | Docker | API | Best For |</p>
+<p>|------|------|--------|-----|----------|</p>
+<p>| <strong>Miniflux</strong> | Aggregator | ✅ | REST | Minimalist, fast |</p>
+<p>| <strong>FreshRSS</strong> | Aggregator | ✅ | REST, GReader | Feature-rich |</p>
+<p>| <strong>TT-RSS</strong> | Aggregator | ✅ | REST, Fever | Advanced users |</p>
+<p>| <strong>Cloudflare</strong> | SaaS | ❌ | API | No maintenance |</p>
+
+<strong>Miniflux (Recommended):</strong>
+<pre><code><h1>docker-compose.yml</h1>
+<p>version: '3'</p>
+<p>services:</p>
+<p>miniflux:</p>
+<p>image: miniflux/miniflux:latest</p>
+<p>ports:</p>
+<ul>
+<li>"8080:8080"</li>
+</ul>
+<p>environment:</p>
+<ul>
+<li>DATABASE_URL=postgres://user:pass@db/miniflux?sslmode=disable</li>
+<li>RUN_MIGRATIONS=1</li>
+<li>CREATE_ADMIN=1</li>
+<li>ADMIN_USERNAME=nova</li>
+<li>ADMIN_PASSWORD=secure_password</li>
+</ul>
+<p>depends_on:</p>
+<ul>
+<li>db</li>
+</ul>
+<p>restart: unless-stopped</p>
+  
+<p>db:</p>
+<p>image: postgres:15</p>
+<p>environment:</p>
+<ul>
+<li>POSTGRES_USER=user</li>
+<li>POSTGRES_PASSWORD=pass</li>
+<li>POSTGRES_DB=miniflux</li>
+</ul>
+<p>volumes:</p>
+<ul>
+<li>pgdata:/var/lib/postgresql/data</li>
+</ul>
+<p>restart: unless-stopped</p>
+
+<p>volumes:</p>
+<p>pgdata:</p>
+</code></pre>
+
+<h3>Option 3: Cloud Services</h3>
+
+<ul>
+<li><strong>Feedly</strong> - Popular SaaS, $7+/month</li>
+<li><strong>Inoreader</strong> - Feature-rich, $5+/month</li>
+<li><strong>The Old Reader</strong> - Free, social features</li>
+</ul>
+
+<h3>Option 4: Automation Platforms</h3>
+
+<ul>
+<li><strong>n8n</strong> - Has RSS nodes for workflows</li>
+<li><strong>Zapier</strong> - RSS to Slack/Email/Chat</li>
+<li><strong>IFTTT</strong> - Basic RSS triggers</li>
+</ul>
+
+---
+
+<h2>OpenClaw Skill Integration</h2>
+
+<h3>Skill Structure</h3>
+
+<pre><code>skills/rss-reader/
+<p>├── SKILL.md          # Main skill file</p>
+<p>├── README.md         # Documentation</p>
+<p>├── config.json       # Feed configurations</p>
+<p>├── feeds/            # Feed definitions</p>
+<p>└── scripts/</p>
+<p>├── fetcher.py    # RSS fetching logic</p>
+<p>└── processor.py  # Content processing</p>
+</code></pre>
+
+<h3>SKILL.md Template</h3>
+
+<pre><code><h1>RSS Reader Skill</h1>
+
+<p>Monitor and process RSS feeds for content discovery.</p>
+
+<h2>Setup</h2>
+<p>1. Add feed URLs to config.json</p>
+<p>2. Set fetch interval (recommended: hourly)</p>
+<p>3. Configure output (Discord, webhook, file)</p>
+
+<h2>Commands</h2>
+<ul>
+<li><code>rss add <url></code> - Add new feed</li>
+<li><code>rss list</code> - Show all feeds</li>
+<li><code>rss fetch</code> - Fetch latest articles</li>
+<li><code>rss search <query></code> - Search articles</li>
+</ul>
+</code></pre>
+
+<h3>Sample config.json</h3>
+
+<pre><code>{
+<p>"feeds": [</p>
+<p>{"name": "HN", "url": "https://news.ycombinator.com/rss", "category": "tech"},</p>
+<p>{"name": "AI News", "url": "https://www.ainewsbrief.com/feed", "category": "ai"},</p>
+<p>{"name": "OpenAI Blog", "url": "https://openai.com/blog/rss", "category": "ai"}</p>
+<p>],</p>
+<p>"settings": {</p>
+<p>"fetch_interval_minutes": 60,</p>
+<p>"max_articles_per_feed": 20,</p>
+<p>"output_channel": "discord",</p>
+<p>"filter_keywords": ["AI", "GPT", "automation", "OpenClaw"]</p>
+<p>}</p>
+<p>}</p>
+</code></pre>
+
+---
+
+<h2>AI Content Pipeline</h2>
+
+<pre><code>RSS Feeds → Fetch → Filter → Summarize → Publish
+<p>↓         ↓          ↓</p>
+<p>feedparser  keywords  LLM API   WordPress/Postiz</p>
+</code></pre>
+
+<h3>Example: AI-Powered Summary</h3>
+
+<pre><code>import feedparser
+<p>from openai import OpenAI  # or local LLM</p>
+
+<p>def summarize_articles(feeds, client):</p>
+<p>"""Fetch and summarize RSS articles"""</p>
+<p>all_articles = []</p>
+    
+<p>for feed_url in feeds:</p>
+<p>feed = feedparser.parse(feed_url)</p>
+<p>for entry in feed.entries[:5]:</p>
+<p># Use LLM to summarize</p>
+<p>summary = client.chat.completions.create(</p>
+<p>model="gpt-4",</p>
+<p>messages=[{</p>
+<p>"role": "system",</p>
+<p>"content": "Summarize this article in 2 sentences"</p>
+<p>}, {</p>
+<p>"role": "user",</p>
+<p>"content": entry.summary</p>
+<p>}]</p>
+<p>)</p>
+<p>all_articles.append({</p>
+<p>'title': entry.title,</p>
+<p>'summary': summary.choices[0].message.content,</p>
+<p>'link': entry.link</p>
+<p>})</p>
+    
+<p>return all_articles</p>
+</code></pre>
+
+---
+
+<h2>Recommended Feeds for AI/Tech</h2>
+
+<p>| Feed | URL | Category |</p>
+<p>|------|-----|----------|</p>
+<p>| Hacker News | https://news.ycombinator.com/rss | tech |</p>
+<p>| OpenAI Blog | https://openai.com/blog/rss | ai |</p>
+<p>| Anthropic | https://www.anthropic.com/rss | ai |</p>
+<p>| MIT Tech Review | https://www.technologyreview.com/feed/ | tech |</p>
+<p>| Wired | https://www.wired.com/feed/rss | tech |</p>
+<p>| Verge | https://www.theverge.com/rss/index.xml | tech |</p>
+<p>| Ars Technica | https://feeds.arstechnica.com/arstechnica/index | tech |</p>
+
+---
+
+<h2>Installation Priority</h2>
+
+<p>| Priority | Item | Effort | Value |</p>
+<p>|----------|------|--------|-------|</p>
+<p>| <strong>HIGH</strong> | feedparser Python script | 1 hr | Content pipeline |</p>
+<p>| <strong>HIGH</strong> | Curated feed list | 2 hr | Research efficiency |</p>
+<p>| <strong>MEDIUM</strong> | Miniflux self-hosted | 4 hr | Better UX |</p>
+<p>| <strong>LOW</strong> | n8n RSS automation | 8 hr | Workflows |</p>
+
+---
+
+<h2>Next Steps</h2>
+
+<p>1. ✅ Install <code>feedparser</code> (pip install feedparser)</p>
+<p>2. Create <code>~/rss-feeds/</code> config directory</p>
+<p>3. Add initial feed list (HN, AI news, tech blogs)</p>
+<p>4. Build simple fetch script for Discord reporting</p>
+<p>5. Consider Miniflux for visual interface later</p>
+
+---
+
+<em>Created: 2026-02-22</em>
+<em>Topic: RSS Reader Integration</em>
+<em>Status: Research Complete</em>
+
+</body>
+</html>

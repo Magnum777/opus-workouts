@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws-basics Playbook</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; background: #1a1a1a; color: #e0e0e0; }
+        h1, h2, h3 { color: #4fc3f7; }
+        a { color: #81d4fa; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #333; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; padding: 0; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Night School Playbook: AWS Basics & Cloud Solutions</h1>
+
+<strong>Audience:</strong> Junior engineers preparing for cloud/SRE roles.  
+<strong>Goal:</strong> Build a solid foundation in core AWS services, security, infrastructure‑as‑code, CI/CD, monitoring, cost management, and multi‑cloud awareness.  
+<strong>Timeframe:</strong> ~4 weeks of focused study (≈10 h/week) with hands‑on labs.
+
+---
+
+<h2>1. AWS Core Services</h2>
+
+<p>| Service | Primary Use‑Case | Hands‑On Lab |</p>
+<p>|---------|-----------------|--------------|</p>
+<p>| <strong>EC2</strong> | Virtual servers, custom AMIs | Launch an EC2 instance, SSH, install a web server, create an AMI, terminate.</p>
+<p>| <strong>S3</strong> | Object storage, static website hosting | Create a bucket, upload files, set public read, enable versioning & lifecycle.</p>
+<p>| <strong>Lambda</strong> | Serverless compute, event‑driven functions | Write a simple Node/Python function that reacts to S3 PUT events.</p>
+<p>| <strong>RDS</strong> | Managed relational databases | Deploy a MySQL/PostgreSQL instance, connect via <code>psql</code>/MySQL client, enable automated backups.</p>
+<p>| <strong>VPC</strong> | Isolated networking, subnets, security groups | Build a VPC with public & private subnets, NAT gateway, and test connectivity.</p>
+
+<h3>Resources</h3>
+<ul>
+<li>AWS Free Tier (12 months) – all services above are free within limits.</li>
+<li>Official docs: https://docs.aws.amazon.com/</li>
+<li>Hands‑on tutorials: AWS Skill Builder (search “EC2 Basics”).</li>
+</ul>
+
+---
+
+<h2>2. Identity & Access Management (IAM)</h2>
+
+<ul>
+<li><strong>Principles:</strong> least‑privilege, role‑based access, separation of duties.</li>
+<li><strong>Key Concepts:</strong> Users, Groups, Policies, Roles, MFA, Service‑Linked Roles.</li>
+<li><strong>Lab:</strong> Create a custom IAM policy that allows read‑only S3 access; attach to a group; test with the AWS CLI.</li>
+<li><strong>Best Practices:</strong></li>
+<li>Use groups, not per‑user policies.</li>
+<li>Enforce MFA on privileged accounts.</li>
+<li>Rotate access keys regularly or use temporary credentials (STS).</li>
+</ul>
+
+---
+
+<h2>3. Infrastructure as Code (IaC)</h2>
+
+<h3>CloudFormation</h3>
+<ul>
+<li>Declarative JSON/YAML templates.</li>
+<li>Deploy stacks, change sets, drift detection.</li>
+<li><strong>Lab:</strong> Write a simple CloudFormation YAML that provisions an EC2 instance + Security Group.</li>
+</ul>
+
+<h3>Terraform (recommended for multi‑cloud)</h3>
+<ul>
+<li>HCL language, state management, modules.</li>
+<li><strong>Lab:</strong> Use Terraform to create an S3 bucket and an IAM role; store state in an S3 backend with DynamoDB locks.</li>
+</ul>
+
+<h3>Comparison Cheat‑Sheet</h3>
+<p>| Feature | CloudFormation | Terraform |</p>
+<p>|---------|----------------|-----------|</p>
+<p>| Native AWS | ✅ | ✅ (via provider) |</p>
+<p>| Multi‑cloud | ❌ | ✅ |</p>
+<p>| State Management | Implicit | Explicit (remote backends) |</p>
+<p>| Community Modules | Limited | Vast |</p>
+
+---
+
+<h2>4. CI/CD Pipelines</h2>
+
+<ul>
+<li><strong>AWS CodePipeline</strong> – native, integrates with CodeCommit, CodeBuild, CodeDeploy.</li>
+<li><strong>GitHub Actions</strong> – cloud‑agnostic, can deploy to AWS via the AWS CLI or SAM.</li>
+<li><strong>Lab:</strong> Build a pipeline that checks out code, runs unit tests, and deploys a Lambda function.</li>
+<li><strong>Key Concepts:</strong> Stages, actions, approvals, artifact storage.</li>
+</ul>
+
+---
+
+<h2>5. Monitoring & Observability</h2>
+
+<p>| Tool | Scope | Typical Metrics |</p>
+<p>|------|-------|-----------------|</p>
+<p>| <strong>CloudWatch</strong> | AWS services, custom logs/metrics | CPU, latency, error rates, custom app metrics.</p>
+<p>| <strong>X-Ray</strong> | Distributed tracing for Lambda & EC2 | Service maps, latency analysis.</p>
+<p>| <strong>Grafana</strong> (self‑hosted or managed) | Dashboards across sources | Combine CloudWatch, Prometheus, Loki.</p>
+
+<h3>Lab:</h3>
+<ul>
+<li>Enable CloudWatch Logs for a Lambda, create a metric filter for errors, set an alarm to trigger an SNS notification.</li>
+</ul>
+
+---
+
+<h2>6. Cost Optimization</h2>
+
+<ul>
+<li><strong>Free Tier awareness</strong> – stay within limits during learning.</li>
+<li><strong>Rightsizing</strong> – use instance types that match workload (t3.micro vs m5.large).</li>
+<li><strong>Reserved Instances / Savings Plans</strong> – for predictable workloads.</li>
+<li><strong>AWS Budgets & Cost Explorer</strong> – set alerts at 50 %/80 % of monthly budget.</li>
+<li><strong>Lab:</strong> Create a budget that emails you when spend exceeds $5.</li>
+</ul>
+
+---
+
+<h2>7. Multi‑Cloud Considerations</h2>
+
+<ul>
+<li><strong>Why?</strong> Avoid vendor lock‑in, leverage best‑of‑breed services.</li>
+<li><strong>Common patterns:</strong></li>
+<li>Use Terraform for a unified IaC layer.</li>
+<li>Deploy workloads to Azure/AWS via a common CI pipeline.</li>
+<li>Central monitoring with Grafana + Loki/Prometheus.</li>
+<li><strong>Key Differences:</strong> IAM vs Azure AD, pricing models, networking (VPC vs VNets).</li>
+<li><strong>Lab (optional):</strong> Spin up an equivalent storage bucket in Azure Blob and sync via <code>aws s3 sync</code> + <code>az storage blob upload</code>.</li>
+</ul>
+
+---
+
+<h2>8. Study Plan & Milestones</h2>
+
+<p>| Week | Focus | Deliverable |</p>
+<p>|------|-------|-------------|</p>
+<p>| 1 | Core services (EC2, S3, Lambda) | Deploy a static website on S3 + Lambda edge.</p>
+<p>| 2 | IAM & VPC | Secure VPC with bastion host; IAM role for Lambda.</p>
+<p>| 3 | IaC (CloudFormation + Terraform) | Complete Terraform module repo on GitHub.</p>
+<p>| 4 | CI/CD, Monitoring, Cost | Full CI pipeline with CloudWatch alarms and budget alert.</p>
+<p>| 5 (optional) | Multi‑cloud basics | Simple cross‑cloud sync script.</p>
+
+<h3>Assessment</h3>
+<ul>
+<li>Pass AWS Certified Cloud Practitioner practice exam (score ≥ 80%).</li>
+<li>Build a mini‑project: serverless API (API Gateway + Lambda) with CI/CD and monitoring.</li>
+</ul>
+
+---
+
+<h2>9. References & Further Reading</h2>
+
+<ul>
+<li><strong>AWS Well‑Architected Framework</strong> – https://aws.amazon.com/architecture/well-architected/</li>
+<li><strong>AWS Docs – Getting Started</strong> – https://aws.amazon.com/getting-started/</li>
+<li><strong>Terraform Registry</strong> – https://registry.terraform.io/</li>
+<li><strong>AWS re:Invent 2023 – Serverless Deep Dive</strong> (YouTube)</li>
+<li><strong>Books:</strong> <em>Amazon Web Services in Action</em> (Mann), <em>Terraform: Up & Running</em> (Yevgeniy).</li>
+</ul>
+
+---
+
+<em>Prepared by Nova for Night School – 2026-04-28</em>
+</body>
+</html>

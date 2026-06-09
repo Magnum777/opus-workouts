@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layered Media LLC — Applied Systems Partner Strategy</title>
+    <style>
+        :root {
+            --lm-purple: #7f2d91;
+            --lm-purple-dark: #5a2169;
+            --lm-purple-light: #9b4fa8;
+            --lm-gold: #bc7b16;
+            --lm-gold-light: #d49a2f;
+            --lm-gold-dark: #8a5b10;
+            --lm-bg: #f8f9fa;
+            --lm-white: #ffffff;
+            --lm-text: #2d2d2d;
+            --lm-text-light: #6b7280;
+            --lm-border: #e5e7eb;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--lm-text);
+            background: var(--lm-bg);
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--lm-purple) 0%, var(--lm-purple-dark) 100%);
+            color: white;
+            padding: 40px 60px;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: var(--lm-bg);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+        }
+        
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .header-brand .logo {
+            width: 50px;
+            height: 50px;
+            background: var(--lm-gold);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+        }
+        
+        .header-brand h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .header-brand span {
+            color: var(--lm-gold);
+            font-weight: 600;
+        }
+        
+        .header h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .header h2 span {
+            color: var(--lm-gold);
+        }
+        
+        .header-meta {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .header-meta strong {
+            color: var(--lm-gold);
+        }
+        
+        /* Content */
+        .content {
+            padding: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .section-number {
+            background: var(--lm-gold);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .section h2 {
+            font-size: 28px;
+            color: var(--lm-purple);
+            font-weight: 700;
+        }
+        
+        .section h3 {
+            font-size: 20px;
+            color: var(--lm-purple-dark);
+            margin: 25px 0 15px;
+            font-weight: 600;
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: var(--lm-white);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--lm-gold);
+        }
+        
+        .stat-card .number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--lm-purple);
+        }
+        
+        .stat-card .label {
+            font-size: 13px;
+            color: var(--lm-text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--lm-white);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--lm-gold);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-header h3 {
+            margin: 0;
+            font-size: 22px;
+        }
+        
+        .price-tag {
+            background: var(--lm-purple);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-gold { background: #fef3c7; color: var(--lm-gold-dark); }
+        .badge-purple { background: #f3e8f6; color: var(--lm-purple-dark); }
+        .badge-green { background: #d1fae5; color: #065f46; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--lm-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        th {
+            background: var(--lm-purple);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--lm-border);
+            font-size: 14px;
+        }
+        
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background: #faf5ff; }
+        
+        /* Lists */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            color: var(--lm-gold);
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--lm-gold);
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight-box strong {
+            color: var(--lm-purple-dark);
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--lm-gold);
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--lm-gold);
+            border-radius: 50%;
+            border: 3px solid var(--lm-white);
+            box-shadow: 0 0 0 3px var(--lm-gold);
+        }
+        
+        .timeline-item .week {
+            font-weight: 700;
+            color: var(--lm-purple);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--lm-purple-dark);
+            color: white;
+            padding: 40px 60px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            background: var(--lm-gold);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+        
+        .footer-brand h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+        
+        .footer-brand span {
+            color: var(--lm-gold);
+        }
+        
+        .footer p {
+            opacity: 0.8;
+            font-size: 13px;
+        }
+        
+        @media (max-width: 768px) {
+            .content { padding: 30px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .header h2 { font-size: 28px; }
+            .footer-content { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="header-brand">
+        <div class="logo">LM</div>
+        <h1>Layered Media <span>LLC</span></h1>
+    </div>
+    <h2>Applied Systems <span>Partner Strategy</span></h2>
+    <div class="header-meta">
+        <div><strong>Prepared:</strong> May 28, 2026</div>
+        <div><strong>For:</strong> Layered Media LLC Business Development</div>
+        <div><strong>Market:</strong> 50,000+ Independent Insurance Agencies</div>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <h2>Executive Summary</h2>
+        </div>
+        
+        <div class="highlight-box">
+            <strong>Strategy:</strong> Partner with Applied Systems as a <strong>vetted service provider</strong> for their 50,000+ independent agency customers. Position Layered Media as the agency-focused tech partner that makes Applied's software work better — through modern websites, automation, and content.
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="number">50K+</div>
+                <div class="label">Agency Customers</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">55%</div>
+                <div class="label">US Market Share</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">&lt;20</div>
+                <div class="label">Avg Agency Size</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">3,040</div>
+                <div class="label">Applied Employees</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE OPPORTUNITY -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">2</div>
+            <h2>The Opportunity</h2>
+        </div>
+        
+        <p>Independent insurance agencies are <strong>small businesses</strong>. Most have under 20 employees. They use Applied Epic for policy management but struggle with:</p>
+        
+        <ul class="feature-list">
+            <li>Outdated websites that don't connect to their AMS</li>
+            <li>No digital marketing or SEO presence</li>
+            <li>Manual processes that could be automated</li>
+            <li>No content strategy to attract new customers</li>
+            <li>Staff stretched thin — no time to learn new tech</li>
+        </ul>
+        
+        <div class="highlight-box">
+            <strong>The opportunity:</strong> Layered Media can be the <strong>do-it-for-you tech partner</strong> that makes these agencies look modern and operate efficiently — without them having to learn new tools themselves.
+        </div>
+    </div>
+
+    <!-- SERVICE OFFERINGS -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">3</div>
+            <h2>Service Offerings</h2>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Website Refresh &amp; Integration</h3>
+                <div class="price-tag">$497 – $1,247</div>
+            </div>
+            <p style="color: var(--lm-text-light); margin-bottom: 15px;">Modernize the agency's web presence with Applied Systems integration</p>
+            <div>
+                <span class="badge badge-green">NEW</span>
+                <span class="badge badge-purple">INTEGRATION</span>
+                <span class="badge badge-blue">SEO</span>
+                <span class="badge badge-gold">MOBILE</span>
+            </div>
+            <ul class="feature-list" style="margin-top: 15px;">
+                <li>Modern WordPress site with insurance-focused theme</li>
+                <li>Client portal login (CSR24) embedded on site</li>
+                <li>Quote request forms that feed into EZLynx</li>
+                <li>Local SEO optimization for "insurance near me" searches</li>
+                <li>Mobile-responsive design</li>
+                <li>5 core pages: Home, Services, Quote, About, Contact</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Agency Automation System</h3>
+                <div class="price-tag">$797 – $1,747</div>
+            </div>
+            <p style="color: var(--lm-text-light); margin-bottom: 15px;">Automate repetitive tasks + $500/month ongoing</p>
+            <div>
+                <span class="badge badge-green">AI</span>
+                <span class="badge badge-purple">INTEGRATION</span>
+                <span class="badge badge-blue">REPORTING</span>
+            </div>
+            <ul class="feature-list" style="margin-top: 15px;">
+                <li>Automated email follow-ups for quotes (no leads lost)</li>
+                <li>Appointment scheduling integrated with agency calendar</li>
+                <li>Policy renewal reminder sequences (reduces cancellations)</li>
+                <li>New client onboarding automation (forms, welcome packets)</li>
+                <li>Monthly performance dashboard: leads, conversions, retention</li>
+                <li>6 months maintenance and adjustments included</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Complete Digital Stack</h3>
+                <div class="price-tag">$1,747 + $600/mo</div>
+            </div>
+            <p style="color: var(--lm-text-light); margin-bottom: 15px;">Everything + ongoing growth systems</p>
+            <div>
+                <span class="badge badge-green">CONTENT</span>
+                <span class="badge badge-purple">FULL INTEGRATION</span>
+                <span class="badge badge-blue">ANALYTICS</span>
+                <span class="badge badge-gold">PRIORITY</span>
+            </div>
+            <ul class="feature-list" style="margin-top: 15px;">
+                <li>Monthly blog articles (SEO-optimized insurance topics)</li>
+                <li>Social media management (2-3 posts/week)</li>
+                <li>Email newsletter (monthly, agency-branded)</li>
+                <li>Full website + automation + content, all managed</li>
+                <li>Google Analytics + conversion tracking setup</li>
+                <li>Priority support, quarterly strategy reviews</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PARTNER STRATEGY -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">4</div>
+            <h2>Partner Strategy</h2>
+        </div>
+        
+        <h3>Goal: Become a Vetted Applied Systems Partner</h3>
+        <p>Applied Systems has a <strong>partner ecosystem</strong>. They refer trusted vendors to their agencies. Getting into that ecosystem means:</p>
+        <ul class="feature-list">
+            <li>Access to 50,000+ potential customers with Applied's endorsement</li>
+            <li>Co-marketing opportunities (webinars, case studies, blog features)</li>
+            <li>Integration into Applied's marketplace or partner directory</li>
+            <li>Invitations to Applied events and agency conferences</li>
+        </ul>
+        
+        <h3>3-Phase Entry Plan</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="week">Phase 1: Build Proof</div>
+                <p>Target <strong>5-10 Georgia agencies</strong> using Applied Epic. Offer pilot program at 50% off in exchange for case studies. Document results: traffic increase, time saved, leads generated.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="week">Phase 2: Leverage Events</div>
+                <p>Attend <strong>PIA South/IIAG events</strong> (May 5-6, Duluth). Network, collect agency contacts, close pilots. Target 10+ agency contacts and 3+ closed pilots.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="week">Phase 3: Partner Application</div>
+                <p>Approach Applied Systems partner team with pilot results. Propose co-marketing webinar or case study featuring pilot agencies.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPETITIVE ADVANTAGE -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">5</div>
+            <h2>Competitive Advantage</h2>
+        </div>
+        
+        <table>
+            <tr>
+                <th>What Agencies Typically Do</th>
+                <th>Why It Fails</th>
+                <th>What Layered Media Does</th>
+            </tr>
+            <tr>
+                <td>Hire a generic web designer</td>
+                <td>Doesn't understand insurance or AMS integration</td>
+                <td>Insurance-specific builds with Applied Epic, EZLynx, CSR24 integration</td>
+            </tr>
+            <tr>
+                <td>Buy Wix/Squarespace template</td>
+                <td>No automation, no SEO, no AMS connection</td>
+                <td>Custom automation + SEO + ongoing content management</td>
+            </tr>
+            <tr>
+                <td>Hire a marketing agency</td>
+                <td>Expensive retainers ($2K+/mo), generic content</td>
+                <td>$500–$600/mo all-inclusive: website, automation, content, support</td>
+            </tr>
+            <tr>
+                <td>Do nothing (most common)</td>
+                <td>Lose customers to agencies with modern digital presence</td>
+                <td>Done-for-you system that runs without agency staff involvement</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ACTION PLAN -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">6</div>
+            <h2>60-Day Action Plan</h2>
+        </div>
+        
+        <table>
+            <tr>
+                <th style="width: 15%;">Week</th>
+                <th style="width: 45%;">Action</th>
+                <th style="width: 40%;">Goal</th>
+            </tr>
+            <tr>
+                <td><strong>1–2</strong></td>
+                <td>Build insurance agency website template (Applied Epic integration demo)</td>
+                <td>Proof of concept to show agencies</td>
+            </tr>
+            <tr>
+                <td><strong>3–4</strong></td>
+                <td>Contact 20 Georgia agencies using Applied Epic. Offer pilot program.</td>
+                <td>5 pilot commitments</td>
+            </tr>
+            <tr>
+                <td><strong>5–6</strong></td>
+                <td>Attend PIA South (May 5–6). Network, collect contacts, close pilots.</td>
+                <td>10+ agency contacts, 3+ closed pilots</td>
+            </tr>
+            <tr>
+                <td><strong>7–8</strong></td>
+                <td>Deliver pilot projects. Document results (traffic, leads, time saved).</td>
+                <td>3 case studies with metrics</td>
+            </tr>
+            <tr>
+                <td><strong>9</strong></td>
+                <td>Approach Applied Systems partner team with case studies.</td>
+                <td>Partner discussion scheduled</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- EVENTS -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">7</div>
+            <h2>Upcoming Events</h2>
+        </div>
+        
+        <div class="card" style="border-left-color: var(--lm-purple);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin: 0;">PIA South Annual Convention</h3>
+                    <p style="color: var(--lm-text-light); margin-top: 5px;">Duluth, GA | Independent agents conference — Applied Systems major sponsor</p>
+                </div>
+                <div class="price-tag">May 5–6, 2026</div>
+            </div>
+        </div>
+        
+        <div class="card" style="border-left-color: var(--lm-purple);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin: 0;">IMCA Ignite 2026</h3>
+                    <p style="color: var(--lm-text-light); margin-top: 5px;">Savannah, GA | Insurance marketing focus — good for automation/content pitch</p>
+                </div>
+                <div class="price-tag">June 8–10, 2026</div>
+            </div>
+        </div>
+        
+        <div class="card" style="border-left-color: var(--lm-purple);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin: 0;">Fintech + Insurtech Generations</h3>
+                    <p style="color: var(--lm-text-light); margin-top: 5px;">Charlotte, NC | Southeast's premier insurtech event — 4,500+ attendees</p>
+                </div>
+                <div class="price-tag">June 10–11, 2026</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TALKING POINTS -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">8</div>
+            <h2>Strategic Talking Points</h2>
+        </div>
+        
+        <ul class="feature-list">
+            <li><strong>Agency Adoption Pain:</strong> "How do you handle data migration and workflow consolidation during acquisitions?"</li>
+            <li><strong>CEO Transition:</strong> Graham Blackwell taking over is a strategic inflection point — new leadership = potential new priorities.</li>
+            <li><strong>AI in Insurance Ops:</strong> Applied just launched AI reconciliation. Ask about their roadmap for AI in agency workflows.</li>
+            <li><strong>Georgia Agency Tech Gap:</strong> Many independent agencies in Georgia are still on legacy systems. Modernization = opportunity.</li>
+            <li><strong>Remote Work Culture:</strong> Applied promotes "no unnecessary bureaucracy." Good angle for consulting partnerships.</li>
+        </ul>
+    </div>
+
+    <!-- DATA SOURCES -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">9</div>
+            <h2>Data Sources</h2>
+        </div>
+        
+        <ul class="feature-list">
+            <li>AppliedSystems.com — Company profile, product information, partner programs</li>
+            <li>Built In Chicago — Company size, culture, remote hiring data</li>
+            <li>IIAG.org — Georgia insurance agency leadership and events</li>
+            <li>Globenewswire — Applied Systems press releases (2026)</li>
+            <li>G2 Rankings — Applied Epic market position verification</li>
+            <li>Industry research: Mordor Intelligence, QY Research market reports</li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <div class="footer-logo">LM</div>
+            <div>
+                <h3>Layered Media <span>LLC</span></h3>
+                <p>Web Design • Automation • Content • SEO</p>
+            </div>
+        </div>
+        <p>Report generated by Nova AI | May 28, 2026<br>All data sourced from publicly available business records.</p>
+    </div>
+</div>
+
+</body>
+</html>

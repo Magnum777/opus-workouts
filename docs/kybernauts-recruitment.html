@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Join KYBERNAUTS - EVE Online Corporation</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+ <style>
+ :root {
+ --kyber-black: #0a0a0a;
+ --kyber-red: #e4090c;
+ --kyber-gray: #1a1a1a;
+ --kyber-gray-light: #252525;
+ --text: #e0e0e0;
+ --text-muted: #888888;
+ }
+
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ body {
+ background-color: var(--kyber-black);
+ background-image: 
+ radial-gradient(ellipse at 20% 20%, rgba(228,9,12,.15) 0%, transparent 50%),
+ radial-gradient(ellipse at 80% 80%, rgba(228,9,12,.08) 0%, transparent 50%);
+ color: var(--text);
+ font-family: 'Roboto Condensed', 'Oswald', sans-serif;
+ line-height: 1.6;
+ }
+
+ /* Header */
+ header {
+ background: linear-gradient(180deg, var(--kyber-gray) 0%, var(--kyber-black) 100%);
+ padding: 1rem 0;
+ border-bottom: 3px solid var(--kyber-red);
+ }
+
+ .header-content {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 2rem;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ flex-wrap: wrap;
+ gap: 1rem;
+ }
+
+ .logo {
+ font-family: 'Oswald', sans-serif;
+ font-size: 1.8rem;
+ font-weight: 700;
+ text-transform: uppercase;
+ letter-spacing: 3px;
+ color: var(--text);
+ }
+
+ .logo span {
+ color: var(--kyber-red);
+ }
+
+ .nav-links {
+ display: flex;
+ gap: 2rem;
+ }
+
+ .nav-links a {
+ color: var(--text-muted);
+ text-decoration: none;
+ text-transform: uppercase;
+ font-size: 0.9rem;
+ letter-spacing: 1px;
+ font-weight: 500;
+ transition: color 0.3s;
+ }
+
+ .nav-links a:hover {
+ color: var(--kyber-red);
+ }
+
+ /* Hero */
+ .hero {
+ text-align: center;
+ padding: 5rem 2rem;
+ max-width: 900px;
+ margin: 0 auto;
+ }
+
+ .hero h1 {
+ font-family: 'Oswald', sans-serif;
+ font-size: 4rem;
+ font-weight: 700;
+ text-transform: uppercase;
+ letter-spacing: 8px;
+ margin-bottom: 0.5rem;
+ }
+
+ .hero h1 span {
+ color: var(--kyber-red);
+ }
+
+ .hero .tagline {
+ color: var(--text-muted);
+ font-size: 1.3rem;
+ text-transform: uppercase;
+ letter-spacing: 4px;
+ margin-bottom: 2rem;
+ }
+
+ .hero p {
+ font-size: 1.2rem;
+ color: var(--text);
+ margin-bottom: 1rem;
+ max-width: 700px;
+ margin-left: auto;
+ margin-right: auto;
+ }
+
+ .hero .highlight {
+ color: var(--kyber-red);
+ font-weight: 600;
+ }
+
+ /* Stats */
+ .stats {
+ display: flex;
+ justify-content: center;
+ gap: 3rem;
+ padding: 2rem;
+ flex-wrap: wrap;
+ background: var(--kyber-gray);
+ margin: 2rem 0;
+ }
+
+ .stat {
+ text-align: center;
+ }
+
+ .stat-number {
+ font-family: 'Oswald', sans-serif;
+ font-size: 2.5rem;
+ font-weight: 700;
+ color: var(--kyber-red);
+ }
+
+ .stat-label {
+ font-size: 0.9rem;
+ color: var(--text-muted);
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ }
+
+ /* Sections */
+ .container {
+ max-width: 1100px;
+ margin: 0 auto;
+ padding: 0 2rem;
+ }
+
+ section {
+ padding: 3rem 0;
+ }
+
+ h2 {
+ font-family: 'Oswald', sans-serif;
+ font-size: 2rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 3px;
+ color: var(--kyber-red);
+ border-bottom: 2px solid var(--kyber-red);
+ padding-bottom: 0.5rem;
+ margin-bottom: 2rem;
+ }
+
+ /* Features Grid */
+ .features {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 1.5rem;
+ margin: 2rem 0;
+ }
+
+ .feature {
+ background: var(--kyber-gray);
+ padding: 1.5rem;
+ border-radius: 4px;
+ border-left: 4px solid var(--kyber-red);
+ }
+
+ .feature h3 {
+ font-family: 'Oswald', sans-serif;
+ font-size: 1.2rem;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ color: var(--text);
+ margin-bottom: 0.5rem;
+ }
+
+ .feature p {
+ color: var(--text-muted);
+ font-size: 0.95rem;
+ margin: 0;
+ }
+
+ /* Two Column */
+ .two-col {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 3rem;
+ }
+
+ @media (max-width: 768px) {
+ .two-col {
+ grid-template-columns: 1fr;
+ }
+ }
+
+ .content-box {
+ background: var(--kyber-gray);
+ padding: 1.5rem;
+ border-radius: 4px;
+ margin-bottom: 1.5rem;
+ }
+
+ .content-box h3 {
+ font-family: 'Oswald', sans-serif;
+ font-size: 1.1rem;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ color: var(--kyber-red);
+ margin-bottom: 1rem;
+ }
+
+ .content-box ul {
+ list-style: none;
+ }
+
+ .content-box ul li {
+ padding: 0.4rem 0;
+ padding-left: 1.5rem;
+ position: relative;
+ color: var(--text-muted);
+ }
+
+ .content-box ul li::before {
+ content: "▸";
+ color: var(--kyber-red);
+ position: absolute;
+ left: 0;
+ }
+
+ /* What We Fly */
+ .ships-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+ gap: 1rem;
+ margin: 1.5rem 0;
+ }
+
+ .ship {
+ background: var(--kyber-gray);
+ padding: 1rem;
+ text-align: center;
+ border-radius: 4px;
+ border: 1px solid var(--kyber-gray-light);
+ }
+
+ .ship-icon {
+ font-size: 2rem;
+ margin-bottom: 0.5rem;
+ }
+
+ .ship-name {
+ font-family: 'Oswald', sans-serif;
+ text-transform: uppercase;
+ font-size: 0.9rem;
+ letter-spacing: 1px;
+ color: var(--text);
+ }
+
+ /* CTA */
+ .cta-section {
+ text-align: center;
+ padding: 4rem 2rem;
+ background: linear-gradient(180deg, rgba(228,9,12,.1) 0%, transparent 100%);
+ border-top: 2px solid var(--kyber-red);
+ border-bottom: 2px solid var(--kyber-red);
+ margin: 3rem 0;
+ }
+
+ .cta-section h2 {
+ border: none;
+ font-size: 2.5rem;
+ }
+
+ .cta-section p {
+ font-size: 1.2rem;
+ color: var(--text-muted);
+ margin-bottom: 2rem;
+ }
+
+ .join-btn {
+ display: inline-block;
+ padding: 1rem 3rem;
+ background: var(--kyber-red);
+ color: white;
+ text-decoration: none;
+ font-size: 1.3rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ font-family: 'Oswald', sans-serif;
+ border-radius: 4px;
+ transition: all 0.3s ease;
+ margin: 0.5rem;
+ }
+
+ .join-btn:hover {
+ background: white;
+ color: var(--kyber-red);
+ transform: scale(1.05);
+ }
+
+ .join-btn.secondary {
+ background: transparent;
+ border: 2px solid var(--kyber-red);
+ }
+
+ .join-btn.secondary:hover {
+ background: var(--kyber-red);
+ color: white;
+ }
+
+ /* Links */
+ .links-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ gap: 1rem;
+ margin: 1.5rem 0;
+ }
+
+ .link-card {
+ background: var(--kyber-gray);
+ padding: 1.2rem;
+ border-radius: 4px;
+ text-align: center;
+ text-decoration: none;
+ color: var(--text);
+ transition: all 0.3s;
+ border: 1px solid transparent;
+ }
+
+ .link-card:hover {
+ border-color: var(--kyber-red);
+ transform: translateY(-3px);
+ }
+
+ .link-card h4 {
+ font-family: 'Oswald', sans-serif;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ font-size: 1rem;
+ margin-bottom: 0.3rem;
+ }
+
+ .link-card p {
+ color: var(--text-muted);
+ font-size: 0.85rem;
+ margin: 0;
+ }
+
+ /* Footer */
+ footer {
+ background: var(--kyber-gray);
+ padding: 2rem;
+ text-align: center;
+ border-top: 1px solid var(--kyber-gray-light);
+ }
+
+ footer p {
+ color: var(--text-muted);
+ font-size: 0.9rem;
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ }
+
+ footer .slogan {
+ color: var(--kyber-red);
+ font-family: 'Oswald', sans-serif;
+ font-size: 1.2rem;
+ margin-top: 0.5rem;
+ }
+
+ /* pochven info */
+ .pochven-info {
+ background: var(--kyber-gray);
+ padding: 1.5rem;
+ border-radius: 4px;
+ margin: 1.5rem 0;
+ border: 1px solid var(--kyber-red);
+ }
+
+ .pochven-info h3 {
+ font-family: 'Oswald', sans-serif;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ color: var(--kyber-red);
+ margin-bottom: 1rem;
+ }
+
+ .pochven-info ul li {
+ color: var(--text-muted);
+ }
+
+ @media (max-width: 600px) {
+ .hero h1 {
+ font-size: 2.5rem;
+ letter-spacing: 4px;
+ }
+
+ .header-content {
+ flex-direction: column;
+ text-align: center;
+ }
+
+ .nav-links {
+ flex-wrap: wrap;
+ justify-content: center;
+ }
+
+ .stats {
+ gap: 1.5rem;
+ }
+ }
+ </style>
+</head>
+<body>
+
+ <header>
+ <div class="header-content">
+ <div class="logo">Kyber<span>nauts</span></div>
+ <nav class="nav-links">
+ <a href="#about">About</a>
+ <a href="#what-we-offer">What We Offer</a>
+ <a href="#what-we-fly">What We Fly</a>
+ <a href="#proving-grounds">Proving Grounds</a>
+ <a href="#join">Join</a>
+ </nav>
+ </div>
+ </header>
+
+ <div class="hero">
+ <h1>Join <span>Kybernauts</span></h1>
+ <p class="tagline">The OG Triglavian Group in Pochven</p>
+ 
+ <p>We're the <span class="highlight">original Triglavian corporation</span> — and the only one currently living in Pochven. We're a chill group primarily in US TZ with smaller EU/AU presence.</p>
+ 
+ <p>No skill point requirements. No drama. Just good fights, good people, and good content.</p>
+
+ <div class="stats">
+ <div class="stat">
+ <div class="stat-number">62K+</div>
+ <div class="stat-label">Ships Destroyed</div>
+ </div>
+ <div class="stat">
+ <div class="stat-number">312</div>
+ <div class="stat-label">Active Pilots</div>
+ </div>
+ <div class="stat">
+ <div class="stat-number">#1</div>
+ <div class="stat-label">Pochven Originals</div>
+ </div>
+ </div>
+ </div>
+
+ <section id="about" class="container">
+ <h2>Why Kybernauts?</h2>
+ <div class="two-col">
+ <div>
+ <div class="content-box">
+ <h3>Who We Are</h3>
+ <p style="color: var(--text-muted); margin-bottom: 1rem;">Kybernauts Clade is a Pro Triglavian alliance whose rich history stems from before the creation of Pochven to today. We're one of the biggest surviving non-bloc affiliated active alliances in Pochven.</p>
+ <p style="color: var(--text-muted);">We home out of <strong style="color: var(--text);">Kino VII - Moon 17 - The Convocation of Triglav Bioadaptation Chambers</strong> in Perun Krai.</p>
+ </div>
+ 
+ <div class="pochven-info">
+ <h3>What is Pochven?</h3>
+ <ul>
+ <li><strong>No Capitals</strong> — Pure subcap warfare</li>
+ <li><strong>No Cynos</strong> — No cyno alts needed</li>
+ <li><strong>Red Skybox</strong> — Reflects the murderous rage in our hearts</li>
+ <li><strong>Best PI in EVE</strong> — 0% POCO taxes</li>
+ <li><strong>Target Rich Environment</strong> — Content 24/7</li>
+ </ul>
+ </div>
+ </div>
+ <div>
+ <div class="content-box">
+ <h3>What We Expect</h3>
+ <ul>
+ <li>A willing heart to learn and improve</li>
+ <li>Self-sufficiency to a degree</li>
+ <li>Show up to fleets when you can</li>
+ <li>Be part of the community</li>
+ <li>Have fun and make stories</li>
+ </ul>
+ </div>
+ 
+ <div class="content-box">
+ <h3>Our Culture</h3>
+ <ul>
+ <li>Laid-back environment</li>
+ <li>Friendly and supportive</li>
+ <li>No ego — just good fights</li>
+ <li>Everyone matters, from newbro to veteran</li>
+ <li>Stories worth telling</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section id="what-we-offer" class="container">
+ <h2>What We Offer</h2>
+ <div class="features">
+ <div class="feature">
+ <h3>Small Gang PvP</h3>
+ <p>Quick ops, blops fleets, gatecamps, and chaos. When there's content, we take it.</p>
+ </div>
+ <div class="feature">
+ <h3>Ship Replacement Program</h3>
+ <p>Fly with confidence. We got you covered when things go sideways.</p>
+ </div>
+ <div class="feature">
+ <h3>Skill Plans</h3>
+ <p>Tailored training paths to get you into effective ships fast.</p>
+ </div>
+ <div class="feature">
+ <h3>Fleet Fittings</h3>
+ <p>Ship fittings for all skill levels — you can participate from day one.</p>
+ </div>
+ <div class="feature">
+ <h3>FC Mentoring</h3>
+ <p>Learn to lead fleets. We train new FCs to keep the content coming.</p>
+ </div>
+ <div class="feature">
+ <h3>0% POCO Taxes</h3>
+ <p>Pochven has the best Planetary Interaction in the game. Keep your isk.</p>
+ </div>
+ <div class="feature">
+ <h3>New Player Training</h3>
+ <p>Brand new? No problem. We'll teach you the ropes.</p>
+ </div>
+ <div class="feature">
+ <h3>Content Beyond Pochven</h3>
+ <p>ESS defense, wormhole sieges, low/null roams, faction warfare, and more.</p>
+ </div>
+ </div>
+ </section>
+
+ <section id="what-we-fly" class="container">
+ <h2>What We Fly</h2>
+ <p style="color: var(--text-muted); margin-bottom: 1.5rem;">From starter ships to heavy combat — we've got doctrines for every skill level.</p>
+ <div class="ships-grid">
+ <div class="ship">
+ <div class="ship-icon">🚀</div>
+ <div class="ship-name">Kikimora</div>
+ </div>
+ <div class="ship">
+ <div class="ship-icon">⚔️</div>
+ <div class="ship-name">Vedmak</div>
+ </div>
+ <div class="ship">
+ <div class="ship-icon">🕵️</div>
+ <div class="ship-name">Ikitursa</div>
+ </div>
+ <div class="ship">
+ <div class="ship-icon">💀</div>
+ <div class="ship-name">Blops</div>
+ </div>
+ <div class="ship">
+ <div class="ship-icon">🔥</div>
+ <div class="ship-name">Leshak</div>
+ </div>
+ <div class="ship">
+ <div class="ship-icon">🚢</div>
+ <div class="ship-name">Tengu</div>
+ </div>
+ <div class="ship">
+ <div class="ship-icon">🏹</div>
+ <div class="ship-name">Hecate</div>
+ </div>
+ <div class="ship">
+ <div class="ship-icon">⚡</div>
+ <div class="ship-name">Jackdaw</div>
+ </div>
+ </div>
+ <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">And more — we fly what works. Our SDC provides skill plans for all these ships.</p>
+ </section>
+
+ <section id="proving-grounds" class="container">
+ <h2>Proving Grounds</h2>
+ <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Our Skills Development Committee — transforming pilots since day one.</p>
+ 
+ <div class="features">
+ <div class="feature">
+ <h3>Skill Plans</h3>
+ <p>Tailored training paths for your experience level. Go from "what's a warp disruption?" to flying doctrine ships with confidence.</p>
+ </div>
+ <div class="feature">
+ <h3>Ship Handouts</h3>
+ <p>New member packages with skill books, fittings, and ships so you can participate from day one.</p>
+ </div>
+ <div class="feature">
+ <h3>Mentorship</h3>
+ <p>One-on-one guidance from experienced pilots who've been there, done that, got the killmail.</p>
+ </div>
+ <div class="feature">
+ <h3>Active Fleets</h3>
+ <p>Learn by doing. Join fleet ops, run sites, and get real combat experience with people who've got your back.</p>
+ </div>
+ <div class="feature">
+ <h3>Pochven Boot Camp</h3>
+ <p>Master the unique mechanics of Pochven: Triglavian sites, standings, and the chaotic PvP this region is known for.</p>
+ </div>
+ <div class="feature">
+ <h3>Career Path</h3>
+ <p>Clear progression from new recruit to full Kybernaut. Know exactly what you need to do to level up.</p>
+ </div>
+ </div>
+ </section>
+
+ <div class="cta-section" id="join">
+ <h2>Ready to Join?</h2>
+ <p>You've seen what we do. You've seen what we offer. Now it's time to become what we are.</p>
+ <p style="color: var(--kyber-red); font-size: 1.4rem; font-family: 'Oswald', sans-serif;">Kybernauts aren't recruited. They're made.</p>
+ 
+ <a href="http://join.kybernauts.today" class="join-btn" target="_blank">Join Discord →</a>
+ <a href="https://zkillboard.com/corporation/98644650/" class="join-btn secondary" target="_blank">View Killboard →</a>
+ </div>
+
+ <section class="container">
+ <h2>Connect With Us</h2>
+ <div class="links-grid">
+ <a href="https://zkillboard.com/corporation/98644650/" class="link-card" target="_blank">
+ <h4>Killboard</h4>
+ <p>Our killboard — 62K+ kills and climbing</p>
+ </a>
+ <a href="https://zkillboard.com/alliance/99010431/" class="link-card" target="_blank">
+ <h4>Alliance KB</h4>
+ <p>Kybernauts Clade alliance stats</p>
+ </a>
+ <a href="https://evemaps.dotlan.net/corp/Kybernauts" class="link-card" target="_blank">
+ <h4>DOTLAN</h4>
+ <p>Corporation stats and map</p>
+ </a>
+ <a href="http://join.kybernauts.today" class="link-card" target="_blank">
+ <h4>Discord</h4>
+ <p>Join our community</p>
+ </a>
+ </div>
+ </section>
+
+ <footer>
+ <p>WE ARE KYBERNAUTS</p>
+ <div class="slogan">The OG Triglavian Group</div>
+ </footer>
+
+</body>
+</html>

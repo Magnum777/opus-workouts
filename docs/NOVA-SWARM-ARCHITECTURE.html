@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Swarm Architecture</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Segoe UI', system-ui, sans-serif; 
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+      min-height: 100vh;
+      color: #e0e0e0;
+      padding: 40px;
+    }
+    h1 { 
+      text-align: center; 
+      color: #00d4ff; 
+      margin-bottom: 10px;
+      font-size: 2.5em;
+      text-shadow: 0 0 30px rgba(0,212,255,0.4);
+    }
+    .subtitle { 
+      text-align: center; 
+      color: #7f8c8d; 
+      margin-bottom: 40px;
+      font-size: 1.1em;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: 16px;
+      padding: 24px;
+      width: 260px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,212,255,0.15);
+      border-color: #00d4ff;
+    }
+    .box h2 {
+      color: #00d4ff;
+      margin-bottom: 16px;
+      font-size: 1.2em;
+      border-bottom: 2px solid rgba(0,212,255,0.2);
+      padding-bottom: 10px;
+    }
+    .box ul { list-style: none; }
+    .box li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9em;
+    }
+    .box li:last-child { border: none; }
+    .highlight { color: #ff6b6b; font-weight: 600; }
+    .prime { background: linear-gradient(135deg, rgba(155,89,182,0.15), rgba(0,212,255,0.1)); border-color: #9b59b6; }
+    .prime h2 { color: #9b59b6; }
+    .memory { background: linear-gradient(135deg, rgba(46,204,113,0.15), rgba(39,174,96,0.1)); border-color: #27ae60; }
+    .memory h2 { color: #2ecc71; }
+    .ops { background: linear-gradient(135deg, rgba(241,196,15,0.15), rgba(230,126,34,0.1)); border-color: #f39c12; }
+    .ops h2 { color: #f39c12; }
+    .shard-type { display: inline-block; padding: 2px 8px; background: rgba(255,107,107,0.2); border-radius: 4px; font-size: 0.8em; margin-right: 6px; }
+  </style>
+</head>
+<body>
+  <h1>⚡ Nova Swarm Architecture</h1>
+  <p class="subtitle">AI Cofounder System Architecture</p>
+  <div class="container">
+    <div class="box prime">
+      <h2>🌟 Prime (Main Agent)</h2>
+      <ul>
+        <li><strong>Model:</strong> MiniMax M2.5</li>
+        <li><strong>Heavy:</strong> Ollama qwen3:14b</li>
+        <li><strong>Reasoning:</strong> Ollama deepseek-r1:7b</li>
+        <li><strong>Storm Phase:</strong> Process messages</li>
+        <li><strong>Hoard Protocol:</strong> Save → Then reply</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>⚔️ Shard Types</h2>
+      <ul>
+        <li><span class="shard-type">Nav</span> Research, discovery</li>
+        <li><span class="shard-type">Eng</span> Build, create</li>
+        <li><span class="shard-type">Ops</span> Cron, automation</li>
+        <li><span class="shard-type">Intel</span> Analysis</li>
+        <li><span class="shard-type">Comms</span> Messages</li>
+        <li><span class="shard-type">Weaps</span> Security</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>🔱 Named Shards</h2>
+      <ul>
+        <li><strong>Harvester</strong> <span class="shard-type">Nav</span></li>
+        <li>Fiverr/PPH opportunities</li>
+        <li><strong>Builder</strong> <span class="shard-type">Eng</span></li>
+        <li>WordPress content</li>
+        <li><strong>Storyweaver</strong> <span class="shard-type">Intel</span></li>
+        <li>Creative fiction</li>
+        <li><strong>Sentinel</strong> <span class="shard-type">Ops</span></li>
+        <li>Health monitoring</li>
+      </ul>
+    </div>
+    <div class="box memory">
+      <h2>🧠 Memory Layers</h2>
+      <ul>
+        <li><strong>HOT:</strong> SESSION-STATE.md</li>
+        <li>Active task, current project</li>
+        <li><strong>WARM:</strong> MEMORY.md</li>
+        <li>Vector + semantic search</li>
+        <li><strong>COLD:</strong> decisions/, lessons/</li>
+        <li>Permanent learnings</li>
+        <li><strong>Daily:</strong> memory/YYYY-MM-DD.md</li>
+      </ul>
+    </div>
+    <div class="box ops">
+      <h2>⚙️ Session Lifecycle</h2>
+      <ul>
+        <li><strong>1. Wake</strong> - Read SESSION-STATE</li>
+        <li><strong>2. Storm</strong> - Process & decide</li>
+        <li><strong>3. Save</strong> - Update memory</li>
+        <li><strong>4. Respond</strong> - Execute & reply</li>
+        <li><strong>5. Sleep</strong> - HEARTBEAT_OK</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>📡 Communication</h2>
+      <ul>
+        <li><strong>Howl</strong> - Broadcast to all</li>
+        <li><strong>Whisper</strong> - Direct message</li>
+        <li><strong>Pulse</strong> - Health check</li>
+        <li><strong>States:</strong></li>
+        <li>🟢 Sleeping / 🔵 Awake</li>
+        <li>🔴 Lost / 🟣 Feral</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
