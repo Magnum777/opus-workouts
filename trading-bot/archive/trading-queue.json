@@ -1,0 +1,2780 @@
+{
+  "pending": [
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.19917,
+      "priority": 2,
+      "timestamp": "2026-04-28T04:32:19.638424+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.512556,
+      "priority": 2,
+      "timestamp": "2026-04-28T04:32:19.935709+00:00"
+    }
+  ],
+  "executed": [
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.651541,
+      "priority": 3,
+      "timestamp": "2026-04-26T14:15:31.050936+00:00",
+      "research": {
+        "token": "TRUMP",
+        "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+        "timestamp": "2026-04-26T14:15:30.744509+00:00",
+        "sources": [
+          "jupiter"
+        ],
+        "price_usd": 2.651541,
+        "has_liquidity": true,
+        "trending": true
+      }
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200037,
+      "priority": 2,
+      "timestamp": "2026-04-26T14:15:30.744492+00:00",
+      "research": {
+        "token": "FART",
+        "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+        "timestamp": "2026-04-26T14:15:30.378579+00:00",
+        "sources": [
+          "jupiter"
+        ],
+        "price_usd": 0.200037,
+        "has_liquidity": true
+      }
+    },
+    {
+      "token": "PUMP",
+      "action": "BUY",
+      "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+      "price_usd": 0.001761,
+      "priority": 3,
+      "timestamp": "2026-04-26T14:31:14.920472+00:00"
+    },
+    {
+      "token": "PENGU",
+      "action": "BUY",
+      "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+      "price_usd": 0.008832,
+      "priority": 3,
+      "timestamp": "2026-04-26T14:31:15.511981+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.202562,
+      "priority": 2,
+      "timestamp": "2026-04-26T14:52:44.488371+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.654901,
+      "priority": 2,
+      "timestamp": "2026-04-26T14:52:44.769080+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201741,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:04:14.745718+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.649199,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:04:15.049323+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201196,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:08:12.262189+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.648712,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:08:12.543366+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201312,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:18:12.359433+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.65765,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:18:12.660102+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201454,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:21:16.934922+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.653465,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:21:17.226829+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201219,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:26:15.402813+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.6633,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:26:15.682900+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201294,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:33:16.775948+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.665241,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:33:17.071311+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201466,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:36:13.222827+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.668491,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:36:13.512732+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200665,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:51:14.324684+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.660063,
+      "priority": 2,
+      "timestamp": "2026-04-26T15:51:14.612825+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201232,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:01:26.038566+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.654128,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:01:26.341517+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200849,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:16:16.488354+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.655992,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:16:16.785094+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201353,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:28:13.782560+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.65252,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:28:14.051596+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201091,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:32:19.736819+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.646567,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:32:20.031103+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201249,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:38:12.133481+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.655324,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:38:12.437096+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.20038,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:57:15.880078+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.653826,
+      "priority": 2,
+      "timestamp": "2026-04-26T16:57:16.167305+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.199651,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:03:12.347700+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.643147,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:03:12.646678+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200037,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:12:12.218094+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.651866,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:12:12.590067+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200457,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:26:13.801978+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.647948,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:26:14.092581+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200045,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:31:31.748716+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.648022,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:31:32.037516+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200232,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:36:18.190390+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.651404,
+      "priority": 2,
+      "timestamp": "2026-04-26T17:36:18.475579+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.203435,
+      "priority": 2,
+      "timestamp": "2026-04-26T19:31:58.037707+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.633976,
+      "priority": 2,
+      "timestamp": "2026-04-26T19:31:58.351372+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.20337,
+      "priority": 2,
+      "timestamp": "2026-04-26T19:36:18.779770+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.634751,
+      "priority": 2,
+      "timestamp": "2026-04-26T19:36:19.081543+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.203042,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:09:12.657111+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.615409,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:09:12.969692+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.203899,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:16:20.230082+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.615611,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:16:20.525230+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.204816,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:28:17.539830+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.621957,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:28:17.830027+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205139,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:32:13.232326+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.625949,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:32:13.511792+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.204572,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:44:16.925867+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.622772,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:44:17.252068+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.204698,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:49:14.140785+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.626554,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:49:14.436761+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.204458,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:57:14.758175+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.627315,
+      "priority": 2,
+      "timestamp": "2026-04-26T20:57:15.053171+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.204591,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:01:13.477975+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.629273,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:01:13.777265+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.203754,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:37:12.562604+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.616891,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:37:12.859777+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.202575,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:47:11.386721+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.613898,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:47:11.683210+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.202327,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:54:12.812770+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.611417,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:54:13.111499+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205314,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:57:13.935200+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.628716,
+      "priority": 2,
+      "timestamp": "2026-04-26T21:57:14.216933+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205574,
+      "priority": 2,
+      "timestamp": "2026-04-26T22:02:17.533857+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.627194,
+      "priority": 2,
+      "timestamp": "2026-04-26T22:02:17.834023+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.207874,
+      "priority": 2,
+      "timestamp": "2026-04-26T22:16:13.373129+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.625016,
+      "priority": 2,
+      "timestamp": "2026-04-26T22:16:13.669863+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205727,
+      "priority": 2,
+      "timestamp": "2026-04-26T22:53:15.319869+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.618278,
+      "priority": 2,
+      "timestamp": "2026-04-26T22:53:15.620410+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.206296,
+      "priority": 2,
+      "timestamp": "2026-04-26T22:58:13.245055+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.618629,
+      "priority": 2,
+      "timestamp": "2026-04-26T22:58:13.543045+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205972,
+      "priority": 2,
+      "timestamp": "2026-04-26T23:12:12.351279+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.613832,
+      "priority": 2,
+      "timestamp": "2026-04-26T23:12:12.661276+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.206555,
+      "priority": 2,
+      "timestamp": "2026-04-26T23:16:14.049942+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.61834,
+      "priority": 2,
+      "timestamp": "2026-04-26T23:16:14.344960+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.207686,
+      "priority": 2,
+      "timestamp": "2026-04-26T23:41:17.393088+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.614654,
+      "priority": 2,
+      "timestamp": "2026-04-26T23:41:17.679176+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.208988,
+      "priority": 2,
+      "timestamp": "2026-04-26T23:47:19.150390+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.617995,
+      "priority": 2,
+      "timestamp": "2026-04-26T23:47:19.446576+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.208946,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:03:12.997372+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.611481,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:03:13.291144+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.20882,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:08:12.622657+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.613423,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:08:12.914107+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.207922,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:11:13.428553+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.6116,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:11:13.714229+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.20759,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:21:17.192914+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.600433,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:21:17.509847+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.207738,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:39:16.243506+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.607348,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:39:16.544971+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.209343,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:51:18.855474+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.604483,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:51:19.273834+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.211217,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:56:14.292354+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.611368,
+      "priority": 2,
+      "timestamp": "2026-04-27T00:56:14.602794+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.21227,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:04:18.046774+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.624164,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:04:18.350527+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.211139,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:11:18.303865+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.616022,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:11:18.599432+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.21057,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:31:30.614235+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.609904,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:31:30.895972+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.211649,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:42:14.835001+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.618814,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:42:15.133629+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.212679,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:50:14.354653+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.623863,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:50:14.660387+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.211639,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:58:12.425119+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.615568,
+      "priority": 2,
+      "timestamp": "2026-04-27T01:58:12.721081+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.212289,
+      "priority": 2,
+      "timestamp": "2026-04-27T02:07:14.425395+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.616166,
+      "priority": 2,
+      "timestamp": "2026-04-27T02:07:14.723051+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.211925,
+      "priority": 2,
+      "timestamp": "2026-04-27T02:19:12.993075+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.601341,
+      "priority": 2,
+      "timestamp": "2026-04-27T02:19:13.278416+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.211511,
+      "priority": 2,
+      "timestamp": "2026-04-27T02:27:13.400672+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.598444,
+      "priority": 2,
+      "timestamp": "2026-04-27T02:27:13.697376+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.212314,
+      "priority": 2,
+      "timestamp": "2026-04-27T02:34:03.808296+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.603209,
+      "priority": 2,
+      "timestamp": "2026-04-27T02:34:04.118263+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.212861,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:00:18.110415+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.604981,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:00:18.407690+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.212746,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:08:16.650061+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.605052,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:08:16.951116+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.213159,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:16:13.146614+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.60318,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:16:13.456987+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.21341,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:21:13.818074+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.604163,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:21:14.120318+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.213877,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:37:16.597253+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.61553,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:37:16.904627+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.213615,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:44:14.194432+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.613349,
+      "priority": 2,
+      "timestamp": "2026-04-27T03:44:14.474699+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.21169,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:03:13.771168+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.608234,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:03:14.066652+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.212509,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:07:19.036336+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.60547,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:07:19.331741+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.211941,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:23:12.578766+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.602152,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:23:12.872584+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.211731,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:32:17.811235+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.597057,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:32:18.113449+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.212356,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:46:15.651715+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.595992,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:46:15.931344+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.212222,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:57:18.871239+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.590978,
+      "priority": 2,
+      "timestamp": "2026-04-27T04:57:19.180715+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205536,
+      "priority": 2,
+      "timestamp": "2026-04-27T05:46:15.954929+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.559545,
+      "priority": 2,
+      "timestamp": "2026-04-27T05:46:16.257789+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205103,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:03:14.764745+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.556492,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:03:15.062519+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205411,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:11:17.080186+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.561582,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:11:17.384609+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205128,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:17:14.314273+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.56325,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:17:14.594441+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205071,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:28:15.316754+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.565712,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:28:15.596034+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.202579,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:42:17.019387+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.548599,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:42:17.292263+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.203483,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:46:15.859535+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.552588,
+      "priority": 2,
+      "timestamp": "2026-04-27T06:46:16.128448+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.202932,
+      "priority": 2,
+      "timestamp": "2026-04-27T07:22:17.815427+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.544964,
+      "priority": 2,
+      "timestamp": "2026-04-27T07:22:18.099459+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.202206,
+      "priority": 2,
+      "timestamp": "2026-04-27T07:46:21.360027+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.544555,
+      "priority": 2,
+      "timestamp": "2026-04-27T07:46:21.629391+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.202247,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:01:54.461419+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.552393,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:01:54.755751+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201922,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:11:14.832240+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.555144,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:11:15.123224+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.202131,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:16:20.201261+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.551538,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:16:20.475609+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200944,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:26:15.717367+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.551996,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:26:16.036214+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200458,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:31:52.469101+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.54112,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:31:52.765170+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200189,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:43:18.678067+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.545493,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:43:18.971579+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200734,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:52:15.837712+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.551153,
+      "priority": 2,
+      "timestamp": "2026-04-27T08:52:16.116294+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201396,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:00:18.930957+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.553905,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:00:19.241436+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201596,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:02:13.575111+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.553993,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:02:13.877445+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201314,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:11:23.681266+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.551729,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:11:23.969628+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.20066,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:28:16.443315+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.554482,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:28:16.741332+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201151,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:36:47.275587+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.560051,
+      "priority": 2,
+      "timestamp": "2026-04-27T09:36:47.565059+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200967,
+      "priority": 2,
+      "timestamp": "2026-04-27T10:36:14.335293+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.558012,
+      "priority": 2,
+      "timestamp": "2026-04-27T10:36:14.615136+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201135,
+      "priority": 2,
+      "timestamp": "2026-04-27T10:46:15.535917+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.556733,
+      "priority": 2,
+      "timestamp": "2026-04-27T10:46:15.834656+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200704,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:02:17.633569+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.546731,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:02:17.930924+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.19966,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:08:56.102283+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.540204,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:08:56.412844+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.199422,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:11:14.520619+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.542195,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:11:14.831452+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.19982,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:16:16.817901+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.540308,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:16:17.126423+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.20015,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:23:13.517431+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.54631,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:23:13.822848+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200904,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:29:21.378130+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.550409,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:29:21.688085+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200189,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:36:12.954762+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.550617,
+      "priority": 2,
+      "timestamp": "2026-04-27T11:36:13.243883+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.20133,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:01:52.699244+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.543535,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:01:53.016135+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201734,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:11:13.918218+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.538868,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:11:14.230368+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.202184,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:17:27.484215+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.541458,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:17:27.792766+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.204342,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:36:14.554817+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.549616,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:36:14.850884+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.205283,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:46:15.967950+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.550483,
+      "priority": 2,
+      "timestamp": "2026-04-27T14:46:16.252610+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201224,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:05:28.234180+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.544703,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:05:28.542610+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201373,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:06:25.173766+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.546861,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:06:25.474921+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198224,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:18:15.140025+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.531959,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:18:15.427728+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195419,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:23:23.092493+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.447846,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:23:23.385349+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195623,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:26:19.304632+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.441559,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:26:19.674702+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.197001,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:36:29.424937+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.469581,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:36:29.710616+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.196558,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:46:13.004460+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.475126,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:46:13.281427+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195712,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:56:17.305131+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.475427,
+      "priority": 2,
+      "timestamp": "2026-04-27T15:56:17.580716+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195617,
+      "priority": 2,
+      "timestamp": "2026-04-27T16:13:14.528130+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.510967,
+      "priority": 2,
+      "timestamp": "2026-04-27T16:13:14.825872+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.19536,
+      "priority": 2,
+      "timestamp": "2026-04-27T16:21:27.368327+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.516556,
+      "priority": 2,
+      "timestamp": "2026-04-27T16:21:27.673539+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195324,
+      "priority": 2,
+      "timestamp": "2026-04-27T16:33:18.669943+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.504998,
+      "priority": 2,
+      "timestamp": "2026-04-27T16:33:19.232195+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195764,
+      "priority": 2,
+      "timestamp": "2026-04-27T16:41:26.414797+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.50629,
+      "priority": 2,
+      "timestamp": "2026-04-27T16:41:26.970601+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.196126,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:00:20.643193+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.508598,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:00:20.967634+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.196064,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:11:23.119333+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.509303,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:11:23.411652+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195843,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:16:20.020527+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.506527,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:16:20.316493+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.197277,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:27:18.258524+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.520155,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:27:18.556732+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.196822,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:56:14.128332+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.509694,
+      "priority": 2,
+      "timestamp": "2026-04-27T17:56:14.441947+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.19678,
+      "priority": 2,
+      "timestamp": "2026-04-27T18:04:17.775051+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.510183,
+      "priority": 2,
+      "timestamp": "2026-04-27T18:04:18.064440+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.196784,
+      "priority": 2,
+      "timestamp": "2026-04-27T18:16:16.036883+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.510436,
+      "priority": 2,
+      "timestamp": "2026-04-27T18:16:16.328713+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.196648,
+      "priority": 2,
+      "timestamp": "2026-04-27T18:26:24.047178+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.508147,
+      "priority": 2,
+      "timestamp": "2026-04-27T18:26:24.400121+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.196687,
+      "priority": 2,
+      "timestamp": "2026-04-27T18:35:14.030572+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.500707,
+      "priority": 2,
+      "timestamp": "2026-04-27T18:35:14.351189+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.196626,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:02:13.308736+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.509865,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:02:13.639506+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195981,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:06:16.759186+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.505822,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:06:17.054922+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195908,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:17:17.921675+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.506568,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:17:18.251883+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.19478,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:22:16.051584+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.505916,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:22:16.382665+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.193986,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:38:15.790160+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.507431,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:38:16.087988+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.194294,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:42:15.434852+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.50661,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:42:15.757236+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.194239,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:51:17.816410+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.507741,
+      "priority": 2,
+      "timestamp": "2026-04-27T19:51:18.175500+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195263,
+      "priority": 2,
+      "timestamp": "2026-04-27T20:02:11.865120+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.506796,
+      "priority": 2,
+      "timestamp": "2026-04-27T20:02:12.220132+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195903,
+      "priority": 2,
+      "timestamp": "2026-04-27T20:07:16.397046+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.511223,
+      "priority": 2,
+      "timestamp": "2026-04-27T20:07:16.689840+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195451,
+      "priority": 2,
+      "timestamp": "2026-04-27T20:17:18.419031+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.506477,
+      "priority": 2,
+      "timestamp": "2026-04-27T20:17:18.763418+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.195379,
+      "priority": 2,
+      "timestamp": "2026-04-27T20:28:17.039486+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.511636,
+      "priority": 2,
+      "timestamp": "2026-04-27T20:28:17.356517+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201232,
+      "priority": 2,
+      "timestamp": "2026-04-27T23:24:16.453013+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.522158,
+      "priority": 2,
+      "timestamp": "2026-04-27T23:24:16.755722+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201573,
+      "priority": 2,
+      "timestamp": "2026-04-27T23:27:15.439374+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.521627,
+      "priority": 2,
+      "timestamp": "2026-04-27T23:27:15.743772+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201642,
+      "priority": 2,
+      "timestamp": "2026-04-27T23:31:41.694659+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.521304,
+      "priority": 2,
+      "timestamp": "2026-04-27T23:31:41.996028+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201037,
+      "priority": 2,
+      "timestamp": "2026-04-27T23:41:17.521522+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.524493,
+      "priority": 2,
+      "timestamp": "2026-04-27T23:41:17.829708+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200911,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:02:22.115344+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.525286,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:02:22.424878+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.201284,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:11:17.308534+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.533469,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:11:17.591581+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200234,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:27:14.587356+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.518993,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:27:14.891377+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.2001,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:37:16.227527+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.518069,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:37:16.511352+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200728,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:51:14.262500+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.523429,
+      "priority": 2,
+      "timestamp": "2026-04-28T00:51:14.731255+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200269,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:05:16.922619+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.525736,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:05:17.245518+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200353,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:17:14.613023+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.526051,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:17:14.906971+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.20054,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:21:22.215611+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.525813,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:21:22.521670+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200334,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:32:17.841535+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.523556,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:32:18.136571+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.200173,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:36:16.093343+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.522461,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:36:16.378862+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.199756,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:53:20.418594+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.527278,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:53:20.758521+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.199526,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:57:15.050845+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.524829,
+      "priority": 2,
+      "timestamp": "2026-04-28T01:57:15.344673+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.199892,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:11:28.777145+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.517844,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:11:29.078325+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198749,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:32:18.293454+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.524818,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:32:18.583824+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.19843,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:36:20.250977+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.522962,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:36:20.538120+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198179,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:52:17.410804+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.515872,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:52:17.720681+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198111,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:56:18.401459+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.514915,
+      "priority": 2,
+      "timestamp": "2026-04-28T02:56:18.671607+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198205,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:03:21.555365+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.511144,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:03:21.866530+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198739,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:16:14.398195+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.506606,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:16:14.690075+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198435,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:28:18.797119+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.50464,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:28:19.092273+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198444,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:32:15.834381+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.504637,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:32:16.108415+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198561,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:38:19.537478+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.508621,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:38:19.838046+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198525,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:41:17.266313+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.508418,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:41:17.540951+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.1988,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:58:12.693086+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.513111,
+      "priority": 2,
+      "timestamp": "2026-04-28T03:58:12.980976+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.198838,
+      "priority": 2,
+      "timestamp": "2026-04-28T04:02:17.545097+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.51066,
+      "priority": 2,
+      "timestamp": "2026-04-28T04:02:17.857706+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.199561,
+      "priority": 2,
+      "timestamp": "2026-04-28T04:22:43.903905+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.512497,
+      "priority": 2,
+      "timestamp": "2026-04-28T04:22:44.191987+00:00"
+    },
+    {
+      "token": "FART",
+      "action": "BUY",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "price_usd": 0.199201,
+      "priority": 2,
+      "timestamp": "2026-04-28T04:29:18.425131+00:00"
+    },
+    {
+      "token": "TRUMP",
+      "action": "BUY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "price_usd": 2.513206,
+      "priority": 2,
+      "timestamp": "2026-04-28T04:29:18.723672+00:00"
+    }
+  ],
+  "rejected": []
+}

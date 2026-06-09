@@ -1,0 +1,6 @@
+2026-05-01 20:10 EDT - Executor run result:
+Wallet: 7FNLUAQQd2NY88mG1ZqU8EDuNBWvf2cWufxSnjwcgqA
+Checked positions for exits:
+  PENGU: $38.92 (PnL: +0.1%)
+  PUMP: $50.34 (PnL: -1.0%)
+No trades executed.

@@ -1,0 +1,33 @@
+{
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "name": "Nova",
+        "identity": {
+          "emoji": "🦝"
+        }
+      },
+      {
+        "id": "discord",
+        "name": "Nova",
+        "identity": {
+          "emoji": "🦝"
+        },
+        "model": "kimi-k2.6:cloud",
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "runtime": {
+          "type": "embedded"
+        }
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "agentId": "discord",
+      "match": {
+        "channel": "discord"
+      }
+    }
+  ]
+}

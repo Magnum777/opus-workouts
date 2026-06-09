@@ -1,0 +1,49 @@
+[2026-06-07T23:14:22.561182+00:00] TradeBot Daemon
+--- RESEARCH ---
+Research complete: 17 tokens analyzed
+Buy opportunities: 6
+Sell signals: 0
+  BUY LOKI: conf=85 rec=STRONG_BUY price=$0.00043490
+  BUY MFINU: conf=85 rec=STRONG_BUY price=$0.00011850
+  BUY DOGEUS: conf=85 rec=STRONG_BUY price=$0.00010470
+  BUY BOUNTREE: conf=85 rec=STRONG_BUY price=$0.00007219
+  BUY BULL: conf=75 rec=STRONG_BUY price=$0.00188200
+  BUY $MAD: conf=75 rec=STRONG_BUY price=$0.00072850
+--- SCOUT ---
+SOL: 0.0073 | USDC: $47.05
+Tokens on chain: 4
+Valuable tokens: 1
+  EPjFWdd5Au: 47.0475 ($47.05)
+  6ehEcTMCc8: 1310.8706 ($12.88)
+  USDC cash: $47.05
+
+Scout signals: 0
+  [BUY SIGNAL] LOKI: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] MFINU: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] DOGEUS: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] BOUNTREE: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] BULL: STRONG_BUY (conf: 75)
+  [BUY SIGNAL] $MAD: STRONG_BUY (conf: 75)
+  [MAX POSITIONS] Skipping buy LOKI: 1 positions open, max 1
+  [MAX POSITIONS] Skipping buy MFINU: 1 positions open, max 1
+  [MAX POSITIONS] Skipping buy DOGEUS: 1 positions open, max 1
+  [MAX POSITIONS] Skipping buy BOUNTREE: 1 positions open, max 1
+  [MAX POSITIONS] Skipping buy BULL: 1 positions open, max 1
+  [MAX POSITIONS] Skipping buy $MAD: 1 positions open, max 1
+[QUEUE] 0 signal(s) written (0 buys, 0 sells)
+
+--- EXECUTOR ---
+
+--- SUMMARY ---
+USDC: $47.05
+SOL: 0.0073
+Total: $60.41
+Realized PnL: $19.69
+Open positions: 1
+No trades executed this cycle
+
+[DISCORD_REPORT]
+>Postions: 6ehEcTMCc8: $+0.68 (+5.6%)
+>USDC: $47.05 | Total: $60.41
+>Watching: LOKI (STRONG_BUY, conf 85)
+==================================================

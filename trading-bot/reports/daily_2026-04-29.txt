@@ -1,0 +1,9 @@
+=== V2 EXECUTOR ===
+Wallet: 7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA
+Daily Trades: 0/10
+Status: ACTIVE
+
+Checking positions for exits...
+  PENGU: $37.53 (PnL: -3.5%)
+  PUMP: $49.28 (PnL: -3.0%)
+==================================================

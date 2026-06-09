@@ -1,0 +1,64 @@
+[2026-06-06T00:09:05.466880+00:00] TradeBot Daemon
+--- RESEARCH ---
+Research complete: 17 tokens analyzed
+Buy opportunities: 7
+Sell signals: 0
+  BUY MONEY: conf=90 rec=STRONG_BUY price=$0.00079260
+  BUY POKEHUB: conf=85 rec=STRONG_BUY price=$0.00055370
+  BUY SPCX: conf=75 rec=STRONG_BUY price=$0.00006546
+  BUY JEET: conf=70 rec=STRONG_BUY price=$0.00000032
+  BUY HANTA: conf=55 rec=BUY price=$0.00019100
+  BUY BTCBANK: conf=55 rec=BUY price=$0.00066980
+  BUY MURKAI: conf=55 rec=BUY price=$0.00028300
+--- SCOUT ---
+SOL: 0.0178 | USDC: $57.70
+Tokens on chain: 3
+Valuable tokens: 0
+  EPjFWdd5Au: 57.7040 ($57.70)
+  USDC cash: $57.70
+
+Scout signals: 0
+  [BUY SIGNAL] MONEY: STRONG_BUY (conf: 90)
+  [BUY SIGNAL] POKEHUB: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] SPCX: STRONG_BUY (conf: 75)
+  [BUY SIGNAL] JEET: STRONG_BUY (conf: 70)
+  [BUY SIGNAL] HANTA: BUY (conf: 55)
+  [BUY SIGNAL] BTCBANK: BUY (conf: 55)
+  [BUY SIGNAL] MURKAI: BUY (conf: 55)
+[QUEUE] 7 signal(s) written (7 buys, 0 sells)
+
+--- EXECUTOR ---
+  [SAFETY] Checking MONEY before buy...
+  [SAFETY OK] MONEY: score=100/100
+  [SAFETY] Checking POKEHUB before buy...
+  [SAFETY OK] POKEHUB: score=85/100
+  [SAFETY] Checking SPCX before buy...
+  [SAFETY OK] SPCX: score=85/100
+  [SAFETY] Checking JEET before buy...
+  [SAFETY OK] JEET: score=100/100
+  [SAFETY] Checking HANTA before buy...
+  [SAFETY OK] HANTA: score=100/100
+  [SAFETY] Checking BTCBANK before buy...
+  [SAFETY OK] BTCBANK: score=100/100
+  [SAFETY] Checking MURKAI before buy...
+  [SAFETY OK] MURKAI: score=85/100
+
+--- SUMMARY ---
+USDC: $57.70
+SOL: 0.0178
+Total: $58.85
+Realized PnL: $-85.50
+Open positions: 0
+No trades executed this cycle
+
+[DISCORD_REPORT]
+>**BUY MONEY FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY POKEHUB FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY SPCX FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY JEET FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY HANTA FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY BTCBANK FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY MURKAI FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>USDC: $57.70 | Total: $58.85
+>**Watching:** MONEY (STRONG_BUY, conf 90) — waiting on capital / price
+==================================================

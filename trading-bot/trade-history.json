@@ -1,0 +1,737 @@
+[
+  {
+    "timestamp": "2026-04-28T02:35:50+00:00",
+    "action": "FAILED",
+    "tx_hash": "4XN9JdJxHRPX9PzVxnJYYSAMVoLj2oiMXftpeE52n1z1cZZ7a3c712qBocS1zegsGLNxA11LBLTFQeTppFxBkhpJ",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T02:40:32+00:00",
+    "action": "FAILED",
+    "tx_hash": "5jbVPJfBD4Hu5VgHthPPhZ4coBhdVuRrYzB252MVns1uuVU7U2CG9dyx9KAey8WUcmQ6GDoqPDUMqJtDTGPhhiP3",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 1.0435e-05
+  },
+  {
+    "timestamp": "2026-04-28T02:40:36+00:00",
+    "action": "FAILED",
+    "tx_hash": "5jUFyUpfdQHRSbozK67j3qnCoqqhtLYki2Vuve9vwxUBHnvv5YvoPcQZWShYqErCxmfRKFEDCb7LijPFRKsrdDyu",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T02:45:41+00:00",
+    "action": "FAILED",
+    "tx_hash": "2uo1RERNjVGrRR9RsUhwDYZQDYsWJeC4cHtbmoGjPWbw53BokmaFXkjavaGPr2Sm1bhw7YegC2GX2sr48FyP5oCS",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 8.4652e-05
+  },
+  {
+    "timestamp": "2026-04-28T02:46:11+00:00",
+    "action": "FAILED",
+    "tx_hash": "3wcrvDHMDdD2gonZKHh3ZspnGAF7ASYNxpomrrjSymdhxfRJxPLmU93MjBwmcD2Kx4HTZF1SLuuWW1mW69UYRkqC",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 2.9783e-05
+  },
+  {
+    "timestamp": "2026-04-28T02:50:41+00:00",
+    "action": "FAILED",
+    "tx_hash": "4xKkji7ruEgzV8fxy1fhB3CspHMNyH1gtFEVui8X6ebG9Ssi8GeU5b7TH6ghgCNSjCjd6ZZ6KZgEDzeseY69AK6R",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 3.2144e-05
+  },
+  {
+    "timestamp": "2026-04-28T02:50:46+00:00",
+    "action": "FAILED",
+    "tx_hash": "2j8AYMQJiv5aQSxHubMvXShxnufLJnVUq1S3pR4i5WjbEj3FzdZzxqVZPup7zMzC3VuXKRj2VxAfLRYvzz1YVoxF",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 3.6523e-05
+  },
+  {
+    "timestamp": "2026-04-28T02:55:38+00:00",
+    "action": "FAILED",
+    "tx_hash": "3Fo6gfg7cuE2DqdDpcCC4EFRG6fmxN8wggqdFUjjBWtHxV2YuWxwc6obdLaM9pqF5mNnj4SAd3m72o64LfLDP15B",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T02:55:39+00:00",
+    "action": "FAILED",
+    "tx_hash": "4QqMfUPdZjaS418LtM38QR4VM5C41Ky1QmERLdu2XzQqRy95dx1tx9Ffk7wwWhQ12xWKQVJ5aNFgm4G6BXsCfW83",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:01:05+00:00",
+    "action": "FAILED",
+    "tx_hash": "JHSPgQN48HD3x9FJo3gjd2RRpYSWqrYQ4qN5Xq5Zr8yN5Yv8vhcETXkBmdVa1d5G9btESehfvFoTbHuE8esTFLt",
+    "error": "{'InstructionError': [2, {'Custom': 1}]}",
+    "fee_sol": 5e-06
+  },
+  {
+    "timestamp": "2026-04-28T03:01:06+00:00",
+    "action": "FAILED",
+    "tx_hash": "LZ5RHZHMioMCHBZ7L7sBw71sD7X7ibRvu8NckK3ghWseSCgiWv4mxkWGy8HqFw6q6nzsP5UdVRfTAu6rNroMcMy",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:05:47+00:00",
+    "action": "FAILED",
+    "tx_hash": "5RHTQNrNxgHofknHcoskm4m4tSrARsBMk9cWgARpZRNvqwLk3zCCSjnAxC2W5kE2KUnko1jLK4w1PAWHFn4j2XJF",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:05:48+00:00",
+    "action": "FAILED",
+    "tx_hash": "2qUWmYcnK65sXBUaZodg59RjZNuUAaxFkR5JwTcifg6GTinBbc3QzDYBBoG3FdSjUML3Qs7o5FAAEUtvuJRUZXJ8",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 5.4801e-05
+  },
+  {
+    "timestamp": "2026-04-28T03:10:41+00:00",
+    "action": "FAILED",
+    "tx_hash": "2ALjKF3dSogahabX8CdHXJz2o6wuM7Fk1SL919ij4uw4ZhqZenic4kyCkpLbXy3NjUxSDF2APyRoYT2uaELDZ3sD",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:10:52+00:00",
+    "action": "FAILED",
+    "tx_hash": "3L8UW7KpKmwtgbVgGMipsAkZJHSg6fSZabXmoF5Q8Yr5czv8eKzbUsQnfCYawCUYm8nofge4exYzCYTP5xSrUcZm",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:15:38+00:00",
+    "action": "FAILED",
+    "tx_hash": "5fzUVsbRCZUtJNWaxLBtDaxqQ9fXo7YgLqfXqkcHmL96TUHychej5QDEYVhZiuGPFv9dFahRjTV1B2Rn437QUTga",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:16:10+00:00",
+    "action": "FAILED",
+    "tx_hash": "k52Rkxt6ZSkJzL13QrUKnRujJjJckW7EcHSgHvgeVAALPwL7kYSU6ropykf8grbYobVQqjtGMciGJQypYqagLcC",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:20:43+00:00",
+    "action": "FAILED",
+    "tx_hash": "2askawcjvZqr8Mgd8GtzJekyG2pyh8qfHvHXdFqgq3A2bkJwX2BALfoaedYV1uF6Axb7SXvRwt63h5dWCbRSeRUz",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:20:43+00:00",
+    "action": "FAILED",
+    "tx_hash": "cuHcLRdRfU7kbEPTAjzKPCewPBxmvUcy6r97Yirh9fHUM7FKb3bR35qP7YHKLcTJrz8NJ8Mn5ZAAqdfhZroQHMp",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:25:42+00:00",
+    "action": "FAILED",
+    "tx_hash": "28uJxNK4iU45bQCPR3nNpR357DHeYCpwGewaYgE6UfwhopfyhDWr8FtPBPsWtJKPe3XKnBAFTa4ifBqpE7nA83JR",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 3.3e-05
+  },
+  {
+    "timestamp": "2026-04-28T03:26:16+00:00",
+    "action": "FAILED",
+    "tx_hash": "64JiNHJjcqugHd9n6zK4ckVy44V8DMBcRqpfNqQjycRqqT2N6dtijUrhexT6o4GkBUy2exVnYjPGKctp6x4y5yJ9",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:30:44+00:00",
+    "action": "FAILED",
+    "tx_hash": "27QscVL3U8fcWZLrrUoJ3S93mb1xqQSvYmt9ZKJ7b6WDzrytXgynppprd1favV7ftoRTgzhUCUBRXU1goorT2Nd5",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:30:45+00:00",
+    "action": "FAILED",
+    "tx_hash": "66CsCpVggrkHuXhirH2urP1VVrmxSACTCVA6ciZWSDXoewEAmWoyq6WLfXcT6vW4pE3iGbDDmbwemoyXcVG9jXyp",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:38:03+00:00",
+    "action": "FAILED",
+    "tx_hash": "4YCrkQ3ZeNomFe44PaSVPT7M61rLifttDkV26PxXvahxNuQKcZmjSG4wftEYVfSqXQk5VuVFGwqpiYEmRptwiHdy",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:38:03+00:00",
+    "action": "FAILED",
+    "tx_hash": "4B1UMr2H6hcyk9r4UJPwyZxEFpNzz59DttnujbaS1mwF3e7vGtBoQDHKmMzTNyTMycLxBvYiW2ZDYTZsmaLrSc5b",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:40:28+00:00",
+    "action": "FAILED",
+    "tx_hash": "3JZtMLEK15ahAJ4GigDCFESv5nx7KTPviM5kFwyD2Sg3h56C9cCg6B3V9RmswtRdbEuyu5fArogUxckZTVhLjZbT",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:40:29+00:00",
+    "action": "FAILED",
+    "tx_hash": "4GC3pFVnBYKHGeQJNUPE9ZxMkTixHRSZEDugm5rKmiPMss2LHVfcuK2WZyHStWq2RXEBQJQQScQPDBiAZudFtX2y",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 1.5153e-05
+  },
+  {
+    "timestamp": "2026-04-28T03:46:00+00:00",
+    "action": "FAILED",
+    "tx_hash": "2Tbyv7pZYNbpnkmJp5grUKfN9Bdk1KCTVPbeCSAsD26zV64irk5W8utSscw2Tfgka4K3wPawf1dDBpXV9MMc9YyE",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 9.744e-06
+  },
+  {
+    "timestamp": "2026-04-28T03:46:19+00:00",
+    "action": "FAILED",
+    "tx_hash": "5F6bDKgeJPNKDh7A5yJFusBA3wo6pXRMhUQwrFSZRTxLCJ4Ves4C7TDeJewbv86rSMJT8XHSaktdFqsQqxv7yoei",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:50:37+00:00",
+    "action": "FAILED",
+    "tx_hash": "5XEEfaAc8J9Tb3jw1XM5p3vyzWgThrFStEnqvFVXwwqajijub7i1GhXqTFzPzDNVy8SksxGrCivScH2j4nYqkNho",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:51:22+00:00",
+    "action": "FAILED",
+    "tx_hash": "3i6xxpgxpxPtTFESjjHkiLgwG48jJhHJNe49iyfnyA4LffSvedzLfGaoMB5PDzBdsD3e9wo9tYuDhsKCxWPFHBfg",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:55:46+00:00",
+    "action": "FAILED",
+    "tx_hash": "4WhtGroBxHfxQQvSsuKWTQxrwW3v3x51FYGy2sBmnT5r8sVg9YrTU6PkuXdoDACGzAWPpGVfV34yRyWgGzhXP2Ht",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T03:56:21+00:00",
+    "action": "FAILED",
+    "tx_hash": "3EF5YY9QiP5nB3k11h1ZLc5YTYJDS5s8oK78GStwLEdjrPhoQhJT1VVkJjXri2xLpMnshiyiyCaU3RFfTWVVknLi",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:01:15+00:00",
+    "action": "FAILED",
+    "tx_hash": "9HzU4NX9GwdpDfbxWPRwJK47oCWyo3bBuLpHp1isRQZVVGmHiagxXAFa12Ur7hauWgDQZokB6sFW8jqTuLXfd29",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:01:27+00:00",
+    "action": "FAILED",
+    "tx_hash": "3VLTRV7HysAEvFLyXt5LMboCeh4oNAf54cxfgeeNzhboj2XvkfCYvSP5obdDA7vqjC5PdXtbdhHYSNeaiVC6NbnP",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:05:42+00:00",
+    "action": "FAILED",
+    "tx_hash": "hzpNDfWUyE26sdYkbi4VVW4P87UwPCju7sN7TVnpXuzt4nQTWZ15wCM4BBi99XgXTyoiwjp45obqhHTHA4drWT3",
+    "error": "{'InstructionError': [2, {'Custom': 1}]}",
+    "fee_sol": 5e-06
+  },
+  {
+    "timestamp": "2026-04-28T04:05:42+00:00",
+    "action": "FAILED",
+    "tx_hash": "54CsY1PGyBV1hEQwNWzMd5Xg4xqqtnnoQTdnE5wUoY6JdH9Ecib19V5kqFLQ8pLCZ2EkBZtAzcQky6JW3hxiWD9P",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:10:42+00:00",
+    "action": "FAILED",
+    "tx_hash": "5TdB5sXV8Ym5jxxX7dMtotA3zBoxrnMGZ5jYjsYbFswWfpeTeT9tPMsyHd7g9VUBQp1uC7BPQ3s44HHs49nkUj7y",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:10:43+00:00",
+    "action": "FAILED",
+    "tx_hash": "3PrxnCePVRrDh3rPcpmjnU25W9sGa5BHzKXDcpLsZPArJ24tWAKF7ToGjYCNovkSixU5CCiozCBUdxyU2z6qFKwx",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 7.2004e-05
+  },
+  {
+    "timestamp": "2026-04-28T04:15:46+00:00",
+    "action": "FAILED",
+    "tx_hash": "3TNNNZHRNntJF8NvJt7afxMAckdzkgfkkndNuvBYmn7uJicpBFTeu3df4iybKwkMFuMPGHAfeeui8tfEvziXpEMQ",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 1.1172e-05
+  },
+  {
+    "timestamp": "2026-04-28T04:15:46+00:00",
+    "action": "FAILED",
+    "tx_hash": "4XaWk4cY6k9G2RvYtN1FxRchtVn4oihLGGmZuMA7hiBppAtb5Nw2b2PbhQiLk3NR9HcVUDh7qai15bTS1YGdnHLK",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 3.3367e-05
+  },
+  {
+    "timestamp": "2026-04-28T04:20:39+00:00",
+    "action": "FAILED",
+    "tx_hash": "6KwibRx8kfhTWZLoyP2MtJgKHyMfbeKoPfTRgDgTfrrArwbMaSSzVNSmNH8NBBDjju1yw7ubPvZiKuPeb4rQAvv",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:20:39+00:00",
+    "action": "FAILED",
+    "tx_hash": "628U7Ke7N73xQMoQQFX4K5uUSNDjbYaba3whN255Kk3PMEoJjJsZQU8kMe3vBXHmm87xnFnCqM7FKd7EH7eCjbwd",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:25:32+00:00",
+    "action": "FAILED",
+    "tx_hash": "4ZvpUzfb6kcTjxZ38uwtKbPFZ4km91TE5RKBMUVwvAJqDwmz9i1DJgkuRU7oPBbfVcsa6AtXXVT569HWcSSqj8AD",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:25:32+00:00",
+    "action": "FAILED",
+    "tx_hash": "37jSNcxKwuDYtEP4Z7Mg137QNef8LP3Ge1PGxABTTnZi3YRVqNe5kTB88gMsSDHMj3oWydhZd3e3UYFoiNEYtMeA",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:30:40+00:00",
+    "action": "FAILED",
+    "tx_hash": "4anNdWrwkAZ3LvzWx2Ev8LKyFBB4ngtK9kQBFMH1o4Fv1kmCAsxfKMacF7a1DcBoL8u1uVVD1anaW8s6sgeh1rWr",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:30:40+00:00",
+    "action": "FAILED",
+    "tx_hash": "5dMNrE3HyiEMw7mmQeQ6D2MF1NaeFiSf6DYJCtC7xaaWAhtxzPSfLwqwEXAbnGi1WpkqahDr76yNwJMhdKzmJzsm",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 4.963e-05
+  },
+  {
+    "timestamp": "2026-04-28T04:35:32+00:00",
+    "action": "FAILED",
+    "tx_hash": "2qn89FHsgUsxk75YayWWpjfVn6q4onNHb8SqKp4vhSCWwv6BEMknB4waFvHKYip5tsqKc7X84PD7yLNktN74viZ6",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 1.06e-05
+  },
+  {
+    "timestamp": "2026-04-28T04:35:35+00:00",
+    "action": "FAILED",
+    "tx_hash": "3oWqFmajR2iTcRGDmeX99YQTixeAh7Hz3bKJhmgrXqjB9J2Sc8r5xY6cyNKKWQyjYL4MZjtMAQKYmnGb8dDk1u5V",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:40:42+00:00",
+    "action": "FAILED",
+    "tx_hash": "r7LPnR3oi5r1ZoqMj3kAczdkkrjrhXC54EJ1hKUTLHogex7KwuZ7eKxxmAHcFBP6smz2P5iZs3mix8uM7hTV8oY",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-04-28T04:40:43+00:00",
+    "action": "FAILED",
+    "tx_hash": "4h1yAjVFsHYYQ2YkK8doZkAXbivskVo2KVvodn94RfQQ43x9yDZAXqnZSVZoJ4A7tdFdQfgBj6KRpfhvE6aqyEgz",
+    "error": "{'InstructionError': [2, {'Custom': 1}]}",
+    "fee_sol": 5e-06
+  },
+  {
+    "timestamp": "2026-05-05T15:44:41+00:00",
+    "action": "FAILED",
+    "tx_hash": "3SbsMkvuGFSLRc8FLyi2A4yEm9D5D8RwKGWb5ZunidvbVEUSj5ZpyHJbTXhPwEwDiXhC2x27zN6wVPsPzgRvfy3z",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 5.28e-06
+  },
+  {
+    "timestamp": "2026-05-05T15:44:43+00:00",
+    "action": "FAILED",
+    "tx_hash": "5oSr7rp4MRQ6rsgyqvEmHTPgs71HJug7Y5Xg4bA3MCnEdLDXeazhLVUMnMyN5TCvWXgYb1xVUWY7BrwqeFRxcQ9U",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 7.8405e-05
+  },
+  {
+    "timestamp": "2026-05-05T15:44:49+00:00",
+    "action": "FAILED",
+    "tx_hash": "4aHg8t6HHATAbTHRvqo6qa2Q3rVikNPGUzUJnFT4pZccL5qbYgCDVXb3FbD94eqCE9asRYyKV5R9bwdQbkweKGrv",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-05T15:48:51+00:00",
+    "action": "FAILED",
+    "tx_hash": "4CPWRXGdXXzfUu1WJLYbGgHXKRMTiZof5kEYd4tvqpWEHctYQWW9nah8uadNYo3dB1BXYdEbup8p1emDxDxUCbku",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-05T15:50:15+00:00",
+    "action": "FAILED",
+    "tx_hash": "3RZYjkFSRrB5SpqkR372T1RBe83svD1MEdUiCwkvrNa7FC94KA23St29knyLsrNPtvQhHJK1sP2Huw4e4f7jB4jb",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-05T15:50:15+00:00",
+    "action": "FAILED",
+    "tx_hash": "8kxDkWiWMojpYPZJ5c9S5SCi8PkG25rny7m3WucuRGaqPhPtbZyda5qBmpEpz6FS7NDYKNVJFSbvJ5ek3MbTATj",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-05T20:00:51+00:00",
+    "action": "FAILED",
+    "tx_hash": "21XYvUNMPf7PayQMY8gvKmX11KVP5RjgApWdUYmHSHv6LTSavk7wugBrrgWqA1utcUohahh3LUEkhYMHkzZDdzbp",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 3.0497e-05
+  },
+  {
+    "timestamp": "2026-05-05T20:00:52+00:00",
+    "action": "FAILED",
+    "tx_hash": "Hma4XMmW3SbXGQ9EgU4AX4JCTvSmEbkb6xG7pBUTBmFQrtkiZpbFpocFkUGm9mvDjHP2NiEHvYMVpd3rBEVFi1m",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-05T20:00:52+00:00",
+    "action": "FAILED",
+    "tx_hash": "3GrbDfxvMc2cZxyQjYrYujsuPbu8gcCGy57D8KVfuxPx4m3yH7EjakgrWC9tBbv7jda14BFf74542FKqLNWLDvad",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-06T17:51:39+00:00",
+    "token": "PUMP",
+    "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+    "action": "SELL",
+    "amount": 12005.556718,
+    "usdc_proceeds": 0,
+    "tx_hash": "2mKf9TzctyBUgiJRjbY2W5aKeMPBXN9v2qV6hticgjz1U6rVyZKPv16xGPL4LvahZrDGMcqHiLxz25UPY7tfVijg",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-06T19:39:13+00:00",
+    "token": "FARTCOIN",
+    "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+    "action": "BUY",
+    "amount": 71.970501,
+    "usdc_spent": 0,
+    "tx_hash": "4stDJM7VpkBcrcrMmhEFCSWmLiaW3xXxp6w3mBdLMFHNuT4JFX7wv7Yo8wpS8SJ21DLVPxiBT5iXs8FRbTtMoM75",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-06T19:39:14+00:00",
+    "action": "FAILED",
+    "tx_hash": "27Boe7FCybDQkpbDBGNkiUSHjAsskThu1XkvQpNWxRBy4jRYpDrtkmaafghhrgEc5PtmLj7yeiDsaa7hZeWUkGd4",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-06T22:18:50+00:00",
+    "token": "PUMP",
+    "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+    "action": "SELL",
+    "amount": 16577.940286,
+    "usdc_proceeds": 0,
+    "tx_hash": "5jbRMYuzAkB5QCfykycgic3VYarUWoD5B2MRFNeiv5ev9ybbYAArW242Rqt2tLQWSiyfKNaRVKJf9uzfutRYn9mx",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T03:26:08+00:00",
+    "token": "FARTCOIN",
+    "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+    "action": "SELL",
+    "amount": 71.970501,
+    "usdc_proceeds": 18.357309,
+    "tx_hash": "4YLrksAXduNrZQUf5DRyRp7Uuqr5XAAXCSrsXCZMgxodqyKhJ7mr6W1Ce9yrm2puwtuWj4oHJ3MqNkeCazRAkTnh",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T03:26:14+00:00",
+    "token": "PENGU",
+    "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+    "action": "SELL",
+    "amount": 3900.53331,
+    "usdc_proceeds": 42.184267,
+    "tx_hash": "2t7zr57qPxfiijyAUrCzoYMjAX3HaSxKjjGggnNYBZNuX3XjLE7pnt8jMw5CvcmUKCtPZDPUNcmfwcLRn2fxko4v",
+    "fee_sol": 5e-06
+  },
+  {
+    "timestamp": "2026-05-09T03:42:38+00:00",
+    "token": "BONK",
+    "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+    "action": "BUY",
+    "amount": 2541474.44771,
+    "usdc_spent": 0,
+    "tx_hash": "5nPdw8jSHpYHCYxVo5gtUvZgxUccJxySqrhAbP74ogM6MW2FEJT3ZDVkMn4t2BbnggzzkL8JKLHzpvFD3YfUcfmQ",
+    "fee_sol": 5.23e-06
+  },
+  {
+    "timestamp": "2026-05-09T03:42:39+00:00",
+    "token": "FARTCOIN",
+    "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+    "action": "BUY",
+    "amount": 55.008,
+    "usdc_spent": 0,
+    "tx_hash": "UqzGAoHZrLRFBVN878rQ5xYwFUFBgijvGCAQrPqvZAj1LdievbXoJrn1NYaQcm8UbG193qNDHpfEQpFqbHMzjx5",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T03:42:42+00:00",
+    "token": "TOKEN",
+    "mint": "9enS2VasgRxzT2QVkhjfVJAtrVJGB9MSYTSvUpf2pump",
+    "action": "BUY",
+    "amount": 46759.900328,
+    "usdc_spent": 0,
+    "tx_hash": "4P5DW8VKuSjysWTTygVRivwctGwvn7w9Kxb5QMwZPFDZP5zvyW7z5T24VcEpgQdEwFj32eSXUjk6skxHUssXXo4F",
+    "fee_sol": 7.066e-06
+  },
+  {
+    "timestamp": "2026-05-09T03:42:44+00:00",
+    "action": "FAILED",
+    "tx_hash": "52sCKn4f6RQ2AD5maH9iU53Eogxp7YHXGrz7cAxGW2ajFfyQnMmeRzKsuwacXaMXqKNHbWDjUkrptPpTYAQE9pn9",
+    "error": "{'InsufficientFundsForRent': {'account_index': 11}}",
+    "fee_sol": 5.825e-06
+  },
+  {
+    "timestamp": "2026-05-09T04:07:28+00:00",
+    "token": "AURA",
+    "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+    "action": "BUY",
+    "amount": 112382.567956,
+    "usdc_spent": 0,
+    "tx_hash": "FP47LkCyUoYmEiRSd6NKzHgg5QKRKyHT2Bty1REKcfBoktkBW9WeP5eV39u49rZCu3NHfDRSiuVfZaWyQVGhvU6",
+    "fee_sol": 5e-06
+  },
+  {
+    "timestamp": "2026-05-09T04:09:00+00:00",
+    "token": "BONK",
+    "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+    "action": "SELL",
+    "amount": 2541474.44771,
+    "usdc_proceeds": 18.870858,
+    "tx_hash": "4RmPFxVtC7ciFRSRSV2DHEvqW3ZCaJBrWW9eVhWEJNYXsUQVRB2SFhEEkVSV8WbumAkZwM5prtYYnbq8uPH15E1K",
+    "fee_sol": 7.803e-06
+  },
+  {
+    "timestamp": "2026-05-09T04:09:14+00:00",
+    "action": "FAILED",
+    "tx_hash": "34GnyKfgJYyAGkPMfuQ1iiY5u7zgw4GbjwG5GeVtDainSkbGkptr2m55exeNXFG4qMu4UHYN5V1gAV511m675cP4",
+    "error": "{'InstructionError': [2, {'Custom': 6024}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T04:09:14+00:00",
+    "token": "AURA",
+    "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+    "action": "BUY",
+    "amount": 112180.583753,
+    "usdc_spent": 0,
+    "tx_hash": "C5Taf9sX4YP4Z9DKNyvz6dhPgghj331YLUeh7WJEX3SxvALd16CBQhT84j2oa5qQVRWeXEEWPZy3zYTFJsefcdm",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T04:23:24+00:00",
+    "action": "FAILED",
+    "tx_hash": "4eZVXW8Th6JzhYGfpiMcEiAZZRaHzPC5Knou5d8Niy7yghsQoQvWA7dxTep64YDEiQ6K6VRac418sqzSB6A69t7J",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 6.874e-06
+  },
+  {
+    "timestamp": "2026-05-09T04:37:45+00:00",
+    "token": "FARTCOIN",
+    "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+    "action": "SELL",
+    "amount": 55.008,
+    "usdc_proceeds": 13.918794,
+    "tx_hash": "Kpej335xC5QDfS5LYqXkSDTeLkvV6dBQyhexqHbV7NKXUXKSMdTTpu9mHWCNjmMozcqAoZNvXHp5gmfXAHup8dF",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T04:52:30+00:00",
+    "action": "FAILED",
+    "tx_hash": "64VSfvNDfApfJc1VAKoRAtUdb6giw6DzzCMofunnE6huvuHoP3acbcJVRG5ajZ4mMw9hqkK43NXTDMcVmqtp2c1j",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T05:22:30+00:00",
+    "action": "FAILED",
+    "tx_hash": "59JNXhYfjn6WByJcoHdFFK9yUQTAtask7fkg7uZVtmMCVepWBuX5fQ8ZWnaCZsJgxgJcU77TLreRHUfobWF7nNte",
+    "error": "{'InstructionError': [2, {'Custom': 6024}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T05:22:54+00:00",
+    "token": "TOKEN",
+    "mint": "9enS2VasgRxzT2QVkhjfVJAtrVJGB9MSYTSvUpf2pump",
+    "action": "SELL",
+    "amount": 46759.900328,
+    "usdc_proceeds": 7.037231,
+    "tx_hash": "5U6e8tC4GbC6nr4f65p94JEi5UdBwTCTUHRhkvqxxrQkRagLXjogZhbzcCxpgbrwZr8rk7yMB9WTCvVTDXxMwgP2",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T05:22:54+00:00",
+    "action": "FAILED",
+    "tx_hash": "29wcATmBUjL7CTLrwgRxbfYBFgs3pnG3oQxi7CvKagetaqHhw1fPTGnZ1CL4WU9X8prYMwCzVXHfFz2xHi4phcWz",
+    "error": "{'InstructionError': [2, {'Custom': 6024}]}",
+    "fee_sol": 7.803e-06
+  },
+  {
+    "timestamp": "2026-05-09T05:52:30+00:00",
+    "action": "FAILED",
+    "tx_hash": "5dxBgAz7qVcMdEftDTwN1pQCoXu4Qpz3UJLwzLTR9HT7bvnEoeZWfPqqWWFcTXUG52Q7keTkm7jBDNMEKXPKGuqV",
+    "error": "{'InstructionError': [4, {'Custom': 6024}]}",
+    "fee_sol": 8.4705e-05
+  },
+  {
+    "timestamp": "2026-05-09T06:38:29+00:00",
+    "token": "AURA",
+    "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+    "action": "SELL",
+    "amount": 224563.151709,
+    "usdc_proceeds": 34.550045,
+    "tx_hash": "jfHJUdeZRYkpCGndfioZAxFL5XNz1xnkNAg1XncbHkfzyif5uq1jYpCSkr9vxZ5mAyFVA769XgJYppqvLruw92a",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-09T06:53:00+00:00",
+    "action": "FAILED",
+    "tx_hash": "64WeMXYhghejjMjK8SBnZdQag8gBTyJ2dUqAaA7P4Ez2PiBZHULNPbkD1gDsfHED6JQtvKxA6BBh2hb7u8ee5qRB",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 8.6965e-05
+  },
+  {
+    "timestamp": "2026-05-09T07:24:51+00:00",
+    "action": "FAILED",
+    "tx_hash": "3tLeCzTzkQWEzasWF2yjQ4wLbd41kZJzGgZXPTNphY3G4jUb6wiiR5itwzLjJDrgtGnQJNFsFBFKvjXDHoNpMqoo",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 9.601e-06
+  },
+  {
+    "timestamp": "2026-05-09T09:39:32+00:00",
+    "action": "FAILED",
+    "tx_hash": "5NApN1hzeqrZJsyTPf1HxVfodztgu8ymwHprVwMrMvzspWqh4SpLmmVeUFX7ctvqo5iKGQHVHZ8z536pZH2NsFL5",
+    "error": "{'InstructionError': [3, {'Custom': 1}]}",
+    "fee_sol": 2.6227e-05
+  },
+  {
+    "timestamp": "2026-05-10T02:30:23+00:00",
+    "action": "FAILED",
+    "tx_hash": "3bipAcDNgXWne7KMYeFyg2hW7kFxBCi8gA7LgiKFNssPmviDVzqwfrRT5rkc8iGJRaCkeFLjRG5GMYdQQ7VK1pbX",
+    "error": "{'InstructionError': [3, {'Custom': 6001}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-10T13:15:28+00:00",
+    "token": "HANTA",
+    "mint": "2tXpgu2DLTsPUf9zFmuZmA4xrYxXKBTpVq9wAM7hzs9y",
+    "action": "BUY",
+    "amount": 45.351808,
+    "usdc_spent": 0.2,
+    "tx_hash": "4Ze8YW2iP4fpAe8B9UD64WYvb79ANKN2su7dhWF1sRxdT8KSrFQJk2FnYw1ApcoHfbSCggd4xmDf8B1KG1zb6XHg",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-10T14:15:56+00:00",
+    "action": "FAILED",
+    "tx_hash": "4fRqTUiP783Pw1xemif3xprT5RpHSjBmtKrpgLCcvQJ3mFLCBnhT5va1KioZDhY99M7qNYDBSbevwui5nQpw9PHE",
+    "error": "{'InstructionError': [3, {'Custom': 6001}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-10T15:01:05+00:00",
+    "token": "HANTA",
+    "mint": "2tXpgu2DLTsPUf9zFmuZmA4xrYxXKBTpVq9wAM7hzs9y",
+    "action": "SELL",
+    "amount": 45.351808,
+    "usdc_proceeds": 0.171539,
+    "tx_hash": "64i738xh15tPJFGa8ERPH7pvEvXZQxuBN51vU14TXq4jbuNmDSdejcwf2JBKD77R4zPcivBp8oSArUDtZL3ZStNz",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-10T16:15:44+00:00",
+    "token": "AURA",
+    "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+    "action": "BUY",
+    "amount": 1245.389259,
+    "usdc_spent": 0.2,
+    "tx_hash": "2ws57L1iAXGPpJwv1EzgHC8jKXsPdwkiuXTwo1rQmA2BTPxSy2psU3w2JqoaMS92NDgyNeqa92dzAZfNtMZqhNQT",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-10T16:46:20+00:00",
+    "token": "AURA",
+    "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+    "action": "SELL",
+    "amount": 1245.389259,
+    "usdc_proceeds": 0.198937,
+    "tx_hash": "4YUBseNyYyzmUswFtLNRrobDHC1GsoYmyGko5SC5u2X7MLpsEFSJnNLh9HjFtApyB9BKf9iV6vA65aHFfSCnrF33",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-10T18:47:49+00:00",
+    "action": "FAILED",
+    "tx_hash": "2tc6U6aXat7jPBCDcmHpkXxLxGnU66wKSFKD88y5Pzn88R5Y6RBcvHeh2GXNTemZJ7n96CnMjr8is7KSuBgarZgW",
+    "error": "{'InstructionError': [4, {'Custom': 6001}]}",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-10T21:55:36+00:00",
+    "token": "TOKEN",
+    "mint": "FVAJ37KMeRCCdcBQYtFkXxLHWTEQABErNTWW3nDpump",
+    "action": "BUY",
+    "amount": 528329.404013,
+    "usdc_spent": 0.2,
+    "tx_hash": "3VCkDsofgBfXhz8JDEPY1fLPAsuL1yDF8zrFrD1wBG3J9uFJ5GGnB8WwEKJbDUK9R8rjeGgbbaQmkESezrRei9sW",
+    "fee_sol": 0.000105
+  },
+  {
+    "timestamp": "2026-05-10T23:27:02+00:00",
+    "action": "FAILED",
+    "tx_hash": "25oyytJc3iK5Qp1gBXrNzjTM1iNB9MT8AeES6FNNDjmAKgjsDDBZ4FzjKqhD11d65tai1QfEVyhYAJPqegUikD5D",
+    "error": "{'InstructionError': [2, {'Custom': 6001}]}",
+    "fee_sol": 5.5661e-05
+  },
+  {
+    "timestamp": "2026-05-11T02:02:59+00:00",
+    "token": "TOKEN",
+    "mint": "JmMRbLcKgNCu17yHZDAn4strE5NjmWJ4pCeJ7s7boop",
+    "action": "BUY",
+    "amount": 10589.306559844,
+    "usdc_spent": 0.2,
+    "tx_hash": "2v3mUrviUe48fB8Kgqj6MF16z5NHubdT3sv8SFsHqY3GZEM9oT8K5uFVU35YBytNxNUXm5jLy4PcproZHqpZ3uqd",
+    "fee_sol": 1.9756e-05
+  },
+  {
+    "timestamp": "2026-05-11T02:17:55+00:00",
+    "token": "TOKEN",
+    "mint": "JmMRbLcKgNCu17yHZDAn4strE5NjmWJ4pCeJ7s7boop",
+    "action": "SELL",
+    "amount": 10589.306559844,
+    "usdc_proceeds": 0.195316,
+    "tx_hash": "339w1fEw3Sfr1iWpEbaZ1heJvk5YCubwDEdsmzN8pBRMTnLMj59V9NWQDYqKjzKkd9E6g1qQsonLMqYPdAQDcFrc",
+    "fee_sol": 0.000105
+  }
+]

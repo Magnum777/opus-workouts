@@ -1,0 +1,29 @@
+[
+  {
+    "timestamp": "2026-04-26T05:16:04.853436",
+    "price_usd": 2325.76,
+    "price_trend": 0.008185625489353142,
+    "coingecko_sentiment": 0.0,
+    "notion_score": 0.0,
+    "combined_score": 0.004092812744676571,
+    "signal": {
+      "action": "hold",
+      "amount": 0,
+      "reason": "Neutral composite signal"
+    },
+    "trade": {
+      "action": "hold",
+      "reason": "Neutral composite signal"
+    },
+    "alerts": [
+      {
+        "target": 2000,
+        "direction": "above",
+        "message": "Take some profit",
+        "created": "2026-04-26T01:15:58.039142",
+        "triggered": true
+      }
+    ],
+    "portfolio_usd": 0.6744623826313878
+  }
+]

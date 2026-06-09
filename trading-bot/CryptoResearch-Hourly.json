@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-03-25T18:55:00Z",
+  "analysis": {
+    "BTC": {
+      "price": 72500.0,
+      "signal": "BUY",
+      "target_price": 73225.0,
+      "stop_loss": 71775.0,
+      "confidence": 0.75
+    },
+    "ETH": {
+      "price": 3850.0,
+      "signal": "HOLD",
+      "target_price": 3888.5,
+      "stop_loss": 3811.5,
+      "confidence": 0.45
+    },
+    "SOL": {
+      "price": 145.25,
+      "signal": "BUY",
+      "target_price": 146.70,
+      "stop_loss": 143.80,
+      "confidence": 0.68
+    }
+  },
+  "market_conditions": "Bullish sentiment with moderate volatility",
+  "risk_assessment": "Medium"
+}

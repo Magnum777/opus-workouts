@@ -1,0 +1,103 @@
+{
+  "trades": [
+    {
+      "id": 1,
+      "timestamp": "2026-02-26T14:26:00",
+      "type": "BUY",
+      "token": "BIRB",
+      "sent_amount": 0.05,
+      "sent_token": "SOL",
+      "received_amount": 10002273,
+      "received_token": "BIRB",
+      "tx": "541u9oMECxJCddyEz4w7FAW...",
+      "price_usd": 1.72,
+      "note": "Initial BIRB position"
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-02-26T14:30:00",
+      "type": "BUY",
+      "token": "PUMP",
+      "sent_amount": 0.02,
+      "sent_token": "SOL",
+      "received_amount": 984309347,
+      "received_token": "PUMP",
+      "tx": "atKKrMqAoxS8NRXz8MHDV...",
+      "price_usd": 1.72,
+      "note": "Initial PUMP position"
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-02-26T15:15:00",
+      "type": "BUY",
+      "token": "PUMP",
+      "sent_amount": 0.02,
+      "sent_token": "SOL",
+      "received_amount": 990164311,
+      "received_token": "PUMP",
+      "tx": "64J7xp4gHEN24Pp1chMQw...",
+      "price_usd": 1.72,
+      "note": "Dip buy - averaging down"
+    },
+    {
+      "id": 4,
+      "timestamp": "2026-02-26T15:25:00",
+      "type": "BUY",
+      "token": "BIRB",
+      "sent_amount": 0.23,
+      "sent_token": "SOL",
+      "received_amount": 114033511,
+      "received_token": "BIRB",
+      "tx": "4n2LdZAEZPPFu6QJAeJ7U...",
+      "price_usd": 19.78,
+      "note": "Diversification - added to BIRB"
+    },
+    {
+      "id": 5,
+      "timestamp": "2026-02-26T16:10:00",
+      "type": "BUY",
+      "token": "BIRB",
+      "sent_amount": 0.25,
+      "sent_token": "SOL",
+      "received_amount": "TBD",
+      "received_token": "BIRB",
+      "tx": "4CqbdkuFkm...",
+      "price_usd": 21.50,
+      "note": "Aggressive diversification"
+    },
+    {
+      "id": 6,
+      "timestamp": "2026-02-26T16:10:00",
+      "type": "BUY",
+      "token": "PUMP",
+      "sent_amount": 0.25,
+      "sent_token": "SOL",
+      "received_amount": "TBD",
+      "received_token": "PUMP",
+      "tx": "b8XrNrMbXA...",
+      "price_usd": 21.50,
+      "note": "Aggressive diversification"
+    },
+    {
+      "id": 7,
+      "timestamp": "2026-02-26T16:10:00",
+      "type": "BUY",
+      "token": "SKR",
+      "sent_amount": 0.25,
+      "sent_token": "SOL",
+      "received_amount": "TBD",
+      "received_token": "SKR",
+      "tx": "2vN7fw1ZBT...",
+      "price_usd": 21.50,
+      "note": "Aggressive diversification - dip buy"
+    }
+  ],
+  "summary": {
+    "total_trades": 7,
+    "total_sol_spent": 1.07,
+    "total_usd_spent": 91.99,
+    "fees_paid_sol": 0.035,
+    "current_portfolio_value": 77.51,
+    "unrealized_pnl": -14.48
+  }
+}

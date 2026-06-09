@@ -56,7 +56,7 @@ The Covenant has had dealings with high-ranking Amarr officials. During Dochuta 
 - YC106-107 — Clashes between Blood Raiders and Amarr Navy escalate, including the Mabnen incident
 - YC107 — Amarr Navy offensive drives Blood Raiders out of the Bleak Lands
 - During Jamyl I's reign — Sarikusa's sect appears politically withdrawn but increases incursions along empire borders
-- 2015–2025 (recurring) — Crimson Harvest events; Blood Raiders vs. Order of St. Tetrimon
+- 2015-2025 (recurring) — Crimson Harvest events; Blood Raiders vs. Order of St. Tetrimon
 - YC127 (2025) — Major Crimson Harvest event with extended content, Biocybernetic Incident sites, and Blood Raider ship rebalancing (Cruor, Ashimmu)
 
 **Why It Matters:** The Blood Raiders are the perfect villain for the Amarr Empire's narrative — they're the dark mirror of Amarrian faith, practicing openly what the Empire does behind closed doors. Their existence proves that the Amarr religion contains the seeds of its own monstrosity, a point the Minmatar have been making for centuries. For Kybernauts content: the Blood Raiders operate in the same moral neighborhood as Pochven raiders and the more violent Triglavian clades — the space between "faith" and "cargo cult" is narrower than most empires admit. Additionally, the Crimson Harvest event structure (choose Blood Raiders or Tetrimon) gives players a moral choice system that Kybernauts content could riff on — "which flavor of awful do you prefer?"
@@ -69,3 +69,54 @@ The Covenant has had dealings with high-ranking Amarr officials. During Dochuta 
 - "The Amarr drove the Blood Raiders out of the Bleak Lands. They took it personally. Now they take everyone's blood personally."
 - For Kybernauts: the Blood Raiders are what happens when AI-driven transhumanism takes a hard left into religious mania — contrast with Triglavian hive-mind collectivism
 - The Order of Tetrimon + Blood Raiders dynamic = "we hired the marginally less evil mercenaries to fight the definitely evil cult"
+
+---
+
+### Guristas Pirates
+**Researched:** 2026-06-08
+
+**Summary:** The Guristas Pirates are one of the four major criminal cartels in New Eden, founded by two former members of the Caldari Navy's elite 37th (Octopus) Squadron: Jirai "Fatal" Laitanen and Korako "The Rabbit" Kosakami. Unlike other pirate factions driven by ideology or religious fanaticism, the Guristas are motivated by the most old-fashioned of reasons — pure, unapologetic greed. They operate out of the remote Venal region with hundreds of deadspace listening posts and staging points along the Caldari border, and are notably unafraid to stage piracy strikes deep inside Caldari State territory.
+
+The duo's story begins in YC86, when a disastrous week saw Fatal passed over for promotion and the Rabbit blamed for a fatal crash landing. Disillusioned, they stole a pair of Condor-class frigates (the same models they still use as their personal ships to this day) and fled to the lawless space between Caldari and Gallente territory. In YC94, they formally founded the Guristas — a name derived from Caldari words meaning "naughty people" and also a slang term for "gang." Their organization quickly grew as a haven for those exiled from the Caldari State, swelling with deserters, outcasts, and disgruntled former citizens.
+
+The defining moment of their notoriety came in YC101 with the audacious kidnapping of Gallente Federation Ambassador Luecin Rileau. The ambassador's only vice was gambling, which Fatal exploited at the Grand Tiegjon Casino in the Caldari system of Vellaine. Disguised, Fatal played a high-stakes game of Pettokori (an electro-board gambling game), deliberately losing his Caracal-class cruiser to the ambassador. While Rileau and his bodyguards boarded what they thought was their new ship, the Rabbit had secretly rigged the boarding ramp with nitrous oxide sleeping gas. The entire Gallente security detail was incapacitated, and the ambassador was captured. A media frenzy erupted across the Federation. Unable to locate the kidnappers, the ambassador's father — Daroun "Diamond King" Rileau — paid an enormous ransom in uncut diamonds for his son's safe return.
+
+The Guristas later became entangled in Caldari corporate politics in the Ishukone Raven affair. Fatal made a deal with Otro Gariushi (future CEO of Ishukone) to exchange protection and access to the Raven battleship blueprints in return for betraying the corrupt Ishukone CEO Les Akkilen and his enforcer Bane. This deal helped elevate Otro Gariushi to the CEO position at Ishukone, establishing a complex web where the Guristas have both fought and collaborated with Caldari megacorps.
+
+Fatal himself suffered an ironic fate — during an engagement with capsuleers, he was podkilled. Due to an inferior clone, he reawoke with severe memory loss and was apparently ousted from the Guristas. His current whereabouts are unknown, leaving the Rabbit as the assumed sole original leader. The Guristas have two main corporations: Guristas (the pirate cartel itself) and Guristas Production (responsible for fleet maintenance, station upkeep, and secret missile research projects). In PvE, Guristas rats deal primarily kinetic and thermal damage (shield-tanked) and use ECM jamming as their primary electronic warfare, making them particularly annoying for pilots who rely on target locks.
+
+**Key Figures:**
+- **Jirai "Fatal" Laitanen** — Charismatic, glib-tongued Caldari Navy deserter, co-founder of the Guristas; later podkilled and memory-wiped, whereabouts unknown
+- **Korako "The Rabbit" Kosakami** — Introverted technical genius, co-founder of the Guristas, possibly the sole remaining original leader
+- **Luecin Rileau** — Gallente ambassador to the Caldari State, kidnapped by the Guristas in their most famous heist
+- **Daroun "Diamond King" Rileau** — Ambassador's father, paid the largest ransom in Guristas history in uncut diamonds
+- **Otro Gariushi** — Future CEO of Ishukone, negotiated with the Guristas to expose corporate corruption and obtain the Raven blueprint
+- **Les Akkilen** — Corrupt Ishukone CEO who collaborated with the Guristas for protection
+- **Bane** — Guristas enforcer working with Akkilen, betrayed in the Raven deal
+- **Gavriel** and **Mila** (Kinachi Hepimeki) — Associates of Otro Gariushi in the Raven affair
+
+**Key Events:**
+- YC86 — Fatal and Rabbit desert the Caldari Navy, steal Condor frigates, flee to lawless space
+- YC94 — Formal founding of the Guristas ("naughty people" / gang)
+- YC101 — Kidnapping of Ambassador Luecin Rileau from the Grand Tiegjon Casino via rigged gambling scheme; massive diamond ransom paid
+- Post-YC101 — Guristas relocate to Venal region, establish fortified strongholds
+- Years after YC101 — Ishukone Raven affair: Otro Gariushi uses Guristas connection to expose Akkilen's corruption and secure the Raven battleship blueprint
+- Unknown date — Fatal podkilled by capsuleers, reawakens with memory loss due to inferior clone, ousted from leadership
+
+**Why It Matters:** The Guristas are the only major pirate faction whose motivation is straightforward capitalism rather than ideology, making them the most relatable (and arguably honest) criminal cartel in New Eden. Their founding story is a classic "two guys who got screwed over by the system and said screw it" origin — perfect for satire about corporate greed creating its own enemies. For Kybernauts content in Pochven: the Guristas represent the old-school "survival of the smartest" kind of piracy, as opposed to the Triglavian Collective's hive-mind collectivism or the Blood Raiders' religious mania. Their gray-market operations (counterfeiting, human trafficking, illegal weapons) exist in exactly the same moral space as Pochven's unregulated economy. The Rabbit's technical genius vs. Fatal's charisma dynamic mirrors the tension between Triglavian clades. And Fatal's ironic fate (immortal pod pilot killed by pod pilots, resurrected but broken) is a darkly funny parable about capsuleer hubris.
+
+**Satire/Perspective Angles:**
+- The Guristas name literally means "naughty people" — they named themselves, this is their branding choice
+- Fatal and Rabbit: the most successful startup founders in EVE, with zero venture capital and two stolen frigates
+- "The Caldari State trained its best pilots, passed over the charismatic one, blamed the smart one for a crash, and was surprised when they stole ships and became pirates" — the Ishukone HR department has some explaining to do
+- The casino caper (Pettokori + sleeping gas) is the most Ocean's Eleven moment in EVE lore — it would make an incredible Kybernauts heist mission template
+- Fatal got podkilled and came back with brain damage — imagine waking up and being told you founded a pirate empire you don't remember
+- For Kybernauts: the Guristas gray-market currency exchange is the kind of operation Pochven inhabitants would run in a heartbeat — compare Triglavian mutaplasmids to Guristas counterfeit corporate scrip
+- "The Rabbit is probably still flying that same Condor he stole in YC86. Talk about brand loyalty."
+
+**Sources:**
+- https://universe.eveonline.com/lore/jirai-laitanen
+- https://universe.eveonline.com/factions/guristas-pirates
+- https://universe.eveonline.com/lore/Guristas
+- https://universe.eveonline.com/chronicles/fatal-and-the-rabbit
+- https://wiki.eveuniversity.org/Guristas

@@ -1,0 +1,159 @@
+{
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "name": "Nova",
+        "identity": {
+          "emoji": "🦝"
+        }
+      },
+      {
+        "id": "nova-chat",
+        "name": "Nova",
+        "identity": {
+          "emoji": "🦝"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "kimi-k2.6:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "tradebot",
+        "name": "TradeBot",
+        "identity": {
+          "emoji": "📈"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "deepseek-v4-flash:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "wordpress",
+        "name": "ContentNova",
+        "identity": {
+          "emoji": "✍️"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "kimi-k2.6:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "eveonion",
+        "name": "EveOnion",
+        "identity": {
+          "emoji": "🧅"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "minimax-m2.7:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "kybernauts",
+        "name": "Kybernauts",
+        "identity": {
+          "emoji": "🛡️"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "kimi-k2.6:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "private",
+        "name": "Nova",
+        "identity": {
+          "emoji": "🔒"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "kimi-k2.6:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "agentId": "nova-chat",
+      "match": {
+        "channel": "discord",
+        "guildId": "1425600872938995714",
+        "channelId": "1470836415523983630"
+      }
+    },
+    {
+      "agentId": "tradebot",
+      "match": {
+        "channel": "discord",
+        "guildId": "1425600872938995714",
+        "channelId": "1470957359248576699"
+      }
+    },
+    {
+      "agentId": "wordpress",
+      "match": {
+        "channel": "discord",
+        "guildId": "1425600872938995714",
+        "channelId": "1471281549646364805"
+      }
+    },
+    {
+      "agentId": "eveonion",
+      "match": {
+        "channel": "discord",
+        "guildId": "1425600872938995714",
+        "channelId": "1484624659633934587"
+      }
+    },
+    {
+      "agentId": "kybernauts",
+      "match": {
+        "channel": "discord",
+        "guildId": "1425600872938995714",
+        "channelId": "1479156871641436265"
+      }
+    },
+    {
+      "agentId": "nova-chat",
+      "match": {
+        "channel": "discord",
+        "guildId": "1425600872938995714",
+        "channelId": "1471129973107720376"
+      }
+    },
+    {
+      "agentId": "nova-chat",
+      "match": {
+        "channel": "discord",
+        "guildId": "1425600872938995714",
+        "channelId": "1471220985691635785"
+      }
+    },
+    {
+      "agentId": "nova-chat",
+      "match": {
+        "channel": "discord",
+        "guildId": "1425600872938995714",
+        "channelId": "1470912979200377033"
+      }
+    },
+    {
+      "agentId": "private",
+      "match": {
+        "channel": "discord",
+        "guildId": "1425600872938995714",
+        "channelId": "1499448590857142487"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "trades": [
+    {
+      "type": "SWAP",
+      "pair": "SOL-USDC",
+      "sent_amount": 0.01,
+      "sent_token": "SOL",
+      "received_amount": 0.85,
+      "received_token": "USDC",
+      "fee": 0.0005,
+      "tx_hash": "44EmeKBY1XjQ2csjFAmypLcqog7ApdmMEoLmZkcrGv7BCdEkvPeZy2TS29Q21G8AahWFmKX72jCLHS4spmdnQJvz",
+      "timestamp": "2026-02-26T13:26:48.928098"
+    }
+  ],
+  "summary": {
+    "total_trades": 1,
+    "realized_pnl": 0,
+    "fees_paid": 0.0005
+  }
+}

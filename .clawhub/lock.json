@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "skills": {
+    "solana-payments-wallets-trading": {
+      "version": "0.3.4",
+      "installedAt": 1780308056521
+    },
+    "wordpress-pro": {
+      "version": "0.1.0",
+      "installedAt": 1780308060204
+    },
+    "ai-social-media-content": {
+      "version": "0.1.5",
+      "installedAt": 1780308063009
+    },
+    "upload-post": {
+      "version": "1.0.0",
+      "installedAt": 1780308065296
+    },
+    "self-improving-agent": {
+      "version": "3.0.21",
+      "installedAt": 1780308068517
+    },
+    "agent-browser-clawdbot": {
+      "version": "0.1.0",
+      "installedAt": 1780308070803
+    },
+    "browser-use": {
+      "version": "2.0.1",
+      "installedAt": 1780308072616
+    },
+    "composio": {
+      "version": "1.0.0",
+      "installedAt": 1780308075548
+    },
+    "debug-pro": {
+      "version": "1.0.0",
+      "installedAt": 1780308078177
+    },
+    "duckdb-cli-ai-skills": {
+      "version": "1.0.0",
+      "installedAt": 1780308080911
+    },
+    "excel-xlsx": {
+      "version": "1.0.2",
+      "installedAt": 1780308083076
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1780308085552
+    },
+    "memory-hygiene": {
+      "version": "1.0.0",
+      "installedAt": 1780308087679
+    },
+    "openclaw-tavily-search": {
+      "version": "0.1.0",
+      "installedAt": 1780308089657
+    },
+    "pdf-pro": {
+      "version": "1.0.1",
+      "installedAt": 1780308092277
+    },
+    "programmatic-seo": {
+      "version": "1.0.0",
+      "installedAt": 1780308095222
+    },
+    "reflection": {
+      "version": "1.1.0",
+      "installedAt": 1780308097961
+    },
+    "skill-creator": {
+      "version": "0.1.0",
+      "installedAt": 1780308100245
+    },
+    "test-runner": {
+      "version": "1.0.0",
+      "installedAt": 1780308103321
+    },
+    "word-docx": {
+      "version": "1.0.2",
+      "installedAt": 1780308105060
+    },
+    "iris": {
+      "version": "1.0.4",
+      "installedAt": 1780308107503
+    }
+  }
+}

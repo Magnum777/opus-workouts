@@ -1,0 +1,37 @@
+[2026-06-03T10:57:32.206618+00:00] TradeBot Daemon
+--- RESEARCH ---
+Research complete: 7 tokens analyzed
+Buy opportunities: 1
+Sell signals: 0
+  BUY RAY: conf=60 rec=BUY price=$0.00000000
+--- SCOUT ---
+SOL: 0.0369 | USDC: $50.97
+Tokens on chain: 4
+Valuable tokens: 2
+  TRUMP: 9.8032 ($19.73)
+  ORCA: 15.9226 ($18.73)
+  EPjFWdd5Au: 50.9689 ($50.97)
+  USDC cash: $50.97
+
+Scout signals: 0
+  [BUY SIGNAL] RAY: BUY (conf: 60)
+[QUEUE] 1 signal(s) written (1 buys, 0 sells)
+
+--- EXECUTOR ---
+  [SAFETY] Checking RAY before buy...
+  [SAFETY OK] RAY: score=95/100
+
+--- SUMMARY ---
+USDC: $50.97
+SOL: 0.0369
+Total: $92.22
+Realized PnL: $-1.13
+Open positions: 2
+No trades executed this cycle
+
+[DISCORD_REPORT]
+>**BUY RAY FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>Postions: TRUMP: $+0.18 (+0.9%) | ORCA: $+0.18 (+1.0%)
+>USDC: $50.97 | Total: $92.22
+>**Watching:** RAY (BUY, conf 60) ΓÇö waiting on capital / price
+==================================================

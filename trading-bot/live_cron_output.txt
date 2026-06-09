@@ -1,0 +1,79 @@
+[2026-06-07T01:42:00.721200+00:00] TradeBot Daemon
+--- RESEARCH ---
+Research complete: 17 tokens analyzed
+Buy opportunities: 10
+Sell signals: 0
+  BUY HUNTERIUS: conf=85 rec=STRONG_BUY price=$0.00029610
+  BUY WORLDKUP: conf=85 rec=STRONG_BUY price=$0.00012540
+  BUY LMAO!: conf=75 rec=STRONG_BUY price=$0.00262200
+  BUY LOA: conf=75 rec=STRONG_BUY price=$0.00237200
+  BUY MONEY: conf=75 rec=STRONG_BUY price=$0.00066310
+  BUY TRENCHCUP: conf=70 rec=STRONG_BUY price=$0.00008756
+  BUY JOB: conf=70 rec=STRONG_BUY price=$0.00002686
+  BUY 1: conf=60 rec=BUY price=$0.00066670
+  BUY LTC: conf=60 rec=BUY price=$0.00009900
+  BUY VANCE: conf=55 rec=BUY price=$0.00002768
+--- SCOUT ---
+SOL: 0.0178 | USDC: $57.70
+Tokens on chain: 3
+Valuable tokens: 0
+  EPjFWdd5Au: 57.7040 ($57.70)
+  USDC cash: $57.70
+
+Scout signals: 0
+  [BUY SIGNAL] HUNTERIUS: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] WORLDKUP: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] LMAO!: STRONG_BUY (conf: 75)
+  [BUY SIGNAL] LOA: STRONG_BUY (conf: 75)
+  [BUY SIGNAL] MONEY: STRONG_BUY (conf: 75)
+  [BUY SIGNAL] TRENCHCUP: STRONG_BUY (conf: 70)
+  [BUY SIGNAL] JOB: STRONG_BUY (conf: 70)
+  [BUY SIGNAL] 1: BUY (conf: 60)
+  [BUY SIGNAL] LTC: BUY (conf: 60)
+  [BUY SIGNAL] VANCE: BUY (conf: 55)
+[QUEUE] 10 signal(s) written (10 buys, 0 sells)
+
+--- EXECUTOR ---
+  [SAFETY] Checking HUNTERIUS before buy...
+  [SAFETY OK] HUNTERIUS: score=85/100
+  [SAFETY] Checking WORLDKUP before buy...
+  [SAFETY OK] WORLDKUP: score=85/100
+  [SAFETY] Checking LMAO! before buy...
+  [SAFETY OK] LMAO!: score=100/100
+  [SAFETY] Checking LOA before buy...
+  [SAFETY OK] LOA: score=100/100
+  [SAFETY] Checking MONEY before buy...
+  [SAFETY OK] MONEY: score=100/100
+  [SAFETY] Checking TRENCHCUP before buy...
+  [SAFETY OK] TRENCHCUP: score=85/100
+  [SAFETY] Checking JOB before buy...
+  [SAFETY OK] JOB: score=85/100
+  [SAFETY] Checking 1 before buy...
+  [SAFETY OK] 1: score=85/100
+  [SAFETY] Checking LTC before buy...
+  [SAFETY OK] LTC: score=85/100
+  [SAFETY] Checking VANCE before buy...
+  [SAFETY OK] VANCE: score=75/100
+
+--- SUMMARY ---
+USDC: $57.70
+SOL: 0.0178
+Total: $58.84
+Realized PnL: $19.76
+Open positions: 0
+No trades executed this cycle
+
+[DISCORD_REPORT]
+>**BUY HUNTERIUS FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY WORLDKUP FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY LMAO! FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY LOA FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY MONEY FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY TRENCHCUP FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY JOB FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY 1 FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY LTC FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY VANCE FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>USDC: $57.70 | Total: $58.84
+>**Watching:** HUNTERIUS (STRONG_BUY, conf 85) — waiting on capital / price
+==================================================

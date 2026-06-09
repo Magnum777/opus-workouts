@@ -1,0 +1,28 @@
+--- PORTFOLIO DB ---
+Open positions: 3
+  TRUMP: entry=31.124416770019995 size=? sl=? tp=?
+  JUP: entry=31.422772161439998 size=? sl=? tp=?
+  ORCA: entry=20.194962269062998 size=? sl=? tp=?
+Recent trades: 28
+  ORCA: BUY pnl=?
+  RAY: BUY pnl=?
+  JUP: SELL pnl=?
+
+--- HOLDINGS ---
+  6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN: 15.344546
+  JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN: 163.421948
+  orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE: 16.287823
+  EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v: 9.057412
+  FVAJ37KMeRCCdcBQYtFkXxLHWTEQABErNTWW3nDpump: 528329.404013
+
+USDC: $9.06
+SOL: 0.0373
+SOL price: $80.77
+
+--- DAEMON DECISION ---
+Open position exists: TRUMP
+  TRUMP SL/TP: ('STOP_LOSS', -1.0)
+  JUP SL/TP: ('STOP_LOSS', -1.0)
+  ORCA SL/TP: ('STOP_LOSS', -1.0)
+
+--- FULL OUTPUT END ---

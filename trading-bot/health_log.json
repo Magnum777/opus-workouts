@@ -1,0 +1,470 @@
+[
+  {
+    "timestamp": "2026-04-28T15:30:17.984574+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-28T15:19:04.808973+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 91.88907566904072,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-28T16:15:15.063974+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-28T16:09:53.505372+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 90.30813202598927,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-28T19:02:12.344412+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 91.10470573228585,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-28T20:17:39.232442+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 91.51530248527447,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-28T21:03:10.823396+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 92.17034096306533,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-28T21:48:26.462610+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 92.11164760411677,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T00:50:59.227854+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 93.79100788768272,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T01:21:11.776608+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 93.42045683879165,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T03:44:59.497075+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-29T03:38:59.038130+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 93.38441423722735,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T04:58:15.977177+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 96.03837206857563,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T07:00:04.875951+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-29T06:54:29.196258+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 93.16994403255944,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T09:32:16.632568+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 93.71249272565728,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T10:17:26.932026+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 94.13195484772018,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T11:34:17.040979+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 92.32563266026678,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T17:13:48.229708+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 87.55464158306813,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T21:16:45.718912+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 87.93334976036044,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-29T21:47:46.098541+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-29T21:31:32.356449+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 87.89294333313364,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T00:50:07.811979+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-30T00:39:55.577537+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 89.00889885252938,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T01:05:13.591369+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 89.51329241871278,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T08:07:52.350974+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-30T07:51:23.720684+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 88.43860900648258,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T08:38:18.919754+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 87.93567801650963,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T09:10:02.362485+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-30T08:44:57.105888+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 87.93567801650963,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T09:40:10.289673+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-30T08:44:57.105888+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 87.93567801650963,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T11:13:13.562950+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-30T10:58:51.962597+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 87.40769584311252,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T12:00:24.715313+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-30T11:23:26.418730+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 88.18360748821522,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T17:46:23.468106+00:00",
+    "status": "CRITICAL",
+    "issues": [
+      "Database stale - last update 2026-04-30T17:36:55.390647+00:00"
+    ],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 89.3045725446407,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T19:48:22.788862+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 89.63466688106755,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T20:03:18.479279+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 89.34997929188793,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-04-30T23:19:57.506876+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 89.17969524607051,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-05-01T00:36:17.162937+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 89.96986840321227,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-05-01T17:47:50.689930+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 91.75001172898607,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-05-01T20:37:05.013212+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 91.00018020118318,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-05-01T21:53:44.391387+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 90.99615583871343,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-05-01T22:08:46.514006+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 91.0741673218507,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-05-01T23:23:41.898599+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 90.58416443098598,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-05-02T02:51:47.101700+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 90.93771984522145,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  },
+  {
+    "timestamp": "2026-05-02T04:45:17.336111+00:00",
+    "status": "WARNING",
+    "issues": [],
+    "warnings": [
+      "Performance slow - 999 days to $1000"
+    ],
+    "portfolio_value": 91.4252171458458,
+    "sol_balance": 0.048055134,
+    "open_positions": 2,
+    "consecutive_losses": 0
+  }
+]

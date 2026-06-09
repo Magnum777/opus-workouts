@@ -1,0 +1,11 @@
+{
+  "signals": [
+    {
+      "token": "PENGU",
+      "action": "STRONG_HOLD",
+      "reason": "High confidence (70/100)",
+      "confidence": 70,
+      "timestamp": "2026-04-28T02:01:38.290861+00:00"
+    }
+  ]
+}

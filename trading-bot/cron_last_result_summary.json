@@ -1,0 +1,19 @@
+{
+  "run_timestamp": "2026-05-02T08:44:44.517750+00:00",
+  "report": {
+    "timestamp": "2026-05-02T04:44:44-04:00",
+    "wallet": "7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA",
+    "sol_balance": {"amount": 0.0481, "usd": 0.0},
+    "tokens": [
+      {"symbol": "PENGU", "amount_sol": 470.59, "usd": 39.45},
+      {"symbol": "PUMP", "amount_sol": 618.24, "usd": 51.82}
+    ],
+    "signals": [],
+    "performance": {
+      "total_value_usd": 91.27,
+      "realized_pl_usd": 0.0,
+      "unrealized_pl_usd": 0.0,
+      "days_to_1000": 999
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": "2.0",
+  "last_updated": "2026-04-28T04:43:00.077363+00:00",
+  "wallet": {
+    "address": "7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA",
+    "chain": "solana",
+    "rpc": "https://mainnet.helius-rpc.com"
+  },
+  "portfolio": {
+    "sol_balance": 0.048055134,
+    "sol_price_usd": 0.084017,
+    "total_value_usd": 89.72679358576929,
+    "positions_count": 4,
+    "cost_basis_total": 89.18
+  },
+  "positions": [
+    {
+      "token": "PENGU",
+      "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+      "amount_raw": 3900533310,
+      "amount_formatted": 3900.53331,
+      "current_price_usd": 9.62e-06,
+      "current_value_usd": 38.87271496746,
+      "current_value_sol": 462.676779312044,
+      "buy_price_usd": 37.52,
+      "buy_price_sol": 440.28,
+      "cost_basis_usd": 37.52,
+      "unrealized_pnl_usd": 1.3527149674599954,
+      "unrealized_pnl_pct": 3.605317077452013,
+      "status": "OPEN",
+      "opened_at": "2026-04-26T13:21:25Z",
+      "tx_hash": "Me2uVUsKMeTPV9Jk9dT7CWVxeCU45hXtBDPLXbF1xZxx3UWYn5RoP3wvpUt9zdjB62nxTdSDukLugMwKSpGpStD"
+    },
+    {
+      "token": "PUMP",
+      "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+      "amount_raw": 28583497004,
+      "amount_formatted": 28583.497004,
+      "current_price_usd": 1.76e-06,
+      "current_value_usd": 50.850041170116,
+      "current_value_sol": 605.2351449125297,
+      "buy_price_usd": 50.22,
+      "buy_price_sol": 589.27,
+      "cost_basis_usd": 50.22,
+      "unrealized_pnl_usd": 0.6300411701160016,
+      "unrealized_pnl_pct": 1.2545622662604572,
+      "status": "OPEN",
+      "opened_at": "2026-04-26T13:21:25Z",
+      "tx_hash": "4CV8fTpANBpJrDjCb17QigtBjEDVf9oZHo7Wbi1QKATXerXgDH76rjXc7jTgCdgTVhdMvgD5SCUQsxFsZffB3FgB"
+    }
+  ],
+  "trades": [],
+  "signals": [],
+  "risk_metrics": {
+    "daily_trade_count": 0,
+    "daily_trade_reset": "2026-04-28",
+    "last_trade_time": null,
+    "consecutive_losses": 0
+  },
+  "performance": {
+    "daily_pnl": {
+      "2026-04-26": 61.07,
+      "2026-04-27": 0.0,
+      "2026-04-28": 0.0
+    },
+    "win_rate": 100.0,
+    "avg_profit_per_trade": 30.54,
+    "total_realized_pnl": 61.07,
+    "total_unrealized_pnl": 1.44,
+    "daily_avg": 24.43,
+    "projected_days_to_1000": 38.5
+  },
+  "tax_summary": {
+    "2026": {
+      "total_trades": 2,
+      "realized_pnl": 61.07,
+      "fees_paid": 0.5,
+      "short_term_gains": 61.07,
+      "long_term_gains": 0
+    }
+  }
+}

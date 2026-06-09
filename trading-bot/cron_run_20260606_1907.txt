@@ -1,0 +1,69 @@
+[2026-06-06T23:08:19.959603+00:00] TradeBot Daemon
+--- RESEARCH ---
+Research complete: 17 tokens analyzed
+Buy opportunities: 8
+Sell signals: 0
+  BUY JOB: conf=100 rec=STRONG_BUY price=$0.00004484
+  BUY 1: conf=90 rec=STRONG_BUY price=$0.00084800
+  BUY MONEY: conf=85 rec=STRONG_BUY price=$0.00066240
+  BUY LMAO!: conf=75 rec=STRONG_BUY price=$0.00246200
+  BUY LOA: conf=70 rec=STRONG_BUY price=$0.00180900
+  BUY TRENCHCUP: conf=70 rec=STRONG_BUY price=$0.00008239
+  BUY WORLDKUP: conf=60 rec=BUY price=$0.00010740
+  BUY VANCE: conf=60 rec=BUY price=$0.00002450
+--- SCOUT ---
+SOL: 0.0178 | USDC: $57.70
+Tokens on chain: 3
+Valuable tokens: 0
+  EPjFWdd5Au: 57.7040 ($57.70)
+  USDC cash: $57.70
+
+Scout signals: 0
+  [BUY SIGNAL] JOB: STRONG_BUY (conf: 100)
+  [BUY SIGNAL] 1: STRONG_BUY (conf: 90)
+  [BUY SIGNAL] MONEY: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] LMAO!: STRONG_BUY (conf: 75)
+  [BUY SIGNAL] LOA: STRONG_BUY (conf: 70)
+  [BUY SIGNAL] TRENCHCUP: STRONG_BUY (conf: 70)
+  [BUY SIGNAL] WORLDKUP: BUY (conf: 60)
+  [BUY SIGNAL] VANCE: BUY (conf: 60)
+[QUEUE] 8 signal(s) written (8 buys, 0 sells)
+
+--- EXECUTOR ---
+  [SAFETY] Checking JOB before buy...
+  [SAFETY OK] JOB: score=85/100
+  [SAFETY] Checking 1 before buy...
+  [SAFETY OK] 1: score=85/100
+  [SAFETY] Checking MONEY before buy...
+  [SAFETY OK] MONEY: score=100/100
+  [SAFETY] Checking LMAO! before buy...
+  [SAFETY OK] LMAO!: score=100/100
+  [SAFETY] Checking LOA before buy...
+  [SAFETY OK] LOA: score=100/100
+  [SAFETY] Checking TRENCHCUP before buy...
+  [SAFETY OK] TRENCHCUP: score=85/100
+  [SAFETY] Checking WORLDKUP before buy...
+  [SAFETY OK] WORLDKUP: score=85/100
+  [SAFETY] Checking VANCE before buy...
+  [SAFETY OK] VANCE: score=75/100
+
+--- SUMMARY ---
+USDC: $57.70
+SOL: 0.0178
+Total: $58.81
+Realized PnL: $19.76
+Open positions: 0
+No trades executed this cycle
+
+[DISCORD_REPORT]
+>**BUY JOB FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY 1 FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY MONEY FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY LMAO! FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY LOA FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY TRENCHCUP FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY WORLDKUP FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>**BUY VANCE FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
+>USDC: $57.70 | Total: $58.81
+>**Watching:** JOB (STRONG_BUY, conf 100) — waiting on capital / price
+==================================================

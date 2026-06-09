@@ -1,0 +1,85 @@
+{
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "name": "Nova",
+        "identity": {
+          "emoji": "🦝"
+        }
+      },
+      {
+        "id": "nova-chat",
+        "name": "Nova",
+        "identity": {
+          "emoji": "🦝"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "kimi-k2.6:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "tradebot",
+        "name": "TradeBot",
+        "identity": {
+          "emoji": "📈"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "deepseek-v4-flash:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "wordpress",
+        "name": "ContentNova",
+        "identity": {
+          "emoji": "✍️"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "kimi-k2.6:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "eveonion",
+        "name": "EveOnion",
+        "identity": {
+          "emoji": "🧅"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "minimax-m2.7:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "kybernauts",
+        "name": "Kybernauts",
+        "identity": {
+          "emoji": "🛡️"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "kimi-k2.6:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      },
+      {
+        "id": "private",
+        "name": "Nova",
+        "identity": {
+          "emoji": "🔒"
+        },
+        "workspace": "C:\\Users\\compj\\.openclaw\\workspace",
+        "model": "kimi-k2.6:cloud",
+        "runtime": {
+          "type": "embedded"
+        }
+      }
+    ]
+  }
+}

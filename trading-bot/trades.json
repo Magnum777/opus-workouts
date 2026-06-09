@@ -1,0 +1,212 @@
+[
+  {
+    "timestamp": "2026-02-25T04:18:15.023230",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Placeholder decision (no LLM wired yet)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:19:03.646298",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Placeholder decision (no LLM wired yet)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:20:34.177001",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Placeholder decision (no LLM wired yet)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:22:07.169553",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Placeholder decision (no LLM wired yet)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:22:24.420502",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Placeholder decision (no LLM wired yet)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:23:34.343595",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: 404 Client Error: Not Found for url: http://localhost:11434/v1/chat/completions",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:24:09.589822",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: 404 Client Error: Not Found for url: http://localhost:11434/v1/chat/completions",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:24:17.039201",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: 404 Client Error: Not Found for url: http://localhost:11434/v1/chat/completions",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:25:06.596637",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: 404 Client Error: Not Found for url: http://localhost:11434/api/chat",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:28:51.331110",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:29:25.678325",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:34:16.506641",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-25T04:38:44.100459",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-26T14:28:13.385475",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-26T14:40:36.905435",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: Extra data: line 2 column 1 (char 127)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-26T14:43:05.872762",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: Extra data: line 2 column 1 (char 127)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-26T14:44:08.575219",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: Extra data: line 2 column 1 (char 127)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-26T14:45:30.423283",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: Extra data: line 2 column 1 (char 127)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-26T14:47:21.292596",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: Extra data: line 2 column 1 (char 126)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-26T14:48:27.370807",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: Extra data: line 2 column 1 (char 127)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  },
+  {
+    "timestamp": "2026-02-26T14:50:09.722741",
+    "action": "HOLD",
+    "size_eth": 0.0,
+    "price": 1920.0,
+    "reason": "Local LLM error: Extra data: line 2 column 1 (char 127)",
+    "stop_loss_usd": null,
+    "take_profit_usd": null,
+    "note": "HOLD - no changes"
+  }
+]

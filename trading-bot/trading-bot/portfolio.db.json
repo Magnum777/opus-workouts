@@ -1,0 +1,1253 @@
+{
+  "schema_version": "1.0",
+  "last_updated": "2026-05-06T19:13:17.385353+00:00",
+  "wallet": {
+    "address": "7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA",
+    "chain": "solana",
+    "rpc": "https://mainnet.helius-rpc.com"
+  },
+  "portfolio": {
+    "sol_balance": 0.314243873,
+    "sol_price_usd": 0.089011,
+    "total_value_usd": 74.52753703604361,
+    "positions_count": 4
+  },
+  "positions": [
+    {
+      "token": "PENGU",
+      "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+      "amount_raw": 3900533310,
+      "current_value_usd": 41.7747117501,
+      "current_value_sol": 469.32077777016326,
+      "buy_price_usd": 37.136977644510004,
+      "buy_price_sol": 436.0796332183747,
+      "cost_basis_usd": 37.136977644510004,
+      "unrealized_pnl_usd": 0,
+      "unrealized_pnl_pct": 0,
+      "status": "OPEN"
+    },
+    {
+      "token": "PUMP",
+      "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+      "amount_raw": 16577940286,
+      "current_value_usd": 32.724854124564,
+      "current_value_sol": 367.64955033157696,
+      "buy_price_usd": 50.106870248012,
+      "buy_price_sol": 588.378133746809,
+      "cost_basis_usd": 50.106870248012,
+      "unrealized_pnl_usd": 0,
+      "unrealized_pnl_pct": 0,
+      "status": "OPEN"
+    }
+  ],
+  "trades": [
+    {
+      "timestamp": "2026-04-27T11:06:06.143290+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "33hu27CN1yywgNVUP7jFHQxvtGy4jdMeKTTbYaHNp3VWZeWgCr5ei9jHGy3SfPBJtUvbSYwBh33CihvY5PAEFJRU",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T11:06:06.845781+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "EMkapp4vTuqqfRJBbS9zHpgqRiiVkNY7qyUXaDcENbbo269vAswehEcSHPf4tG16Ap6SnHXUPEfHcGupn8hodrB",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T11:10:39.268837+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3sTwgVsM1a98ve1XsmFJdeLHzNFJTGvzMNwuLGEq8wuDaVZCsQZnLktLjUggA7hBDJmr7u6wGikcjcVckeRQU1Rx",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T11:10:39.969937+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "taR4FzNuQVPEhKCnJBf236A3vkj7MjR3ZkAtfCvrBKDm6wQbaLW7QbrUV8aU54VN6nL3EqM8YN59DNGUN5SxBFG",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T11:15:44.530197+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5Gs9Tz3Sq2SYXJes4New5GC1iwhKicApvJQciRjgtYBcoxVn1SVypjDmyWKz3gbZJJtuYp2czwzxVPTNXQqdNLY9",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T11:15:45.300246+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2C2LDTySSab8AWrmN6bGHUduM1NEENdnhvo4TXahcEt1ZtP2ASzS5KybnZm5SWafwmZX1sVuVdxgvhq4QtAAzoPv",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T11:20:48.330340+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5t8cFdF8rEZhSJaauafWZwKZhQyae4o3LJFmRDPSqJjfyAKGzQE7Bfy9M7afvj335ModYAyiwC5A5Hn6LfGQqMSx",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T11:20:49.037407+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "28cVQr49Uww5RdM4pZRxNd8u2jeoWmYSB56mfqdigbpxt5Fsc8CbfuZrxaEQ3VgEqbTZ44P7khExG2tyEWvzPEBG",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T11:25:39.177187+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5KgASUoKeqf1wYx5fFYKBzazUUaMtZrondkt4McBHzU56tEawLpfasVMdMivnkbSySG654EBhbEpykdvwyyreVUg",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T11:25:39.905202+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4LXnAnnLhGJQ95cAkiGipGhumMUv1reBavcXi9EDhhQNmaXLwNBC4xgEFba3dJv6xU5G2V4SyDKtHbXxKjMUfcLg",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T11:35:51.123904+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5fusLEbrrVzqSnodVAnD7PdG1MxpS9xb93PRpL18kY2KA1mB2EDxJEUdyEGG9ix4NUyoEXN1FbrprmqgZ4TG4KA8",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T11:35:51.853926+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3VTTrefABGLRsJE7GYgCAcuMPxcANkJtTQ8JazkiwBQf6dYrwTr3F5iNtg8HAAQAANTyo9veBqBYfG77gs3p4DHE",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T14:00:56.424291+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5nNfKBdGQvrWrKM1Ag2LwxmADazzTSAmoqagvyrWL7o15CbJ1Tm7AyfZcoWiCTfuWqo2QXfYBR1v9UHH4ebVGpBA",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T14:00:57.160758+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "53yXry8DuzckAYuxGDHN28kbH7o9f2JZfJPjbRNJJEH6gWKYdRy2eXGStsWW1RBnjN7L6SGA4sCvXQapkTyusu8R",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T14:10:41.404885+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4jUhNZbns5LdeS8rmU21epWoQfUZVwdWdqZcod42ZU6Y3mbRJnUMxt71a7gTxJJM1gbHCFVVVdH3gfRQtpFPGC4N",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T14:10:42.191111+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4jgiyAi3ksYUU6fZRJNZ4FhfqtuHVjoRC63GXWzN6XVg3dyL91ygdr94SeMGeBYGnXuSTEvuQqtUscSXdk7FmBQd",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T14:15:37.627244+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "43F3gEzdM9LDx6ehCQznDg2TaRxQDoz22jDF5vFYF9nfr3qEbbLVgXSkgxgXtBSfn9cNCq1zUR4igepyoxtsCWoC",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T14:15:38.316275+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4V1W3oXMjLhaVFw6Nmsnt5kT27mjtjBua6nmd6n8Yr6zvDw6ZLEJx2bXNTwgurqnGCiX2gUDu3qAumy86TsshUCR",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T14:35:45.018991+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5bVPQjkNJesXHCiopU53tpdg1rkYhbd6e5S5iTRHvAfYBJHP9xNrmKNjW1hwnQq911V3asy3XPNbxHxiTWBCZJr",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T14:35:45.726604+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4F2ykpjGCZASo4JeXiDhv52jJQpd5F21481E3P7mAeUxD9kJ5z57Cf2PHATTgyWPtsH7HkZvHKMUja2kT6HW83t8",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T14:45:49.619469+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "48MtZsRBFNRTgE8AXp68eBCk6yNuMV4bFjp1rBcpAoHen2m8qTTYxBBKV5PAQXtaKCy6m3uFNb9tN8U94Kcso6cr",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T14:45:50.313711+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "9A5GoRADgg9dTAY9ombWYU1PDGUA9Qovu5B8HgyCUHpyRV8BU4ze6moiJpHmVETyt2XUGydkzu51XUm53YNdHE7",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T15:00:54.063180+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "PtK7ZsqWJDVHJtWPkmFbJSn8k4RtiwMwfm7GSfUfgtB2zX5GhbNWJDMXEUwC24kfwDJDVwKt68YHDBRM8ECNVrb",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T15:00:54.803733+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5VGMBV9e2idFEPkLbombpHZ5RRwGR7QCc7yGuioXVHm2uAy8JTk67dARwts7msVv1gQY5N6mptC3CVKUEnXviXRo",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T15:05:57.412510+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5hjs39heQi6va6urNv4Mm8N7mDmWJ5zSmVNDDs7jekVn4zmQTPrWtPnuBSXRNHBEVmdVPBisorv65BFm4wEsAwkH",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T15:05:58.149273+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "xttMuxPcu1Knxkv1HyPhmcs2nBtqN3WqGbPPm1s2NThmmfMJhR1CDGw7RA21UEZveW5UVLzwg72k6zPTsEpwpsR",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T15:15:48.583036+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5rAwgbykNBr4Bq5Thn4tVSEY2QMGdJL17KVAXqHakojYNiTyoMd8nyhKMnFtEke1CNsgg8dqTV1EWkZ74zFWgnFa",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T15:15:49.266206+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5Qv5ijS6DAXyLjKcJEvLTB4xMcd5SCu4v5eVEoZLzrxhLem4SyapRDe5RsT3Rd7J4ZKiYDFbxC2DbnLiWZicV1ZL",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T15:20:44.066726+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3YYa63UDH6g1QYkXVnyQbxy2EdTKgLskyoK1WuwEGZYQLfBpR4Lzi741EeHnxL8enSnX1c61W3neDPBzk7TW3MNR",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T15:20:44.774853+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4KSax47m7q5ZGCpYsgAUU8aqEUAfQwvMwSQEg7MPGXWABxurCLz6ATwgBwiFeFSu2SFerjfj3Tu4gXCei3bv54Fy",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T15:25:46.927788+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4rXJTJyXF3P66Mx2xztYbbW3PrQy4NYPZho7jWHyphh26ufvNh8YRXKJFQPJsyQxRg6woyMU3UdEdGQzweQn5xhs",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T15:25:47.641039+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "39WgnJGfYZ2qUSjZKTXEEVqh9LsksF4RN3YSm19EXAHA3pxtAXf4x1CmX7h5nwXSEHjrhgEx6tjCyc634m1kpi4A",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T15:35:55.348565+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "E6ovZCyhTW4HKktoMM1J6ZMniCkL7xwzM4crWKGdofWVVw86SUpFCFxUEd9afB3nvcLiMJo6vDL2ioX3esvPbEL",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T15:35:56.073240+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5jKBNmPm8B1cPZAAtZwWQSYcfwyxZ6VdBFDwqPtQvnFStUjaicuv2ShCgdckp5z6tYcgtpTWKDnL4GmnXDMyPU93",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T15:45:43.545249+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4mhfL9D5fmTFCnB5yvpC6kyS7K7gqse3akcm4b8rsNUhvrGpnwnai8iZo6msj6gJSejw5jfWRiC2mczzHWeQXMb5",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T15:45:44.307866+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5FwttXAcpnRgw2mcweaQEYMQE5UpFVZJfKAaCnGnbqXPYupNEdkHCL9JBWXwkTVhJQ8xFXTZ4kiBNCRB4erFbBPN",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T15:55:37.397864+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "21X7z2s53Tv1hwi9fKA3Z5jyxVukfgzvadNDqjdx6xNFGPESsNPzGieLJVh87wJ5pn7iPNR2Z17aQtfHs28JFS89",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T15:55:38.098793+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3YsiAaZ9KaZAXdp6wMbW6BAAFc4KShLWwjwUWTfhP2UUSbPohFebxkSJwA4cd6JpoFDw1juXNTvVQ63wAGcSutgx",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T16:02:42.146055+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "nJj2x2Qn3kmLshw4RW8LSqv2xH9DDuaNDneX9Y1d3EF7W9hjcVnP2Jbv8zSurNQZXmpyU1qSHbWzfQ5EkkuJfH9",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T16:02:42.881395+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3ScN7dAA4kQqffMsMmxnY8mAPrbLanHuK6PgrD3aE1zts64W5BJoBaLHM11zN1RajN31h5iZrxYsfi61AjtAorsv",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T16:20:54.770889+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2h5nWdHgrGkeP2bfuPkc9MYExoDMvqq4gGReoGdWabKV21pE8TxV38vbH9S3K2sWBwqgp9XhNs8K7x14YoGpGmhU",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T16:20:55.711843+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "29SRoFEK1xBrBDYwBJMRTzB7P8u7CvT549Pu2DiSr38P8bsph8GRhtmDQwvpA2pBN416fVnYCLqaxD5tFr7rLup6",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T16:31:02.350343+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5gzw8PGKfQzeyqB5cmNuuXnKDNa9E44dPrbkKEzDnrZib7q2cujyCuPaVognsEEHi1AkV1PnxguY5KzuUYw9mwcc",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T16:31:03.651917+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "46dVSpsFGQeZLkdUdkLX829SwgkGc3ujqVYiCjcRHTFr2rFGLSb3EsKaNf34iuPevNYzqr5jE6oujvchi2YGumjj",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T16:40:54.097391+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3E4U6BVMTzf4oGbxxHZxTnzN8wqwfKLHRB93eJGEeccXNwg4atVKtuH5jf5zd81FgfAy4EQ1UGaFkyYwJYwusyvJ",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T16:40:55.817859+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "42A64DKLGAaZVRwcpcRsYUs3ZtJ19bGi2UE2ZgX2gTQnAvnJS1oVa1njwjHZMZD99w2S6zf5AtL4sfaX8rsRN5pB",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T16:55:40.334334+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5QwBjPYa6keFYDYCThLrVEPke6BkgFDnGdvQ81CeanSWjJbkJVzQJUeME1CTvwTtCHojHpJCnmMFLZfKMujQzdBQ",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T16:55:41.036808+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4vKkAHfxpeD3x8yVGMmUQ4fePPwKDB4qEFaecfs2S162BSMGduEcXmvhf3mZT5xp6gQShwfavT8zqBC1z35WJuyE",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T17:10:47.872860+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2eVpBb8jgeQMWyn4kJZTnKo9V69beWhS8pBP7UaxPJKEuQ1PSEgke27Mj5UBp6AUQK8qUrUWkp24PFo2neckCJMS",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T17:10:48.774202+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2rhUs851WjtVL7FXVkpuyAXzUmNjSxSDXSjfsUyvMeC6MzufhiLVhwPkd8YeUZzajCrrxW6wtZRUmBG9uEKtFrKt",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T17:15:50.470300+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "QZaRcQ4BBPzEu9fw1nSoLViH8AJvyb775GfKjzQQC6QmZSMF2C2ndn2ZbP3pWvwwNztru5XZLWKq9iUXtC4Rs2q",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T17:15:51.215237+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "44muLWnDBhgU1MshkYRYd1d66Ysbtj7E6aLRiSTnfRGvd8psAtG9BzJtssk5rT2knrNbhKTecTXZ16jzydirrJFU",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T17:25:48.421454+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5c7wo1VUHh5VQgDhd6Edms3MVcEDQtVe3osyo8s9gZxaDgWNjLSgsRTidjzoeVA8HcqRmkLiCkrSwr1uzkxqr9oq",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T17:25:49.141168+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4hiY1GpyMUWjUZp67HdGTtfaR5i7QkyuFfJVhLQHE2LesyUYbFRannukWbcrcQFp5PRTh3U3ruRPrM5wVtTBbCVs",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T17:55:46.362289+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "27WJPtiuRDBkwGMeHZXvggPRiB3PoCcMrVsRXba1tRXoKBggByirmcWhpF7jy6ppYaMbiEUG2VCwCULV7WWhMwVW",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T17:55:47.079805+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2jVVueafegvuBbVjQ9zfcrLTymyYzBwRbFRcSKBg68DPPu9S4zY466PqTxzeQWBpLZndWm7iUzQdLDycWwjfZMeo",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T18:01:01.036397+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3Ztgk3eWwxzYi17cy8hX2Z4BjJcDzKqyuoEGvkZoki8kHt2U48ge8uNG42BaFydPVH5EbZU85gDpDGCE9fNScgq9",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T18:01:01.823470+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "ibDWWFBCuYZvABZSSukXvcskQGDPURmxocX886G4q2jPby5UWF2ovx9CHJhnVx7kzkyNpdFizGVVX2WNSLaJYFd",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T18:15:36.731224+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5YHapA51BxuzXJNhUse2jKivzF4SB3x9GVobyTPyFphXAMLQXixuFjTcGqDBJoR23amX9qNMYYmWjrPxPNhAKG2N",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T18:15:37.481983+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "HNLN4BjrRbKA12LTL5CPdbKrnt76gD1JbxwaaKqMCsrS8Jm6GzvBqyVnBMtxvo6Y7zSRz9amfx9LpFpQ7XiC5G3",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T18:25:52.642388+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "49zHszkpbQ5auHZS1TG2XY8VmTz5xDvoQJsnucm5fAHabJAQNCRB88S2vpjRqepeJUTXJzia4KCDExyox7hNLHxH",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T18:25:53.352075+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3T9J7RR5bAMBu1HZBXvGTKwnnemRuC4XCJzxsMWYhWk5wDLPrcHScveKDerSh8bVTbEkbLUL419UN95tjm5fFKe8",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T18:30:47.639820+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "8yujGzsX4QPRqJ3zHhzSPvR7vDhxFgb81c32zTiGtdceKiZ8AAypqQ2e8dN49622HuLKoH1TGyUtHJE8dRKXKdA",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T18:30:48.329216+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3uK21Nv7pkSX6nUQYjXHxkWw1WuqUeRW5giZLY6bg4TLFqy7qtaoQ7pVmTK8fPPwj5LBgbGvg7v45CiGSjP2hhQc",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T19:00:57.977990+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5BDdFTjPtLZtJeAkPhYAxCrPpEUXNrckz3qwAbx17UAFJJgEKUQRp27by27RheZEDkKf75CNV5DwgY4TpwsgUgaf",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T19:00:58.681704+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3o8RZqzdUqoGu7tmtjTGzBtfxsLQ1cAP1SpNzxTdPRcQNVLFjHcPQi8T4NoSk7jKcoViy8o1TXJQ6KGk1ntgJxYD",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T19:05:47.383756+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4VAAQFgBYcybzPnigJUB5ujpn19ZH2FF21UgGwSzRLntercf6Vbnxv74aYZS2Mtb2gshJrrhvTak6mcD22aoL4VJ",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T19:05:48.168524+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5zz5PYEnvbfYdeLE1mwAqAUaEupvmWBsQin9hsFwez6P2rKB3FntmXvmfuQLaTfwAckFhep7tZWptKAQo8Wgzy9Z",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T19:15:57.407976+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4eaVJEwcoXaR3yQDH4LFz4xVXh2ch29oP1hYYzN89PNhxCopd4AvtGdGtdMm6nDNUdrEufoEGSkofAGMGaDWgH83",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T19:15:58.255039+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3tyjigegFrXUuBqfuLqiH1urVDjY3TXWnAVHe9jPxH27CjBprK5TvRDCN9xaiRbbztU5QwSnCuuxQb99ivLLGzDW",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T19:20:54.475784+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2W216XJFZWagFrYkMLtHzZ1TqcHvMFdegsKsHnM6ZZatzMa6BkyuQ9bT4Ea1HYYzrq6Qw6PQss6ngVaEJZA4d2JR",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T19:20:55.256192+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3UCtRryXn4W7T3eXFYKV2Jar1X594DTuXHUNaLjDYRJRn7epEbr6ee38TY1P4koGTg4Vrtcd4SfPKDfS7T82PmBo",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T19:35:47.393335+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "nGATswQis8hg3mFYauaXUjNVvngAb4A168P1Dj5WgEjjgBBSMSaH73G7RyBeEdDoQ8jQD55nt4vMdvsaB2hA1st",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T19:35:48.144085+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4YDVMaYNM29yXHwksLS7VwC8Ve8RuRy9oawegzheffJ9ZD5Ty8PfDxSieTeAQsd3G9vZrNrvNifBYNAFWoMZt7pS",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T19:40:53.318272+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3rvWNverLJasMBHDRVZU3uLkakpskmidMneoRXqv5TA8gV6i42Um1MLBMM3soZvowaGne9fsanwGWpXb6omwktFH",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T19:40:54.170556+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2Sw5ybrQ3Z1iQZbidpnGe4w7g18uCZJqzPAMSjKBGvmHWxDjCTsN5LwSmgZuN3P4hmrzuwuy93uiS4kcRukEMjdh",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T19:50:51.150374+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5o3E5kDUniVQdfTNm7oqbxy3Dr3bz8SowYUetr2AqeZjh2ryyRFbytGXYHYZuTE41L2pM1xXc5hNyQv87uotAC6A",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T19:50:51.939530+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5yVqUwV73VoQSxz57PvDCHLxauqsgw2C499z4dnYBH3MAmFY4WSTfjzFcUpfKZp5YSuPa5sMcTefoocRP6vkb1jb",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T20:00:50.686695+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5sYyk9eBVuxr6E3vFJqMCUfexJjzrCdp1VzT8r9ehHaAh3XN2LcChznS4zZ5WzY88h7PtKPSDh3oCjKzhCUVp7VW",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T20:00:51.549632+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5BAykcQGFp2ZxhuQgwt8dkjew85mPVzZ6V62QaLoN3WtJyspsYk7g4QWQUhLuKa65YkfAu6om18wLTn5sHymDS4u",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T20:05:55.999199+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3pg1yihz6DJ76RRYE8CneQsLSGskUqpsALbFfcZAaNHx6xJFwSvs7q1iLHsVyHNsRPAYHyq53xFurQNBArpbd4ts",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T20:05:56.867737+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "ihEkHggkFFvkJspdMrJNBkdwE2QJQHyWT1x6FHkLK7xdZ3bhDF4ka9jPQxkvX3k9jVpXemawZpnVgi3ttZQijJk",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T20:15:50.426032+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "419SdausPw7f4kYFfFyrTGcoih4p2YiGBpthqJbV2UP3AqTkJMB9c23t4VEyPp3kUMR95YPzxQEHnDATpvjnoVh2",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T20:15:51.278792+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "RLAAijeD7q6mZ4yh7QhpQpha9T2nRNXnefW1Kuf9U7MDZRe7n6nUFixLMsb1tp7v4R7Q7M1qfp6gesn887x66Ej",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T20:25:51.951581+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5aogNZSKQJme7VBV149QWGXG9WEuL93GWhdF6KvPPZBehkVoitx9kG4DZmu1Q3Jhy1xrd11h3xGbqYdwmkUXspYJ",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T20:25:52.760934+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5TNsXomHfjrar3UeGAewXPjjNMkPqixERLT7v8WYtNyP3vBEn1WGPjD85FUS1wSxvn8gpfFNGqCPUJeqVBEZfVj9",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T20:31:06.783772+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "Vw5xV9BLeNsKotW6sHXn991AF3tjJRi5sU1xAGaheFeG7hoezxxWyMNTR4chXzev936YcmuYvmF6SgyF6Sao8Xa",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T20:31:07.603904+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "sPYZnPRsYnEagC75D6zRGrTvMz891oVFgc1WNrsJdjFbJpjQvzBpHEwSKGJj154sv1g5jxyYcJR3utLmPrcVLar",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T23:25:41.780458+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5p4rErMVV2t3EnXceQtvf3MMKR446SPzXF815HDgyMbgpFhjRoc2JCPMDZZx7WRYmNeEdLwtqMJQTbtxdzL9HKBc",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T23:25:42.602561+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4pRXfCacBwZdh1SNrWM7rxn4UgxzYA6bUCFhbQT8AVdNaUetDDe4K7ypntmoruJYpnFqhhoXifrzf4YqErtYLbjz",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T23:30:52.089588+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2RVNrBWsbcrxpW7FuRKyV69kB11n5bRXCXHsdNPtfkCyUb93YHrcRoff2bLxCfT838FC4rqwD48tjFTJEGKAKqBf",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T23:30:52.769749+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "qGn4u9NVb7pZpUmnx7gYDHD8CyMQoRqSUpqnrhYzSm1aS3Z48BywhbGgZWyvUUGGWWaqGHLxLNKzqKZtF5qCMXr",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-27T23:35:44.157691+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4dFGaotTpZBDZJNED9heZfXY3vMtduPCXv7jU7rws714iBgSCXCF4e6eT7tacQgr2qa8tYbgZXm2v4XMUjLHak9W",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-27T23:35:44.860519+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4TNUMYcWg19WgwPiiLAtM488uJUkPwQWjvYKhYckfjqfF4YLiTdPQcnigpJ3e2X2mtGawUuWJ5uLjCQ9R8tsbGg1",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T00:01:39.074197+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4cmdTq2HEBVCt1YWYUeQsyusGYvopXVDJRcjpmskB6yAg1Pj6Dx9Ab8qNuv2zxAx9junD89chrukRSoWC7js16Np",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T00:01:39.810173+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "xXoGS185nmmPQV5pJguf1oM6WjEKyAVAe3ezSajR8xhQbe1eBtaS18t7B5mYKggM28Xjh28Ac4fnS3vmJqTq2GY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T00:10:39.635808+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "kVDQEUnMjxmn7DbPVFBnacaVgmHU9XTJT4wHQnfKkbb9Qv38zMs3ZVYiHBP4sK9LSprkpH7cikLx3CE6wAyo3LZ",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T00:10:40.331246+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4Xj9s8KE4CiikwUYzpg2J33aZYBWvrDeMUWSGrQM3irJMHcjVzgWu4xFLY8EPpMS3K3jxJpNszoz6R1UTsK9MXBk",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T00:20:53.164757+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4ymazMqkoEPErZbMXbwtNhmegJZQctEX67FoSF6b5gGYKsQLyPs5dLc1yMeXbqEmGnfEtMftJZ5LV2AV8bDVRVK4",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T00:20:53.900016+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4tiyYLB9L29y658p89kXkt4jApBdGqPjCDPWuNv4K7D5cp8LGB9eDHaYiT68YpaAaLwWNL7WJuTsbwsVrATjtdsK",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T00:35:35.478223+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4gK1fo6oe1SDrkn6bCNk4F2gpe3N32XnVCxLQc25yTyq8yZhqqBwSTBvQ7U5PvaY96wEVYJnCZJLutLJRR71qCPy",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T00:35:36.250867+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4ZxjdhRMdzkttgycp6So4JtYLQVXu6VGwz265avecE7vH2EtZEzqDPMY74ZPXrS3gXNLxDTwhFN7nCSy8xjQJBTb",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T00:50:53.941491+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "35V4X5ta1n1JYHzDfefxCf5BnXaPPdCUSKorZeHRLN6cfKYec9YMenwT5zJZG3MVtrEf6a1D2VkQLcyPkYZzpxKE",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T00:50:54.667993+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5aN5ZcrybmCYbavVXPBaPhxtfrk4Ziz7RvwZMFmZWTtpMiwaEVB1joPaAtKxBNA9yAFt7Zi18NtQZR3jMipXMTWu",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T01:01:00.524163+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "31gmAEepv3zQjKNQ9RDEf4nTcUHgQ5oBKYbSUNZismZ78kFDAWWFEBodNoa8CDQmSqPAR5wasbEKnB3tnHG5D6BA",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T01:01:01.377824+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2PuXmFAMYAAPRN2i4pywByS3UZFyKKQSFUxbUCFsBibyhK7XvaNLbFkXbNvK4SrCgqZ3CFZipY4aXJR43q72unWt",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T01:15:53.900236+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2kdDjLpddpcESqjrw4w6oHms6judCNeCuRZsHZrJWUF6XbdQiFfnNkz3sgN9K2Wrxc7DEYWygBUi8Wgz2TjeRaYC",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T01:15:54.752959+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "k9HMGZ7WBAFpuKamahvLhdQ1jkaJiVidGeWtEgLEiVfVYfnyWPLzjnTbctdH74SNFkPPrZk4AbZEHvXU9216W9v",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T01:20:50.584923+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "JB7inuy2bsyU9Z2yTS2CdZKehzcP4eag8LMkGm5NrkhMFQLZc7gYdU2UFJqzsjnVSut4S5XCEviUAU6RjyrP9uR",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T01:20:51.320887+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5QaGTW1oDmeF9Fjm258zvN6tuSsRMDT4gnWbP1VN3fV6YvhXBy5GwKSXV78ZXCixNaucxVVbrZ9m9bT2bHQFR9XY",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T01:30:49.099363+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "49iK4jG1sYLzdGhii2iXbhu6PzZbcPRiZU24Ub3Hx2E5hc5rT35KpiuXEhCJvTfoUiEk5KSK7pwVxVJ8HaHef6DU",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T01:30:49.822123+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "23RgMDQKY13etyZzwZctUsh4qYtLct1P1wLQzB3xtg9gLL97ijnsfffPuzwbt4u7pvkoKAX8LggzcD56kJ22nGGM",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T01:35:42.288597+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4aZz7czxU7nzFEytEyjFurjw2inkaiWJ2NCyYFgodxkGF4xr2eYiXc3tSdi1onUV7Z3JAiYp3MenB5P6WmMpkEGZ",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T01:35:43.196537+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3Xxh5KFumPvd6PqsXiCs6omam9kooUEZBbUC7NYwv67yYKnW14g4H9e6VzG9VJJLacrpXFNewEEdDHVY3SRmKzdA",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T01:50:50.033242+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "56wa1DryJvbzeKbKfwCTzyr6xNdNc1FXrKYmyg2zzXo4A4RDmt6bStN82zHkzEXkhQYasuLa2uiGvrc7vhVhhgNB",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T01:50:50.847354+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4jNeVxxZW665dqxJHJNN833VGssDWsvkPCh1NxVYURLArNomDUt7J3vNaxzZoNqhnUiB2gibQcYVWsLQajr38eJg",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T01:55:46.336559+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4Ad4XjE7ZKciLtHvaPrvA1UhVGdtCiWcVXjmxdfRqKWMVygdcHHR9atRHE3mwXeB5eP65nK8J7Ld4GNGciTLGmZE",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T01:55:47.139219+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "qitn6b3gKd38s2fn1wAQ2k6KQnieY9Y2qjRGvzQEYonWVSszQ5u3x87E56ayWx448gtsXnTfUyMLv7xjmxWoYUp",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T02:06:20.261623+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4uTeS5cS78zxmhsr4ekXuxAzoFYScgPqxdpbng4Lsaz7RRLk1DaWu7nzRa7iS7yY9hesDd8eHXb4zUTu7Ph33HSh",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T02:06:21.047797+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4e1PoDBwuQ46EKMvja4hKYLoXFV2QmETN7z5opnknNzopkVnaCM83oQSw3JgA7GqANsmTT5zbXUgzizqJ3ZRMUGw",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T02:30:42.065942+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5487kFwqCRf5SnqbTtz7atg8DJb9RTUpdg1t2HbxWNNfocLBkhXdc6yF5rQSSV7URcmCqPKQsSVXXaBBJmY7x8F7",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T02:30:42.779479+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "24FLefR6Ri3AbwQgV5LchAbCtPiBZGSx6fMvzwWgGgxnnsSuj1u5zhmCu4ARXSYgjKWywNGrCFK7go9yL5F4JXth",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T02:35:43.668921+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4KtysTDbwpMs9unvHCh1okDNFWpMqHQRzuXDaWfF5a8WvqRUAEtWfee3YbCwutD9rrUw5VC8RuYGzVF8n5TLrse1",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T02:35:44.392149+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4XN9JdJxHRPX9PzVxnJYYSAMVoLj2oiMXftpeE52n1z1cZZ7a3c712qBocS1zegsGLNxA11LBLTFQeTppFxBkhpJ",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T02:50:41.766223+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4xKkji7ruEgzV8fxy1fhB3CspHMNyH1gtFEVui8X6ebG9Ssi8GeU5b7TH6ghgCNSjCjd6ZZ6KZgEDzeseY69AK6R",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T02:50:42.525718+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "2j8AYMQJiv5aQSxHubMvXShxnufLJnVUq1S3pR4i5WjbEj3FzdZzxqVZPup7zMzC3VuXKRj2VxAfLRYvzz1YVoxF",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T02:55:38.513653+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4QqMfUPdZjaS418LtM38QR4VM5C41Ky1QmERLdu2XzQqRy95dx1tx9Ffk7wwWhQ12xWKQVJ5aNFgm4G6BXsCfW83",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T02:55:39.345749+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3Fo6gfg7cuE2DqdDpcCC4EFRG6fmxN8wggqdFUjjBWtHxV2YuWxwc6obdLaM9pqF5mNnj4SAd3m72o64LfLDP15B",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T03:01:06.361829+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "JHSPgQN48HD3x9FJo3gjd2RRpYSWqrYQ4qN5Xq5Zr8yN5Yv8vhcETXkBmdVa1d5G9btESehfvFoTbHuE8esTFLt",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T03:01:07.168104+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "LZ5RHZHMioMCHBZ7L7sBw71sD7X7ibRvu8NckK3ghWseSCgiWv4mxkWGy8HqFw6q6nzsP5UdVRfTAu6rNroMcMy",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T03:15:38.698239+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "k52Rkxt6ZSkJzL13QrUKnRujJjJckW7EcHSgHvgeVAALPwL7kYSU6ropykf8grbYobVQqjtGMciGJQypYqagLcC",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T03:15:39.432682+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5fzUVsbRCZUtJNWaxLBtDaxqQ9fXo7YgLqfXqkcHmL96TUHychej5QDEYVhZiuGPFv9dFahRjTV1B2Rn437QUTga",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T03:25:42.719651+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "64JiNHJjcqugHd9n6zK4ckVy44V8DMBcRqpfNqQjycRqqT2N6dtijUrhexT6o4GkBUy2exVnYjPGKctp6x4y5yJ9",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T03:25:43.542635+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "28uJxNK4iU45bQCPR3nNpR357DHeYCpwGewaYgE6UfwhopfyhDWr8FtPBPsWtJKPe3XKnBAFTa4ifBqpE7nA83JR",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T03:30:43.597228+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "27QscVL3U8fcWZLrrUoJ3S93mb1xqQSvYmt9ZKJ7b6WDzrytXgynppprd1favV7ftoRTgzhUCUBRXU1goorT2Nd5",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T03:30:44.356060+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "66CsCpVggrkHuXhirH2urP1VVrmxSACTCVA6ciZWSDXoewEAmWoyq6WLfXcT6vW4pE3iGbDDmbwemoyXcVG9jXyp",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T03:37:56.108601+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4YCrkQ3ZeNomFe44PaSVPT7M61rLifttDkV26PxXvahxNuQKcZmjSG4wftEYVfSqXQk5VuVFGwqpiYEmRptwiHdy",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T03:37:56.821392+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4B1UMr2H6hcyk9r4UJPwyZxEFpNzz59DttnujbaS1mwF3e7vGtBoQDHKmMzTNyTMycLxBvYiW2ZDYTZsmaLrSc5b",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T03:40:29.145492+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3JZtMLEK15ahAJ4GigDCFESv5nx7KTPviM5kFwyD2Sg3h56C9cCg6B3V9RmswtRdbEuyu5fArogUxckZTVhLjZbT",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T03:40:29.845413+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4GC3pFVnBYKHGeQJNUPE9ZxMkTixHRSZEDugm5rKmiPMss2LHVfcuK2WZyHStWq2RXEBQJQQScQPDBiAZudFtX2y",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T03:55:46.552155+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3EF5YY9QiP5nB3k11h1ZLc5YTYJDS5s8oK78GStwLEdjrPhoQhJT1VVkJjXri2xLpMnshiyiyCaU3RFfTWVVknLi",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T03:55:47.351561+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4WhtGroBxHfxQQvSsuKWTQxrwW3v3x51FYGy2sBmnT5r8sVg9YrTU6PkuXdoDACGzAWPpGVfV34yRyWgGzhXP2Ht",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T04:01:15.766476+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "3VLTRV7HysAEvFLyXt5LMboCeh4oNAf54cxfgeeNzhboj2XvkfCYvSP5obdDA7vqjC5PdXtbdhHYSNeaiVC6NbnP",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T04:01:16.482133+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "9HzU4NX9GwdpDfbxWPRwJK47oCWyo3bBuLpHp1isRQZVVGmHiagxXAFa12Ur7hauWgDQZokB6sFW8jqTuLXfd29",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T04:20:32.370127+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "628U7Ke7N73xQMoQQFX4K5uUSNDjbYaba3whN255Kk3PMEoJjJsZQU8kMe3vBXHmm87xnFnCqM7FKd7EH7eCjbwd",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T04:20:33.151862+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "6KwibRx8kfhTWZLoyP2MtJgKHyMfbeKoPfTRgDgTfrrArwbMaSSzVNSmNH8NBBDjju1yw7ubPvZiKuPeb4rQAvv",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T04:25:33.138078+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4ZvpUzfb6kcTjxZ38uwtKbPFZ4km91TE5RKBMUVwvAJqDwmz9i1DJgkuRU7oPBbfVcsa6AtXXVT569HWcSSqj8AD",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T04:25:33.915801+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "37jSNcxKwuDYtEP4Z7Mg137QNef8LP3Ge1PGxABTTnZi3YRVqNe5kTB88gMsSDHMj3oWydhZd3e3UYFoiNEYtMeA",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    },
+    {
+      "timestamp": "2026-04-28T04:30:39.504765+00:00",
+      "token": "FART",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "4anNdWrwkAZ3LvzWx2Ev8LKyFBB4ngtK9kQBFMH1o4Fv1kmCAsxfKMacF7a1DcBoL8u1uVVD1anaW8s6sgeh1rWr",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    },
+    {
+      "timestamp": "2026-04-28T04:30:40.396315+00:00",
+      "token": "TRUMP",
+      "action": "BUY",
+      "amount_sol": 0.2,
+      "tx_hash": "5dMNrE3HyiEMw7mmQeQ6D2MF1NaeFiSf6DYJCtC7xaaWAhtxzPSfLwqwEXAbnGi1WpkqahDr76yNwJMhdKzmJzsm",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN"
+    }
+  ],
+  "signals": [],
+  "tax_summary": {
+    "2026": {
+      "total_trades": 150,
+      "realized_pnl": 0.0,
+      "fees_paid": 0.0
+    }
+  }
+}

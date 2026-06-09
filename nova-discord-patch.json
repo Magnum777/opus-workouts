@@ -1,0 +1,28 @@
+{
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "token": { "source": "env", "provider": "default", "id": "DISCORD_BOT_TOKEN" },
+      "groupPolicy": "open",
+      "guilds": {
+        "1425600872938995714": {
+          "channels": {
+            "nova": { "enabled": true },
+            "tradebot": { "enabled": true },
+            "wordpress": { "enabled": true },
+            "eveonion": { "enabled": true },
+            "fiverr": { "enabled": true },
+            "peopleperhour": { "enabled": true },
+            "tiktok": { "enabled": true },
+            "private": { "enabled": true }
+          }
+        }
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "discord": { "enabled": true }
+    }
+  }
+}

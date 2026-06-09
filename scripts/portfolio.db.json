@@ -1,0 +1,246 @@
+{
+  "schema_version": "2.0",
+  "last_updated": "2026-05-11T04:11:54.236038+00:00",
+  "wallet": {
+    "address": "7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA",
+    "chain": "solana"
+  },
+  "portfolio": {
+    "sol_balance": 0.052837,
+    "sol_price_usd": 94.71,
+    "usdc_balance": 94.68,
+    "total_value_usd": 99.69,
+    "positions_count": 0,
+    "cost_basis_total": 94.68
+  },
+  "positions": [],
+  "trades": [
+    {
+      "timestamp": "2026-05-06T17:51:39+00:00",
+      "token": "PUMP",
+      "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+      "action": "SELL",
+      "amount": 12005.556718,
+      "usdc_proceeds": 0,
+      "tx_hash": "2mKf9TzctyBUgiJRjbY2W5aKeMPBXN9v2qV6hticgjz1U6rVyZKPv16xGPL4LvahZrDGMcqHiLxz25UPY7tfVijg",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-06T19:39:13+00:00",
+      "token": "FARTCOIN",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "action": "BUY",
+      "amount": 71.970501,
+      "usdc_spent": 0,
+      "tx_hash": "4stDJM7VpkBcrcrMmhEFCSWmLiaW3xXxp6w3mBdLMFHNuT4JFX7wv7Yo8wpS8SJ21DLVPxiBT5iXs8FRbTtMoM75",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-06T22:18:50+00:00",
+      "token": "PUMP",
+      "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+      "action": "SELL",
+      "amount": 16577.940286,
+      "usdc_proceeds": 0,
+      "tx_hash": "5jbRMYuzAkB5QCfykycgic3VYarUWoD5B2MRFNeiv5ev9ybbYAArW242Rqt2tLQWSiyfKNaRVKJf9uzfutRYn9mx",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-09T03:26:08+00:00",
+      "token": "FARTCOIN",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "action": "SELL",
+      "amount": 71.970501,
+      "usdc_proceeds": 18.357309,
+      "tx_hash": "4YLrksAXduNrZQUf5DRyRp7Uuqr5XAAXCSrsXCZMgxodqyKhJ7mr6W1Ce9yrm2puwtuWj4oHJ3MqNkeCazRAkTnh",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-09T03:26:14+00:00",
+      "token": "PENGU",
+      "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+      "action": "SELL",
+      "amount": 3900.53331,
+      "usdc_proceeds": 42.184267,
+      "tx_hash": "2t7zr57qPxfiijyAUrCzoYMjAX3HaSxKjjGggnNYBZNuX3XjLE7pnt8jMw5CvcmUKCtPZDPUNcmfwcLRn2fxko4v",
+      "fee_sol": 5e-06
+    },
+    {
+      "timestamp": "2026-05-09T03:42:38+00:00",
+      "token": "BONK",
+      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "action": "BUY",
+      "amount": 2541474.44771,
+      "usdc_spent": 0,
+      "tx_hash": "5nPdw8jSHpYHCYxVo5gtUvZgxUccJxySqrhAbP74ogM6MW2FEJT3ZDVkMn4t2BbnggzzkL8JKLHzpvFD3YfUcfmQ",
+      "fee_sol": 5.23e-06
+    },
+    {
+      "timestamp": "2026-05-09T03:42:39+00:00",
+      "token": "FARTCOIN",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "action": "BUY",
+      "amount": 55.008,
+      "usdc_spent": 0,
+      "tx_hash": "UqzGAoHZrLRFBVN878rQ5xYwFUFBgijvGCAQrPqvZAj1LdievbXoJrn1NYaQcm8UbG193qNDHpfEQpFqbHMzjx5",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-09T03:42:42+00:00",
+      "token": "TOKEN",
+      "mint": "9enS2VasgRxzT2QVkhjfVJAtrVJGB9MSYTSvUpf2pump",
+      "action": "BUY",
+      "amount": 46759.900328,
+      "usdc_spent": 0,
+      "tx_hash": "4P5DW8VKuSjysWTTygVRivwctGwvn7w9Kxb5QMwZPFDZP5zvyW7z5T24VcEpgQdEwFj32eSXUjk6skxHUssXXo4F",
+      "fee_sol": 7.066e-06
+    },
+    {
+      "timestamp": "2026-05-09T04:07:28+00:00",
+      "token": "AURA",
+      "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+      "action": "BUY",
+      "amount": 112382.567956,
+      "usdc_spent": 0,
+      "tx_hash": "FP47LkCyUoYmEiRSd6NKzHgg5QKRKyHT2Bty1REKcfBoktkBW9WeP5eV39u49rZCu3NHfDRSiuVfZaWyQVGhvU6",
+      "fee_sol": 5e-06
+    },
+    {
+      "timestamp": "2026-05-09T04:09:00+00:00",
+      "token": "BONK",
+      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "action": "SELL",
+      "amount": 2541474.44771,
+      "usdc_proceeds": 18.870858,
+      "tx_hash": "4RmPFxVtC7ciFRSRSV2DHEvqW3ZCaJBrWW9eVhWEJNYXsUQVRB2SFhEEkVSV8WbumAkZwM5prtYYnbq8uPH15E1K",
+      "fee_sol": 7.803e-06
+    },
+    {
+      "timestamp": "2026-05-09T04:09:14+00:00",
+      "token": "AURA",
+      "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+      "action": "BUY",
+      "amount": 112180.583753,
+      "usdc_spent": 0,
+      "tx_hash": "C5Taf9sX4YP4Z9DKNyvz6dhPgghj331YLUeh7WJEX3SxvALd16CBQhT84j2oa5qQVRWeXEEWPZy3zYTFJsefcdm",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-09T04:37:45+00:00",
+      "token": "FARTCOIN",
+      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "action": "SELL",
+      "amount": 55.008,
+      "usdc_proceeds": 13.918794,
+      "tx_hash": "Kpej335xC5QDfS5LYqXkSDTeLkvV6dBQyhexqHbV7NKXUXKSMdTTpu9mHWCNjmMozcqAoZNvXHp5gmfXAHup8dF",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-09T05:22:54+00:00",
+      "token": "TOKEN",
+      "mint": "9enS2VasgRxzT2QVkhjfVJAtrVJGB9MSYTSvUpf2pump",
+      "action": "SELL",
+      "amount": 46759.900328,
+      "usdc_proceeds": 7.037231,
+      "tx_hash": "5U6e8tC4GbC6nr4f65p94JEi5UdBwTCTUHRhkvqxxrQkRagLXjogZhbzcCxpgbrwZr8rk7yMB9WTCvVTDXxMwgP2",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-09T06:38:29+00:00",
+      "token": "AURA",
+      "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+      "action": "SELL",
+      "amount": 224563.151709,
+      "usdc_proceeds": 34.550045,
+      "tx_hash": "jfHJUdeZRYkpCGndfioZAxFL5XNz1xnkNAg1XncbHkfzyif5uq1jYpCSkr9vxZ5mAyFVA769XgJYppqvLruw92a",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-10T13:15:28+00:00",
+      "token": "HANTA",
+      "mint": "2tXpgu2DLTsPUf9zFmuZmA4xrYxXKBTpVq9wAM7hzs9y",
+      "action": "BUY",
+      "amount": 45.351808,
+      "usdc_spent": 0.2,
+      "tx_hash": "4Ze8YW2iP4fpAe8B9UD64WYvb79ANKN2su7dhWF1sRxdT8KSrFQJk2FnYw1ApcoHfbSCggd4xmDf8B1KG1zb6XHg",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-10T15:01:05+00:00",
+      "token": "HANTA",
+      "mint": "2tXpgu2DLTsPUf9zFmuZmA4xrYxXKBTpVq9wAM7hzs9y",
+      "action": "SELL",
+      "amount": 45.351808,
+      "usdc_proceeds": 0.171539,
+      "tx_hash": "64i738xh15tPJFGa8ERPH7pvEvXZQxuBN51vU14TXq4jbuNmDSdejcwf2JBKD77R4zPcivBp8oSArUDtZL3ZStNz",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-10T16:15:44+00:00",
+      "token": "AURA",
+      "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+      "action": "BUY",
+      "amount": 1245.389259,
+      "usdc_spent": 0.2,
+      "tx_hash": "2ws57L1iAXGPpJwv1EzgHC8jKXsPdwkiuXTwo1rQmA2BTPxSy2psU3w2JqoaMS92NDgyNeqa92dzAZfNtMZqhNQT",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-10T16:46:20+00:00",
+      "token": "AURA",
+      "mint": "8GxLxKA8tf3h8JUkXFfP4dNyn6D2vvwyGif5wanRpump",
+      "action": "SELL",
+      "amount": 1245.389259,
+      "usdc_proceeds": 0.198937,
+      "tx_hash": "4YUBseNyYyzmUswFtLNRrobDHC1GsoYmyGko5SC5u2X7MLpsEFSJnNLh9HjFtApyB9BKf9iV6vA65aHFfSCnrF33",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-10T21:55:36+00:00",
+      "token": "TOKEN",
+      "mint": "FVAJ37KMeRCCdcBQYtFkXxLHWTEQABErNTWW3nDpump",
+      "action": "BUY",
+      "amount": 528329.404013,
+      "usdc_spent": 0.2,
+      "tx_hash": "3VCkDsofgBfXhz8JDEPY1fLPAsuL1yDF8zrFrD1wBG3J9uFJ5GGnB8WwEKJbDUK9R8rjeGgbbaQmkESezrRei9sW",
+      "fee_sol": 0.000105
+    },
+    {
+      "timestamp": "2026-05-11T02:02:59+00:00",
+      "token": "TOKEN",
+      "mint": "JmMRbLcKgNCu17yHZDAn4strE5NjmWJ4pCeJ7s7boop",
+      "action": "BUY",
+      "amount": 10589.306559844,
+      "usdc_spent": 0.2,
+      "tx_hash": "2v3mUrviUe48fB8Kgqj6MF16z5NHubdT3sv8SFsHqY3GZEM9oT8K5uFVU35YBytNxNUXm5jLy4PcproZHqpZ3uqd",
+      "fee_sol": 1.9756e-05
+    },
+    {
+      "timestamp": "2026-05-11T02:17:55+00:00",
+      "token": "TOKEN",
+      "mint": "JmMRbLcKgNCu17yHZDAn4strE5NjmWJ4pCeJ7s7boop",
+      "action": "SELL",
+      "amount": 10589.306559844,
+      "usdc_proceeds": 0.195316,
+      "tx_hash": "339w1fEw3Sfr1iWpEbaZ1heJvk5YCubwDEdsmzN8pBRMTnLMj59V9NWQDYqKjzKkd9E6g1qQsonLMqYPdAQDcFrc",
+      "fee_sol": 0.000105
+    }
+  ],
+  "signals": [],
+  "risk_metrics": {
+    "daily_trade_count": 0,
+    "daily_trade_reset": "2026-05-11",
+    "last_trade_time": null,
+    "consecutive_losses": 0
+  },
+  "performance": {
+    "daily_pnl": {},
+    "win_rate": 0.0,
+    "avg_profit_per_trade": 0.0,
+    "total_realized_pnl": 0.0,
+    "total_unrealized_pnl": 0.0,
+    "daily_avg": 0.0,
+    "projected_days_to_1000": 999
+  },
+  "tax_summary": {}
+}

@@ -1,0 +1,83 @@
+{
+  "capital_usd": 60.142799999999994,
+  "prices": {
+    "ETH-USD": 1992.055,
+    "BTC-USD": 66922.605,
+    "SOL-USD": 85.02,
+    "DOGE-USD": 0.0966,
+    "AVAX-USD": 9.165
+  },
+  "positions": {
+    "ETH-USD": {
+      "size": 0.02,
+      "avg_entry": 1992.8600000000004
+    },
+    "BTC-USD": {
+      "size": 0.0,
+      "avg_entry": 0.0
+    },
+    "SOL-USD": {
+      "size": 0.0,
+      "avg_entry": 0.0
+    },
+    "DOGE-USD": {
+      "size": 0.0,
+      "avg_entry": 0.0
+    },
+    "AVAX-USD": {
+      "size": 0.0,
+      "avg_entry": 0.0
+    }
+  },
+  "config": {
+    "max_position_pct": 0.5,
+    "max_trade_pct": 0.2,
+    "stop_loss_pct": 0.05,
+    "take_profit_pct": 0.1,
+    "mode": "paper"
+  },
+  "history": {
+    "recent_prices": {
+      "ETH-USD": [
+        1000.0,
+        1993.665,
+        1992.055
+      ],
+      "BTC-USD": [
+        1000.0
+      ],
+      "SOL-USD": [
+        1000.0
+      ],
+      "DOGE-USD": [
+        1000.0
+      ],
+      "AVAX-USD": [
+        1000.0
+      ]
+    },
+    "recent_trades": [
+      {
+        "timestamp": "2026-02-26T11:47:56.208427",
+        "pair": "ETH-USD",
+        "action": "BUY",
+        "size": 0.01,
+        "price": 1993.665,
+        "reason": "Based on the current hot momentum, ETH-USD is identified as the hottest pair with a momentum of 0.0%. Following the rules to only buy the hottest pair and sell if the momentum turns bearish, we will enter a long position in ETH-USD.",
+        "note": "Executed BUY ETH-USD"
+      },
+      {
+        "timestamp": "2026-02-26T12:20:38.307326",
+        "pair": "ETH-USD",
+        "action": "BUY",
+        "size": 0.01,
+        "price": 1992.055,
+        "reason": "Based on the current hot momentum, ETH-USD is identified as the hottest pair with a momentum of 0.0%. Following the rules to only buy the hottest pair and sell if the momentum turns bearish, we will enter a long position in ETH-USD.",
+        "note": "Executed BUY ETH-USD"
+      }
+    ]
+  },
+  "time": {
+    "timestamp": "2026-02-26T12:20:38.307339"
+  }
+}

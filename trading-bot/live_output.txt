@@ -1,0 +1,30 @@
+[2026-06-02T04:13:42.393405+00:00] TradeBot Daemon
+--- RESEARCH ---
+Research complete: 7 tokens analyzed
+Buy opportunities: 0
+Sell signals: 0
+--- SCOUT ---
+SOL: 0.0369 | USDC: $12.99
+Tokens on chain: 6
+Valuable tokens: 4
+  PENGU: 2631.6111 ($19.74)
+  TRUMP: 9.8032 ($19.95)
+  JUP: 101.4505 ($21.11)
+  ORCA: 15.9226 ($19.61)
+  EPjFWdd5Au: 12.9890 ($12.99)
+  USDC cash: $12.99
+
+Scout signals: 0
+  [PARTIAL TRIM] JUP: +5.5% ΓÇö selling 50%, letting rest ride
+[QUEUE] 1 signal(s) written (0 buys, 0 sells)
+
+--- EXECUTOR ---
+
+--- SUMMARY ---
+USDC: $12.99
+SOL: 0.0369
+Total: $96.37
+Realized PnL: $0.00
+Open positions: 4
+No trades executed this cycle
+==================================================

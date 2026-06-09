@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-03-26T08:28:29.322470",
+  "results": [
+    {
+      "symbol": "BTC",
+      "result": "CLOSED",
+      "profit_pct": -0.6886206896551724,
+      "timestamp": "2026-03-26T08:28:29.322225"
+    },
+    {
+      "symbol": "ETH",
+      "result": "HOLD",
+      "profit_pct": 0,
+      "timestamp": "2026-03-26T08:28:29.322231"
+    },
+    {
+      "symbol": "SOL",
+      "result": "LOSS",
+      "profit_pct": -1.0051635111876132,
+      "timestamp": "2026-03-26T08:28:29.322243"
+    }
+  ],
+  "summary": {
+    "total_trades": 3,
+    "profitable_trades": 0,
+    "losing_trades": 1,
+    "net_performance": -1.6937842008427855
+  }
+}

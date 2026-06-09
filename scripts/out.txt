@@ -1,0 +1,27 @@
+
+==================================================
+Account: compjunkie@gmail.com
+==================================================
+  LOGIN FAILED: b'[AUTHENTICATIONFAILED] Invalid credentials (Failure)'
+
+==================================================
+Account: jhenderson87@gmail.com
+==================================================
+  Checking 50 messages (last 7 days)...
+  Clean.
+
+==================================================
+Account: layeredmediallc@gmail.com
+==================================================
+  Checking 50 messages (last 7 days)...
+  Clean.
+
+==================================================
+Account: nova.cofounder@gmail.com
+==================================================
+  Checking 15 messages (last 7 days)...
+  Clean.
+
+==================================================
+Done. Checked ~115, trashed 0. (26.1s)
+==================================================

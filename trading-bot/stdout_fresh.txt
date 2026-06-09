@@ -1,0 +1,74 @@
+[2026-06-05T21:43:15.571723+00:00] TradeBot Daemon
+--- RESEARCH ---
+Research complete: 17 tokens analyzed
+Buy opportunities: 7
+Sell signals: 0
+  BUY BTCBANK: conf=90 rec=STRONG_BUY price=$0.00068610
+  BUY POKEHUB: conf=90 rec=STRONG_BUY price=$0.00056400
+  BUY HUNTERBANK: conf=85 rec=STRONG_BUY price=$0.00016600
+  BUY MONEY: conf=65 rec=BUY price=$0.00076190
+  BUY SPCX: conf=65 rec=BUY price=$0.00083110
+  BUY HANTA: conf=55 rec=BUY price=$0.00020800
+  BUY JEET: conf=55 rec=BUY price=$0.00000058
+--- SCOUT ---
+SOL: 0.0178 | USDC: $12.80
+Tokens on chain: 4
+Valuable tokens: 2
+  EPjFWdd5Au: 12.8041 ($12.80)
+  3TYgKwkE2Y: 24484.1708 ($49.34)
+  GU527smM71: 97687.6149 ($18.46)
+  USDC cash: $12.80
+
+Scout signals: 1
+  [BUY SIGNAL] BTCBANK: STRONG_BUY (conf: 90)
+  [BUY SIGNAL] POKEHUB: STRONG_BUY (conf: 90)
+  [BUY SIGNAL] HUNTERBANK: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] MONEY: BUY (conf: 65)
+  [BUY SIGNAL] SPCX: BUY (conf: 65)
+  [BUY SIGNAL] HANTA: BUY (conf: 55)
+  [BUY SIGNAL] JEET: BUY (conf: 55)
+[QUEUE] 8 signal(s) written (7 buys, 1 sells)
+
+--- EXECUTOR ---
+  [BALANCE CHECK] USDC before SELL GU527smM71: $12.80
+  [SAFETY] Checking BTCBANK before buy...
+  [SAFETY OK] BTCBANK: score=100/100
+  [SAFETY] Checking POKEHUB before buy...
+  [SAFETY OK] POKEHUB: score=85/100
+  [SAFETY] Checking HUNTERBANK before buy...
+  [SAFETY OK] HUNTERBANK: score=85/100
+  [SAFETY] Checking MONEY before buy...
+  [SAFETY OK] MONEY: score=100/100
+  [SAFETY] Checking SPCX before buy...
+  [SAFETY OK] SPCX: score=85/100
+  [SAFETY] Checking HANTA before buy...
+  [SAFETY OK] HANTA: score=100/100
+  [SAFETY] Checking JEET before buy...
+  [SAFETY OK] JEET: score=100/100
+
+--- SUMMARY ---
+USDC: $12.80
+SOL: 0.0178
+Total: $81.77
+Realized PnL: $-85.50
+Open positions: 2
+Trades just executed: 1
+  🚨 SELL GU527smM71 STOP_LOSS: P&L $$-1.27 (-6.4%)
+
+[DISCORD_REPORT]
+**TradeBot** | 1 trade(s) executed
+🚨 SELL GU527smM71 STOP_LOSS: P&L $$-1.27 (-6.4%)
+Postions: 3TYgKwkE2Y: $+0.47 (+1.0%) | GOLDENGOAL: $+0.00 (+0.0%)
+USDC: $12.80 | Total: $81.77
+>**BUY BTCBANK FAILED**: Buy size too small (below minimum $20) - skipping
+>**BUY POKEHUB FAILED**: Buy size too small (below minimum $20) - skipping
+>**BUY HUNTERBANK FAILED**: Buy size too small (below minimum $20) - skipping
+>**BUY MONEY FAILED**: Buy size too small (below minimum $20) - skipping
+>**BUY SPCX FAILED**: Buy size too small (below minimum $20) - skipping
+>**BUY HANTA FAILED**: Buy size too small (below minimum $20) - skipping
+>**BUY JEET FAILED**: Buy size too small (below minimum $20) - skipping
+>🚨 SELL GU527smM71 STOP_LOSS: P&L $$-1.27 (-6.4%)
+>Postions: 3TYgKwkE2Y: $+0.47 (+1.0%) | GOLDENGOAL: $+0.00 (+0.0%)
+>USDC: $12.80 | Total: $81.77
+>**Watching:** BTCBANK (STRONG_BUY, conf 90) — waiting on capital / price
+==================================================

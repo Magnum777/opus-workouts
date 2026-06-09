@@ -1,0 +1,293 @@
+/* === The Real AI Operator — Modern Editorial Theme === */
+/* Injected via plugin. Overrides Kadence defaults. */
+
+/* ─── Color Palette ─── */
+:root {
+  --global-palette1: #e76f51;        /* Primary accent — warm coral */
+  --global-palette2: #f4a261;        /* Secondary — soft amber */
+  --global-palette3: #1a1a2e;        /* Headings — deep charcoal */
+  --global-palette4: #16213e;        /* Body text — navy black */
+  --global-palette5: #6c757d;        /* Muted text — warm gray */
+  --global-palette6: #adb5bd;        /* Light gray */
+  --global-palette7: #f8f9fa;        /* Background subtle */
+  --global-palette8: #ffffff;        /* Pure white bg */
+  --global-palette9: #ffffff;
+  --global-palette-highlight: #e76f51;
+  --global-palette-highlight-alt: #f4a261;
+  --global-palette-highlight-alt2: #1a1a2e;
+  --global-palette-btn-bg: #e76f51;
+  --global-palette-btn-bg-hover: #d45a3d;
+  --global-palette-btn: #ffffff;
+  --global-palette-btn-hover: #ffffff;
+}
+
+/* ─── Typography ─── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+body, input, select, optgroup, textarea {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--global-palette4);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--global-palette3);
+}
+
+h1 { font-size: 42px; line-height: 1.2; }
+h2 { font-size: 32px; line-height: 1.3; }
+h3 { font-size: 26px; line-height: 1.4; }
+
+/* ─── Header ─── */
+.site-main-header-inner-wrap {
+  min-height: 72px;
+}
+
+#masthead {
+  background: var(--global-palette8) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.site-branding .site-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  color: var(--global-palette3);
+}
+
+.main-navigation .primary-menu-container > ul > li.menu-item > a {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--global-palette5);
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+}
+
+.main-navigation .primary-menu-container > ul > li.menu-item > a:hover {
+  color: var(--global-palette1);
+}
+
+/* ─── Homepage Blog Cards ─── */
+.loop-entry {
+  box-shadow: none !important;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--global-palette8);
+}
+
+.loop-entry:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08) !important;
+}
+
+.loop-entry .entry-content-wrap {
+  padding: 1.75rem;
+}
+
+.loop-entry .entry-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+
+.loop-entry .entry-title a {
+  color: var(--global-palette3);
+  text-decoration: none;
+}
+
+.loop-entry .entry-title a:hover {
+  color: var(--global-palette1);
+}
+
+.loop-entry .entry-meta {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--global-palette6);
+  margin-bottom: 0.75rem;
+}
+
+/* Category badge */
+.loop-entry .entry-taxonomy a {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--global-palette1);
+  background: rgba(231, 111, 81, 0.08);
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+}
+
+.loop-entry .entry-taxonomy a:hover {
+  background: rgba(231, 111, 81, 0.15);
+}
+
+/* ─── Single Post ─── */
+.single-entry {
+  box-shadow: none !important;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+}
+
+.entry-content {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.entry-content h2 {
+  font-size: 28px;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--global-palette1);
+  display: inline-block;
+}
+
+.entry-content h3 {
+  font-size: 22px;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--global-palette4);
+}
+
+.entry-content p {
+  margin-bottom: 1.5rem;
+}
+
+.entry-content ul, .entry-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.entry-content li {
+  margin-bottom: 0.5rem;
+}
+
+.entry-content a {
+  color: var(--global-palette1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.entry-content a:hover {
+  color: var(--global-palette2);
+}
+
+/* ─── Buttons ─── */
+button, .button, .wp-block-button__link, input[type="button"], input[type="submit"] {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  border-radius: 6px;
+  box-shadow: none !important;
+  transition: all 0.2s ease;
+}
+
+button:hover, .button:hover, .wp-block-button__link:hover {
+  box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3) !important;
+  transform: translateY(-1px);
+}
+
+/* ─── Footer ─── */
+.site-footer {
+  background: var(--global-palette3) !important;
+  color: var(--global-palette6);
+}
+
+.site-footer a {
+  color: var(--global-palette6);
+}
+
+.site-footer a:hover {
+  color: var(--global-palette2);
+}
+
+/* ─── Read More Link ─── */
+.loop-entry .entry-summary .entry-more a {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--global-palette1);
+  text-decoration: none;
+}
+
+.loop-entry .entry-summary .entry-more a:hover {
+  color: var(--global-palette2);
+}
+
+/* ─── Page Navigation ─── */
+.pagination .page-numbers {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.pagination .page-numbers.current {
+  background: var(--global-palette1);
+  color: white;
+  border-color: var(--global-palette1);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 767px) {
+  h1 { font-size: 32px; }
+  h2 { font-size: 26px; }
+  .loop-entry .entry-title { font-size: 20px; }
+  .site-branding .site-title { font-size: 18px; }
+}
+
+/* ─── Logo sizing ─── */
+.site-branding a.brand img {
+  max-width: 48px !important;
+  height: auto;
+  border-radius: 8px;
+}
+
+.site-branding a.brand img.svg-logo-image {
+  width: 48px !important;
+}
+
+/* ─── Content area spacing ─── */
+.content-area {
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+
+/* ─── Custom scrollbar (subtle) ─── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--global-palette7);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--global-palette6);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--global-palette5);
+}

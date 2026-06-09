@@ -1,0 +1,8 @@
+{
+  "channels": {
+    "discord": {
+      "groupPolicy": "allowlist",
+      "allowFrom": ["137379362700787713"]
+    }
+  }
+}
