@@ -124,6 +124,48 @@ spam-*.js
 spam-*.ps1
 trash-tabl2.ps1
 
+# Trading bot temp files
+trading-bot/*.txt
+trading-bot/_*.py
+trading-bot/check_*.py
+trading-bot/run_*.py
+trading-bot/test_*.py
+trading-bot/daemon_*.py
+trading-bot/fresh_*.txt
+trading-bot/live_*.txt
+trading-bot/nova_run_*.txt
+
+# Car search session data (personal, keep local)
+car-search/
+
+# External submodules / apps
+assets-viewer/
+workout-tracker/
+
+# Memory temp files
+memory/_*.py
+memory/_*.jpg
+
+# Dealer search temp files
+dealer_call_sheet.md
+email_danvaden.txt
+email_days.txt
+send_dealer_emails.py
+send_more_dealer_emails.py
+
+# Content-nova temp files
+scripts/content-nova/temp_images/
+scripts/content-nova/featured.jpg
+scripts/.cache/
+scripts/.env-nas
+scripts/.token-key
+scripts/esi-auth.js
+scripts/esi-sync.js
+scripts/fix-tokens.js
+scripts/run-daemon.sh
+scripts/setup.js
+scripts/tokens.json
+
 # Misc
 p
 alpha_force_db.json
