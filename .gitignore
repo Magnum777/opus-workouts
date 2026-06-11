@@ -166,6 +166,12 @@ scripts/run-daemon.sh
 scripts/setup.js
 scripts/tokens.json
 
+# Trading bot runtime artifacts
+trading-bot/cron_run_*.log.err
+trading-bot/daemon_cron_complete.flag
+trading-bot/*.bak
+spam_sweep_error.txt
+
 # Misc
 p
 alpha_force_db.json

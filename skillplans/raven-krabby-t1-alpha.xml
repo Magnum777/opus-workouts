@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Raven Krabby T1 - Alpha</name>
+  <description>Skill plan for the Krabby T1 Raven fit. All skills trained to IV unless specifically noted. Optimized for alpha clone training.</description>
+  
+  <!-- Magic 14 -->
+  <entry skillID="3413" skill="Power Grid Management" level="4" priority="3" type="prerequisite">
+    <notes>Required for fitting</notes>
+  </entry>
+  <entry skillID="3412" skill="CPU Management" level="4" priority="3" type="prerequisite">
+    <notes>Required for fitting</notes>
+  </entry>
+  <entry skillID="3417" skill="Capacitor Management" level="4" priority="3" type="prerequisite">
+    <notes>Cap stability</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Systems Operation" level="4" priority="3" type="prerequisite">
+    <notes>Cap recharge</notes>
+  </entry>
+  <entry skillID="3419" skill="Shield Management" level="4" priority="3" type="prerequisite">
+    <notes>Shield HP</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="4" priority="3" type="prerequisite">
+    <notes>Shield recharge</notes>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="4" priority="3" type="prerequisite">
+    <notes>Hull HP</notes>
+  </entry>
+  <entry skillID="3394" skill="Hull Upgrades" level="4" priority="3" type="prerequisite">
+    <notes>Required for Damage Control</notes>
+  </entry>
+  <entry skillID="3393" skill="Repair Systems" level="4" priority="3" type="prerequisite">
+    <notes>Remote rep cycle time</notes>
+  </entry>
+  <entry skillID="3449" skill="Navigation" level="4" priority="3" type="prerequisite">
+    <notes>Ship speed</notes>
+  </entry>
+  <entry skillID="3450" skill="Evasive Maneuvering" level="4" priority="3" type="prerequisite">
+    <notes>Agility</notes>
+  </entry>
+  <entry skillID="3327" skill="Spaceship Command" level="4" priority="3" type="prerequisite">
+    <notes>Required for hull skills</notes>
+  </entry>
+  <entry skillID="3426" skill="Long Range Targeting" level="4" priority="3" type="prerequisite">
+    <notes>Targeting range</notes>
+  </entry>
+  <entry skillID="3411" skill="Cybernetics" level="4" priority="3" type="prerequisite">
+    <notes>Implants</notes>
+  </entry>
+
+  <!-- Hull & Fitting -->
+  <entry skillID="3330" skill="Caldari Frigate" level="4" priority="2" type="prerequisite">
+    <notes>Cruiser prerequisite</notes>
+  </entry>
+  <entry skillID="33099" skill="Caldari Destroyer" level="3" priority="2" type="prerequisite">
+    <notes>Cruiser prerequisite</notes>
+  </entry>
+  <entry skillID="3332" skill="Caldari Cruiser" level="3" priority="2" type="prerequisite">
+    <notes>Battleship prerequisite</notes>
+  </entry>
+  <entry skillID="3335" skill="Caldari Battleship" level="4" priority="1" type="prerequisite">
+    <notes>Required to fly Raven</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="4" priority="2" type="prerequisite">
+    <notes>Required for Ballistic Control System II</notes>
+  </entry>
+
+  <!-- Missiles -->
+  <entry skillID="3319" skill="Missile Launcher Operation" level="4" priority="1" type="prerequisite">
+    <notes>Required for torp launchers</notes>
+  </entry>
+  <entry skillID="3320" skill="Standard Missiles" level="3" priority="2" type="prerequisite">
+    <notes>Heavy Missile prerequisite</notes>
+  </entry>
+  <entry skillID="3324" skill="Heavy Missiles" level="3" priority="2" type="prerequisite">
+    <notes>Torpedoes prerequisite</notes>
+  </entry>
+  <entry skillID="3325" skill="Torpedoes" level="4" priority="1" type="prerequisite">
+    <notes>Required for torpedo launchers</notes>
+  </entry>
+  <entry skillID="3321" skill="Missile Bombardment" level="4" priority="2" type="prerequisite">
+    <notes>Missile flight time</notes>
+  </entry>
+  <entry skillID="3322" skill="Missile Projection" level="4" priority="2" type="prerequisite">
+    <notes>Missile velocity</notes>
+  </entry>
+  <entry skillID="3323" skill="Guided Missile Precision" level="4" priority="2" type="prerequisite">
+    <notes>Explosion radius reduction</notes>
+  </entry>
+  <entry skillID="3326" skill="Target Navigation Prediction" level="4" priority="2" type="prerequisite">
+    <notes>Better vs fast movers</notes>
+  </entry>
+  <entry skillID="20312" skill="Warhead Upgrades" level="4" priority="2" type="prerequisite">
+    <notes>Missile damage</notes>
+  </entry>
+
+  <!-- Shield Tank -->
+  <entry skillID="3425" skill="Shield Upgrades" level="4" priority="2" type="prerequisite">
+    <notes>Required for shield extenders</notes>
+  </entry>
+  <entry skillID="3424" skill="Tactical Shield Manipulation" level="4" priority="2" type="prerequisite">
+    <notes>Required for active hardeners</notes>
+  </entry>
+  <entry skillID="11566" skill="EM Shield Compensation" level="3" priority="3" type="prerequisite">
+    <notes>Passive hardener bonus</notes>
+  </entry>
+  <entry skillID="11561" skill="Thermal Shield Compensation" level="3" priority="3" type="prerequisite">
+    <notes>Passive hardener bonus</notes>
+  </entry>
+  <entry skillID="11567" skill="Explosive Shield Compensation" level="3" priority="3" type="prerequisite">
+    <notes>Passive hardener bonus</notes>
+  </entry>
+  <entry skillID="11563" skill="Kinetic Shield Compensation" level="3" priority="3" type="prerequisite">
+    <notes>Passive hardener bonus</notes>
+  </entry>
+
+  <!-- Propulsion & Utility -->
+  <entry skillID="3451" skill="Afterburner" level="3" priority="3" type="prerequisite">
+    <notes>MWD prerequisite</notes>
+  </entry>
+  <entry skillID="3454" skill="High Speed Maneuvering" level="4" priority="2" type="prerequisite">
+    <notes>Required for MWD</notes>
+  </entry>
+  <entry skillID="3428" skill="Target Painting" level="4" priority="2" type="prerequisite">
+    <notes>Target painter module</notes>
+  </entry>
+
+  <!-- Drones -->
+  <entry skillID="3436" skill="Drones" level="4" priority="2" type="prerequisite">
+    <notes>Required for all drone skills</notes>
+  </entry>
+  <entry skillID="3437" skill="Drone Interfacing" level="4" priority="2" type="prerequisite">
+    <notes>Drone damage</notes>
+  </entry>
+  <entry skillID="12305" skill="Drone Navigation" level="4" priority="2" type="prerequisite">
+    <notes>Drone speed</notes>
+  </entry>
+  <entry skillID="3438" skill="Drone Sharpshooting" level="4" priority="2" type="prerequisite">
+    <notes>Drone optimal range</notes>
+  </entry>
+  <entry skillID="33699" skill="Medium Drone Operation" level="4" priority="2" type="prerequisite">
+    <notes>Hammerhead usage</notes>
+  </entry>
+
+  <!-- Rigs -->
+  <entry skillID="26252" skill="Jury Rigging" level="3" priority="3" type="prerequisite">
+    <notes>Minimum for T1 rigs. Train to IV if using T2 rigs.</notes>
+  </entry>
+  <entry skillID="26255" skill="Shield Rigging" level="3" priority="3" type="prerequisite">
+    <notes>Minimum for T1 shield rigs</notes>
+  </entry>
+</plan>

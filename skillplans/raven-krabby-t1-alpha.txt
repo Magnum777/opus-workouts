@@ -1,0 +1,173 @@
+Power Grid Management 1
+Power Grid Management 2
+Power Grid Management 3
+Power Grid Management 4
+CPU Management 1
+CPU Management 2
+CPU Management 3
+CPU Management 4
+Capacitor Management 1
+Capacitor Management 2
+Capacitor Management 3
+Capacitor Management 4
+Capacitor Systems Operation 1
+Capacitor Systems Operation 2
+Capacitor Systems Operation 3
+Capacitor Systems Operation 4
+Shield Management 1
+Shield Management 2
+Shield Management 3
+Shield Management 4
+Shield Operation 1
+Shield Operation 2
+Shield Operation 3
+Shield Operation 4
+Mechanics 1
+Mechanics 2
+Mechanics 3
+Mechanics 4
+Hull Upgrades 1
+Hull Upgrades 2
+Hull Upgrades 3
+Hull Upgrades 4
+Repair Systems 1
+Repair Systems 2
+Repair Systems 3
+Repair Systems 4
+Navigation 1
+Navigation 2
+Navigation 3
+Navigation 4
+Evasive Maneuvering 1
+Evasive Maneuvering 2
+Evasive Maneuvering 3
+Evasive Maneuvering 4
+Spaceship Command 1
+Spaceship Command 2
+Spaceship Command 3
+Spaceship Command 4
+Long Range Targeting 1
+Long Range Targeting 2
+Long Range Targeting 3
+Long Range Targeting 4
+Cybernetics 1
+Cybernetics 2
+Cybernetics 3
+Cybernetics 4
+Caldari Frigate 1
+Caldari Frigate 2
+Caldari Frigate 3
+Caldari Frigate 4
+Caldari Destroyer 1
+Caldari Destroyer 2
+Caldari Destroyer 3
+Caldari Cruiser 1
+Caldari Cruiser 2
+Caldari Cruiser 3
+Caldari Battleship 1
+Caldari Battleship 2
+Caldari Battleship 3
+Caldari Battleship 4
+Weapon Upgrades 1
+Weapon Upgrades 2
+Weapon Upgrades 3
+Weapon Upgrades 4
+Missile Launcher Operation 1
+Missile Launcher Operation 2
+Missile Launcher Operation 3
+Missile Launcher Operation 4
+Standard Missiles 1
+Standard Missiles 2
+Standard Missiles 3
+Heavy Missiles 1
+Heavy Missiles 2
+Heavy Missiles 3
+Torpedoes 1
+Torpedoes 2
+Torpedoes 3
+Torpedoes 4
+Missile Bombardment 1
+Missile Bombardment 2
+Missile Bombardment 3
+Missile Bombardment 4
+Missile Projection 1
+Missile Projection 2
+Missile Projection 3
+Missile Projection 4
+Guided Missile Precision 1
+Guided Missile Precision 2
+Guided Missile Precision 3
+Guided Missile Precision 4
+Target Navigation Prediction 1
+Target Navigation Prediction 2
+Target Navigation Prediction 3
+Target Navigation Prediction 4
+Warhead Upgrades 1
+Warhead Upgrades 2
+Warhead Upgrades 3
+Warhead Upgrades 4
+Shield Upgrades 1
+Shield Upgrades 2
+Shield Upgrades 3
+Shield Upgrades 4
+Tactical Shield Manipulation 1
+Tactical Shield Manipulation 2
+Tactical Shield Manipulation 3
+Tactical Shield Manipulation 4
+Shield Emission Systems 1
+Shield Emission Systems 2
+Shield Emission Systems 3
+Shield Emission Systems 4
+EM Shield Compensation 1
+EM Shield Compensation 2
+EM Shield Compensation 3
+Thermal Shield Compensation 1
+Thermal Shield Compensation 2
+Thermal Shield Compensation 3
+Explosive Shield Compensation 1
+Explosive Shield Compensation 2
+Explosive Shield Compensation 3
+Kinetic Shield Compensation 1
+Kinetic Shield Compensation 2
+Kinetic Shield Compensation 3
+Afterburner 1
+Afterburner 2
+Afterburner 3
+High Speed Maneuvering 1
+High Speed Maneuvering 2
+High Speed Maneuvering 3
+High Speed Maneuvering 4
+Target Painting 1
+Target Painting 2
+Target Painting 3
+Target Painting 4
+Jury Rigging 1
+Jury Rigging 2
+Jury Rigging 3
+Shield Rigging 1
+Shield Rigging 2
+Shield Rigging 3
+Drones 1
+Drones 2
+Drones 3
+Drones 4
+Drone Interfacing 1
+Drone Interfacing 2
+Drone Interfacing 3
+Drone Interfacing 4
+Drone Navigation 1
+Drone Navigation 2
+Drone Navigation 3
+Drone Navigation 4
+Drone Sharpshooting 1
+Drone Sharpshooting 2
+Drone Sharpshooting 3
+Drone Sharpshooting 4
+Medium Drone Operation 1
+Medium Drone Operation 2
+Medium Drone Operation 3
+Medium Drone Operation 4
+Micro Jump Drive Operation 1
+Micro Jump Drive Operation 2
+Micro Jump Drive Operation 3
+Micro Jump Drive Operation 4
