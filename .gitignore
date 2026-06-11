@@ -166,10 +166,14 @@ scripts/run-daemon.sh
 scripts/setup.js
 scripts/tokens.json
 
-# Trading bot runtime artifacts
+# Trading bot runtime artifacts (live data, changes constantly)
 trading-bot/cron_run_*.log.err
 trading-bot/daemon_cron_complete.flag
 trading-bot/*.bak
+trading-bot/portfolio_state.json
+trading-bot/price_history.json
+trading-bot/trading-queue.json
+portfolio.db.json
 spam_sweep_error.txt
 
 # Misc
