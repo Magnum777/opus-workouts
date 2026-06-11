@@ -34,6 +34,13 @@ CLIENT = Client("https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b
 SOL_MINT = "So11111111111111111111111111111111111111112"
 USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 
+# SOL gas: %-based reserve, auto-refills from USDC when low
+#   Target = max(0.01 SOL, portfolio_value * SOL_RESERVE_PCT / sol_price)
+#   Refill capped at MAX_REFILL_PCT of current USDC per cycle
+SOL_TARGET_FLOOR = 0.01       # 0.01 SOL absolute minimum (~2000 txs)
+SOL_RESERVE_PCT = 0.005       # 0.5% of portfolio as gas reserve
+MAX_REFILL_PCT = 0.05          # max 5% of USDC per cycle for refill
+
 # Trading params - used by daemon and executor
 BUY_SIZES = [4.0, 8.0, 12.0]  # Legacy, unused - sizing now in determine_buy_size()
 # Strategy: %-based sizing scaled to current capital
@@ -66,6 +73,58 @@ def get_jupiter_price(mint, decimals=None):
         break
     return 0
 
+
+def get_sol_balance():
+    """Get SOL balance from blockchain"""
+    try:
+        result = CLIENT.get_balance(WALLET.pubkey())
+        if hasattr(result, "value"):
+            return result.value / 1e9
+    except:
+        pass
+    return 0
+
+
+def ensure_sol_for_gas():
+    """
+    Proportional SOL gas reserve. Refills from USDC when below target.
+    Target = max(SOL_TARGET_FLOOR, portfolio_value * SOL_RESERVE_PCT / sol_price)
+    Refill capped at MAX_REFILL_PCT of USDC per cycle.
+    Returns True if refill was attempted.
+    """
+    sol_bal = get_sol_balance()
+    sol_price = get_jupiter_price(SOL_MINT)
+    if sol_price <= 0:
+        sol_price = 170  # fallback
+    
+    # Estimate portfolio value from USDC + positions
+    usdc_bal = get_usdc_balance()
+    # Rough total: USDC + SOL value + unrealized (skip DB load to keep it light)
+    total_value = usdc_bal + (sol_bal * sol_price)
+    
+    target_sol = max(SOL_TARGET_FLOOR, (total_value * SOL_RESERVE_PCT) / sol_price)
+    
+    if sol_bal >= target_sol:
+        return False  # No action needed
+    
+    deficit_sol = target_sol - sol_bal
+    deficit_usd = deficit_sol * sol_price
+    max_refill = usdc_bal * MAX_REFILL_PCT
+    refill_amount = min(deficit_usd, max_refill)
+    
+    print(f"[SOL GAS] Low: {sol_bal:.6f} / {target_sol:.6f} target (total ~${total_value:.0f}). Refilling ${refill_amount:.2f} USDC → SOL...")
+    
+    if refill_amount < 1.0:
+        print(f"[SOL GAS] Refill too small (${refill_amount:.2f}). USDC: ${usdc_bal:.2f}. Skipping.")
+        return False
+    
+    success, msg = execute_buy_live(SOL_MINT, "SOL", refill_amount)
+    if success:
+        new_sol = get_sol_balance()
+        print(f"[SOL GAS] Refilled! {sol_bal:.6f} → {new_sol:.6f} SOL (${new_sol * sol_price:.2f})")
+    else:
+        print(f"[SOL GAS] Refill failed: {msg}")
+    return True
 
 def get_usdc_balance():
     """Get USDC balance from blockchain"""
@@ -137,7 +196,7 @@ def execute_buy_live(mint, token_name, usdc_amount):
                     json={
                         "quoteResponse": quote,
                         "userPublicKey": str(WALLET.pubkey()),
-                        "wrapAndUnwrapSol": False,
+                        "wrapAndUnwrapSol": mint == SOL_MINT,
                         "prioritizationFeeLamports": 5000
                     },
                     timeout=30
@@ -570,6 +629,9 @@ def main():
     """Main executor routine"""
     print(f"[{datetime.now(timezone.utc).isoformat()}] === V2 EXECUTOR ===")
     print(f"Wallet: {WALLET.pubkey()}")
+
+    # Auto-refill SOL gas before any trade operations
+    ensure_sol_for_gas()
 
     # Load pending signals from queue
     pending_path = os.path.join(os.path.dirname(__file__), "trading-queue.json")

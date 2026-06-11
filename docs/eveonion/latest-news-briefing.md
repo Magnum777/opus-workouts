@@ -1,65 +1,47 @@
-# EVE Online News Briefing — June 8, 2026
+# 📰 EVE Online News Briefing
+**Date:** June 11, 2026
+**Source:** EveOnion News Scan (cron)
+
+---
 
 ## 🔴 Breaking / Important
 
-**1. Cradle of War Expansion Launches Tomorrow (June 9, 11:00 UTC)**
-The largest EVE update in years drops tomorrow. Patch notes released June 5 confirm: Exordium starter region (53 systems, PvP-disabled safe zone), 4 new navy destroyers, 4 T2 command carriers (Simurgh, Salvation, Gaia, Ymir), Military Campaigns (44-objective empire-driven time-limited content), Shipcasters for new-player travel, titles & achievements, and heavy economic nerfs in starter space (-20% rewards, higher taxes). This is the foundation of the "Theaters of War" trilogy per IGN's exclusive preview. Hype/mixed reactions on forums — some calling it "Cradle of Snore."
+**Cradle of War expansion is LIVE** — launched June 9, marking the first chapter of the Theaters of War trilogy. Exordium (the PvP-free starter region) is now the default starting experience for all new players, featuring 53 systems, safety-locked green, shipcaster portals to empire space, and reduced economic payouts to discourage alt-farming.
 
-**2. BBC Covers £400k EVE War — Pandemic Horde FC James Cunningham Featured**
-BBC Your Voice published "How a virtual space battle lost gamers £400,000" (June 7). Story follows James Cunningham (27, UK), a Pandemic Horde fleet commander who spent £6k of his own money, skipped work, and logged 16-hour days during the 2025 wars. Highlights the Massacre at M2-XFE Guinness World Record (£280k destroyed in one battle). Major mainstream media pickup — prime satirical fodder about the "spreadsheet simulator" being taken deadly seriously.
+**Fern Kitsuen's stream meltdown** — In the days leading up to the expansion, EVE streamer Fern Kitsuen went on a homophobic/transphobic rant on-stream, name-dropping a player called "Loromerth" who was "hiding LGBT flags." The rant was widely circulated on r/Eve and covered by James315.space and MassivelyOP. Fern claims getting kicked from Goonswarm was "a reward."
 
-**3. Community Erupts Over Controversial Stream / Bigotry Drama**
-MassivelyOP (June 6) reports that Cradle of War patch notes dropped alongside an explosion of community drama. Specifically:
-
-- **Fern Kitsuen** (Goonswarm player) went on an unhinged homophobic/transphobic rant about "Loromerth hiding LGBT flags," God hating gays, women submitting to men, and anti-LGBT rhetoric. Booted from Goonswarm. James315 documented the crash-out. r/Eve thread: reddit.com/r/Eve/comments/1tyfc8u/
-- **Damocles_Zenith** posted on forums (June 7) claiming banned from official EVE Discord for "not supporting their real life politics" — sparking moderation debate.
+**Operation Avalon announced** — EVE Vanguard's first alpha playtest drops July 7–20 on Steam. Extraction shooter shooter connected to New Eden.
 
 ---
 
 ## 📊 Patch / Expansion News
 
-| Item | Detail |
-|------|--------|
-| **Cradle of War** | Launch June 9, 11:00 UTC. Version 24.01 |
-| **Exordium** | 53 new systems, PvP-disabled, locked green safety, no war decs, no structures. Reduced rewards (-20% ISK/LP/bounties, +5% market fees). Grade 0 ores. Agents: L1/L2 security & mining, SoE, Paragon. |
-| **Ships** | 4 Navy Destroyers (one per empire). 4 T2 Command Carriers: Caldari Simurgh, Amarr Salvation, Gallente Gaia, Minmatar Ymir. Ship balance changes. |
-| **Military Campaigns** | Empire-driven content with 44 objectives per campaign. Success/failure changes New Eden. 2 objectives start, 42 unlock over time. |
-| **Shipcasters** | One-time one-way travel from Exordium to empire highsec (4 routes). |
-| **Heraldry / Titles / Achievements** | New cosmetic/long-term progression systems. |
-| **IGN Preview** | "Theaters of War" trilogy confirmed: Cradle of War is phase 1, with Vanguard FPS integration and more coming over the next year. |
-| **Fenris Creations** | Still the new name post-CCP split, Hilmar's "A New Era" May 6 blog. |
+- **Version 24.01 patch notes** (June 10): post-launch hotfixes and known issues for Cradle of War
+- **New ships in game**: 4 Command Carriers (Simurgh, Salvation, Gaia, Ymir) + 4 Navy Destroyers
+- **Military Campaigns** now active — player complaints already growing on forums ("Insane Campaign Requirements" thread)
+- **Exordium economy**: 20% reduced bounties/mission rewards, 5% extra market fees, reduced-yield "Grade 0" ores
 
 ---
 
 ## 🎭 Community Drama
 
-**Fern Kitsuen vs. Everyone (Goonswarm)**
-- Fern Kitsuen delivered a multi-minute rant about "Loromerth hiding LGBT flags," called out "Reddit snowflakes," blamed liberals, and quoted biblical fire-and-brimstone. Booted from Goonswarm. Claimed "getting kicked out of Goons is a reward."
-- James315 covered it in detail: james315.space/2026/06/06/fern-kitsuens-big-crash-out/
-- r/Eve thread active with heavy pushback.
-- **Satire gold** — man who thinks God hates gays AND plays Goonswarm in 2026.
-
-**Damocles_Zenith — Discord Ban Politics**
-- Claims banned from official EVE Discord for political views. Forum thread from June 7. Moderation policy debate resurfacing.
-
-**Forum noise:**
-- **Arthur_Aihaken** started "Cradle of War (Snore?)" thread — dismissing the expansion as just faction destroyers and T2 command carriers. Represents the cynical veteran take.
-- **Fitz Hardwell** — "Thoughts From a Returning Player" post (June 4) says EVE could grow with broader gameplay support.
-- **Queotzcatl** — reported an Omega-to-Alpha glitch (June 7).
-- **Verlyn** — Classic dramatic exit post: "RIP. A once beloved game. (I trashed all my stuff, you can't have it.)"
-- **Vynn Gravonere** — "Why is CCP punishing real players while looking the other way on botting?" (The eternal botting complaint.)
-- **Shion_Ishii** — upset that new alts are forced into NPC starter corps under Exordium.
+- **Fern Kitsuen** — bigoted crashout stream still echoing. The wider Goonswarm/Loromerth connection remains a hot topic on r/Eve.
+- **"Insane Campaign Requirements"** — forum post by an unnamed player complaining that Military Campaigns demand too much grind. Resentment brewing.
+- **Pirate Software / Loru Gaming** — old drama resurfacing: Loru Gaming's 47-min video accusing Pirate Software of lying about Pochven bugs and portraying devs negatively. Pirate Software had complained that fixing Pochven put a "target on his back."
+- **Vynn Gravonere** — forum rant about CCP banning real players while ignoring botters. Timeless.
+- **Verlyn** — destroyed all their assets and ragequit over Exordium safezone design. "RIP a once beloved game."
+- **Dr_Frazir** — complaint thread titled "Why keep these mediocre mechanics that make the game frustrating?" (died without undocking).
 
 ---
 
 ## 💡 Satire Ideas
 
-1. **"Area Man Who Spent £6,000 And Skipped Work Says Losing Virtual War 'More Stressful Than Real Life'; Pandemic Horde Disbands Anyway"** — James Cunningham / BBC feature. The human face of the £400k war is a guy who describes his 16-hour EVE sessions as "fighting for his life" and whose fleet still lost.
+1. **"Goonswarm Kicks Streamer For Being Too Much Of A Bigot; Streamer Calls It 'A Reward'"** — Fern Kitsuen's crashout stream presented as "God's warrior" being persecuted by the LGBT agenda in a spaceship game. Angle: spaceship guilds having better moral standards than the person complaining.
 
-2. **"Goonswarm Player Goes On 10-Minute Homophobic Tirade; Gets Kicked From Alliance, Claims 'Victory'"** — Fern Kitsuen's crash-out. Man who believes "getting kicked from Goons is a reward" gets exactly what he wanted and is somehow still mad about it.
+2. **"Local Capsuleer Spends 47 Minutes Complaining About Streamer Who Complained About PVP In A PVP Game"** — The Loru Gaming vs Pirate Software recursion. Satirize the EVE community's need to turn every take into a 47-minute video essay.
 
-3. **"Fenris Creations Announces Safest Space In EVE History; Veterans Immediately Complain It's Too Safe, Also Too Dangerous, Also Wrong Color"** — The Exordium paradox. PvP-disabled zone with economic penalties draws ire from every corner of the playerbase for opposite reasons simultaneously.
+3. **"Exordium Baby's First Steps: 53 Systems Of Pure, Unadulterated Safety"** — New players in the PvP-free zone asking "when does the fun start?" while veterans rage that safe spaces are ruining the game.
 
-4. **"Local Newbie Pulls $7,000 Titan Blueprint From Free Box, Asks 'Is This Good?'"** — PC Gamer's loot box miracle story meets Exordium launch. The contrast between the "safe space" onboarding and the reality of someone accidentally winning the EVE lottery is delicious.
+4. **"Man Destroys All His Digital Ships To Own The Safezone-Havers"** — Verlyn's ragequit, framed as a heroic act of defiance against a game that dared to welcome new players.
 
-5. **"EVE Blogger Skips FanFest For Tropical Vacation, Files 'Coverage' From Beach Hammock"** — TheAncientGamingNoob / Wilhelm Arcturus skipped FanFest 2026 for a beach trip and blogged about it. The man has priorities that absolutely do not include CCP's keynote, and he's winning.
+5. **"CCP Adds Military Campaigns; Players Shocked To Learn War Requires Work"** — The "Insane Campaign Requirements" backlash. EVE players when the war-themed expansion requires them to actually participate in war.

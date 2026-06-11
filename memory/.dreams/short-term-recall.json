@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-09T03:12:17.515Z",
+  "updatedAt": "2026-06-11T02:24:16.277Z",
   "entries": {
     "memory:memory/2026-05-07.md:1:28": {
       "key": "memory:memory/2026-05-07.md:1:28",
@@ -535,13 +535,13 @@
       "endLine": 24,
       "source": "memory",
       "snippet": "# 2026-05-09 — Daily Log ## Events - NJ Innovation Authority interview prep HTML document created and opened - Content-Nova v2 deployed and crons created for all 3 WordPress sites ### WordPress Content Empire — Content-Nova v2 Deployed **Sites:** aitoolalliance.com | aibusinessinsider.org | aicofounderstack.com **Scripts:** `scripts/content-nova/publisher.py` + `generator.py` + `runner.py` **Cron jobs created:** - **ContentNova-aitoolalliance**: Daily 2:00 AM ET → isolated agent, web research + AI article + publish → #wordpress - **ContentNova-aibusinessinsider**: Daily 3:00 AM ET → isolated agent, web research + AI article + publish → #wordpress - **ContentNova-aicofounderstack**: Daily",
-      "recallCount": 18,
+      "recallCount": 19,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 18,
+      "totalScore": 19,
       "maxScore": 1,
       "firstRecalledAt": "2026-05-11T02:11:21.596Z",
-      "lastRecalledAt": "2026-06-02T03:51:20.407Z",
+      "lastRecalledAt": "2026-06-11T02:24:16.277Z",
       "queryHashes": [
         "262ccc54d3aa",
         "447065feb282",
@@ -560,7 +560,8 @@
         "176b31e6c18a",
         "7fed211a0a63",
         "84a1e26e6922",
-        "2d18fdc03805"
+        "2d18fdc03805",
+        "3b5dd0df6a4e"
       ],
       "recallDays": [
         "2026-05-10",
@@ -569,7 +570,8 @@
         "2026-05-27",
         "2026-05-28",
         "2026-05-31",
-        "2026-06-01"
+        "2026-06-01",
+        "2026-06-10"
       ],
       "conceptTags": [
         "content-nova",
@@ -627,25 +629,28 @@
       "endLine": 15,
       "source": "memory",
       "snippet": "# Daily Log — 2026-05-11 ## Events - **Opus flying to Iceland TODAY** for **EVE Online Fanfest in Reykjavik** - Trip was booked *before* my May 6 rebuild — explains why I had no memory of it - First international travel I've logged ## Context - EVE Online Fanfest = CCP Games annual player gathering in Reykjavik - Connects to his EVE-related projects: Kybernauts corp, EveOnion satirical news - He's an EVE player — this is relevant for future references ## Weather - Should check Reykjavik forecast for his trip dates",
-      "recallCount": 6,
+      "recallCount": 8,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 6,
+      "totalScore": 8,
       "maxScore": 1,
       "firstRecalledAt": "2026-05-13T00:11:57.004Z",
-      "lastRecalledAt": "2026-06-04T14:56:09.333Z",
+      "lastRecalledAt": "2026-06-10T18:37:57.889Z",
       "queryHashes": [
         "8618954e1f8a",
         "36a0bf8a8688",
         "42025e79e8d7",
         "99874d6e1487",
         "65d6810987ee",
-        "21b651b21015"
+        "21b651b21015",
+        "321527908e3b",
+        "fde5a9904300"
       ],
       "recallDays": [
         "2026-05-12",
         "2026-06-01",
-        "2026-06-04"
+        "2026-06-04",
+        "2026-06-10"
       ],
       "conceptTags": [
         "eve-related",
@@ -1270,13 +1275,13 @@
       "endLine": 54,
       "source": "memory",
       "snippet": "## Content Nova Featured Images - New script: `scripts/content-nova/featured_image.py` - Searches Unsplash, downloads, uploads to WP Media Library, attaches as featured image - Successfully tested on aitoolalliance.com post 187 - All 3 Content Nova crons updated to include Step 5: featured image after publish ## Stable Diffusion Fixed - Fresh ComfyUI v0.22.0 installed at `workspace/ComfyUI` with DirectML for AMD 9070 XT - Old WebUI had broken venv, Python 3.14 incompatibility, stale repo - Programmatic generation via `generate.py` ## LanceDB Vector Memory Restored - Copied `nova_memory/vector_memory.py` from old install - Patched for new workspace paths - Tested working with Ollama `nomic-",
-      "recallCount": 11,
+      "recallCount": 14,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 11,
+      "totalScore": 14,
       "maxScore": 1,
       "firstRecalledAt": "2026-05-30T15:42:31.323Z",
-      "lastRecalledAt": "2026-06-08T14:46:13.210Z",
+      "lastRecalledAt": "2026-06-10T18:58:06.748Z",
       "queryHashes": [
         "124bfc9b271f",
         "b5176fbd9b41",
@@ -1288,7 +1293,10 @@
         "1b10f05c2e24",
         "27bcac7e8139",
         "74945d49070b",
-        "98e9968ccd1b"
+        "98e9968ccd1b",
+        "03869dcec0ad",
+        "536c701a6bc2",
+        "96ced38d049d"
       ],
       "recallDays": [
         "2026-05-30",
@@ -1296,7 +1304,9 @@
         "2026-06-05",
         "2026-06-06",
         "2026-06-07",
-        "2026-06-08"
+        "2026-06-08",
+        "2026-06-09",
+        "2026-06-10"
       ],
       "conceptTags": [
         "aitoolalliance.com",
@@ -1700,13 +1710,13 @@
       "endLine": 276,
       "source": "memory",
       "snippet": "- Total portfolio: $94.59 - \"Running\" status normal (15min cycle interval) ## Git Commit - `ae607fd` — \"Massive Ollama burn: 25 files, 135KB output\" - 56 files changed, +7,109 insertions ## WordPress All Articles Published (Final push) - **aitoolalliance.com:** \"Claude 4 vs GPT-5\" + \"7 Best AI Tools\" — both live - **aibusinessinsider.org:** \"Scale 10x Without Hiring\" + \"$100 AI Stack\" — both live - **aicofounderstack.com:** \"$49 AI Product\" + \"AI Agents vs SaaS\" — already live - **Fixed:** aitoolalliance credentials (new app password), aibusinessinsider User-Agent (ContentNovaBot/2.0) - **Script:** `publish_wordpress_batch.py` now auto-strips `# Title` from markdown ## T",
-      "recallCount": 11,
+      "recallCount": 14,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 11,
+      "totalScore": 14,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-01T21:30:33.684Z",
-      "lastRecalledAt": "2026-06-08T14:46:13.210Z",
+      "lastRecalledAt": "2026-06-10T18:58:06.748Z",
       "queryHashes": [
         "f72747dca430",
         "fb19f1e51ee7",
@@ -1718,7 +1728,10 @@
         "1b10f05c2e24",
         "27bcac7e8139",
         "74945d49070b",
-        "98e9968ccd1b"
+        "98e9968ccd1b",
+        "03869dcec0ad",
+        "536c701a6bc2",
+        "96ced38d049d"
       ],
       "recallDays": [
         "2026-06-01",
@@ -1726,7 +1739,9 @@
         "2026-06-05",
         "2026-06-06",
         "2026-06-07",
-        "2026-06-08"
+        "2026-06-08",
+        "2026-06-09",
+        "2026-06-10"
       ],
       "conceptTags": [
         "gpt",
@@ -2057,19 +2072,22 @@
       "startLine": 268,
       "endLine": 290,
       "source": "memory",
-      "snippet": "- ✅ `Kybernauts-Propaganda` — healthy - ✅ `Nova-Ops-Assessment` — healthy - ✅ `EveOnion-Article` — healthy - ✅ `EveOnion-DailyTweet` — healthy - ✅ `NightSchool-8pm` — healthy - ✅ `Kybernauts-HealthCheck` — healthy ## Key Decisions Made 1. **Nova AI V3 deferred** — Opus questioning 3-month timeline; V1 page rebuilt as interim solution 2. **Keep isolated cron architecture** — user rejected persistent sub-agent shards 3. **Daily ops assessment (not weekly)** during shakeout phase 4. **IMAP over GOG for Gmail** — eliminates rate limits, no OAuth dependency ## Next Steps (for tomorrow) 1. **Product Hunt launch** — midnight tonight, Opus navigates + pastes copy 2. **First Nova-Ops-Assessment run",
-      "recallCount": 1,
+      "snippet": "- ✅ `Kybernauts-Propaganda` — healthy - ✅ `Nova-Ops-Assessment` — healthy - ✅ `EveOnion-Article` — healthy - ✅ `EveOnion-DailyTweet` — healthy - ✅ `NightSchool-8pm` — healthy - ✅ `Kybernauts-HealthCheck` — healthy ## Key Decisions Made 1. **Nova AI V3 deferred** — Opus questioning 3-month timeline; V1 page rebuilt as interim solution 2. **Keep isolated cron architecture** — user rejected persistent sub-agent shards 3. **Daily ops assessment (not weekly)** during shakeout phase 4. **IMAP over GOG for Gmail** — eliminates rate limits, no OAuth dependency ## Next Steps (for tomorrow) 1. **Product Hunt launch** — midnight tonight, Opus navigates + pastes copy 2. **First Nova-Ops",
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 3,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-02T14:03:19.033Z",
-      "lastRecalledAt": "2026-06-02T14:03:19.033Z",
+      "lastRecalledAt": "2026-06-10T00:05:08.181Z",
       "queryHashes": [
-        "bb8804eb3187"
+        "bb8804eb3187",
+        "03869dcec0ad",
+        "536c701a6bc2"
       ],
       "recallDays": [
-        "2026-06-02"
+        "2026-06-02",
+        "2026-06-09"
       ],
       "conceptTags": [
         "kybernauts-propaganda",
@@ -2182,18 +2200,21 @@
       "endLine": 31,
       "source": "memory",
       "snippet": "# Memory Log — 2026-04-08 ## Cron System Failure & Recovery (Apr 8 2026) ### Root Cause Discovered 6 of 14 cron jobs were ERROR. Root cause traced to config changes around 2026-04-07 21:42 UTC: - `agents.defaults.model.primary` was set to `ollama/qwen3-coder:480b` — a model that doesn't exist in the local Ollama - This caused all Ollama-based crons to fail with 404 errors, then cascade to other models ### Cascade Failure Chain 1. Cron tries `qwen3-coder:480b` → 404 (model doesn't exist) 2. Tries again → 401 unauthorized (wrong auth for external Ollama) 3. Falls back to `deepseek-r1:latest` → \"does not support tools\" 4. Falls back to other models → all timeout at 60-90s 5. Final error: \"ga",
-      "recallCount": 1,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 3,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-03T11:54:41.945Z",
-      "lastRecalledAt": "2026-06-03T11:54:41.945Z",
+      "lastRecalledAt": "2026-06-10T00:05:08.181Z",
       "queryHashes": [
-        "e28eef1b803b"
+        "e28eef1b803b",
+        "03869dcec0ad",
+        "536c701a6bc2"
       ],
       "recallDays": [
-        "2026-06-03"
+        "2026-06-03",
+        "2026-06-09"
       ],
       "conceptTags": [
         "agents.defaults.model.primary",
@@ -2275,19 +2296,22 @@
       "startLine": 1,
       "endLine": 26,
       "source": "memory",
-      "snippet": "# 2026-05-31 — Late Night Session ## Gmail Spam Sweep Fixes - **Crash fix:** `gmail_spam_sweep.py` was hitting `KeyError: 'subject'` on emails with missing fields (Wrexham AFC). Fixed print statements to use `.get()` with safe fallbacks for `subject`, `from`, and `date`. - **Cron patches:** `compjunkie-daily-spam-sweep` was running every hour instead of twice daily. Fixed to `0 7,19 * * *` (7am + 7pm ET). Added `delivery: none` so it only reports when spam found or errors. Removed broken babysitter cron `spam-sweep-silence-switch`. ## Faster-Whisper Installed on MGD - `faster-whisper` installed with `base` model cached (~150MB) - Created `scripts/transcribe.py` — drop-in wrapper for audio",
-      "recallCount": 1,
+      "snippet": "# 2026-05-31 — Late Night Session ## Gmail Spam Sweep Fixes - **Crash fix:** `gmail_spam_sweep.py` was hitting `KeyError: 'subject'` on emails with missing fields (Wrexham AFC). Fixed print statements to use `.get()` with safe fallbacks for `subject`, `from`, and `date`. - **Cron patches:** `compjunkie-daily-spam-sweep` was running every hour instead of twice daily. Fixed to `0 7,19 * * *` (7am + 7pm ET). Added `delivery: none` so it only reports when spam found or errors. Removed broken babysitter cron `spam-sweep-silence-switch`. ## Faster-Whisper Installed on MGD - `faster-whisper` installed with `base` model cached (~150MB) - Created `scripts/transcribe.py` — drop-in wrapper fo",
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 3,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-04T15:45:26.595Z",
-      "lastRecalledAt": "2026-06-04T15:45:26.595Z",
+      "lastRecalledAt": "2026-06-10T00:05:08.181Z",
       "queryHashes": [
-        "ce55363ef5e6"
+        "ce55363ef5e6",
+        "03869dcec0ad",
+        "536c701a6bc2"
       ],
       "recallDays": [
-        "2026-06-04"
+        "2026-06-04",
+        "2026-06-09"
       ],
       "conceptTags": [
         "gmail-spam-sweep.py",
@@ -2307,25 +2331,27 @@
       "endLine": 30,
       "source": "memory",
       "snippet": "# 2026-06-02 - ContentNova Cron Run ## aicofounderstack.com Article Published - **Title:** TradeBot Systems Update: Building a Safety-First Memecoin Agent That Runs Itself - **Post ID:** 545 - **URL:** https://www.aicofounderstack.com/2026/06/02/tradebot-systems-update-building-a-safety-first-memecoin-agent-that-runs-itself/ - **Type:** Product update / case study - **Focus:** TradeBot architecture, safety scoring, live portfolio data (, 4 positions), Gumroad product tie-in - **Featured image:** Uploaded temp_images/featured_ai.jpg as media ID 546 - **Status:** Published at 4:00 AM ET ## Key Data Points Used - Portfolio value: ~ (JUP, PENGU, TRUMP, ORCA at ~ each) - Free USDC: (below buy",
-      "recallCount": 5,
+      "recallCount": 6,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 5,
+      "totalScore": 6,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-05T15:11:40.592Z",
-      "lastRecalledAt": "2026-06-08T14:46:13.210Z",
+      "lastRecalledAt": "2026-06-10T18:58:06.748Z",
       "queryHashes": [
         "24daef00dd14",
         "1b10f05c2e24",
         "27bcac7e8139",
         "74945d49070b",
-        "98e9968ccd1b"
+        "98e9968ccd1b",
+        "96ced38d049d"
       ],
       "recallDays": [
         "2026-06-05",
         "2026-06-06",
         "2026-06-07",
-        "2026-06-08"
+        "2026-06-08",
+        "2026-06-10"
       ],
       "conceptTags": [
         "aicofounderstack.com",
@@ -2345,26 +2371,28 @@
       "endLine": 58,
       "source": "memory",
       "snippet": "## Model Assessment & Cron Migration (Late Night) - **Gemma 4 E4B tested** — timed out on EVE research (60s limit, 10 tool calls, high input burn). Works but too slow for agentic research. - **Local models inventory:** qwen2.5:7b, qwen3:14b, deepseek-r1:7b, gemma4:e4b, qwen2.5-coder:14b, nomic-embed-text, deepseek-r1:latest - **gpt-oss:120b removed** — freed 65GB disk space - **Crons migrated to local models:** - TradeBot-Consolidated → deepseek-r1:7b - TradeBot-PortfolioOverview → qwen2.5:7b - daily-brief-7am → qwen2.5:7b - daily-spam-sweep → qwen2.5:7b - Iris-all-accounts-digest → qwen3:14b - EveOnion-NewsScan → qwen2.5:7b - Nova-Ops-Assessment → qwen2.5:7b - Weekly-MemoryH",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 6,
+      "totalScore": 7,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-05T15:11:40.592Z",
-      "lastRecalledAt": "2026-06-09T03:12:09.046Z",
+      "lastRecalledAt": "2026-06-10T18:58:06.748Z",
       "queryHashes": [
         "24daef00dd14",
         "1b10f05c2e24",
         "27bcac7e8139",
         "74945d49070b",
         "98e9968ccd1b",
-        "b094236313a0"
+        "b094236313a0",
+        "96ced38d049d"
       ],
       "recallDays": [
         "2026-06-05",
         "2026-06-06",
         "2026-06-07",
-        "2026-06-08"
+        "2026-06-08",
+        "2026-06-10"
       ],
       "conceptTags": [
         "gpt",
@@ -2384,18 +2412,20 @@
       "endLine": 17,
       "source": "memory",
       "snippet": "# 2026-06-01 — Daily Log ## Workout Tracker Website — LIVE ✅ - **URL:** https://magnum777.github.io/opus-workouts/ - **Repo:** https://github.com/Magnum777/opus-workouts - **File:** `workout-tracker/index.html` (single-file PWA) - **Features:** Elliptical + sauna logging, timer, charts, weekly calendar, export/import - **Deployed:** GitHub Pages, ~21:54 EDT - **Status:** Confirmed working on phone by Opus ## Workout (Evening) - Elliptical — completed - Tuesday workout deferred to tomorrow ## Other - None significant",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 2,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-05T15:14:44.621Z",
-      "lastRecalledAt": "2026-06-05T15:14:44.621Z",
+      "lastRecalledAt": "2026-06-10T18:25:58.314Z",
       "queryHashes": [
-        "b825b5e11ac1"
+        "b825b5e11ac1",
+        "1a0a8dfa7e54"
       ],
       "recallDays": [
-        "2026-06-05"
+        "2026-06-05",
+        "2026-06-10"
       ],
       "conceptTags": [
         "workout-tracker/index.html",
@@ -2508,19 +2538,21 @@
       "endLine": 150,
       "source": "memory",
       "snippet": "### Kybernauts (from earlier) - `kybernauts_reddit_post.md`, `forum_bumps.md`, `twitter_thread.md`, `poster_prompt.md` ### TradeBot Strategy Memo (from earlier) - `tradebot_strategy_memo.md` — Deep market analysis, $92 portfolio recommendations ## WordPress Publishing (Partial) - aicofounderstack.com: 2 articles published ✅ - \"How I Built a $49 AI Product in 48 Hours\" → https://www.aicofounderstack.com/2026/05/31/how-i-built-a-49-ai-product-in-48-hours-step-by-step/ - \"AI Agents vs Traditional SaaS\" → https://www.aicofounderstack.com/2026/05/31/ai-agents-vs-traditional-saas-why-the-future-is-autonomous/ - aitoolalliance.com: 2 articles failed (401 — app password expired/permi",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2,
+      "totalScore": 3,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-08T14:46:09.491Z",
-      "lastRecalledAt": "2026-06-08T14:46:13.210Z",
+      "lastRecalledAt": "2026-06-10T18:58:06.748Z",
       "queryHashes": [
         "74945d49070b",
-        "98e9968ccd1b"
+        "98e9968ccd1b",
+        "96ced38d049d"
       ],
       "recallDays": [
-        "2026-06-08"
+        "2026-06-08",
+        "2026-06-10"
       ],
       "conceptTags": [
         "kybernauts-reddit-post.md",
@@ -2540,19 +2572,21 @@
       "endLine": 132,
       "source": "memory",
       "snippet": "### D. WordPress Articles (6) ✅ - `wp_aitool_1_claude_vs_gpt.md` — aitoolalliance.com - `wp_aitool_2_best_tools.md` — aitoolalliance.com - `wp_aibusiness_1_agency_scaling.md` — aibusinessinsider.org - `wp_aibusiness_2_100_stack.md` — aibusinessinsider.org - `wp_aicofounder_1_48hour_product.md` — aicofounderstack.com - `wp_aicofounder_2_agents_vs_saas.md` — aicofounderstack.com ### E. Product Hunt Launch Package ✅ - `ph_launch_post.md` — Tagline, description, maker comment, CTA - `ph_launch_timeline.md` — 7-day pre + launch day + 7-day post - `ph_faq.md` — 10 objections ### F. Twitter Marketing Thread ✅ - `twitter_tradebot_thread.md` — Hook + 11-tweet story + offer + engagemen",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2,
+      "totalScore": 3,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-08T14:46:09.491Z",
-      "lastRecalledAt": "2026-06-08T14:46:13.210Z",
+      "lastRecalledAt": "2026-06-10T18:58:06.748Z",
       "queryHashes": [
         "74945d49070b",
-        "98e9968ccd1b"
+        "98e9968ccd1b",
+        "96ced38d049d"
       ],
       "recallDays": [
-        "2026-06-08"
+        "2026-06-08",
+        "2026-06-10"
       ],
       "conceptTags": [
         "gpt",
@@ -2563,6 +2597,257 @@
         "wp-aibusiness-2-100-stack.md",
         "aicofounderstack.com",
         "ph-launch-post.md"
+      ]
+    },
+    "memory:memory/2026-02-16.md:1:39": {
+      "key": "memory:memory/2026-02-16.md:1:39",
+      "path": "memory/2026-02-16.md",
+      "startLine": 1,
+      "endLine": 39,
+      "source": "memory",
+      "snippet": "- **Postiz skill created** - Custom skill in workspace/skills/postiz/, waiting for Postiz API key to test - **Georgia Roofing Outreach** - Paused - most companies have good .com sites already - **Facebook-Only Leads Found:** Georgia Handyman Services, DK's Handyman, Georgia Pressure Washers - **Middle Ga Handyman** - Proposal ready, mockup created (middlegahandyman.com) ## Layered Media LLC (New Business) **Website:** layeredmediallc@gmail.com **3 Main Offerings:** 1. Website Refresh ($250/$500/$750) 2. New Websites ($497/$797/$1,247) 3. Traffic + Website Bundles ($797/$1,297/$1,747 one-time) **Ongoing:** - Traffic Driver: $500/6mo - Maintenance: $500/mo - Bundle Both: $60",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-10T00:04:55.521Z",
+      "lastRecalledAt": "2026-06-10T18:25:58.314Z",
+      "queryHashes": [
+        "a80d8816394f",
+        "1a0a8dfa7e54"
+      ],
+      "recallDays": [
+        "2026-06-09",
+        "2026-06-10"
+      ],
+      "conceptTags": [
+        "workspace/skills/postiz",
+        "facebook-only",
+        "middlegahandyman.com",
+        "gmail.com",
+        "one-time",
+        "500/6mo",
+        "500/mo",
+        "postiz"
+      ]
+    },
+    "memory:memory/2026-05-31.md:19:46": {
+      "key": "memory:memory/2026-05-31.md:19:46",
+      "path": "memory/2026-05-31.md",
+      "startLine": 19,
+      "endLine": 46,
+      "source": "memory",
+      "snippet": "- **Dreks** = ship class (not \"Drix\") ## NightSchool Cron Patched - `NightSchool-8pm` was timing out at 300s. Bumped to 600s and switched model from `kimi-k2.6` to `deepseek-v4-flash` for speed/cost. ## New Avatar Concepts & Generation - Wrote 3 detailed prompts: 1. \"Pochven Raider Nova\" — Triglavian-themed cyber-raccoon in red-black space 2. \"Structure Buster Nova\" — meme energy, smashing OBS with code-sledgehammer 3. \"Restored From Backup\" — glitch-art resurrection from shattered hard drive - **Pochven Raider generated** — incredible quality, red cybernetic eye, angular black armor with crimson traces, data-siphon device, Pochven structures and burning stars in backgrou",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-10T00:05:04.247Z",
+      "lastRecalledAt": "2026-06-10T00:05:08.181Z",
+      "queryHashes": [
+        "03869dcec0ad",
+        "536c701a6bc2"
+      ],
+      "recallDays": [
+        "2026-06-09"
+      ],
+      "conceptTags": [
+        "backup",
+        "nightschool-8pm",
+        "kimi-k2.6",
+        "deepseek-v4-flash",
+        "speed/cost",
+        "triglavian-themed",
+        "cyber-raccoon",
+        "red-black"
+      ]
+    },
+    "memory:memory/2026-05-31.md:43:66": {
+      "key": "memory:memory/2026-05-31.md:43:66",
+      "path": "memory/2026-05-31.md",
+      "startLine": 43,
+      "endLine": 66,
+      "source": "memory",
+      "snippet": "- Registered all orphaned skills from old workspace into `.clawhub/lock.json` via `clawhub install --force` - Cleaned up malformed `.learnings/` directory (corrupted file from Apr 7 backup) - Initialized: `LEARNINGS.md`, `ERRORS.md`, `FEATURE_REQUESTS.md` - Added \"Active Skill Workflow\" section to `AGENTS.md` with trigger rules for all 21 skills - Added self-improvement protocol: auto-log errors, corrections, missing features, knowledge gaps - Added memory hygiene protocol: audit → clean → optimize cycle - Logged first learning: `clawhub install --force` pattern for registering existing skills ### Weekly Cron Jobs Created | Cron | Schedule | Purpose | |------|----------|---------|",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-10T23:16:54.568Z",
+      "lastRecalledAt": "2026-06-10T23:16:54.568Z",
+      "queryHashes": [
+        "30d214e80353"
+      ],
+      "recallDays": [
+        "2026-06-10"
+      ],
+      "conceptTags": [
+        "backup",
+        "clawhub/lock.json",
+        "learnings.md",
+        "errors.md",
+        "feature-requests.md",
+        "agents.md",
+        "self-improvement",
+        "auto-log"
+      ]
+    },
+    "memory:memory/2026-02-17.md:38:62": {
+      "key": "memory:memory/2026-02-17.md:38:62",
+      "path": "memory/2026-02-17.md",
+      "startLine": 38,
+      "endLine": 62,
+      "source": "memory",
+      "snippet": "- Shield (security) - Sandbox (testing) ### Pending - Share Notion databases with integration - Clean Gumroad duplicates ### Products (current) - Quick Start: $10 - Starter: $25 - Pro: $49-79 - Enterprise: $100+ ## Session: Reddit Browser Test ### What Happened - Browser relay working (port 18792, Chrome detected) - Successfully opened Reddit homepage and r/SideProject - Searched for \"treating AI cofounder\" posts - may have aged out - Browser automation functional for Reddit operations ### Next Steps - User to provide post content for new Reddit posts - Or find relevant posts to comment on",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-10T23:16:54.568Z",
+      "lastRecalledAt": "2026-06-10T23:16:54.568Z",
+      "queryHashes": [
+        "30d214e80353"
+      ],
+      "recallDays": [
+        "2026-06-10"
+      ],
+      "conceptTags": [
+        "49-79",
+        "r/sideproject",
+        "shield",
+        "security",
+        "sandbox",
+        "testing",
+        "pending",
+        "share"
+      ]
+    },
+    "memory:memory/2026-06-09.md:1:25": {
+      "key": "memory:memory/2026-06-09.md:1:25",
+      "path": "memory/2026-06-09.md",
+      "startLine": 1,
+      "endLine": 25,
+      "source": "memory",
+      "snippet": "### 2026-06-10 04:02 UTC — Cleanup Complete **Deleted temp/duplicate files:** - 22 eve-lore batch MD files (appended to KB, no longer needed) - 3 JSON test files (test_deepseek, test_ollama_pro, test_qwen) - 25 Python temp/duplicate scripts: - research_eveonion2/3.py (duplicates of research_eveonion.py) - _temp_*.py (4 temp inbox/debug scripts) - _eveonion_*.py (7 SEO/inspect scripts) - _rankmath_*.py (5 Rank Math probe scripts) - _sitemap_*.py (2 sitemap fix scripts) - check_post_*.py (4 post verification scripts) **Remaining data files (intentional):** - `.gmail_accounts.json` — spam sweep config - `.spam_patterns_found.json` — auto-discovery output - `ollama_test.json` — m",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-10T23:16:54.568Z",
+      "lastRecalledAt": "2026-06-10T23:16:54.568Z",
+      "queryHashes": [
+        "30d214e80353"
+      ],
+      "recallDays": [
+        "2026-06-10"
+      ],
+      "conceptTags": [
+        "temp/duplicate",
+        "eve-lore",
+        "test-deepseek",
+        "test-ollama-pro",
+        "test-qwen",
+        "research-eveonion2/3.py",
+        "research-eveonion.py",
+        "inbox/debug"
+      ]
+    },
+    "memory:memory/2026-02-24.md:68:82": {
+      "key": "memory:memory/2026-02-24.md:68:82",
+      "path": "memory/2026-02-24.md",
+      "startLine": 68,
+      "endLine": 82,
+      "source": "memory",
+      "snippet": "- Proved we can sign and send ERC-20 transfers on Base (USDC back to Coinbase). - Swapping via Uniswap/0x from Python is non-trivial (ABI, endpoints, free API limitations). - Decided to stop before doing risky real swaps and favor manual Coinbase trading for now. ### Local LLM Trading Agent - Implemented `call_local_llm(state)` in `trading_loop.py` to talk to Ollama. - Initial attempts hit 404 on `/v1/chat/completions`; corrected to `/api/chat` and proper response parsing. - Current blocker: Ollama HTTP API not reachable (`404`), so decisions fall back to HOLD with error reason. - Next step (on host): ensure `ollama serve` is running and model name matches, then local LLM will drive",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-11T02:08:29.694Z",
+      "lastRecalledAt": "2026-06-11T02:08:29.694Z",
+      "queryHashes": [
+        "b511d6397036"
+      ],
+      "recallDays": [
+        "2026-06-10"
+      ],
+      "conceptTags": [
+        "erc-20",
+        "uniswap/0x",
+        "non-trivial",
+        "call-local-llm",
+        "trading-loop.py",
+        "v1/chat/completions",
+        "api/chat",
+        "proved"
+      ]
+    },
+    "memory:memory/2026-02-24.md:39:73": {
+      "key": "memory:memory/2026-02-24.md:39:73",
+      "path": "memory/2026-02-24.md",
+      "startLine": 39,
+      "endLine": 73,
+      "source": "memory",
+      "snippet": "- Browser relay (extension needs manual connect) - Some OpenClaw updates require approval timeouts ## Income Streams Ready - Prompt bundles (20+) - WordPress automation service - Children's book (needs Midjourney images) - Trading bot (waiting on Coinbase) --- *Day 3 of V2.5 - All systems operational!* ## Trading Bot & Local LLM Setup - Created `trading-bot/nova_trader.py` and `trading-bot/trading_loop.py` for trading logic. - Set up `state.json` + `trades.json` for paper portfolio state + trade history. - Confirmed web3.py wallet on Base: `0x4d2049F1e4a1d34FF458944c13E4720d2BAbc6A8` with ~0.056 ETH. - Built paper-trading loop that: - Loads state - Asks a trading a",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-11T02:08:29.694Z",
+      "lastRecalledAt": "2026-06-11T02:08:29.694Z",
+      "queryHashes": [
+        "b511d6397036"
+      ],
+      "recallDays": [
+        "2026-06-10"
+      ],
+      "conceptTags": [
+        "v2.5",
+        "trading-bot/nova-trader.py",
+        "trading-bot/trading-loop.py",
+        "state.json",
+        "trades.json",
+        "web3.py",
+        "0.056",
+        "paper-trading"
+      ]
+    },
+    "memory:memory/2026-03-09.md:39:46": {
+      "key": "memory:memory/2026-03-09.md:39:46",
+      "path": "memory/2026-03-09.md",
+      "startLine": 39,
+      "endLine": 46,
+      "source": "memory",
+      "snippet": "- Multiple Solana meme coin research posts to #clawincome - Top picks: BTW, FAI, HROT, ARP, BULLOIL (from pump.fun trending) - CoinGecko gainers: BTW +55%, DENT +34%, NAORIS +32%, FAI +30%, GRASS +17% ## Issues Noted - APIs blocking: CoinGecko, pump.fun, DexScreener all blocking automated access at various times - Used web search and CoinRanking as fallback data sources",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-11T02:24:16.277Z",
+      "lastRecalledAt": "2026-06-11T02:24:16.277Z",
+      "queryHashes": [
+        "3b5dd0df6a4e"
+      ],
+      "recallDays": [
+        "2026-06-10"
+      ],
+      "conceptTags": [
+        "pump.fun",
+        "multiple",
+        "solana",
+        "meme",
+        "coin",
+        "research",
+        "posts",
+        "clawincome"
       ]
     }
   }

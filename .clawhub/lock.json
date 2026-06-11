@@ -84,6 +84,10 @@
     "iris": {
       "version": "1.0.4",
       "installedAt": 1780308107503
+    },
+    "car-buying-assistant": {
+      "version": "1.0.0",
+      "installedAt": 1781148759247
     }
   }
 }

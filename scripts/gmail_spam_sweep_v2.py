@@ -65,7 +65,7 @@ SPAM_DOMAINS = {
     "chicagoinstituteofbusiness.com", "chicagoinstituteofbusiness.online",
     "cibnotifications.com", "markethair", "fivv.pp.ua", "xqiyegt",
     "hireevonline", "open-hosted.com", "vtbrpsgnrwcdulcvpq",
-    "adultcrush.com", "bilorina.com", "sarawaka.com", "qoez.org",
+    "pornhub.com", "frali.org", "hohj.org", "adultcrush.com", "bilorina.com", "sarawaka.com", "qoez.org",
     "webvova.vip", "yninarow.com", "itvoly.com",
     "elalina.vip", "freesapa.com", "andavtis.com", "carmenko.com",
     "elitemarine.com.br", "mixcloudmail.com",
@@ -78,6 +78,11 @@ SPAM_DOMAINS = {
 }
 
 RE_SEXUAL = re.compile(
+    r"pornhub|on cam|cam because|totally excited|come over to my room|"
+    r"kitty owns me|until you scream|i want the way your|"
+    r"something naughty|naughty i wanted|naughty i wanted to share|"
+    r"requiring a sophisticated male opinion|sophisticated male opinion|"
+    r"sent you a wink|fun we had|remember how much fun|"
     r"hottie|booty|nibble|bedroom|scoop|stretched|oral|fixation|"
     r"can we make love|naked|nude|horny|porn|xxx|sexy|dtf|hookup|"
     r"casual sex|adult dating|hot affair|sexy singles|play with me|"
@@ -102,11 +107,12 @@ RE_FAKE_SENDER = re.compile(
     r"telegram|whatsapp|signal\s*<|discord\s*<|messenger\s*<|direct\s*<|"
     r"missedcall|new\s*match|iwant|naughty|tabl-|hottie|porn|xxx|naughty|"
     r"sexy|horny|booty|nibble|bedroom|scoop|hot tonight|wanting a crazy night|wants a crazy night|are you single|"
-    r"wants to chat|send pics|meetup|snapchat|kik|onlyfans|fansly",
+    r"wants to chat|send pics|meetup|snapchat|kik|onlyfans|fansly|"
+    r"milf|cam|sophisticated male|wink|fun we had|eharmony",
     re.IGNORECASE,
 )
 
-CORE_BAD = {"sex", "fuck", "cock", "cum", "pussy", "dick", "penis", "vagina",
+CORE_BAD = {"pornhub", "sex", "fuck", "cock", "cum", "pussy", "dick", "penis", "vagina",
             "clit", "anal", "blowjob", "handjob", "creampie", "deepthroat",
             "gangbang", "bukkake", "squirt", "threesome", "orgy", "swingers",
             "bdsm", "fetish", "kink", "kinky", "dominatrix", "nudity",
@@ -209,7 +215,41 @@ DATING = {"wants to meet you", "likes your profile", "feels the attraction",
           "flirty photos", "flirty message", "flirty and",
           "fun and flirty", "sent a flirty",
           "is touching herself", "is touching himself", "touching myself",
+          "photos i've kept to myself",
+          "authentic platform", "did you manage to find",
+          "sent you a follow request", "notification from",
+          "she said yes", "said yes", "connected with",
+          "a new message to read",
+          "bet you're trouble", "trouble in the best way", "you're trouble",
+          "wanna chat", "feel like talking", "just relocated", "love some help",
+          "fast & flirty", "flirty flings", "flirty edition",
+          "flirty connection", "flirty dm", "flirty note",
+          "flirty photos", "flirty message", "flirty and",
+          "fun and flirty", "sent a flirty",
+          "is touching herself", "is touching himself", "touching myself",
           "match update:", "deletes in", "sent message",
+          "local singles live", "mysterious gift", "private content",
+          "someone anonymous", "unlock to reveal",
+          "requiring a sophisticated male opinion", "sophisticated male opinion",
+          "attire for a quiet social gathering", "caught you looking",
+          "she wants your eyes on this", "sent you a private request",
+          "accept click any button",
+          "sent you a wink", "fun we had", "remember how much fun",
+          "how much fun we had", "you remind me of someone",
+          "would like to see you on cam", "see you on cam",
+          "come over to my room baby", "totally excited",
+          "one call with you is never enough", "irresistibly yours to nibble tonight",
+          "nibble tonight", "afternoon compjunkie", "compjunkie - afternoon",
+          "quick idea about our plan", "something naughty i wanted to share",
+          "naughty i wanted to share", "saved it private just for now",
+          "hot milf", "h o t m i l f",
+          "added you to private group", "private group",
+          "end-to-end encrypted", "mutual contacts",
+          "people in this chat",
+          "blocked your account", "photos and videos will be deleted",
+          "we've blocked your account",
+          "uncovered something weird", "what makes someone memorable",
+          "compjunkie?", "unexpected excitement is right around the corner",
           }
 
 LEGIT = {"discord.com", "google.com", "microsoft.com", "apple.com", "amazon.com",
@@ -302,6 +342,19 @@ def is_spam(sender_raw, subject_raw):
     for w in DATING:
         if w in subject:
             return True
+
+    # Fake sender names (just first name + dating subject)
+    fake_sender_names = {"karen", "linda", "dorothy", "mary",
+                         "h o t m i l f", "hot milf", "adultcrush"}
+    if any(name in sender_lower for name in fake_sender_names) and any(w in subject for w in DATING):
+        return True
+
+    # Fake person names with dating/sexual keywords
+    fake_names = {"kyree", "kyree owen", "md mahtab", "chadeb", "amber",
+                  "allen kimberly", "nancy", "camilla", "kimberly clark", "sarah",
+                  "linda moore", "dorothy young", "karen perez"}
+    if any(name in sender_lower for name in fake_names) and any(w in subject for w in DATING):
+        return True
 
     # Random-name free-email with pickup lines
     if re.search(r"@(gmail|hotmail|outlook)\.com", sender) and any(w in subject for w in DATING):

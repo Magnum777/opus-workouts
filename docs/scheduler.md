@@ -28,6 +28,7 @@
 18:15 | ██   Kybernauts-Propaganda (every 2 days)    (kimi-k2.6, 300s, medium)
 18:30 | ████ Kybernauts-ForumBump (Sun only)          (kimi-k2.6, 600s, heavy)
 20:00 | ████ NightSchool-8pm                       (deepseek-v4-flash, 600s, heavy)
+20:15 | ██   NightSchool-NAS-Sync                  (deepseek-v4-flash, 60s, light)
 22:00 | ██   Weekly-MemoryHygiene (Sun only)          (deepseek-v4-flash, 180s, light)
 
 --- Continuous ---

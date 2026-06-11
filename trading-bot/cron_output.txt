@@ -1,47 +1,37 @@
-[2026-06-07T15:36:06.876787+00:00] TradeBot Daemon
+[2026-06-11T12:05:46.449513+00:00] TradeBot Daemon
 --- RESEARCH ---
 Research complete: 17 tokens analyzed
-Buy opportunities: 3
+Buy opportunities: 1
 Sell signals: 0
-  BUY HONTER: conf=90 rec=STRONG_BUY price=$0.00033500
-  BUY ELONBUCKS: conf=80 rec=STRONG_BUY price=$0.00003636
-  BUY $MAD: conf=75 rec=STRONG_BUY price=$0.00064900
+  BUY GAEJUKI: conf=85 rec=STRONG_BUY price=$0.00037740
 --- SCOUT ---
-SOL: 0.0073 | USDC: $47.05
-Tokens on chain: 4
-Valuable tokens: 0
-  EPjFWdd5Au: 47.0475 ($47.05)
-  USDC cash: $47.05
+SOL: 0.0123 | USDC: $22.29
+Tokens on chain: 5
+Valuable tokens: 2
+  CDoFug7K6g: 3811.8198 ($40.37)
+  EPjFWdd5Au: 22.2927 ($22.29)
+  EhHyfjRwj2: 3966.2211 ($15.80)
+  USDC cash: $22.29
 
 Scout signals: 0
-  [BUY SIGNAL] HONTER: STRONG_BUY (conf: 90)
-  [BUY SIGNAL] ELONBUCKS: STRONG_BUY (conf: 80)
-  [BUY SIGNAL] $MAD: STRONG_BUY (conf: 75)
-[QUEUE] 3 signal(s) written (3 buys, 0 sells)
+  [BUY SIGNAL] GAEJUKI: STRONG_BUY (conf: 85)
+  [MAX POSITIONS] Skipping buy GAEJUKI: 2 positions open, max 1
+[QUEUE] 0 signal(s) written (0 buys, 0 sells)
 
 --- EXECUTOR ---
-  [SAFETY] Checking HONTER before buy...
-  [SAFETY OK] HONTER: score=100/100
-  [BALANCE CHECK] USDC before BUY HONTER: $47.05
-  [SAFETY] Checking ELONBUCKS before buy...
-  [SAFETY OK] ELONBUCKS: score=80/100
-  [BALANCE CHECK] USDC before BUY ELONBUCKS: $47.05
-  [SAFETY] Checking $MAD before buy...
-  [SAFETY OK] $MAD: score=100/100
-  [BALANCE CHECK] USDC before BUY $MAD: $47.05
 
 --- SUMMARY ---
-USDC: $47.05
-SOL: 0.0073
-Total: $47.66
-Realized PnL: $19.69
-Open positions: 0
+USDC: $22.29
+SOL: 0.0123
+Total: $79.27
+Realized PnL: $-82.50
+Open positions: 2
 No trades executed this cycle
 
 [DISCORD_REPORT]
->**BUY HONTER FAILED**: Max open positions (1) reached — currently holding 1
->**BUY ELONBUCKS FAILED**: Max open positions (1) reached — currently holding 1
->**BUY $MAD FAILED**: Max open positions (1) reached — currently holding 1
->USDC: $47.05 | Total: $47.66
->Watching: HONTER (STRONG_BUY, conf 90)
+>Trading paused - 3 consecutive losses
+>Positions: CDoFug7K6g: $-0.17 (-0.4%) | EhHyfjRwj2: $-0.20 (-1.2%)
+>USDC: $22.29 | Total: $79.27
+>Watching: GAEJUKI (STRONG_BUY, conf 85)
 ==================================================
+[CYCLE END]

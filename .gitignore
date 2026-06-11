@@ -108,3 +108,22 @@ scripts/test_qwen.json
 # Temp summaries
 propaganda_post_summary.txt
 
+
+# External tools / large dirs
+ComfyUI/
+stable-diffusion-webui/
+stable-diffusion-webui-backup-a1111/
+
+# Empty dirs
+nova_memory/
+eveonion-newspaper-mockup/
+docs/WORKHORSE-USB/
+
+# Spam sweep scripts (already in .gitignore but let's be sure)
+spam-*.js
+spam-*.ps1
+trash-tabl2.ps1
+
+# Misc
+p
+alpha_force_db.json

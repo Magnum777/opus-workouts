@@ -1,11 +1,12 @@
 import sqlite3
-db_path = r'C:\Users\compj\.openclaw\workspace\trading-bot\trading_bot.db'
-conn = sqlite3.connect(db_path)
-cur = conn.cursor()
-cur.execute("PRAGMA table_info(portfolio_snapshots)")
-for row in cur.fetchall():
-    print(row)
-cur.execute("SELECT value, timestamp FROM portfolio_snapshots ORDER BY timestamp DESC LIMIT 1")
-row = cur.fetchone()
-print(f'Last row: value={row[0]!r}, timestamp={row[1]!r}')
+db="C:/Users/compj/.openclaw/workspace/trading-bot/portfolio_history.db"
+conn = sqlite3.connect(db)
+c = conn.cursor()
+# Check schemas
+for t in ["portfolio_snapshots", "snapshots"]:
+    try:
+        info = c.execute(f"PRAGMA table_info({t})").fetchall()
+        print(f"{t} schema: {info}")
+    except Exception as e:
+        print(f"{t}: {e}")
 conn.close()

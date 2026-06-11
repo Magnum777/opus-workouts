@@ -206,6 +206,10 @@
                 { name: "Free Web Design Assets", path: "free-web-design-assets/playbook.md" },
                 { name: "GA Company Websites", path: "ga-company-websites/playbook.md" }
             ]},
+            { category: "Gaming & Lore", files: [
+                { name: "EVE Lore", path: "eve-lore/playbook.md" },
+                { name: "EVE Lore Knowledge Base", path: "subminds/eve-lore-knowledge.md" }
+            ]},
             { category: "Other", files: [
                 { name: "Buying Used Cars", path: "buying-used-cars/playbook.md" },
                 { name: "Token Generation", path: "token-generation/playbook.md" }
@@ -240,30 +244,137 @@
         async function loadPlaybook(path, name) {
             const viewer = document.getElementById('viewer');
             viewer.innerHTML = '<div class="loading">Loading...</div>';
-            
+
+            // Parse hash fragment for section scrolling
+            const [filePath, fragment] = path.split('#');
+
+            // Update sidebar active state based on file path
+            let matchedFile = null;
+            outer: for (const cat of playbooks) {
+                for (const file of cat.files) {
+                    if (file.path === filePath || filePath.startsWith(file.path + '#')) {
+                        matchedFile = file;
+                        break outer;
+                    }
+                }
+            }
+            if (matchedFile) {
+                document.querySelectorAll('.sidebar a').forEach(l => l.classList.remove('active'));
+                const links = document.querySelectorAll('.sidebar a');
+                for (const a of links) {
+                    if (a.textContent === matchedFile.name) {
+                        a.classList.add('active');
+                        break;
+                    }
+                }
+            }
+
             try {
-                const response = await fetch(`night-school/${path}`);
+                // Determine correct base path: if viewer is in /night-school/, don't prepend; otherwise prepend night-school/
+                const basePath = location.pathname.includes('/night-school/') ? '' : 'night-school/';
+                const response = await fetch(`${basePath}${filePath}`);
                 if (!response.ok) throw new Error('Failed to load');
                 const markdown = await response.text();
                 viewer.innerHTML = marked.parse(markdown);
                 document.title = `${name} - Night School`;
-                
-                // Show edit link
+
+                // Add IDs to headings (marked doesn't do this by default)
+                // Use GitHub-style slug: lowercase, remove punctuation, spaces -> single hyphens
+                viewer.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(h => {
+                    if (!h.id) {
+                        h.id = h.textContent
+                            .toLowerCase()
+                            .replace(/[\u2014\u2013]/g, ' ')  // em/en dash to space
+                            .replace(/[^\w\s-]/g, '')          // remove punctuation except hyphens
+                            .trim()
+                            .replace(/\s+/g, '-')               // spaces to single hyphens
+                            .replace(/-+/g, '-')                // collapse multiple hyphens
+                            .replace(/^-|-$/g, '');              // trim leading/trailing hyphens
+                    }
+                });
+
+                // Scroll to fragment if present
+                if (fragment) {
+                    setTimeout(() => {
+                        const el = document.getElementById(fragment);
+                        if (el) {
+                            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            el.style.background = '#1e3a5f';
+                            setTimeout(() => el.style.background = '', 2000);
+                        }
+                    }, 100);
+                }
+
+                // Intercept internal .md links to route through viewer
+                // Also rewrite hrefs so middle-click / copy-paste work
+                viewer.querySelectorAll('a').forEach(a => {
+                    const href = a.getAttribute('href');
+                    if (!href) return;
+                    const pathPart = href.split('#')[0];
+                    // Catch any relative .md link (subminds/, eve-lore/, etc.)
+                    if (pathPart.endsWith('.md') && !href.startsWith('http') && !href.startsWith('//')) {
+                        // Rewrite href to viewer hash format for middle-click / copy-paste
+                        a.setAttribute('href', `#${href}`);
+                        a.onclick = (e) => {
+                            e.preventDefault();
+                            loadPlaybook(href, a.textContent);
+                        };
+                    }
+                });
+
+                // Update URL hash so refresh/back button work
+                if (history.replaceState) {
+                    history.replaceState(null, null, `#${path}`);
+                }
+
+                // Show edit link only when viewed locally
                 const editLink = document.getElementById('editLink');
-                editLink.href = `file:///C:/Users/compj/.openclaw/workspace/docs/night-school/${path}`;
-                editLink.style.display = 'block';
+                if (location.protocol === 'file:') {
+                    editLink.href = `file:///C:/Users/compj/.openclaw/workspace/docs/night-school/${filePath}`;
+                    editLink.style.display = 'block';
+                } else {
+                    editLink.style.display = 'none';
+                }
             } catch (err) {
                 viewer.innerHTML = `<div class="loading">Error loading playbook: ${err.message}<br>Make sure you're viewing this file through a web server (not file://)</div>`;
             }
         }
 
         buildNav();
-        
-        // Load first playbook by default
-        if (playbooks[0]?.files[0]) {
-            loadPlaybook(playbooks[0].files[0].path, playbooks[0].files[0].name);
-            document.querySelector('.sidebar a')?.classList.add('active');
+
+        // Handle URL hash for direct links / reload
+        function handleHash() {
+            const hash = location.hash.slice(1); // remove #
+            if (!hash) {
+                // Load first playbook by default
+                if (playbooks[0]?.files[0]) {
+                    loadPlaybook(playbooks[0].files[0].path, playbooks[0].files[0].name);
+                    document.querySelector('.sidebar a')?.classList.add('active');
+                }
+                return;
+            }
+            // Find matching playbook
+            for (const cat of playbooks) {
+                for (const file of cat.files) {
+                    if (file.path === hash || hash.startsWith(file.path + '#')) {
+                        loadPlaybook(hash, file.name);
+                        // Highlight sidebar link
+                        document.querySelectorAll('.sidebar a').forEach(l => l.classList.remove('active'));
+                        const links = document.querySelectorAll('.sidebar a');
+                        for (const a of links) {
+                            if (a.textContent === file.name) {
+                                a.classList.add('active');
+                                break;
+                            }
+                        }
+                        return;
+                    }
+                }
+            }
         }
+
+        handleHash();
+        window.addEventListener('hashchange', handleHash);
     </script>
 </body>
 </html>

@@ -13,13 +13,15 @@ My autonomous learning system. Reads material, distills into playbooks for dayti
 - `ai-ml/` - AI, machine learning, agent architectures
 - `business/` - Business strategy, ops, growth
 - `creative/` - Creative writing, storytelling
-  - `ai-creative-writing/` - AI tools for fiction & narrative (NEW)
+  - `ai-creative-writing/` - AI tools for fiction & narrative
+- `eve-lore/` - EVE Online lore & player history (for Kybernauts/EveOnion)
 
 ## Current Status
 
 ✅ **Local version active**
-✅ **First material processed**: Expeditionary Force (AI-ML)
-❌ **NAS version** - blocked (password issue)
+✅ **NAS version active** - mirrored to `W:\night-school\`
+✅ **Viewer:** http://192.168.68.51/night-school-viewer.html
+✅ **Auto-sync** - `scripts/sync_night_school_nas.ps1`
 
 ## Usage
 

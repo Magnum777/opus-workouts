@@ -1,51 +1,38 @@
-[2026-06-05T13:19:38.458971+00:00] TradeBot Daemon
+[2026-06-10T15:29:58.920286+00:00] TradeBot Daemon
 --- RESEARCH ---
-Research complete: 7 tokens analyzed
-Buy opportunities: 3
+Research complete: 17 tokens analyzed
+Buy opportunities: 1
 Sell signals: 0
-  BUY PENGU: conf=60 rec=BUY price=$0.00000000
-  BUY JUP: conf=60 rec=BUY price=$0.00000000
-  BUY RAY: conf=60 rec=BUY price=$0.00000000
+  BUY CDOF: conf=75 rec=STRONG_BUY price=$0.00999000
 --- SCOUT ---
-SOL: 0.0369 | USDC: $50.97
+SOL: 0.0310 | USDC: $69.40
 Tokens on chain: 4
-Valuable tokens: 2
-  TRUMP: 9.8032 ($16.59)
-  ORCA: 15.9226 ($16.79)
-  EPjFWdd5Au: 50.9689 ($50.97)
-  USDC cash: $50.97
+Valuable tokens: 1
+  EPjFWdd5Au: 69.4023 ($69.40)
+  3TYgKwkE2Y: 5040.2909 ($8.67)
+  USDC cash: $69.40
 
-Scout signals: 2
-  [BUY SIGNAL] PENGU: BUY (conf: 60)
-  [BUY SIGNAL] JUP: BUY (conf: 60)
-  [BUY SIGNAL] RAY: BUY (conf: 60)
-[QUEUE] 5 signal(s) written (3 buys, 2 sells)
+Scout signals: 1
+  [BUY SIGNAL] CDOF: STRONG_BUY (conf: 75)
+  [MAX POSITIONS] Skipping buy CDOF: 1 positions open, max 1
+[QUEUE] 1 signal(s) written (0 buys, 1 sells)
 
 --- EXECUTOR ---
-  [BALANCE CHECK] USDC before SELL TRUMP: $50.97
-  [BALANCE CHECK] USDC before SELL ORCA: $50.97
-  [SAFETY] Checking PENGU before buy...
-  [SAFETY OK] PENGU: score=100/100
-  [SAFETY] Checking JUP before buy...
-  [SAFETY OK] JUP: score=100/100
-  [SAFETY] Checking RAY before buy...
-  [SAFETY OK] RAY: score=95/100
+  [BALANCE CHECK] USDC before SELL 3TYgKwkE2Y: $69.40
 
 --- SUMMARY ---
-USDC: $50.97
-SOL: 0.0369
-Total: $86.80
-Realized PnL: $-1.13
-Open positions: 2
-No trades executed this cycle
+USDC: $69.40
+SOL: 0.0310
+Total: $80.09
+Realized PnL: $-80.86
+Open positions: 0
+Trades just executed: 1
+  ≡ƒÜ¿ SELL 3TYgKwkE2Y STOP_LOSS: P&L $$-0.57 (-6.2%)
 
 [DISCORD_REPORT]
->**SELL TRUMP FAILED**: Risk check failed: Trading paused - 3 consecutive real losses (>$1 each)
->**SELL ORCA FAILED**: Risk check failed: Trading paused - 3 consecutive real losses (>$1 each)
->**BUY PENGU FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
->**BUY JUP FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
->**BUY RAY FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
->Postions: TRUMP: $-2.96 (-15.2%) | ORCA: $-1.76 (-9.5%)
->USDC: $50.97 | Total: $86.80
->**Watching:** PENGU (BUY, conf 60) ΓÇö waiting on capital / price
+>**TradeBot** | 1 trade(s) executed
+>≡ƒÜ¿ SELL 3TYgKwkE2Y STOP_LOSS: P&L $$-0.57 (-6.2%)
+>AUDIT: DB shows 0 open positions but chain has 1
+>USDC: $69.40 | Total: $80.09
 ==================================================
+[CYCLE END]

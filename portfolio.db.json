@@ -1,16 +1,16 @@
 {
   "schema_version": "2.0",
-  "last_updated": "2026-06-09T03:19:47.365150+00:00",
+  "last_updated": "2026-06-11T12:56:19.965175+00:00",
   "wallet": {
     "address": "7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA",
     "chain": "solana"
   },
   "portfolio": {
-    "sol_balance": 0.000977902,
-    "sol_price_usd": 66.007711,
-    "usdc_balance": 42.560596,
-    "total_value_usd": 68.79527923906332,
-    "positions_count": 1,
+    "sol_balance": 0.012276862,
+    "sol_price_usd": 65.252419,
+    "usdc_balance": 22.292718,
+    "total_value_usd": 23.093812943229178,
+    "positions_count": 0,
     "cost_basis_total": 94.68
   },
   "positions": [
@@ -277,19 +277,124 @@
       "realized_pnl_pct": 10.391001606855909
     },
     {
-      "token": "9Kqf3LeU7B",
-      "mint": "9Kqf3LeU7BCR6Kn1TLsZ11PQFi3SfjNgA6pUbGTmLhEH",
-      "amount_raw": 12648687369,
-      "amount": 12648.687369,
+      "token": "hf34pZHnV4",
+      "mint": "hf34pZHnV4entu9bdp4pFEmeKpivEUeSUhASgWopump",
+      "amount_raw": 4703363761,
+      "amount": 4703.363761,
       "decimals": 6,
-      "current_value_usd": 26.170134166461,
-      "current_value_sol": 0.3964708633277861,
-      "buy_price_usd": 26.170134166461,
-      "buy_price_sol": 0.3964708633277861,
-      "cost_basis_usd": 26.170134166461,
-      "unrealized_pnl_usd": 0,
-      "unrealized_pnl_pct": 0,
-      "status": "OPEN"
+      "current_value_usd": 15.925589694746,
+      "current_value_sol": 0.2485926926967061,
+      "buy_price_usd": 16.847448991902,
+      "buy_price_sol": 0.26348921857661617,
+      "cost_basis_usd": 16.847448991902,
+      "unrealized_pnl_usd": -0.9218592971559989,
+      "unrealized_pnl_pct": -5.471803461753204,
+      "status": "CLOSED",
+      "closed_at": "2026-06-10T05:37:34.787149+00:00",
+      "close_price_usd": 15.925589694746,
+      "close_value_usd": 15.925589694746,
+      "realized_pnl_usd": -0.9218592971559989,
+      "realized_pnl_pct": -5.471803461753204
+    },
+    {
+      "token": "6ehEcTMCc8",
+      "mint": "6ehEcTMCc85aNF4x9CWx8HuvWGhxQtvKdhKVf2HDpump",
+      "amount_raw": 1636460110,
+      "amount": 1636.46011,
+      "decimals": 6,
+      "current_value_usd": 18.298896950019998,
+      "current_value_sol": 0.28935414349386646,
+      "buy_price_usd": 16.628071177709998,
+      "buy_price_sol": 0.26147732290243303,
+      "cost_basis_usd": 16.628071177709998,
+      "unrealized_pnl_usd": 1.6708257723099997,
+      "unrealized_pnl_pct": 10.048223600039366,
+      "status": "CLOSED",
+      "closed_at": "2026-06-10T11:14:17.284753+00:00",
+      "close_price_usd": 18.30216987024,
+      "close_value_usd": 18.30216987024,
+      "realized_pnl_usd": 1.674098692530002,
+      "realized_pnl_pct": 10.067906702096264
+    },
+    {
+      "token": "ByMXWErqT4",
+      "mint": "ByMXWErqT4XFEyaALJiLP7FWQAx3pesudofPAPf2pump",
+      "amount_raw": 147955707147,
+      "amount": 147955.707147,
+      "decimals": 6,
+      "current_value_usd": 28.555451479371,
+      "current_value_sol": 0.44950432726072115,
+      "buy_price_usd": 30.035008550841003,
+      "buy_price_sol": 0.47230214167913864,
+      "cost_basis_usd": 30.035008550841003,
+      "unrealized_pnl_usd": -1.4795570714700013,
+      "unrealized_pnl_pct": -4.92610837438424,
+      "status": "CLOSED",
+      "closed_at": "2026-06-10T12:07:15.992398+00:00",
+      "close_price_usd": 28.407495772224003,
+      "close_value_usd": 28.407495772224003,
+      "realized_pnl_usd": -1.6275127786169996,
+      "realized_pnl_pct": -5.418719211822658
+    },
+    {
+      "token": "7XLu71Wvq7",
+      "mint": "7XLu71Wvq7zuNU7TP5qjYY8kqg9zxtrsb7sJEEF6pump",
+      "amount_raw": 24208536865,
+      "amount": 24208.536865,
+      "decimals": 6,
+      "current_value_usd": 31.132178408389997,
+      "current_value_sol": 0.491582299936214,
+      "buy_price_usd": 28.323988132049998,
+      "buy_price_sol": 0.4461358768788268,
+      "cost_basis_usd": 28.323988132049998,
+      "unrealized_pnl_usd": 2.8081902763399995,
+      "unrealized_pnl_pct": 9.914529914529915,
+      "status": "CLOSED",
+      "closed_at": "2026-06-10T12:22:40.008817+00:00",
+      "close_price_usd": 31.156386945255,
+      "close_value_usd": 31.156386945255,
+      "realized_pnl_usd": 2.8323988132050033,
+      "realized_pnl_pct": 10.000000000000012
+    },
+    {
+      "token": "9CYaxA6hzT",
+      "mint": "9CYaxA6hzTtZwuHv5QjXZLPLRbtFZvfDBPzW8a1dpump",
+      "amount_raw": 319697407397,
+      "amount": 319697.407397,
+      "decimals": 6,
+      "current_value_usd": 13.427291110674,
+      "current_value_sol": 0.21145351986688496,
+      "buy_price_usd": 12.148501481086,
+      "buy_price_sol": 0.19167087904601068,
+      "cost_basis_usd": 12.148501481086,
+      "unrealized_pnl_usd": 1.2787896295879992,
+      "unrealized_pnl_pct": 10.526315789473676,
+      "status": "CLOSED",
+      "closed_at": "2026-06-10T20:37:34.517508+00:00",
+      "close_price_usd": 13.427291110674,
+      "close_value_usd": 13.427291110674,
+      "realized_pnl_usd": 1.2787896295879992,
+      "realized_pnl_pct": 10.526315789473676
+    },
+    {
+      "token": "2Mcwccy7Ck",
+      "mint": "2Mcwccy7Ckf6C2BUfwG9Z6kcYp8Mj5tKFBHEEoYCpump",
+      "amount_raw": 16729793738,
+      "amount": 16729.793738,
+      "decimals": 6,
+      "current_value_usd": 9.904037892896,
+      "current_value_sol": 0.151275741031341,
+      "buy_price_usd": 10.489580673726,
+      "buy_price_sol": 0.16021329034933696,
+      "cost_basis_usd": 10.489580673726,
+      "unrealized_pnl_usd": -0.58554278083,
+      "unrealized_pnl_pct": -5.58213716108453,
+      "status": "CLOSED",
+      "closed_at": "2026-06-11T11:46:05.604896+00:00",
+      "close_price_usd": 9.904037892896,
+      "close_value_usd": 9.904037892896,
+      "realized_pnl_usd": -0.58554278083,
+      "realized_pnl_pct": -5.58213716108453
     }
   ],
   "trades": [
@@ -660,6 +765,78 @@
       "pnl_pct": 10.391001606855909,
       "tx_hash": "4XJygg1hdayKMcHirjZJ9Xi6Wm5ak9u87s2sFeJi77MXuSfcJmnK5pusoNjC9PXXDyVxfv48o24u4191Lxt83Dsf",
       "mint": "3TYgKwkE2Y3rxdw9osLRSpxpXmSC1C1oo19W9KHspump"
+    },
+    {
+      "timestamp": "2026-06-10T05:37:34.778416+00:00",
+      "token": "hf34pZHnV4",
+      "action": "SELL",
+      "reason": "STOP_LOSS",
+      "amount_raw": 4703363761,
+      "amount_usd": 15.925589694746,
+      "pnl_usd": -0.9218592971559989,
+      "pnl_pct": -5.471803461753204,
+      "tx_hash": "5NUiZNFUaB4cb4Hv3PPo9fnym9JeELcz9sADBH6QCfPDVyu5B5F4c7w7B1fez7VSEnFdyUWGW5LK9ckLkX91B1eN",
+      "mint": "hf34pZHnV4entu9bdp4pFEmeKpivEUeSUhASgWopump"
+    },
+    {
+      "timestamp": "2026-06-10T11:14:17.276243+00:00",
+      "token": "6ehEcTMCc8",
+      "action": "SELL",
+      "reason": "TAKE_PROFIT",
+      "amount_raw": 1636460110,
+      "amount_usd": 18.30216987024,
+      "pnl_usd": 1.674098692530002,
+      "pnl_pct": 10.067906702096264,
+      "tx_hash": "3mGK6ehMspV13i7ewJBAgHGKUCsRSw9MkFTk1LmkbY83VDSUK5ruSwCLuiuJLb2bnErv924rjjJr6Nhuu5zCPbGW",
+      "mint": "6ehEcTMCc85aNF4x9CWx8HuvWGhxQtvKdhKVf2HDpump"
+    },
+    {
+      "timestamp": "2026-06-10T12:07:15.983860+00:00",
+      "token": "ByMXWErqT4",
+      "action": "SELL",
+      "reason": "STOP_LOSS",
+      "amount_raw": 147955707147,
+      "amount_usd": 28.407495772224003,
+      "pnl_usd": -1.6275127786169996,
+      "pnl_pct": -5.418719211822658,
+      "tx_hash": "5FSRYK2oP98nDZp7GiAeS3ALqFjUauuq2vKbTrBPn1TNxJGrq3BWTiuniyaEFZgX2XSyuHjg4HHtEi8UNH8j61bF",
+      "mint": "ByMXWErqT4XFEyaALJiLP7FWQAx3pesudofPAPf2pump"
+    },
+    {
+      "timestamp": "2026-06-10T12:22:39.999600+00:00",
+      "token": "7XLu71Wvq7",
+      "action": "SELL",
+      "reason": "TAKE_PROFIT",
+      "amount_raw": 24208536865,
+      "amount_usd": 31.156386945255,
+      "pnl_usd": 2.8323988132050033,
+      "pnl_pct": 10.000000000000012,
+      "tx_hash": "5v18EG9mupUpU9ejJvKc1736hdn7GhgLaGYZuP2EeN9Xm1ikAwuNYdAbEchvj7wCqCK6wUYFXN2sboJuJdRDjFKr",
+      "mint": "7XLu71Wvq7zuNU7TP5qjYY8kqg9zxtrsb7sJEEF6pump"
+    },
+    {
+      "timestamp": "2026-06-10T20:37:34.508515+00:00",
+      "token": "9CYaxA6hzT",
+      "action": "SELL",
+      "reason": "TAKE_PROFIT",
+      "amount_raw": 319697407397,
+      "amount_usd": 13.427291110674,
+      "pnl_usd": 1.2787896295879992,
+      "pnl_pct": 10.526315789473676,
+      "tx_hash": "3pxdgfRPcDrX9g1A7sYZQRFj1WfEf2xAFdxTNqvdxNAYB4knRDiRUbxaDhZjW5ryDEySX3566cbYXkV8NJjN15Pp",
+      "mint": "9CYaxA6hzTtZwuHv5QjXZLPLRbtFZvfDBPzW8a1dpump"
+    },
+    {
+      "timestamp": "2026-06-11T11:46:05.595428+00:00",
+      "token": "2Mcwccy7Ck",
+      "action": "SELL",
+      "reason": "STOP_LOSS",
+      "amount_raw": 16729793738,
+      "amount_usd": 9.904037892896,
+      "pnl_usd": -0.58554278083,
+      "pnl_pct": -5.58213716108453,
+      "tx_hash": "3FPRBrN8foheZWHY9SBPhLqXUfDrHZHB9SDBXS3DxuQkzfP4vH8Pfw4xJKJRNZkAV9xN1bmF2mFtqk5CRFvA84BM",
+      "mint": "2Mcwccy7Ckf6C2BUfwG9Z6kcYp8Mj5tKFBHEEoYCpump"
     }
   ],
   "signals": [
@@ -670,17 +847,17 @@
       "confidence": 45,
       "recommendation": "HOLD",
       "in_portfolio": false,
-      "current_price": 0.006668,
+      "current_price": 0.006693,
       "momentum": {
         "trend": "flat",
-        "momentum_pct": 0,
+        "momentum_pct": 0.002997152704930324,
         "swing_detected": false,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:31.574904+00:00"
+      "timestamp": "2026-06-11T12:56:06.484190+00:00"
     },
     {
       "token": "PUMP",
@@ -689,17 +866,17 @@
       "confidence": 45,
       "recommendation": "HOLD",
       "in_portfolio": false,
-      "current_price": 0.001561,
+      "current_price": 0.001428,
       "momentum": {
         "trend": "flat",
-        "momentum_pct": 0,
+        "momentum_pct": -0.0006997900629810469,
         "swing_detected": false,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:32.431669+00:00"
+      "timestamp": "2026-06-11T12:56:07.347621+00:00"
     },
     {
       "token": "TRUMP",
@@ -708,36 +885,36 @@
       "confidence": 50,
       "recommendation": "BUY",
       "in_portfolio": false,
-      "current_price": 1.657547,
+      "current_price": 1.690918,
       "momentum": {
         "trend": "flat",
-        "momentum_pct": 0,
+        "momentum_pct": -0.0004522123825800263,
         "swing_detected": false,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:33.345139+00:00"
+      "timestamp": "2026-06-11T12:56:08.227718+00:00"
     },
     {
       "token": "JUP",
       "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
       "category": "utility",
-      "confidence": 60,
-      "recommendation": "BUY",
+      "confidence": 70,
+      "recommendation": "STRONG_BUY",
       "in_portfolio": false,
-      "current_price": 0.155371,
+      "current_price": 0.155538,
       "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
+        "trend": "up",
+        "momentum_pct": 0.010341288503761125,
         "swing_detected": false,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:34.227788+00:00"
+      "timestamp": "2026-06-11T12:56:09.121367+00:00"
     },
     {
       "token": "ORCA",
@@ -746,17 +923,17 @@
       "confidence": 60,
       "recommendation": "BUY",
       "in_portfolio": false,
-      "current_price": 1.019142,
+      "current_price": 0.99927,
       "momentum": {
         "trend": "flat",
-        "momentum_pct": 0,
+        "momentum_pct": 0.0007320695536178729,
         "swing_detected": false,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:35.089553+00:00"
+      "timestamp": "2026-06-11T12:56:10.008155+00:00"
     },
     {
       "token": "RAY",
@@ -765,17 +942,17 @@
       "confidence": 60,
       "recommendation": "BUY",
       "in_portfolio": false,
-      "current_price": 0.582358,
+      "current_price": 0.576269,
       "momentum": {
         "trend": "flat",
-        "momentum_pct": 0,
+        "momentum_pct": 0.0007085043091997461,
         "swing_detected": false,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:35.968226+00:00"
+      "timestamp": "2026-06-11T12:56:10.932233+00:00"
     },
     {
       "token": "HANTA",
@@ -784,59 +961,38 @@
       "confidence": 45,
       "recommendation": "HOLD",
       "in_portfolio": false,
-      "current_price": 0.000191,
+      "current_price": 0.000179,
       "momentum": {
         "trend": "flat",
-        "momentum_pct": 0,
+        "momentum_pct": 0.0,
         "swing_detected": false,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:36.934648+00:00"
+      "timestamp": "2026-06-11T12:56:11.834107+00:00"
     },
     {
       "token": "SPCX",
-      "mint": "8AB1JsbdEb8PFEpPhtDZMoRUdL9tSikZ2Cst3PUqMeNy",
+      "mint": "E6ifp2mJy8cYQehUGUtFvrXriRKxRuonLmrvTFypump",
       "category": "meme",
-      "confidence": 75,
+      "confidence": 85,
       "recommendation": "STRONG_BUY",
       "in_portfolio": false,
-      "current_price": 32.98,
+      "current_price": 0.004458,
       "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
-        "swing_detected": false,
+        "trend": "up",
+        "momentum_pct": 0.026243093922652023,
+        "swing_detected": true,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.031389+00:00",
+      "timestamp": "2026-06-11T12:56:15.059688+00:00",
       "is_trending": true,
-      "trending_score": 10
-    },
-    {
-      "token": "TOESCOIN",
-      "mint": "6ehEcTMCc85aNF4x9CWx8HuvWGhxQtvKdhKVf2HDpump",
-      "category": "meme",
-      "confidence": 75,
-      "recommendation": "STRONG_BUY",
-      "in_portfolio": false,
-      "current_price": 0.008701,
-      "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
-        "swing_detected": false,
-        "reversal_type": null,
-        "reversal_confidence": 0
-      },
-      "pnl_pct": 0,
-      "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.038518+00:00",
-      "is_trending": true,
-      "trending_score": 4
+      "trending_score": 7
     },
     {
       "token": "BULL",
@@ -845,166 +1001,187 @@
       "confidence": 75,
       "recommendation": "STRONG_BUY",
       "in_portfolio": false,
-      "current_price": 0.001908,
+      "current_price": 0.001905,
       "momentum": {
         "trend": "flat",
-        "momentum_pct": 0,
+        "momentum_pct": -0.004702194357366716,
         "swing_detected": false,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.045902+00:00",
-      "is_trending": true,
-      "trending_score": 5
-    },
-    {
-      "token": "LOA",
-      "mint": "EhHyfjRwj2jhmSE7GW5uJfizaLcNDa5C4HWPiSqjpump",
-      "category": "meme",
-      "confidence": 75,
-      "recommendation": "STRONG_BUY",
-      "in_portfolio": false,
-      "current_price": 0.003298,
-      "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
-        "swing_detected": false,
-        "reversal_type": null,
-        "reversal_confidence": 0
-      },
-      "pnl_pct": 0,
-      "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.053725+00:00",
-      "is_trending": true,
-      "trending_score": 7
-    },
-    {
-      "token": "MUMU",
-      "mint": "hf34pZHnV4entu9bdp4pFEmeKpivEUeSUhASgWopump",
-      "category": "meme",
-      "confidence": 75,
-      "recommendation": "STRONG_BUY",
-      "in_portfolio": false,
-      "current_price": 0.00344,
-      "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
-        "swing_detected": false,
-        "reversal_type": null,
-        "reversal_confidence": 0
-      },
-      "pnl_pct": 0,
-      "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.061951+00:00",
-      "is_trending": true,
-      "trending_score": 6
-    },
-    {
-      "token": "EURO",
-      "mint": "9Kqf3LeU7BCR6Kn1TLsZ11PQFi3SfjNgA6pUbGTmLhEH",
-      "category": "meme",
-      "confidence": 75,
-      "recommendation": "STRONG_BUY",
-      "in_portfolio": false,
-      "current_price": 0.002153,
-      "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
-        "swing_detected": false,
-        "reversal_type": null,
-        "reversal_confidence": 0
-      },
-      "pnl_pct": 0,
-      "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.070173+00:00",
+      "timestamp": "2026-06-11T12:56:15.100027+00:00",
       "is_trending": true,
       "trending_score": 9
     },
     {
-      "token": "GOKU",
-      "mint": "BUvuChjfCJxfUyCRMNWtm2W5ygTc7vV7mK4N22tGpump",
+      "token": "DRAGONWORM",
+      "mint": "xLyhQfSW8UKjsJaisszVS5SRjVTmy9WiEVsq6Afpump",
       "category": "meme",
-      "confidence": 75,
-      "recommendation": "STRONG_BUY",
+      "confidence": 60,
+      "recommendation": "BUY",
       "in_portfolio": false,
-      "current_price": 0.001315,
+      "current_price": 0.001245,
       "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
-        "swing_detected": false,
+        "trend": "down",
+        "momentum_pct": -0.09454545454545449,
+        "swing_detected": true,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.078057+00:00",
+      "timestamp": "2026-06-11T12:56:15.136633+00:00",
       "is_trending": true,
-      "trending_score": 2
+      "trending_score": 6
     },
     {
-      "token": "YVO3D",
-      "mint": "7AUvspX1v9d8iHsUco26pkTQjU4fpfCDDDFa13Ktpump",
+      "token": "1B",
+      "mint": "2Mcwccy7Ckf6C2BUfwG9Z6kcYp8Mj5tKFBHEEoYCpump",
       "category": "meme",
-      "confidence": 70,
-      "recommendation": "STRONG_BUY",
+      "confidence": 40,
+      "recommendation": "HOLD",
       "in_portfolio": false,
-      "current_price": 0.0002199,
+      "current_price": 0.0004237,
       "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
-        "swing_detected": false,
-        "reversal_type": null,
-        "reversal_confidence": 0
+        "trend": "down",
+        "momentum_pct": -0.07931334202520647,
+        "swing_detected": true,
+        "reversal_type": "peak",
+        "reversal_confidence": 0.21715687728490862
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.086379+00:00",
+      "timestamp": "2026-06-11T12:56:15.172323+00:00",
       "is_trending": true,
-      "trending_score": 1
+      "trending_score": 3
     },
     {
-      "token": "BEPE",
-      "mint": "vPqxCA5pPv1nnWCPBJBLnBDTTthiV8dCD1YPx6Wpump",
+      "token": "\u82f1\u4f1f\u8fbe",
+      "mint": "EJu78KrhDyaLn3p8Y89dgVGDgLKxU4rzSE7fER5yNVDA",
       "category": "meme",
-      "confidence": 70,
-      "recommendation": "STRONG_BUY",
+      "confidence": 65,
+      "recommendation": "BUY",
       "in_portfolio": false,
-      "current_price": 7.376e-05,
+      "current_price": 0.0004696,
       "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
-        "swing_detected": false,
+        "trend": "down",
+        "momentum_pct": -0.022277743077243478,
+        "swing_detected": true,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.094405+00:00",
+      "timestamp": "2026-06-11T12:56:15.207366+00:00",
       "is_trending": true,
       "trending_score": 8
     },
     {
-      "token": "UFC250",
-      "mint": "CWBiRHPu2jQYjybiDtb7FnCFr9XWmmPXzGsPirC3pump",
+      "token": "MORT",
+      "mint": "2ZcrrjkHkCoyoqx37t2njhTqXkq32di2QKdzHtAEpump",
       "category": "meme",
-      "confidence": 70,
+      "confidence": 40,
+      "recommendation": "HOLD",
+      "in_portfolio": false,
+      "current_price": 0.0006415,
+      "momentum": {
+        "trend": "down",
+        "momentum_pct": -0.14546423338217657,
+        "swing_detected": true,
+        "reversal_type": "peak",
+        "reversal_confidence": 0.5668416906528673
+      },
+      "pnl_pct": 0,
+      "trailing_stop": null,
+      "timestamp": "2026-06-11T12:56:15.243834+00:00",
+      "is_trending": true,
+      "trending_score": 2
+    },
+    {
+      "token": "GAEJUKI",
+      "mint": "43RuMKo4KTNekqjGSBM4NTsnL2dA8kf2MopF12eEpump",
+      "category": "meme",
+      "confidence": 75,
       "recommendation": "STRONG_BUY",
       "in_portfolio": false,
-      "current_price": 7.5e-05,
+      "current_price": 0.0004071,
       "momentum": {
-        "trend": "flat",
-        "momentum_pct": 0,
+        "trend": "down",
+        "momentum_pct": -0.15311004784688997,
+        "swing_detected": true,
+        "reversal_type": "dip",
+        "reversal_confidence": 0.3865041927907513
+      },
+      "pnl_pct": 0,
+      "trailing_stop": null,
+      "timestamp": "2026-06-11T12:56:15.280757+00:00",
+      "is_trending": true,
+      "trending_score": 4
+    },
+    {
+      "token": "GAEJOOK",
+      "mint": "5etbzxYXjuCojfsbXGuML3nJeyr7Nf8M31knLACcpump",
+      "category": "meme",
+      "confidence": 60,
+      "recommendation": "BUY",
+      "in_portfolio": false,
+      "current_price": 9.37e-05,
+      "momentum": {
+        "trend": "down",
+        "momentum_pct": -0.015652904716882035,
         "swing_detected": false,
         "reversal_type": null,
         "reversal_confidence": 0
       },
       "pnl_pct": 0,
       "trailing_stop": null,
-      "timestamp": "2026-06-09T03:19:43.102187+00:00",
+      "timestamp": "2026-06-11T12:56:15.317266+00:00",
       "is_trending": true,
-      "trending_score": 3
+      "trending_score": 1
+    },
+    {
+      "token": "BIBI",
+      "mint": "6MLWMbv4yP67A1zHFLHgDSEDTQBx7z9BWr8Zxyt3pump",
+      "category": "meme",
+      "confidence": 55,
+      "recommendation": "BUY",
+      "in_portfolio": false,
+      "current_price": 5.763e-05,
+      "momentum": {
+        "trend": "down",
+        "momentum_pct": -0.19634639520290056,
+        "swing_detected": true,
+        "reversal_type": null,
+        "reversal_confidence": 0
+      },
+      "pnl_pct": 0,
+      "trailing_stop": null,
+      "timestamp": "2026-06-11T12:56:15.353892+00:00",
+      "is_trending": true,
+      "trending_score": 5
+    },
+    {
+      "token": "FU",
+      "mint": "6x61MPqUz19ktKsmfyejSGiU9L38uyzQL1Riv3ZXpump",
+      "category": "meme",
+      "confidence": 70,
+      "recommendation": "STRONG_BUY",
+      "in_portfolio": false,
+      "current_price": 1.406e-05,
+      "momentum": {
+        "trend": "flat",
+        "momentum_pct": -0.0007107320540157497,
+        "swing_detected": false,
+        "reversal_type": null,
+        "reversal_confidence": 0
+      },
+      "pnl_pct": 0,
+      "trailing_stop": null,
+      "timestamp": "2026-06-11T12:56:15.389067+00:00",
+      "is_trending": true,
+      "trending_score": 10
     }
   ],
   "risk_metrics": {
@@ -1014,17 +1191,17 @@
     "consecutive_losses": 0
   },
   "performance": {
-    "total_realized_pnl": 36.786323494832,
-    "total_unrealized_pnl": 1.449984151339999,
-    "win_rate": 58.333333333333336,
-    "avg_profit_per_trade": 3.065526957902667,
+    "total_realized_pnl": 39.436695773552,
+    "total_unrealized_pnl": -0.7337405513169966,
+    "win_rate": 55.55555555555556,
+    "avg_profit_per_trade": 2.1909275429751114,
     "daily_avg": 0,
     "projected_days_to_1000": 0
   },
   "tax_summary": {
     "2026": {
-      "total_trades": 40,
-      "realized_pnl": 36.786323494832,
+      "total_trades": 46,
+      "realized_pnl": 39.436695773552,
       "fees_paid": 0
     }
   }

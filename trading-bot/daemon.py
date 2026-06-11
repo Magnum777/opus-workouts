@@ -15,6 +15,28 @@ from risk_manager import is_on_cooldown, load_cooldowns, MAX_OPEN_POSITIONS
 import io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
+# Tee stdout: keep output for logs but suppress empty cycles from Discord.
+_stdout = sys.stdout
+_output = io.StringIO()
+sys.stdout = _output
+
+def _flush_output():
+    """Emit buffered output to real stdout and restore direct output."""
+    _stdout.write(_output.getvalue())
+    _stdout.flush()
+    sys.stdout = _stdout
+
+
+_restore_count = 0
+def _restore_output():
+    """Restore raw stdout without flushing (for final Discord report lines)."""
+    sys.stdout = _stdout
+
+def _discard_output():
+    """Silently discard buffer (quiet cycle)."""
+    _output.truncate(0)
+    _output.seek(0)
+
 import scout_v2 as scout
 import executor_v2 as execmod
 import portfolio_db_v2 as pdb
@@ -234,6 +256,12 @@ print(f"[QUEUE] {len(all_pending)} signal(s) written ({len([s for s in all_pendi
 
 # ── Step 3: Executor — process signals ──
 print("\n--- EXECUTOR ---")
+# Auto-refill SOL if gas is low before any trades
+try:
+    execmod.ensure_sol_for_gas()
+except Exception as e:
+    print(f"[SOL GAS CHECK] Failed: {e}")
+
 try:
     with open(queue_path, "r") as f:
         queue = json.load(f)
@@ -370,7 +398,17 @@ usdc = portfolio.get('usdc_balance', 0)
 if usdc < 10:
     audit_warnings.append(f"LOW CAPITAL: ${usdc:.2f} USDC")
 
-# ── Discord report: always show sitrep ──
+# ── Discord report: only on actual events ──
+has_news = bool(execution_results or failures or audit_warnings)
+if not has_news:
+    # Quiet cycle - nothing happened, nothing to report
+    _discard_output()
+    sys.exit(0)
+
+# Flush accumulated research/scout/executor output to real stdout
+_flush_output()
+
+# From here, output goes directly to real stdout (no buffer)
 print("\n[DISCORD_REPORT]")
 if execution_results:
     print(f">**TradeBot** | {len(execution_results)} trade(s) executed")
@@ -381,7 +419,6 @@ if failures:
     for f in failures:
         print(f">{f}")
 
-# Always show portfolio sitrep
 if audit_warnings:
     lines = []
     for w in audit_warnings:
@@ -389,13 +426,14 @@ if audit_warnings:
     print(f">" + "".join(lines)[:-3])
 
 if positions_pnl:
-    print(f">Postions: {positions_pnl}")
+    print(f">Positions: {positions_pnl}")
 print(f">USDC: ${usdc:.2f} | Total: ${portfolio.get('total_value_usd', 0):.2f}")
 
-# Show best pending buy signal if nothing executed
+# Show best pending buy signal
 if buy_signals and not execution_results:
     best_buy = buy_signals[0]
     print(f">Watching: {best_buy['token']} ({best_buy['recommendation']}, conf {best_buy['confidence']})")
 
 print("=" * 50)
+print(f"[CYCLE END]")
 
