@@ -1,0 +1,6 @@
+[
+  {"name": "Five Star Chevrolet GMC", "city": "Warner Robins, GA", "phone": "(478) 922-9341", "hours": "M-F 9-8, Sat 9-7", "notes": "Local dealer, 45+ Traverse inventory"},
+  {"name": "Butler Chevrolet", "city": "Macon, GA", "phone": "(478) 250-9756", "hours": "M-F 9-8, Sat 9-6", "notes": "7 Traverse available"},
+  {"name": "Dan Vaden Chevrolet", "city": "Savannah, GA", "phone": "(912) 927-2211", "hours": "M-F 9-8, Sat 9-7", "notes": "RS in stock, VIN 1GNERLKS8TJ262544"},
+  {"name": "Day's Chevrolet", "city": "Acworth, GA", "phone": "(678) 331-8100", "hours": "M-F 9-9, Sat 9-8", "notes": "RS in transit, Costco incentive"}
+]
