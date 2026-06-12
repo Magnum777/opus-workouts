@@ -156,6 +156,8 @@ send_more_dealer_emails.py
 # Content-nova temp files
 scripts/content-nova/temp_images/
 scripts/content-nova/featured.jpg
+scripts/content-nova/last_post_id.txt
+scripts/content-nova/upload_featured_wrapper.py
 scripts/.cache/
 scripts/.env-nas
 scripts/.token-key
@@ -173,8 +175,24 @@ trading-bot/*.bak
 trading-bot/portfolio_state.json
 trading-bot/price_history.json
 trading-bot/trading-queue.json
+trading-bot/*.db
+trading-bot/*.db.json
+trading-bot/rebuy_*.json
+trading-bot/logs/
+trading-bot/patch*.py
+trading-bot/test_run_*.log.err
+trading-bot/_run_*.ps1
 portfolio.db.json
 spam_sweep_error.txt
+
+# Spam sweep output files
+scripts/spam_err.txt
+scripts/spam_output.txt
+scripts/spam_sweep_err.txt
+
+# General runtime output
+stderr.txt
+stdout.txt
 
 # Misc
 p

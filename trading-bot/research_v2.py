@@ -33,16 +33,28 @@ TRAILING_STOP_PCT = 0.02       # 2%
 
 def get_jupiter_price(mint, decimals=None):
     """Get token price via Jupiter. Returns price per 1 full token in USD."""
+    import time as _t
+    _t.sleep(1.5)
     try:
         if decimals is None:
             decimals = 9 if mint == SOL_MINT else 6
         amount = 10 ** decimals
         r = requests.get(
             f"https://lite-api.jup.ag/swap/v1/quote?inputMint={mint}&outputMint={USDC}&amount={amount}&slippage=1",
-            timeout=8
+            timeout=10,
+            headers={"User-Agent": "TradeBot/1.0", "Accept": "application/json"}
         )
         if r.status_code == 200:
             return float(r.json()["outAmount"]) / 1e6
+        elif r.status_code == 429:
+            _t.sleep(3)
+            r2 = requests.get(
+                f"https://lite-api.jup.ag/swap/v1/quote?inputMint={mint}&outputMint={USDC}&amount={amount}&slippage=1",
+                timeout=10,
+                headers={"User-Agent": "TradeBot/1.0", "Accept": "application/json"}
+            )
+            if r2.status_code == 200:
+                return float(r2.json()["outAmount"]) / 1e6
     except:
         pass
     return 0
@@ -290,9 +302,11 @@ def fetch_trending_solana_candidates(count=10):
 
             # Get price + liquidity from DexScreener pairs API
             try:
+                import time as _dts
+                _dts.sleep(0.5)
                 pairs_resp = requests.get(
                     f"https://api.dexscreener.com/latest/dex/tokens/{mint}",
-                    timeout=8
+                    timeout=5
                 )
                 if pairs_resp.status_code != 200:
                     continue
