@@ -74,18 +74,30 @@ def get_usdc_balance():
     return 0
 
 def get_jupiter_price(mint, decimals=None):
-    """Get token price via Jupiter. Returns price per 1 full token in USD."""
+    """Get token price via Jupiter. Returns price per 1 full token in USD.
+    Respects shared 429 cooldown."""
+    # Check shared 429 cooldown
+    _429 = os.path.join(os.path.dirname(__file__), ".jupiter_429_cooldown.json")
     try:
-        # Default decimals: 9 for SOL, 6 for everything else
+        with open(_429) as _f:
+            _d = json.load(_f)
+        if _d.get("expires_at", 0) > __import__('time').time():
+            return 0
+    except:
+        pass
+    try:
         if decimals is None:
             decimals = 9 if mint == SOL_MINT else 6
-        amount = 10 ** decimals  # 1 full token in smallest units
+        amount = 10 ** decimals
         r = requests.get(
             f"https://lite-api.jup.ag/swap/v1/quote?inputMint={mint}&outputMint={USDC}&amount={amount}&slippage=1",
             timeout=8
         )
         if r.status_code == 200:
-            return float(r.json()["outAmount"]) / 1e6  # USDC has 6 decimals
+            return float(r.json()["outAmount"]) / 1e6
+        elif r.status_code == 429:
+            with open(_429, "w") as _f:
+                json.dump({"expires_at": __import__('time').time() + 600}, _f)
     except:
         pass
     return 0

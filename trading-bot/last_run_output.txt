@@ -1,0 +1,44 @@
+[2026-06-14T13:08:57.449963+00:00] TradeBot Daemon
+--- RESEARCH ---
+Research complete: 17 tokens analyzed
+Buy opportunities: 2
+Sell signals: 0
+  BUY SIEGE: conf=85 rec=STRONG_BUY price=$0.00011720
+  BUY $FLIP: conf=80 rec=STRONG_BUY price=$0.00004240
+--- SCOUT ---
+SOL: 0.0009 | USDC: $77.18
+Tokens on chain: 3
+Valuable tokens: 0
+  EPjFWdd5Au: 77.1798 ($77.18)
+  USDC cash: $77.18
+
+Scout signals: 0
+  [BUY SIGNAL] SIEGE: STRONG_BUY (conf: 85)
+  [BUY SIGNAL] $FLIP: STRONG_BUY (conf: 80)
+[QUEUE] 2 signal(s) written (2 buys, 0 sells)
+
+--- EXECUTOR ---
+[SOL GAS] Very low: 0.000896. Refilling $0.62 USDC ΓåÆ SOL...
+[SOL GAS] Refill too small ($0.62). Skipping.
+[QUEUE] 2 pending ΓåÆ prioritizing 0 sells + 1 best buy (skipped 1 other buys)
+  [SAFETY] Checking SIEGE before buy...
+  [SAFETY OK] SIEGE: score=85/100
+  [BALANCE CHECK] USDC before BUY SIEGE: $77.18
+Available USDC: $77.18 | Buying with: $30.87 (40%)
+Quote: inAmount=30870000 outAmount=268085239326 slippageBps=50
+TX 3TEn7FTEjPYh4ZniEcFt... did not confirm after verification - treating as failed
+
+--- SUMMARY ---
+USDC: $77.18
+SOL: 0.0009
+Total: $77.24
+Realized PnL: $5266471.75
+Open positions: 0
+No trades executed this cycle
+
+[DISCORD_REPORT]
+>**BUY SIEGE FAILED**: TX not confirmed - likely failed
+>USDC: $77.18 | Total: $77.24
+>Watching: SIEGE (STRONG_BUY, conf 85)
+==================================================
+[CYCLE END]

@@ -44,7 +44,66 @@ import research_v2 as research
 import token_safety_check as safety
 import risk_manager as risk
 
+# ── Cycle-level 429 cooldown check ──
+_429_COOLDOWN = os.path.join(os.path.dirname(__file__), ".jupiter_429_cooldown.json")
+def _is_jupiter_cooled():
+    """True if we're in a 429 penalty window. If so, skip everything Jupiter-related."""
+    try:
+        import json as _j
+        with open(_429_COOLDOWN) as _f:
+            _d = _j.load(_f)
+        _rem = _d.get("expires_at", 0) - time.time()
+        if _rem > 0:
+            print(f"[429 COOLDOWN] {_rem:.0f}s remaining — skipping research + executor")
+            return False
+    except:
+        pass
+    return True
+
+def _mark_429_hit():
+    """Persist 429 hit so next cycle also knows."""
+    try:
+        import json as _j
+        with open(_429_COOLDOWN, "w") as _f:
+            _j.dump({"expires_at": time.time() + 600}, _f)
+    except:
+        pass
+
 print(f"[{datetime.now(timezone.utc).isoformat()}] TradeBot Daemon")
+
+# Early exit: if Jupiter is rate-limited, just sync chain state and skip execution
+import time as _daemon_time
+if not _is_jupiter_cooled():
+    # Still do scout (Helius RPC is fine, different endpoint)
+    sol_balance = scout.get_sol_balance()
+    sol_price = scout.get_jupiter_price(scout.SOL_MINT) or 84
+    holdings = scout.get_all_holdings()
+    usdc_balance = scout.get_usdc_balance()
+    holdings_list = []
+    for mint, h in holdings.items():
+        token = scout.MINT_TO_NAME.get(mint, mint[:10])
+        price = scout.get_jupiter_price(mint, decimals=h['decimals'])
+        if mint == scout.USDC:
+            price = 1.0
+        value_usd = h['amount'] * price if price and price > 0 else 0
+        if value_usd < 0.01:
+            continue
+        holdings_list.append({
+            "token": token, "mint": mint, "amount": h['amount'],
+            "amount_raw": h['raw'], "decimals": h['decimals'],
+            "value_usd": value_usd, "value_sol": value_usd / sol_price if sol_price > 0 else 0
+        })
+    pdb.sync_from_blockchain(holdings_list, sol_balance, sol_price)
+    db = pdb.load_db()
+    perf = db.get("performance", {})
+    portfolio = db.get("portfolio", {})
+    usdc = portfolio.get('usdc_balance', 0)
+    print(f"\nUSDC: ${usdc:.2f}")
+    print(f"SOL: {portfolio.get('sol_balance', 0):.4f}")
+    print(f"Total: ${portfolio.get('total_value_usd', 0):.2f}")
+    print(f"[CYCLE END] 429 cooldown — reporting only. No trades possible.")
+    _discard_output()
+    sys.exit(0)
 
 # ── Step 0: Build signal queue from research before anything ──
 # Research needs to analyze tracked tokens for buy opportunities
@@ -254,39 +313,66 @@ with open(queue_path, "w") as f:
     json.dump({"pending": all_pending, "executed": []}, f, indent=2)
 print(f"[QUEUE] {len(all_pending)} signal(s) written ({len([s for s in all_pending if s['action']=='BUY'])} buys, {len([s for s in all_pending if s['action']=='SELL'])} sells)")
 
-# ── Step 3: Executor — process signals ──
+# ── Step 3: Executor — process signals, ONE AT A TIME, stop on 429 ──
 print("\n--- EXECUTOR ---")
-# Auto-refill SOL if gas is low before any trades
-try:
-    execmod.ensure_sol_for_gas()
-except Exception as e:
-    print(f"[SOL GAS CHECK] Failed: {e}")
 
+import time as _exec_time
+
+# Auto-refill SOL if critically low (< 0.001 SOL) - but only if no 429 cooldown
+_429_FILE = os.path.join(os.path.dirname(__file__), ".jupiter_429_cooldown.json")
+try:
+    import json as _je
+    with open(_429_FILE) as _jf:
+        _jd = _je.load(_jf)
+    _429_active = _jd.get("expires_at", 0) > _exec_time.time()
+except:
+    _429_active = False
+
+if not _429_active:
+    try:
+        execmod.ensure_sol_for_gas()
+    except Exception as e:
+        print(f"[SOL GAS CHECK] Failed: {e}")
+
+# Load queue
+queue_path = os.path.join(os.path.dirname(__file__), "trading-queue.json")
 try:
     with open(queue_path, "r") as f:
         queue = json.load(f)
 except:
     queue = {"pending": []}
 
+# Prioritize: sells first (critical), then best buy
+pending = list(queue.get("pending", []))
+sells = [s for s in pending if s.get("action") == "SELL"]
+buys = sorted([s for s in pending if s.get("action") == "BUY"], key=lambda s: s.get("confidence", 0), reverse=True)
+ordered_signals = sells + buys[:1]  # ALL sells + only the BEST buy
+
+# Also clear any extra buy signals from queue so they don't re-appear next cycle
+queue["pending"] = [s for s in queue.get("pending", []) if s.get("action") != "BUY"] + buys[1:] if len(buys) > 1 else []
+
+if ordered_signals:
+    print(f"[QUEUE] {len(pending)} pending → prioritizing {len(sells)} sells + 1 best buy (skipped {len(buys)-1 if len(buys)>1 else 0} other buys)")
+
+hit_429_this_cycle = False
 executed_tokens = set()
 execution_results = []
 failures = []
 
-for signal in list(queue.get("pending", [])):
+for signal in ordered_signals:
+    if hit_429_this_cycle:
+        print(f"  [SKIP {signal.get('token')}] Stopped early — previous signal hit 429")
+        break
+    
     action = signal.get("action")
     token = signal.get("token")
 
     if action == "SELL":
         if token in executed_tokens:
             continue
-        # Re-check USDC after prior operations in this cycle
-        live_usdc = execmod.get_usdc_balance()
-        print(f"  [BALANCE CHECK] USDC before {action} {token}: ${live_usdc:.2f}")
         success, msg = execmod.process_sell_signal(signal)
         if success:
             executed_tokens.add(token)
-            queue["pending"].remove(signal)
-            queue.setdefault("executed", []).append(signal)
             reason = signal.get("reason", "")
             if "TP" in reason or "TAKE_PROFIT" in reason:
                 emoji = "🎯"
@@ -297,14 +383,19 @@ for signal in list(queue.get("pending", [])):
             execution_results.append(f"{emoji} SELL {token} {reason}: P&L ${msg.split('P&L: ')[-1].split(' |')[0] if 'P&L: ' in msg else msg}")
         else:
             fail_reason = msg.split("FAILED:")[-1].strip() if "FAILED:" in msg else msg
+            if "429" in fail_reason or "cooldown" in fail_reason.lower():
+                hit_429_this_cycle = True
+                _mark_429_hit()
             failures.append(f"**{action} {token} FAILED**: {fail_reason}")
+        # Remove from queue regardless
+        queue["pending"] = [s for s in queue.get("pending", []) if s.get("token") != token or s.get("action") != action]
 
     elif action == "BUY":
         mint = signal.get("mint", "")
         if not mint:
             continue
 
-        # SAFETY CHECK: Verify token before buying
+        # SAFETY CHECK
         print(f"  [SAFETY] Checking {token} before buy...")
         safety_result = safety.check_token_safety(mint, token)
         if not safety_result["safe"]:
@@ -312,32 +403,34 @@ for signal in list(queue.get("pending", [])):
             for note in safety_result.get("notes", []):
                 print(f"    {note}")
             failures.append(f"**BUY {token} BLOCKED**: Safety score {safety_result['score']}/100")
-            # Remove from queue so it doesn't keep retrying
-            queue["pending"].remove(signal)
+            queue["pending"] = [s for s in queue.get("pending", []) if s.get("mint") != mint]
             continue
         else:
             print(f"  [SAFETY OK] {token}: score={safety_result['score']}/100")
 
-        # Re-check USDC balance — don't buy if we can't afford even a minimum
         live_usdc = execmod.get_usdc_balance()
         if live_usdc < 3.0:
-            print(f"  [SKIP {token}] USDC too low after prior operations (${live_usdc:.2f}) — cannot afford minimum buy")
-            queue["pending"].remove(signal)
+            print(f"  [SKIP {token}] USDC too low (${live_usdc:.2f})")
+            queue["pending"] = [s for s in queue.get("pending", []) if s.get("mint") != mint]
             continue
 
         sig = {"token": token, "mint": mint}
         sig["recommendation"] = signal.get("recommendation", "BUY")
         sig["confidence"] = signal.get("confidence", 50)
-        sig["max_usdc"] = signal.get("max_usdc")
 
         print(f"  [BALANCE CHECK] USDC before BUY {token}: ${live_usdc:.2f}")
         success, msg = execmod.process_buy_signal(sig)
         if success:
-            queue["pending"].remove(signal)
-            queue.setdefault("executed", []).append(signal)
             execution_results.append(f"💎 BUY {token}: ${msg.split('|')[1].strip() if '|' in msg else msg}")
+            queue["pending"] = [s for s in queue.get("pending", []) if s.get("mint") != mint]
         else:
             fail_reason = msg.split("failed:")[-1].strip() if "failed:" in msg else msg
+            if "429" in fail_reason or "cooldown" in fail_reason.lower():
+                hit_429_this_cycle = True
+                _mark_429_hit()
+            else:
+                # Remove failed buy from queue so it doesn't retry forever
+                queue["pending"] = [s for s in queue.get("pending", []) if s.get("mint") != mint]
             failures.append(f"**BUY {token} FAILED**: {fail_reason}")
 
 with open(queue_path, "w") as f:
@@ -436,4 +529,5 @@ if buy_signals and not execution_results:
 
 print("=" * 50)
 print(f"[CYCLE END]")
+
 

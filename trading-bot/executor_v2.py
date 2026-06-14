@@ -85,43 +85,137 @@ def get_sol_balance():
     return 0
 
 
+# ── Cycle-level 429 cooldown ──
+_429_COOLDOWN_FILE = os.path.join(os.path.dirname(__file__), ".jupiter_429_cooldown.json")
+
+def _load_429_cooldown():
+    """Check if we're in a 429 cooldown window. Returns remaining seconds."""
+    try:
+        with open(_429_COOLDOWN_FILE) as f:
+            data = json.load(f)
+        expires = data.get("expires_at", 0)
+        remaining = expires - time.time()
+        if remaining > 0:
+            return remaining
+    except:
+        pass
+    return 0
+
+def _mark_429_hit():
+    """Store a 10-min cooldown so next cycles also know to back off."""
+    try:
+        with open(_429_COOLDOWN_FILE, "w") as f:
+            json.dump({"expires_at": time.time() + 600}, f)
+    except:
+        pass
+
+def _respectful_quote(input_mint, output_mint, amount, slippage_bps=1500, label="quote"):
+    """Jupiter quote with cycle-aware backoff. Returns (quote_json, error_str) or (None, reason)."""
+    cd = _load_429_cooldown()
+    if cd > 0:
+        return None, f"429 cooldown active ({cd:.0f}s remaining)"
+    
+    cooldown_gate = _load_429_cooldown()
+    if cooldown_gate > 0:
+        return None, f"Cycle 429 cooldown ({cooldown_gate:.0f}s)"
+    
+    for attempt in range(3):
+        try:
+            resp = requests.get(
+                f"https://lite-api.jup.ag/swap/v1/quote?inputMint={input_mint}&outputMint={output_mint}&amount={amount}&slippage={slippage_bps/100}",
+                timeout=15
+            )
+            if resp.status_code == 200:
+                return resp.json(), None
+            elif resp.status_code == 429:
+                _mark_429_hit()
+                wait = 5 + (5 * attempt)
+                print(f"Rate limited (429) on {label}, retry {attempt+1}/3 in {wait}s")
+                time.sleep(wait)
+                continue
+            else:
+                return None, f"Quote HTTP {resp.status_code}: {resp.text[:200]}"
+        except Exception as e:
+            if attempt < 2:
+                print(f"Quote exception on {label} ({attempt+1}/3): {e}, retrying in 5s...")
+                time.sleep(5)
+                continue
+            return None, f"Quote exception: {e}"
+    return None, "Quote failed after 3 retries"
+
+def _respectful_swap(quote, user_pk_str, wrap_sol=False, label="swap"):
+    """Jupiter swap with cycle-aware backoff."""
+    cd = _load_429_cooldown()
+    if cd > 0:
+        return None, f"429 cooldown active ({cd:.0f}s)"
+    
+    for attempt in range(3):
+        try:
+            resp = requests.post(
+                "https://lite-api.jup.ag/swap/v1/swap",
+                json={
+                    "quoteResponse": quote,
+                    "userPublicKey": user_pk_str,
+                    "wrapAndUnwrapSol": wrap_sol,
+                    "prioritizationFeeLamports": 5000
+                },
+                timeout=30
+            )
+            if resp.status_code == 200:
+                return resp.json(), None
+            elif resp.status_code == 429:
+                _mark_429_hit()
+                wait = 5 + (5 * attempt)
+                print(f"Swap rate limited (429) on {label}, retry {attempt+1}/3 in {wait}s")
+                time.sleep(wait)
+                continue
+            else:
+                return None, f"Swap HTTP {resp.status_code} {resp.text[:150]}"
+        except Exception as e:
+            if attempt < 2:
+                print(f"Swap POST error ({attempt+1}/3): {e}, retrying in 5s...")
+                time.sleep(5)
+                continue
+            return None, f"Swap error: {e}"
+    return None, "Swap failed after 3 retries"
+
 def ensure_sol_for_gas():
     """
     Proportional SOL gas reserve. Refills from USDC when below target.
-    Target = max(SOL_TARGET_FLOOR, portfolio_value * SOL_RESERVE_PCT / sol_price)
-    Refill capped at MAX_REFILL_PCT of USDC per cycle.
-    Returns True if refill was attempted.
+    Silently skips if SOL > 0.001 — we rarely need more for ~200 txns.
     """
     sol_bal = get_sol_balance()
+    
+    # Absolute floor: 0.001 SOL (~200 txns) — no point burning API calls below that
+    if sol_bal >= 0.001:
+        return False
+    
     sol_price = get_jupiter_price(SOL_MINT)
     if sol_price <= 0:
-        sol_price = 170  # fallback
+        sol_price = 170
     
-    # Estimate portfolio value from USDC + positions
     usdc_bal = get_usdc_balance()
-    # Rough total: USDC + SOL value + unrealized (skip DB load to keep it light)
     total_value = usdc_bal + (sol_bal * sol_price)
-    
-    target_sol = max(SOL_TARGET_FLOOR, (total_value * SOL_RESERVE_PCT) / sol_price)
+    target_sol = max(0.01, (total_value * SOL_RESERVE_PCT) / sol_price)
     
     if sol_bal >= target_sol:
-        return False  # No action needed
+        return False
     
     deficit_sol = target_sol - sol_bal
     deficit_usd = deficit_sol * sol_price
     max_refill = usdc_bal * MAX_REFILL_PCT
     refill_amount = min(deficit_usd, max_refill)
     
-    print(f"[SOL GAS] Low: {sol_bal:.6f} / {target_sol:.6f} target (total ~${total_value:.0f}). Refilling ${refill_amount:.2f} USDC → SOL...")
+    print(f"[SOL GAS] Very low: {sol_bal:.6f}. Refilling ${refill_amount:.2f} USDC → SOL...")
     
     if refill_amount < 1.0:
-        print(f"[SOL GAS] Refill too small (${refill_amount:.2f}). USDC: ${usdc_bal:.2f}. Skipping.")
+        print(f"[SOL GAS] Refill too small (${refill_amount:.2f}). Skipping.")
         return False
     
     success, msg = execute_buy_live(SOL_MINT, "SOL", refill_amount)
     if success:
         new_sol = get_sol_balance()
-        print(f"[SOL GAS] Refilled! {sol_bal:.6f} → {new_sol:.6f} SOL (${new_sol * sol_price:.2f})")
+        print(f"[SOL GAS] Refilled! {sol_bal:.6f} → {new_sol:.6f} SOL")
     else:
         print(f"[SOL GAS] Refill failed: {msg}")
     return True
@@ -153,226 +247,115 @@ def get_usdc_balance():
 
 def execute_buy_live(mint, token_name, usdc_amount):
     """Execute buy via Jupiter using USDC as input"""
-    try:
-        usdc_units = int(usdc_amount * 1e6)  # USDC has 6 decimals
+    usdc_units = int(usdc_amount * 1e6)
 
-        # Get quote with retry and detailed logging
-        def fetch_quote(slippage_bps=1500):
-            for attempt in range(3):
-                try:
-                    resp = requests.get(
-                        f"https://lite-api.jup.ag/swap/v1/quote?inputMint={USDC}&outputMint={mint}&amount={usdc_units}&slippage={slippage_bps/100}",
-                        timeout=15
-                    )
-                    if resp.status_code == 200:
-                        return resp.json(), None
-                    elif resp.status_code == 429:
-                        wait = 2 ** attempt
-                        print(f"Rate limited (429), retry {attempt+1}/3 in {wait}s")
-                        time.sleep(wait)
-                        continue
-                    else:
-                        return None, f"Quote HTTP {resp.status_code}: {resp.text[:200]}"
-                except Exception as e:
-                    return None, f"Quote exception: {e}"
-            return None, "Quote failed after 3 retries"
-
-        quote, err = fetch_quote()
+    # Quote with cycle-aware backoff (2 attempts instead of 6)
+    quote, err = _respectful_quote(USDC, mint, usdc_units, slippage_bps=1500, label=f"buy_{token_name}")
+    if err:
+        print(f"Initial quote failed: {err}. Trying 20% slippage once.")
+        quote, err = _respectful_quote(USDC, mint, usdc_units, slippage_bps=2000, label=f"buy_{token_name}_fallback")
         if err:
-            print(f"Initial quote failed: {err}. Retrying with 20% slippage.")
-            quote, err = fetch_quote(slippage_bps=2000)
-            if err:
-                print(f"Fallback quote also failed: {err}")
-                return False, "Quote failed"
+            print(f"Fallback quote also failed: {err}")
+            return False, "Quote failed"
 
-        print(f"Quote received: inAmount={quote.get('inAmount')} outAmount={quote.get('outAmount')} slippageBps={quote.get('slippageBps')}")
+    print(f"Quote: inAmount={quote.get('inAmount')} outAmount={quote.get('outAmount')} slippageBps={quote.get('slippageBps')}")
 
-        # Get swap transaction (no wrapAndUnwrapSol - we're spending USDC, not SOL)
-        swap_resp = None
-        for swap_attempt in range(3):
-            try:
-                swap_resp = requests.post(
-                    "https://lite-api.jup.ag/swap/v1/swap",
-                    json={
-                        "quoteResponse": quote,
-                        "userPublicKey": str(WALLET.pubkey()),
-                        "wrapAndUnwrapSol": mint == SOL_MINT,
-                        "prioritizationFeeLamports": 5000
-                    },
-                    timeout=30
-                )
-                if swap_resp.status_code == 200:
-                    break
-                elif swap_resp.status_code == 429:
-                    wait = 3 ** swap_attempt
-                    print(f"Swap rate limited, retry in {wait}s")
-                    time.sleep(wait)
-                    continue
-                else:
-                    return False, f"Swap request failed: HTTP {swap_resp.status_code} {swap_resp.text[:150]}"
-            except Exception as e:
-                if swap_attempt < 2:
-                    print(f"Swap POST error ({swap_attempt+1}/3): {e}, retrying...")
-                    time.sleep(3)
-                    continue
-                return False, f"Swap request error: {e}"
+    # Swap with cycle-aware backoff
+    swap_data, err = _respectful_swap(quote, str(WALLET.pubkey()), wrap_sol=(mint == SOL_MINT), label=f"swap_{token_name}")
+    if err:
+        return False, f"Swap failed: {err}"
 
-        if swap_resp is None or swap_resp.status_code != 200:
-            return False, "Swap request failed after retries"
+    # Sign and send with retry
+    tx = VersionedTransaction.from_bytes(base64.b64decode(swap_data["swapTransaction"]))
+    signed = VersionedTransaction(tx.message, [WALLET])
 
-        swap_data = swap_resp.json()
+    for send_attempt in range(3):
+        try:
+            result = CLIENT.send_raw_transaction(
+                bytes(signed),
+                opts=TxOpts(skip_preflight=True, preflight_commitment="confirmed")
+            )
+            tx_hash = result.value if hasattr(result, "value") else str(result)
+            # Brief wait for confirmation
+            time.sleep(3)
+            # Verify tx confirmed - if not confirmed within timeout, assume failed
+            confirmed = False
+            for verify_attempt in range(5):
+                try:
+                    confirm = CLIENT.get_signature_statuses([str(tx_hash)])
+                    if confirm and confirm.value and confirm.value[0]:
+                        status = confirm.value[0]
+                        if status.confirmation_status:
+                            confirmed = True
+                            print(f"TX confirmed: {str(tx_hash)[:20]}... status={status.confirmation_status}")
+                            break
+                        elif status.err:
+                            print(f"TX failed on-chain: {status.err}")
+                            return False, f"TX failed on-chain: {status.err}"
+                except:
+                    pass
+                time.sleep(1)
 
-        # Sign and send with retry
-        tx = VersionedTransaction.from_bytes(base64.b64decode(swap_data["swapTransaction"]))
-        signed = VersionedTransaction(tx.message, [WALLET])
+            if not confirmed:
+                print(f"TX {str(tx_hash)[:20]}... did not confirm after verification - treating as failed")
+                return False, f"TX not confirmed - likely failed"
 
-        for send_attempt in range(3):
-            try:
-                result = CLIENT.send_raw_transaction(
-                    bytes(signed),
-                    opts=TxOpts(skip_preflight=True, preflight_commitment="confirmed")
-                )
-                tx_hash = result.value if hasattr(result, "value") else str(result)
-                # Brief wait for confirmation
-                time.sleep(3)
-                # Verify tx confirmed - if not confirmed within timeout, assume failed
-                confirmed = False
-                for verify_attempt in range(5):
-                    try:
-                        confirm = CLIENT.get_signature_statuses([str(tx_hash)])
-                        if confirm and confirm.value and confirm.value[0]:
-                            status = confirm.value[0]
-                            if status.confirmation_status:
-                                confirmed = True
-                                print(f"TX confirmed: {str(tx_hash)[:20]}... status={status.confirmation_status}")
-                                break
-                            elif status.err:
-                                print(f"TX failed on-chain: {status.err}")
-                                return False, f"TX failed on-chain: {status.err}"
-                    except:
-                        pass
-                    time.sleep(1)
-
-                if not confirmed:
-                    print(f"TX {str(tx_hash)[:20]}... did not confirm after verification - treating as failed")
-                    return False, f"TX not confirmed after {5*1+3}s - likely failed"
-
-                return True, tx_hash
-            except Exception as e:
-                err = str(e)
-                if "429" in err or "too many requests" in err.lower():
-                    wait = 3 ** send_attempt
-                    print(f"RPC rate limited, retry in {wait}s")
-                    time.sleep(wait)
-                    continue
-                elif send_attempt < 2:
-                    print(f"Send TX error ({send_attempt+1}/3): {err}, retrying...")
-                    time.sleep(2)
-                    continue
-                return False, f"Send TX failed: {err[:150]}"
-
-    except Exception as e:
-        return False, str(e)
+            return True, tx_hash
+        except Exception as e:
+            err = str(e)
+            if "429" in err or "too many requests" in err.lower():
+                _mark_429_hit()
+                wait = 5 + (5 * send_attempt)
+                print(f"RPC rate limited, retry in {wait}s")
+                time.sleep(wait)
+                continue
+            elif send_attempt < 2:
+                print(f"Send TX error ({send_attempt+1}/3): {err}, retrying...")
+                time.sleep(2)
+                continue
+            return False, f"Send TX failed: {err[:150]}"
 
 def execute_sell_live(mint, token_name, amount_raw):
     """Execute sell via Jupiter"""
-    try:
-        # Get quote (token -> USDC) with retry
-        for attempt in range(3):
+    quote, err = _respectful_quote(mint, USDC, amount_raw, slippage_bps=1500, label=f"sell_{token_name}")
+    if err:
+        return False, f"Sell quote failed: {err}"
+
+    swap_data, err = _respectful_swap(quote, str(WALLET.pubkey()), wrap_sol=True, label=f"sell_{token_name}")
+    if err:
+        return False, f"Sell swap failed: {err}"
+    # Sign and send with retry
+    tx = VersionedTransaction.from_bytes(base64.b64decode(swap_data["swapTransaction"]))
+    signed = VersionedTransaction(tx.message, [WALLET])
+
+    for send_attempt in range(3):
+        try:
+            result = CLIENT.send_raw_transaction(
+                bytes(signed),
+                opts=TxOpts(skip_preflight=True, preflight_commitment="confirmed")
+            )
+            tx_hash = result.value if hasattr(result, "value") else str(result)
+            time.sleep(2)
             try:
-                r = requests.get(
-                    f"https://lite-api.jup.ag/swap/v1/quote?inputMint={mint}&outputMint={USDC}&amount={amount_raw}&slippage=15",
-                    timeout=15
-                )
-                if r.status_code == 200:
-                    break
-                elif r.status_code == 429:
-                    wait = 2 ** attempt
-                    print(f"Rate limited on sell quote, retry in {wait}s")
-                    time.sleep(wait)
-                    continue
-                else:
-                    return False, f"Sell quote failed: HTTP {r.status_code} {r.text[:150]}"
-            except Exception as e:
-                if attempt < 2:
-                    print(f"Sell quote exception ({attempt+1}/3): {e}, retrying...")
-                    time.sleep(3)
-                    continue
-                return False, f"Sell quote error: {e}"
-        else:
-            return False, "Sell quote failed after 3 retries"
-
-        quote = r.json()
-
-        # Get swap transaction with retry
-        swap_resp = None
-        for swap_attempt in range(3):
-            try:
-                swap_resp = requests.post(
-                    "https://lite-api.jup.ag/swap/v1/swap",
-                    json={
-                        "quoteResponse": quote,
-                        "userPublicKey": str(WALLET.pubkey()),
-                        "wrapAndUnwrapSol": True,
-                        "prioritizationFeeLamports": 5000
-                    },
-                    timeout=30
-                )
-                if swap_resp.status_code == 200:
-                    break
-                elif swap_resp.status_code == 429:
-                    wait = 3 ** swap_attempt
-                    print(f"Swap rate limited, retry in {wait}s")
-                    time.sleep(wait)
-                    continue
-                else:
-                    return False, f"Swap request failed: HTTP {swap_resp.status_code} {swap_resp.text[:150]}"
-            except Exception as e:
-                if swap_attempt < 2:
-                    print(f"Swap POST error ({swap_attempt+1}/3): {e}, retrying...")
-                    time.sleep(3)
-                    continue
-                return False, f"Swap request error: {e}"
-
-        if swap_resp is None or swap_resp.status_code != 200:
-            return False, "Swap request failed after retries"
-
-        swap_data = swap_resp.json()
-
-        # Sign and send with retry
-        tx = VersionedTransaction.from_bytes(base64.b64decode(swap_data["swapTransaction"]))
-        signed = VersionedTransaction(tx.message, [WALLET])
-
-        for send_attempt in range(3):
-            try:
-                result = CLIENT.send_raw_transaction(
-                    bytes(signed),
-                    opts=TxOpts(skip_preflight=True, preflight_commitment="confirmed")
-                )
-                tx_hash = result.value if hasattr(result, "value") else str(result)
+                confirm = CLIENT.get_signature_statuses([str(tx_hash)])
+                if confirm and confirm.value and confirm.value[0] and confirm.value[0].confirmation_status:
+                    print(f"Sell TX confirmed: {str(tx_hash)[:20]}... status={confirm.value[0].confirmation_status}")
+            except:
+                pass
+            return True, tx_hash
+        except Exception as e:
+            err = str(e)
+            if "429" in err or "too many requests" in err.lower():
+                _mark_429_hit()
+                wait = 5 + (5 * send_attempt)
+                print(f"RPC rate limited (sell), retry in {wait}s")
+                time.sleep(wait)
+                continue
+            elif send_attempt < 2:
+                print(f"Send TX error ({send_attempt+1}/3): {err}, retrying...")
                 time.sleep(2)
-                try:
-                    confirm = CLIENT.get_signature_statuses([str(tx_hash)])
-                    if confirm and confirm.value and confirm.value[0] and confirm.value[0].confirmation_status:
-                        print(f"Sell TX confirmed: {str(tx_hash)[:20]}... status={confirm.value[0].confirmation_status}")
-                except:
-                    pass
-                return True, tx_hash
-            except Exception as e:
-                err = str(e)
-                if "429" in err or "too many requests" in err.lower():
-                    wait = 3 ** send_attempt
-                    print(f"RPC rate limited, retry in {wait}s")
-                    time.sleep(wait)
-                    continue
-                elif send_attempt < 2:
-                    print(f"Send TX error ({send_attempt+1}/3): {err}, retrying...")
-                    time.sleep(2)
-                    continue
-                return False, f"Send TX failed: {err[:150]}"
-
-    except Exception as e:
-        return False, str(e)
+                continue
+            return False, f"Send TX failed: {err[:150]}"
 
 def process_sell_signal(signal):
     """Process sell with risk checks"""

@@ -1,33 +1,48 @@
-[2026-06-11T10:05:42.767653+00:00] TradeBot Daemon
+[2026-06-14T10:38:46.650129+00:00] TradeBot Daemon
 --- RESEARCH ---
 Research complete: 17 tokens analyzed
-Buy opportunities: 0
+Buy opportunities: 4
 Sell signals: 0
+  BUY SPCX: conf=90 rec=STRONG_BUY price=$0.00026650
+  BUY XRPS: conf=90 rec=STRONG_BUY price=$0.00070470
+  BUY SPCX69: conf=75 rec=STRONG_BUY price=$0.00077270
+  BUY SIEGE: conf=75 rec=STRONG_BUY price=$0.00014790
 --- SCOUT ---
-SOL: 0.0144 | USDC: $22.23
-Tokens on chain: 5
-Valuable tokens: 2
-  CDoFug7K6g: 3811.8198 ($40.23)
-  EPjFWdd5Au: 22.2346 ($22.23)
-  EhHyfjRwj2: 3966.2211 ($15.55)
-  USDC cash: $22.23
+SOL: 0.0009 | USDC: $77.18
+Tokens on chain: 3
+Valuable tokens: 0
+  EPjFWdd5Au: 77.1798 ($77.18)
+  USDC cash: $77.18
 
 Scout signals: 0
-[QUEUE] 0 signal(s) written (0 buys, 0 sells)
+  [BUY SIGNAL] SPCX: STRONG_BUY (conf: 90)
+  [BUY SIGNAL] XRPS: STRONG_BUY (conf: 90)
+  [BUY SIGNAL] SPCX69: STRONG_BUY (conf: 75)
+  [BUY SIGNAL] SIEGE: STRONG_BUY (conf: 75)
+[QUEUE] 4 signal(s) written (4 buys, 0 sells)
 
 --- EXECUTOR ---
+[SOL GAS] Very low: 0.000896. Refilling $0.62 USDC ΓåÆ SOL...
+[SOL GAS] Refill too small ($0.62). Skipping.
+[QUEUE] 4 pending ΓåÆ prioritizing 0 sells + 1 best buy (skipped 3 other buys)
+  [SAFETY] Checking SPCX before buy...
+  [SAFETY OK] SPCX: score=75/100
+  [BALANCE CHECK] USDC before BUY SPCX: $77.18
+Available USDC: $77.18 | Buying with: $30.87 (40%)
+Quote: inAmount=30870000 outAmount=115343047090 slippageBps=50
+TX 29zLAMpzmWf1Kb1754ye... did not confirm after verification - treating as failed
 
 --- SUMMARY ---
-USDC: $22.23
-SOL: 0.0144
-Total: $78.95
-Realized PnL: $-82.50
-Open positions: 2
+USDC: $77.18
+SOL: 0.0009
+Total: $77.24
+Realized PnL: $5266471.75
+Open positions: 0
 No trades executed this cycle
 
 [DISCORD_REPORT]
->Trading paused - 3 consecutive losses
->Positions: CDoFug7K6g: $-0.31 (-0.8%) | EhHyfjRwj2: $+0.17 (+1.1%)
->USDC: $22.23 | Total: $78.95
+>**BUY SPCX FAILED**: TX not confirmed - likely failed
+>USDC: $77.18 | Total: $77.24
+>Watching: SPCX (STRONG_BUY, conf 90)
 ==================================================
 [CYCLE END]

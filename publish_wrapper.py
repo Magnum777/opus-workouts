@@ -1,15 +1,27 @@
-import sys, json, os
-sys.path.insert(0, r"C:\Users\compj\.openclaw\workspace\scripts\content-nova")
-from publisher import create_post
+import sys
+sys.path.insert(0, r'C:\Users\compj\.openclaw\workspace\scripts\content-nova')
 
-with open(r"C:\Users\compj\.openclaw\workspace\article.html", "r", encoding="utf-8") as f:
-    content = f.read()
+# Read the content from file
+with open(r'C:\Users\compj\.openclaw\workspace\article.html', 'r', encoding='utf-8') as f:
+    content = f.read().strip()
 
-res = create_post(
-    "aitoolalliance.com",
-    "Top AI Writing Tools of 2026: Features, Pricing & Picks",
-    content,
-    status="publish",
-    excerpt="Compare the best AI writing tools of 2026 including Jasper, Copy.ai, ChatGPT, Claude, and Gemini. Find the right tool for your workflow and budget."
-)
-print(json.dumps(res, indent=2))
+title = 'AI Customer Service Automation: A 2026 Enterprise Playbook'
+
+# Now call publisher
+from publisher import main
+import argparse
+
+# Build args like: publisher.py aibusinessinsider.org create --title "..." --content "..." --status publish
+sys.argv = [
+    'publisher.py',
+    'aibusinessinsider.org',
+    'create',
+    '--title', title,
+    '--content', content,
+    '--status', 'publish'
+]
+
+try:
+    main()
+except SystemExit as e:
+    print(f'Exit code: {e.code}')
