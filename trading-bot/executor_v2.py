@@ -39,7 +39,8 @@ USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 #   Refill capped at MAX_REFILL_PCT of current USDC per cycle
 SOL_TARGET_FLOOR = 0.01       # 0.01 SOL absolute minimum (~2000 txs)
 SOL_RESERVE_PCT = 0.005       # 0.5% of portfolio as gas reserve
-MAX_REFILL_PCT = 0.05          # max 5% of USDC per cycle for refill
+MAX_REFILL_PCT = 0.15          # max 15% of USDC per cycle for refill
+MIN_REFILL_FLOOR = 5.0          # minimum SOL refill in USD (Jupiter has min swap thresholds)
 
 # Trading params - used by daemon and executor
 BUY_SIZES = [4.0, 8.0, 12.0]  # Legacy, unused - sizing now in determine_buy_size()
@@ -204,13 +205,9 @@ def ensure_sol_for_gas():
     deficit_sol = target_sol - sol_bal
     deficit_usd = deficit_sol * sol_price
     max_refill = usdc_bal * MAX_REFILL_PCT
-    refill_amount = min(deficit_usd, max_refill)
+    refill_amount = min(max(deficit_usd, MIN_REFILL_FLOOR), max_refill)
     
     print(f"[SOL GAS] Very low: {sol_bal:.6f}. Refilling ${refill_amount:.2f} USDC → SOL...")
-    
-    if refill_amount < 1.0:
-        print(f"[SOL GAS] Refill too small (${refill_amount:.2f}). Skipping.")
-        return False
     
     success, msg = execute_buy_live(SOL_MINT, "SOL", refill_amount)
     if success:

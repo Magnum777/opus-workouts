@@ -17,6 +17,7 @@
 07:30 | ██   Iris-all-accounts-digest            (deepseek-v4-flash, 180s, medium)
 08:00 | ██   EveOnion-NewsScan                   (deepseek-v4-flash, 300s, medium)
 09:00 | ██   Nova-Ops-Assessment                   (deepseek-v4-flash, 180s, light)
+09:15 | ██   TradeBot-DailyResearch              (deepseek-v4-flash, 300s, medium)  [NEW - szzg007 research pipeline]
 09:30 | ████ EveOnion-Article (Tue/Fri only)       (kimi-k2.6, 300s, heavy)
 10:00 | ██   TradeBot-Analytics (Mon only)          (kimi-k2.6, 180s, light)
 10:00 | ██   EveOnion-PersonaScan (every 3 days)    (deepseek-v4-flash, 300s, medium)
@@ -91,13 +92,14 @@ Checklist:
 
 ## Cron Registry (by Project)
 
-### TradeBot (4 crons)
-| Name | ID | Schedule | Model | Timeout |
-|------|-----|----------|-------|---------|
-| TradeBot-Consolidated | 78b66703 | every 5m | deepseek-v4-flash | 600s |
-| TradeBot-PortfolioOverview | 0eb02ac4 | every 4h | deepseek-v4-flash | 180s |
-| TradeBot-WeeklyReview | 2be91036 | Sat 2pm | deepseek-v4-flash | 600s |
-| TradeBot-Analytics | c8153b73 | Mon 10am | kimi-k2.6 | 180s |
+### TradeBot (5 crons)
+| Name | ID | Schedule | Model | Timeout | Notes |
+|------|-----|----------|-------|---------|-------|
+| TradeBot-Consolidated | 78b66703 | every 5m | deepseek-v4-flash | 600s | Main daemon |
+| TradeBot-PortfolioOverview | 0eb02ac4 | every 4h | deepseek-v4-flash | 180s | Balance snapshot |
+| TradeBot-WeeklyReview | 2be91036 | Sat 2pm | deepseek-v4-flash | 600s | Health check |
+| TradeBot-Analytics | c8153b73 | Mon 10am | kimi-k2.6 | 180s | Performance |
+| TradeBot-DailyResearch | 457a5ae7 | 9:15am daily | deepseek-v4-flash | 300s | szzg007 research brief |
 
 ### Content Empire (3 crons)
 | Name | ID | Schedule | Model | Timeout |
@@ -135,13 +137,13 @@ Checklist:
 | Weekly-SkillUpdate | ac9ba7e1 | 6am Mon | deepseek-v4-flash | 180s |
 | Weekly-SkillDiscovery | 0b0873dc | 6pm Fri | deepseek-v4-flash | 180s |
 
-## Total: 24 crons
+## Total: 25 crons (was 24)
 - `kimi-k2.6`: **7** crons (creative/writing heavy)
-- `deepseek-v4-flash`: **16** crons (ops/scans/fast)
+- `deepseek-v4-flash`: **17** crons (ops/scans/fast)
 - Continuous jobs: 2 (every 5m, every 4h)
 
 ## Next Review
 Check this doc before adding any new cron. Update after every change.
 
 ## Last Updated
-2026-06-07 — added spam-pattern-discovery (6:45am daily), changed spam-sweep to every 4h.
+2026-06-14 — added TradeBot-DailyResearch (9:15am), integrated szzg007 + agent-workflow-playbook skills.

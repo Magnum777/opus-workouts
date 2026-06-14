@@ -200,10 +200,39 @@ def scan_for_signals():
     
     return signals
 
+def get_latest_research_guidance():
+    """Read latest research brief for scout context"""
+    research_dir = os.path.join(os.path.dirname(__file__), "research")
+    try:
+        files = sorted([f for f in os.listdir(research_dir) if f.endswith('.md')], reverse=True)
+        if not files:
+            return None
+        latest = os.path.join(research_dir, files[0])
+        with open(latest, 'r') as f:
+            content = f.read()
+        # Extract Scout Guidance section
+        if "## Scout Guidance" in content:
+            section = content.split("## Scout Guidance")[1].split("##")[0].strip()
+            return section
+        return None
+    except:
+        return None
+
+
 def main():
     """Main scout routine"""
     print(f"[{datetime.now(timezone.utc).isoformat()}] === V2 SCOUT ===")
     print(f"Wallet: {WALLET.pubkey()}")
+    
+    # Load research context
+    research = get_latest_research_guidance()
+    if research:
+        print(f"\n[RESEARCH CONTEXT] Latest briefing:")
+        for line in research.split('\n')[:8]:  # First 8 lines
+            if line.strip():
+                print(f"  {line.strip()}")
+    else:
+        print(f"\n[RESEARCH CONTEXT] No briefing available")
     
     # Get blockchain data
     sol_balance = get_sol_balance()
