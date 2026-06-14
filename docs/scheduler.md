@@ -93,13 +93,13 @@ Checklist:
 ## Cron Registry (by Project)
 
 ### TradeBot (5 crons)
-| Name | ID | Schedule | Model | Timeout | Notes |
-|------|-----|----------|-------|---------|-------|
-| TradeBot-Consolidated | 78b66703 | every 5m | deepseek-v4-flash | 600s | Main daemon |
-| TradeBot-PortfolioOverview | 0eb02ac4 | every 4h | deepseek-v4-flash | 180s | Balance snapshot |
-| TradeBot-WeeklyReview | 2be91036 | Sat 2pm | deepseek-v4-flash | 600s | Health check |
-| TradeBot-Analytics | c8153b73 | Mon 10am | kimi-k2.6 | 180s | Performance |
-| TradeBot-DailyResearch | 457a5ae7 | 9:15am daily | deepseek-v4-flash | 300s | szzg007 research brief |
+| Name | ID | Schedule | Model | Timeout | API Impact |
+|------|-----|----------|-------|---------|------------|
+| TradeBot-Consolidated | 78b66703 | every 5m | deepseek-v4-flash | 600s | Jupiter + Helius (heavy) |
+| TradeBot-PortfolioOverview | 0eb02ac4 | every 4h | deepseek-v4-flash | 180s | Helius (light) |
+| TradeBot-WeeklyReview | 2be91036 | Sat 2pm | deepseek-v4-flash | 600s | Helius (light) |
+| TradeBot-Analytics | c8153b73 | Mon 10am | kimi-k2.6 | 180s | Helius (light) |
+| TradeBot-DailyResearch | 457a5ae7 | 9:15am daily | deepseek-v4-flash | 300s | Web Search (3 calls)
 
 ### Content Empire (3 crons)
 | Name | ID | Schedule | Model | Timeout |
@@ -137,13 +137,39 @@ Checklist:
 | Weekly-SkillUpdate | ac9ba7e1 | 6am Mon | deepseek-v4-flash | 180s |
 | Weekly-SkillDiscovery | 0b0873dc | 6pm Fri | deepseek-v4-flash | 180s |
 
-## Total: 25 crons (was 24)
+## Total: 26 crons (was 24)
 - `kimi-k2.6`: **7** crons (creative/writing heavy)
-- `deepseek-v4-flash`: **17** crons (ops/scans/fast)
+- `deepseek-v4-flash`: **18** crons (ops/scans/fast)
 - Continuous jobs: 2 (every 5m, every 4h)
+
+## API Rate Limit Budget (TradeBot)
+| API | Daily Calls | Limit | Buffer | Status |
+|-----|-----------|-------|--------|--------|
+| Jupiter (lite-api) | ~3,000 | ~5,000/day | 40% | Safe |
+| Helius RPC | ~500 | 50K/day | 99% | Very Safe |
+| DexScreener | ~50 | No known limit | — | Safe |
+| Web Search (Ollama) | ~30 | ~100/day | 70% | Safe |
+
+### Rate Limiting in Code
+- **429 cooldown**: 10-min shared cooldown across all modules
+- **Jupiter quotes**: max 3 retries with 5s backoff
+- **DexScreener**: 0.5s delay between pair queries
+- **Research module**: 1.5s sleep between Jupiter price calls
+- **Daemon**: stops execution on 429, resumes next cycle
+
+### TradeBot Cron Coordination
+| Cron | When | Calls API | Impact |
+|------|------|-----------|--------|
+| TradeBot-Consolidated | Every 5m | Jupiter, Helius | Main load — 288/day |
+| TradeBot-PortfolioOverview | Every 4h | Helius | Light — 6/day |
+| TradeBot-DailyResearch | 9:15am | Web Search | 3 calls, writes brief |
+| TradeBot-WeeklyReview | Sat 2pm | Helius | Light — 1/week |
+| TradeBot-Analytics | Mon 10am | Helius | Light — 1/week |
+
+**Rule**: DailyResearch runs BEFORE Consolidated's busiest hours (after 9am), so brief is ready. No overlapping API calls between research and daemon.
 
 ## Next Review
 Check this doc before adding any new cron. Update after every change.
 
 ## Last Updated
-2026-06-14 — added TradeBot-DailyResearch (9:15am), integrated szzg007 + agent-workflow-playbook skills.
+2026-06-14 — integrated research pipeline into TradeBot daemon. Added API rate limit budget. TradeBot crons now coordinate: DailyResearch feeds context into Consolidated daemon.
