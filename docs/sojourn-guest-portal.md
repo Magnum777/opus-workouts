@@ -22,11 +22,11 @@ By connecting to this network, you agree to the following terms:
 - Use of this network is at your own risk.
 
 **Time Limits**
-- Guest access is limited to 4 hours per session
+- Guest access is limited to 12 hours per session
 - Bandwidth is shared fairly among all users
 
 **Support**
-Having trouble connecting? Ask a staff member or visit the welcome desk.
+Having trouble connecting? Email: sojournchurchtech@gmail.com
 
 ### Checkbox
 [ ] I have read and agree to the Terms of Use above.
@@ -42,7 +42,7 @@ Having trouble connecting? Ask a staff member or visit the welcome desk.
 |---------|-------|
 | Authentication | Hotspot (Terms of Use) |
 | Landing Page | External (use custom HTML if available, or UniFi built-in) |
-| Session Timeout | 4 hours (240 minutes) |
+| Session Timeout | 12 hours (720 minutes) |
 | Bandwidth Limit (down) | 10 Mbps |
 | Bandwidth Limit (up) | 5 Mbps |
 | VLAN | 30 (sojourn-guest) |
@@ -96,9 +96,9 @@ Having trouble connecting? Ask a staff member or visit the welcome desk.
             <li>Use of this network is at your own risk.</li>
         </ul>
         
-        <p><strong>Time Limits:</strong> Guest access is limited to 4 hours per session. Bandwidth is shared fairly.</p>
+        <p><strong>Time Limits:</strong> Guest access is limited to 12 hours per session. Bandwidth is shared fairly.</p>
         
-        <p><strong>Support:</strong> Having trouble? Ask a staff member or visit the welcome desk.</p>
+        <p><strong>Support:</strong> Having trouble? Email sojournchurchtech@gmail.com</p>
     </div>
     
     <form method="post" action="$auth_action">

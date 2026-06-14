@@ -190,7 +190,7 @@
    - Enable UniFi Guest Portal / Hotspot
    - Create custom landing page with church logo + disclaimer/terms of use
    - Require checkbox acceptance before granting internet access
-   - Set session timeout (e.g., 4 hours) and bandwidth limits
+   - Set session timeout (12 hours) and bandwidth limits
 9. ✅ Enable WPA3 if supported by all clients
 
 ### Phase 4: Guest Portal Content (needs your input)

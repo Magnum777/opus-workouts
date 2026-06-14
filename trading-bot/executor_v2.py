@@ -158,8 +158,7 @@ def _respectful_swap(quote, user_pk_str, wrap_sol=False, label="swap"):
                     "quoteResponse": quote,
                     "userPublicKey": user_pk_str,
                     "wrapAndUnwrapSol": wrap_sol,
-                    "prioritizationFeeLamports": 10000
-                    "computeUnitPriceMicroLamports": 10000,
+                    "prioritizationFeeLamports": 10000,
                 },
                 timeout=30
             )
