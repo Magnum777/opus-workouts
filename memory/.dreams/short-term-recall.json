@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-13T19:21:19.043Z",
+  "updatedAt": "2026-06-14T14:50:22.835Z",
   "entries": {
     "memory:memory/2026-05-07.md:1:28": {
       "key": "memory:memory/2026-05-07.md:1:28",
@@ -2248,21 +2248,23 @@
       "endLine": 28,
       "source": "memory",
       "snippet": "# 2026-06-04 -- DC Trip Planning + Memory Hygiene Session ## What happened today - Planned full DC trip itinerary (July 30 - August 2, 2026) - Fixed oversized MEMORY.md (12.1K -> ~3.5K chars) - Moved operational logs to daily files + .learnings/ ## DC Trip Details - **Flights:** Delta 378 (ATL->DCA, July 30, 8:55 PM) + Delta 832 (DCA->ATL, Aug 2, 8:50 PM). Conf F9CN7E - **Hotels:** Holiday Inn Washington Capitol - Natl Mall - Night 1 (July 30-31): Delta Stays Itinerary #73339138008660 - Nights 2-3 (July 31-Aug 2): IHG Confirmation #27602579, late checkout 2 PM - **Tours:** Pentagon (July 31, 11 AM), BEP (July 31, 2 PM) - **Saturday:** Arlington Cemetery, Postal Museum, dinner at The Wh",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3,
+      "totalScore": 4,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-04T05:03:18.527Z",
-      "lastRecalledAt": "2026-06-12T16:21:21.601Z",
+      "lastRecalledAt": "2026-06-14T14:50:18.828Z",
       "queryHashes": [
         "65d6810987ee",
         "ff36d1ce7ba6",
-        "b75f28ba429d"
+        "b75f28ba429d",
+        "8af0a604c8fe"
       ],
       "recallDays": [
         "2026-06-04",
-        "2026-06-12"
+        "2026-06-12",
+        "2026-06-14"
       ],
       "conceptTags": [
         "memory.md",
@@ -2313,23 +2315,25 @@
       "endLine": 26,
       "source": "memory",
       "snippet": "# 2026-05-31 — Late Night Session ## Gmail Spam Sweep Fixes - **Crash fix:** `gmail_spam_sweep.py` was hitting `KeyError: 'subject'` on emails with missing fields (Wrexham AFC). Fixed print statements to use `.get()` with safe fallbacks for `subject`, `from`, and `date`. - **Cron patches:** `compjunkie-daily-spam-sweep` was running every hour instead of twice daily. Fixed to `0 7,19 * * *` (7am + 7pm ET). Added `delivery: none` so it only reports when spam found or errors. Removed broken babysitter cron `spam-sweep-silence-switch`. ## Faster-Whisper Installed on MGD - `faster-whisper` installed with `base` model cached (~150MB) - Created `scripts/transcribe.py` — drop-in wrapper fo",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 4,
+      "totalScore": 5,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-04T15:45:26.595Z",
-      "lastRecalledAt": "2026-06-12T16:21:21.601Z",
+      "lastRecalledAt": "2026-06-14T14:50:18.828Z",
       "queryHashes": [
         "ce55363ef5e6",
         "03869dcec0ad",
         "536c701a6bc2",
-        "b75f28ba429d"
+        "b75f28ba429d",
+        "8af0a604c8fe"
       ],
       "recallDays": [
         "2026-06-04",
         "2026-06-09",
-        "2026-06-12"
+        "2026-06-12",
+        "2026-06-14"
       ],
       "conceptTags": [
         "gmail-spam-sweep.py",
@@ -2562,26 +2566,28 @@
       "endLine": 150,
       "source": "memory",
       "snippet": "### Kybernauts (from earlier) - `kybernauts_reddit_post.md`, `forum_bumps.md`, `twitter_thread.md`, `poster_prompt.md` ### TradeBot Strategy Memo (from earlier) - `tradebot_strategy_memo.md` — Deep market analysis, $92 portfolio recommendations ## WordPress Publishing (Partial) - aicofounderstack.com: 2 articles published ✅ - \"How I Built a $49 AI Product in 48 Hours\" → https://www.aicofounderstack.com/2026/05/31/how-i-built-a-49-ai-product-in-48-hours-step-by-step/ - \"AI Agents vs Traditional SaaS\" → https://www.aicofounderstack.com/2026/05/31/ai-agents-vs-traditional-saas-why-the-future-is-autonomous/ - aitoolalliance.com: 2 articles failed (401 — app password expired/permi",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 6,
+      "totalScore": 7,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-08T14:46:09.491Z",
-      "lastRecalledAt": "2026-06-13T19:21:19.043Z",
+      "lastRecalledAt": "2026-06-14T14:50:18.828Z",
       "queryHashes": [
         "74945d49070b",
         "98e9968ccd1b",
         "96ced38d049d",
         "b75f28ba429d",
         "c575ea18f8fc",
-        "681084e45a14"
+        "681084e45a14",
+        "8af0a604c8fe"
       ],
       "recallDays": [
         "2026-06-08",
         "2026-06-10",
         "2026-06-12",
-        "2026-06-13"
+        "2026-06-13",
+        "2026-06-14"
       ],
       "conceptTags": [
         "kybernauts-reddit-post.md",
@@ -2601,25 +2607,28 @@
       "endLine": 132,
       "source": "memory",
       "snippet": "### D. WordPress Articles (6) ✅ - `wp_aitool_1_claude_vs_gpt.md` — aitoolalliance.com - `wp_aitool_2_best_tools.md` — aitoolalliance.com - `wp_aibusiness_1_agency_scaling.md` — aibusinessinsider.org - `wp_aibusiness_2_100_stack.md` — aibusinessinsider.org - `wp_aicofounder_1_48hour_product.md` — aicofounderstack.com - `wp_aicofounder_2_agents_vs_saas.md` — aicofounderstack.com ### E. Product Hunt Launch Package ✅ - `ph_launch_post.md` — Tagline, description, maker comment, CTA - `ph_launch_timeline.md` — 7-day pre + launch day + 7-day post - `ph_faq.md` — 10 objections ### F. Twitter Marketing Thread ✅ - `twitter_tradebot_thread.md` — Hook + 11-tweet story + offer + engagemen",
-      "recallCount": 5,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 5,
+      "totalScore": 7,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-08T14:46:09.491Z",
-      "lastRecalledAt": "2026-06-13T19:21:19.043Z",
+      "lastRecalledAt": "2026-06-14T14:50:22.835Z",
       "queryHashes": [
         "74945d49070b",
         "98e9968ccd1b",
         "96ced38d049d",
         "c575ea18f8fc",
-        "681084e45a14"
+        "681084e45a14",
+        "8af0a604c8fe",
+        "ac0c3a333c19"
       ],
       "recallDays": [
         "2026-06-08",
         "2026-06-10",
         "2026-06-12",
-        "2026-06-13"
+        "2026-06-13",
+        "2026-06-14"
       ],
       "conceptTags": [
         "gpt",
@@ -2960,18 +2969,20 @@
       "endLine": 105,
       "source": "memory",
       "snippet": "- `RE_FAKE_DISPLAY` expanded with `hottie|booty|nibble|bedroom|scoop` - **Cron frequency reduced:** 2× daily (7am+7pm) → **once daily 7am ET** to avoid GOG quota exhaustion - **Iris installed** from ClawHub (`v1.0.4`) — extracted to `skills/iris/iris.py` - **Iris-compjunkie-digest** cron created (daily 7:30am ET) — triage report after spam sweep - **Manual cleanup:** Trashed 4 spam threads that leaked through (Santiago Trevino hotmail, Harvey Sullivan .com.br, Karen Johnson gmail, Linda Lewis outlook) - **Verified clean:** 50 inbox threads, 0 sexual spam remaining ## All-Deliverables Burn — Complete (2026-06-01 ~6:15 PM ET) **Total output:** 25 files, ~135KB, across all workstre",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 2,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-12T14:48:27.260Z",
-      "lastRecalledAt": "2026-06-12T14:48:27.260Z",
+      "lastRecalledAt": "2026-06-14T14:50:18.828Z",
       "queryHashes": [
-        "63d02bf755e2"
+        "63d02bf755e2",
+        "8af0a604c8fe"
       ],
       "recallDays": [
-        "2026-06-12"
+        "2026-06-12",
+        "2026-06-14"
       ],
       "conceptTags": [
         "re-fake-display",
@@ -2991,18 +3002,20 @@
       "endLine": 168,
       "source": "memory",
       "snippet": "3. **Product Hunt launch:** Follow `ph_launch_timeline.md` — tease 7 days before, launch on target date 4. **TradeBot guide:** Convert `tradebot_guide.md` to PDF (can use Pandoc or any markdown-to-PDF tool) 5. **Nova AI V3:** Review architecture doc, decide on Q3 commitment and resource allocation ## Multi-Account Gmail Setup (Evening session) - **4 accounts wired:** compjunkie@gmail.com, jhenderson87@gmail.com, layeredmediallc@gmail.com, nova.cofounder@gmail.com - **App passwords stored in:** `scripts/.gmail_accounts.json` (readable by isolated crons — env vars don't persist) - **New IMAP spam sweep:** `gmail_spam_sweep_v2.py` — replaces broken GOG-based version - No rate limits",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 2,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-12T16:21:21.601Z",
-      "lastRecalledAt": "2026-06-12T16:21:21.601Z",
+      "lastRecalledAt": "2026-06-14T14:50:18.828Z",
       "queryHashes": [
-        "b75f28ba429d"
+        "b75f28ba429d",
+        "8af0a604c8fe"
       ],
       "recallDays": [
-        "2026-06-12"
+        "2026-06-12",
+        "2026-06-14"
       ],
       "conceptTags": [
         "ph-launch-timeline.md",
@@ -3053,20 +3066,22 @@
       "endLine": 11,
       "source": "memory",
       "snippet": "## Content-Nova Publication - 2026-06-11 04:00 - **Site:** aicofounderstack.com - **Post:** Nova TradeBot Hits Realized PnL in 30 Days -- Here is the Safety Architecture That Makes It Possible - **Post ID:** 569 - **Featured Image ID:** 570 - **URL:** https://www.aicofounderstack.com/2026/06/11/nova-tradebot-hits-realized-pnl-in-30-days-here-is-the-safety-architecture-that-makes-it-possible/ - **Type:** Product-focused case study / sales content - **Word count:** ~1,400 words - **Topic:** TradeBot real PnL breakdown (/45 trades/59% win rate) + EVE Assets Viewer build case study + AI cofounder market analysis + Nova V3 Airlock teaser",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2,
+      "totalScore": 3,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-13T02:39:51.864Z",
-      "lastRecalledAt": "2026-06-13T19:21:19.043Z",
+      "lastRecalledAt": "2026-06-14T14:50:22.835Z",
       "queryHashes": [
         "c575ea18f8fc",
-        "681084e45a14"
+        "681084e45a14",
+        "ac0c3a333c19"
       ],
       "recallDays": [
         "2026-06-12",
-        "2026-06-13"
+        "2026-06-13",
+        "2026-06-14"
       ],
       "conceptTags": [
         "content-nova",
@@ -3141,6 +3156,192 @@
         "research",
         "posts",
         "clawincome"
+      ]
+    },
+    "memory:memory/2026-06-14.md:1:8": {
+      "key": "memory:memory/2026-06-14.md:1:8",
+      "path": "memory/2026-06-14.md",
+      "startLine": 1,
+      "endLine": 8,
+      "source": "memory",
+      "snippet": "## 2026-06-14 ### 08:42 — Iris Dealer Reply Check (cron) - Scanned jhenderson87@gmail.com inbox - No new dealer replies since June 12 flag - Kayla Bloodworth (Auto Gallery Chevrolet GMC) thread still pending — no new responses to OTD negotiation - Flagged CarGurus emails are just automated listings, not replies",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-14T14:50:18.828Z",
+      "lastRecalledAt": "2026-06-14T14:50:18.828Z",
+      "queryHashes": [
+        "8af0a604c8fe"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "gmail.com",
+        "iris",
+        "dealer",
+        "reply",
+        "check",
+        "cron",
+        "scanned",
+        "jhenderson87"
+      ]
+    },
+    "memory:memory/archive/2026-02-17.md:1:54": {
+      "key": "memory:memory/archive/2026-02-17.md:1:54",
+      "path": "memory/archive/2026-02-17.md",
+      "startLine": 1,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "# 2026-02-17 ## Session: Nova Memory Architecture + Products Update ### What Happened **Integrations Tested:** - Gmail via Maton API - WORKS (nova.cofounder@gmail.com) - Google Drive via Maton - WORKS **Skills Installed (12 total):** - email-daily-summary, google-calendar, playwright-scraper-skill - fiverr, memory-hygiene, x-twitter - elite-longterm-memory, edge-tts, upload-post - upwork, freelance-proposal-engine, prompt-guard **Memory System Upgraded:** - Created SESSION-STATE.md (WAL protocol - write before responding) - Created memory folders: decisions/, lessons/, preferences/ - Updated AGENTS.md with memory architecture - Ripped out Mem0 (deprecated) - replaced",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-14T14:50:18.828Z",
+      "lastRecalledAt": "2026-06-14T14:50:18.828Z",
+      "queryHashes": [
+        "8af0a604c8fe"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "nova.cofounder",
+        "gmail.com",
+        "email-daily-summary",
+        "google-calendar",
+        "playwright-scraper-skill",
+        "memory-hygiene",
+        "x-twitter",
+        "elite-longterm-memory"
+      ]
+    },
+    "memory:memory/2026-05-31.md:63:80": {
+      "key": "memory:memory/2026-05-31.md:63:80",
+      "path": "memory/2026-05-31.md",
+      "startLine": 63,
+      "endLine": 80,
+      "source": "memory",
+      "snippet": "- **Nova-Ops-Assessment** cron created (daily 9am ET) — runs `agent_turn` with `ollama/deepseek-v4-flash:cloud`, reports to #nova - **3 failing crons patched** with error handling + logging: - `Kybernauts-ForumBump` — bumped to 600s, browser failsafe added - `Kybernauts-Propaganda` — auth check + error logging - `compjunkie-daily-spam-sweep` — error logging + 180s timeout - Reactive skill injection: debug-pro, browser-use load only when cron fails 2+ times - Daily schedule (not weekly) during shakeout phase ## Gmail Spam Sweep — Full Fix (June 1 AM) - **Root cause found:** `@(gmail|hotmail|outlook)\\.com$` regex failed because GOG `from` field includes trailing `>` (e.g., `Lin",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-14T14:50:18.828Z",
+      "lastRecalledAt": "2026-06-14T14:50:18.828Z",
+      "queryHashes": [
+        "8af0a604c8fe"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "nova-ops-assessment",
+        "agent-turn",
+        "ollama/deepseek-v4-flash",
+        "kybernauts-forumbump",
+        "kybernauts-propaganda",
+        "compjunkie-daily-spam-sweep",
+        "debug-pro",
+        "browser-use"
+      ]
+    },
+    "memory:memory/2026-05-31.md:198:224": {
+      "key": "memory:memory/2026-05-31.md:198:224",
+      "path": "memory/2026-05-31.md",
+      "startLine": 198,
+      "endLine": 224,
+      "source": "memory",
+      "snippet": "- **Status:** Form filled, scheduled for midnight tonight (2026-06-01 00:00 ET) - **Investor form:** All 5 fields answered (founder bio, why idea, competitors, revenue, extra notes) - **Copy saved:** `ph_founder_bio.txt`, `ph_why_this_idea.txt`, `ph_competitors.txt`, `ph_revenue.txt`, `ph_investor_notes.txt` --- ## Product Hunt Launch Form Completed (Evening) - **Title:** Nova AI Cofounder Quick Start Guide - **Tagline:** Deploy an AI coworker in 30 minutes. No code, no cloud, no subscription. - **Description:** 498 chars — hits pain, solution, outcomes, social proof - **Tags:** AI, Developer Tools, Productivity, Automation, No-Code - **Maker comment:** $50 → $49 stack, AI han",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-14T14:50:22.835Z",
+      "lastRecalledAt": "2026-06-14T14:50:22.835Z",
+      "queryHashes": [
+        "ac0c3a333c19"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "ph-founder-bio.txt",
+        "ph-why-this-idea.txt",
+        "ph-competitors.txt",
+        "ph-revenue.txt",
+        "ph-investor-notes.txt",
+        "no-code",
+        "status",
+        "form"
+      ]
+    },
+    "memory:memory/2026-06-08.md:1:12": {
+      "key": "memory:memory/2026-06-08.md:1:12",
+      "path": "memory/2026-06-08.md",
+      "startLine": 1,
+      "endLine": 12,
+      "source": "memory",
+      "snippet": "## Content-Nova Publication - 2026-06-08 04:03 - **Site:** aicofounderstack.com - **Post:** The Trade That Proved Nova Works: How a ,672 JUP Position Changed Everything - **Post ID:** 560 - **Featured Image ID:** 561 - **URL:** https://www.aicofounderstack.com/2026/06/08/the-trade-that-proved-nova-works-how-a-672-jup-position-changed-everything/ - **Type:** Product-focused case study / sales content - **Word count:** ~1,200 words - **Topic:** TradeBot + JUP win + AI cofounder market analysis + Nova V3 architecture",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-14T14:50:22.835Z",
+      "lastRecalledAt": "2026-06-14T14:50:22.835Z",
+      "queryHashes": [
+        "ac0c3a333c19"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "content-nova",
+        "aicofounderstack.com",
+        "product-focused",
+        "content",
+        "nova",
+        "publication",
+        "site",
+        "post"
+      ]
+    },
+    "memory:memory/2026-06-13.md:1:12": {
+      "key": "memory:memory/2026-06-13.md:1:12",
+      "path": "memory/2026-06-13.md",
+      "startLine": 1,
+      "endLine": 12,
+      "source": "memory",
+      "snippet": "# 2026-06-13 ## Content-Nova Publication - 2026-06-13 04:03 - **Site:** aicofounderstack.com - **Post:** How We Built a 62-Billion ISK Asset Tracker in 48 Hours: The Real Cost of AI-Powered Development - **Post ID:** 575 - **Featured Image:** FAILED (Unsplash API 401) - **URL:** https://www.aicofounderstack.com/2026/06/13/how-we-built-a-62-billion-isk-asset-tracker-in-48-hours-the-real-cost-of-ai-powered-development/ - **Type:** Behind-the-scenes build case study / sales content - **Word count:** ~1,500 words - **Topic:** EVE Assets Viewer build breakdown (48h, compute, 1,200 LOC) + 3 real bugs fixed + Devin market context + TradeBot update (46 trades, 55.6% WR, .44 realized PnL)",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-14T14:50:22.835Z",
+      "lastRecalledAt": "2026-06-14T14:50:22.835Z",
+      "queryHashes": [
+        "ac0c3a333c19"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "content-nova",
+        "aicofounderstack.com",
+        "62-billion",
+        "ai-powered",
+        "behind-the-scenes",
+        "55.6",
+        "content",
+        "nova"
       ]
     }
   }

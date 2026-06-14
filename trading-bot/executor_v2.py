@@ -158,7 +158,8 @@ def _respectful_swap(quote, user_pk_str, wrap_sol=False, label="swap"):
                     "quoteResponse": quote,
                     "userPublicKey": user_pk_str,
                     "wrapAndUnwrapSol": wrap_sol,
-                    "prioritizationFeeLamports": 5000
+                    "prioritizationFeeLamports": 10000
+                    "computeUnitPriceMicroLamports": 10000,
                 },
                 timeout=30
             )
@@ -270,14 +271,14 @@ def execute_buy_live(mint, token_name, usdc_amount):
         try:
             result = CLIENT.send_raw_transaction(
                 bytes(signed),
-                opts=TxOpts(skip_preflight=True, preflight_commitment="confirmed")
+                opts=TxOpts(skip_preflight=True, max_retries=5)
             )
             tx_hash = result.value if hasattr(result, "value") else str(result)
-            # Brief wait for confirmation
-            time.sleep(3)
-            # Verify tx confirmed - if not confirmed within timeout, assume failed
+            # Extended wait — Jupiter swaps on low-cap tokens can take 10-20s
+            time.sleep(5)
+            # Verify tx confirmed (up to ~20s total)
             confirmed = False
-            for verify_attempt in range(5):
+            for verify_attempt in range(15):
                 try:
                     confirm = CLIENT.get_signature_statuses([str(tx_hash)])
                     if confirm and confirm.value and confirm.value[0]:
@@ -294,7 +295,7 @@ def execute_buy_live(mint, token_name, usdc_amount):
                 time.sleep(1)
 
             if not confirmed:
-                print(f"TX {str(tx_hash)[:20]}... did not confirm after verification - treating as failed")
+                print(f"TX {str(tx_hash)[:20]}... did not confirm after ~20s - treating as failed")
                 return False, f"TX not confirmed - likely failed"
 
             return True, tx_hash
@@ -329,17 +330,31 @@ def execute_sell_live(mint, token_name, amount_raw):
         try:
             result = CLIENT.send_raw_transaction(
                 bytes(signed),
-                opts=TxOpts(skip_preflight=True, preflight_commitment="confirmed")
+                opts=TxOpts(skip_preflight=True, max_retries=5)
             )
             tx_hash = result.value if hasattr(result, "value") else str(result)
-            time.sleep(2)
-            try:
-                confirm = CLIENT.get_signature_statuses([str(tx_hash)])
-                if confirm and confirm.value and confirm.value[0] and confirm.value[0].confirmation_status:
-                    print(f"Sell TX confirmed: {str(tx_hash)[:20]}... status={confirm.value[0].confirmation_status}")
-            except:
-                pass
-            return True, tx_hash
+            # Extended verification for sell TX
+            time.sleep(5)
+            confirmed = False
+            for verify_attempt in range(15):
+                try:
+                    confirm = CLIENT.get_signature_statuses([str(tx_hash)])
+                    if confirm and confirm.value and confirm.value[0]:
+                        status = confirm.value[0]
+                        if status.confirmation_status:
+                            confirmed = True
+                            print(f"Sell TX confirmed: {str(tx_hash)[:20]}... status={status.confirmation_status}")
+                            return True, tx_hash
+                        elif status.err:
+                            print(f"Sell TX failed on-chain: {status.err}")
+                            return False, f"Sell TX failed on-chain: {status.err}"
+                except:
+                    pass
+                time.sleep(1)
+
+            if not confirmed:
+                print(f"Sell TX {str(tx_hash)[:20]}... did not confirm after ~20s - returning anyway")
+                return True, tx_hash
         except Exception as e:
             err = str(e)
             if "429" in err or "too many requests" in err.lower():

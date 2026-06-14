@@ -1,5 +1,23 @@
 # Nova Learnings Archive
 
+## 2026-06-14 — Sojourn Church Network: RED LINES
+
+**Context:** Audited church's UniFi network. API key is read-only Site Manager token.
+
+**ABSOLUTE RULES from Opus (non-negotiable):**
+- **NEVER modify church network without EXPRESS written permission**
+- **CHANGE FREEZE WINDOWS:**
+  - Sundays: ALL DAY (church services)
+  - Tue-Fri: 7 AM - 7 PM (active hours)
+- **Read-only monitoring only** — no restarts, no config changes, no firmware updates
+- **Treat as production with zero-tolerance change policy**
+
+**Why:** Congregation depends on WiFi for services, livestreaming, check-ins. Downtime = service disruption.
+
+**Current status:** Read-only audit done. No changes made. Will not attempt writes without explicit "yes change X" from Opus, timed outside freeze windows.
+
+---
+
 ## 2026-06-06 — Cron Model Assignment Fix
 
 **Issue:** Kybernauts-Propaganda and Kybernauts-ForumBump crons were failing with "Agent couldn't generate a response" when assigned to `kimi-k2.6`.
