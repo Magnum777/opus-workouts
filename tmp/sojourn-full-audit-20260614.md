@@ -197,16 +197,16 @@
 **Drafted:** `docs/sojourn-guest-portal.md`
 
 Guest portal includes:
-- Welcome message + church branding
+- Welcome message + church branding (logo ready: `docs/media/sojourn-logo.png`)
 - Terms of Use (acceptable use, privacy, security warnings)
-- Time limits (4 hours) + bandwidth notice
-- Support contact info
+- Time limits (12 hours) + bandwidth notice
+- Support: sojournchurchtech@gmail.com
 - Checkbox acceptance requirement
 - **HTML template** ready for UniFi portal customization
-- **UniFi settings table** (VLAN 30, 10/5 Mbps limits, 4h timeout)
+- **UniFi settings table** (VLAN 30, 10/5 Mbps limits, 12h timeout)
 
 **Still needed from you:**
-- Church logo (PNG/SVG for portal page)
+- ~~Church logo~~ ✅ Done (black/white circular "SOJOURN CHURCH" logo)
 - Brand colors (hex codes if you want custom styling)
 - Any church-specific language you want added
 
