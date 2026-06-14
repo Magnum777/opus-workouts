@@ -12,13 +12,17 @@ import portfolio_db_v2 as pdb
 
 # Token metadata
 TOKENS = {
+    # Meme tokens (existing)
     "PENGU": {"mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv", "category": "meme"},
     "PUMP": {"mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn", "category": "meme"},
     "TRUMP": {"mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN", "category": "political_meme"},
+    "HANTA": {"mint": "2tXpgu2DLTsPUf9zFmuZmA4xrYxXKBTpVq9wAM7hzs9y", "category": "meme"},
+    # Utility/DEX tokens (existing)
     "JUP": {"mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN", "category": "utility"},
     "ORCA": {"mint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE", "category": "dex"},
     "RAY": {"mint": "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R", "category": "utility"},
-    "HANTA": {"mint": "2tXpgu2DLTsPUf9zFmuZmA4xrYxXKBTpVq9wAM7hzs9y", "category": "meme"}
+    # AI tokens (NEW - based on research)
+    "TAO": {"mint": "taoC6xyv2v8tDLcev4uaGUgV4vdQsWJrGft2kcBRrBY", "category": "ai"},
 }
 
 USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"

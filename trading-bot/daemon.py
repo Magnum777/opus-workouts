@@ -43,6 +43,7 @@ import portfolio_db_v2 as pdb
 import research_v2 as research
 import token_safety_check as safety
 import risk_manager as risk
+import research_context as rctx
 
 # ── Cycle-level 429 cooldown check ──
 _429_COOLDOWN = os.path.join(os.path.dirname(__file__), ".jupiter_429_cooldown.json")
@@ -70,6 +71,19 @@ def _mark_429_hit():
         pass
 
 print(f"[{datetime.now(timezone.utc).isoformat()}] TradeBot Daemon")
+
+# Load research context for this cycle BEFORE anything else
+research_context = rctx.load_research_context()
+if research_context and research_context.get('report_date'):
+    print(f"[RESEARCH CONTEXT] Loaded brief from {research_context['report_date']}")
+    print(f"  Mood: {research_context['market_mood']} | Risk: {research_context['risk_level']}")
+    if research_context.get('priority_sectors'):
+        print(f"  Priority: {', '.join(research_context['priority_sectors'])}")
+    if research_context.get('sizing_adjustment'):
+        print(f"  Sizing: {research_context['sizing_adjustment']}")
+else:
+    print("[RESEARCH CONTEXT] No brief available for this cycle")
+    research_context = None
 
 # Early exit: if Jupiter is rate-limited, just sync chain state and skip execution
 import time as _daemon_time
@@ -109,11 +123,46 @@ if not _is_jupiter_cooled():
 # Research needs to analyze tracked tokens for buy opportunities
 print("--- RESEARCH ---")
 try:
+    # If AI is trending in research, temporarily add AI tokens to watchlist
+    if research_context and research_context.get('ai_priority'):
+        if 'TAO' not in research.TOKENS:
+            print(f"  [RESEARCH CONTEXT] AI sector trending - adding TAO to research watchlist")
+            # TAO already added to TOKENS dict in research_v2.py
+    
     research_result = research.research_portfolio()
     print(f"Research complete: {len(research_result.get('analyses', []))} tokens analyzed")
     buy_signals = research.get_buy_signals(min_confidence=75)
     sell_signals = research.get_sell_signals()
-    print(f"Buy opportunities: {len(buy_signals)}")
+    
+    # Filter research signals by context
+    if research_context and research_context.get('avoid_tokens'):
+        avoid_list = [a.lower() for a in research_context['avoid_tokens']]
+        filtered = []
+        for bs in buy_signals:
+            token = bs.get('token', '').lower()
+            if not any(a in token for a in avoid_list):
+                filtered.append(bs)
+            else:
+                print(f"  [RESEARCH FILTER] Blocked {bs['token']} - on avoid list")
+        buy_signals = filtered
+    
+    # Prioritize AI tokens when AI is trending
+    if research_context and research_context.get('ai_priority'):
+        ai_tokens = [bs for bs in buy_signals if rctx._is_ai_token(bs.get('token', ''))]
+        non_ai = [bs for bs in buy_signals if not rctx._is_ai_token(bs.get('token', ''))]
+        buy_signals = ai_tokens + non_ai  # AI tokens first
+        if ai_tokens:
+            print(f"  [RESEARCH CONTEXT] Prioritizing {len(ai_tokens)} AI token(s)")
+    
+    # Deprioritize meme coins if research says reduce meme sizing
+    if research_context and research_context.get('sizing_adjustment') == 'reduce':
+        meme_signals = [bs for bs in buy_signals if bs.get('token') in ['PUMP', 'PENGU', 'HANTA']]
+        non_meme = [bs for bs in buy_signals if bs.get('token') not in ['PUMP', 'PENGU', 'HANTA']]
+        buy_signals = non_meme + meme_signals  # Meme coins last
+        if meme_signals:
+            print(f"  [RESEARCH CONTEXT] Deprioritizing {len(meme_signals)} meme token(s) - reduce sizing")
+
+    print(f"Buy opportunities after context filter: {len(buy_signals)}")
     print(f"Sell signals: {len(sell_signals)}")
     for bs in buy_signals:
         print(f"  BUY {bs['token']}: conf={bs['confidence']} rec={bs['recommendation']} price=${bs['current_price']:.8f}")
@@ -121,6 +170,8 @@ try:
         print(f"  SELL {ss['token']}: rec={ss['recommendation']} pnl={ss.get('pnl_pct', 0):.1f}%")
 except Exception as e:
     print(f"Research failed: {e}")
+    import traceback
+    traceback.print_exc()
     buy_signals = []
     sell_signals = []
 
