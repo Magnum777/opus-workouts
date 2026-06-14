@@ -73,7 +73,7 @@ Having trouble connecting? Email: sojournchurchtech@gmail.com
 </head>
 <body>
     <div class="logo">
-        <!-- Church logo here -->
+        <img src="sojourn-logo.png" alt="Sojourn Church Logo" width="200">
         <h1>Welcome to Sojourn Church</h1>
         <p>Free Guest WiFi</p>
     </div>
@@ -123,7 +123,8 @@ Having trouble connecting? Email: sojournchurchtech@gmail.com
 ---
 
 ## Notes
-- Replace logo placeholder with actual church logo (PNG/SVG, ~200px wide)
+- Logo file: `docs/media/sojourn-logo.png` (ready for upload to UniFi portal)
 - Colors can be adjusted to match church branding
 - The HTML above is a template — UniFi's built-in portal editor may have limitations
 - If full HTML isn't supported, use UniFi's basic terms-of-use text field with the body text above
+- For UniFi portal: upload logo under Settings → Guest Control → Upload Custom Logo
