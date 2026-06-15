@@ -100,6 +100,94 @@
     "ez-unifi": {
       "version": "1.0.1",
       "installedAt": 1781447630006
+    },
+    "wordpress-api-pro": {
+      "version": "3.8.1",
+      "installedAt": 1781483783318
+    },
+    "browser-auto-plus": {
+      "version": "2.0.0",
+      "installedAt": 1781483793352
+    },
+    "youtube-transcript-native-node": {
+      "version": "1.1.4",
+      "installedAt": 1781483793729
+    },
+    "factual-claim-verifier": {
+      "version": "1.0.0",
+      "installedAt": 1781483799195
+    },
+    "humanized-writing-editor": {
+      "version": "1.0.0",
+      "installedAt": 1781483799550
+    },
+    "process-interviewer": {
+      "version": "1.0.0",
+      "installedAt": 1781483827791
+    },
+    "evalanche": {
+      "version": "1.11.0",
+      "installedAt": 1781483827834
+    },
+    "wordpress-remote-news-publisher": {
+      "version": "1.0.0",
+      "installedAt": 1781483828204
+    },
+    "agentmail-integration": {
+      "version": "1.1.0",
+      "installedAt": 1781483828382
+    },
+    "resend-send-native-node": {
+      "version": "1.0.12",
+      "installedAt": 1781483836805
+    },
+    "doc-weaver": {
+      "version": "1.0.1",
+      "installedAt": 1781483836954
+    },
+    "cold-email-engine": {
+      "version": "1.0.0",
+      "installedAt": 1781483836999
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1781485209496
+    },
+    "ontology": {
+      "version": "1.0.4",
+      "installedAt": 1781485209859
+    },
+    "humanizer": {
+      "version": "1.0.0",
+      "installedAt": 1781485209940
+    },
+    "proactive-agent": {
+      "version": "3.1.0",
+      "installedAt": 1781485210044
+    },
+    "playwright-browser-automation": {
+      "version": "2.0.0",
+      "installedAt": 1781485210454
+    },
+    "desktop-control": {
+      "version": "1.0.0",
+      "installedAt": 1781485210489
+    },
+    "free-ride": {
+      "version": "1.0.11",
+      "installedAt": 1781485210526
+    },
+    "cogmem": {
+      "version": "2.0.3",
+      "installedAt": 1781485540530
+    },
+    "task-prism": {
+      "version": "4.1.0",
+      "installedAt": 1781485540534
+    },
+    "myknowledge": {
+      "version": "1.4.89",
+      "installedAt": 1781485542639
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-14T14:50:22.835Z",
+  "updatedAt": "2026-06-15T00:19:03.285Z",
   "entries": {
     "memory:memory/2026-05-07.md:1:28": {
       "key": "memory:memory/2026-05-07.md:1:28",
@@ -3165,15 +3165,16 @@
       "endLine": 8,
       "source": "memory",
       "snippet": "## 2026-06-14 ### 08:42 — Iris Dealer Reply Check (cron) - Scanned jhenderson87@gmail.com inbox - No new dealer replies since June 12 flag - Kayla Bloodworth (Auto Gallery Chevrolet GMC) thread still pending — no new responses to OTD negotiation - Flagged CarGurus emails are just automated listings, not replies",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 2,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-14T14:50:18.828Z",
-      "lastRecalledAt": "2026-06-14T14:50:18.828Z",
+      "lastRecalledAt": "2026-06-14T16:42:39.876Z",
       "queryHashes": [
-        "8af0a604c8fe"
+        "8af0a604c8fe",
+        "f139565e4649"
       ],
       "recallDays": [
         "2026-06-14"
@@ -3342,6 +3343,68 @@
         "55.6",
         "content",
         "nova"
+      ]
+    },
+    "memory:memory/2026-06-14.md:1:13": {
+      "key": "memory:memory/2026-06-14.md:1:13",
+      "path": "memory/2026-06-14.md",
+      "startLine": 1,
+      "endLine": 13,
+      "source": "memory",
+      "snippet": "## 2026-06-14 ### 08:42 — Iris Dealer Reply Check (cron) - Scanned jhenderson87@gmail.com inbox - No new dealer replies since June 12 flag - Kayla Bloodworth (Auto Gallery Chevrolet GMC) thread still pending — no new responses to OTD negotiation - Flagged CarGurus emails are just automated listings, not replies ### 12:41 — Iris Dealer Reply Check (cron) - Scanned inbox again - Flag file detected two new \"dealer replies\" — both are CarGurus automated listing emails (Chevrolet from $86,248, Tahoe $49,999), not actual replies - Kayla Bloodworth thread still pending, no change since June 12",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-14T18:42:21.425Z",
+      "lastRecalledAt": "2026-06-14T18:42:21.425Z",
+      "queryHashes": [
+        "2e50aba790c4"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "gmail.com",
+        "iris",
+        "dealer",
+        "reply",
+        "check",
+        "cron",
+        "scanned",
+        "jhenderson87"
+      ]
+    },
+    "memory:memory/archive/2026-02-26.md:1:7": {
+      "key": "memory:memory/archive/2026-02-26.md:1:7",
+      "path": "memory/archive/2026-02-26.md",
+      "startLine": 1,
+      "endLine": 7,
+      "source": "memory",
+      "snippet": "# 2026-02-26 ## Solana Monitor Failed - Wallet: 7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA - Status: Network connectivity failed - couldn't reach Helius RPC - Alert sent to #clawincome",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-15T00:19:03.285Z",
+      "lastRecalledAt": "2026-06-15T00:19:03.285Z",
+      "queryHashes": [
+        "d6b0f4482a08"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "network",
+        "solana",
+        "monitor",
+        "failed",
+        "wallet",
+        "status",
+        "connectivity",
+        "couldn't"
       ]
     }
   }

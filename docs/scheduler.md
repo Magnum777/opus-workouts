@@ -33,8 +33,12 @@
 22:00 | ██   Weekly-MemoryHygiene (Sun only)          (deepseek-v4-flash, 180s, light)
 
 --- Continuous ---
-- TradeBot-Consolidated — every 5 min (deepseek-v4-flash, 600s)
+- TradeBot-Research — every 2h (deepseek-v4-flash, 180s)
+- TradeBot-Executor — every 10 min (deepseek-v4-flash, 300s)
 - TradeBot-PortfolioOverview — every 4h (deepseek-v4-flash, 180s)
+
+--- Retired (Jun 14) ---
+- TradeBot-Consolidated — disabled. Split into Research + Executor.
 ```
 
 ## Load Analysis
@@ -160,16 +164,22 @@ Checklist:
 ### TradeBot Cron Coordination
 | Cron | When | Calls API | Impact |
 |------|------|-----------|--------|
-| TradeBot-Consolidated | Every 5m | Jupiter, Helius | Main load — 288/day |
+| TradeBot-Research | Every 2h | Jupiter, Helius | ~30s, writes signals |
+| TradeBot-Executor | Every 10m | Jupiter, Helius | ~30s, reads signals, executes |
 | TradeBot-PortfolioOverview | Every 4h | Helius | Light — 6/day |
 | TradeBot-DailyResearch | 9:15am | Web Search | 3 calls, writes brief |
-| TradeBot-WeeklyReview | Sat 2pm | Helius | Light — 1/week |
-| TradeBot-Analytics | Mon 10am | Helius | Light — 1/week |
 
-**Rule**: DailyResearch runs BEFORE Consolidated's busiest hours (after 9am), so brief is ready. No overlapping API calls between research and daemon.
+**SOL Safety** (added Jun 14):
+- SOL_MIN_SAFE = 0.003 — trigger refill when SOL drops below this (ATA rent threshold)
+- SOL_MIN_HYSTERIA = 0.01 — bot runs normally above this
+- Refill: min $5 per cycle, up to 15% of USDC
+- Refill simulates before sending (catches rent/mana issues)
+- All buys simulate before sending
+- Discord report includes SOL balance on every cycle
+- If refill sim fails, bot reports the error immediately instead of silently dropping TXs
 
 ## Next Review
 Check this doc before adding any new cron. Update after every change.
 
 ## Last Updated
-2026-06-14 — integrated research pipeline into TradeBot daemon. Added API rate limit budget. TradeBot crons now coordinate: DailyResearch feeds context into Consolidated daemon.
+2026-06-14 — Added SOL safety guards. Split Consolidated into Research + Executor crons.

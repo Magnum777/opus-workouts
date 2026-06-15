@@ -37,10 +37,13 @@ USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 # SOL gas: %-based reserve, auto-refills from USDC when low
 #   Target = max(0.01 SOL, portfolio_value * SOL_RESERVE_PCT / sol_price)
 #   Refill capped at MAX_REFILL_PCT of current USDC per cycle
-SOL_TARGET_FLOOR = 0.01       # 0.01 SOL absolute minimum (~2000 txs)
-SOL_RESERVE_PCT = 0.005       # 0.5% of portfolio as gas reserve
+SOL_TARGET_FLOOR = 0.01       # 0.01 SOL absolute minimum
+SOL_RESERVE_PCT = 0.01        # 1% of portfolio as gas reserve
 MAX_REFILL_PCT = 0.15          # max 15% of USDC per cycle for refill
-MIN_REFILL_FLOOR = 5.0          # minimum SOL refill in USD (Jupiter has min swap thresholds)
+MIN_REFILL_FLOOR = 5.0          # minimum SOL refill in USD
+SOL_MIN_SAFE = 0.003          # below this swaps fail due to ATA rent
+
+SOL_MIN_HYSTERIA = 0.01       # above this, bot runs normally
 
 # Trading params - used by daemon and executor
 BUY_SIZES = [4.0, 8.0, 12.0]  # Legacy, unused - sizing now in determine_buy_size()

@@ -1,31 +1,48 @@
 {
-  "history": [
-    {
-      "total": 85.62,
-      "timestamp": "2026-06-05T07:12:00Z",
-      "components": {
-        "SOL": 2.37,
-        "USDC": 50.97,
-        "TRUMP": 16.01,
-        "ORCA": 16.28
-      }
-    },
-    {
-      "total": 58.81,
-      "timestamp": "2026-06-06T11:14:57Z",
-      "components": {
-        "SOL": 1.1,
-        "USDC": 57.7
-      }
-    },
-    {
-      "total": 69.85,
-      "timestamp": "2026-06-08T07:16:00Z",
-      "components": {
-        "SOL": 0.2,
-        "3TYgKwkE2Y": 14.05,
-        "USDC": 55.6
-      }
-    }
-  ]
+    "history":  [
+                    {
+                        "total":  85.62,
+                        "timestamp":  "2026-06-05T07:12:00Z",
+                        "components":  {
+                                           "SOL":  2.37,
+                                           "USDC":  50.97,
+                                           "TRUMP":  16.01,
+                                           "ORCA":  16.28
+                                       }
+                    },
+                    {
+                        "total":  58.81,
+                        "timestamp":  "2026-06-06T11:14:57Z",
+                        "components":  {
+                                           "SOL":  1.1,
+                                           "USDC":  57.7
+                                       }
+                    },
+                    {
+                        "total":  69.85,
+                        "timestamp":  "2026-06-08T07:16:00Z",
+                        "components":  {
+                                           "SOL":  0.2,
+                                           "3TYgKwkE2Y":  14.05,
+                                           "USDC":  55.6
+                                       }
+                    },
+                    {
+                        "total":  "77.24",
+                        "components":  {
+                                           "SOL":  "0.06",
+                                           "USDC":  "77.18"
+                                       },
+                        "timestamp":  "2026-06-15T00:43:00Z"
+                    },
+                    {
+                        "timestamp":  "2026-06-15T04:58:00Z",
+                        "components":  {
+                                           "USDC":  "43.31",
+                                           "SOL":  "14.16",
+                                           "SPCXwBHVrK":  "28.61"
+                                       },
+                        "total":  86.08
+                    }
+                ]
 }
