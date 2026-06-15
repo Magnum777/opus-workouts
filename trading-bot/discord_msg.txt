@@ -1,8 +1,0 @@
-**SELL TRUMP FAILED**: Risk check failed: Trading paused - 3 consecutive real losses (>$1 each)
-**SELL ORCA FAILED**: Risk check failed: Trading paused - 3 consecutive real losses (>$1 each)
-**BUY PENGU FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
-**BUY JUP FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
-**BUY RAY FAILED**: Trading paused - 3 consecutive real losses (>$1 each)
-Postions: TRUMP: $-1.49 (-8.3%) | ORCA: $-1.22 (-6.8%)
-USDC: $50.97 | Total: $86.76
-**Watching:** PENGU (BUY, conf 60) — waiting on capital / price

@@ -43,7 +43,7 @@ Having trouble connecting? Email: sojournchurchtech@gmail.com
 | Authentication | Hotspot (Terms of Use) |
 | Landing Page | External (use custom HTML if available, or UniFi built-in) |
 | Session Timeout | 12 hours (720 minutes) |
-| Bandwidth Limit (down) | 10 Mbps |
+| Bandwidth Limit (down) | 5 Mbps |
 | Bandwidth Limit (up) | 5 Mbps |
 | VLAN | 30 (sojourn-guest) |
 | Password | None (open) |

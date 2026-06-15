@@ -1,7 +1,0 @@
-Research imported OK
-Research result keys: ['timestamp', 'analyses', 'avg_confidence']
-Analyses count: 7
-Buy signals: 2
-Sell signals: 0
-  BUY PENGU: conf=60
-  BUY RAY: conf=60

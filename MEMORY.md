@@ -36,8 +36,8 @@
 | TradeBot | Active | ~$103 portfolio, 3 crons running. See trading-bot/ for details |
 | EveOnion | Active | 2 crons (news scan + article publish) |
 | Kybernauts | Active | 3 crons (health, propaganda, forum bump) |
-| WordPress Empire | Partial | aicofounderstack.com publishing. aitoolalliance (401), aibusinessinsider (403) |
-| Affiliate Pipeline | Stalled | 11 applications, 0 approvals (as of May 6) |
+| WordPress Empire | Active (aicofounderstack only) | aitoolalliance fixed (new app password), aibusinessinsider still 403 Cloudflare. aicofounderstack revamped as blog May 27. |
+| Affiliate Pipeline | Dropped | Opus said to forget it (May 27). Not tracking. |
 
 ## Spam Defense System (2026-06-07)
 Self-learning spam pipeline:
@@ -71,7 +71,7 @@ Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY
 - Wired: #nova, #clawincome, #tradebot, #wordpress, #eveonion, #kybernauts
 
 ## Last Updated
-2026-06-12 -- weekly compact: distilled 10 learnings from 8 daily logs, archived 35 stale files (Feb-Apr).
+2026-06-14 -- weekly compact: read 10 daily logs, archived 17 May files, 3 learnings logged.
 
 ## Recent Learnings (Auto-compacted)
 
@@ -86,3 +86,15 @@ Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY
 - **Memory hygiene:** MEMORY.md trimmed from 12.1K → ~3.5K on 2026-06-04. Operational logs moved to daily files + .learnings/. Source: 2026-06-04.md
 - **Cleanup:** Scripts folder purged — 22 eve-lore batch files, 25 temp/duplicate Python scripts deleted. KB now 121 topics / ~532KB, synced to NAS. Source: 2026-06-09.md
 - **Rebate:** Candace qualifies for GM Educator $500 rebate (works at Warner Robins High School). Source: 2026-06-02.md, MEMORY.md
+
+### Week of 2026-06-12 through 2026-06-14
+- **Content milestone:** "How We Built a 62-Billion ISK Asset Tracker in 48 Hours" published on aicofounderstack.com — behind-the-scenes build case study serving as sales content. Source: 2026-06-13.md
+- **Bug:** Unsplash API returning 401 consistently — featured image generation for Content-Nova is broken. Needs API key refresh or alternative source. Source: 2026-06-13.md
+- **Iris dealer check:** CarGurus automated listing emails are routinely flagged as "dealer replies" — confirmed false positives. Kayla Bloodworth thread still pending since June 12. No real dealer movement this week. Source: 2026-06-14.md
+
+### Archival Notes (May 2026 files archived)
+- **Opus went to Iceland** for EVE Online Fanfest (May 11) — first international travel logged
+- **ComfyUI installed** (May 27) — replaces broken SD WebUI, DirectML for AMD 9070 XT, programmatic generation via `generate.py`
+- **Browser automation unlocked** (May 27) — Chrome CDP port 18800, Kybernauts forum bump upgraded from reminder to full auto-reply
+- **Gumroad product published** (May 31) — "How to Build a Solana Memecoin Trading Bot" at $49, discount code NOVA25, account: layeredmediallc@gmail.com
+- **Content-Nova v2 deployed** (May 9) — daily articles across 3 WordPress sites via isolated agent crons

@@ -1,0 +1,443 @@
+{
+  "admin_id": "6a2ec0f7d638bc9db7aa4f9a",
+  "device_id": "192bddb3-1b82-4096-82df-1c71631154a3",
+  "email": "nova.cofounder@gmail.com",
+  "email_alert_enabled": true,
+  "email_alert_grouping_delay": 60,
+  "email_alert_grouping_enabled": true,
+  "first_name": "Nova",
+  "html_email_enabled": true,
+  "is_owner": false,
+  "is_professional_installer": false,
+  "is_super": true,
+  "last_name": "Cofounder",
+  "last_site_name": "default",
+  "name": "Nova Cofounder",
+  "push_alert_enabled": true,
+  "requires_new_password": false,
+  "super_site_permissions": [],
+  "ubic_name": "nova.cofounder@gmail.com",
+  "ubic_uuid": "c5c67316-4781-4bbd-a930-5df7b63fda3b",
+  "ui_settings": {
+    "neverCheckForUpdate": false,
+    "statisticsPrefferedTZ": "SITE",
+    "preferredLanguage": "en",
+    "preferences": {
+      "enableSidePanelTabs": false,
+      "isUbbAlignmentToolModalClosed": false,
+      "routingDiagramExpanded": true,
+      "isNextAiSecurityFirstSubmit": true,
+      "enableNewUI": true,
+      "trafficAndFirewallRulesMode": "SIMPLE",
+      "dismissWlanOverrides": false,
+      "isFirewallZonesDiagramExpanded": true,
+      "useBrowserTheme": false,
+      "timeFormat": "h:mm a",
+      "isAppDark": false,
+      "isEnhancedThreatUpdatesBannerHidden": false,
+      "objectsDiagramExpanded": true,
+      "devicesDismissedMessages": [
+        "DEVICES_READY_TO_ADOPT_BANNER"
+      ],
+      "use24HourTime": false,
+      "isTopologyClientThresholdEvaluated": true
+    },
+    "clients": {
+      "clientsStatus": [],
+      "offlineClientTimeFrame": 24
+    },
+    "dashboardConfig": {
+      "lastActiveDashboardId": "63753636922fab0fb7676938"
+    },
+    "devices": {
+      "bannersExpanded": true
+    },
+    "statisticsPreferBps": "",
+    "dashboardMeta": {
+      "customizationButtonOffset": 82.5,
+      "rightCardOpen": true,
+      "minimized": false,
+      "showCyberSecure": true,
+      "leftCardOpen": true,
+      "wanGraphWan": "ALL_WANS"
+    },
+    "logsFlowsBannerDismissed": false,
+    "version": "192bddb3-1b82-4096-82df-1c71631154a3:6a2ec0f7d638bc9db7aa4f9a",
+    "floorplan": {
+      "app": "network",
+      "coverage": {
+        "wifi": "high",
+        "legend": true
+      },
+      "pointer": "select",
+      "topology": {
+        "fit": null,
+        "expand": true,
+        "squashed": false,
+        "paginate": false
+      },
+      "project": {
+        "unit": "metric",
+        "tier": "value",
+        "store": "us"
+      },
+      "visual": {
+        "stats": {
+          "attributes": [],
+          "opacity": 1
+        },
+        "scale": {
+          "device": 1
+        },
+        "opacity": {
+          "wall": 1
+        }
+      },
+      "version": "v24",
+      "detections": {
+        "show": "smart",
+        "enabledTypes": {
+          "person": true,
+          "vehicle": true
+        }
+      }
+    },
+    "topologyViewSettings": {
+      "showWiredPorts": false,
+      "isolated": true,
+      "showWifiStandards": false,
+      "clientsDisabled": true,
+      "showWifiExperience": true,
+      "show5GClients": true,
+      "showWiredClients": true,
+      "offline": false,
+      "showSSID": true,
+      "showRadioChannel": false,
+      "online": true,
+      "showWiredSpeed": false,
+      "managed_by_another_console": true,
+      "pending_adoption": true,
+      "showAllClients": true,
+      "showAllDevices": true,
+      "show2GClients": true
+    },
+    "airviewMeta": {
+      "CONNECTIVITY": true,
+      "NEAREST_NEIGHBORS": true,
+      "AIRTIME_SCAN": true,
+      "STATS": true,
+      "AP_DENSITY": true,
+      "SPEED_TESTS": true,
+      "CONNECTIVITY_LOGS": true,
+      "SYSTEM_LOGS": true,
+      "CLIENTS": true
+    },
+    "tables": {
+      "insights/wifiScanner": {
+        "filters": {
+          "radio": [
+            "ng"
+          ]
+        }
+      },
+      "insights/radios": {
+        "filters": {
+          "CONNECTION_TYPE": [
+            "wired",
+            "meshed"
+          ],
+          "MIMO_CAPABILITY": [
+            "1x1",
+            "2x2",
+            "3x3",
+            "4x4"
+          ],
+          "DEVICE": "d0:21:f9:45:a0:0c",
+          "RADIO_BAND": [
+            "ng",
+            "na",
+            "6e"
+          ],
+          "SSID": "",
+          "CONNECTION_STATUS": [
+            "online",
+            "offline"
+          ]
+        }
+      },
+      "client": {
+        "initialColumnSnapshot": {
+          "wifi_network": true,
+          "wifi": true,
+          "activity": true,
+          "clientName": true,
+          "downlink": true,
+          "ip": true,
+          "channel": true,
+          "Downlink": true,
+          "experience": true,
+          "mimo": true,
+          "uptime": true,
+          "network": true,
+          "dailyUsage": true,
+          "physicalName": true,
+          "uplink": true,
+          "connection": true,
+          "Uplink": true,
+          "status": true
+        },
+        "columnSize": {
+          "physicalName": 199
+        },
+        "sortBy": "downlink",
+        "filters": {
+          "clients_type": {
+            "local_dns_record": true,
+            "guests": true,
+            "fixed_ip_address": true,
+            "users": true
+          },
+          "connection_type": {
+            "wired": true,
+            "na": true,
+            "vpn": false,
+            "ax": true,
+            "teleport": false,
+            "ng": true
+          },
+          "device": {
+            "device": ""
+          },
+          "status": {
+            "offline": false,
+            "blocked": true,
+            "active": true
+          }
+        },
+        "initialColumns": [
+          "status",
+          "clientName",
+          "physicalName",
+          "connection",
+          "ip",
+          "wifi_network",
+          "experience",
+          "Downlink",
+          "Uplink",
+          "dailyUsage",
+          "uptime",
+          "network",
+          "wifi",
+          "mimo",
+          "channel",
+          "activity",
+          "downlink",
+          "uplink"
+        ],
+        "isAscending": false,
+        "rowsPerPage": 100
+      },
+      "insights/wifiPerformance": {
+        "rowsPerPage": 40
+      },
+      "ports": {
+        "filters": {
+          "poe": {
+            "poe_passive_24v": false,
+            "poe+": false,
+            "poe": false,
+            "poe++": false,
+            "poe_passthrough": false,
+            "none": false,
+            "poe+++": false
+          },
+          "portanomaly": {
+            "anomalyThreshold": "0-100"
+          },
+          "media": {
+            "2P5GE": false,
+            "SFP28": false,
+            "SFPPLUS": false,
+            "40GE": false,
+            "25GE": false,
+            "100GE": false,
+            "QSFP28": false,
+            "10GE": false,
+            "SFP": false,
+            "GE": false,
+            "FE": false
+          },
+          "device": {
+            "statsOpen": true,
+            "deviceDiagramOpen": false,
+            "device": "60:22:32:59:05:25",
+            "sfpAnalyzerOpen": false,
+            "vlansOpen": false
+          },
+          "status": {
+            "critical": false,
+            "available": false,
+            "warning": false,
+            "in_use": false
+          },
+          "network": {
+            "network": ""
+          }
+        }
+      },
+      "device": {
+        "initialColumns": [
+          "type",
+          "deviceName",
+          "status",
+          "connection",
+          "network",
+          "ipAddress",
+          "experience",
+          "firmwareStatus",
+          "downlink",
+          "uplink",
+          "dailyUsage"
+        ]
+      },
+      "logs/useActivity": {
+        "rowsPerPage": 100
+      }
+    },
+    "networksViewSettings": {
+      "showContentFilteringTable": true,
+      "showVpnS2STable": true,
+      "showNetworkTable": true,
+      "showPolicyBasedRoutingTable": true,
+      "showRadiusProfileTable": true,
+      "showVpnClientTable": true,
+      "showEthernetProfilesTable": true,
+      "showVpnServerTable": true,
+      "showNetworkListsTable": true,
+      "showWanSlaTable": true,
+      "showWifiSpeedLimitTable": true,
+      "showInternetTable": true,
+      "showWifiTable": true,
+      "showPortForwardingTable": true
+    },
+    "flows": {
+      "tablePresets": {
+        "NEXT_AI": {
+          "sizes": {},
+          "columns": [],
+          "rowsPerPage": 100
+        },
+        "THREATS": {
+          "sizes": {},
+          "columns": [
+            "source",
+            "destination",
+            "service",
+            "risk",
+            "direction",
+            "signature",
+            "policy",
+            "action",
+            "date"
+          ],
+          "rowsPerPage": 100
+        },
+        "BLOCKED": {
+          "sizes": {},
+          "columns": [
+            "source",
+            "destination",
+            "service",
+            "risk",
+            "direction",
+            "incoming",
+            "policy",
+            "policyType",
+            "action",
+            "date"
+          ],
+          "rowsPerPage": 100
+        },
+        "ALL_FLOWS": {
+          "sizes": {},
+          "columns": [],
+          "rowsPerPage": 100
+        }
+      }
+    },
+    "leftFilters": {
+      "speedTest": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "vlans": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "clients": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "radiosControl": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "devices": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "insights": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "topology": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "masterTable": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "channelAi": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "environment": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "stats": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "isolatedHotspotManager": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "airView": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "portManagement": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "logs": {
+        "columnsOpen": false,
+        "panelOpen": true
+      },
+      "dhcpClients": {
+        "columnsOpen": false,
+        "panelOpen": true
+      }
+    }
+  },
+  "uid": "76a639f3-9a3c-49e1-9244-85a115a41810",
+  "last_login_timestamp": 0,
+  "org_role": "",
+  "last_site_id": "63753636922fab0fb7676937",
+  "site_id": "63753636922fab0fb7676937",
+  "site_name": "default",
+  "site_permissions": [],
+  "site_role": "admin"
+}

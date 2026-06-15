@@ -1,8 +1,0 @@
->**BUY BEPE FAILED**: Trading paused - 3 consecutive real losses (> each)
->**BUY SPCX FAILED**: Trading paused - 3 consecutive real losses (> each)
->**BUY MONEY FAILED**: Trading paused - 3 consecutive real losses (> each)
->**BUY CUP FAILED**: Trading paused - 3 consecutive real losses (> each)
->**BUY BEAR FAILED**: Trading paused - 3 consecutive real losses (> each)
->**BUY HUNTERIUS FAILED**: Trading paused - 3 consecutive real losses (> each)
->USDC: .70 | Total: .80
->**Watching:** BEPE (STRONG_BUY, conf 85) — waiting on capital / price

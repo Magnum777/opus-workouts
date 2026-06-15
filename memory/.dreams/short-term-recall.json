@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-15T00:19:03.285Z",
+  "updatedAt": "2026-06-15T03:18:27.478Z",
   "entries": {
     "memory:memory/2026-05-07.md:1:28": {
       "key": "memory:memory/2026-05-07.md:1:28",
@@ -3066,17 +3066,18 @@
       "endLine": 11,
       "source": "memory",
       "snippet": "## Content-Nova Publication - 2026-06-11 04:00 - **Site:** aicofounderstack.com - **Post:** Nova TradeBot Hits Realized PnL in 30 Days -- Here is the Safety Architecture That Makes It Possible - **Post ID:** 569 - **Featured Image ID:** 570 - **URL:** https://www.aicofounderstack.com/2026/06/11/nova-tradebot-hits-realized-pnl-in-30-days-here-is-the-safety-architecture-that-makes-it-possible/ - **Type:** Product-focused case study / sales content - **Word count:** ~1,400 words - **Topic:** TradeBot real PnL breakdown (/45 trades/59% win rate) + EVE Assets Viewer build case study + AI cofounder market analysis + Nova V3 Airlock teaser",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3,
+      "totalScore": 4,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-13T02:39:51.864Z",
-      "lastRecalledAt": "2026-06-14T14:50:22.835Z",
+      "lastRecalledAt": "2026-06-15T02:10:33.633Z",
       "queryHashes": [
         "c575ea18f8fc",
         "681084e45a14",
-        "ac0c3a333c19"
+        "ac0c3a333c19",
+        "90945506cbac"
       ],
       "recallDays": [
         "2026-06-12",
@@ -3101,20 +3102,22 @@
       "endLine": 28,
       "source": "memory",
       "snippet": "## EVE Assets Viewer - LIVE 2026-06-10 21:34 - **URL:** https://magnum777.github.io/kybernauts-assets/ - **Passphrase:** `u^w%dEUq!$_&E5l++oGjXT%5UYqlSWZEiASjtTdd_Cbn&ob5w6e9Y8v` - **Data:** 14,782 assets, 749 locations, 62.08B ISK, 4 systems - **ESI:** 3 Director alts authed (OpusMagnum, Friend of Matterall, Brax Thiel) - **Sync:** Node.js script pulls ESI → encrypts → pushes to GitHub Pages - **Rate limit:** 500ms delays, batched parallel type/location resolution - **NAS setup:** `scripts/NAS-SETUP.md` for Synology Task Scheduler (30 min cron) - **Repo:** https://github.com/Magnum777/kybernauts-assets - **Files:** `scripts/esi-auth.js`, `scripts/esi-sync.js`, `scripts/setup.js` ## Conte",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2,
+      "totalScore": 3,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-13T02:39:51.864Z",
-      "lastRecalledAt": "2026-06-13T19:21:19.043Z",
+      "lastRecalledAt": "2026-06-15T02:10:33.633Z",
       "queryHashes": [
         "c575ea18f8fc",
-        "681084e45a14"
+        "681084e45a14",
+        "90945506cbac"
       ],
       "recallDays": [
         "2026-06-12",
-        "2026-06-13"
+        "2026-06-13",
+        "2026-06-14"
       ],
       "conceptTags": [
         "5uyqlswzeiasjttdd-cbn",
@@ -3405,6 +3408,223 @@
         "status",
         "connectivity",
         "couldn't"
+      ]
+    },
+    "memory:memory/archive/2026-05-31.md:125:150": {
+      "key": "memory:memory/archive/2026-05-31.md:125:150",
+      "path": "memory/archive/2026-05-31.md",
+      "startLine": 125,
+      "endLine": 150,
+      "source": "memory",
+      "snippet": "### Kybernauts (from earlier) - `kybernauts_reddit_post.md`, `forum_bumps.md`, `twitter_thread.md`, `poster_prompt.md` ### TradeBot Strategy Memo (from earlier) - `tradebot_strategy_memo.md` — Deep market analysis, $92 portfolio recommendations ## WordPress Publishing (Partial) - aicofounderstack.com: 2 articles published ✅ - \"How I Built a $49 AI Product in 48 Hours\" → https://www.aicofounderstack.com/2026/05/31/how-i-built-a-49-ai-product-in-48-hours-step-by-step/ - \"AI Agents vs Traditional SaaS\" → https://www.aicofounderstack.com/2026/05/31/ai-agents-vs-traditional-saas-why-the-future-is-autonomous/ - aitoolalliance.com: 2 articles failed (401 — app password expired/permi",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-15T02:10:33.633Z",
+      "lastRecalledAt": "2026-06-15T02:10:33.633Z",
+      "queryHashes": [
+        "90945506cbac"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "kybernauts-reddit-post.md",
+        "forum-bumps.md",
+        "twitter-thread.md",
+        "poster-prompt.md",
+        "tradebot-strategy-memo.md",
+        "aicofounderstack.com",
+        "aitoolalliance.com",
+        "expired/permi"
+      ]
+    },
+    "memory:memory/archive/2026-05-31.md:100:132": {
+      "key": "memory:memory/archive/2026-05-31.md:100:132",
+      "path": "memory/archive/2026-05-31.md",
+      "startLine": 100,
+      "endLine": 132,
+      "source": "memory",
+      "snippet": "### D. WordPress Articles (6) ✅ - `wp_aitool_1_claude_vs_gpt.md` — aitoolalliance.com - `wp_aitool_2_best_tools.md` — aitoolalliance.com - `wp_aibusiness_1_agency_scaling.md` — aibusinessinsider.org - `wp_aibusiness_2_100_stack.md` — aibusinessinsider.org - `wp_aicofounder_1_48hour_product.md` — aicofounderstack.com - `wp_aicofounder_2_agents_vs_saas.md` — aicofounderstack.com ### E. Product Hunt Launch Package ✅ - `ph_launch_post.md` — Tagline, description, maker comment, CTA - `ph_launch_timeline.md` — 7-day pre + launch day + 7-day post - `ph_faq.md` — 10 objections ### F. Twitter Marketing Thread ✅ - `twitter_tradebot_thread.md` — Hook + 11-tweet story + offer + engagemen",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-15T02:10:33.633Z",
+      "lastRecalledAt": "2026-06-15T02:10:33.633Z",
+      "queryHashes": [
+        "90945506cbac"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "gpt",
+        "wp-aitool-1-claude-vs-gpt.md",
+        "aitoolalliance.com",
+        "wp-aitool-2-best-tools.md",
+        "aibusinessinsider.org",
+        "wp-aibusiness-2-100-stack.md",
+        "aicofounderstack.com",
+        "ph-launch-post.md"
+      ]
+    },
+    "memory:memory/archive/2026-05-27.md:24:54": {
+      "key": "memory:memory/archive/2026-05-27.md:24:54",
+      "path": "memory/archive/2026-05-27.md",
+      "startLine": 24,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "## Content Nova Featured Images - New script: `scripts/content-nova/featured_image.py` - Searches Unsplash, downloads, uploads to WP Media Library, attaches as featured image - Successfully tested on aitoolalliance.com post 187 - All 3 Content Nova crons updated to include Step 5: featured image after publish ## Stable Diffusion Fixed - Fresh ComfyUI v0.22.0 installed at `workspace/ComfyUI` with DirectML for AMD 9070 XT - Old WebUI had broken venv, Python 3.14 incompatibility, stale repo - Programmatic generation via `generate.py` ## LanceDB Vector Memory Restored - Copied `nova_memory/vector_memory.py` from old install - Patched for new workspace paths - Tested working with Ollama `nomic-",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-15T02:10:33.633Z",
+      "lastRecalledAt": "2026-06-15T02:10:33.633Z",
+      "queryHashes": [
+        "90945506cbac"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "aitoolalliance.com",
+        "v0.22.0",
+        "workspace/comfyui",
+        "3.14",
+        "generate.py",
+        "nova-memory/vector-memory.py",
+        "content",
+        "nova"
+      ]
+    },
+    "memory:memory/2026-06-14.md:116:145": {
+      "key": "memory:memory/2026-06-14.md:116:145",
+      "path": "memory/2026-06-14.md",
+      "startLine": 116,
+      "endLine": 145,
+      "source": "memory",
+      "snippet": "**Blocker:** No valid MFA code. Need fresh code from `nova.cofounder@gmail.com`. **Next:** Opus will either: 1. Trigger a new MFA code and give it to me immediately (before it expires), OR 2. Execute Phase 1 manually via the UniFi console UI **Files created tonight:** - `scripts/content-nova/content_quality_gate.py` — Content Quality Gate v3 - `scripts/content-nova/publisher_v3.py` — WordPress Publisher v3 - `scripts/content-nova/publish_with_quality_gate.py` — Full publishing pipeline - `trading-bot/youtube_research.py` — YouTube research module - `scripts/browser_retry.py` — Browser retry wrapper - `SESSION-STATE.md` — Active working memory (WAL Protocol) - `memory/working-buffer.md` — D",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-15T03:18:27.478Z",
+      "lastRecalledAt": "2026-06-15T03:18:27.478Z",
+      "queryHashes": [
+        "5bb52199d528"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "nova.cofounder",
+        "gmail.com",
+        "trading-bot/youtube-research.py",
+        "scripts/browser-retry.py",
+        "session-state.md",
+        "memory/working-buffer.md",
+        "blocker",
+        "valid"
+      ]
+    },
+    "memory:memory/2026-06-14.md:138:151": {
+      "key": "memory:memory/2026-06-14.md:138:151",
+      "path": "memory/2026-06-14.md",
+      "startLine": 138,
+      "endLine": 151,
+      "source": "memory",
+      "snippet": "- MFA codes expire VERY fast (seems like ~2-3 minutes, not the 5 minutes I expected) - Need to have the script ready BEFORE requesting the MFA code, not after - For future: use the `tmp/unifi_full.py` pattern which preserves cookies properly --- ### 23:07 — Pre-compaction memory flush **Session near auto-compaction. Capturing state:** - P0 + P1 integrations: COMPLETE (5 skills live) - UniFi Phase 1: BLOCKED (no valid MFA code, Opus at console) - P2 integrations: Deferred to tomorrow 9 AM EDT - TradeBot wallet execution: Opus confirmed issues are fixed - ContentNova: Quality gate protecting all 3 sites",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-15T03:18:27.478Z",
+      "lastRecalledAt": "2026-06-15T03:18:27.478Z",
+      "queryHashes": [
+        "5bb52199d528"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "2-3",
+        "tmp/unifi-full.py",
+        "pre-compaction",
+        "auto-compaction",
+        "mfa",
+        "codes",
+        "expire",
+        "very"
+      ]
+    },
+    "memory:memory/2026-06-14.md:97:123": {
+      "key": "memory:memory/2026-06-14.md:97:123",
+      "path": "memory/2026-06-14.md",
+      "startLine": 97,
+      "endLine": 123,
+      "source": "memory",
+      "snippet": "- 12-hour sessions, 10/5 Mbps bandwidth limits - Custom landing page with church logo (`docs/media/sojourn-logo.png`) - Support email: sojournchurchtech@gmail.com - Session timeout updated to 12h **Execution checklist:** `docs/sojourn-execution-checklist-20260615.md` - 4 phases: Quick Wins → Channel Optimization → Security/VLANs/Portal → Validation - Rollback plan included **MFA Authentication Issues:** - Multiple attempts to authenticate via API with MFA code 820197 — failed (expired during debugging) - Second code 151910 — also failed (token already used or expired) - Third code 0315900 — failed (expired during script debugging) - Root cause: SSO MFA flow requires session cookies to be p",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-15T03:18:27.478Z",
+      "lastRecalledAt": "2026-06-15T03:18:27.478Z",
+      "queryHashes": [
+        "5bb52199d528"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "vlan",
+        "12-hour",
+        "10/5",
+        "docs/media/sojourn-logo.png",
+        "gmail.com",
+        "security/vlans/portal",
+        "hour",
+        "mbps"
+      ]
+    },
+    "memory:memory/2026-06-14.md:68:103": {
+      "key": "memory:memory/2026-06-14.md:68:103",
+      "path": "memory/2026-06-14.md",
+      "startLine": 68,
+      "endLine": 103,
+      "source": "memory",
+      "snippet": "- WAL Protocol: corrections → write first, respond second - Working buffer for context compaction danger zone - Reverse prompting, autonomous vs prompted cron rules - Resourcefulness guideline: try 10 approaches before asking **Commit:** `d9563e5` **P2 Deferred to tomorrow:** - `ontology` + `cogmem` — structured memory graph (medium value) - `task-prism` — task decomposition (high value, real gap) - `myknowledge` — knowledge base (likely redundant with docs/) **Decision:** Do task-prism tomorrow, evaluate ontology/cogmem and myknowledge case-by-case. **Integration plan:** `docs/skill-integration-plan-20260614.md` --- ### 22:30 — Sojourn Church UniFi Upgrade Begins **Context",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-06-15T03:18:27.478Z",
+      "lastRecalledAt": "2026-06-15T03:18:27.478Z",
+      "queryHashes": [
+        "5bb52199d528"
+      ],
+      "recallDays": [
+        "2026-06-14"
+      ],
+      "conceptTags": [
+        "task-prism",
+        "ontology/cogmem",
+        "case-by-case",
+        "wal",
+        "protocol",
+        "corrections",
+        "write",
+        "first"
       ]
     }
   }
