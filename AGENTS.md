@@ -278,3 +278,36 @@ Run when memory feels off:
 ## Related
 
 - [Default AGENTS.md](/reference/AGENTS.default)
+
+---
+
+## Proactive Agent Patterns (proactive-agent skill v3.1.0)
+
+**WAL Protocol (Write-Ahead Logging):**
+Before responding to corrections, proper nouns, preferences, or decisions — WRITE to SESSION-STATE.md FIRST, then respond.
+
+**WAL Triggers:**
+- Corrections: "Actually...", "No, I meant...", "It's X, not Y"
+- Preferences: "Use blue, not red", "I like/don't like"
+- Decisions: "Let's do X", "Go with Y"
+- Proper nouns: Names, places, companies, products
+
+**WAL Rule:** The urge to respond is the enemy. Write first, respond second.
+
+**Working Buffer Protocol:**
+During long sessions with context compaction, maintain `memory/working-buffer.md` with:
+- Current task state and decisions
+- URLs, IDs, credentials used
+- What was lost in last compaction
+
+**Reverse Prompting:**
+Ask: "What would genuinely delight Opus that he hasn't thought to ask for?"
+Surface ideas before he asks. Create leverage without being asked.
+
+**Autonomous vs Prompted Crons:**
+- `systemEvent` → main session (needs conversational context)
+- `isolated agentTurn` → standalone tasks (no history needed)
+- Never mix the two.
+
+**Resourcefulness:**
+Try 10 approaches before asking for help. Check memory, search docs, try alternate tools, fall back to simpler methods.

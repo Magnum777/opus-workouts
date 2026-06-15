@@ -1,10 +1,10 @@
 # Nova Learnings Archive
 
-## 2026-06-14 (late) - Weekly ClawHub Skill Discovery Scan
+## 2026-06-15 (01:17 UTC) - Weekly ClawHub Skill Discovery Scan
 
 **Category:** insight
 
-**Scan date:** 2026-06-14 (Sunday, technically overdue from Friday)
+**Scan date:** 2026-06-14 (Sunday run, overdue from Friday — Opus was busy)
 
 **Query coverage:** 8 searches across TradeBot, browser, social media, WordPress, email, data analysis, Discord, and agent workflow categories.
 
@@ -28,6 +28,58 @@
 
 **Note:** ClawHub search returns vector similarity scores (relevance), not star ratings. The >4.0 filter doesn't apply to ClawHub's scoring scheme.
 
+## 2026-06-15 (01:17 UTC) - Weekly ClawHub Skill Discovery Scan v2 (Full coverage)
+
+**Category:** insight
+
+**All 8 queries executed:**
+
+**1. `"solana trading crypto"`** — no results
+   - Already have: `solana-payments-wallets-trading` ✅
+
+**2. `"browser automation screenshot"`** — several candidates found:
+   - `chrome-web-automation` v1.0.0 — browser automation via existing Chrome session; similar to what we have
+   - `agent-browser-assistant` v1.0.0 — web scraping, form fills, screenshots
+   - `openclaw-agent-browser` v1.0.0 — headless browser CLI
+   - Already have: `browser-use`, `browser-auto-plus`, `playwright-browser-automation`, `agent-browser-clawdbot` ✅ (well-covered)
+
+**3. `"social media content creator"`** — vs-score 0.090 only (no strong unrelated hits)
+   - Already have: `ai-social-media-content`, `upload-post` ✅
+
+**4. `"wordpress seo publishing"`** — two results:
+   - `wordpress-remote-news-publisher` (already have ✅)
+   - `wordpress-publishing-skill-for-claude` v0.1.0 — Gutenberg block support, SEO tags, categories. Potential complement to our WordPress skills.
+   - Already have: `wordpress-pro`, `wordpress-api-pro`, `programmatic-seo`, `wordpress-remote-news-publisher` ✅
+
+**5. `"email automation inbox"`** — one result:
+   - `agentmail-integration` (already have ✅)
+
+**6. `"data analysis sql csv"`** — one result:
+   - `data-analysis-reporting` v0.1.0 — converts raw data (CSV, SQLite, spreadsheets) into analytical summaries. Early version (0.1.0) but concept fills a gap between duckdb analysis and report generation.
+
+**7. `"discord bot automation"`** — one result:
+   - `telegram-discord-bot-dev` v1.0.0 — develop custom bots with trading, gaming, automation, webhooks. Could be useful if we need custom bot logic beyond Nova's current capabilities.
+
+**8. `"ai agent workflow"`** — one result:
+   - `agent-workflow-playbook` (already have ✅)
+
+**Interesting new skills from explore (latest):**
+
+| Skill | Version | Summary | Note |
+|-------|---------|---------|------|
+| `site-watch` | 1.0.0 | Web page change monitor with AI summaries, multi-channel notifications | Interesting — could complement our proactive monitoring |
+| `api-workbench` | 1.0.0 | CLI API debugger: NL requests, curl parsing, assertions, collection runner | Nice dev tool but not core to current workflows |
+| `agentmetal` | 0.1.0 | Provision Linux VPS in <60s, pay USDC via x402 | Crypto-forward infra — niche but cool |
+| `nexo-brain` | 7.32.0 | Cognitive memory with Atkinson-Shiffrin model, RAG, trust scoring | 5631 downloads — major agent memory alternative to our setup |
+| `space-duck` | 0.4.2 | AI agent identity network — status, trust tiers, connections | 1436 downloads, active development |
+| `data-analysis-reporting` | 0.1.0 | CSV/SQLite/spreadsheets → analytical summaries + trend reports | Would complement duckdb-cli-ai-skills for report output |
+| `telegram-discord-bot-dev` | 1.0.0 | Custom bot development: trading, gaming, automation, webhooks | Backlog item if we expand bot capabilities |
+
+**Key takeaway:** Our current skill coverage is solid. The most interesting additions would be:
+1. `data-analysis-reporting` — fills the gap between analysis and report output
+2. `site-watch` — lightweight change monitoring could be useful
+3. `telegram-discord-bot-dev` — for future bot feature expansion
+None are urgent upgrades. Stock is well-covered.
 **Flagged for Opus: `social-media-content`** — high relevance score (3.690), uses actual image generation with OpenCV/Pillow, which is different from our `ai-social-media-content` text/media generation approach. Could be complementary. Also `data-report-generator` + `data-analysis-report-generator` could fill a reporting gap.
 
 ## 2026-06-14 - Sojourn Church Network: RED LINES
