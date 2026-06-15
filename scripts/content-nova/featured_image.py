@@ -32,7 +32,21 @@ SITES = {
 }
 
 # Unsplash API (free tier: 50 requests/hour)
-UNSPLASH_ACCESS_KEY = "bZ0p7h8g9f2e1d3c4a5b6e7f8g9h0i1j"  # Placeholder - will use web_search as fallback
+# Get a real key at https://unsplash.com/developers
+UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY", "").strip()
+
+# Fallback: curated list of reliable direct Unsplash image URLs (no API key needed)
+# These are permanent CDN links to high-quality AI/business/tech images
+FALLBACK_IMAGES = [
+    {"url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&q=80", "id": "ai-neural-blue", "author": "Google DeepMind"},
+    {"url": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=630&fit=crop&q=80", "id": "ai-robot-hand", "author": "Maxime Valcarce"},
+    {"url": "https://images.unsplash.com/photo-1535378437327-b7128d8e1d17?w=1200&h=630&fit=crop&q=80", "id": "robot-humanoid", "author": "Andrea De Santis"},
+    {"url": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=630&fit=crop&q=80", "id": "robot-head", "author": "Possessed Photography"},
+    {"url": "https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1200&h=630&fit=crop&q=80", "id": "ai-glow-abstract", "author": "Richard Horvath"},
+    {"url": "https://images.unsplash.com/photo-1674027398737-954a76b02426?w=1200&h=630&fit=crop&q=80", "id": "ai-data-stream", "author": "Mohamed Nohassi"},
+    {"url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=630&fit=crop&q=80", "id": "tech-earth-network", "author": "NASA"},
+    {"url": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=630&fit=crop&q=80", "id": "cyber-security-dark", "author": "FlyD"},
+]
 
 def _auth(user, password):
     creds = f"{user}:{password}".encode()
@@ -46,32 +60,62 @@ def _auth(user, password):
 def search_unsplash_image(query):
     """Search Unsplash for a relevant image. Returns download URL or None."""
     try:
-        # Try Unsplash API first
-        url = f"https://api.unsplash.com/search/photos?query={quote(query)}&per_page=5&orientation=landscape"
-        headers = {"Authorization": f"Client-ID {UNSPLASH_ACCESS_KEY}"}
-        r = requests.get(url, headers=headers, timeout=10)
+        # Try Unsplash API if we have a real key
+        if UNSPLASH_ACCESS_KEY and len(UNSPLASH_ACCESS_KEY) > 10:
+            url = f"https://api.unsplash.com/search/photos?query={quote(query)}&per_page=5&orientation=landscape"
+            headers = {"Authorization": f"Client-ID {UNSPLASH_ACCESS_KEY}"}
+            r = requests.get(url, headers=headers, timeout=10)
+            
+            if r.status_code == 200:
+                data = r.json()
+                results = data.get("results", [])
+                if results:
+                    img = results[0]
+                    return {
+                        "url": img["urls"]["regular"],
+                        "thumb": img["urls"]["small"],
+                        "author": img["user"]["name"],
+                        "author_url": img["user"]["links"]["html"],
+                        "id": img["id"]
+                    }
+            print(f"Unsplash API failed ({r.status_code}), falling back to direct images...")
         
-        if r.status_code == 200:
-            data = r.json()
-            results = data.get("results", [])
-            if results:
-                # Pick first result
-                img = results[0]
+        # No API key or API failed - use fallback pool with rotation based on query hash
+        import hashlib
+        h = int(hashlib.md5(query.encode()).hexdigest(), 16)
+        idx = h % len(FALLBACK_IMAGES)
+        img = FALLBACK_IMAGES[idx]
+        
+        # Also try the next one if we have room
+        next_idx = (idx + 1) % len(FALLBACK_IMAGES)
+        
+        # Verify the image is accessible
+        for try_img in [img, FALLBACK_IMAGES[next_idx]]:
+            test = requests.head(try_img["url"], timeout=10, allow_redirects=True)
+            if test.status_code in (200, 301, 302):
                 return {
-                    "url": img["urls"]["regular"],
-                    "thumb": img["urls"]["small"],
-                    "author": img["user"]["name"],
-                    "author_url": img["user"]["links"]["html"],
-                    "id": img["id"]
+                    "url": try_img["url"],
+                    "thumb": try_img["url"],
+                    "author": try_img["author"],
+                    "author_url": "https://unsplash.com",
+                    "id": try_img["id"]
                 }
         
-        # Fallback: use web_search to find images
-        print(f"Unsplash API failed ({r.status_code}), using web search fallback...")
         return None
         
     except Exception as e:
         print(f"Unsplash error: {e}")
-        return None
+        # Last resort - pick deterministically from the pool
+        import hashlib
+        h = int(hashlib.md5(query.encode()).hexdigest(), 16)
+        img = FALLBACK_IMAGES[h % len(FALLBACK_IMAGES)]
+        return {
+            "url": img["url"],
+            "thumb": img["url"],
+            "author": img["author"],
+            "author_url": "https://unsplash.com",
+            "id": img["id"]
+        }
 
 def download_image(image_url, save_path):
     """Download image to local path."""
