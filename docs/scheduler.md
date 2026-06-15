@@ -6,8 +6,8 @@
 ## Daily Schedule Visual
 
 ```
-02:00 | ████ ContentNova-aitoolalliance          (kimi-k2.6, 300s, heavy)
-03:00 | ████ ContentNova-aibusinessinsider        (kimi-k2.6, 300s, heavy)
+02:00 | ████ ContentNova-aitoolalliance          (kimi-k2.6, 480s, heavy)
+03:00 | ████ ContentNova-aibusinessinsider        (kimi-k2.6, 480s, heavy)
 04:00 | ████ ContentNova-aicofounderstack         (kimi-k2.6, 600s, heavy)
 05:00 | ──── (quiet)
 06:00 | ████ Weekly-SkillUpdate (Mon only)          (deepseek-v4-flash, fast)
@@ -106,11 +106,11 @@ Checklist:
 | TradeBot-DailyResearch | 457a5ae7 | 9:15am daily | deepseek-v4-flash | 300s | Web Search (3 calls)
 
 ### Content Empire (3 crons)
-| Name | ID | Schedule | Model | Timeout |
-|------|-----|----------|-------|---------|
-| ContentNova-aitoolalliance | 21260801 | 2am daily | kimi-k2.6 | 300s |
-| ContentNova-aibusinessinsider | 38c57c58 | 3am daily | kimi-k2.6 | 300s |
-| ContentNova-aicofounderstack | b44776e2 | 4am daily | kimi-k2.6 | 600s |
+| Name | ID | Schedule | Model | Timeout | Notes |
+|------|-----|----------|-------|---------|-------|
+| ContentNova-aitoolalliance | 21260801 | 2am daily | kimi-k2.6 | 480s | Quality gate v3 |
+| ContentNova-aibusinessinsider | 38c57c58 | 3am daily | kimi-k2.6 | 480s | Quality gate v3 |
+| ContentNova-aicofounderstack | b44776e2 | 4am daily | kimi-k2.6 | 600s | Quality gate v3 |
 
 ### EveOnion (5 crons)
 | Name | ID | Schedule | Model | Timeout |
