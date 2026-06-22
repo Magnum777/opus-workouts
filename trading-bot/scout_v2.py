@@ -14,6 +14,8 @@ from datetime import datetime, timezone
 sys.path.insert(0, os.path.dirname(__file__))
 import portfolio_db_v2 as pdb
 from risk_manager import check_stop_loss_take_profit, get_position
+from risk_manager import update_trailing_stop, get_trailing_stop_info
+from risk_manager import STOP_LOSS_PCT, TAKE_PROFIT_PCT, TRIM_PCT
 
 # Solana imports
 from solana.rpc.api import Client
@@ -176,8 +178,27 @@ def scan_for_signals():
         pos["unrealized_pnl_usd"] = pnl_usd
         pos["unrealized_pnl_pct"] = pnl_pct * 100
         
-        # Stop loss at -5%
-        if pnl_pct <= -0.05:
+        # Update trailing stop high watermark
+        pos["current_price_usd"] = current_price_per_token
+        update_trailing_stop(pos, current_price_per_token)
+        
+        # Check trailing stop first
+        trail_info = get_trailing_stop_info(pos)
+        if trail_info and trail_info.get("active"):
+            trail_stop = trail_info["trail_stop_price"]
+            if current_price_per_token <= trail_stop:
+                signals.append({
+                    "token": token,
+                    "mint": mint,
+                    "action": "SELL",
+                    "reason": "TRAILING_STOP",
+                    "pnl_pct": pnl_pct * 100,
+                    "current_value_usd": current_value_usd
+                })
+                continue
+        
+        # Stop loss at -8% (hard floor)
+        if pnl_pct <= STOP_LOSS_PCT:
             signals.append({
                 "token": token,
                 "mint": mint,
@@ -186,8 +207,8 @@ def scan_for_signals():
                 "pnl_pct": pnl_pct * 100,
                 "current_value_usd": current_value_usd
             })
-        # Take profit at +10%
-        elif pnl_pct >= 0.10:
+        # Take profit at +25%
+        elif pnl_pct >= TAKE_PROFIT_PCT:
             signals.append({
                 "token": token,
                 "mint": mint,
@@ -196,6 +217,16 @@ def scan_for_signals():
                 "pnl_pct": pnl_pct * 100,
                 "current_price": current_price_per_token,
                 "current_value_usd": pos.get("current_value_usd", 0)
+            })
+        # Trim at +12%
+        elif pnl_pct >= TRIM_PCT:
+            signals.append({
+                "token": token,
+                "mint": mint,
+                "action": "TRIM",
+                "reason": "TRIM_THRESHOLD",
+                "pnl_pct": pnl_pct * 100,
+                "current_value_usd": current_value_usd
             })
     
     return signals

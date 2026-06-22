@@ -15,9 +15,14 @@ The bot was buying $3-5 positions and getting stopped out at -5% over and over, 
 - Bot can't re-enter until cooldown expires
 - Stored in `rebuy_cooldowns.json`
 
-### 3. Wider stops, longer holds
+### 3. Wider stops, longer holds + trailing stop
 - Stop loss: **-8%** (was -5% - too tight for memecoins)
-- Take profit: **+15%** (was +10%)
+- Take profit: **+25%** (was +10%)
+- **Trailing stop activates at +15%** — once a position is up 15%+, the stop starts trailing
+- **Trailing distance: 5%** — stop follows 5% below the highest price seen
+  - Example: buy at $10, price hits $16.70 (+67%), stop is at $15.87 — you lock in ~+59%
+  - Example: buy at $10, price hits $11.50 (+15%), stop is at $10.93 — you lock in ~+9%
+- Trailing stop overrides the hard -8% stop once active (it's always higher)
 - Minimum hold: **1 hour** (was 0 - sold immediately)
 - Max position: **40% of portfolio** (was 90% - WTF)
 
@@ -29,9 +34,9 @@ The bot was buying $3-5 positions and getting stopped out at -5% over and over, 
 - Daily limit: **unlimited** (other guardrails handle discipline)
 - Run cycle: **15min** (was 10min)
 
-### 6. Partial trim at +8%
-- Sell **50%** at +8% to free capital for new positions
-- Let remaining 50% ride to +15% full TP
+### 6. Partial trim at +12%
+- Sell **50%** at +12% to free capital for new positions
+- Let remaining 50% ride to +25% full TP or trailing stop exit
 - Trim only fires once per position (no repeated trims)
 
 ## The Plan: $90 → $500

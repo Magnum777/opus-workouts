@@ -1,40 +1,21 @@
-# EVE Online News Briefing — June 14, 2026
+# EVE Online News Briefing — June 22, 2026
 
 ## 🔴 Breaking / Important
-
-**Cradle of War Expansion is LIVE (June 9)**
-Fenris Creations' first expansion post-independence dropped last Tuesday. Features Exordium (the newbie-friendly starter zone with 53 systems, locked green safety), Military Campaigns (FW-driven PvP objectives with rewards), 4 new Command Carriers (Simurgh, Salvation, Gaia, Ymir), 4 new Navy Destroyers, Titles & Achievements, and Heraldry. Exordium has reduced ISK/LP rewards and Grade 0 ore — a deliberate "padded walls" zone for new players.
-
-**Version 24.01 Patch (June 12)**
-Post-launch hotfix addressing Visions of Greatness epic arc (easier NPCs, better ship rewards, improved survivability), billboard rotation cleanup (50 ads out, 3 evergreen newbie ads in), and UI fixes. Subcapital Operations expert system now account-bound.
-
-**Omega Sale in NES (June 11)**
-7 days Omega for 25 PLEX; free 25 PLEX gift for existing Omega subs. Returning players get 7 free days.
+- **Fenris Creations bans two partnered creators over Pride controversy.** Lorumerth (Loru Gaming) hit with a 3-month suspension; Fern Kitsuen permanently banned after a viral rant covering stolen rainbows, Salem witch trials, Sharia law, and "women must submit to their man." Coverage hit MMORPG.com, MassivelyOP, and multiple outlets. Fern also kicked from Goonswarm.
+- **EVE Vanguard alpha "Operation Avalon" announced for July 7–20** on Steam. Game director Scott Davis says the shooter is being built to "stand on its own" — not just an EVE Online sidekick. Yahoo/CGMagazine piece published June 20.
 
 ## 📊 Patch / Expansion News
-
-- Military Campaigns — players on forums already calling requirements "insane" (grind complaints incoming)
-- Exordium economic caps: -20% bounties/mission rewards, +5% market fees, Grade 0 ore
-- Shipcaster system: allows ship deliveries in starter space
-- 4 new Command Carriers: Caldari (Simurgh), Amarr (Salvation), Gallente (Gaia), Minmatar (Ymir)
-- PC Gamer's Ted Litchfield coverage on EVE Frontier gamepad play (June 11)
+- **Version 24.01 patch notes (June 19 update):** Military Campaign objectives reduced in required participants; payouts redistributed for higher individual ISK. Pride of the Federation SKINs added. Federation Day Celebration Crate available through June 26. Exordium region gets low-grade Pyroxeres. Epic Arc simulation sites get capacitor recharge buffs and QoL improvements.
+- **Cradle of War expansion** (launched June 9) continues rolling out tweaks based on player feedback. Forum feedback thread active — some players calling campaign requirements "insane" pre-patch.
 
 ## 🎭 Community Drama
-
-- **Fern Kitsuen** — went on unhinged rant about Loromerth "hiding LGBT flags," name-dropped Salem witch trials and Sharia law in the same post, got kicked from Goonswarm. Framed it as "being rewarded."
-- **Anonymous Newbie** — pulled a Molok Titan (~$7k value) from a free crate. Asked "everyone gets this for free, right?" PC Gamer covered it. Peak obliviousness.
-- **Dr_Frazir** — forum thread: "killed without undocking." Was already in space. Did not know. Blamed "mediocre mechanics."
-- **Banned Discord User** — complained on forums about getting banned from official EVE Discord for bringing real-world politics into general chat.
-- **Loru Gaming** — published hour-long video fact-checking Pirate Software's 2024 EVE takes. Meticulously proved Pirate Software played wrong and blamed devs.
+- The Pride controversy is *the* story of the month. Lorumerth's 3-month ban and Fern Kitsuen's permaban have split the community into "free speech" vs "don't be a dick in a partnered program" camps. Fern's rant is being dissected like a primary source document.
+- Player "Damocles_Zenith" made a forum post (June 7) about being banned from EVE Discord for "not supporting their real life politics" — classic energy.
+- Newbie who pulled a $7K ship from a free loot box went viral on PC Gamer.
 
 ## 💡 Satire Ideas
-
-1. **"Fenris Creations Releases Cradle of War; Community Too Busy Fighting About Fern Kitsuen's 'Rainbow Gate' To Notice"** — Fern Kitsuen's rant about Loromerth hiding rainbows is gold. The sheer volume of words spent on a non-issue while an expansion just dropped.
-
-2. **"Six-Month EVE Veteran 'Set For Life' After Pulling Molok; Immediately Blows It All On A Bad Fitting"** — The PC Gamer article about the newbie who pulled a $7k ship and thought it was a starter. Follow-up where he inevitably welps it.
-
-3. **"Man Banned From Spaceship Game For Talking About Politics Pikachu-Faces On Forum"** — The classic "I got banned for no reason" post that was actually very much for a reason. Easy satire targeting the "why can't I talk about real-world politics in my spaceship MMO" crowd.
-
-4. **"Local Capsuleer 'Killed While Docked' Files Bug Report; Forum Thread Hits 87 Pages Before Anyone Explains The Dock/Warp Mechanic"** — Dr_Frazir's "mediocre mechanics" rant reframed as the ultimate EVE newbie moment.
-
-5. **"Exordium Launches With Training Wheels So Thick New Players Can't Even PvP; Veterans Demand 0.5 Sec Status Zones For Their 'Personal Content'"** — The tension between the new safe zone and nullsec groups complaining about dying on the pipe. Good evergreen satire on EVE's difficulty curve.
+1. **"Local EVE Streamer Suspended For Being Mean To Rainbow Emojis; 'I Was Just Defending The Color Spectrum,' He Says"** — Lorumerth's 3-month ban for Pride flag drama.
+2. **"Fenris Creations Releases New Expansion; Community Too Busy Arguing About Streamer To Notice New Ships Exist"** — Cradle of War overshadowed by drama.
+3. **"EVE Guru Developer Goes On Epic Rant Covering Stolen Rainbows, Salem Witch Trials, Gas Prices, Gets Banned From Everything; Calls It 'A Reward'"** — Fern Kitsuen's crash-out.
+4. **"Man Banned From Spaceship Game Chat For Bringing Up Real-World Politics; 'I Just Asked A Question,' He Insists"** — Damocles_Zenith forum post energy.
+5. **"EVE Vanguard Promises To Be A Shooter You Can Play Without A Spreadsheet; Skeptics Demand To See The Excel Integration First"** — Vanguard alpha announcement combined with EVE's spreadsheet reputation.

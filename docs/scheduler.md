@@ -6,9 +6,9 @@
 ## Daily Schedule Visual
 
 ```
-02:00 | ████ ContentNova-aitoolalliance          (kimi-k2.6, 480s, heavy)
-03:00 | ████ ContentNova-aibusinessinsider        (kimi-k2.6, 480s, heavy)
-04:00 | ████ ContentNova-aicofounderstack         (kimi-k2.6, 600s, heavy)
+02:00 | ████ ContentNova-aitoolalliance          (qwen3.5:27b, 480s, medium)
+03:00 | ████ ContentNova-aibusinessinsider        (qwen3.5:27b, 480s, medium)
+04:00 | ████ ContentNova-aicofounderstack         (qwen3.5:27b, 600s, medium)
 05:00 | ──── (quiet)
 06:00 | ████ Weekly-SkillUpdate (Mon only)          (deepseek-v4-flash, fast)
 06:45 | ██   spam-pattern-discovery                (deepseek-v4-flash, 300s, light)
@@ -19,7 +19,7 @@
 09:00 | ██   Nova-Ops-Assessment                   (deepseek-v4-flash, 180s, light)
 09:15 | ██   TradeBot-DailyResearch              (deepseek-v4-flash, 300s, medium)  [NEW - szzg007 research pipeline]
 09:30 | ████ EveOnion-Article (Tue/Fri only)       (kimi-k2.6, 300s, heavy)
-10:00 | ██   TradeBot-Analytics (Mon only)          (kimi-k2.6, 180s, light)
+10:00 | ██   TradeBot-Analytics (Mon only)          (qwen3.5:27b, 180s, light)
 10:00 | ██   EveOnion-PersonaScan (every 3 days)    (deepseek-v4-flash, 300s, medium)
 14:00 | ████ TradeBot-WeeklyReview (Sat only)       (deepseek-v4-flash, 600s, medium)
 14:30 | ████ EveOnion-DailyTweet                   (deepseek-v4-flash, 180s, light)
@@ -45,10 +45,10 @@
 
 | Time Block | Total Jobs | Heavy | Model Load |
 |------------|-----------|-------|------------|
-| 2-4am | 3 | 3 (all content) | `kimi-k2.6` ×3 |
+| 2-4am | 3 | 3 (all content) | `qwen3.5:27b` ×3 |
 | 7-8am | 3 | 0 | `deepseek-v4-flash` ×3 |
 | 9-10am | 2-3 | 1 (article) | `kimi-k2.6` + `deepseek-v4-flash` |
-| 2-3pm | 2 | 1 (review) | `deepseek-v4-flash` + `kimi-k2.6` |
+| 2-3pm | 2 | 1 (review) | `deepseek-v4-flash` + `qwen3.5:27b` |
 | 6pm | 3-4 | 1 (forum bump Sun) | `kimi-k2.6` ×2-3 + `deepseek-v4-flash` |
 | 8pm | 1 | 1 (night school) | `deepseek-v4-flash` |
 
@@ -58,6 +58,7 @@
 |-------|---------|-----------|-------|
 | kimi-k2.6 | **7** | 4 (content ×3 + article) | Main creative engine. 2-4am block is peak load |
 | deepseek-v4-flash | **15** | 2 (night school, forum bump) | Ops/scans. Distributed well |
+| qwen3.5:27b | **4** | 0 (content x3 + analytics) | NEW - replaces kimi-k2.6 for scheduled writing. ~5-10x lighter usage |
 | minimax-m2.7 | 0 | — | Retired, no active crons |
 
 ## Conflict History
@@ -72,7 +73,7 @@
 2. **Keep 15min minimum gap between any 2 jobs in same time block.**
 3. **Content empire (2-4am) is sacred — don't add there.**
 4. **If adding a new job, check this doc first.**
-5. **Prefer `deepseek-v4-flash` for new ops/scans. Reserve `kimi-k2.6` for writing.**
+5. **Prefer `deepseek-v4-flash` for new ops/scans. Use `qwen3.5:27b` for scheduled writing. Reserve `kimi-k2.6` for live creative sessions only.**
 
 ## Adding a Cron
 
@@ -102,15 +103,15 @@ Checklist:
 | TradeBot-Consolidated | 78b66703 | every 5m | deepseek-v4-flash | 600s | Jupiter + Helius (heavy) |
 | TradeBot-PortfolioOverview | 0eb02ac4 | every 4h | deepseek-v4-flash | 180s | Helius (light) |
 | TradeBot-WeeklyReview | 2be91036 | Sat 2pm | deepseek-v4-flash | 600s | Helius (light) |
-| TradeBot-Analytics | c8153b73 | Mon 10am | kimi-k2.6 | 180s | Helius (light) |
+| TradeBot-Analytics | c8153b73 | Mon 10am | **qwen3.5:27b** | 180s | Helius (light) |
 | TradeBot-DailyResearch | 457a5ae7 | 9:15am daily | deepseek-v4-flash | 300s | Web Search (3 calls)
 
 ### Content Empire (3 crons)
 | Name | ID | Schedule | Model | Timeout | Notes |
 |------|-----|----------|-------|---------|-------|
-| ContentNova-aitoolalliance | 21260801 | 2am daily | kimi-k2.6 | 480s | Quality gate v3 |
-| ContentNova-aibusinessinsider | 38c57c58 | 3am daily | kimi-k2.6 | 480s | Quality gate v3 |
-| ContentNova-aicofounderstack | b44776e2 | 4am daily | kimi-k2.6 | 600s | Quality gate v3 |
+| ContentNova-aitoolalliance | 21260801 | 2am daily | **qwen3.5:27b** | 480s | Quality gate v3 |
+| ContentNova-aibusinessinsider | 38c57c58 | 3am daily | **qwen3.5:27b** | 480s | Quality gate v3 |
+| ContentNova-aicofounderstack | b44776e2 | 4am daily | **qwen3.5:27b** | 600s | Quality gate v3 |
 
 ### EveOnion (5 crons)
 | Name | ID | Schedule | Model | Timeout |
@@ -141,12 +142,43 @@ Checklist:
 | Weekly-SkillUpdate | ac9ba7e1 | 6am Mon | deepseek-v4-flash | 180s |
 | Weekly-SkillDiscovery | 0b0873dc | 6pm Fri | deepseek-v4-flash | 180s |
 
-## Total: 26 crons (was 24)
-- `kimi-k2.6`: **7** crons (creative/writing heavy)
+## Total: 26 crons
+- `kimi-k2.6`: **3** crons (live session overflow - EveOnion-Article + Kybernauts heavy items)
 - `deepseek-v4-flash`: **18** crons (ops/scans/fast)
+- `qwen3.5:27b`: **4** crons (scheduled writing + light analytics)
 - Continuous jobs: 2 (every 5m, every 4h)
 
-## API Rate Limit Budget (TradeBot)
+## Weekly Usage Budget (Ollama Pro)
+
+**Problem:** Kimi-k2.6 is level 4 (extra heavy). 7 crons burning ~20-30 min GPU time each = **~3.5-5 hours/week of GPU time** from scheduled jobs alone. Ad-hoc work pushes over the weekly cap.
+
+**Fix (2026-06-15):**
+- **ContentNova x3** switched from `kimi-k2.6` -> `qwen3.5:27b` (level ~2, ~5-10x lighter)
+- **TradeBot-Analytics** switched from `kimi-k2.6` -> `qwen3.5:27b`
+- **Remaining kimi-k2.6:** Only EveOnion-Article + Kybernauts-Propaganda/ForumBump (special creative cases)
+- **Expected savings:** ~50-70% reduction in scheduled GPU burn for content block
+
+**If still hitting cap:**
+1. Switch EveOnion-Article to `qwen3.5:27b`
+2. Switch Kybernauts items to `qwen3.5:27b`
+3. Move remaining heavy live sessions to `mistral-small` or buy extra usage balance
+
+## Ollama Model Quick Reference
+
+| Model | Level | Use Case | Weekly Burn |
+|-------|-------|----------|-------------|
+| kimi-k2.6 | 4 (extra heavy) | Live creative sessions, special creative crons | HIGH - minimize |
+| deepseek-v4-pro | 4 (extra heavy) | Deep debugging, complex reasoning only | HIGH - rare use |
+| deepseek-v4-flash | 3 (heavy) | Ops, scans, fast structured tasks | Medium |
+| qwen3.5:27b | 2 (medium) | Scheduled writing, analytics, content | Low - preferred |
+| mistral-small | 2 (medium) | Fast structured output, coding | Low |
+| qwen3:30b | 2 (medium) | Fallback for qwen3.5:27b | Low |
+
+## Next Review
+Check this doc before adding any new cron. Update after every change.
+
+## Last Updated
+2026-06-15 -- Switched 4 crons from kimi-k2.6 to qwen3.5:27b to reduce weekly Ollama usage burn. Added model reference table.
 | API | Daily Calls | Limit | Buffer | Status |
 |-----|-----------|-------|--------|--------|
 | Jupiter (lite-api) | ~3,000 | ~5,000/day | 40% | Safe |

@@ -17,12 +17,24 @@ import sys
 import os
 import argparse
 from pathlib import Path
+import datetime
+
+# LOGGING SETUP
+LOG_FILE = Path(__file__).parent / 'pipeline.log'
+
+def log_event(event_type, site, title_or_msg, extra=None):
+    ts = datetime.datetime.now().isoformat()
+    line = f"[{ts}] {event_type} | {site} | {title_or_msg}"
+    if extra:
+        line += f" | {extra}"
+    with open(LOG_FILE, 'a', encoding='utf-8') as f:
+        f.write(line + '\n')
 
 # Add paths
 sys.path.insert(0, r'C:\Users\compj\.openclaw\workspace\scripts\content-nova')
 
 from content_quality_gate import quality_gate
-from publisher_v3 import create_post, SITES
+from publisher_v3 import create_post, update_post, SITES
 
 
 def publish_with_gate(article_path, site_key, auto_publish=False):
@@ -50,22 +62,60 @@ def publish_with_gate(article_path, site_key, auto_publish=False):
     
     # Step 2: Quality Gate
     print(f"\nRunning quality gate on: {title}")
+    log_event('INIT', site_key, title)
     result = quality_gate(content, title)
     
     # Step 3: Decide
     if result['can_publish']:
         print(f"\n[PASS] Quality gate cleared")
+        log_event('GATE_PASS', site_key, title, f"humanized={result.get('humanization_needed', False)}")
         
         if auto_publish:
             print(f"Publishing to {site_key}...")
             # Use humanized version if available
             publish_content = result['humanized'] if result['humanization_needed'] else content
             
-            res = create_post(site_key, title, publish_content, status='draft')
+            res = create_post(site_key, title, publish_content, status='publish')
             if 'ok' in res:
-                print(f"[OK] Published as DRAFT: {res.get('link', 'N/A')}")
+                print(f"[OK] Published LIVE: {res.get('link', 'N/A')}")
                 print(f"Post ID: {res.get('id')}")
-                print("Review and change status to 'publish' when ready")
+                
+                # Auto-set slug from title if WordPress didn't generate one
+                if res.get('id'):
+                    post_id = res['id']
+                    # Wait a moment for WordPress to process
+                    import time
+                    time.sleep(1)
+                    
+                    # Check if slug was generated
+                    from publisher_v3 import update_post
+                    import requests, base64
+                    site = SITES.get(site_key)
+                    creds = f"{site['user']}:{site['pass']}".encode()
+                    token = base64.b64encode(creds).decode()
+                    headers = {
+                        'Authorization': f'Basic {token}',
+                        'Accept': 'application/json'
+                    }
+                    url = f"{site['url']}/wp-json/wp/v2/posts/{post_id}"
+                    r = requests.get(url, headers=headers, timeout=10)
+                    if r.status_code == 200:
+                        post_data = r.json()
+                        slug = post_data.get('slug', '')
+                        if not slug or slug == str(post_id):
+                            # Generate slug from title
+                            import re
+                            slug = re.sub(r'[^\w\s-]', '', title.lower())
+                            slug = re.sub(r'[-\s]+', '-', slug).strip('-')[:60]
+                            update_post(site_key, post_id, slug=slug)
+                            print(f"Slug set: {slug}")
+                            # Refresh link
+                            r2 = requests.get(url, headers=headers, timeout=10)
+                            if r2.status_code == 200:
+                                res['link'] = r2.json().get('link', res['link'])
+                                print(f"Updated URL: {res['link']}")
+                
+                return {'ok': True, 'id': res.get('id'), 'link': res.get('link')}
             else:
                 print(f"[ERROR] Publish failed: {res}")
                 return False

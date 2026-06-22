@@ -9,6 +9,7 @@ import requests
 from datetime import datetime, timezone, timedelta
 
 import portfolio_db_v2 as pdb
+from rpc_config import get_rpc
 
 # Token metadata
 TOKENS = {
@@ -384,10 +385,10 @@ def fetch_trending_solana_candidates(count=10):
 
 
 def get_usdc_balance():
-    """Get USDC balance from blockchain via Helius RPC (no solders dependency)"""
+    """Get USDC balance from blockchain via RPC"""
     try:
         wallet = "7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA"
-        helius_url = "https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887"
+        rpc_url = get_rpc()
         data = {
             "jsonrpc": "2.0", "id": 1,
             "method": "getTokenAccountsByOwner",
@@ -397,7 +398,7 @@ def get_usdc_balance():
                 {"encoding": "jsonParsed"}
             ]
         }
-        resp = requests.post(helius_url, json=data, headers={"Content-Type": "application/json"}, timeout=10)
+        resp = requests.post(rpc_url, json=data, headers={"Content-Type": "application/json"}, timeout=10)
         if resp.status_code == 200:
             result = resp.json()
             accounts = result.get("result", {}).get("value", [])

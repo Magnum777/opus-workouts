@@ -8,16 +8,23 @@ import os
 from datetime import datetime, timezone, timedelta
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "portfolio.db.json")
-DAILY_LIMIT = 999        # Effectively unlimited — other guardrails handle discipline
-MIN_HOLD_HOURS = 1       # Minimum hold time in hours
-MAX_POSITION_PCT = 0.40  # Max 40% of portfolio in one position
-MAX_OPEN_POSITIONS = 1   # HARD CAP — only ever hold 1 position at a time
-STOP_LOSS_PCT = -0.06    # -6% stop loss (keep tight — limit damage)
-TRIM_PCT = 0.12         # +12% partial trim — let rebuild runners breathe
-TRIM_FRACTION = 0.5     # Sell half at trim threshold
-TAKE_PROFIT_PCT = 0.15   # +15% full take profit (was 8% — too tight for memes)
+DAILY_LIMIT = 999          # Effectively unlimited — other guardrails handle discipline
+MIN_HOLD_HOURS = 1         # Minimum hold time in hours
+MAX_POSITION_PCT = 0.40    # Max 40% of portfolio in one position
+MAX_OPEN_POSITIONS = 6     # Up to 6 concurrent positions — diversified, not degenerate
+MAX_TOTAL_EXPOSURE_PCT = 0.70  # Never have more than 70% of portfolio in positions
+STOP_LOSS_PCT = -0.08      # -8% stop loss (gave the 1-pos tightness; let runners breathe)
+TRIM_PCT = 0.12           # +12% partial trim
+TRIM_FRACTION = 0.5       # Sell half at trim threshold
+TAKE_PROFIT_PCT = 0.25     # +25% full take profit (let winners run further)
+
+# Trailing stop — locks in gains as price rises
+TRAILING_ACTIVATE_PCT = 0.15   # Trailing stop activates after +15% profit
+TRAILING_DISTANCE_PCT = 0.05   # Trail 5% below the highest price seen
+# Once active, the effective stop loss becomes: max(original -8%, highest_price - 5%)
+# So if a position goes up 67%, the stop is at ~62% profit — you keep most of the gain.
 REBUY_COOLDOWN_HOURS = 48  # 48h cooldown — no rebuying tokens you just sold
-MIN_TRADE_VALUE = 1.0    # Trades under $1 don't count for consecutive loss tracking
+MIN_TRADE_VALUE = 1.0      # Trades under $1 don't count for consecutive loss tracking
 CONSECUTIVE_LOSS_DECAY_HOURS = 6  # Decay 1 loss every 6h without new losses
 COOLDOWN_FILE = os.path.join(os.path.dirname(__file__), "rebuy_cooldowns.json")
 
@@ -149,6 +156,7 @@ def check_trade_allowed(token, action, portfolio_value, current_position_value, 
             return False, f"Position too large (${position_size:.2f} > {MAX_POSITION_PCT*100}% of ${portfolio_value:.2f})"
     
     # Check 4: Consecutive losses with time-based decay
+    # Only blocks RE-BUYS of the same token, not all trading
     consecutive_losses = metrics.get("consecutive_losses", 0)
     if consecutive_losses >= 3:
         # Check if enough time has passed to decay the counter
@@ -156,7 +164,7 @@ def check_trade_allowed(token, action, portfolio_value, current_position_value, 
         if last_loss_time:
             elapsed = (datetime.now(timezone.utc) - datetime.fromisoformat(last_loss_time.replace('Z', '+00:00'))).total_seconds() / 3600
             if elapsed >= CONSECUTIVE_LOSS_DECAY_HOURS:
-                # Decay 1 loss count, unfreeze if we're at 3
+                # Decay 1 loss count
                 decay_amount = int(elapsed / CONSECUTIVE_LOSS_DECAY_HOURS)
                 metrics["consecutive_losses"] = max(0, consecutive_losses - decay_amount)
                 db["risk_metrics"] = metrics
@@ -164,13 +172,42 @@ def check_trade_allowed(token, action, portfolio_value, current_position_value, 
                 consecutive_losses = metrics["consecutive_losses"]
     
     if action == "BUY" and consecutive_losses >= 3:
-        return False, f"Trading paused - {consecutive_losses} consecutive real losses (>$1 each)"
+        # Check if this is a re-buy of a recently lost token
+        # Look up the last 5 closed positions for this token
+        recent_closed = [p for p in db.get("positions", [])
+                        if p.get("token") == token and p.get("status") == "CLOSED"
+                        and p.get("realized_pnl_usd", 0) < 0
+                        and p.get("closed_at")]
+        if recent_closed:
+            # Sort by most recent close
+            recent_closed.sort(key=lambda p: p.get("closed_at", ""), reverse=True)
+            last_close = recent_closed[0].get("closed_at", "")
+            if last_close:
+                try:
+                    closed = datetime.fromisoformat(last_close.replace('Z', '+00:00'))
+                    hours_since = (datetime.now(timezone.utc) - closed).total_seconds() / 3600
+                    if hours_since < REBUY_COOLDOWN_HOURS:
+                        return False, f"Re-buy blocked - {token} lost ${abs(recent_closed[0].get('realized_pnl_usd', 0)):.2f} {hours_since:.0f}h ago (cooldown {REBUY_COOLDOWN_HOURS}h)"
+                except:
+                    pass
+        # If it's a new token (not a re-buy), allow the trade
+        # The consecutive loss counter is informational only for new tokens
     
-    # Check 5: Max open positions
+    # Check 5: Total exposure cap (don't go all-in)
     if action == "BUY":
         open_count = len([p for p in db.get("positions", []) if p.get("status") == "OPEN"])
         if open_count >= MAX_OPEN_POSITIONS:
             return False, f"Max open positions ({MAX_OPEN_POSITIONS}) reached — currently holding {open_count}"
+        
+        # Also check total exposure cap
+        if portfolio_value > 0:
+            total_in_positions = sum(
+                p.get("current_value_usd", 0) for p in db.get("positions", [])
+                if p.get("status") == "OPEN"
+            )
+            exposure_pct = total_in_positions / portfolio_value
+            if exposure_pct >= MAX_TOTAL_EXPOSURE_PCT:
+                return False, f"Total exposure cap reached ({exposure_pct*100:.0f}% >= {MAX_TOTAL_EXPOSURE_PCT*100:.0f}%) — need to free up capital first"
     
     return True, "Trade allowed"
 
@@ -209,7 +246,7 @@ def get_position(token):
     return None
 
 def check_stop_loss_take_profit(position):
-    """Check if position hit stop loss or take profit"""
+    """Check if position hit stop loss, take profit, or trailing stop"""
     if not position:
         return None
     
@@ -221,12 +258,89 @@ def check_stop_loss_take_profit(position):
     
     pnl_pct = (current_price - buy_price) / buy_price
     
+    # Hard stop loss (always active)
     if pnl_pct <= STOP_LOSS_PCT:
         return "STOP_LOSS", pnl_pct
+    
+    # Take profit (always active)
     if pnl_pct >= TAKE_PROFIT_PCT:
         return "TAKE_PROFIT", pnl_pct
     
+    # Trailing stop check — only if position has enough data
+    trailing_high = position.get("trailing_high_price", 0)
+    if trailing_high > 0:
+        trailing_pnl = (trailing_high - buy_price) / buy_price
+        # Only activate trailing stop if we've been above the activation threshold
+        if trailing_pnl >= TRAILING_ACTIVATE_PCT:
+            trail_stop_price = trailing_high * (1 - TRAILING_DISTANCE_PCT)
+            if current_price <= trail_stop_price:
+                return "TRAILING_STOP", pnl_pct
+    
     return None, pnl_pct
+
+
+def update_trailing_stop(position, current_price):
+    """Update the trailing high watermark for a position.
+    Returns True if the high was updated, False otherwise.
+    Call this every cycle to track the highest price seen."""
+    if not position:
+        return False
+    
+    buy_price = position.get("buy_price_usd", 0)
+    if buy_price <= 0 or current_price <= 0:
+        return False
+    
+    trailing_high = position.get("trailing_high_price", 0)
+    
+    # Initialize trailing high to buy price if not set
+    if trailing_high <= 0:
+        position["trailing_high_price"] = buy_price
+        return True
+    
+    # Update if we hit a new high
+    if current_price > trailing_high:
+        position["trailing_high_price"] = current_price
+        return True
+    
+    return False
+
+
+def get_trailing_stop_info(position):
+    """Get human-readable trailing stop status for a position.
+    Returns dict with: active, current_stop_price, highest_seen, locked_pnl"""
+    if not position:
+        return None
+    
+    buy_price = position.get("buy_price_usd", 0)
+    trailing_high = position.get("trailing_high_price", 0)
+    current_price = position.get("current_price_usd", 0)
+    
+    if buy_price <= 0 or trailing_high <= 0:
+        return {"active": False, "reason": "no trailing data yet"}
+    
+    trailing_pnl = (trailing_high - buy_price) / buy_price
+    
+    if trailing_pnl < TRAILING_ACTIVATE_PCT:
+        return {
+            "active": False,
+            "reason": f"not yet activated (need +{TRAILING_ACTIVATE_PCT*100:.0f}%, currently at +{trailing_pnl*100:.1f}%)",
+            "highest_seen": trailing_high,
+            "highest_pnl_pct": trailing_pnl * 100
+        }
+    
+    trail_stop_price = trailing_high * (1 - TRAILING_DISTANCE_PCT)
+    locked_pnl = (trail_stop_price - buy_price) / buy_price * 100
+    distance_to_stop = ((current_price - trail_stop_price) / trail_stop_price * 100) if trail_stop_price > 0 else 0
+    
+    return {
+        "active": True,
+        "trail_stop_price": trail_stop_price,
+        "highest_seen": trailing_high,
+        "highest_pnl_pct": trailing_pnl * 100,
+        "locked_pnl_pct": locked_pnl,
+        "distance_to_stop_pct": distance_to_stop,
+        "current_price": current_price
+    }
 
 def get_risk_summary():
     """Get current risk status (auto-decays consecutive losses)"""
@@ -267,9 +381,13 @@ def get_risk_summary():
         "consecutive_losses": metrics.get("consecutive_losses", 0),
         "trading_paused": metrics.get("consecutive_losses", 0) >= 3,
         "cooldowns": active_cooldowns,
+        "max_open_positions": MAX_OPEN_POSITIONS,
+        "max_exposure_pct": MAX_TOTAL_EXPOSURE_PCT,
         "min_hold_hours": MIN_HOLD_HOURS,
         "stop_loss_pct": STOP_LOSS_PCT,
         "take_profit_pct": TAKE_PROFIT_PCT,
+        "trailing_activate_pct": TRAILING_ACTIVATE_PCT,
+        "trailing_distance_pct": TRAILING_DISTANCE_PCT,
         "rebuy_cooldown_hours": REBUY_COOLDOWN_HOURS
     }
 

@@ -39,7 +39,41 @@ _(Old install also had: agent-browser-clawdbot, ai-social-media-content, composi
 ## TTS (old — re-wire on demand)
 - edge-tts was preferred (multiple voices)
 
-## Approvals / safety
+## Structured Memory (P2 Integration — 2026-06-15)
+
+### Ontology — Typed Knowledge Graph
+**Skill:** `ontology` v1.0.4
+**Storage:** `memory/ontology/graph.jsonl` + `schema.yaml`
+**Use for:** Structured project/task/person/device data. Queryable, validated, append-only.
+**CLI:**
+```bash
+python skills/ontology/scripts/ontology.py query --type Project --where '{"status":"active"}'
+python skills/ontology/scripts/ontology.py list --type Task
+python skills/ontology/scripts/ontology.py validate
+```
+**Guide:** `.myknowledge/templates/ontology-usage.md`
+
+### Cogmem — Bio-Inspired Memory Kernel
+**Skill:** `cogmem` v2.0.3
+**Status:** NOT INSTALLED — requires Ollama `qwen3-embedding:0.6b` + `qwen2.5:7b`
+**Use for:** Semantic recall across conversation history (weeks/months)
+**Blocker:** Windows — needs WSL or manual setup. Opus to decide.
+**Alternative:** Ontology + daily logs already cover structured + temporal memory.
+
+### Task-Prism — Task Decomposition
+**Skill:** `task-prism` v4.1.0
+**Use for:** WBS generation, PERT estimates, skill mapping, RACI, sprint planning
+**Trigger:** "Break this down", "Plan this project", "How should we approach X?"
+**Integration:** WBS → ontology Tasks + myknowledge requirements
+**Guide:** `.myknowledge/templates/task-prism-integration.md`
+
+### MyKnowledge — Knowledge Base Manager
+**Skill:** `myknowledge` v1.4.89
+**Storage:** `.myknowledge/global/` and per-project `.myknowledge/`
+**Use for:** Project docs, requirements tracking, status snapshots, session resume
+**Guide:** `.myknowledge/global/README.md`
+
+---
 - `rm` → prefer `trash` / recycle bin
 - Ask before anything outbound (email / tweet / DM)
 - `/approve` is user-facing, never a shell command

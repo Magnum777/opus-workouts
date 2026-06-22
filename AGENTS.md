@@ -66,6 +66,15 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
+### 📊 Structured Memory (Ontology)
+
+Beyond `MEMORY.md`, we now have a **typed knowledge graph** at `memory/ontology/`:
+- Projects, tasks, people, devices, notes — all queryable
+- CLI: `python skills/ontology/scripts/ontology.py list --type Project`
+- Use it when Opus asks "what projects are active?" or "what do we know about X?"
+- Weekly heartbeat: diff ontology against MEMORY.md, sync discrepancies
+- **Still experimental** — if it feels like overhead, say so and we'll simplify
+
 ## Red Lines
 
 - Don't exfiltrate private data. Ever.
@@ -252,6 +261,17 @@ All 21 ClawHub skills are installed, updated, and registered. Use them proactive
 | wordpress-pro | WordPress theme/plugin dev, WooCommerce, Gutenberg. |
 | solana-payments-wallets-trading | Solana trading, swaps, wallet mgmt, DeFi. |
 | composio | Connect to 500+ apps (Gmail, Slack, Notion, etc.). |
+| task-prism | Task decomposition, WBS, PERT estimates, sprint planning. |
+| ontology | Typed knowledge graph: entities, relations, structured queries. |
+| myknowledge | Knowledge bases, requirements tracking, project status snapshots. |
+| humanizer | Strip AI signals from content before publishing. |
+| humanized-writing-editor | Rewrite stiff text to natural prose. |
+| factual-claim-verifier | Verify claims before publishing. |
+| wordpress-api-pro | Production-grade WordPress REST API (replaces wordpress-pro). |
+| youtube-transcript-native-node | Extract YouTube captions for research. |
+| browser-auto-plus | Browser automation with retry logic and error recovery. |
+| playwright-browser-automation | Playwright API fallback for browser tasks. |
+| proactive-agent | WAL protocol, autonomous cron patterns, failure recovery. |
 | debug-pro | 7-step debugging protocol for systematic bug fixing. |
 | test-runner | Write/run unit, integration, E2E tests. |
 | skill-creator | Create or update custom skills. |

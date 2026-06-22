@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""IMAP Gmail spam sweep — batched fetches, fast."""
+"""IMAP Gmail spam sweep — batched fetches, fast. Scans INBOX and Spam."""
 import imaplib, email, json, re, sys, os, time
 from email.header import decode_header
 from datetime import datetime, timedelta
@@ -8,7 +8,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 START_TIME = time.time()
-MAX_RUNTIME = 300
+MAX_RUNTIME = 240  # 4 minutes max (cron timeout is 480s, we need margin)
 
 def should_exit():
     return time.time() - START_TIME > MAX_RUNTIME
@@ -118,6 +118,44 @@ RE_FAKE_SENDER = re.compile(
     re.IGNORECASE,
 )
 
+RE_BUSINESS_SCAM = re.compile(
+    r"order verification notice|verification notice|order verification|verification required|"
+    r"your account has been|account suspended|account locked|confirm your email|urgent confirm|action required|"
+    r"suspended due to|unusual activity detected|invoice attached|invoice from|payment receipt|"
+    r"wire transfer|bank transfer|direct deposit|dear valued customer|dear sir/madam|"
+    r"kindly|urgent response needed|respond immediately|crypto investment|bitcoin investment|"
+    r"investment opportunity|double your money|guaranteed returns|risk free|earn daily|"
+    r"passive income|work from home|make money fast|financial freedom|secret method|"
+    r"exclusive offer|limited time only|act now|you have been selected|congratulations winner|"
+    r"weight loss guaranteed|lose pounds fast|miracle diet|ozempic|wegovy|glp-1|weight loss pills|"
+    r"cbd gummies|cbd oil|hemp extract|keto pills|apple cider vinegar|garcinia cambogia|"
+    r"male enhancement|testosterone booster|performance plus|credit card declined|"
+    r"update payment info|billing issue|package delivery failed|shipping address needed|"
+    r"dhl delivery|fedex tracking|ups package|customs fee|import duty|clearance required|"
+    r"irs notice|tax refund|tax settlement|social security|medicare|medicaid|"
+    r"loan approved|loan pre-approved|credit approved|debt consolidation|reduce your debt|"
+    r"debt relief|reverse mortgage|home equity|cash out|timeshare|vacation package|free cruise|"
+    r"extended warranty|vehicle warranty|car warranty|health insurance|dental insurance|"
+    r"life insurance quote|mortgage rates|refinance now|low rates|pre-approved|pre-qualified|"
+    r"special financing|gift card|free gift card|redeem now|survey reward|complete survey|"
+    r"opinion wanted|charity donation|donate now|help children|inheritance|next of kin|"
+    r"unclaimed funds|lottery winner|lucky winner|prize claim|bank of america alert|"
+    r"wells fargo alert|chase alert|suspicious login|unauthorized access|security breach|"
+    r"verify identity|identity verification|kyc required|2fa code|two factor|authentication code|"
+    r"reset password|password expired|credentials|login attempt|sign in attempt|new device|"
+    r"geek squad|norton|mcafee|renew subscription|antivirus expired|security software|tech support|"
+    r"microsoft support|apple support|amazon support|refund pending|refund processing|"
+    r"refund approved|overcharged|billing error|payment dispute",
+    re.IGNORECASE,
+)
+
+RE_NEWSLETTER_BULK = re.compile(
+    r"unsubscribe|no-reply|noreply|newsletter|digest|daily update|weekly update|"
+    r"promotional|promo|marketing|advertisement|sponsored|partner offer|"
+    r"you might like|recommended for you|based on your|personalized|tailored",
+    re.IGNORECASE,
+)
+
 CORE_BAD = {"pornhub", "sex", "fuck", "cock", "cum", "pussy", "dick", "penis", "vagina",
             "clit", "anal", "blowjob", "handjob", "creampie", "deepthroat",
             "gangbang", "bukkake", "squirt", "threesome", "orgy", "swingers",
@@ -194,7 +232,7 @@ DATING = {"wants to meet you", "likes your profile", "feels the attraction",
           "great steaks sampler", "omaha steaks",
           "nationwide carry for military", "bill for nationwide carry",
           "order verification notice", "verification notice",
-          "inquiry", "order – verification notice",
+          "inquiry", "order \u2013 verification notice",
           "nerve fresh", "relief from tingling",
           "i'm having a break", "let's open up new frontiers",
           "i know you want it", "lick my", "hi, wanna chat",
@@ -216,7 +254,7 @@ DATING = {"wants to meet you", "likes your profile", "feels the attraction",
           "a new message to read",
           "bet you're trouble", "trouble in the best way", "you're trouble",
           "wanna chat", "feel like talking", "just relocated", "love some help",
-          "fast \u0026 flirty", "flirty flings", "flirty edition",
+          "fast & flirty", "flirty flings", "flirty edition",
           "flirty connection", "flirty dm", "flirty note",
           "flirty photos", "flirty message", "flirty and",
           "fun and flirty", "sent a flirty",
@@ -324,6 +362,17 @@ def is_spam(sender_raw, subject_raw):
     if RE_SEXUAL.search(sender) or RE_SEXUAL.search(subject):
         return True
 
+    # Business scam detection
+    if RE_BUSINESS_SCAM.search(subject) and not any(d in sender for d in LEGIT):
+        return True
+
+    # Newsletter bulk with no legit domain
+    if RE_NEWSLETTER_BULK.search(subject) and not any(d in sender for d in LEGIT):
+        # Only flag if sender looks suspicious (random domain, not a known service)
+        suspicious_tld = re.search(r'\.(ru|biz|top|pp\.ua|co\.nl|org\.uk|tk|ml|cf)$', sender)
+        if suspicious_tld or re.search(r'[0-9]', sender.split('@')[-1] if '@' in sender else sender):
+            return True
+
     combined = sender + " " + subject
     if re.search(r"anytime you feel like talking|just relocated|would love some help", combined, re.IGNORECASE):
         return True
@@ -337,7 +386,7 @@ def is_spam(sender_raw, subject_raw):
             return True
     if re.search(r"claim your prize|congratulations.*won|you.*won|click to claim", subject, re.IGNORECASE):
         return True
-    # Prize/reward — only flag if sender is suspicious too
+    # Prize/reward -- only flag if sender is suspicious too
     if re.search(r"beach reward|your .* is here|free.*gift", subject, re.IGNORECASE):
         if not any(d in sender for d in LEGIT):
             return True
@@ -352,76 +401,57 @@ def is_spam(sender_raw, subject_raw):
     # Fake sender names (just first name + dating subject)
     fake_sender_names = {"karen", "linda", "dorothy", "mary",
                          "h o t m i l f", "hot milf", "adultcrush"}
-    if any(name in sender_lower for name in fake_sender_names) and any(w in subject for w in DATING):
+    sender_name = sender.split("<")[0].strip().lower() if "<" in sender else sender.lower()
+    if any(name in sender_name for name in fake_sender_names) and any(w in subject for w in DATING):
         return True
 
     # Fake person names with dating/sexual keywords
     fake_names = {"kyree", "kyree owen", "md mahtab", "chadeb", "amber",
                   "allen kimberly", "nancy", "camilla", "kimberly clark", "sarah",
                   "linda moore", "dorothy young", "karen perez"}
-    if any(name in sender_lower for name in fake_names) and any(w in subject for w in DATING):
+    if any(name in sender_name for name in fake_names) and any(w in subject for w in DATING):
         return True
 
     # Random-name free-email with pickup lines
-    if re.search(r"@(gmail|hotmail|outlook)\.com", sender) and any(w in subject for w in DATING):
+    if re.search(r"@(gmail|hotmail|outlook)\.(com|co\.\w+)", sender) and any(w in subject for w in DATING):
         return True
 
     return False
 
 
-def sweep_one(email_addr):
-    print(f"\n{'='*50}")
-    print(f"Account: {email_addr}")
-    print(f"{'='*50}")
-
-    env_pass = get_password(email_addr)
-    if not env_pass:
-        print("  SKIP: password not found (env var or .gmail_accounts.json)")
+def sweep_folder(email_addr, password, folder, label, max_msgs=100):
+    """Sweep a single folder. Returns (checked, trashed)."""
+    if should_exit():
         return 0, 0
-
     try:
-        mail = imaplib.IMAP4_SSL("imap.gmail.com", timeout=20)
-        mail.login(email_addr, env_pass)
+        mail = imaplib.IMAP4_SSL("imap.gmail.com", timeout=15)
+        mail.login(email_addr, password)
     except Exception as e:
         print(f"  LOGIN FAILED: {e}")
         return 0, 0
 
-    mail.select("INBOX")
-    # Check last 14 days, up to 200 messages for heavy-spam accounts
-    since_date = (datetime.now() - timedelta(days=30)).strftime("%d-%b-%Y")
-    _, data = mail.search(None, f"(SINCE {since_date})")
-    all_ids = data[0].split()
-    if not all_ids:
-        print("  No recent messages.")
+    status, _ = mail.select(folder)
+    if status != "OK":
+        print(f"  SELECT FAILED for {folder}")
         mail.logout()
         return 0, 0
 
-    # Take last N UIDs -- more for compjunkie which gets heavy spam
-    max_msgs = 200 if "compjunkie" in email_addr else 100
+    # Check last 7 days for spam folder, 14 days for inbox (tighter = faster)
+    days = 14 if "INBOX" in folder else 7
+    since_date = (datetime.now() - timedelta(days=days)).strftime("%d-%b-%Y")
+    _, data = mail.search(None, f"(SINCE {since_date})")
+    all_ids = data[0].split()
+    if not all_ids:
+        print(f"  {label}: No recent messages.")
+        mail.close()
+        mail.logout()
+        return 0, 0
+
+    # Take last N UIDs
     uids = all_ids[-max_msgs:]
-    uid_str = ",".join([b.decode() if isinstance(b, bytes) else b for b in uids])
 
-    print(f"  Checking {len(uids)} messages (last 30 days)...")
+    print(f"  {label}: Checking {len(uids)} messages (last {days} days)...")
 
-    # Batch fetch headers
-    _, fetched = mail.fetch(uid_str, "(BODY.PEEK[HEADER.FIELDS (FROM SUBJECT)])")
-    spam_ids = []
-    checked = 0
-    current_uid = None
-
-    for item in fetched:
-        if isinstance(item, tuple):
-            # Parse UID from response
-            raw_bytes = item[1]
-            # Extract UID from the preceding bytes if available
-            pass  # We'll map by position
-        elif isinstance(item, bytes):
-            # This is the UID response line: b'1 (UID 123 ...'
-            m = re.search(r"UID\s+(\d+)", item.decode("ascii", "ignore"))
-            if m:
-                current_uid = m.group(1).encode()
-
-    # Simpler: fetch one by one but with timeout guard
     spam_ids = []
     checked = 0
     for uid in uids:
@@ -443,6 +473,7 @@ def sweep_one(email_addr):
         except Exception:
             continue
 
+    trashed = 0
     if spam_ids:
         print(f"  Trashing {len(spam_ids)}...")
         for uid in spam_ids:
@@ -451,34 +482,65 @@ def sweep_one(email_addr):
             try:
                 mail.copy(uid, "[Gmail]/Trash")
                 mail.store(uid, "+FLAGS", "\\Deleted")
+                trashed += 1
             except Exception as e:
                 print(f"    ERR: {e}")
         mail.expunge()
     else:
-        print("  Clean.")
+        print(f"  {label}: Clean.")
 
     mail.close()
     mail.logout()
-    return checked, len(spam_ids)
+    return checked, trashed
+
+
+def sweep_one(email_addr):
+    if should_exit():
+        print("  GLOBAL TIMEOUT - skipping account")
+        return 0, 0, 0, 0
+    print(f"\n{'='*50}")
+    print(f"Account: {email_addr}")
+    print(f"{'='*50}")
+
+    env_pass = get_password(email_addr)
+    if not env_pass:
+        print("  SKIP: password not found (env var or .gmail_accounts.json)")
+        return 0, 0, 0, 0
+
+    # Inbox: tight limits to stay under cron timeout (8 min max)
+    inbox_max = 60 if "compjunkie" in email_addr else 40
+    c_inbox, t_inbox = sweep_folder(email_addr, env_pass, "INBOX", "INBOX", inbox_max)
+    time.sleep(0.5)
+
+    # Spam folder: smaller cap since Spam is already filtered by Gmail
+    c_spam, t_spam = sweep_folder(email_addr, env_pass, "[Gmail]/Spam", "Spam", 40)
+
+    return c_inbox, t_inbox, c_spam, t_spam
 
 
 if __name__ == "__main__":
     target = os.environ.get("GMAIL_ACCOUNT", "").strip()
-    total_c = 0
-    total_t = 0
+    total_c_inbox = 0
+    total_t_inbox = 0
+    total_c_spam = 0
+    total_t_spam = 0
 
     if target and target in ACCOUNTS:
-        c, t = sweep_one(target)
-        total_c += c; total_t += t
+        ci, ti, cs, ts = sweep_one(target)
+        total_c_inbox += ci; total_t_inbox += ti
+        total_c_spam += cs; total_t_spam += ts
     else:
         for email_addr in ACCOUNTS.keys():
             if should_exit():
                 print("\n  GLOBAL TIMEOUT")
                 break
-            c, t = sweep_one(email_addr)
-            total_c += c; total_t += t
+            ci, ti, cs, ts = sweep_one(email_addr)
+            total_c_inbox += ci; total_t_inbox += ti
+            total_c_spam += cs; total_t_spam += ts
             time.sleep(1)
 
     print(f"\n{'='*50}")
-    print(f"Done. Checked ~{total_c}, trashed {total_t}. ({time.time()-START_TIME:.1f}s)")
+    print(f"Done. Inbox: checked ~{total_c_inbox}, trashed {total_t_inbox}.")
+    print(f"      Spam:  checked ~{total_c_spam}, trashed {total_t_spam}.")
+    print(f"      ({time.time()-START_TIME:.1f}s)")
     print(f"{'='*50}")

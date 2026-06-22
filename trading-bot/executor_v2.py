@@ -17,6 +17,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import portfolio_db_v2 as pdb
 from risk_manager import check_trade_allowed, record_trade, record_sell_cooldown
 from risk_manager import STOP_LOSS_PCT, TAKE_PROFIT_PCT, TRIM_PCT, TRIM_FRACTION
+from risk_manager import TRAILING_ACTIVATE_PCT, TRAILING_DISTANCE_PCT
+from risk_manager import update_trailing_stop, get_trailing_stop_info
 from research_v2 import TOKENS
 
 # Solana imports
@@ -269,6 +271,9 @@ def execute_buy_live(mint, token_name, usdc_amount):
     tx = VersionedTransaction.from_bytes(base64.b64decode(swap_data["swapTransaction"]))
     signed = VersionedTransaction(tx.message, [WALLET])
 
+    # Track unconfirmed TX hashes for next-cycle check
+    _PENDING_TX_FILE = os.path.join(os.path.dirname(__file__), ".pending_buy_tx.json")
+
     for send_attempt in range(3):
         try:
             result = CLIENT.send_raw_transaction(
@@ -278,9 +283,9 @@ def execute_buy_live(mint, token_name, usdc_amount):
             tx_hash = result.value if hasattr(result, "value") else str(result)
             # Extended wait — Jupiter swaps on low-cap tokens can take 10-20s
             time.sleep(5)
-            # Verify tx confirmed (up to ~20s total)
+            # Verify tx confirmed (up to ~30s total — bumped from 15 to 30)
             confirmed = False
-            for verify_attempt in range(15):
+            for verify_attempt in range(30):
                 try:
                     confirm = CLIENT.get_signature_statuses([str(tx_hash)])
                     if confirm and confirm.value and confirm.value[0]:
@@ -297,7 +302,28 @@ def execute_buy_live(mint, token_name, usdc_amount):
                 time.sleep(1)
 
             if not confirmed:
-                print(f"TX {str(tx_hash)[:20]}... did not confirm after ~20s - treating as failed")
+                # Patch 2: Retry once after 10s delay on timeout
+                if send_attempt < 2:
+                    print(f"TX {str(tx_hash)[:20]}... did not confirm after ~35s - retrying once in 10s")
+                    time.sleep(10)
+                    continue
+                # Patch 3: Store unconfirmed TX hash for next-cycle check
+                print(f"TX {str(tx_hash)[:20]}... did not confirm after 2 attempts - storing for next-cycle check")
+                try:
+                    pending = {}
+                    if os.path.exists(_PENDING_TX_FILE):
+                        with open(_PENDING_TX_FILE) as f:
+                            pending = json.load(f)
+                    pending[str(tx_hash)] = {
+                        "mint": mint,
+                        "token": token_name,
+                        "sent_at": time.time(),
+                        "attempts": send_attempt + 1
+                    }
+                    with open(_PENDING_TX_FILE, "w") as f:
+                        json.dump(pending, f, indent=2)
+                except Exception as e:
+                    print(f"Failed to store pending TX: {e}")
                 return False, f"TX not confirmed - likely failed"
 
             return True, tx_hash
@@ -321,7 +347,7 @@ def execute_sell_live(mint, token_name, amount_raw):
     if err:
         return False, f"Sell quote failed: {err}"
 
-    swap_data, err = _respectful_swap(quote, str(WALLET.pubkey()), wrap_sol=True, label=f"sell_{token_name}")
+    swap_data, err = _respectful_swap(quote, str(WALLET.pubkey()), wrap_sol=False, label=f"sell_{token_name}")
     if err:
         return False, f"Sell swap failed: {err}"
     # Sign and send with retry
@@ -561,6 +587,60 @@ def process_buy_signal(signal):
     if not mint:
         return False, "No mint address"
 
+    # Patch 3: Check for pending (unconfirmed) TX from previous cycle
+    _PENDING_TX_FILE = os.path.join(os.path.dirname(__file__), ".pending_buy_tx.json")
+    try:
+        if os.path.exists(_PENDING_TX_FILE):
+            with open(_PENDING_TX_FILE) as f:
+                pending_txs = json.load(f)
+            still_pending = {}
+            for tx_hash_str, info in pending_txs.items():
+                # Check if this TX confirmed since last cycle
+                try:
+                    confirm = CLIENT.get_signature_statuses([tx_hash_str])
+                    if confirm and confirm.value and confirm.value[0]:
+                        status = confirm.value[0]
+                        if status.confirmation_status:
+                            print(f"[PENDING TX RECOVERED] TX {tx_hash_str[:20]}... confirmed! status={status.confirmation_status}")
+                            # TX went through! Record the position
+                            trade = {
+                                "token": info.get("token", token),
+                                "action": "BUY",
+                                "amount_usdc": 0,
+                                "tx_hash": tx_hash_str,
+                                "mint": info.get("mint", mint)
+                            }
+                            pdb.add_trade(trade)
+                            pdb.add_position({
+                                "token": info.get("token", token),
+                                "mint": info.get("mint", mint),
+                                "amount_raw": 0,
+                                "amount": 0,
+                                "decimals": 6,
+                                "buy_price_usd": 0,
+                                "buy_price_sol": 0,
+                                "cost_basis_usd": 0,
+                                "current_value_usd": 0,
+                                "status": "OPEN"
+                            })
+                            pdb.save_db()
+                            continue  # don't carry forward
+                        elif status.err:
+                            print(f"[PENDING TX FAILED] TX {tx_hash_str[:20]}... failed on-chain: {status.err}")
+                            continue  # don't carry forward
+                except:
+                    pass
+                # Still unconfirmed after a full cycle — keep for next check
+                still_pending[tx_hash_str] = info
+            if still_pending:
+                with open(_PENDING_TX_FILE, "w") as f:
+                    json.dump(still_pending, f, indent=2)
+            else:
+                if os.path.exists(_PENDING_TX_FILE):
+                    os.remove(_PENDING_TX_FILE)
+    except Exception as e:
+        print(f"[PENDING TX CHECK] Error: {e}")
+
     # Check risk
     db = pdb.load_db()
     portfolio_value = db["portfolio"]["total_value_usd"]
@@ -696,7 +776,7 @@ def main():
     print(f"Daily Trades: {daily_count}")
     print(f"Status: {'PAUSED' if risk.get('consecutive_losses', 0) >= 3 else 'ACTIVE'}")
 
-    # Auto-check open positions for TP/SL thresholds (belt + suspenders)
+    # Auto-check open positions for TP/SL/trailing-stop thresholds (belt + suspenders)
     sol_price = get_jupiter_price(SOL_MINT) or 92
     print(f"\n[THRESHOLD CHECK] Checking open positions for auto-exits...")
     for pos in db.get("positions", []):
@@ -719,11 +799,35 @@ def main():
         live_price = get_jupiter_price(mint, decimals=decimals)
         if live_price > 0:
             live_value = live_price * raw / 1e6
-            tp_threshold = TAKE_PROFIT_PCT * 100  # e.g. 15.0
-            trim_threshold = TRIM_PCT * 100       # e.g. 8.0
+            tp_threshold = TAKE_PROFIT_PCT * 100  # e.g. 25.0
+            trim_threshold = TRIM_PCT * 100       # e.g. 12.0
             sl_threshold = STOP_LOSS_PCT * 100     # e.g. -8.0
             live_pnl_pct = ((live_value - cost) / cost) * 100 if cost > 0 else 0
-            print(f"  {token}: ${live_value:.2f} (PnL: {live_pnl_pct:+.1f}%)")
+
+            # Update trailing stop high watermark
+            pos["current_price_usd"] = live_price
+            update_trailing_stop(pos, live_price)
+
+            # Check trailing stop first (overrides hard stop loss when active)
+            trail_info = get_trailing_stop_info(pos)
+            trailing_hit = False
+            if trail_info and trail_info.get("active"):
+                trail_stop = trail_info["trail_stop_price"]
+                if live_price <= trail_stop:
+                    trailing_hit = True
+                    print(f"  {token}: ${live_value:.2f} (PnL: {live_pnl_pct:+.1f}%) | Trailing: locked +{trail_info['locked_pnl_pct']:.1f}%")
+                    print(f"  >> TRAILING STOP at ${trail_stop:.8f} (current ${live_price:.8f}) — locking in +{trail_info['locked_pnl_pct']:.1f}%")
+                    sig = {"token": token, "mint": mint, "current_value_usd": live_value, "reason": "TRAILING_STOP"}
+                    success, msg = process_sell_signal(sig)
+                    print(f"  {msg}")
+                    executed_tokens.add(token)
+                    continue
+
+            print(f"  {token}: ${live_value:.2f} (PnL: {live_pnl_pct:+.1f}%)", end="")
+            if trail_info and trail_info.get("active"):
+                print(f" | trail: +{trail_info['locked_pnl_pct']:.1f}% locked, {trail_info['distance_to_stop_pct']:.1f}% to stop")
+            else:
+                print()
 
             already_trimmed = pos.get("partial_trims", 0) > 0
 
@@ -740,14 +844,13 @@ def main():
                 print(f"  {msg}")
                 executed_tokens.add(token)
             elif live_pnl_pct >= trim_threshold and not already_trimmed:
-                print(f"  >> TRIM THRESHOLD at +{live_pnl_pct:.1f}% - selling all")
+                print(f"  >> TRIM THRESHOLD at +{live_pnl_pct:.1f}% - selling half")
                 sig = {"token": token, "mint": mint, "current_value_usd": live_value, "reason": "TRIM_THRESHOLD"}
-                success, msg = process_sell_signal(sig)
+                success, msg = process_trim_signal(sig)
                 print(f"  {msg}")
-                executed_tokens.add(token)
             else:
                 if already_trimmed:
-                    print(f"  >> Held (already trimmed, waiting for full TP/SL)")
+                    print(f"  >> Held (already trimmed, trailing stop active, waiting for full TP/trail)")
                 else:
                     print(f"  >> Held (within threshold bounds)")
         else:

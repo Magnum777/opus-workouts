@@ -8,13 +8,14 @@ import json
 import os
 import sys
 import base64
+import time
 import requests
 from datetime import datetime, timezone
 
 # Import V2 modules
 sys.path.insert(0, os.path.dirname(__file__))
 import portfolio_db_v2 as pdb
-from risk_manager import check_trade_allowed, record_trade
+from risk_manager import check_trade_allowed, record_trade, MAX_OPEN_POSITIONS, MAX_POSITION_PCT
 from research_v2 import TOKENS
 
 # Solana imports
@@ -23,20 +24,71 @@ from solana.rpc.types import TxOpts
 from solders.keypair import Keypair
 from solders.transaction import VersionedTransaction
 
+# RPC
+from rpc_config import get_rpc
+
 # Wallet
 PRIVATE_KEY = bytes.fromhex("edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d")
 WALLET = Keypair.from_bytes(PRIVATE_KEY)
-CLIENT = Client("https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887")
+CLIENT = Client(get_rpc())
 
 # Constants
 SOL_MINT = "So11111111111111111111111111111111111111112"
 USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 
+
+def get_jupiter_price(mint, decimals=None):
+    """Get token price via Jupiter. Returns price per 1 full token in USD."""
+    for attempt in range(3):
+        try:
+            if decimals is None:
+                decimals = 9 if mint == SOL_MINT else 6
+            amount = 10 ** decimals  # 1 full token in smallest units
+            r = requests.get(
+                f"https://lite-api.jup.ag/swap/v1/quote?inputMint={mint}&outputMint={USDC}&amount={amount}&slippage=1",
+                timeout=8
+            )
+            if r.status_code == 200:
+                return float(r.json()["outAmount"]) / 1e6  # USDC has 6 decimals
+            elif r.status_code == 429:
+                time.sleep(2)
+                continue
+        except:
+            pass
+        break
+    return 0
+
 # Trading params
 BUY_SIZE_SOL = 0.2  # Conservative buy size
 
+def dynamic_buy_size(portfolio_value, confidence):
+    """Scale buy size: more confident = bigger bet, up to 0.5 SOL.
+    
+    - 50+ conf: 0.3 SOL (core plays)
+    - 70+ conf: 0.4 SOL (high conviction)
+    - 85+ conf: 0.5 SOL (max conviction)
+    - Below 50: 0.15 SOL (exploratory)
+    Also caps at MAX_POSITION_PCT of portfolio.
+    """
+    if confidence >= 85:
+        size = 0.5
+    elif confidence >= 70:
+        size = 0.4
+    elif confidence >= 50:
+        size = 0.3
+    else:
+        size = 0.15
+    
+    # Respect max position size as % of portfolio
+    sol_price = get_jupiter_price(SOL_MINT) or 75
+    proposed_usd = size * sol_price
+    max_position_usd = portfolio_value * MAX_POSITION_PCT
+    if proposed_usd > max_position_usd:
+        size = max_position_usd / sol_price
+    
+    return round(size, 2)
 
-def get_jupiter_price(mint, decimals=None):
+
     """Get token price via Jupiter. Returns price per 1 full token in USD."""
     try:
         if decimals is None:
@@ -235,8 +287,9 @@ def process_buy_signal(signal):
     if not allowed:
         return False, f"Risk check failed: {reason}"
     
-    # Execute buy
-    buy_amount = float(signal.get("max_sol", BUY_SIZE_SOL)) if signal.get("max_sol", 0) > 0 else BUY_SIZE_SOL
+    # Execute buy — scale size by confidence
+    confidence = signal.get("confidence", 70)
+    buy_amount = dynamic_buy_size(portfolio_value, confidence)
     success, result = execute_buy_live(mint, token, buy_amount)
     
     if success:
@@ -270,7 +323,7 @@ def process_buy_signal(signal):
         
         record_trade(token, "BUY")
         
-        return True, f"BOUGHT {token} | {BUY_SIZE_SOL} SOL | TX: {str(result)[:20]}..."
+        return True, f"BOUGHT {token} | {buy_amount} SOL | conf {confidence} | TX: {str(result)[:20]}..."
     else:
         return False, f"Buy failed: {result}"
 
@@ -358,14 +411,14 @@ def main():
             live_pnl_pct = ((live_value - cost) / cost) * 100 if cost > 0 else 0
             print(f"  {token}: ${live_value:.2f} (PnL: {live_pnl_pct:+.1f}%)")
             
-            if live_pnl_pct >= 10.0:
-                print(f"  >> TAKE PROFIT triggered at +{live_pnl_pct:.1f}% (threshold: +10%)")
+            if live_pnl_pct >= 25.0:
+                print(f"  >> TAKE PROFIT triggered at +{live_pnl_pct:.1f}% (threshold: +25%)")
                 sig = {"token": token, "mint": mint, "current_value_usd": live_value, "reason": "TAKE_PROFIT"}
                 success, msg = process_sell_signal(sig)
                 print(f"  {msg}")
                 executed_tokens.add(token)
-            elif live_pnl_pct <= -5.0:
-                print(f"  >> STOP LOSS triggered at {live_pnl_pct:.1f}% (threshold: -5%)")
+            elif live_pnl_pct <= -8.0:
+                print(f"  >> STOP LOSS triggered at {live_pnl_pct:.1f}% (threshold: -8%)")
                 sig = {"token": token, "mint": mint, "current_value_usd": live_value, "reason": "STOP_LOSS"}
                 success, msg = process_sell_signal(sig)
                 print(f"  {msg}")

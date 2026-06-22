@@ -34,7 +34,7 @@
 |---------|--------|-------|
 | Nova AI V1-V2 | Released | V3 spec complete, awaiting Opus Q3 decision |
 | TradeBot | Active | ~$103 portfolio, 3 crons running. See trading-bot/ for details |
-| EveOnion | Active | 2 crons (news scan + article publish) |
+| EveOnion | Active | 2 crons (news scan + article publish). No pride-related event stories. |
 | Kybernauts | Active | 3 crons (health, propaganda, forum bump) |
 | WordPress Empire | Active (aicofounderstack only) | aitoolalliance fixed (new app password), aibusinessinsider still 403 Cloudflare. aicofounderstack revamped as blog May 27. |
 | Affiliate Pipeline | Dropped | Opus said to forget it (May 27). Not tracking. |
@@ -71,7 +71,7 @@ Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY
 - Wired: #nova, #clawincome, #tradebot, #wordpress, #eveonion, #kybernauts
 
 ## Last Updated
-2026-06-14 -- weekly compact: read 10 daily logs, archived 17 May files, 3 learnings logged.
+2026-06-21 -- weekly compact: read 12 daily logs, 0 files archived (already done), 10 new learnings logged.
 
 ## Recent Learnings (Auto-compacted)
 
@@ -98,3 +98,18 @@ Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY
 - **Browser automation unlocked** (May 27) — Chrome CDP port 18800, Kybernauts forum bump upgraded from reminder to full auto-reply
 - **Gumroad product published** (May 31) — "How to Build a Solana Memecoin Trading Bot" at $49, discount code NOVA25, account: layeredmediallc@gmail.com
 - **Content-Nova v2 deployed** (May 9) — daily articles across 3 WordPress sites via isolated agent crons
+
+### Week of 2026-06-15 through 2026-06-21
+- **Decision:** Sojourn Church network stays FLAT. Opus explicitly rejected VLANs after USG boot loop. All SSIDs on Default 192.168.1.0/24. Source: 2026-06-15.md
+- **Lesson:** UniFi USG 3P with static WAN has a controller bug — `api.err.WanIpOverlapped` on ANY corporate network creation via API. VLANs impossible to provision programmatically. Source: 2026-06-15.md
+- **Lesson:** `vlan-only` purpose creates VLAN tag but NO DHCP or routing. Need corporate purpose for functional WiFi VLANs — which triggers the bug above. Source: 2026-06-15.md
+- **Lesson:** `ec_enabled: true` disables internal captive portal. Must be `false` for branded portals to render. Source: 2026-06-15.md
+- **Lesson:** Guest bandwidth enforcement = usergroup `qos_rate_max_down`/`qos_rate_max_up`, NOT `download_limit`/`upload_limit` in guest_access. Source: 2026-06-15.md
+- **Lesson:** USG recovery from boot loop: factory reset → SSH ubnt/ubnt → `set-inform <hosted-url>` → adopt. Raw IP doesn't work for cloud-hosted controllers. Source: 2026-06-15.md
+- **Lesson:** UniFi API cookie reuse beats re-auth. Every CLI login = rate limit hit. Persist cookies in session file. Source: 2026-06-15.md
+- **Decision:** 4 content crons switched from `kimi-k2.6` to `qwen3.5:27b` to avoid weekly GPU cap. `qwen3.5:27b` is ~5-10x lighter with same tool support. Source: 2026-06-15.md
+- **Skill integration:** 23 new skills installed and vetted. P0+P1 integrations complete: Content Quality Gate (AI pattern detection + claim verification), WordPress API Pro v3.8.1, YouTube research for TradeBot, browser retry wrapper, proactive-agent WAL protocol. Source: 2026-06-15.md
+- **Content-Nova quality gate:** Now runs before every publish. Detects AI patterns (em dashes, "delve," "landscape," significance puff, rule of three), flags numerical claims, auto-fixes. Source: 2026-06-15.md
+- **Bug:** Unsplash API returning 401 consistently — featured image generation for Content-Nova is broken. Needs API key refresh or alternative source. Source: 2026-06-13.md
+- **Content strategy:** 4 TradeBot case studies published in June (JUP position, 2-week PnL, 30-day PnL + safety architecture, 62B ISK asset tracker build). Real PnL data driving sales content. Source: 2026-06-08.md, 2026-06-10.md, 2026-06-11.md, 2026-06-13.md
+- **EveOnion:** Opus confirmed no pride-related event stories for creative fiction. Source: 2026-06-19.md
