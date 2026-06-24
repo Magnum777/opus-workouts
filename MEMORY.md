@@ -34,7 +34,7 @@
 |---------|--------|-------|
 | Nova AI V1-V2 | Released | V3 spec complete, awaiting Opus Q3 decision |
 | TradeBot | Active | ~$103 portfolio, 3 crons running. See trading-bot/ for details |
-| EveOnion | Active | 2 crons (news scan + article publish). No pride-related event stories. |
+| EveOnion | Active | 2 crons (news scan + article publish). No pride-related event stories. REAL PEOPLE off-limits: Fern Kitsuen, Lorumerth, James Cunningham — never target them. Fictional only. |
 | Kybernauts | Active | 3 crons (health, propaganda, forum bump) |
 | WordPress Empire | Active (aicofounderstack only) | aitoolalliance fixed (new app password), aibusinessinsider still 403 Cloudflare. aicofounderstack revamped as blog May 27. |
 | Affiliate Pipeline | Dropped | Opus said to forget it (May 27). Not tracking. |
