@@ -1,0 +1,81 @@
+types:
+  Person:
+    required: [name]
+    properties:
+      email: { type: string }
+      phone: { type: string }
+      timezone: { type: string }
+      notes: { type: string }
+  Organization:
+    required: [name]
+    properties:
+      type: { type: string }
+  Project:
+    required: [name, status]
+    properties:
+      status: { type: string, enum: [active, paused, dropped, completed] }
+      goals: { type: array, items: { type: string } }
+      owner: { type: string, ref: Person }
+      notes: { type: string }
+      last_updated: { type: string }
+  Task:
+    required: [title, status]
+    properties:
+      status: { type: string, enum: [open, in_progress, blocked, done] }
+      due: { type: string }
+      priority: { type: string, enum: [low, medium, high, critical] }
+      assignee: { type: string, ref: Person }
+      blockers: { type: array, items: { type: string } }
+      project: { type: string, ref: Project }
+  Event:
+    required: [title, start]
+    properties:
+      end: { type: string }
+      location: { type: string }
+      attendees: { type: array, items: { type: string } }
+  Device:
+    required: [name, type]
+    properties:
+      identifiers: { type: array, items: { type: string } }
+      specs: { type: string }
+  Credential:
+    required: [service]
+    properties:
+      secret_ref: { type: string }
+      username: { type: string }
+  Note:
+    required: [content]
+    properties:
+      tags: { type: array, items: { type: string } }
+      refs: { type: array, items: { type: string } }
+      source_date: { type: string }
+
+relations:
+  has_owner:
+    from_types: [Project, Task]
+    to_types: [Person]
+    cardinality: many_to_one
+  belongs_to:
+    from_types: [Task, Note]
+    to_types: [Project]
+    cardinality: many_to_one
+  blocks:
+    from_types: [Task]
+    to_types: [Task]
+    acyclic: true
+  attends:
+    from_types: [Person]
+    to_types: [Event]
+    cardinality: many_to_many
+  located_at:
+    from_types: [Device]
+    to_types: [Location]
+    cardinality: many_to_one
+  created_by:
+    from_types: [Project, Task, Note, Device]
+    to_types: [Person]
+    cardinality: many_to_one
+  member_of:
+    from_types: [Person]
+    to_types: [Organization]
+    cardinality: many_to_many

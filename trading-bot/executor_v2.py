@@ -222,6 +222,90 @@ def ensure_sol_for_gas():
         print(f"[SOL GAS] Refill failed: {msg}")
     return True
 
+
+def refill_usdc_from_sol():
+    """Sell SOL for USDC when USDC balance is too low to trade.
+    Keeps ~0.1 SOL as gas reserve, sells the rest to USDC.
+    Returns True if any SOL was sold, False otherwise.
+    """
+    usdc_bal = get_usdc_balance()
+    if usdc_bal >= 15.0:
+        return False  # enough USDC already
+
+    sol_bal = get_sol_balance()
+    sol_price = get_jupiter_price(SOL_MINT)
+    if sol_price <= 0:
+        sol_price = 170
+
+    # Keep 0.1 SOL for gas (~200 txns), sell everything above that
+    MIN_SOL_RESERVE = 0.1
+    if sol_bal <= MIN_SOL_RESERVE:
+        print(f"[USDC REFILL] Not enough SOL to spare: {sol_bal:.4f} SOL (need >{MIN_SOL_RESERVE} reserve)")
+        return False
+
+    sellable_sol = sol_bal - MIN_SOL_RESERVE
+    sellable_usd = sellable_sol * sol_price
+
+    # Target: bring USDC up to $30, capped at 80% of sellable SOL
+    target_usdc = min(30.0, sellable_usd * 0.8)
+    if target_usdc < 5.0:
+        return False  # not worth the swap
+
+    print(f"[USDC REFILL] USDC=${usdc_bal:.2f} too low. Selling {sellable_sol:.4f} SOL (${sellable_usd:.2f}) -> target ${target_usdc:.2f} USDC...")
+
+    # Execute the swap: SOL -> USDC via Jupiter
+    sol_units = int(sellable_sol * 1e9)  # SOL has 9 decimals
+
+    quote, err = _respectful_quote(SOL_MINT, USDC, sol_units, slippage_bps=500, label="refill_usdc")
+    if err:
+        print(f"[USDC REFILL] Quote failed: {err}")
+        return False
+
+    swap_data, err = _respectful_swap(quote, str(WALLET.pubkey()), wrap_sol=True, label="refill_usdc")
+    if err:
+        print(f"[USDC REFILL] Swap failed: {err}")
+        return False
+
+    # Sign and send
+    tx = VersionedTransaction.from_bytes(base64.b64decode(swap_data["swapTransaction"]))
+    signed = VersionedTransaction(tx.message, [WALLET])
+
+    try:
+        result = CLIENT.send_raw_transaction(
+            bytes(signed),
+            opts=TxOpts(skip_preflight=True, max_retries=5)
+        )
+        tx_hash = result.value if hasattr(result, "value") else str(result)
+        time.sleep(5)
+        confirmed = False
+        for verify_attempt in range(30):
+            try:
+                confirm = CLIENT.get_signature_statuses([str(tx_hash)])
+                if confirm and confirm.value and confirm.value[0]:
+                    status = confirm.value[0]
+                    if status.confirmation_status:
+                        confirmed = True
+                        print(f"[USDC REFILL] TX confirmed: {str(tx_hash)[:20]}...")
+                        break
+                    elif status.err:
+                        print(f"[USDC REFILL] TX failed on-chain: {status.err}")
+                        return False
+            except:
+                pass
+            time.sleep(1)
+        if not confirmed:
+            print(f"[USDC REFILL] TX {str(tx_hash)[:20]}... did not confirm - treating as failed")
+            return False
+
+        new_usdc = get_usdc_balance()
+        new_sol = get_sol_balance()
+        print(f"[USDC REFILL] Complete! USDC: ${usdc_bal:.2f} -> ${new_usdc:.2f} | SOL: {sol_bal:.4f} -> {new_sol:.4f}")
+        return True
+    except Exception as e:
+        print(f"[USDC REFILL] Send failed: {e}")
+        return False
+
+
 def get_usdc_balance():
     """Get USDC balance from blockchain"""
     try:
@@ -641,6 +725,10 @@ def process_buy_signal(signal):
     except Exception as e:
         print(f"[PENDING TX CHECK] Error: {e}")
 
+    # Auto-refill USDC from SOL if USDC is low
+    if get_usdc_balance() < 15.0:
+        refill_usdc_from_sol()
+
     # Check risk
     db = pdb.load_db()
     portfolio_value = db["portfolio"]["total_value_usd"]
@@ -766,6 +854,10 @@ def main():
     except Exception as e:
         print(f"Failed to write updated queue: {e}")
 
+    # Track threshold-triggered actions for reporting (written after threshold check)
+    threshold_actions = list(queue.get("threshold_actions", []))
+    queue["threshold_actions"] = threshold_actions
+
     # Load DB for status reporting and auto-threshold checks
     db = pdb.load_db()
     risk = db.get("risk_metrics", {})
@@ -821,6 +913,7 @@ def main():
                     success, msg = process_sell_signal(sig)
                     print(f"  {msg}")
                     executed_tokens.add(token)
+                    threshold_actions.append({"token": token, "action": "SELL", "reason": "TRAILING_STOP", "pnl_pct": live_pnl_pct})
                     continue
 
             print(f"  {token}: ${live_value:.2f} (PnL: {live_pnl_pct:+.1f}%)", end="")
@@ -837,17 +930,20 @@ def main():
                 success, msg = process_sell_signal(sig)
                 print(f"  {msg}")
                 executed_tokens.add(token)
+                threshold_actions.append({"token": token, "action": "SELL", "reason": "TAKE_PROFIT", "pnl_pct": live_pnl_pct})
             elif live_pnl_pct <= sl_threshold:
                 print(f"  >> STOP LOSS triggered at {live_pnl_pct:.1f}% (threshold: {sl_threshold:.0f}%)")
                 sig = {"token": token, "mint": mint, "current_value_usd": live_value, "reason": "STOP_LOSS"}
                 success, msg = process_sell_signal(sig)
                 print(f"  {msg}")
                 executed_tokens.add(token)
+                threshold_actions.append({"token": token, "action": "SELL", "reason": "STOP_LOSS", "pnl_pct": live_pnl_pct})
             elif live_pnl_pct >= trim_threshold and not already_trimmed:
                 print(f"  >> TRIM THRESHOLD at +{live_pnl_pct:.1f}% - selling half")
                 sig = {"token": token, "mint": mint, "current_value_usd": live_value, "reason": "TRIM_THRESHOLD"}
                 success, msg = process_trim_signal(sig)
                 print(f"  {msg}")
+                threshold_actions.append({"token": token, "action": "TRIM", "reason": "TRIM_THRESHOLD", "pnl_pct": live_pnl_pct})
             else:
                 if already_trimmed:
                     print(f"  >> Held (already trimmed, trailing stop active, waiting for full TP/trail)")
@@ -855,6 +951,21 @@ def main():
                     print(f"  >> Held (within threshold bounds)")
         else:
             print(f"  {token}: no price data, using DB value ${current_value:.2f}")
+
+    # Write threshold actions back to queue so post-run checks can see them
+    # Threshold-triggered trades (TP/SL/trim/trailing) aren't in queue["executed"]
+    # because they come from the THRESHOLD CHECK section, not from pending signals.
+    # Without this, reports that only check queue["executed"] miss threshold actions.
+    try:
+        with open(pending_path, "r") as f:
+            queue2 = json.load(f)
+        queue2["threshold_actions"] = threshold_actions
+        with open(pending_path, "w") as f:
+            json.dump(queue2, f, indent=2)
+        action_count = len(threshold_actions)
+        print(f"[QUEUE] Threshold actions written: {action_count}")
+    except Exception as e:
+        print(f"[QUEUE] Failed to write threshold actions: {e}")
 
     print("=" * 50)
 

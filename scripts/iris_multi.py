@@ -18,6 +18,7 @@ if sys.platform == "win32":
 ACCOUNTS_FILE = r"C:\Users\compj\.openclaw\workspace\scripts\.gmail_accounts.json"
 IRIS_SCRIPT = r"C:\Users\compj\.openclaw\workspace\skills\iris\iris.py"
 REPORT_DIR = r"C:\Users\compj\.openclaw\workspace\output"
+PYTHON_EXE = r"C:\ProgramData\chocolatey\bin\python3.14.exe"
 
 WHITELIST = {"paypal.com", "chase.com", "tiktok.com"}
 
@@ -41,7 +42,7 @@ def run_iris(email, password):
     env["IRIS_NO_REPORT"] = "1"
 
     result = subprocess.run(
-        [sys.executable, IRIS_SCRIPT],
+        [PYTHON_EXE, IRIS_SCRIPT],
         capture_output=True,
         text=True,
         env=env,

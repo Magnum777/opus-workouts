@@ -1,0 +1,21 @@
+{"op":"create","entity":{"id":"person_opus","type":"Person","properties":{"name":"James \"Opus\"","email":null,"phone":null,"timezone":"America/New_York"}}}
+{"op":"create","entity":{"id":"person_candace","type":"Person","properties":{"name":"Candace","phone":"706-936-1852"}}}
+{"op":"create","entity":{"id":"org_layered_media","type":"Organization","properties":{"name":"Layered Media LLC","type":"company"}}}
+{"op":"create","entity":{"id":"device_mgd","type":"Device","properties":{"name":"MGD","type":"workstation","identifiers":["192.168.68.x"],"specs":"Ryzen 9800X3D + Radeon 9070 XT, 32GB RAM, Windows 10.0.26200"}}}
+{"op":"create","entity":{"id":"device_nas","type":"Device","properties":{"name":"nova-home","type":"nas","identifiers":["192.168.68.51"],"specs":"Synology NAS"}}}
+{"op":"create","entity":{"id":"proj_tradebot","type":"Project","properties":{"name":"TradeBot","status":"active","goals":["Automated Solana memecoin trading","PnL tracking and reporting"],"notes":"~$103 portfolio, 3 crons running. See trading-bot/ for details.","last_updated":"2026-06-14"}}}
+{"op":"create","entity":{"id":"proj_eveonion","type":"Project","properties":{"name":"EveOnion","status":"active","goals":["EVE Online news aggregation","Content publishing"],"notes":"2 crons (news scan + article publish)","last_updated":"2026-06-14"}}}
+{"op":"create","entity":{"id":"proj_kybernauts","type":"Project","properties":{"name":"Kybernauts","status":"active","goals":["Health monitoring","Propaganda generation","Forum bump"],"notes":"3 crons","last_updated":"2026-06-14"}}}
+{"op":"create","entity":{"id":"proj_wp","type":"Project","properties":{"name":"WordPress Empire","status":"active","goals":["Content publishing across 3 sites"],"notes":"aicofounderstack only active. aitoolalliance fixed (new app password), aibusinessinsider still 403 Cloudflare.","last_updated":"2026-06-14"}}}
+{"op":"create","entity":{"id":"proj_contentnova","type":"Project","properties":{"name":"ContentNova","status":"active","goals":["Weekly TradeBot case studies","PnL data articles"],"notes":"3 articles shipped. Unsplash API broken (401).","last_updated":"2026-06-13"}}}
+{"op":"create","entity":{"id":"proj_eve_assets","type":"Project","properties":{"name":"EVE Assets Viewer","status":"completed","goals":["Full ESI-synced asset tracking"],"notes":"62B ISK across 14,782 assets, 749 locations. Shipped 2026-06-10.","last_updated":"2026-06-10"}}}
+{"op":"create","entity":{"id":"proj_workout","type":"Project","properties":{"name":"Workout Tracker","status":"completed","goals":["PWA workout logger"],"notes":"GitHub Pages single-file app. Elliptical + sauna logging.","last_updated":"2026-06-01"}}}
+{"op":"create","entity":{"id":"note_spam_defense","type":"Note","properties":{"content":"Self-learning spam pipeline: gmail_spam_sweep_v2.py + discover_spam_patterns.py. False-positive filtering with domain whitelist and signal heuristics.","tags":["automation","gmail","maintenance"],"refs":["scripts/gmail_spam_sweep_v2.py","scripts/discover_spam_patterns.py"]}}}
+{"op":"create","entity":{"id":"note_learning_no_em_dash","type":"Note","properties":{"content":"No em dashes in text for Opus. Enforced in all content outputs.","tags":["style","rule","opus_pref"],"refs":[".learnings/NO_EM_DASHES.md"]}}}
+{"op":"relate","from":"person_opus","rel":"member_of","to":"org_layered_media"}
+{"op":"relate","from":"person_candace","rel":"member_of","to":"org_layered_media"}
+{"op":"relate","from":"proj_tradebot","rel":"has_owner","to":"person_opus"}
+{"op":"relate","from":"proj_eveonion","rel":"has_owner","to":"person_opus"}
+{"op":"relate","from":"proj_kybernauts","rel":"has_owner","to":"person_opus"}
+{"op":"relate","from":"proj_wp","rel":"has_owner","to":"person_opus"}
+{"op":"relate","from":"device_mgd","rel":"created_by","to":"person_opus"}

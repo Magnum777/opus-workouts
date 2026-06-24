@@ -1,0 +1,22 @@
+# TradeBot debug/temp files
+_tx_*.json
+_sol_balance*.json
+_batch_*.json
+_recent_*.json
+_week_*.json
+_7kho_*.json
+_dfuqq_*.json
+_fvaj_*.json
+_hphau8_*.json
+_onchain_*.json
+*.db.json.broken
+.circuit_breaker.json
+.pending_buy_tx.json
+jupiter_429_cooldown.json
+temp_executor_output.txt
+tradebot-output.txt
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
