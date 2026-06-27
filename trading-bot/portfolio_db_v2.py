@@ -261,7 +261,10 @@ def sync_from_blockchain(holdings, sol_balance, sol_price):
                 break
         
         if not found:
-            # New position from blockchain (skip if stablecoin - already handled above)
+            # New position from blockchain — ONLY if it has real value
+            if holding.get("value_usd", 0) < 0.50:
+                print(f"  Skipping new position (worth <$0.50): {token} (${holding.get('value_usd', 0):.2f})")
+                continue
             new_pos = {
                 "token": token,
                 "mint": mint,

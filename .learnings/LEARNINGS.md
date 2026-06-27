@@ -1,5 +1,58 @@
 # Learnings Log
 
+## 2026-06-26 — Weekly Skill Discovery Scan (ClawHub)
+
+**Category:** insight
+**Source:** Weekly cron: Weekly-SkillDiscovery
+
+Ran 8 search queries across ClawHub registry. Results summary:
+
+### New Skills Found (not currently installed):
+
+| Skill | Version | Rating | Summary |
+|-------|---------|--------|---------|
+| **tradingflow** | 0.0.2 | 4.18 | AI-Powered Intent Trading Across Crypto, Stocks & More — deploy bots on BSC, Aptos, Solana. Owner: thecleopatra |
+| **email-automation** | 1.2.0 | 4.13 | Automate email triage, categorize, draft replies, auto-archive in Gmail/Outlook/IMAP. Owner: fly3094 |
+| **telegram-discord-bot-dev** | 1.0.0 | 4.29 | Develop custom Telegram/Discord bots with trading, gaming, automation, webhooks. Owner: katrina-jpg |
+| **seo-agent-skill** (Distribb) | 1.0.1 | — | Full SEO pipeline: keyword research, content publishing to WP/Webflow/Shopify, backlink exchange. Owner: bomx |
+| **smart-data-analyst** | 1.3.0 | — | Upload CSV/Excel/JSON/TSV for automated analysis report with insights, anomalies. Owner: a799549967-lang |
+| **data-analysis-reporting** | 0.1.0 | — | Turn raw business data (CSV, SQLite, spreadsheets) into analytical summaries and reports. Owner: gitcanadabrett |
+| **csv-brain** | 1.0.3 | — | Load CSV files, ask questions in plain English via Anthropic/OpenAI/Ollama. Owner: theshadowrose |
+| **agentic-workflow-automation** | 0.1.0 | — | Generate reusable multi-step agent workflow blueprints for trigger/action orchestration. Owner: 0x-professor |
+
+### Already Installed (no action needed):
+- Solana trading: solana-payments-wallets-trading ✓
+- Browser automation: browser-auto-plus, playwright-browser-automation, agent-browser-clawdbot, browser-use ✓
+- Social media: ai-social-media-content, upload-post ✓
+- WordPress: wordpress-pro, wordpress-api-pro, wordpress-remote-news-publisher ✓
+- Email: agentmail-integration ✓
+- Data: duckdb-cli-ai-skills, excel-xlsx ✓
+- Discord: none installed (telegram-discord-bot-dev is new find)
+
+### Notable Findings for Opus:
+1. **tradingflow** (rating 4.18) — Multi-chain intent trading (BSC, Aptos, Solana). Could complement or replace solana-payments-wallets-trading. Worth evaluating if we expand trading beyond Solana.
+2. **email-automation** (rating 4.13) — More comprehensive than agentmail-integration. Gmail/Outlook/IMAP triage + auto-archive + draft replies. Strong candidate for inbox management upgrade.
+3. **telegram-discord-bot-dev** (rating 4.29) — Custom bot development with trading, gaming, automation features. Relevant if we re-wire Discord integration.
+4. **seo-agent-skill** (Distribb) — Full SEO pipeline (keyword research → content → publishing → backlinks). Could integrate with our WordPress content empire.
+5. **csv-brain** — Natural language CSV queries via multiple LLM backends. Simpler than duckdb for ad-hoc data questions.
+6. **agentic-workflow-automation** — Workflow blueprint generation. Could complement task-prism for agent orchestration.
+
+### Queries Run:
+1. "solana trading crypto" → 1 result (tradingflow, 4.18)
+2. "browser automation screenshot" → 3 results (all already covered)
+3. "social media content creator" → 3 results (ugc-fashion, content-creator-pro, topyappers)
+4. "wordpress seo publishing" → 1 result (seo-agent-skill)
+5. "email automation inbox" → 3 results (email-automation 4.13, doctorclaw-email-digest, agentmail-integration)
+6. "data analysis sql csv" → 4 results (smart-data-analyst, data-analysis-reporting, csv-brain, data-analyst-pipeline)
+7. "discord bot automation" → 1 result (telegram-discord-bot-dev, 4.29)
+8. "ai agent workflow" → 10 results (agentic-workflow-automation variants, sales-automation-workflows)
+
+### Update Check:
+- `clawhub update --all` ran: solana-payments-wallets-trading has local changes (skip), wordpress-pro not found in registry (deprecated — wordpress-api-pro is the replacement)
+- No clean upgrades available for installed skills this week.
+
+Note: ClawHub CLI v0.9.0 exposes relevance scores from search, not community ratings. Ratings shown are search relevance scores (higher = better semantic match to query).
+
 ## 2026-06-19 — Weekly Skill Discovery Scan (ClawHub)
 
 **Category:** insight

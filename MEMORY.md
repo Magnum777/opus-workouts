@@ -51,7 +51,7 @@ Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY
 ### Schedule
 - 6:45 AM — pattern discovery (auto-update)
 - 7:15 AM — spam sweep (uses updated script)
-- Every 4h — spam sweep
+- Every 2h — spam sweep
 
 ### Files
 - `scripts/gmail_spam_sweep_v2.py` — sweep logic

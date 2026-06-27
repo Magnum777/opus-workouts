@@ -1,75 +1,58 @@
-# TradeBot V3 Strategy — Rebuild from $90
+# TradeBot V3 Strategy — Actual (Jun 26, 2026)
+
+## Current State
+- **Wallet:** 7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA
+- **SOL:** 0.0035 (critically low — needs ~0.02 for gas)
+- **USDC:** $8.86
+- **Total:** ~$69
+- **Positions:** 4 (LOA $37, MERLIN $10, VALORA $9, HPHau8yi $4)
+- **All positions are Token-2022 (pump.fun tokens)**
 
 ## The Problem
-The bot was buying $3-5 positions and getting stopped out at -5% over and over, burning the account with death-spiral re-buys (sell BONK at -91%, next cycle research says "dip = good entry, BUY", repeat).
+The bot was buying $3-5 positions and getting stopped out at -5% over and over, burning the account with death-spiral re-buys. The V3 strategy fixed the sizing and cooldown logic, but the **swap execution was broken**:
 
-## Fixes Applied
+1. **Token-2022 incompatibility** — Jupiter v1 lite API doesn't handle Token-2022 tokens. All sell TXs either failed silently (TX confirmed but swap didn't execute) or returned error 6024 (token program mismatch).
+2. **Phantom sells** — `execute_sell_live` returned `True` even when TX didn't confirm ("did not confirm after ~20s - returning anyway"). The bot *thought* it sold, but tokens were still there.
+3. **skip_preflight=True** — TXs were sent without simulation, so the RPC returned a hash for TXs that never landed on-chain.
+4. **59 stale pending TXs** — accumulated unconfirmed buy TXs in `.pending_buy_tx.json` (cleared).
 
-### 1. No more micro-trades
-- Minimum buy: **$20** (was $3)
-- Buy sizes: $30 / $50 / $70 (was $15 / $30 / $45)
-- Cap: $70/trade
+## Fixes Applied (Jun 26)
+1. **Switched to Jupiter v2 API** — handles Token-2022 natively, no tokenProgram parameter needed
+2. **skip_preflight=False** — TXs are now simulated before sending, catching errors early
+3. **Sell no longer returns success on timeout** — will retry 3 times, then fail properly
+4. **Cleared stale pending TX file** — 59 entries removed
+5. **Updated STRATEGY.md** — this file now matches reality
 
-### 2. Re-buy cooldown
-- Selling at a loss puts the token on a **24-hour cooldown list**
-- Bot can't re-enter until cooldown expires
-- Stored in `rebuy_cooldowns.json`
+## Strategy
 
-### 3. Wider stops, longer holds + trailing stop
-- Stop loss: **-8%** (was -5% - too tight for memecoins)
-- Take profit: **+25%** (was +10%)
-- **Trailing stop activates at +15%** — once a position is up 15%+, the stop starts trailing
-- **Trailing distance: 5%** — stop follows 5% below the highest price seen
-  - Example: buy at $10, price hits $16.70 (+67%), stop is at $15.87 — you lock in ~+59%
-  - Example: buy at $10, price hits $11.50 (+15%), stop is at $10.93 — you lock in ~+9%
-- Trailing stop overrides the hard -8% stop once active (it's always higher)
-- Minimum hold: **1 hour** (was 0 - sold immediately)
-- Max position: **40% of portfolio** (was 90% - WTF)
+### Sizing (%-based, scaled to capital)
+| Capital Range | Strong Buy | Medium | Base |
+|--------------|------------|--------|------|
+| $0-$15 (survival) | 60% | 45% | 30% |
+| $15-$30 (dig-out) | 45% | 30% | 20% |
+| $30-$150 (rebuild) | 40% | 25% | 15% |
+| $150+ (standard) | $15 flat | $12 flat | $10 flat |
 
-### 4. Smarter loss tracking
-- Consecutive losses counter only counts trades **over $1** (ignores dust)
-- Trading pauses after **3 consecutive real losses** (was being reset by 1-cent trades)
+### Risk Limits
+- Max 6 concurrent positions
+- Max 40% of portfolio in one position
+- Max 70% total exposure
+- Stop loss: -8%
+- Take profit: +25%
+- Trim: +12% (sell 50%)
+- Trailing stop: activates at +15%, trails 5% below peak
+- Min hold: 1 hour
+- Re-buy cooldown: 48 hours
+- Consecutive loss pause: 3 losses (decays 1 every 6h)
 
-### 5. No daily trade limit
-- Daily limit: **unlimited** (other guardrails handle discipline)
-- Run cycle: **15min** (was 10min)
+### Execution
+- Jupiter v2 API for all swaps
+- Preflight simulation enabled
+- 30s TX confirmation wait (was 20s)
+- 3 retry attempts on send failure
+- Pending TX recovery on next cycle
 
-### 6. Partial trim at +12%
-- Sell **50%** at +12% to free capital for new positions
-- Let remaining 50% ride to +25% full TP or trailing stop exit
-- Trim only fires once per position (no repeated trims)
-
-## The Plan: $90 → $500
-
-### Phase 1: Stabilize (Week 1)
-- Only take highest-confidence trades (80+ confidence)
-- Max 2 concurrent positions (40% cap)
-- Goal: survive, collect data, build confidence tracking
-
-### Phase 2: Compound (Week 2-3)
-- As USDC grows above $50, use larger sizes
-- Let winners run with trailing stops
-- Add profit from closed positions to position size pool
-
-### Phase 3: Scale (Week 4+)
-- Once portfolio hits $150+, enable position scaling
-- 2 positions at $50-70 each
-- Revisit confidence scoring against actual results
-
-## Current Holdings
-- SOL: ~0.038
-- USDC: ~$35.93
-- TRUMP: ~$25.62
-- RAY: ~$25.16
-- **Total: ~$90.57**
-
-## Key Rules
-- Never re-buy within 24h of a stop-loss
-- Never go all-in on one token
-- Never trade when 3 consecutive real losses hit
-- Minimum $20 or no trade
-
-## What to watch
-- Win rate over next 20 trades
-- Average profit per winner vs loss per loser
-- Are the confidence thresholds actually predictive?
+## What's Needed
+- **SOL top-up:** Send ~0.02 SOL to the wallet for gas
+- **Sell positions:** Clear the 4 open positions to reset exposure
+- **Let it run:** With working swaps, the bot can actually trade

@@ -198,14 +198,30 @@ def verify_claims(text):
         risk = "medium"
         risk_reasons.append("multiple capability claims need verification")
     
-    if 'guarantee' in text.lower() or '100%' in text:
+    # Only flag absolute claims on explicit guarantee/100% language that makes promises to readers
+    # Ignore harmless uses like "starting points, not guarantees" or "100-person agency"
+    has_guarantee = re.search(r'\b(guarantee)\b', text, re.IGNORECASE)
+    if has_guarantee:
         risk = "high"
         risk_reasons.append("absolute claims detected")
     
-    if 'always' in text.lower() or 'never' in text.lower():
-        if risk != "high":
-            risk = "medium"
-        risk_reasons.append("absolutist language")
+    # Only flag 100% when used as an absolute promise, not in tool descriptions like "100% free"
+    # Look for 100% followed by result/outcome words
+    absolute_100 = re.search(r'100%\s+(?:guarantee|guaranteed|accurate|effective|success|results?|free|sure)', text, re.IGNORECASE)
+    if absolute_100:
+        # Allow "100% free" in product descriptions as it's a common marketing term
+        if not re.search(r'100%\s+free', text, re.IGNORECASE):
+            risk = "high"
+            risk_reasons.append("absolute percentage claims detected")
+    
+    # Check absolutist language but allow common reasonable uses
+    absolutist = re.findall(r'\b(always|never)\b', text, re.IGNORECASE)
+    if absolutist:
+        # Don't escalate to high just for a couple of "always" in instructions/tips
+        if len(absolutist) > 3:
+            if risk != "high":
+                risk = "medium"
+            risk_reasons.append("absolutist language")
     
     verdict = "ready"
     if risk == "high":

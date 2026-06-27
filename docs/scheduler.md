@@ -30,7 +30,7 @@
 18:30 | ████ Kybernauts-ForumBump (Sun only)          (kimi-k2.6, 600s, heavy)
 20:00 | ████ NightSchool-8pm                       (deepseek-v4-flash, 600s, heavy)
 20:15 | ██   NightSchool-NAS-Sync                  (deepseek-v4-flash, 60s, light)
-22:00 | ██   Weekly-MemoryHygiene (Sun only)          (deepseek-v4-flash, 180s, light)
+23:00 | ██   Workspace-NAS-Backup (daily)              (deepseek-v4-flash, 300s, medium)
 
 --- Continuous ---
 - TradeBot-Research — every 2h (deepseek-v4-flash, 180s)
@@ -129,7 +129,7 @@ Checklist:
 | Kybernauts-Propaganda | d27750c9 | 6:15pm every 2 days | kimi-k2.6 | 300s |
 | Kybernauts-ForumBump | ac348e21 | 6:30pm Sun | kimi-k2.6 | 600s |
 
-### Nova Ops (8 crons)
+### Nova Ops (9 crons)
 | Name | ID | Schedule | Model | Timeout |
 |------|-----|----------|-------|---------|
 | daily-brief-7am | 0552b684 | 7am daily | deepseek-v4-flash | 180s |
@@ -138,11 +138,12 @@ Checklist:
 | Iris-all-accounts-digest | a375126c | 7:30am daily | deepseek-v4-flash | 180s |
 | Nova-Ops-Assessment | 488e0af0 | 9am daily | deepseek-v4-flash | 180s |
 | NightSchool-8pm | 3071d872 | 8pm daily | deepseek-v4-flash | 600s |
+| Workspace-NAS-Backup | cec8b2ad | 11pm daily | deepseek-v4-flash | 300s |
 | Weekly-MemoryHygiene | 10d4c1a3 | 10pm Sun | deepseek-v4-flash | 180s |
 | Weekly-SkillUpdate | ac9ba7e1 | 6am Mon | deepseek-v4-flash | 180s |
 | Weekly-SkillDiscovery | 0b0873dc | 6pm Fri | deepseek-v4-flash | 180s |
 
-## Total: 26 crons
+## Total: 27 crons
 - `kimi-k2.6`: **3** crons (live session overflow - EveOnion-Article + Kybernauts heavy items)
 - `deepseek-v4-flash`: **18** crons (ops/scans/fast)
 - `qwen3.5:27b`: **4** crons (scheduled writing + light analytics)

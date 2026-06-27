@@ -105,7 +105,16 @@ RE_SEXUAL = re.compile(
     r"snap me|snapchat|kik me|telegram me|whatsapp me|text me|txt me|"
     r"call me|hit me up|hmu|dm me|dont be shy|no strings|nothing serious|"
     r"down for anything|open minded|attached female|married but|discreet|"
-    r"sugar baby|sugar daddy|allowance|spoiled|send money|need \$|broke and",
+    r"sugar baby|sugar daddy|allowance|spoiled|send money|need \$|broke and|"
+    r"ride you until we both|light up your.*firecracker|anal virgin|"
+    r"someone wants to meet|wants to meet|meet me|let's meet|wanna meet|"
+    r"explode|cum|blow your|rock your|turn you on|turn me on|"
+    r"touch me|feel me|want you|need you|desire you|crave you|"
+    r"naughty girl|bad girl|good girl|your girl|my girl|lonely girl|"
+    r"mature woman|real woman|local woman|single woman|married woman|"
+    r"divorced|separated|unattached|looking for love|need a man|need a guy|"
+    r"younger.*older|age is just|age doesn't matter|cougar|"
+    r"picks you|picked you|selected you|chose you|chosen for you",
     re.IGNORECASE,
 )
 
@@ -114,7 +123,10 @@ RE_FAKE_SENDER = re.compile(
     r"missedcall|new\s*match|iwant|naughty|tabl-|hottie|porn|xxx|naughty|"
     r"sexy|horny|booty|nibble|bedroom|scoop|hot tonight|wanting a crazy night|wants a crazy night|are you single|"
     r"wants to chat|send pics|meetup|snapchat|kik|onlyfans|fansly|"
-    r"milf|cam|sophisticated male|wink|fun we had|eharmony",
+    r"milf|cam|sophisticated male|wink|fun we had|eharmony|"
+    r"foxytemptation|i want hookups|faithful fling|hot.*milf|"
+    r"someone wants to meet|wants to meet|meet you|meet me|let's meet|"
+    r"localtemptation|temptation|wet emoji|wet emojis|gucciluci",
     re.IGNORECASE,
 )
 
@@ -294,6 +306,19 @@ DATING = {"wants to meet you", "likes your profile", "feels the attraction",
           "we've blocked your account",
           "uncovered something weird", "what makes someone memorable",
           "compjunkie?", "unexpected excitement is right around the corner",
+          "someone wants to meet you", "someone wants to meet", "wants to meet",
+          "meet you", "meet me", "let's meet", "wanna meet", "down to meet",
+          "ride you until we both", "light up your", "firecracker of",
+          "explode", "cum", "blow your", "rock your",
+          "naughty girl", "bad girl", "good girl", "your girl", "my girl", "lonely girl",
+          "mature woman", "real woman", "local woman", "single woman", "married woman",
+          "divorced", "separated", "unattached", "looking for love", "need a man", "need a guy",
+          "age is just", "age doesn't matter", "cougar",
+          "picks you", "picked you", "selected you", "chose you", "chosen for you",
+          "i adore the way your body", "our adventure together", "deeply fascinated",
+          "cherish me", "i honestly laughed waiting", "my day got better because",
+          "i need your cock", "satisfy me", "your cock to satisfy",
+          "long fors me", "body long fors",
           }
 
 LEGIT = {"discord.com", "google.com", "microsoft.com", "apple.com", "amazon.com",
@@ -373,6 +398,56 @@ def is_spam(sender_raw, subject_raw):
         if suspicious_tld or re.search(r'[0-9]', sender.split('@')[-1] if '@' in sender else sender):
             return True
 
+    # Aggressive subject-line keyword matches (catch evolving dating spam fast)
+    AGGRESSIVE_PATTERNS = [
+        r"someone wants to meet",
+        r"wants to meet you",
+        r"ride you until we both",
+        r"light up your.*(firecracker|4th)",
+        r"anal virgin",
+        r"explode",
+        r"cum\b",
+        r"blow your",
+        r"rock your",
+        r"turn (you|me) on",
+        r"touch (me|you)",
+        r"desire you",
+        r"crave you",
+        r"naughty girl",
+        r"bad girl",
+        r"lonely girl",
+        r"mature woman",
+        r"real woman",
+        r"local woman",
+        r"single woman",
+        r"married woman",
+        r"divorced",
+        r"separated",
+        r"unattached",
+        r"looking for love",
+        r"need a (man|guy)",
+        r"age is just",
+        r"age doesn't matter",
+        r"cougar",
+        r"picks you",
+        r"picked you",
+        r"selected you",
+        r"chosen for you",
+    ]
+    for pattern in AGGRESSIVE_PATTERNS:
+        if re.search(pattern, subject, re.IGNORECASE):
+            return True
+
+    # Emoji-heavy sender name detection (fake "first name + emoji" dating spam)
+    # Pattern: name with emoji in sender field + dating/sexual subject
+    sender_name_only = sender.split("<")[0].strip() if "<" in sender else sender
+    emoji_count = len(re.findall(r"[\U0001F600-\U0001F64F\U0001F300-\U0001F5FF\U0001F680-\U0001F6FF\U0001F1E0-\U0001F1FF\U00002702-\U000027B0\U000024C2-\U0001F251\u2764\U0001F48B\U0001F4A7\U0001F351\U0001F353\U0001F364\U0001F382\U0001F3B6\U0001F4AF\U0001F495\U0001F496\U0001F497\U0001F498\U0001F499\U0001F49A\U0001F49B\U0001F49C\U0001F49D\U0001F525\U0001F336\U0001F344]", sender_name_only))
+    if emoji_count >= 1 and any(w in subject for w in DATING):
+        return True
+    # Also catch if sender name itself has heavy dating signals with emojis
+    if emoji_count >= 1 and re.search(r"adore|cherish|fascinated|laugh|waiting|body|cock|satisfy", subject, re.IGNORECASE):
+        return True
+
     combined = sender + " " + subject
     if re.search(r"anytime you feel like talking|just relocated|would love some help", combined, re.IGNORECASE):
         return True
@@ -447,7 +522,11 @@ def sweep_folder(email_addr, password, folder, label, max_msgs=100):
         mail.logout()
         return 0, 0
 
-    # Take last N UIDs
+    # Take last N UIDs - keep it lean to stay under cron timeout
+    if "INBOX" in folder:
+        max_msgs = 60 if "compjunkie" in email_addr else 40
+    else:
+        max_msgs = 40
     uids = all_ids[-max_msgs:]
 
     print(f"  {label}: Checking {len(uids)} messages (last {days} days)...")

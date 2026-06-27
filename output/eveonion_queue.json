@@ -63,33 +63,115 @@
       "headline": "EVE Online's Largest Scam in History Reportedly Only Netted Scammer $400 And A Sense Of Achievement",
       "file": "output/eveonion_article_8.md",
       "source": "Satire: Ponzi scheme + $400 haul",
-      "status": "ready"
+      "status": "published",
+      "published_url": "https://eveonion.com/breaking-eve-onlines-largest-scam-in-history-reportedly-only-netted-scammer-400-and-a-sense-of-achievement/",
+      "published_at": "2026-06-26T09:30:00-04:00"
     }
   ],
   "tweets": [
-    {"date": "2026-06-02", "text": "BREAKING: CCP confirms next expansion will finally add 'queue for all regional servers' button to login screen. Players stunned. 'I thought it was a feature,' says 14-year veteran. #EVEOnline"},
-    {"date": "2026-06-03", "text": "Newbro pulls $7K Titan BPC from free loot box, asks if it fits in a Cormorant. Full story at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_1.md"},
-    {"date": "2026-06-04", "text": "Local man loses 3 billion ISK hauling PLEX through Uedama in a T1 industrial. 'I thought the skull icon was a decoration,' he told CONCORD. #EVEOnline"},
-    {"date": "2026-06-05", "text": "r/Eve user discovers ship fitting window. 'I've been right-clicking everything for 6 years,' he admits in emotional post. #EVEOnline"},
-    {"date": "2026-06-06", "text": "Fenris reveals military campaigns: Minmatar reclaim ancestral systems, Gallente shorten commute. Both 'equally important,' says CONCORD. Full satire at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_2.md"},
-    {"date": "2026-06-07", "text": "Weekend forecast for Jita: 4,200 in local, 800 scammers, 3 actual trades, and one guy who definitely just bought a Machariel with his mom's credit card. #EVEOnline"},
-    {"date": "2026-06-08", "text": "Pochven resident explains why he lives in Triglavian space: 'It's like nullsec but the locals are politer and the loot is weirder.' #EVEOnline"},
-    {"date": "2026-06-09", "text": "CCP adds 'Are you sure?' dialog to undock button. Veteran rage-quits: 'I've clicked through 847 warnings today. This is the last straw.' #EVEOnline"},
-    {"date": "2026-06-10", "text": "Fenris launches Exordium safe zone. Veterans immediately threaten to quit. 'I trashed all my stuff,' says 23-year vet. Full satire at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_3.md"},
-    {"date": "2026-06-11", "text": "Study finds 94% of EVE players who say 'small gang PvP' actually mean 'we brought 60 Tengus but it felt intimate.' #EVEOnline"},
-    {"date": "2026-06-12", "text": "Man who bought 500 PLEX to 'support CCP' now using them to wallpaper his Captain's Quarters. 'It seemed like a good investment at the time.' #EVEOnline"},
-    {"date": "2026-06-13", "text": "Six-month newbie wins $7K Molok BPC, sells it, buys Vexor Navy Issue. 'It's green. I like it.' Full story at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_4.md"},
-    {"date": "2026-06-14", "text": "Saturday night in New Eden: someone's losing a Titan, someone's mining in highsec while watching Netflix, and someone's writing a 15-page forum post about why the Stabber needs a buff. #EVEOnline"},
-    {"date": "2026-06-16", "text": "Fanfest attendance 'spectacular' says Fenris, citing the three people who showed up voluntarily. Full story at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_5.md"},
-    {"date": "2026-06-17", "text": "Local ganker explains that his killboard is 'actually very wholesome if you read the开心comments section.' #EVEOnline"},
-    {"date": "2026-06-18", "text": "BREAKING: EVE player discovers industry jobs exist. 'I've been mining for 6 years and no one told me,' he says, devastated. #EVEOnline"},
-    {"date": "2026-06-19", "text": "23-year veteran who 'trashed everything' over Exordium seen helping newbies in rookie chat. 'It's a long story,' he says. Full at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_6.md"},
-    {"date": "2026-06-20", "text": "Pochven update: still weird, still Triglavian, still nobody fully understands it. 'That's the charm,' say locals. #EVEOnline"},
-    {"date": "2026-06-21", "text": "Sunday in New Eden: someone's in a local chat bragging about their killboard, someone's mining Veldspar and questioning life choices. #EVEOnline"},
-    {"date": "2026-06-22", "text": "EVE player discovers he bought Starfield 2 years ago and forgot. 'I have been playing the correct game this whole time,' he realizes, devastated. #EVEOnline"},
-    {"date": "2026-06-23", "text": "Man who played EVE for 14 years thinking it was Starfield realizes his mistake, sells everything for 45B ISK. Full at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_7.md"},
-    {"date": "2026-06-24", "text": "Study: 89% of EVE Online 'economic collapse' posts are made by people who still have their wallet open. #EVEOnline"},
-    {"date": "2026-06-25", "text": "EVE's largest Ponzi scheme nets scammer $400 and 'unprecedented psychological efficiency.' Full story at eveonion.com #EVEOnline", "link_article": "output/eveonion_article_8.md"},
-    {"date": "2026-06-26", "text": "Friday forecast: someone is about to lose a Titan, someone's filing a petition to nerf highsec ganking, and one guy is definitely getting married irl and can't be reached. #EVEOnline"}
+    {
+      "date": "2026-06-02",
+      "text": "BREAKING: CCP confirms next expansion will finally add 'queue for all regional servers' button to login screen. Players stunned. 'I thought it was a feature,' says 14-year veteran. #EVEOnline"
+    },
+    {
+      "date": "2026-06-03",
+      "text": "Newbro pulls $7K Titan BPC from free loot box, asks if it fits in a Cormorant. Full story at eveonion.com #EVEOnline",
+      "link_article": "output/eveonion_article_1.md"
+    },
+    {
+      "date": "2026-06-04",
+      "text": "Local man loses 3 billion ISK hauling PLEX through Uedama in a T1 industrial. 'I thought the skull icon was a decoration,' he told CONCORD. #EVEOnline"
+    },
+    {
+      "date": "2026-06-05",
+      "text": "r/Eve user discovers ship fitting window. 'I've been right-clicking everything for 6 years,' he admits in emotional post. #EVEOnline"
+    },
+    {
+      "date": "2026-06-06",
+      "text": "Fenris reveals military campaigns: Minmatar reclaim ancestral systems, Gallente shorten commute. Both 'equally important,' says CONCORD. Full satire at eveonion.com #EVEOnline",
+      "link_article": "output/eveonion_article_2.md"
+    },
+    {
+      "date": "2026-06-07",
+      "text": "Weekend forecast for Jita: 4,200 in local, 800 scammers, 3 actual trades, and one guy who definitely just bought a Machariel with his mom's credit card. #EVEOnline"
+    },
+    {
+      "date": "2026-06-08",
+      "text": "Pochven resident explains why he lives in Triglavian space: 'It's like nullsec but the locals are politer and the loot is weirder.' #EVEOnline"
+    },
+    {
+      "date": "2026-06-09",
+      "text": "CCP adds 'Are you sure?' dialog to undock button. Veteran rage-quits: 'I've clicked through 847 warnings today. This is the last straw.' #EVEOnline"
+    },
+    {
+      "date": "2026-06-10",
+      "text": "Fenris launches Exordium safe zone. Veterans immediately threaten to quit. 'I trashed all my stuff,' says 23-year vet. Full satire at eveonion.com #EVEOnline",
+      "link_article": "output/eveonion_article_3.md"
+    },
+    {
+      "date": "2026-06-11",
+      "text": "Study finds 94% of EVE players who say 'small gang PvP' actually mean 'we brought 60 Tengus but it felt intimate.' #EVEOnline"
+    },
+    {
+      "date": "2026-06-12",
+      "text": "Man who bought 500 PLEX to 'support CCP' now using them to wallpaper his Captain's Quarters. 'It seemed like a good investment at the time.' #EVEOnline"
+    },
+    {
+      "date": "2026-06-13",
+      "text": "Six-month newbie wins $7K Molok BPC, sells it, buys Vexor Navy Issue. 'It's green. I like it.' Full story at eveonion.com #EVEOnline",
+      "link_article": "output/eveonion_article_4.md"
+    },
+    {
+      "date": "2026-06-14",
+      "text": "Saturday night in New Eden: someone's losing a Titan, someone's mining in highsec while watching Netflix, and someone's writing a 15-page forum post about why the Stabber needs a buff. #EVEOnline"
+    },
+    {
+      "date": "2026-06-16",
+      "text": "Fanfest attendance 'spectacular' says Fenris, citing the three people who showed up voluntarily. Full story at eveonion.com #EVEOnline",
+      "link_article": "output/eveonion_article_5.md"
+    },
+    {
+      "date": "2026-06-17",
+      "text": "Local ganker explains that his killboard is 'actually very wholesome if you read the\u00e5\u00bc\u20ac\u00e5\u00bf\u0192comments section.' #EVEOnline"
+    },
+    {
+      "date": "2026-06-18",
+      "text": "BREAKING: EVE player discovers industry jobs exist. 'I've been mining for 6 years and no one told me,' he says, devastated. #EVEOnline"
+    },
+    {
+      "date": "2026-06-19",
+      "text": "23-year veteran who 'trashed everything' over Exordium seen helping newbies in rookie chat. 'It's a long story,' he says. Full at eveonion.com #EVEOnline",
+      "link_article": "output/eveonion_article_6.md"
+    },
+    {
+      "date": "2026-06-20",
+      "text": "Pochven update: still weird, still Triglavian, still nobody fully understands it. 'That's the charm,' say locals. #EVEOnline"
+    },
+    {
+      "date": "2026-06-21",
+      "text": "Sunday in New Eden: someone's in a local chat bragging about their killboard, someone's mining Veldspar and questioning life choices. #EVEOnline"
+    },
+    {
+      "date": "2026-06-22",
+      "text": "EVE player discovers he bought Starfield 2 years ago and forgot. 'I have been playing the correct game this whole time,' he realizes, devastated. #EVEOnline"
+    },
+    {
+      "date": "2026-06-23",
+      "text": "Man who played EVE for 14 years thinking it was Starfield realizes his mistake, sells everything for 45B ISK. Full at eveonion.com #EVEOnline",
+      "link_article": "output/eveonion_article_7.md"
+    },
+    {
+      "date": "2026-06-24",
+      "text": "Study: 89% of EVE Online 'economic collapse' posts are made by people who still have their wallet open. #EVEOnline"
+    },
+    {
+      "date": "2026-06-25",
+      "text": "EVE's largest Ponzi scheme nets scammer $400 and 'unprecedented psychological efficiency.' Full story at eveonion.com #EVEOnline",
+      "link_article": "output/eveonion_article_8.md"
+    },
+    {
+      "date": "2026-06-26",
+      "text": "Friday forecast: someone is about to lose a Titan, someone's filing a petition to nerf highsec ganking, and one guy is definitely getting married irl and can't be reached. #EVEOnline"
+    }
   ]
 }

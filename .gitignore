@@ -182,6 +182,7 @@ trading-bot/logs/
 trading-bot/patch*.py
 trading-bot/test_run_*.log.err
 trading-bot/_run_*.ps1
+trading-bot/.gas_reserve.json
 portfolio.db.json
 spam_sweep_error.txt
 

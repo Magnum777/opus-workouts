@@ -36,16 +36,25 @@ CLIENT = Client("https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b
 SOL_MINT = "So11111111111111111111111111111111111111112"
 USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 
-# SOL gas: %-based reserve, auto-refills from USDC when low
-#   Target = max(0.01 SOL, portfolio_value * SOL_RESERVE_PCT / sol_price)
-#   Refill capped at MAX_REFILL_PCT of current USDC per cycle
-SOL_TARGET_FLOOR = 0.01       # 0.01 SOL absolute minimum
-SOL_RESERVE_PCT = 0.01        # 1% of portfolio as gas reserve
-MAX_REFILL_PCT = 0.15          # max 15% of USDC per cycle for refill
-MIN_REFILL_FLOOR = 5.0          # minimum SOL refill in USD
-SOL_MIN_SAFE = 0.003          # below this swaps fail due to ATA rent
+# SOL gas: self-sustaining reserve
+#   Target = 3% of portfolio in SOL (up from 2% for safety margin)
+#   Floor = 0.015 SOL (never go below this)
+#   Ceiling = 0.05 SOL (never hoard more)
+#   Refill triggers at 60% of target (earlier than 50%)
+#   Refill capped at 8% of USDC per cycle (up from 5%)
+#   Daily hard cap: 0.015 SOL max on fees (up from 0.01)
+#   Gas tax: 2% of every profitable trade goes to gas reserve
+SOL_TARGET_PCT = 0.03           # 3% of portfolio in SOL for gas
+SOL_TARGET_FLOOR = 0.015        # minimum 0.015 SOL
+SOL_TARGET_CEILING = 0.05       # never hold more than 0.05 SOL
+SOL_REFILL_TRIGGER = 0.60       # refill when below 60% of target
+SOL_REFILL_CAP_PCT = 0.08       # max 8% of USDC per refill
+SOL_DAILY_BUDGET = 0.015        # max 0.015 SOL/day on fees (~$1)
+SOL_MIN_SAFE = 0.005            # below this, emergency pause
+SOL_GAS_TAX_PCT = 0.02          # 2% of every profitable trade -> gas reserve
 
-SOL_MIN_HYSTERIA = 0.01       # above this, bot runs normally
+GAS_LOG = os.path.join(os.path.dirname(__file__), "gas_tracker.json")
+GAS_RESERVE_FILE = os.path.join(os.path.dirname(__file__), ".gas_reserve.json")
 
 # Trading params - used by daemon and executor
 BUY_SIZES = [4.0, 8.0, 12.0]  # Legacy, unused - sizing now in determine_buy_size()
@@ -185,35 +194,118 @@ def _respectful_swap(quote, user_pk_str, wrap_sol=False, label="swap"):
             return None, f"Swap error: {e}"
     return None, "Swap failed after 3 retries"
 
+def get_gas_reserve():
+    """Get the tracked gas reserve balance (separate from wallet SOL).
+    This is a virtual tracker — the actual SOL is in the wallet.
+    """
+    try:
+        if os.path.exists(GAS_RESERVE_FILE):
+            with open(GAS_RESERVE_FILE) as f:
+                data = json.load(f)
+            return data.get("reserve_sol", 0)
+    except:
+        pass
+    return 0
+
+def add_to_gas_reserve(amount_sol):
+    """Add SOL to the gas reserve from trade profits."""
+    if amount_sol <= 0:
+        return
+    try:
+        reserve = get_gas_reserve()
+        reserve += amount_sol
+        with open(GAS_RESERVE_FILE, "w") as f:
+            json.dump({"reserve_sol": reserve, "updated": time.time()}, f, indent=2)
+        print(f"[GAS RESERVE] +{amount_sol:.6f} SOL (total: {reserve:.6f})")
+    except:
+        pass
+
+def get_daily_gas_spent():
+    """Get total SOL spent on fees today."""
+    try:
+        if os.path.exists(GAS_LOG):
+            with open(GAS_LOG) as f:
+                log = json.load(f)
+            today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            return log.get(today, 0)
+    except:
+        pass
+    return 0
+
+def log_gas_spent(cycle_start_sol, cycle_end_sol):
+    """Track SOL spent this cycle."""
+    spent = cycle_start_sol - cycle_end_sol
+    if spent > 0.000001:  # ignore dust
+        try:
+            log = {}
+            if os.path.exists(GAS_LOG):
+                with open(GAS_LOG) as f:
+                    log = json.load(f)
+            today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            log[today] = log.get(today, 0) + spent
+            with open(GAS_LOG, "w") as f:
+                json.dump(log, f, indent=2)
+            if spent > 0.001:
+                print(f"[GAS WARNING] Cycle burned {spent:.6f} SOL — high!")
+        except:
+            pass
+
 def ensure_sol_for_gas():
     """
-    Proportional SOL gas reserve. Refills from USDC when below target.
-    Silently skips if SOL > 0.001 — we rarely need more for ~200 txns.
+    Self-sustaining SOL gas reserve.
+    Refills from USDC when below trigger.
+    Daily hard cap prevents runaway fee drain.
+    Gas reserve tracks virtual SOL set aside from profits.
     """
     sol_bal = get_sol_balance()
-    
-    # Absolute floor: 0.001 SOL (~200 txns) — no point burning API calls below that
-    if sol_bal >= 0.001:
-        return False
-    
     sol_price = get_jupiter_price(SOL_MINT)
     if sol_price <= 0:
         sol_price = 170
-    
     usdc_bal = get_usdc_balance()
     total_value = usdc_bal + (sol_bal * sol_price)
-    target_sol = max(0.01, (total_value * SOL_RESERVE_PCT) / sol_price)
-    
-    if sol_bal >= target_sol:
+    gas_reserve = get_gas_reserve()
+
+    # Calculate target: 3% of portfolio, bounded
+    target_sol = max(SOL_TARGET_FLOOR, min(SOL_TARGET_CEILING, total_value * SOL_TARGET_PCT / sol_price))
+
+    # Emergency check: if SOL is below MIN_SAFE, pause everything
+    if sol_bal < SOL_MIN_SAFE:
+        print(f"[GAS EMERGENCY] SOL at {sol_bal:.6f} — below MIN_SAFE ({SOL_MIN_SAFE})!")
+        print(f"[GAS EMERGENCY] Attempting emergency refill...")
+        # Try a bigger refill (20% of USDC) to get back to safe
+        if usdc_bal > 2.0:
+            refill = min(usdc_bal * 0.20, 5.0)  # up to 20% of USDC or $5
+            success, msg = execute_buy_live(SOL_MINT, "SOL", refill)
+            if success:
+                new_sol = get_sol_balance()
+                print(f"[GAS EMERGENCY] Refilled! {sol_bal:.6f} → {new_sol:.6f} SOL")
+                return True
+            else:
+                print(f"[GAS EMERGENCY] Refill failed: {msg}")
+        print(f"[GAS EMERGENCY] Cannot refill — wallet stuck until SOL is sent")
         return False
-    
+
+    # Check if we need refill
+    if sol_bal >= target_sol * SOL_REFILL_TRIGGER:
+        return False  # plenty of gas
+
+    # Check daily budget
+    daily_spent = get_daily_gas_spent()
+    if daily_spent >= SOL_DAILY_BUDGET:
+        print(f"[GAS] Daily budget reached ({daily_spent:.6f}/{SOL_DAILY_BUDGET} SOL) — pausing refills until tomorrow")
+        return False
+
+    # Calculate refill amount
     deficit_sol = target_sol - sol_bal
     deficit_usd = deficit_sol * sol_price
-    max_refill = usdc_bal * MAX_REFILL_PCT
-    refill_amount = min(max(deficit_usd, MIN_REFILL_FLOOR), max_refill)
-    
-    print(f"[SOL GAS] Very low: {sol_bal:.6f}. Refilling ${refill_amount:.2f} USDC → SOL...")
-    
+    max_refill = usdc_bal * SOL_REFILL_CAP_PCT
+    refill_amount = min(deficit_usd, max_refill)
+
+    if refill_amount < 0.50:  # skip if less than $0.50
+        return False
+
+    print(f"[SOL GAS] {sol_bal:.6f} SOL (target {target_sol:.4f}, reserve {gas_reserve:.6f}). Refilling ${refill_amount:.2f} USDC → SOL...")
+
     success, msg = execute_buy_live(SOL_MINT, "SOL", refill_amount)
     if success:
         new_sol = get_sol_balance()
@@ -224,86 +316,10 @@ def ensure_sol_for_gas():
 
 
 def refill_usdc_from_sol():
-    """Sell SOL for USDC when USDC balance is too low to trade.
-    Keeps ~0.1 SOL as gas reserve, sells the rest to USDC.
-    Returns True if any SOL was sold, False otherwise.
+    """REMOVED — selling gas for trading capital creates a death spiral.
+    If USDC is low, the bot waits for a trade to close instead.
     """
-    usdc_bal = get_usdc_balance()
-    if usdc_bal >= 15.0:
-        return False  # enough USDC already
-
-    sol_bal = get_sol_balance()
-    sol_price = get_jupiter_price(SOL_MINT)
-    if sol_price <= 0:
-        sol_price = 170
-
-    # Keep 0.1 SOL for gas (~200 txns), sell everything above that
-    MIN_SOL_RESERVE = 0.1
-    if sol_bal <= MIN_SOL_RESERVE:
-        print(f"[USDC REFILL] Not enough SOL to spare: {sol_bal:.4f} SOL (need >{MIN_SOL_RESERVE} reserve)")
-        return False
-
-    sellable_sol = sol_bal - MIN_SOL_RESERVE
-    sellable_usd = sellable_sol * sol_price
-
-    # Target: bring USDC up to $30, capped at 80% of sellable SOL
-    target_usdc = min(30.0, sellable_usd * 0.8)
-    if target_usdc < 5.0:
-        return False  # not worth the swap
-
-    print(f"[USDC REFILL] USDC=${usdc_bal:.2f} too low. Selling {sellable_sol:.4f} SOL (${sellable_usd:.2f}) -> target ${target_usdc:.2f} USDC...")
-
-    # Execute the swap: SOL -> USDC via Jupiter
-    sol_units = int(sellable_sol * 1e9)  # SOL has 9 decimals
-
-    quote, err = _respectful_quote(SOL_MINT, USDC, sol_units, slippage_bps=500, label="refill_usdc")
-    if err:
-        print(f"[USDC REFILL] Quote failed: {err}")
-        return False
-
-    swap_data, err = _respectful_swap(quote, str(WALLET.pubkey()), wrap_sol=True, label="refill_usdc")
-    if err:
-        print(f"[USDC REFILL] Swap failed: {err}")
-        return False
-
-    # Sign and send
-    tx = VersionedTransaction.from_bytes(base64.b64decode(swap_data["swapTransaction"]))
-    signed = VersionedTransaction(tx.message, [WALLET])
-
-    try:
-        result = CLIENT.send_raw_transaction(
-            bytes(signed),
-            opts=TxOpts(skip_preflight=True, max_retries=5)
-        )
-        tx_hash = result.value if hasattr(result, "value") else str(result)
-        time.sleep(5)
-        confirmed = False
-        for verify_attempt in range(30):
-            try:
-                confirm = CLIENT.get_signature_statuses([str(tx_hash)])
-                if confirm and confirm.value and confirm.value[0]:
-                    status = confirm.value[0]
-                    if status.confirmation_status:
-                        confirmed = True
-                        print(f"[USDC REFILL] TX confirmed: {str(tx_hash)[:20]}...")
-                        break
-                    elif status.err:
-                        print(f"[USDC REFILL] TX failed on-chain: {status.err}")
-                        return False
-            except:
-                pass
-            time.sleep(1)
-        if not confirmed:
-            print(f"[USDC REFILL] TX {str(tx_hash)[:20]}... did not confirm - treating as failed")
-            return False
-
-        new_usdc = get_usdc_balance()
-        new_sol = get_sol_balance()
-        print(f"[USDC REFILL] Complete! USDC: ${usdc_bal:.2f} -> ${new_usdc:.2f} | SOL: {sol_bal:.4f} -> {new_sol:.4f}")
-        return True
-    except Exception as e:
-        print(f"[USDC REFILL] Send failed: {e}")
-        return False
+    return False
 
 
 def get_usdc_balance():
@@ -332,42 +348,41 @@ def get_usdc_balance():
 
 
 def execute_buy_live(mint, token_name, usdc_amount):
-    """Execute buy via Jupiter using USDC as input"""
+    """Execute buy via Jupiter v2 API (handles Token-2022)"""
     usdc_units = int(usdc_amount * 1e6)
 
-    # Quote with cycle-aware backoff (2 attempts instead of 6)
-    quote, err = _respectful_quote(USDC, mint, usdc_units, slippage_bps=1500, label=f"buy_{token_name}")
-    if err:
-        print(f"Initial quote failed: {err}. Trying 20% slippage once.")
-        quote, err = _respectful_quote(USDC, mint, usdc_units, slippage_bps=2000, label=f"buy_{token_name}_fallback")
-        if err:
-            print(f"Fallback quote also failed: {err}")
-            return False, "Quote failed"
+    # Use Jupiter v2 API
+    try:
+        resp = requests.get(
+            f"https://api.jup.ag/swap/v2/order?inputMint={USDC}&outputMint={mint}&amount={usdc_units}&slippageBps=5000&taker={str(WALLET.pubkey())}",
+            timeout=15
+        )
+        if resp.status_code != 200:
+            return False, f"v2 order failed: HTTP {resp.status_code}"
+        data = resp.json()
+        if data.get("errorCode"):
+            return False, f"v2 order error: {data.get('errorMessage', 'unknown')}"
+        tx_b64 = data.get("transaction")
+        if not tx_b64:
+            return False, "No transaction in v2 response"
+        out_amount = data.get("outAmount", "?")
+        print(f"v2 order: inAmount={data.get('inAmount')} outAmount={out_amount} slippageBps={data.get('slippageBps')}")
+    except Exception as e:
+        return False, f"v2 order exception: {e}"
 
-    print(f"Quote: inAmount={quote.get('inAmount')} outAmount={quote.get('outAmount')} slippageBps={quote.get('slippageBps')}")
-
-    # Swap with cycle-aware backoff
-    swap_data, err = _respectful_swap(quote, str(WALLET.pubkey()), wrap_sol=(mint == SOL_MINT), label=f"swap_{token_name}")
-    if err:
-        return False, f"Swap failed: {err}"
-
-    # Sign and send with retry
-    tx = VersionedTransaction.from_bytes(base64.b64decode(swap_data["swapTransaction"]))
+    tx = VersionedTransaction.from_bytes(base64.b64decode(tx_b64))
     signed = VersionedTransaction(tx.message, [WALLET])
 
-    # Track unconfirmed TX hashes for next-cycle check
     _PENDING_TX_FILE = os.path.join(os.path.dirname(__file__), ".pending_buy_tx.json")
 
     for send_attempt in range(3):
         try:
             result = CLIENT.send_raw_transaction(
                 bytes(signed),
-                opts=TxOpts(skip_preflight=True, max_retries=5)
+                opts=TxOpts(skip_preflight=False, preflight_commitment="confirmed", max_retries=5)
             )
             tx_hash = result.value if hasattr(result, "value") else str(result)
-            # Extended wait — Jupiter swaps on low-cap tokens can take 10-20s
             time.sleep(5)
-            # Verify tx confirmed (up to ~30s total — bumped from 15 to 30)
             confirmed = False
             for verify_attempt in range(30):
                 try:
@@ -386,12 +401,10 @@ def execute_buy_live(mint, token_name, usdc_amount):
                 time.sleep(1)
 
             if not confirmed:
-                # Patch 2: Retry once after 10s delay on timeout
                 if send_attempt < 2:
                     print(f"TX {str(tx_hash)[:20]}... did not confirm after ~35s - retrying once in 10s")
                     time.sleep(10)
                     continue
-                # Patch 3: Store unconfirmed TX hash for next-cycle check
                 print(f"TX {str(tx_hash)[:20]}... did not confirm after 2 attempts - storing for next-cycle check")
                 try:
                     pending = {}
@@ -426,60 +439,86 @@ def execute_buy_live(mint, token_name, usdc_amount):
             return False, f"Send TX failed: {err[:150]}"
 
 def execute_sell_live(mint, token_name, amount_raw):
-    """Execute sell via Jupiter"""
-    quote, err = _respectful_quote(mint, USDC, amount_raw, slippage_bps=1500, label=f"sell_{token_name}")
-    if err:
-        return False, f"Sell quote failed: {err}"
-
-    swap_data, err = _respectful_swap(quote, str(WALLET.pubkey()), wrap_sol=False, label=f"sell_{token_name}")
-    if err:
-        return False, f"Sell swap failed: {err}"
-    # Sign and send with retry
-    tx = VersionedTransaction.from_bytes(base64.b64decode(swap_data["swapTransaction"]))
-    signed = VersionedTransaction(tx.message, [WALLET])
-
-    for send_attempt in range(3):
+    """Execute sell via Jupiter v2 API (handles Token-2022).
+    Chunks large amounts if v2 API rejects the full position.
+    """
+    # Try full amount first
+    chunks = [amount_raw]
+    
+    for chunk in chunks:
         try:
-            result = CLIENT.send_raw_transaction(
-                bytes(signed),
-                opts=TxOpts(skip_preflight=True, max_retries=5)
+            resp = requests.get(
+                f"https://api.jup.ag/swap/v2/order?inputMint={mint}&outputMint={USDC}&amount={chunk}&slippageBps=5000&taker={str(WALLET.pubkey())}",
+                timeout=15
             )
-            tx_hash = result.value if hasattr(result, "value") else str(result)
-            # Extended verification for sell TX
-            time.sleep(5)
-            confirmed = False
-            for verify_attempt in range(15):
-                try:
-                    confirm = CLIENT.get_signature_statuses([str(tx_hash)])
-                    if confirm and confirm.value and confirm.value[0]:
-                        status = confirm.value[0]
-                        if status.confirmation_status:
-                            confirmed = True
-                            print(f"Sell TX confirmed: {str(tx_hash)[:20]}... status={status.confirmation_status}")
-                            return True, tx_hash
-                        elif status.err:
-                            print(f"Sell TX failed on-chain: {status.err}")
-                            return False, f"Sell TX failed on-chain: {status.err}"
-                except:
-                    pass
-                time.sleep(1)
-
-            if not confirmed:
-                print(f"Sell TX {str(tx_hash)[:20]}... did not confirm after ~20s - returning anyway")
-                return True, tx_hash
+            if resp.status_code != 200:
+                return False, f"v2 order failed: HTTP {resp.status_code}"
+            data = resp.json()
+            if data.get("errorCode"):
+                # If full amount fails, try half
+                if chunk == amount_raw:
+                    half = amount_raw // 2
+                    if half > 1000:
+                        print(f"Full sell failed ({data.get('errorMessage')}), trying half ({half})...")
+                        chunks.append(half)
+                        continue
+                return False, f"v2 order error: {data.get('errorMessage', 'unknown')}"
+            tx_b64 = data.get("transaction")
+            if not tx_b64:
+                return False, "No transaction in v2 response"
         except Exception as e:
-            err = str(e)
-            if "429" in err or "too many requests" in err.lower():
-                _mark_429_hit()
-                wait = 5 + (5 * send_attempt)
-                print(f"RPC rate limited (sell), retry in {wait}s")
-                time.sleep(wait)
-                continue
-            elif send_attempt < 2:
-                print(f"Send TX error ({send_attempt+1}/3): {err}, retrying...")
-                time.sleep(2)
-                continue
-            return False, f"Send TX failed: {err[:150]}"
+            return False, f"v2 order exception: {e}"
+
+        tx = VersionedTransaction.from_bytes(base64.b64decode(tx_b64))
+        signed = VersionedTransaction(tx.message, [WALLET])
+
+        for send_attempt in range(3):
+            try:
+                result = CLIENT.send_raw_transaction(
+                    bytes(signed),
+                    opts=TxOpts(skip_preflight=False, preflight_commitment="confirmed", max_retries=5)
+                )
+                tx_hash = result.value if hasattr(result, "value") else str(result)
+                time.sleep(5)
+                confirmed = False
+                for verify_attempt in range(30):
+                    try:
+                        confirm = CLIENT.get_signature_statuses([str(tx_hash)])
+                        if confirm and confirm.value and confirm.value[0]:
+                            status = confirm.value[0]
+                            if status.confirmation_status:
+                                confirmed = True
+                                print(f"Sell TX confirmed: {str(tx_hash)[:20]}... status={status.confirmation_status}")
+                                return True, tx_hash
+                            elif status.err:
+                                print(f"Sell TX failed on-chain: {status.err}")
+                                return False, f"Sell TX failed on-chain: {status.err}"
+                    except:
+                        pass
+                    time.sleep(1)
+
+                if not confirmed:
+                    print(f"Sell TX {str(tx_hash)[:20]}... did not confirm after ~35s - FAILING")
+                    if send_attempt < 2:
+                        print("Retrying...")
+                        time.sleep(10)
+                        continue
+                    return False, f"Sell TX not confirmed after 3 attempts"
+
+                return True, tx_hash
+            except Exception as e:
+                err = str(e)
+                if "429" in err or "too many requests" in err.lower():
+                    _mark_429_hit()
+                    wait = 5 + (5 * send_attempt)
+                    print(f"RPC rate limited (sell), retry in {wait}s")
+                    time.sleep(wait)
+                    continue
+                elif send_attempt < 2:
+                    print(f"Send TX error ({send_attempt+1}/3): {err}, retrying...")
+                    time.sleep(2)
+                    continue
+                return False, f"Send TX failed: {err[:150]}"
 
 def process_sell_signal(signal):
     """Process sell with risk checks"""
@@ -494,6 +533,26 @@ def process_sell_signal(signal):
     amount_raw = position.get("amount_raw", 0)
     if amount_raw == 0:
         return False, "No amount to sell"
+
+    # Quick routability check — skip if Jupiter can't route it
+    if mint:
+        try:
+            test_amt = min(amount_raw, 1000000)
+            r = requests.get(
+                f"https://api.jup.ag/swap/v2/order?inputMint={mint}&outputMint={USDC}&amount={test_amt}&slippageBps=5000&taker={str(WALLET.pubkey())}",
+                timeout=8
+            )
+            d = r.json()
+            if d.get("errorCode"):
+                print(f"  [SKIP] {token} — not routable ({d.get('errorMessage', 'unknown')})")
+                return False, f"Token not routable: {d.get('errorMessage', 'unknown')}"
+            out_amount = float(d.get("outAmount", 0))
+            if out_amount < 1000:  # less than $0.001
+                print(f"  [SKIP] {token} — estimated value $0 (outAmount={out_amount})")
+                return False, "Token has no value"
+        except Exception as e:
+            print(f"  [SKIP] {token} — routability check failed: {e}")
+            return False, f"Routability check failed: {e}"
 
     # Check risk
     portfolio_value = pdb.load_db()["portfolio"]["total_value_usd"]
@@ -538,6 +597,14 @@ def process_sell_signal(signal):
         # Record cooldown on EVERY sell - no same-cycle re-buys, ever
         record_sell_cooldown(token, mint)
         record_trade(token, 'SELL', pnl_usd, trade_value=current_value)
+
+        # Gas tax: 2% of profitable trades go to gas reserve
+        if pnl_usd > 0 and sol_price > 0:
+            gas_tax_usd = pnl_usd * SOL_GAS_TAX_PCT
+            gas_tax_sol = gas_tax_usd / sol_price
+            if gas_tax_sol > 0.0001:
+                add_to_gas_reserve(gas_tax_sol)
+                print(f"  [GAS TAX] {gas_tax_sol:.6f} SOL (${gas_tax_usd:.2f}) added to reserve")
 
         return True, f"SOLD {token} | P&L: ${pnl_usd:+.2f} ({pnl_pct:+.1f}%) | TX: {str(result)[:20]}..."
     else:
@@ -795,6 +862,28 @@ def main():
     print(f"[{datetime.now(timezone.utc).isoformat()}] === V2 EXECUTOR ===")
     print(f"Wallet: {WALLET.pubkey()}")
 
+    # Track gas at start of cycle
+    cycle_start_sol = get_sol_balance()
+    daily_gas = get_daily_gas_spent()
+    gas_reserve = get_gas_reserve()
+    print(f"[GAS] SOL: {cycle_start_sol:.6f} | Today: {daily_gas:.6f}/{SOL_DAILY_BUDGET} SOL | Reserve: {gas_reserve:.6f}")
+
+    # Check daily gas budget before doing anything
+    if daily_gas >= SOL_DAILY_BUDGET:
+        print(f"[GAS] Daily budget exhausted — pausing until tomorrow")
+        print("=" * 50)
+        return
+
+    # Emergency check: if SOL is critically low, warn and skip trading
+    if cycle_start_sol < SOL_MIN_SAFE:
+        print(f"[GAS CRITICAL] SOL at {cycle_start_sol:.6f} — below MIN_SAFE ({SOL_MIN_SAFE}). Attempting emergency refill...")
+        ensure_sol_for_gas()
+        cycle_start_sol = get_sol_balance()
+        if cycle_start_sol < SOL_MIN_SAFE:
+            print(f"[GAS CRITICAL] Cannot refill — skipping all trading this cycle")
+            print("=" * 50)
+            return
+
     # Auto-refill SOL gas before any trade operations
     ensure_sol_for_gas()
 
@@ -922,6 +1011,12 @@ def main():
             else:
                 print()
 
+            # Routability check — if Jupiter can't route it, close in DB and move on
+            if live_price > 0 and live_value < 0.50:
+                print(f"  >> Worthless (${live_value:.2f}) — closing in DB")
+                pdb.close_position(token, {"close_price_usd": live_price, "close_value_usd": live_value, "reason": "WORTHLESS"})
+                continue
+
             already_trimmed = pos.get("partial_trims", 0) > 0
 
             if live_pnl_pct >= tp_threshold:
@@ -950,7 +1045,10 @@ def main():
                 else:
                     print(f"  >> Held (within threshold bounds)")
         else:
-            print(f"  {token}: no price data, using DB value ${current_value:.2f}")
+            print(f"  {token}: no price data — skipping (likely dead/rugged)")
+            # Remove from DB so we don't keep trying
+            pdb.close_position(token, {"close_price_usd": 0, "close_value_usd": 0, "reason": "NO_PRICE_DATA"})
+            print(f"  >> Closed {token} in DB (no price data)")
 
     # Write threshold actions back to queue so post-run checks can see them
     # Threshold-triggered trades (TP/SL/trim/trailing) aren't in queue["executed"]
@@ -966,6 +1064,21 @@ def main():
         print(f"[QUEUE] Threshold actions written: {action_count}")
     except Exception as e:
         print(f"[QUEUE] Failed to write threshold actions: {e}")
+
+    # Track gas at end of cycle
+    cycle_end_sol = get_sol_balance()
+    log_gas_spent(cycle_start_sol, cycle_end_sol)
+    gas_reserve = get_gas_reserve()
+    spent_this = cycle_start_sol - cycle_end_sol
+    print(f"[GAS] End: {cycle_end_sol:.6f} SOL | Spent: {spent_this:.6f} | Reserve: {gas_reserve:.6f}")
+
+    # Warn if gas is getting low
+    if cycle_end_sol < SOL_TARGET_FLOOR:
+        print(f"[GAS WARNING] SOL below target floor ({SOL_TARGET_FLOOR})! Reserve: {gas_reserve:.6f}")
+    if spent_this > 0.002:
+        print(f"[GAS WARNING] High cycle spend ({spent_this:.6f} SOL) — check for runaway fees")
+    if daily_gas + spent_this > SOL_DAILY_BUDGET * 0.8:
+        print(f"[GAS WARNING] Approaching daily budget ({(daily_gas + spent_this):.6f}/{SOL_DAILY_BUDGET})")
 
     print("=" * 50)
 
