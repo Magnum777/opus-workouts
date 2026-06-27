@@ -1,1125 +1,756 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nova's Kybernaut Fitness Tracker - Opus Edition</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-  :root {
-    --bg: #0a0a0f;
-    --card: #12121a;
-    --accent: #00e5ff;
-    --accent2: #7c3aed;
-    --text: #e0e0e0;
-    --text2: #888;
-    --red: #ff3366;
-    --green: #00e676;
-    --orange: #ff9100;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    min-height: 100vh;
-    padding: 20px;
-  }
-  .header {
-    text-align: center;
-    padding: 20px 0 30px;
-    border-bottom: 1px solid #222;
-    margin-bottom: 20px;
-  }
-  .header h1 {
-    font-size: 2rem;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .header p { color: var(--text2); margin-top: 8px; }
-  .stats-bar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-bottom: 25px;
-  }
-  .stat-card {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 18px;
-    text-align: center;
-    border: 1px solid #1a1a2e;
-  }
-  .stat-card .number {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--accent);
-  }
-  .stat-card .label { color: var(--text2); font-size: 0.85rem; margin-top: 4px; }
-  .tabs {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-  .tab {
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: 1px solid #1a1a2e;
-    background: var(--card);
-    color: var(--text2);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 0.9rem;
-  }
-  .tab:hover { border-color: var(--accent); }
-  .tab.active {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: white;
-    border-color: transparent;
-  }
-  .content-section { display: none; }
-  .content-section.active { display: block; }
-
-  .day-card {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 20px;
-    border: 1px solid #1a1a2e;
-  }
-  .day-title {
-    font-size: 1.3rem;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .day-subtitle { color: var(--text2); font-size: 0.9rem; margin-bottom: 18px; }
-  .badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .badge-legs { background: var(--red); color: white; }
-  .badge-push { background: var(--orange); color: white; }
-  .badge-light { background: var(--green); color: var(--bg); }
-  .badge-pull { background: var(--accent); color: var(--bg); }
-  .badge-full { background: var(--accent2); color: white; }
-
-  .exercise-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  .exercise-table th {
-    text-align: left;
-    padding: 12px 10px;
-    color: var(--text2);
-    font-weight: 500;
-    font-size: 0.85rem;
-    border-bottom: 1px solid #222;
-  }
-  .exercise-table td {
-    padding: 14px 10px;
-    border-bottom: 1px solid #1a1a2e;
-    vertical-align: middle;
-  }
-  .exercise-name {
-    font-weight: 500;
-  }
-  .exercise-note {
-    font-size: 0.75rem;
-    color: var(--text2);
-    margin-top: 2px;
-  }
-  .input-group {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .input-group input {
-    width: 65px;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #333;
-    background: #0f0f1a;
-    color: var(--text);
-    text-align: center;
-    font-size: 0.9rem;
-  }
-  .input-group input:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-  .btn {
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: all 0.2s;
-  }
-  .btn-log {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: white;
-  }
-  .btn-log:hover { opacity: 0.9; transform: translateY(-1px); }
-  .btn-done {
-    background: var(--green);
-    color: var(--bg);
-  }
-
-  .chart-container {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 20px;
-    border: 1px solid #1a1a2e;
-  }
-  .chart-title { font-size: 1.1rem; margin-bottom: 15px; }
-
-  .log-entry {
-    background: #0f0f1a;
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #1a1a2e;
-  }
-  .log-entry .date { color: var(--accent); font-size: 0.85rem; }
-  .log-entry .info { color: var(--text2); font-size: 0.85rem; }
-
-  .empty-state {
-    text-align: center;
-    padding: 40px;
-    color: var(--text2);
-  }
-
-  .knee-note {
-    background: rgba(255, 51, 102, 0.1);
-    border: 1px solid rgba(255, 51, 102, 0.3);
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-  }
-  .knee-note strong { color: var(--red); }
-
-  @media (max-width: 600px) {
-    .header h1 { font-size: 1.5rem; }
-    .exercise-table th:nth-child(3),
-    .exercise-table td:nth-child(3) { display: none; }
-    .input-group input { width: 55px; padding: 6px; }
-  }
-</style>
-</head>
-<body>
-
-<div class="header">
-  <h1>🦝 Kybernaut Fitness Tracker</h1>
-  <p>Opus's 5-Day Strength Program | Knee-Safe | 45 min/day</p>
-</div>
-
-<div class="stats-bar">
-  <div class="stat-card">
-    <div class="number" id="totalWorkouts">0</div>
-    <div class="label">Workouts Logged</div>
-  </div>
-  <div class="stat-card">
-    <div class="number" id="currentStreak">0</div>
-    <div class="label">Day Streak</div>
-  </div>
-  <div class="stat-card">
-    <div class="number" id="totalVolume">0</div>
-    <div class="label">Total Volume (lbs)</div>
-  </div>
-  <div class="stat-card">
-    <div class="number" id="thisWeek">0</div>
-    <div class="label">This Week</div>
-  </div>
-</div>
-
-<div class="tabs">
-  <div class="tab active" onclick="showTab('program')">Program</div>
-  <div class="tab" onclick="showTab('tracker')">Tracker</div>
-  <div class="tab" onclick="showTab('charts')">Progress</div>
-  <div class="tab" onclick="showTab('history')">History</div>
-</div>
-
-<!-- PROGRAM TAB -->
-<div id="program" class="content-section active">
-  <div class="knee-note">
-    <strong>⚠️ Knee-Safe Protocol:</strong> No squats, no lunges, no box jumps. All leg work is machine-based or lying down. Start with weights you can control for 12 reps. Focus on slow controlled movement, not heavy weight. If your knees bark, drop weight or skip the exercise.
-  </div>
-
-  <!-- MONDAY: LEGS -->
-  <div class="day-card">
-    <div class="day-title">
-      Monday — Leg Day
-      <span class="badge badge-legs">Knee-Safe</span>
-    </div>
-    <div class="day-subtitle">45 min | Machines + Glutes | No squats, no lunges</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10-15 minutes to loosen up joints and get blood flowing before lifting.</div>
-        </td>
-        <td>1 x 15 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace, get heart rate up without knee stress.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Low resistance, steady pace.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Leg Press (Machine)</div>
-          <div class="exercise-note">Feet HIGH on plate, shoulder width. Drives through glutes/hams, less knee stress.</div>
-        </td>
-        <td>3 x 12</td>
-        <td>Start light. Control the negative.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Hip Thrust / Glute Bridge</div>
-          <div class="exercise-note">Back on bench, barbell or dumbbell on hips. Squeeze glutes hard at top.</div>
-        </td>
-        <td>3 x 12</td>
-        <td>Knee-friendly leg builder.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Leg Curl (Machine)</div>
-          <div class="exercise-note">Lying or seated. Isolates hamstrings, zero knee load.</div>
-        </td>
-        <td>3 x 12</td>
-        <td>Don't swing the weight.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Leg Extension (Machine)</div>
-          <div class="exercise-note">Light weight only. Builds quad strength to support knee. Stop if pain.</div>
-        </td>
-        <td>2 x 15</td>
-        <td>Very light. Stop if knee hurts.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Calf Raises (Machine or Seated)</div>
-          <div class="exercise-note">Slow tempo. Full stretch at bottom, squeeze at top.</div>
-        </td>
-        <td>3 x 15</td>
-        <td>Seated takes pressure off knee.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Seated Abductor / Adductor</div>
-          <div class="exercise-note">Inner/outer thigh machine. Good for hip stability.</div>
-        </td>
-        <td>2 x 15 each</td>
-        <td>Light, controlled.</td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- TUESDAY: PUSH -->
-  <div class="day-card">
-    <div class="day-title">
-      Tuesday — Push Day
-      <span class="badge badge-push">Chest/Shoulders/Triceps</span>
-    </div>
-    <div class="day-subtitle">45 min | All machine or dumbbell based</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10-15 minutes to loosen up joints and get blood flowing before lifting.</div>
-        </td>
-        <td>1 x 15 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace, get heart rate up.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Low resistance, steady pace.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Chest Press (Machine)</div>
-          <div class="exercise-note">Seated machine press. Safer than bench at your weight. Full range of motion.</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Keep shoulder blades pinned.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Incline Chest Press (Machine or Smith)</div>
-          <div class="exercise-note">Hits upper chest. Low incline angle (15-30 degrees).</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Slow and controlled.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Shoulder Press (Machine)</div>
-          <div class="exercise-note">Seated overhead press machine. Better stability than dumbbells.</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Don't let elbows flare.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Lateral Raise (Machine or Cable)</div>
-          <div class="exercise-note">Builds shoulder width. Light weight, focus on squeeze at top.</div>
-        </td>
-        <td>3 x 12-15</td>
-        <td>Lead with elbows, not hands.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Tricep Pushdown (Cable)</div>
-          <div class="exercise-note">Rope or straight bar. Keep elbows at sides.</div>
-        </td>
-        <td>3 x 12-15</td>
-        <td>Full extension at bottom.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Tricep Extension (Machine or Overhead)</div>
-          <div class="exercise-note">Overhead or cable extension for long head.</div>
-        </td>
-        <td>2 x 12</td>
-        <td>Keep elbows in.</td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- WEDNESDAY: LIGHT / CORE -->
-  <div class="day-card">
-    <div class="day-title">
-      Wednesday — Active Recovery / Core
-      <span class="badge badge-light">Light Day</span>
-    </div>
-    <div class="day-subtitle">~45 min | Core + Mobility + Light Cardio | Easy on knees</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps/Time</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10-15 minutes to loosen up joints and get blood flowing.</div>
-        </td>
-        <td>1 x 15 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace.</div>
-        </td>
-        <td>1 x 15 min</td>
-        <td>Low resistance, steady pace.</td>
-      </tr>
-
-<tr>
-        <td>
-          <div class="exercise-name">Plank</div>
-          <div class="exercise-note">On forearms. Keep body straight. Start with what you can hold.</div>
-        </td>
-        <td>3 x 20-45 sec</td>
-        <td>Build up time each week.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Dead Bug</div>
-          <div class="exercise-note">Lying on back. Opposite arm/leg extend. Keep lower back flat.</div>
-        </td>
-        <td>3 x 10 each</td>
-        <td>Slow and controlled.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Bird Dog</div>
-          <div class="exercise-note">On hands and knees. Opposite arm/leg extend. Balance + core.</div>
-        </td>
-        <td>3 x 10 each</td>
-        <td>Hold each rep 2 seconds.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Side Plank</div>
-          <div class="exercise-note">On forearm. Stack hips. Modified version: knees on ground.</div>
-        </td>
-        <td>2 x 20-30 sec each</td>
-        <td>Knee modification is fine.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Seated Torso Twist</div>
-          <div class="exercise-note">Seated on floor or bench. Twist with light medicine ball or bodyweight.</div>
-        </td>
-        <td>3 x 15 each</td>
-        <td>Control the twist.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Glute Bridge (Bodyweight)</div>
-          <div class="exercise-note">Lying on back. Squeeze glutes at top. No weight today.</div>
-        </td>
-        <td>3 x 20</td>
-        <td>Hold 2 seconds at top.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Foam Roll / Stretch</div>
-          <div class="exercise-note">Quads, hamstrings, hips, lower back. 5-10 min total.</div>
-        </td>
-        <td>5-10 min</td>
-        <td>Recovery is the point today.</td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- THURSDAY: PULL -->
-  <div class="day-card">
-    <div class="day-title">
-      Thursday — Pull Day
-      <span class="badge badge-pull">Back/Biceps</span>
-    </div>
-    <div class="day-subtitle">45 min | Build that back, protect posture</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10-15 minutes to loosen up joints and get blood flowing.</div>
-        </td>
-        <td>1 x 15 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Low resistance, steady pace.</td>
-      </tr>
-
-<tr>
-        <td>
-          <div class="exercise-name">Lat Pulldown (Machine)</div>
-          <div class="exercise-note">Wide grip. Pull to upper chest. Squeeze shoulder blades together.</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Don't use momentum.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Seated Row (Machine)</div>
-          <div class="exercise-note">Chest supported if available. Pull to lower ribs. Squeeze.</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Keep chest against pad.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Straight Arm Pulldown (Cable)</div>
-          <div class="exercise-note">Arms straight, pull bar down to thighs. Isolates lats.</div>
-        </td>
-        <td>3 x 12-15</td>
-        <td>Light weight, feel the lat stretch.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Face Pulls (Cable)</div>
-          <div class="exercise-note">Rope attachment. Pull to face height, external rotation at end.</div>
-        </td>
-        <td>3 x 15</td>
-        <td>Great for shoulder health.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Bicep Curl (Machine or Cable)</div>
-          <div class="exercise-note">Preacher curl machine or cable curl. Full range of motion.</div>
-        </td>
-        <td>3 x 12</td>
-        <td>No swinging.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Hammer Curl (Dumbbell or Cable)</div>
-          <div class="exercise-note">Neutral grip. Hits brachialis and forearms.</div>
-        </td>
-        <td>2 x 12</td>
-        <td>Control the negative.</td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- FRIDAY: FULL BODY -->
-  <div class="day-card">
-    <div class="day-title">
-      Friday — Full Body + Cardio
-      <span class="badge badge-full">Compound</span>
-    </div>
-    <div class="day-subtitle">45 min | Hit everything, finish with light cardio</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10-15 minutes to loosen up joints and get blood flowing.</div>
-        </td>
-        <td>1 x 15 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Low resistance, steady pace.</td>
-      </tr>
-
-<tr>
-        <td>
-          <div class="exercise-name">Leg Press (Machine)</div>
-          <div class="exercise-note">High foot placement again. Moderate weight. Control every rep.</div>
-        </td>
-        <td>2 x 12</td>
-        <td>Not max effort today.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Chest Press (Machine)</div>
-          <div class="exercise-note">One compound push movement. Moderate weight.</div>
-        </td>
-        <td>2 x 10</td>
-        <td>Full range.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Lat Pulldown (Machine)</div>
-          <div class="exercise-note">One compound pull. Moderate weight.</div>
-        </td>
-        <td>2 x 10</td>
-        <td>Squeeze at bottom.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Shoulder Press (Machine)</div>
-          <div class="exercise-note">Overhead press. Moderate weight.</div>
-        </td>
-        <td>2 x 10</td>
-        <td>Core tight.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Glute Bridge / Hip Thrust</div>
-          <div class="exercise-note">Bodyweight or light load. Burn out the glutes.</div>
-        </td>
-        <td>2 x 20</td>
-        <td>Hold at top.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Bicep Curl + Tricep Pushdown (Superset)</div>
-          <div class="exercise-note">One set curls, immediately to tricep pushdown. No rest between.</div>
-        </td>
-        <td>2 x 12 each</td>
-        <td>Superset = arms finished.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Plank</div>
-          <div class="exercise-note">Core finisher. Hold as long as good form allows.</div>
-        </td>
-        <td>2 x max time</td>
-        <td>Form > time.</td>
-      </tr>
-</table>
-  </div>
-</div>
-
-<!-- TRACKER TAB -->
-<div id="tracker" class="content-section">
-  <div class="day-card">
-    <div class="day-title">Log Today's Workout</div>
-    <div class="day-subtitle">Select day, enter weights, hit log</div>
-
-    <div style="margin-bottom: 20px;">
-      <label style="color: var(--text2); font-size: 0.9rem;">Select Day:</label>
-      <select id="workoutDay" style="margin-left: 10px; padding: 8px 15px; border-radius: 6px; background: #0f0f1a; color: var(--text); border: 1px solid #333;" onchange="loadTracker()">
-        <option value="monday">Monday — Legs</option>
-        <option value="tuesday">Tuesday — Push</option>
-        <option value="wednesday">Wednesday — Light/Core</option>
-        <option value="thursday">Thursday — Pull</option>
-        <option value="friday">Friday — Full Body</option>
-      </select>
-    </div>
-
-    <div id="trackerExercises"></div>
-
-    <div style="margin-top: 20px; text-align: center;">
-      <button class="btn btn-log" onclick="logWorkout()" style="padding: 12px 30px; font-size: 1rem;">Log Workout</button>
-    </div>
-
-    <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center;">
-      <button class="btn" style="background: #333; color: var(--text2);" onclick="exportData()">📤 Export Data</button>
-      <button class="btn" style="background: #333; color: var(--text2);" onclick="importData()">📥 Import Data</button>
-      <button class="btn" style="background: #ff3366; color: white;" onclick="clearAll()">🗑️ Clear All</button>
-    </div>
-    <div id="importArea" style="display: none; margin-top: 15px; text-align: center;">
-      <textarea id="importJson" placeholder="Paste your JSON data here..." style="width: 100%; max-width: 500px; height: 120px; background: #0f0f1a; color: var(--text); border: 1px solid #333; border-radius: 8px; padding: 10px; font-family: monospace;"></textarea><br>
-      <button class="btn btn-log" onclick="doImport()" style="margin-top: 10px;">Confirm Import</button>
-    </div>
-    <div id="exportArea" style="display: none; margin-top: 15px; text-align: center;">
-      <textarea id="exportJson" readonly style="width: 100%; max-width: 500px; height: 120px; background: #0f0f1a; color: var(--accent); border: 1px solid #333; border-radius: 8px; padding: 10px; font-family: monospace;"></textarea><br>
-      <button class="btn btn-log" onclick="copyExport()" style="margin-top: 10px;">Copy to Clipboard</button>
-    </div>
-  </div>
-</div>
-
-<!-- CHARTS TAB -->
-<div id="charts" class="content-section">
-  <div class="chart-container">
-    <div class="chart-title">📈 Total Volume Per Workout (lbs)</div>
-    <canvas id="volumeChart" height="100"></canvas>
-  </div>
-  <div class="chart-container">
-    <div class="chart-title">💪 Weight Progress Per Exercise</div>
-    <div style="margin-bottom: 15px;">
-      <select id="exerciseSelect" onchange="updateExerciseChart()" style="padding: 8px 15px; border-radius: 6px; background: #0f0f1a; color: var(--text); border: 1px solid #333;">
-        <option value="">Select exercise...</option>
-      </select>
-    </div>
-    <canvas id="exerciseChart" height="100"></canvas>
-  </div>
-</div>
-
-<!-- HISTORY TAB -->
-<div id="history" class="content-section">
-  <div class="day-card">
-    <div class="day-title">Workout History</div>
-    <div id="historyList"></div>
-  </div>
-</div>
-
-<script>
-// ── DATA ──
-const EXERCISES = {
-  monday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 15, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Leg Press (Machine)", sets: 3, reps: 12 },
-    { name: "Hip Thrust / Glute Bridge", sets: 3, reps: 12 },
-    { name: "Leg Curl (Machine)", sets: 3, reps: 12 },
-    { name: "Leg Extension (Machine)", sets: 2, reps: 15 },
-    { name: "Calf Raises (Machine)", sets: 3, reps: 15 },
-    { name: "Seated Abductor / Adductor", sets: 2, reps: 15 },
-  ],
-  tuesday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 15, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Chest Press (Machine)", sets: 3, reps: 12 },
-    { name: "Incline Chest Press (Machine)", sets: 3, reps: 12 },
-    { name: "Shoulder Press (Machine)", sets: 3, reps: 12 },
-    { name: "Lateral Raise (Machine)", sets: 3, reps: 15 },
-    { name: "Tricep Pushdown (Cable)", sets: 3, reps: 15 },
-    { name: "Tricep Extension (Overhead)", sets: 2, reps: 12 },
-  ],
-  wednesday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 15, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 15, unit: "min", noInput: true },
-    { name: "Plank", sets: 3, reps: 30, unit: "sec" },
-    { name: "Dead Bug", sets: 3, reps: 10 },
-    { name: "Bird Dog", sets: 3, reps: 10 },
-    { name: "Side Plank", sets: 2, reps: 25, unit: "sec" },
-    { name: "Seated Torso Twist", sets: 3, reps: 15 },
-    { name: "Glute Bridge (Bodyweight)", sets: 3, reps: 20 },
-    { name: "Foam Roll / Stretch", sets: 1, reps: 10, unit: "min", noInput: true },
-  ],
-  thursday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 15, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Lat Pulldown (Machine)", sets: 3, reps: 12 },
-    { name: "Seated Row (Machine)", sets: 3, reps: 12 },
-    { name: "Straight Arm Pulldown (Cable)", sets: 3, reps: 15 },
-    { name: "Face Pulls (Cable)", sets: 3, reps: 15 },
-    { name: "Bicep Curl (Machine)", sets: 3, reps: 12 },
-    { name: "Hammer Curl (Cable)", sets: 2, reps: 12 },
-  ],
-  friday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 15, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Leg Press (Machine)", sets: 2, reps: 12 },
-    { name: "Chest Press (Machine)", sets: 2, reps: 10 },
-    { name: "Lat Pulldown (Machine)", sets: 2, reps: 10 },
-    { name: "Shoulder Press (Machine)", sets: 2, reps: 10 },
-    { name: "Glute Bridge / Hip Thrust", sets: 2, reps: 20 },
-    { name: "Bicep Curl + Tricep Pushdown", sets: 2, reps: 12 },
-    { name: "Plank", sets: 2, reps: 30, unit: "sec" },
-    { name: "Elliptical Cardio", sets: 1, reps: 15, unit: "min", noInput: true },
-  ],
-};
-
-// ── STORAGE ──
-function getLogs() {
-  const data = localStorage.getItem('opusWorkouts');
-  return data ? JSON.parse(data) : [];
-}
-
-function saveLogs(logs) {
-  localStorage.setItem('opusWorkouts', JSON.stringify(logs));
-}
-
-// ── TRACKER UI ──
-function loadTracker() {
-  const day = document.getElementById('workoutDay').value;
-  const exercises = EXERCISES[day];
-  const container = document.getElementById('trackerExercises');
-
-  // Determine header based on units in this day's exercises
-  const units = exercises.map(ex => ex.unit || 'lbs');
-  const allTime = units.every(u => u === 'min' || u === 'sec');
-  const allWeight = units.every(u => u === 'lbs' || u === 'kg');
-  const header = allTime ? 'Duration' : allWeight ? 'Weight (lbs)' : 'Value';
-
-  let html = '<table class="exercise-table">';
-  html += `<tr><th>Exercise</th><th>Sets</th><th>${header}</th></tr>`;
-
-  exercises.forEach((ex, i) => {
-    const unit = ex.unit || 'lbs';
-    const noInput = ex.noInput || false;
-    html += `<tr>
-      <td>
-        <div class="exercise-name">${ex.name}</div>
-        <div class="exercise-note">${ex.sets} sets x ${ex.reps} ${unit}</div>
-      </td>
-      <td>${ex.sets}</td>
-      <td>
-        ${noInput
-          ? '<span style="color: var(--green); font-size: 0.85rem;">Auto-logged</span>'
-          : `<div class="input-group">
-               <input type="number" id="w-${i}" placeholder="0" step="${unit === 'min' || unit === 'sec' ? '1' : '5'}">
-               <span style="color: var(--text2); font-size: 0.85rem;">${unit}</span>
-             </div>`
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGRA - Middle Georgia Radio Association</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-dark: #0f2440;
+            --secondary: #c53030;
+            --accent: #ed8936;
+            --text: #2d3748;
+            --text-light: #718096;
+            --bg: #ffffff;
+            --bg-light: #f7fafc;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
         }
-      </td>
-    </tr>`;
-  });
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg);
+        }
+        a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--secondary); }
+        h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+        p { margin-bottom: 1rem; }
+        img { max-width: 100%; height: auto; display: block; }
 
-  html += '</table>';
-  container.innerHTML = html;
-}
+        /* Navigation */
+        .main-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(26, 54, 93, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0 2rem;
+            height: 60px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand {
+            color: white; font-size: 1.4rem; font-weight: 700; letter-spacing: 1px;
+        }
+        .nav-brand span { color: var(--accent); }
+        .nav-links {
+            display: flex; gap: 2rem; list-style: none;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.85); font-size: 0.95rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .nav-links a:hover { color: white; }
+        .mobile-menu-btn {
+            display: none; background: none; border: none; color: white;
+            font-size: 1.5rem; cursor: pointer;
+        }
 
-function logWorkout() {
-  const day = document.getElementById('workoutDay').value;
-  const exercises = EXERCISES[day];
-  const date = new Date().toISOString().split('T')[0];
-  const entries = [];
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 6rem 2rem 4rem; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="60" cy="10" r="0.8" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.5;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero h1 {
+            color: white; font-size: 3.5rem; margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero .call-sign {
+            color: var(--accent); font-size: 2.5rem; font-weight: 300;
+            letter-spacing: 8px; margin-bottom: 2rem; display: block;
+        }
+        .hero-buttons {
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .btn {
+            display: inline-block; padding: 0.875rem 2rem;
+            border-radius: 8px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; font-size: 0.9rem; transition: all 0.3s; border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--secondary); color: white; border-color: var(--secondary);
+        }
+        .btn-primary:hover { background: #9b2c2c; border-color: #9b2c2c; color: white; }
+        .btn-outline {
+            background: transparent; color: white; border-color: rgba(255,255,255,0.5);
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; color: white; }
+        .btn-accent {
+            background: var(--accent); color: white; border-color: var(--accent);
+        }
+        .btn-accent:hover { background: #c05621; border-color: #c05621; color: white; }
 
-  exercises.forEach((ex, i) => {
-    if (ex.noInput) {
-      // Auto-log: include as completed
-      entries.push({
-        exercise: ex.name,
-        weight: 0,
-        sets: ex.sets,
-        reps: ex.reps,
-        unit: ex.unit || 'min'
-      });
-    } else {
-      const val = document.getElementById(`w-${i}`)?.value;
-      if (val && val > 0) {
-        entries.push({
-          exercise: ex.name,
-          weight: parseFloat(val),
-          sets: ex.sets,
-          reps: ex.reps,
-          unit: ex.unit || 'lbs'
+        /* Sections */
+        section { padding: 5rem 2rem; }
+        .section-title {
+            text-align: center; font-size: 2.5rem; color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            text-align: center; color: var(--text-light); margin-bottom: 3rem; font-size: 1.1rem;
+        }
+        .section-alt { background: var(--bg-light); }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* About */
+        .about-content {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+        }
+        .about-text { font-size: 1.05rem; }
+        .about-text p { margin-bottom: 1.25rem; }
+        .about-sidebar {
+            background: white; padding: 2rem; border-radius: 12px;
+            box-shadow: var(--shadow); border-left: 4px solid var(--secondary);
+        }
+        .about-sidebar h3 { color: var(--secondary); margin-bottom: 1rem; font-size: 1.2rem; }
+        .about-sidebar p { font-size: 0.95rem; margin-bottom: 0.75rem; }
+        .about-sidebar a { font-weight: 600; }
+
+        /* Repeaters */
+        .repeater-table {
+            width: 100%; border-collapse: collapse;
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .repeater-table th {
+            background: var(--primary); color: white; padding: 1rem;
+            text-align: left; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
+        }
+        .repeater-table td {
+            padding: 1rem; border-bottom: 1px solid var(--border);
+        }
+        .repeater-table tr:last-child td { border-bottom: none; }
+        .repeater-table tr:hover { background: var(--bg-light); }
+        .freq { font-family: 'Courier New', monospace; font-weight: 700; color: var(--secondary); font-size: 1.1rem; }
+        .pl-note { font-size: 0.85rem; color: var(--text-light); }
+
+        /* Events */
+        .events-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
+        }
+        .event-card {
+            background: white; border-radius: 12px; padding: 2rem;
+            box-shadow: var(--shadow); border-top: 4px solid var(--accent);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .event-card h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem; }
+        .event-card p { margin-bottom: 1rem; font-size: 0.95rem; }
+        .event-card .event-meta {
+            display: flex; align-items: center; gap: 0.5rem;
+            color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;
+        }
+
+        /* Photos */
+        .photo-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;
+        }
+        .photo-item {
+            position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .photo-item:hover img { transform: scale(1.05); }
+        .photo-overlay {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.6);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .photo-item:hover .photo-overlay { opacity: 1; }
+        .photo-overlay span { color: white; font-weight: 600; }
+
+        /* Links */
+        .links-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+        }
+        .link-category {
+            background: white; border-radius: 12px; padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        .link-category h4 {
+            color: var(--primary); font-size: 1.1rem; margin-bottom: 1rem;
+            padding-bottom: 0.5rem; border-bottom: 2px solid var(--border);
+        }
+        .link-category ul { list-style: none; }
+        .link-category li { margin-bottom: 0.75rem; }
+        .link-category a {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.95rem; padding: 0.25rem 0;
+        }
+        .link-category a::before {
+            content: '→'; color: var(--accent); font-weight: bold;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--primary-dark); color: rgba(255,255,255,0.8);
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem;
+            max-width: 1200px; margin: 0 auto 3rem;
+        }
+        .footer-col h4 { color: white; margin-bottom: 1rem; }
+        .footer-col p, .footer-col a { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+        .footer-col a:hover { color: white; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.5rem; }
+        .footer-bottom {
+            text-align: center; padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5); font-size: 0.85rem;
+        }
+
+        /* Dues Page */
+        .dues-hero {
+            min-height: 50vh; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            padding: 6rem 2rem 3rem; color: white;
+        }
+        .dues-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .dues-hero p { font-size: 1.1rem; opacity: 0.9; }
+
+        .dues-options {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+            max-width: 1000px; margin: 0 auto; padding: 3rem 2rem;
+        }
+        .dues-card {
+            background: white; border-radius: 16px; padding: 2.5rem;
+            box-shadow: var(--shadow); text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s; position: relative;
+            border: 2px solid transparent;
+        }
+        .dues-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .dues-card.featured { border-color: var(--accent); }
+        .dues-card .badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--accent); color: white; padding: 0.25rem 1rem;
+            border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+        }
+        .dues-card h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .dues-card .price {
+            font-size: 3rem; font-weight: 700; color: var(--secondary);
+            margin: 1rem 0;
+        }
+        .dues-card .price span { font-size: 1rem; color: var(--text-light); font-weight: 400; }
+        .dues-card ul { list-style: none; text-align: left; margin: 1.5rem 0; }
+        .dues-card li {
+            padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .dues-card li::before { content: '✓'; color: var(--accent); font-weight: bold; }
+
+        /* Venmo */
+        .venmo-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: #008CFF; color: white; padding: 1rem 2rem;
+            border-radius: 8px; font-weight: 600; font-size: 1rem;
+            transition: background 0.3s; border: none; cursor: pointer;
+            width: 100%; justify-content: center;
+        }
+        .venmo-btn:hover { background: #0070cc; color: white; }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex; justify-content: center; gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: white; border: 2px solid var(--border);
+            border-radius: 8px; cursor: pointer;
+            font-weight: 600; color: var(--text);
+            transition: all 0.3s;
+        }
+        .tab-btn:hover { border-color: var(--primary); }
+        .tab-btn.active {
+            background: var(--primary); color: white; border-color: var(--primary);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero .call-sign { font-size: 1.8rem; letter-spacing: 4px; }
+            .about-content { grid-template-columns: 1fr; }
+            .repeater-table { font-size: 0.85rem; }
+            .repeater-table th, .repeater-table td { padding: 0.75rem 0.5rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 280px; }
+            section { padding: 3rem 1.5rem; }
+        }
+    </style>
+</head>
+<body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <a href="#page-top" class="nav-brand">MGRA <span>WR4MG</span></a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links" id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#repeaters">Repeaters</a></li>
+            <li><a href="#events">Calendar</a></li>
+            <li><a href="#photos">Photos</a></li>
+            <li><a href="#links">Links</a></li>
+            <li><a href="#dues">Pay Dues</a></li>
+            <li><a href="#footer">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Tab Navigation for Sections -->
+    <div style="position: fixed; top: 60px; left: 0; right: 0; background: white; z-index: 999; padding: 1rem; box-shadow: var(--shadow);">
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="showTab('home-tab')">Home</button>
+            <button class="tab-btn" onclick="showTab('dues-tab')">Pay Dues</button>
+        </div>
+    </div>
+
+    <!-- HOME TAB -->
+    <div id="home-tab" class="tab-content active">
+        
+        <!-- Hero -->
+        <header class="hero" id="home" style="margin-top: 60px;">
+            <div class="hero-content">
+                <h1>Middle Georgia Radio Association</h1>
+                <span class="call-sign">WR4MG</span>
+                <div class="hero-buttons">
+                    <a href="https://www.facebook.com/WR4MG/" class="btn btn-primary" target="_blank">Visit Us On Facebook</a>
+                    <a href="#footer" class="btn btn-outline">Contact Us</a>
+                    <a href="#links" class="btn btn-accent">Join Us</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- About -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About the MGRA</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p><strong>NOTE:</strong> MGRA meets the third Thursday of every month at 7pm at the Warner Robins Church of Christ. If this is your first meeting you can reach out to us on Facebook or Email for more information.</p>
+                        <p>The Middle Georgia Radio Association was formed as a different kind of radio club, one focused on technical and operational radio fundamentals. We offer monthly testing sessions at <strong>zero cost</strong> every month if you want to earn your amateur radio operator license!</p>
+                        <p>Our main mission is to provide an educational environment to the public along with ham radio operators throughout the area to learn, experiment, and enjoy the art of amateur radio.</p>
+                        <p>We are active on the air, on social media, and on email to keep everyone in the know. During the week you will find the MGRA repeaters the most active with technical discussions in Middle Georgia.</p>
+                        <p>We hope that you can find a place with us &mdash; to nurture the hobby of radio communication so that it may be enjoyed and thrive for many more generations.</p>
+                    </div>
+                    <div class="about-sidebar">
+                        <h3>New to Ham Radio?</h3>
+                        <p>✓ Monthly testing sessions &mdash; <strong>FREE</strong></p>
+                        <p>✓ Technical seminars &amp; public education</p>
+                        <p>✓ Operating events &amp; Field Day</p>
+                        <p>✓ Emergency communication prep</p>
+                        <p>✓ Station setup assistance</p>
+                        <p style="margin-top: 1.5rem;"><a href="#dues" class="btn btn-primary" onclick="showTab('dues-tab')">Pay Annual Dues &rarr;</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repeaters -->
+        <section id="repeaters" class="section-alt">
+            <div class="container">
+                <h2 class="section-title">Middle Georgia Repeaters</h2>
+                <p class="section-subtitle">Active repeaters in the Middle Georgia area</p>
+                
+                <table class="repeater-table">
+                    <thead>
+                        <tr><th>Frequency</th><th>PL Tone</th><th>Location</th><th>Callsign &amp; Info</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="freq">147.300+</td><td>107.2</td><td>Centerville, GA</td><td>WR4MG &mdash; Echolink node WR4MG-R</td></tr>
+                        <tr><td class="freq">146.955-</td><td>107.2</td><td>Perry, GA</td><td>WR4MG &mdash; Echolink node WR4MG-L</td></tr>
+                        <tr><td class="freq">442.900+</td><td>107.2</td><td>Warner Robins, GA</td><td>WR4MG</td></tr>
+                        <tr><td class="freq">440.575+</td><td>82.5*</td><td>Houston County EOC</td><td>WY4EMA &mdash; DMR, DSTAR, and FM</td></tr>
+                        <tr><td class="freq">444.950+</td><td>107.2</td><td>Butler, GA</td><td>WR4MG</td></tr>
+                        <tr><td class="freq">147.195+</td><td>107.2</td><td>Butler, GA</td><td>WR4MG</td></tr>
+                        <tr><td class="freq">147.180+</td><td>No tone</td><td>Warner Robins, GA</td><td>WB4BDP</td></tr>
+                        <tr><td class="freq">146.850-</td><td>82.5</td><td>Warner Robins, GA</td><td>WA4ORT</td></tr>
+                        <tr><td class="freq">146.670-</td><td>82.5</td><td>Warner Robins, GA</td><td>WM4B &mdash; Intertie Link active for ARES Nets</td></tr>
+                        <tr><td class="freq">443.150+</td><td>82.5</td><td>Warner Robins, GA</td><td>WM4B</td></tr>
+                        <tr><td class="freq">145.290-</td><td>82.5</td><td>Byron, GA</td><td>WX4PCH</td></tr>
+                    </tbody>
+                </table>
+                <p class="pl-note" style="text-align: center; margin-top: 1rem;">* PL tone 82.5 for FM mode on WY4EMA</p>
+                <p style="text-align: center; margin-top: 1rem;">
+                    <a href="http://www.kk4ib.org/RPTR&FREQ.htm" target="_blank" class="btn btn-outline" style="color: var(--primary); border-color: var(--primary);">More Repeaters in the Area &rarr;</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Events -->
+        <section id="events">
+            <div class="container">
+                <h2 class="section-title">Calendar / Events</h2>
+                <p class="section-subtitle">Upcoming events, testing sessions, and activities</p>
+                
+                <div class="events-grid">
+                    <div class="event-card">
+                        <h3>📝 Testing Sessions</h3>
+                        <div class="event-meta">📅 Every month &mdash; Second Saturday</div>
+                        <p>MGRA provides Amateur Radio license testing <strong>at no cost</strong>. Held at the Church of Christ (1947 Watson Blvd., Warner Robins) at 9:00am.</p>
+                        <p>Register <a href="mailto:getmorehams@wr4mg.us">by email</a> with your name and FRN.</p>
+                        <a href="https://www.laurelvec.com" target="_blank" class="btn btn-outline" style="color: var(--primary); border-color: var(--primary);">Official Laurel VEC &rarr;</a>
+                    </div>
+                    
+                    <div class="event-card">
+                        <h3>📅 Big Events</h3>
+                        <div class="event-meta">Annual calendar highlights</div>
+                        <p><strong>Winter Field Day</strong> &mdash; January</p>
+                        <p><strong>ARRL Field Day</strong> &mdash; June</p>
+                        <p><strong>Forsyth Ham Fest</strong> &mdash; May</p>
+                        <p><strong>Medical Center 5k Fun Run</strong> &mdash; September</p>
+                        <p><strong>Warner Robins Swap Meet</strong> &mdash; October</p>
+                        <p><strong>Christmas Parade</strong> &mdash; December</p>
+                    </div>
+                    
+                    <div class="event-card">
+                        <h3>📆 Full Calendar</h3>
+                        <div class="event-meta">Google Calendar integration</div>
+                        <p>View the complete MGRA calendar for all events, testing sessions, and other engagements.</p>
+                        <a href="https://calendar.google.com/calendar/embed?src=fd3h7tohut97btcfflsdmpdda4%40group.calendar.google.com&ctz=America%2FNew_York" target="_blank" class="btn btn-primary">View Full Calendar &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photos -->
+        <section id="photos" class="section-alt">
+            <div class="container">
+                <h2 class="section-title">MGRA Photos</h2>
+                <p class="section-subtitle">Pictures from recent past events</p>
+                
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <div style="background: linear-gradient(135deg, #1a365d, #2c5282); width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;">Winter Field Day 2022</div>
+                    </div>
+                    <div class="photo-item">
+                        <div style="background: linear-gradient(135deg, #c53030, #e53e3e); width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;">Antenna Work</div>
+                    </div>
+                    <div class="photo-item">
+                        <div style="background: linear-gradient(135deg, #2f855a, #48bb78); width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;">Logging Contacts</div>
+                    </div>
+                    <div class="photo-item">
+                        <div style="background: linear-gradient(135deg, #744210, #d69e2e); width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;">Club Meeting</div>
+                    </div>
+                    <div class="photo-item">
+                        <div style="background: linear-gradient(135deg, #553c9a, #805ad5); width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;">Equipment Setup</div>
+                    </div>
+                    <div class="photo-item">
+                        <div style="background: linear-gradient(135deg, #702459, #b83280); width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;">Field Day Ops</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links -->
+        <section id="links">
+            <div class="container">
+                <h2 class="section-title">Useful Links</h2>
+                <p class="section-subtitle">Resources for ham radio operators and those interested in joining</p>
+                
+                <div class="links-grid">
+                    <div class="link-category">
+                        <h4>📋 Join Us</h4>
+                        <ul>
+                            <li><a href="#">Membership Form (PDF)</a></li>
+                            <li><a href="#dues" onclick="showTab('dues-tab')">Pay Annual Dues</a></li>
+                            <li><a href="https://www.facebook.com/WR4MG/" target="_blank">Facebook Page</a></li>
+                            <li><a href="mailto:getmorehams@wr4mg.us">Email Us</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-category">
+                        <h4>📝 Testing Resources</h4>
+                        <ul>
+                            <li><a href="https://www.youtube.com/watch?v=7a4doKEPN5M" target="_blank">How to Get Your FRN (Video)</a></li>
+                            <li><a href="#">Bring Form 605 to Testing</a></li>
+                            <li><a href="http://www.hamradiolicenseexam.com/index.html" target="_blank">Ham Test Online (Prep)</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-category">
+                        <h4>📡 Groups &amp; Directories</h4>
+                        <ul>
+                            <li><a href="https://www.arrl.org" target="_blank">ARRL Website</a></li>
+                            <li><a href="https://www.arrl-ga.org/" target="_blank">Georgia ARRL</a></li>
+                            <li><a href="https://www.fcc.gov/wireless/universal-licensing-system" target="_blank">FCC ULS</a></li>
+                            <li><a href="https://gaares.org/" target="_blank">Georgia ARES</a></li>
+                            <li><a href="https://parksontheair.com/" target="_blank">Parks on the Air</a></li>
+                            <li><a href="https://www.qrz.com" target="_blank">QRZ Website</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-category">
+                        <h4>🌤️ WX &amp; Propagation</h4>
+                        <ul>
+                            <li><a href="https://www.hwn.org/" target="_blank">Hurricane Watch Net</a></li>
+                            <li><a href="https://www.swpc.noaa.gov/products/alerts-watches-and-warnings" target="_blank">NOAA Solar/Space Alerts</a></li>
+                            <li><a href="https://www.lightningmaps.org" target="_blank">Lightning Maps</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DUES TAB -->
+    <div id="dues-tab" class="tab-content">
+        
+        <!-- Dues Hero -->
+        <section class="dues-hero" style="margin-top: 60px;">
+            <div class="hero-content">
+                <h1>Pay Your Annual Dues</h1>
+                <p>Support the Middle Georgia Radio Association and keep the repeaters on the air</p>
+            </div>
+        </section>
+
+        <!-- Dues Options -->
+        <section class="section-alt" style="padding: 4rem 2rem;">
+            <div class="container">
+                <h2 class="section-title" style="margin-bottom: 0.5rem;">Membership Options</h2>
+                <p class="section-subtitle" style="margin-bottom: 3rem;">Choose the plan that works for you</p>
+                
+                <div class="dues-options">
+                    <div class="dues-card">
+                        <h3>Individual</h3>
+                        <div class="price">$25<span>/year</span></div>
+                        <ul>
+                            <li>Full voting membership</li>
+                            <li>Access to club repeaters</li>
+                            <li>Monthly newsletter</li>
+                            <li>Testing session access</li>
+                            <li>Field Day participation</li>
+                            <li>Technical support</li>
+                        </ul>
+                        <a href="https://venmo.com/WR4MG?txn=pay&amount=25&note=Individual%20Membership%20Dues%202025" 
+                           class="venmo-btn" target="_blank" rel="noopener">
+                            Pay $25 with Venmo
+                        </a>
+                        <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">
+                            Note: Include your callsign in the payment note
+                        </p>
+                    </div>
+                    
+                    <div class="dues-card featured">
+                        <div class="badge">Popular</div>
+                        <h3>Family</h3>
+                        <div class="price">$40<span>/year</span></div>
+                        <ul>
+                            <li>Everything in Individual</li>
+                            <li>Covers household members</li>
+                            <li>Spouse + children under 18</li>
+                            <li>Shared callsign privileges</li>
+                            <li>Priority event registration</li>
+                            <li>Club merchandise discounts</li>
+                        </ul>
+                        <a href="https://venmo.com/WR4MG?txn=pay&amount=40&note=Family%20Membership%20Dues%202025" 
+                           class="venmo-btn" target="_blank" rel="noopener">
+                            Pay $40 with Venmo
+                        </a>
+                        <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">
+                            Include primary callsign + family members
+                        </p>
+                    </div>
+                    
+                    <div class="dues-card">
+                        <h3>Student / Senior</h3>
+                        <div class="price">$15<span>/year</span></div>
+                        <ul>
+                            <li>Full voting membership</li>
+                            <li>Access to club repeaters</li>
+                            <li>Monthly newsletter</li>
+                            <li>Testing session access</li>
+                            <li>Field Day participation</li>
+                            <li>Technical support</li>
+                        </ul>
+                        <a href="https://venmo.com/WR4MG?txn=pay&amount=15&note=Student-Senior%20Dues%202025" 
+                           class="venmo-btn" target="_blank" rel="noopener">
+                            Pay $15 with Venmo
+                        </a>
+                        <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">
+                            Valid student ID or 65+ required
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Other Payment Methods -->
+                <div style="max-width: 700px; margin: 3rem auto 0; text-align: center; background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Other Payment Methods</h3>
+                    <p style="margin-bottom: 1rem;">Don't use Venmo? You can also pay by:</p>
+                    <ul style="list-style: none; text-align: left; max-width: 400px; margin: 0 auto;">
+                        <li style="padding: 0.5rem 0;">💵 <strong>Cash</strong> &mdash; at any monthly meeting</li>
+                        <li style="padding: 0.5rem 0;">✉️ <strong>Check</strong> &mdash; mail to P.O. Box 10528, Warner Robins, GA 31095</li>
+                        <li style="padding: 0.5rem 0;">💳 <strong>PayPal</strong> &mdash; <a href="mailto:getmorehams@wr4mg.us">email us for link</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Payment Record Form -->
+                <div style="max-width: 700px; margin: 3rem auto 0; background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; text-align: center;">📋 Payment Record Form</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-light); font-size: 0.95rem;">Already paid? Let us know so we can update our records.</p>
+                    
+                    <form id="duesForm" style="display: grid; gap: 1rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Name *</label>
+                                <input type="text" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Callsign</label>
+                                <input type="text" placeholder="e.g., WR4MG" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; text-transform: uppercase;">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Email *</label>
+                            <input type="email" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem;">
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Membership Type *</label>
+                                <select required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; background: white;">
+                                    <option value="">Select...</option>
+                                    <option value="individual">Individual ($25)</option>
+                                    <option value="family">Family ($40)</option>
+                                    <option value="student_senior">Student / Senior ($15)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Payment Method *</label>
+                                <select required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; background: white;">
+                                    <option value="">Select...</option>
+                                    <option value="venmo">Venmo</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="check">Check</option>
+                                    <option value="paypal">PayPal</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Notes (optional)</label>
+                            <textarea rows="3" placeholder="Family members, payment date, etc." style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; resize: vertical;"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer; margin-top: 0.5rem;">
+                            Submit Payment Record
+                        </button>
+                    </form>
+                    
+                    <div id="formSuccess" style="display: none; margin-top: 1rem; padding: 1rem; background: #c6f6d5; border-radius: 8px; color: #22543d; text-align: center;">
+                        ✅ Thank you! Your payment record has been submitted.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer" id="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/WR4MG/" target="_blank">📘 Facebook</a></li>
+                    <li>📧 <a href="mailto:getmorehams@wr4mg.us">getmorehams@wr4mg.us</a></li>
+                    <li>📮 P.O. Box 10528, Warner Robins, GA 31095</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about" onclick="showTab('home-tab')">About MGRA</a></li>
+                    <li><a href="#repeaters" onclick="showTab('home-tab')">Repeaters</a></li>
+                    <li><a href="#events" onclick="showTab('home-tab')">Calendar</a></li>
+                    <li><a href="#dues" onclick="showTab('dues-tab')">Pay Dues</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Meeting Info</h4>
+                <p><strong>When:</strong> 3rd Thursday of every month, 7:00 PM</p>
+                <p><strong>Where:</strong> Warner Robins Church of Christ</p>
+                <p><strong>Testing:</strong> 2nd Saturday, 9:00 AM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Middle Georgia Radio Association (WR4MG). All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile menu
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            if (window.getComputedStyle(menu).display === 'none') {
+                menu.style.display = 'flex';
+                menu.style.flexDirection = 'column';
+                menu.style.position = 'absolute';
+                menu.style.top = '60px';
+                menu.style.left = '0';
+                menu.style.right = '0';
+                menu.style.background = 'rgba(26, 54, 93, 0.98)';
+                menu.style.padding = '1rem 2rem';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+
+        // Form submission
+        document.getElementById('duesForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('formSuccess').style.display = 'block';
+            this.reset();
+            document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
-      }
-    }
-  });
 
-  if (entries.filter(e => !e.noInput).length === 0) {
-    alert('Enter at least one weight!');
-    return;
-  }
-
-  const logs = getLogs();
-  logs.push({ date, day, entries });
-  saveLogs(logs);
-
-  updateStats();
-  updateHistory();
-  updateCharts();
-  populateExerciseSelect();
-
-  // Clear inputs
-  exercises.forEach((_, i) => {
-    const el = document.getElementById(`w-${i}`);
-    if (el) el.value = '';
-  });
-
-  alert('Workout logged! 🦝');
-}
-
-// ── STATS ──
-function updateStats() {
-  const logs = getLogs();
-  document.getElementById('totalWorkouts').textContent = logs.length;
-
-  // Streak
-  let streak = 0;
-  const today = new Date();
-  for (let i = 0; i < 30; i++) {
-    const d = new Date(today);
-    d.setDate(d.getDate() - i);
-    const ds = d.toISOString().split('T')[0];
-    if (logs.some(l => l.date === ds)) {
-      streak++;
-    } else if (i > 0) {
-      break;
-    }
-  }
-  document.getElementById('currentStreak').textContent = streak;
-
-  // Total volume
-  let volume = 0;
-  logs.forEach(log => {
-    log.entries.forEach(e => {
-      if (e.unit === 'lbs') {
-        volume += e.weight * e.sets * e.reps;
-      }
-    });
-  });
-  document.getElementById('totalVolume').textContent = volume.toLocaleString();
-
-  // This week
-  const weekAgo = new Date();
-  weekAgo.setDate(weekAgo.getDate() - 7);
-  const thisWeek = logs.filter(l => new Date(l.date) >= weekAgo).length;
-  document.getElementById('thisWeek').textContent = thisWeek;
-}
-
-// ── HISTORY ──
-function updateHistory() {
-  const logs = getLogs().reverse();
-  const container = document.getElementById('historyList');
-
-  if (logs.length === 0) {
-    container.innerHTML = '<div class="empty-state">No workouts logged yet. Start training!</div>';
-    return;
-  }
-
-  let html = '';
-  logs.forEach(log => {
-    const dayNames = { monday: 'Mon', tuesday: 'Tue', wednesday: 'Wed', thursday: 'Thu', friday: 'Fri' };
-    const totalWeight = log.entries
-      .filter(e => e.unit === 'lbs')
-      .reduce((s, e) => s + (e.weight * e.sets * e.reps), 0);
-
-    html += `<div class="log-entry">
-      <div>
-        <span class="date">${log.date} — ${dayNames[log.day] || log.day}</span>
-        <div class="info">${log.entries.length} exercises${totalWeight > 0 ? ` | Volume: ${totalWeight.toLocaleString()} lbs` : ''}</div>
-      </div>
-      <button class="btn" style="background: #333; color: var(--text2);" onclick="deleteLog('${log.date}')">Delete</button>
-    </div>`;
-  });
-
-  container.innerHTML = html;
-}
-
-function deleteLog(date) {
-  if (!confirm('Delete this workout?')) return;
-  let logs = getLogs();
-  logs = logs.filter(l => l.date !== date);
-  saveLogs(logs);
-  updateStats();
-  updateHistory();
-  updateCharts();
-}
-
-// ── CHARTS ──
-let volumeChart, exerciseChart;
-
-function updateCharts() {
-  const logs = getLogs();
-
-  // Volume chart
-  const volumeCtx = document.getElementById('volumeChart').getContext('2d');
-  const dates = logs.map(l => l.date);
-  const volumes = logs.map(l =>
-    l.entries.filter(e => e.unit === 'lbs').reduce((s, e) => s + (e.weight * e.sets * e.reps), 0)
-  );
-
-  if (volumeChart) volumeChart.destroy();
-  volumeChart = new Chart(volumeCtx, {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: [{
-        label: 'Volume (lbs)',
-        data: volumes,
-        borderColor: '#00e5ff',
-        backgroundColor: 'rgba(0, 229, 255, 0.1)',
-        fill: true,
-        tension: 0.3,
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { ticks: { color: '#888', maxRotation: 45, minRotation: 45 } },
-        y: { ticks: { color: '#888' }, grid: { color: '#1a1a2e' } }
-      }
-    }
-  });
-}
-
-function populateExerciseSelect() {
-  const logs = getLogs();
-  const exercises = new Set();
-  logs.forEach(l => l.entries.forEach(e => exercises.add(e.exercise)));
-
-  const select = document.getElementById('exerciseSelect');
-  select.innerHTML = '<option value="">Select exercise...</option>';
-  [...exercises].sort().forEach(ex => {
-    select.innerHTML += `<option value="${ex}">${ex}</option>`;
-  });
-}
-
-function updateExerciseChart() {
-  const exercise = document.getElementById('exerciseSelect').value;
-  if (!exercise) return;
-
-  const logs = getLogs().filter(l => l.entries.some(e => e.exercise === exercise));
-  const dates = logs.map(l => l.date);
-  const weights = logs.map(l => {
-    const e = l.entries.find(e => e.exercise === exercise);
-    return e ? e.weight : 0;
-  });
-
-  const ctx = document.getElementById('exerciseChart').getContext('2d');
-  if (exerciseChart) exerciseChart.destroy();
-
-  exerciseChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: [{
-        label: `${exercise} weight`,
-        data: weights,
-        borderColor: '#7c3aed',
-        backgroundColor: 'rgba(124, 58, 237, 0.1)',
-        fill: true,
-        tension: 0.3,
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { ticks: { color: '#888', maxRotation: 45, minRotation: 45 } },
-        y: { ticks: { color: '#888' }, grid: { color: '#1a1a2e' } }
-      }
-    }
-  });
-}
-
-// ── TAB SWITCHING ──
-function showTab(tab) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-  event.target.classList.add('active');
-  document.getElementById(tab).classList.add('active');
-
-  if (tab === 'charts') {
-    updateCharts();
-    populateExerciseSelect();
-  }
-  if (tab === 'history') updateHistory();
-}
-
-// ── EXPORT / IMPORT / CLEAR ──
-function exportData() {
-  const logs = getLogs();
-  const json = JSON.stringify(logs, null, 2);
-  document.getElementById('exportJson').value = json;
-  document.getElementById('exportArea').style.display = 'block';
-  document.getElementById('importArea').style.display = 'none';
-}
-
-function copyExport() {
-  const el = document.getElementById('exportJson');
-  el.select();
-  document.execCommand('copy');
-  alert('Copied to clipboard! Paste on your other device.');
-}
-
-function importData() {
-  document.getElementById('importArea').style.display = 'block';
-  document.getElementById('exportArea').style.display = 'none';
-}
-
-function doImport() {
-  const raw = document.getElementById('importJson').value.trim();
-  if (!raw) return;
-  try {
-    const data = JSON.parse(raw);
-    if (!Array.isArray(data)) throw new Error('Invalid format');
-    saveLogs(data);
-    updateStats();
-    updateHistory();
-    updateCharts();
-    populateExerciseSelect();
-    document.getElementById('importArea').style.display = 'none';
-    document.getElementById('importJson').value = '';
-    alert('Data imported! 🦝');
-  } catch (e) {
-    alert('Invalid JSON. Make sure you pasted the full export.');
-  }
-}
-
-function clearAll() {
-  if (!confirm('DELETE ALL workout data? This cannot be undone.')) return;
-  localStorage.removeItem('opusWorkouts');
-  updateStats();
-  updateHistory();
-  if (volumeChart) volumeChart.destroy();
-  if (exerciseChart) exerciseChart.destroy();
-  populateExerciseSelect();
-  alert('All data cleared.');
-}
-
-// ── INIT ──
-loadTracker();
-updateStats();
-updateHistory();
-</script>
-
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && !href.startsWith('#dues') && !href.startsWith('#footer')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
