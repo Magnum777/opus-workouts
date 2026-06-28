@@ -16,7 +16,7 @@ Build practical knowledge about AI-assisted ham radio operating and digital mode
 - [x] AI applications in amateur radio (propagation, decoding, logging)
 - [x] AI tools for the shack (PSK Reporter, HamClock, GridTracker)
 - [x] Automated propagation prediction vs manual methods
-- [ ] AI-powered antenna modeling (EZNEC + AI optimization)
+- [x] AI-powered antenna modeling (EZNEC + AI optimization)
 - [ ] Machine learning for QSL card recognition
 - [ ] AI chatbots for ham radio education (Elmer AI)
 
@@ -32,13 +32,13 @@ Build practical knowledge about AI-assisted ham radio operating and digital mode
 - [x] Menu settings for digital modes
 - [x] WSJT-X configuration for FT-891
 - [ ] Using Digimode-4 interface with FT-891
-- [ ] Mobile/portable digital operation with FT-891
-- [ ] FT-891 data port pinout and custom cables
+- [x] Mobile/portable digital operation with FT-891
+- [x] FT-891 data port pinout and custom cables
 
 ### Priority 4: Advanced Topics
-- [ ] Remote station operation via Raspberry Pi
+- [x] Remote station operation via Raspberry Pi
 - [ ] Automated band switching based on propagation
-- [ ] Digital mode contesting strategies
+- [x] Digital mode contesting strategies
 - [ ] Building a digital mode station from scratch
 - [ ] Understanding the waterfall display
 
@@ -46,9 +46,14 @@ Build practical knowledge about AI-assisted ham radio operating and digital mode
 
 ## Knowledge Base
 
-**File:** `docs/night-school/ham-radio-ai/research-2026-06-27.md`
+### Research Files
+- `research-2026-06-27.md` — Base FT-891 digital setup
+- `mobile-portable-research-2026-06-27.md` — Mobile/portable operation with DigiRig
+- `ai-antenna-modeling-2026-06-27.md` — AI-powered antenna design with NEC2
+- `remote-station-raspberry-pi-2026-06-27.md` — Remote station via Raspberry Pi
+- `digital-mode-contesting-2026-06-27.md` — Contesting with WSJT-X + N1MM
 
-### Key Takeaways (so far)
+### Key Takeaways
 
 **AI in Ham Radio:**
 - AI decodes weak signals humans miss (especially in FT8)
@@ -63,6 +68,31 @@ Build practical knowledge about AI-assisted ham radio operating and digital mode
 - Menu settings: DATA MODE = OTHERS, CAT RATE = 4800+
 - WSJT-X: select FT-891 rig, CAT PTT, match baud rate
 
+**Mobile/Portable:**
+- DigiRig Mobile reduces cable mess
+- Bioenno 12AH LiFePO4 battery sufficient for most activations
+- FT-891 pulls 14.6A at 100W on 160m CW
+- Powerpole connectors recommended
+
+**AI Antenna Modeling:**
+- Antenna Forge uses NEC2 + openEMS with AI optimization
+- Neural network surrogate models predict performance instantly
+- Genetic algorithms + ML mutation operators show promise
+- No ham-specific AI antenna tools exist yet — development opportunity
+
+**Remote Station:**
+- Raspberry Pi 4 handles WSJT-X + VNC fine for FT8
+- VPN recommended over direct port forwarding
+- RAMdisk for logs extends SD card life
+- USB sound card required (CM108 ~$10)
+
+**Digital Contesting:**
+- N1MM+ is gold standard for contest logging
+- Three-program stack: WSJT-X → JTAlert → N1MM+
+- UDP packet flow is backbone of integration
+- Separate INI files for different contest configs
+- Clock sync critical for FT8 (<1 second accuracy)
+
 ---
 
 ## Resources
@@ -72,6 +102,12 @@ Build practical knowledge about AI-assisted ham radio operating and digital mode
 - JS8Call: https://js8call.com/
 - GridTracker: https://gridtracker.org/
 - HamClock: https://clearskyinstitute.com/ham/HamClock/
+- N1MM Logger+: https://n1mmwp.hamdocs.com/
+- JTAlert: https://hamapps.com/
+
+### Hardware
+- DigiRig Mobile: https://digirig.net/
+- Bioenno Batteries: https://www.bioennopower.com/
 
 ### Drivers
 - Silicon Labs CP210x: https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers
@@ -80,6 +116,7 @@ Build practical knowledge about AI-assisted ham radio operating and digital mode
 - FT-891 Digital Setup: https://www.ham-interfaces.com/ham-radio-info-and-guides/how-to-set-up-yaesu-ft-891-for-digital-modes
 - KB9VBR Guide: https://www.jpole-antenna.com/2020/08/12/yaesu-ft-891-setup-for-digital-modes/
 - KM4NMP Guide: https://km4nmp.com/2019/07/21/getting-started-with-wsjt-x-and-the-yaesu-ft-891-transceiver/
+- TheModernHam Menu Guide: https://themodernham.com/ft-891-the-ultimate-digital-settings-menu-guide-for-digital-modes/
 
 ### Communities
 - r/amateurradio
@@ -90,10 +127,10 @@ Build practical knowledge about AI-assisted ham radio operating and digital mode
 
 ## Next Research Topics
 
-1. **FT-891 with Digimode-4 interface** — detailed wiring and audio levels
-2. **Mobile digital operation** — portable FT8 from the car
-3. **Contest logging automation** — N1MM+ with digital modes
-4. **AI propagation tools** — VOACAP vs machine learning models
+1. **PSK31 for ragchewing** — keyboard-to-keyboard conversation mode
+2. **FT4 vs FT8 comparison** — speed vs sensitivity tradeoffs
+3. **Automated band switching** — propagation-based antenna switching
+4. **Waterfall display deep dive** — interpreting what you see
 
 ---
 
