@@ -195,6 +195,9 @@ scripts/spam_sweep_err.txt
 stderr.txt
 stdout.txt
 
+# Night School research (local + NAS only, not git)
+docs/night-school/
+
 # Misc
 p
 alpha_force_db.json
