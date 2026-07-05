@@ -63,6 +63,8 @@ SPAM_DOMAINS = {
     "dialuxas.ru",
     "henrydixonjournal.net",
     "poladina.com",
+    "netboni.com",
+    "pinokondo.com",
     "flirtyynights.com",
     "bestxdateofferings.com",
     "hers-love.com",
