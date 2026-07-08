@@ -82,6 +82,8 @@ SPAM_DOMAINS = {
     "romanticluster.ru", "greatxdatefinder.com", "hellopromo.info",
     "soontoday.info", "freshday.info", "flirtwiththestars.com",
     "checkoutgirlsnow.com", "heytherelab.com", "thexdate.net",
+    "privaterelay.appleid.com", "questionprov5129231.com", "rugcoumvlof.ru",
+    "tiktokshop.com", "ubpew.qpj",
     ".ru", ".biz", ".top", ".pp.ua", ".co.nl", ".org.uk",
 }
 
@@ -128,13 +130,14 @@ RE_FAKE_SENDER = re.compile(
     r"milf|cam|sophisticated male|wink|fun we had|eharmony|"
     r"foxytemptation|i want hookups|faithful fling|hot.*milf|"
     r"someone wants to meet|wants to meet|meet you|meet me|let's meet|"
-    r"localtemptation|temptation|wet emoji|wet emojis|gucciluci",
+    r"localtemptation|temptation|wet emoji|wet emojis|gucciluci|"
+    r"truebootycall|true booty call",    # True Booty Call spam
     re.IGNORECASE,
 )
 
 RE_BUSINESS_SCAM = re.compile(
     r"order verification notice|verification notice|order verification|verification required|"
-    r"your account has been|account suspended|account locked|confirm your email|urgent confirm|action required|"
+    r"your account has been|account suspended|account locked|blocked all your|confirm your email|urgent confirm|action required|"
     r"suspended due to|unusual activity detected|invoice attached|invoice from|payment receipt|"
     r"wire transfer|bank transfer|direct deposit|dear valued customer|dear sir/madam|"
     r"kindly|urgent response needed|respond immediately|crypto investment|bitcoin investment|"
@@ -435,6 +438,18 @@ def is_spam(sender_raw, subject_raw):
         r"picked you",
         r"selected you",
         r"chosen for you",
+        # True Booty Call signature subjects (they rotate domains)
+        r"let you in on her fantasy",
+        r"wants to let you in",
+        r"her fantasy",
+        r"truebootycall",
+        r"true booty call",
+        # Modern dating spam patterns
+        r"get inside",
+        r"before the stream",
+        r"stream ends",
+        r"pull my hair",
+        r"make me yours",
     ]
     for pattern in AGGRESSIVE_PATTERNS:
         if re.search(pattern, subject, re.IGNORECASE):
