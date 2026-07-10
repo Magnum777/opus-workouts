@@ -1,6 +1,6 @@
 # Nova Cron Master Scheduler
 
-> Last updated: 2026-06-04
+> Last updated: 2026-07-10
 > Timezone: America/New_York
 
 ## Daily Schedule Visual
@@ -8,37 +8,37 @@
 ```
 02:00 | ████ ContentNova-aitoolalliance          (qwen3.5:27b, 480s, medium)
 03:00 | ████ ContentNova-aibusinessinsider        (qwen3.5:27b, 480s, medium)
+03:38 | ██   Finance-NAS-Backup                  (deepseek-v4-flash, 300s, light)
 04:00 | ████ ContentNova-aicofounderstack         (qwen3.5:27b, 600s, medium)
 05:00 | ──── (quiet)
-06:00 | ████ Weekly-SkillUpdate (Mon only)          (deepseek-v4-flash, fast)
+06:00 | ████ Weekly-SkillUpdate (Mon only)          (deepseek-v4-flash, 120s, light)
 06:45 | ██   spam-pattern-discovery                (deepseek-v4-flash, 300s, light)
 07:00 | ██   daily-brief-7am                      (kimi-k2.6, 300s, medium)
-07:15 | ██   spam-sweep-every-4h                   (deepseek-v4-flash, 480s, medium)
+07:15 | ██   gmail-cleanup-daily                  (deepseek-v4-flash, 120s, light)
 07:30 | ██   Iris-all-accounts-digest            (deepseek-v4-flash, 180s, medium)
-08:00 | ██   EveOnion-NewsScan                   (deepseek-v4-flash, 300s, medium)
+08:15 | ██   EveOnion-NewsScan                   (minimax-m2.7, 480s, medium)
 09:00 | ██   Nova-Ops-Assessment                   (deepseek-v4-flash, 180s, light)
-09:15 | ██   TradeBot-DailyResearch              (deepseek-v4-flash, 300s, medium)  [NEW - szzg007 research pipeline]
-09:30 | ████ EveOnion-Article (Tue/Fri only)       (kimi-k2.6, 300s, heavy)
-10:00 | ██   TradeBot-Analytics (Mon only)          (qwen3.5:27b, 180s, light)
+09:00 | ██   TradeBot-GasCheck                    (deepseek-v4-flash, 300s, light)
+09:15 | ██   TradeBot-DailyResearch              (deepseek-v4-flash, 300s, medium)
+09:30 | ████ EveOnion-Article (Tue/Fri only)       (kimi-k2.6, 480s, heavy)
+10:00 | ██   TradeBot-Analytics (Mon only)          (deepseek-v4-flash, 120s, light)
+10:00 | ██   EveOnion-RedditTweet                 (minimax-m2.7, 480s, medium)
 10:00 | ██   EveOnion-PersonaScan (every 3 days)    (deepseek-v4-flash, 300s, medium)
-14:00 | ████ TradeBot-WeeklyReview (Sat only)       (deepseek-v4-flash, 600s, medium)
-14:30 | ████ EveOnion-DailyTweet                   (deepseek-v4-flash, 180s, light)
-15:00 | ██   AntiYagas-Phase1-Daily                 (kimi-k2.6, 300s, medium)
-18:00 | ██   AntiYagas-EveningBrief                 (kimi-k2.6, 300s, medium)
-18:00 | ██   Weekly-SkillDiscovery (Fri only)       (deepseek-v4-flash, 180s, light)
-18:15 | ██   Kybernauts-Propaganda (every 2 days)    (kimi-k2.6, 300s, medium)
-18:30 | ████ Kybernauts-ForumBump (Sun only)          (kimi-k2.6, 600s, heavy)
+14:00 | ████ TradeBot-WeeklyReview (Sat only)       (deepseek-v4-flash, 300s, medium)
+15:00 | ██   AntiYagas-Phase1-Daily                 (deepseek-v4-flash, 300s, medium)
+18:00 | ██   AntiYagas-EveningBrief                 (deepseek-v4-flash, 120s, light)
+18:00 | ██   Weekly-SkillDiscovery (Fri only)       (deepseek-v4-flash, 300s, light)
+18:15 | ██   Kybernauts-Propaganda (Sun only)        (deepseek-v4-flash, 180s, medium)
+18:15 | ██   Kybernauts-YouTubeLink (Wed only)       (deepseek-v4-flash, 120s, light)
 20:00 | ████ NightSchool-8pm                       (deepseek-v4-flash, 600s, heavy)
 20:15 | ██   NightSchool-NAS-Sync                  (deepseek-v4-flash, 60s, light)
+22:00 | ██   Weekly-MemoryHygiene (Sun only)        (deepseek-v4-flash, 300s, light)
 23:00 | ██   Workspace-NAS-Backup (daily)              (deepseek-v4-flash, 300s, medium)
 
 --- Continuous ---
-- TradeBot-Research — every 2h (deepseek-v4-flash, 180s)
 - TradeBot-Executor — every 10 min (deepseek-v4-flash, 300s)
-- TradeBot-PortfolioOverview — every 4h (deepseek-v4-flash, 180s)
-
---- Retired (Jun 14) ---
-- TradeBot-Consolidated — disabled. Split into Research + Executor.
+- TradeBot-Research — every 2h (deepseek-v4-flash, 600s)
+- spam-sweep-every-4h — every 2h (deepseek-v4-flash, 480s)
 ```
 
 ## Load Analysis
@@ -46,26 +46,112 @@
 | Time Block | Total Jobs | Heavy | Model Load |
 |------------|-----------|-------|------------|
 | 2-4am | 3 | 3 (all content) | `qwen3.5:27b` ×3 |
-| 7-8am | 3 | 0 | `deepseek-v4-flash` ×3 |
-| 9-10am | 2-3 | 1 (article) | `kimi-k2.6` + `deepseek-v4-flash` |
-| 2-3pm | 2 | 1 (review) | `deepseek-v4-flash` + `qwen3.5:27b` |
-| 6pm | 3-4 | 1 (forum bump Sun) | `kimi-k2.6` ×2-3 + `deepseek-v4-flash` |
-| 8pm | 1 | 1 (night school) | `deepseek-v4-flash` |
+| 7-8am | 4 | 0 | `deepseek-v4-flash` ×3 + `kimi-k2.6` ×1 |
+| 9-10am | 4-5 | 1 (article) | `kimi-k2.6` + `deepseek-v4-flash` ×3 + `minimax-m2.7` |
+| 2-3pm | 1 | 0 | `deepseek-v4-flash` |
+| 6pm | 3-4 | 0 | `deepseek-v4-flash` ×3-4 |
+| 8pm | 2 | 1 (night school) | `deepseek-v4-flash` ×2 |
 
-## Model Breakdown
+## Model Breakdown (Enabled Only)
 
 | Model | # Crons | Heavy Jobs | Notes |
 |-------|---------|-----------|-------|
-| kimi-k2.6 | **7** | 4 (content ×3 + article) | Main creative engine. 2-4am block is peak load |
-| deepseek-v4-flash | **15** | 2 (night school, forum bump) | Ops/scans. Distributed well |
-| qwen3.5:27b | **4** | 0 (content x3 + analytics) | NEW - replaces kimi-k2.6 for scheduled writing. ~5-10x lighter usage |
-| minimax-m2.7 | 0 | — | Retired, no active crons |
+| kimi-k2.6 | **2** | 1 (EveOnion-Article) | Live creative + special cases only |
+| deepseek-v4-flash | **20** | 1 (night school) | Ops/scans/continuous. Workhorse |
+| qwen3.5:27b | **3** | 0 (content ×3) | Scheduled writing. Light GPU |
+| minimax-m2.7 | **2** | 0 | EveOnion news + tweet generation |
 
-## Conflict History
+## Total: 30 enabled + 3 disabled + 1 expired
 
-- **June 4**: ContentNova-aicofounderstack + daily-spam-sweep both hit 300s timeout. Fixed: bumped to 600s/480s.
-- **June 3**: EveOnion-PersonaScan previously ran minimax-m2.7 which was slow. Fixed: switched to deepseek-v4-flash.
-- **May 28-31**: EveOnion-NewsScan had 4 consecutive timeouts. Fixed: switched from minimax-m2.7 to deepseek-v4-flash.
+### Disabled
+- TradeBot-PortfolioOverview — "Opus audit in progress"
+- TradeBot-Consolidated — replaced by split crons
+- Kybernauts-ForumBump — disabled pending browser automation fix
+
+### Expired
+- P2-Integration-Reminder — one-shot at 2026-06-15, deleteAfterRun
+
+## Cron Registry
+
+### Content Empire (3 crons)
+| Name | ID | Schedule | Model | Timeout | Notes |
+|------|-----|----------|-------|---------|-------|
+| ContentNova-aitoolalliance | 21260801 | 2am daily | qwen3.5:27b | 480s | Quality gate v3 |
+| ContentNova-aibusinessinsider | 38c57c58 | 3am daily | qwen3.5:27b | 480s | Quality gate v3 |
+| ContentNova-aicofounderstack | b44776e2 | 4am daily | qwen3.5:27b | 600s | Quality gate v3 |
+
+### EveOnion (4 crons)
+| Name | ID | Schedule | Model | Timeout |
+|------|-----|----------|-------|---------|
+| EveOnion-NewsScan | b9de81b3 | 8:15am daily | minimax-m2.7 | 480s |
+| EveOnion-Article | 084309e2 | 9:30am Tue/Fri | kimi-k2.6 | 480s |
+| EveOnion-RedditTweet | 02b8d422 | 10am daily | minimax-m2.7 | 480s |
+| EveOnion-PersonaScan | 94609722 | 10am every 3 days | deepseek-v4-flash | 300s |
+
+### TradeBot (5 crons + 2 continuous)
+| Name | ID | Schedule | Model | Timeout | API Impact |
+|------|-----|----------|-------|---------|------------|
+| TradeBot-Research | ea26cf89 | every 2h | deepseek-v4-flash | 600s | Jupiter + Helius (heavy) |
+| TradeBot-Executor | f5117dbc | every 10m | deepseek-v4-flash | 300s | Helius (light) |
+| TradeBot-WeeklyReview | 2be91036 | Sat 2pm | deepseek-v4-flash | 300s | Helius (light) |
+| TradeBot-Analytics | c8153b73 | Mon 10am | deepseek-v4-flash | 120s | Helius (light) |
+| TradeBot-DailyResearch | 457a5ae7 | 9:15am daily | deepseek-v4-flash | 300s | Web Search (3 calls) |
+| TradeBot-GasCheck | 73b00eab | 9am daily | deepseek-v4-flash | 300s | Helius (light) |
+| TradeBot-PortfolioOverview | 0eb02ac4 | every 4h | **DISABLED** | — | Opus audit in progress |
+| TradeBot-Consolidated | 78b66703 | every 10m | **DISABLED** | — | replaced by split |
+
+### Kybernauts (3 crons)
+| Name | ID | Schedule | Model | Timeout |
+|------|-----|----------|-------|---------|
+| AntiYagas-Phase1-Daily | 7d40d90f | 3pm daily | deepseek-v4-flash | 300s |
+| AntiYagas-EveningBrief | 74381489 | 6pm daily | deepseek-v4-flash | 120s |
+| Kybernauts-Propaganda | d27750c9 | Sun 6:15pm | deepseek-v4-flash | 180s |
+| Kybernauts-YouTubeLink | 72b82016 | Wed 6:15pm | deepseek-v4-flash | 120s |
+| Kybernauts-ForumBump | ac348e21 | Sun 6:30pm | **DISABLED** | 300s |
+
+### Nova Ops (11 crons)
+| Name | ID | Schedule | Model | Timeout |
+|------|-----|----------|-------|---------|
+| spam-sweep-every-4h | c96ff863 | every 2h | deepseek-v4-flash | 480s |
+| spam-pattern-discovery | 20a09bb0 | 6:45am daily | deepseek-v4-flash | 300s |
+| daily-brief-7am | 0552b684 | 7am daily | kimi-k2.6 | 300s |
+| gmail-cleanup-daily | 8b079437 | 7:15am daily | deepseek-v4-flash | 120s |
+| Iris-all-accounts-digest | a375126c | 7:30am daily | deepseek-v4-flash | 180s |
+| Nova-Ops-Assessment | 488e0af0 | 9am daily | deepseek-v4-flash | 180s |
+| NightSchool-8pm | 3071d872 | 8pm daily | deepseek-v4-flash | 600s |
+| NightSchool-NAS-Sync | 845e7dac | 8:15pm daily | deepseek-v4-flash | 60s |
+| Workspace-NAS-Backup | cec8b2ad | 11pm daily | deepseek-v4-flash | 300s |
+| Weekly-MemoryHygiene | 10d4c1a3 | Sun 10pm | deepseek-v4-flash | 300s |
+| Weekly-SkillUpdate | ac9ba7e1 | Mon 6am | deepseek-v4-flash | 120s |
+| Weekly-SkillDiscovery | 0b0873dc | Fri 6pm | deepseek-v4-flash | 300s |
+| Finance-NAS-Backup | 9b5aa167 | 3:38am daily | deepseek-v4-flash | 300s |
+
+## Weekly Usage Budget (Ollama Pro)
+
+**Problem:** kimi-k2.6 is level 4 (extra heavy). Scheduled crons burning GPU time from automated jobs.
+
+**Fix (2026-07-10):**
+- **ContentNova x3** switched from `kimi-k2.6` -> `qwen3.5:27b` (level ~2, ~5-10x lighter)
+- **Remaining kimi-k2.6:** Only daily-brief-7am + EveOnion-Article (creative cases)
+- **minimax-m2.7:** EveOnion news + tweet (light, not GPU-heavy)
+
+**Expected savings:** ~60-70% reduction in scheduled GPU burn
+
+**If still hitting cap:**
+1. Switch EveOnion-Article to `qwen3.5:27b`
+2. Switch daily-brief-7am to `deepseek-v4-flash`
+3. Buy extra usage balance
+
+## Ollama Model Quick Reference
+
+| Model | Level | Use Case | Weekly Burn |
+|-------|-------|----------|-------------|
+| kimi-k2.6 | 4 (extra heavy) | Live creative sessions, special creative crons | HIGH — minimize |
+| deepseek-v4-pro | 4 (extra heavy) | Deep debugging, complex reasoning only | HIGH — rare use |
+| deepseek-v4-flash | 3 (heavy) | Ops, scans, fast structured tasks | Medium — workhorse |
+| qwen3.5:27b | 2 (medium) | Scheduled writing, analytics, content | Low — preferred |
+| minimax-m2.7 | 2 (medium) | Creative generation, social content | Low |
+| mistral-small | 2 (medium) | Fast structured output, coding | Low |
 
 ## Rules
 
@@ -93,126 +179,10 @@ Checklist:
 | 1470957359248576699 | #tradebot |
 | 1479156871641436265 | #kybernauts |
 | 1484624659633934587 | #eveonion |
-| 1471135533777424587 | #eveonion (alt) |
-
-## Cron Registry (by Project)
-
-### TradeBot (5 crons)
-| Name | ID | Schedule | Model | Timeout | API Impact |
-|------|-----|----------|-------|---------|------------|
-| TradeBot-Consolidated | 78b66703 | every 5m | deepseek-v4-flash | 600s | Jupiter + Helius (heavy) |
-| TradeBot-PortfolioOverview | 0eb02ac4 | every 4h | deepseek-v4-flash | 180s | Helius (light) |
-| TradeBot-WeeklyReview | 2be91036 | Sat 2pm | deepseek-v4-flash | 600s | Helius (light) |
-| TradeBot-Analytics | c8153b73 | Mon 10am | **qwen3.5:27b** | 180s | Helius (light) |
-| TradeBot-DailyResearch | 457a5ae7 | 9:15am daily | deepseek-v4-flash | 300s | Web Search (3 calls)
-
-### Content Empire (3 crons)
-| Name | ID | Schedule | Model | Timeout | Notes |
-|------|-----|----------|-------|---------|-------|
-| ContentNova-aitoolalliance | 21260801 | 2am daily | **qwen3.5:27b** | 480s | Quality gate v3 |
-| ContentNova-aibusinessinsider | 38c57c58 | 3am daily | **qwen3.5:27b** | 480s | Quality gate v3 |
-| ContentNova-aicofounderstack | b44776e2 | 4am daily | **qwen3.5:27b** | 600s | Quality gate v3 |
-
-### EveOnion (5 crons)
-| Name | ID | Schedule | Model | Timeout |
-|------|-----|----------|-------|---------|
-| EveOnion-NewsScan | d4bb7a00 | 8am daily | deepseek-v4-flash | 300s |
-| EveOnion-Article | f4567195 | 9:30am Tue/Fri | kimi-k2.6 | 300s |
-| EveOnion-DailyTweet | 005d8eba | 2:30pm daily | deepseek-v4-flash | 180s |
-| EveOnion-PersonaScan-Reddit | 94609722 | 10am every 3 days | deepseek-v4-flash | 300s |
-
-### Kybernauts (4 crons)
-| Name | ID | Schedule | Model | Timeout |
-|------|-----|----------|-------|---------|
-| AntiYagas-Phase1-Daily | 7d40d90f | 3pm daily | kimi-k2.6 | 300s |
-| AntiYagas-EveningBrief | 74381489 | 6pm daily | kimi-k2.6 | 300s |
-| Kybernauts-Propaganda | d27750c9 | 6:15pm every 2 days | kimi-k2.6 | 300s |
-| Kybernauts-ForumBump | ac348e21 | 6:30pm Sun | kimi-k2.6 | 600s |
-
-### Nova Ops (9 crons)
-| Name | ID | Schedule | Model | Timeout |
-|------|-----|----------|-------|---------|
-| daily-brief-7am | 0552b684 | 7am daily | kimi-k2.6 | 300s |
-| spam-sweep-every-4h | c96ff863 | every 4h | deepseek-v4-flash | 480s |
-| spam-pattern-discovery | 20a09bb0 | 6:45am daily | deepseek-v4-flash | 300s |
-| Iris-all-accounts-digest | a375126c | 7:30am daily | deepseek-v4-flash | 180s |
-| Nova-Ops-Assessment | 488e0af0 | 9am daily | deepseek-v4-flash | 180s |
-| NightSchool-8pm | 3071d872 | 8pm daily | deepseek-v4-flash | 600s |
-| Workspace-NAS-Backup | cec8b2ad | 11pm daily | deepseek-v4-flash | 300s |
-| Weekly-MemoryHygiene | 10d4c1a3 | 10pm Sun | deepseek-v4-flash | 180s |
-| Weekly-SkillUpdate | ac9ba7e1 | 6am Mon | deepseek-v4-flash | 180s |
-| Weekly-SkillDiscovery | 0b0873dc | 6pm Fri | deepseek-v4-flash | 180s |
-
-## Total: 27 crons
-- `kimi-k2.6`: **3** crons (live session overflow - EveOnion-Article + Kybernauts heavy items)
-- `deepseek-v4-flash`: **18** crons (ops/scans/fast)
-- `qwen3.5:27b`: **4** crons (scheduled writing + light analytics)
-- Continuous jobs: 2 (every 5m, every 4h)
-
-## Weekly Usage Budget (Ollama Pro)
-
-**Problem:** Kimi-k2.6 is level 4 (extra heavy). 7 crons burning ~20-30 min GPU time each = **~3.5-5 hours/week of GPU time** from scheduled jobs alone. Ad-hoc work pushes over the weekly cap.
-
-**Fix (2026-06-15):**
-- **ContentNova x3** switched from `kimi-k2.6` -> `qwen3.5:27b` (level ~2, ~5-10x lighter)
-- **TradeBot-Analytics** switched from `kimi-k2.6` -> `qwen3.5:27b`
-- **Remaining kimi-k2.6:** Only EveOnion-Article + Kybernauts-Propaganda/ForumBump (special creative cases)
-- **Expected savings:** ~50-70% reduction in scheduled GPU burn for content block
-
-**If still hitting cap:**
-1. Switch EveOnion-Article to `qwen3.5:27b`
-2. Switch Kybernauts items to `qwen3.5:27b`
-3. Move remaining heavy live sessions to `mistral-small` or buy extra usage balance
-
-## Ollama Model Quick Reference
-
-| Model | Level | Use Case | Weekly Burn |
-|-------|-------|----------|-------------|
-| kimi-k2.6 | 4 (extra heavy) | Live creative sessions, special creative crons | HIGH - minimize |
-| deepseek-v4-pro | 4 (extra heavy) | Deep debugging, complex reasoning only | HIGH - rare use |
-| deepseek-v4-flash | 3 (heavy) | Ops, scans, fast structured tasks | Medium |
-| qwen3.5:27b | 2 (medium) | Scheduled writing, analytics, content | Low - preferred |
-| mistral-small | 2 (medium) | Fast structured output, coding | Low |
-| qwen3:30b | 2 (medium) | Fallback for qwen3.5:27b | Low |
+| 1524864332478021802 | #finance |
 
 ## Next Review
 Check this doc before adding any new cron. Update after every change.
 
 ## Last Updated
-2026-06-15 -- Switched 4 crons from kimi-k2.6 to qwen3.5:27b to reduce weekly Ollama usage burn. Added model reference table.
-| API | Daily Calls | Limit | Buffer | Status |
-|-----|-----------|-------|--------|--------|
-| Jupiter (lite-api) | ~3,000 | ~5,000/day | 40% | Safe |
-| Helius RPC | ~500 | 50K/day | 99% | Very Safe |
-| DexScreener | ~50 | No known limit | — | Safe |
-| Web Search (Ollama) | ~30 | ~100/day | 70% | Safe |
-
-### Rate Limiting in Code
-- **429 cooldown**: 10-min shared cooldown across all modules
-- **Jupiter quotes**: max 3 retries with 5s backoff
-- **DexScreener**: 0.5s delay between pair queries
-- **Research module**: 1.5s sleep between Jupiter price calls
-- **Daemon**: stops execution on 429, resumes next cycle
-
-### TradeBot Cron Coordination
-| Cron | When | Calls API | Impact |
-|------|------|-----------|--------|
-| TradeBot-Research | Every 2h | Jupiter, Helius | ~30s, writes signals |
-| TradeBot-Executor | Every 10m | Jupiter, Helius | ~30s, reads signals, executes |
-| TradeBot-PortfolioOverview | Every 4h | Helius | Light — 6/day |
-| TradeBot-DailyResearch | 9:15am | Web Search | 3 calls, writes brief |
-
-**SOL Safety** (added Jun 14):
-- SOL_MIN_SAFE = 0.003 — trigger refill when SOL drops below this (ATA rent threshold)
-- SOL_MIN_HYSTERIA = 0.01 — bot runs normally above this
-- Refill: min $5 per cycle, up to 15% of USDC
-- Refill simulates before sending (catches rent/mana issues)
-- All buys simulate before sending
-- Discord report includes SOL balance on every cycle
-- If refill sim fails, bot reports the error immediately instead of silently dropping TXs
-
-## Next Review
-Check this doc before adding any new cron. Update after every change.
-
-## Last Updated
-2026-06-14 — Added SOL safety guards. Split Consolidated into Research + Executor crons.
+2026-07-10 — Synced with actual cron list. Removed duplicate EveOnion-NewsScan. Switched ContentNova x3 to qwen3.5:27b. Updated model counts and schedule to reality.
