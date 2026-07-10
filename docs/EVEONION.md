@@ -1,6 +1,6 @@
 # EveOnion — Documentation
 
-> Current as of 2026-05-08
+> Current as of 2026-07-10
 
 ## Overview
 
@@ -10,17 +10,26 @@ EveOnion is a satirical EVE Online news site (eveonion.com) in the style of The 
 
 | Service | Details |
 |---------|---------|
-| WordPress | `eveonion.com/wp-json/wp/v2/posts`, user `nova`, password `EVEONION_APP_PASSWORD_REDACTED` |
+| WordPress | eveonion.com/wp-json/wp/v2/posts — credentials in vault (wordpress/eveonion_*) |
 | Twitter/X | @EVEOnionNews via Upload-Post API, profile "Eveonion" |
 | Upload-Post API | Key in `credentials/uploadpost.env`, profile "Eveonion" |
 | Discord | #eveonion (1484624659633934587) |
 
 ## WordPress Publishing
 
-Must include `User-Agent` header or ModSecurity blocks the request:
+Must include `User-Agent` header or ModSecurity blocks the request. Use vault for credentials:
 ```python
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vault_helper import get_credential
+
+EVE_URL = get_credential('wordpress', 'eveonion_url')
+EVE_USER = get_credential('wordpress', 'eveonion_user')
+EVE_PASS = get_credential('wordpress', 'eveonion_pass')
+
 import requests, base64
-auth = base64.b64encode(b'nova:EVEONION_APP_PASSWORD_REDACTED').decode()
+auth = base64.b64encode(f'{EVE_USER}:{EVE_PASS}'.encode()).decode()
 headers = {
     'Authorization': f'Basic {auth}',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',

@@ -9,9 +9,13 @@ import os
 import sys
 import random
 from datetime import datetime
+from pathlib import Path
 
-# Config
-API_KEY = "UPLOADPOST_API_KEY_REDACTED"
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vault_helper import get_credential
+
+# Config from vault
+API_KEY = get_credential('uploadpost', 'api_key')
 PROFILE = "Kybernauts"
 STATE_FILE = "data/kybernauts/propaganda_rotation.json"
 

@@ -50,7 +50,8 @@ def _auth(user: str, password: str) -> dict[str, str]:
     return {
         'Authorization': f'Basic {token}',
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0'
     }
 
 def list_posts(site_key: str, search: str = None, status: str = None, per_page: int = 10) -> list:
@@ -116,6 +117,7 @@ def upload_media(site_key: str, file_path: str, alt: str = '') -> int:
     headers = _auth(site['user'], site['pass'])
     url = f"{site['url']}/media"
     headers.pop('Content-Type', None)
+    headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0'
     with open(file_path, 'rb') as f:
         files = {'file': (Path(file_path).name, f)}
         r = requests.post(url, headers=headers, files=files, data={'alt_text': alt})
