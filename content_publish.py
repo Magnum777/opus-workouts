@@ -1,20 +1,26 @@
 """
-Long-form researched content for aitoolalliance.com and aibusinessinsider.org
+Long-form researched content publisher for aitoolalliance.com and aibusinessinsider.org
+Loads site credentials from environment variables.
 """
 
 import xmlrpc.client
 from datetime import datetime
+import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 SITES = {
     'aitoolalliance.com': {
-        'url': 'https://aitoolalliance.com/xmlrpc.php',
-        'user': 'aitoolalliance_u6cbhe',
-        'pass': <SCRUBBED_WORDPRESS_APP_PASSWORD>
+        'url': os.environ.get('AITOOLALLIANCE_XMLRPC_URL', 'https://aitoolalliance.com/xmlrpc.php'),
+        'user': os.environ.get('AITOOLALLIANCE_USER', ''),
+        'pass': os.environ.get('AITOOLALLIANCE_APP_PASSWORD', '')
     },
     'aibusinessinsider.org': {
-        'url': 'https://aibusinessinsider.org/xmlrpc.php',
-        'user': 'nova.cofounder@gmail.com',
-        'pass': <SCRUBBED_WORDPRESS_APP_PASSWORD>
+        'url': os.environ.get('AIBUSINESSINSIDER_XMLRPC_URL', 'https://aibusinessinsider.org/xmlrpc.php'),
+        'user': os.environ.get('AIBUSINESSINSIDER_USER', ''),
+        'pass': os.environ.get('AIBUSINESSINSIDER_APP_PASSWORD', '')
     }
 }
 
