@@ -14,49 +14,64 @@ Scope: All Python and shell scripts in workspace + scripts/ directory
 
 ---
 
-## P0 — Hardcoded Secrets (CRITICAL)
+## P0 — Hardcoded Secrets (CRITICAL) — FIXED 2026-07-10
 
-### 1. scripts/cashflow_real.py
-- **Violation:** Lines 7-8 — Hardcoded Plaid `clientId` and `secret` directly in source code
-- **Risk:** API credentials committed to git history. Anyone with repo access sees production Plaid credentials.
-- **Code:**
-  ```python
-  config = plaid.Configuration(
-      host='https://production.plaid.com',
-      api_key={'clientId': '6a50015a66e1a0000ebc49d7', 'secret': '6f6c820c251156fe033f1591a903ee'}
-  )
-  ```
-- **Fix:** Load from `credentials/plaid.env` or env vars, like `scripts/plaid_finance.py` does.
+All secrets moved to local SQLite vault (`scripts/credentials/vault.db`).
+Scripts updated to use `vault_helper.get_credential()` instead of hardcoded values.
 
-### 2. scripts/monthly_expenses.py
-- **Violation:** Lines 8-9 — Same hardcoded Plaid credentials as cashflow_real.py
-- **Risk:** Same as above — production credentials in source.
-- **Fix:** Same fix — use env/config file pattern.
+### ✅ scripts/cashflow_real.py — FIXED
+- ~~Lines 7-8 — Hardcoded Plaid `clientId` and `secret`~~
+- Now uses `vault_helper.get_credential('plaid', 'client_id')` / `get_credential('plaid', 'secret')`
 
-### 3. content_publish.py
-- **Violation:** Lines 8-15 — Hardcoded WordPress XML-RPC URLs, usernames, and **app passwords** in plain text
-- **Risk:** WordPress admin credentials exposed. Sites can be compromised.
-- **Code:**
-  ```python
-  SITES = {
-      'aitoolalliance.com': {
-          'url': 'https://aitoolalliance.com/xmlrpc.php',
-          'user': 'aitoolalliance_u6cbhe',
-          'pass': 'PXop SzVQ b6wX IAyr FSig 8ZfL'
-      },
-      'aibusinessinsider.org': {
-          'url': 'https://aibusinessinsider.org/xmlrpc.php',
-          'user': 'nova.cofounder@gmail.com',
-          'pass': 'sDLx Ja22 YxcI QAok gu8u xRXI'
-      }
-  }
-  ```
-- **Fix:** Move to `credentials/wordpress.env` or env vars. Load at runtime.
+### ✅ scripts/monthly_expenses.py — FIXED
+- ~~Same hardcoded Plaid credentials~~
+- Same fix as above
 
-### 4. scripts/sweep_all.py
-- **Violation:** Lines 3-4 — Hardcoded env var names (not values, but poor practice for isolation context)
-- **Risk:** Less severe but contributes to config sprawl. Isolated crons can't read Windows env vars per AGENTS.md.
-- **Fix:** Use `.gmail_accounts.json` pattern like `gmail_spam_sweep_v2.py`.
+### ✅ content_publish.py — FIXED
+- ~~Lines 8-15 — Hardcoded WordPress XML-RPC URLs, usernames, app passwords~~
+- Now uses `vault_helper.get_credential()` for all WordPress credentials
+
+### ✅ scripts/sweep_all.py — FIXED
+- ~~Lines 3-4 — Hardcoded env var names~~
+- Now uses vault for Gmail credentials
+
+### Also Fixed (not in original audit):
+- `daily_publish.py` — WordPress credentials moved to vault
+- `scripts/publish_aibusiness.py` — WordPress credentials moved to vault
+- `scripts/publish_wordpress_batch.py` — WordPress credentials moved to vault
+- `scripts/add_menu_item.py` — WordPress credentials moved to vault
+- `scripts/check_markdown_posts.py` — WordPress credentials moved to vault
+- `scripts/check_menus.py` — WordPress credentials moved to vault
+- `scripts/disable_comments.py` — WordPress credentials moved to vault
+- `scripts/disable_default_comments.py` — WordPress credentials moved to vault
+- `scripts/find_marketplace_post.py` — WordPress credentials moved to vault
+- `scripts/fix_aicofounder_posts.py` — WordPress credentials moved to vault
+- `scripts/fix_br_lists.py` — WordPress credentials moved to vault
+- `scripts/fix_dup_titles.py` — WordPress credentials moved to vault
+- `scripts/publish_product_page.py` — WordPress credentials moved to vault
+- `scripts/publish_products_page.py` — WordPress credentials moved to vault
+- `scripts/verify_post_369.py` — WordPress credentials moved to vault
+- `scripts/all_inflows.py` — Plaid credentials moved to vault
+- `scripts/check_all.py` — Plaid credentials moved to vault
+- `scripts/check_credit.py` — Plaid credentials moved to vault
+- `scripts/check_liabilities.py` — Plaid credentials moved to vault
+- `scripts/check_tokens.py` — Plaid credentials moved to vault
+- `scripts/expense_snapshot.py` — Plaid credentials moved to vault
+- `scripts/hard_numbers.py` — Plaid credentials moved to vault
+- `scripts/real_monthly_burn.py` — Plaid credentials moved to vault
+- `scripts/six_month_overview.py` — Plaid credentials moved to vault
+- `scripts/test_acct_type.py` — Plaid credentials moved to vault
+- `scripts/test_networth.py` — Plaid credentials moved to vault
+- `scripts/test_prod.py` — Plaid credentials moved to vault
+- `scripts/update_consent.py` — Plaid credentials moved to vault
+- `scripts/variable_spending.py` — Plaid credentials moved to vault
+
+### Files Created:
+- `scripts/credential_vault.py` — SQLite vault CLI for storing/retrieving credentials
+- `scripts/vault_helper.py` — Runtime helper: `get_credential(service, key) -> str`
+- `.gitignore` — `scripts/credentials/vault.db` excluded from version control
+
+**Status: ✅ COMPLETE — No hardcoded secrets remain in Python source**
 
 ---
 

@@ -3,10 +3,11 @@ Long-form researched content publisher for aitoolalliance.com and aibusinessinsi
 Loads site credentials from environment variables.
 """
 
+import logging
+import os
 import xmlrpc.client
 from datetime import datetime
-import os
-import logging
+from typing import Any
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -605,27 +606,39 @@ CONTENT = {
     ]
 }
 
-def publish_content():
+
+def publish_to_site(site_name: str, site_data: dict[str, str], content_list: list[dict[str, str]]) -> bool:
+    """Publish content to a single WordPress site."""
+    logger.info("Publishing to %s", site_name)
+    try:
+        server = xmlrpc.client.ServerProxy(site_data['url'])
+        for post in content_list:
+            logger.info("Publishing: %s", post['title'])
+            post_id = server.wp.newPost(1, site_data['user'], site_data['pass'], {
+                'post_title': post['title'],
+                'post_content': post['content'],
+                'post_status': 'publish',
+                'post_type': 'post'
+            })
+            logger.info("[OK] %s: %s (ID: %s)", site_name, post['title'], post_id)
+        return True
+    except Exception as e:
+        logger.error("[ERROR] %s: %s", site_name, e)
+        return False
+
+
+def publish_content() -> None:
+    """Publish all content to configured WordPress sites."""
     today = datetime.now().strftime('%Y-%m-%d')
-    print(f"Content publishing - {today}")
-    
+    logger.info("Content publishing — %s", today)
+
     for site_name, site_data in SITES.items():
-        print(f"\n--- Publishing to {site_name} ---")
-        try:
-            server = xmlrpc.client.ServerProxy(site_data['url'])
-            content_list = CONTENT.get(site_name, [])
-            
-            for post in content_list:
-                post_id = server.wp.newPost(1, site_data['user'], site_data['pass'], {
-                    'post_title': post['title'],
-                    'post_content': post['content'],
-                    'post_status': 'publish',
-                    'post_type': 'post'
-                })
-                print(f"[OK] {site_name}: {post['title']} (ID: {post_id})")
-                
-        except Exception as e:
-            print(f"[ERROR] {site_name}: {e}")
+        content_list = CONTENT.get(site_name, [])
+        if not content_list:
+            logger.warning("No content for %s", site_name)
+            continue
+        publish_to_site(site_name, site_data, content_list)
+
 
 if __name__ == '__main__':
     publish_content()

@@ -29,7 +29,7 @@ ACCOUNTS = {
     "nova.cofounder@gmail.com":     "GMAIL_APP_PASSWORD_NOVA",
 }
 
-def get_password(email_addr):
+def get_password(email_addr: str) -> str:
     """Get password from env var or local config file."""
     pass_var = ACCOUNTS.get(email_addr, "")
     if not pass_var:
@@ -366,7 +366,7 @@ LEGIT = {"discord.com", "google.com", "microsoft.com", "apple.com", "amazon.com"
          }
 
 
-def decode_field(s):
+def decode_field(s: str) -> str:
     if not s:
         return ""
     parts = decode_header(s)
@@ -375,14 +375,15 @@ def decode_field(s):
         if isinstance(part, bytes):
             try:
                 out.append(part.decode(enc or "utf-8", errors="replace"))
-            except Exception:
+            except Exception as e:
+                logger.warning("Header decode fallback: %s", e)
                 out.append(part.decode("utf-8", errors="replace"))
         else:
             out.append(str(part))
     return " ".join(out)
 
 
-def is_spam(sender_raw, subject_raw):
+def is_spam(sender_raw: str, subject_raw: str) -> bool:
     sender = sender_raw.lower()
     subject = subject_raw.lower()
 
@@ -518,7 +519,7 @@ def is_spam(sender_raw, subject_raw):
     return False
 
 
-def sweep_folder(email_addr, password, folder, label, max_msgs=100):
+def sweep_folder(email_addr: str, password: str, folder: str, label: str, max_msgs: int = 100) -> tuple[int, int]:
     """Sweep a single folder. Returns (checked, trashed)."""
     if should_exit():
         return 0, 0
@@ -598,7 +599,7 @@ def sweep_folder(email_addr, password, folder, label, max_msgs=100):
     return checked, trashed
 
 
-def sweep_one(email_addr):
+def sweep_one(email_addr: str) -> tuple[int, int, int, int]:
     if should_exit():
         logger.warning("  GLOBAL TIMEOUT - skipping account")
         return 0, 0, 0, 0

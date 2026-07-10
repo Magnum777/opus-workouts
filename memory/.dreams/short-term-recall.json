@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-10T11:43:18.260Z",
+  "updatedAt": "2026-07-10T11:56:29.937Z",
   "entries": {
     "memory:memory/2026-05-07.md:1:28": {
       "key": "memory:memory/2026-05-07.md:1:28",
@@ -2355,13 +2355,13 @@
       "endLine": 30,
       "source": "memory",
       "snippet": "# 2026-06-02 - ContentNova Cron Run ## aicofounderstack.com Article Published - **Title:** TradeBot Systems Update: Building a Safety-First Memecoin Agent That Runs Itself - **Post ID:** 545 - **URL:** https://www.aicofounderstack.com/2026/06/02/tradebot-systems-update-building-a-safety-first-memecoin-agent-that-runs-itself/ - **Type:** Product update / case study - **Focus:** TradeBot architecture, safety scoring, live portfolio data (, 4 positions), Gumroad product tie-in - **Featured image:** Uploaded temp_images/featured_ai.jpg as media ID 546 - **Status:** Published at 4:00 AM ET ## Key Data Points Used - Portfolio value: ~ (JUP, PENGU, TRUMP, ORCA at ~ each) - Free USDC: (below buy",
-      "recallCount": 15,
+      "recallCount": 16,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 15,
+      "totalScore": 16,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-05T15:11:40.592Z",
-      "lastRecalledAt": "2026-07-10T11:43:18.260Z",
+      "lastRecalledAt": "2026-07-10T11:56:29.937Z",
       "queryHashes": [
         "24daef00dd14",
         "1b10f05c2e24",
@@ -2377,7 +2377,8 @@
         "1ad5a1607fa5",
         "4260d7ef6681",
         "8c3b6ad0a779",
-        "a25e5e76949d"
+        "a25e5e76949d",
+        "9f982bb991f3"
       ],
       "recallDays": [
         "2026-06-05",
@@ -3091,13 +3092,13 @@
       "endLine": 11,
       "source": "memory",
       "snippet": "## Content-Nova Publication - 2026-06-11 04:00 - **Site:** aicofounderstack.com - **Post:** Nova TradeBot Hits Realized PnL in 30 Days -- Here is the Safety Architecture That Makes It Possible - **Post ID:** 569 - **Featured Image ID:** 570 - **URL:** https://www.aicofounderstack.com/2026/06/11/nova-tradebot-hits-realized-pnl-in-30-days-here-is-the-safety-architecture-that-makes-it-possible/ - **Type:** Product-focused case study / sales content - **Word count:** ~1,400 words - **Topic:** TradeBot real PnL breakdown (/45 trades/59% win rate) + EVE Assets Viewer build case study + AI cofounder market analysis + Nova V3 Airlock teaser",
-      "recallCount": 9,
+      "recallCount": 10,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 9,
+      "totalScore": 10,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-13T02:39:51.864Z",
-      "lastRecalledAt": "2026-06-26T08:59:29.699Z",
+      "lastRecalledAt": "2026-07-10T11:56:29.937Z",
       "queryHashes": [
         "c575ea18f8fc",
         "681084e45a14",
@@ -3107,7 +3108,8 @@
         "1ec13fcc2380",
         "1ad5a1607fa5",
         "4260d7ef6681",
-        "8c3b6ad0a779"
+        "8c3b6ad0a779",
+        "9f982bb991f3"
       ],
       "recallDays": [
         "2026-06-12",
@@ -3117,7 +3119,8 @@
         "2026-06-20",
         "2026-06-21",
         "2026-06-24",
-        "2026-06-26"
+        "2026-06-26",
+        "2026-07-10"
       ],
       "conceptTags": [
         "content-nova",
@@ -3137,13 +3140,13 @@
       "endLine": 28,
       "source": "memory",
       "snippet": "## EVE Assets Viewer - LIVE 2026-06-10 21:34 - **URL:** https://magnum777.github.io/kybernauts-assets/ - **Passphrase:** `u^w%dEUq!$_&E5l++oGjXT%5UYqlSWZEiASjtTdd_Cbn&ob5w6e9Y8v` - **Data:** 14,782 assets, 749 locations, 62.08B ISK, 4 systems - **ESI:** 3 Director alts authed (OpusMagnum, Friend of Matterall, Brax Thiel) - **Sync:** Node.js script pulls ESI → encrypts → pushes to GitHub Pages - **Rate limit:** 500ms delays, batched parallel type/location resolution - **NAS setup:** `scripts/NAS-SETUP.md` for Synology Task Scheduler (30 min cron) - **Repo:** https://github.com/Magnum777/kybernauts-assets - **Files:** `scripts/esi-auth.js`, `scripts/esi-sync.js`, `scripts/setup.js` ## Conte",
-      "recallCount": 9,
+      "recallCount": 10,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 9,
+      "totalScore": 10,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-13T02:39:51.864Z",
-      "lastRecalledAt": "2026-06-26T14:13:43.456Z",
+      "lastRecalledAt": "2026-07-10T11:56:29.937Z",
       "queryHashes": [
         "c575ea18f8fc",
         "681084e45a14",
@@ -3153,7 +3156,8 @@
         "1ad5a1607fa5",
         "4260d7ef6681",
         "8c3b6ad0a779",
-        "7efa18764cbf"
+        "7efa18764cbf",
+        "9f982bb991f3"
       ],
       "recallDays": [
         "2026-06-12",
@@ -3163,7 +3167,8 @@
         "2026-06-20",
         "2026-06-21",
         "2026-06-24",
-        "2026-06-26"
+        "2026-06-26",
+        "2026-07-10"
       ],
       "conceptTags": [
         "5uyqlswzeiasjttdd-cbn",
@@ -3469,13 +3474,13 @@
       "endLine": 150,
       "source": "memory",
       "snippet": "### Kybernauts (from earlier) - `kybernauts_reddit_post.md`, `forum_bumps.md`, `twitter_thread.md`, `poster_prompt.md` ### TradeBot Strategy Memo (from earlier) - `tradebot_strategy_memo.md` — Deep market analysis, $92 portfolio recommendations ## WordPress Publishing (Partial) - aicofounderstack.com: 2 articles published ✅ - \"How I Built a $49 AI Product in 48 Hours\" → https://www.aicofounderstack.com/2026/05/31/how-i-built-a-49-ai-product-in-48-hours-step-by-step/ - \"AI Agents vs Traditional SaaS\" → https://www.aicofounderstack.com/2026/05/31/ai-agents-vs-traditional-saas-why-the-future-is-autonomous/ - aitoolalliance.com: 2 articles failed (401 — app password expired/permi",
-      "recallCount": 7,
+      "recallCount": 8,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 7,
+      "totalScore": 8,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-15T02:10:33.633Z",
-      "lastRecalledAt": "2026-06-26T08:59:29.699Z",
+      "lastRecalledAt": "2026-07-10T11:56:29.937Z",
       "queryHashes": [
         "90945506cbac",
         "3f9ecc1b4875",
@@ -3483,7 +3488,8 @@
         "1ad5a1607fa5",
         "3e4830373925",
         "4260d7ef6681",
-        "8c3b6ad0a779"
+        "8c3b6ad0a779",
+        "9f982bb991f3"
       ],
       "recallDays": [
         "2026-06-14",
@@ -3492,7 +3498,8 @@
         "2026-06-21",
         "2026-06-22",
         "2026-06-24",
-        "2026-06-26"
+        "2026-06-26",
+        "2026-07-10"
       ],
       "conceptTags": [
         "kybernauts-reddit-post.md",
@@ -3512,20 +3519,21 @@
       "endLine": 132,
       "source": "memory",
       "snippet": "### D. WordPress Articles (6) ✅ - `wp_aitool_1_claude_vs_gpt.md` — aitoolalliance.com - `wp_aitool_2_best_tools.md` — aitoolalliance.com - `wp_aibusiness_1_agency_scaling.md` — aibusinessinsider.org - `wp_aibusiness_2_100_stack.md` — aibusinessinsider.org - `wp_aicofounder_1_48hour_product.md` — aicofounderstack.com - `wp_aicofounder_2_agents_vs_saas.md` — aicofounderstack.com ### E. Product Hunt Launch Package ✅ - `ph_launch_post.md` — Tagline, description, maker comment, CTA - `ph_launch_timeline.md` — 7-day pre + launch day + 7-day post - `ph_faq.md` — 10 objections ### F. Twitter Marketing Thread ✅ - `twitter_tradebot_thread.md` — Hook + 11-tweet story + offer + engagemen",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 6,
+      "totalScore": 7,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-15T02:10:33.633Z",
-      "lastRecalledAt": "2026-06-26T08:59:29.699Z",
+      "lastRecalledAt": "2026-07-10T11:56:29.937Z",
       "queryHashes": [
         "90945506cbac",
         "3f9ecc1b4875",
         "1ec13fcc2380",
         "1ad5a1607fa5",
         "4260d7ef6681",
-        "8c3b6ad0a779"
+        "8c3b6ad0a779",
+        "9f982bb991f3"
       ],
       "recallDays": [
         "2026-06-14",
@@ -3533,7 +3541,8 @@
         "2026-06-20",
         "2026-06-21",
         "2026-06-24",
-        "2026-06-26"
+        "2026-06-26",
+        "2026-07-10"
       ],
       "conceptTags": [
         "gpt",
@@ -3553,20 +3562,21 @@
       "endLine": 54,
       "source": "memory",
       "snippet": "## Content Nova Featured Images - New script: `scripts/content-nova/featured_image.py` - Searches Unsplash, downloads, uploads to WP Media Library, attaches as featured image - Successfully tested on aitoolalliance.com post 187 - All 3 Content Nova crons updated to include Step 5: featured image after publish ## Stable Diffusion Fixed - Fresh ComfyUI v0.22.0 installed at `workspace/ComfyUI` with DirectML for AMD 9070 XT - Old WebUI had broken venv, Python 3.14 incompatibility, stale repo - Programmatic generation via `generate.py` ## LanceDB Vector Memory Restored - Copied `nova_memory/vector_memory.py` from old install - Patched for new workspace paths - Tested working with Ollama `nomic-",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 6,
+      "totalScore": 7,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-15T02:10:33.633Z",
-      "lastRecalledAt": "2026-06-26T08:59:29.699Z",
+      "lastRecalledAt": "2026-07-10T11:56:29.937Z",
       "queryHashes": [
         "90945506cbac",
         "3f9ecc1b4875",
         "1ec13fcc2380",
         "1ad5a1607fa5",
         "4260d7ef6681",
-        "8c3b6ad0a779"
+        "8c3b6ad0a779",
+        "9f982bb991f3"
       ],
       "recallDays": [
         "2026-06-14",
@@ -3574,7 +3584,8 @@
         "2026-06-20",
         "2026-06-21",
         "2026-06-24",
-        "2026-06-26"
+        "2026-06-26",
+        "2026-07-10"
       ],
       "conceptTags": [
         "aitoolalliance.com",

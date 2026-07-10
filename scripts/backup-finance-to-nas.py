@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 """
-Backup finance data to Synology NAS
-Run manually or via cron
+Backup finance data to Synology NAS.
+
+Run manually or via cron. Uses SSH/SCP to copy finance-related files
+from the local workspace to the NAS backup directory.
 """
 
-import shutil
+import logging
 import subprocess
 from pathlib import Path
 from datetime import datetime
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 NAS_HOST = "192.168.68.82"
 NAS_USER = "Nova"
@@ -25,43 +33,49 @@ BACKUP_ITEMS = [
     "docs/nova-finance.md",
 ]
 
-def main():
+
+def run_ssh_command(cmd: str) -> None:
+    """Run a command on the NAS via SSH."""
+    subprocess.run(["ssh", f"{NAS_USER}@{NAS_HOST}", cmd], check=True)
+
+
+def copy_to_nas(src: Path, dest_dir: str) -> None:
+    """Copy a file or directory to the NAS via SCP."""
+    dest = f"{NAS_USER}@{NAS_HOST}:{dest_dir}/"
+    if src.is_dir():
+        subprocess.run(["scp", "-r", str(src), dest], check=True)
+    else:
+        subprocess.run(["scp", str(src), dest], check=True)
+
+
+def main() -> None:
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     backup_dir = f"{NAS_PATH}/{timestamp}"
-    
-    print(f"Backing up to {NAS_HOST}:{backup_dir}")
-    
+
+    logger.info("Backing up to %s:%s", NAS_HOST, backup_dir)
+
     # Create remote dir via SSH
-    subprocess.run([
-        "ssh", f"{NAS_USER}@{NAS_HOST}",
-        f"mkdir -p {backup_dir}"
-    ], check=True)
-    
+    run_ssh_command(f"mkdir -p {backup_dir}")
+
     # Copy each item
     for item in BACKUP_ITEMS:
         src = LOCAL_DIR / item
         if src.exists():
-            if src.is_dir():
-                subprocess.run([
-                    "scp", "-r", str(src),
-                    f"{NAS_USER}@{NAS_HOST}:{backup_dir}/"
-                ], check=True)
-            else:
-                subprocess.run([
-                    "scp", str(src),
-                    f"{NAS_USER}@{NAS_HOST}:{backup_dir}/"
-                ], check=True)
-            print(f"  [OK] {item}")
+            try:
+                copy_to_nas(src, backup_dir)
+                logger.info("  [OK] %s", item)
+            except subprocess.CalledProcessError as e:
+                logger.error("  [FAIL] %s: %s", item, e)
         else:
-            print(f"  [MISSING] {item}")
-    
+            logger.warning("  [MISSING] %s", item)
+
     # Update latest symlink
-    subprocess.run([
-        "ssh", f"{NAS_USER}@{NAS_HOST}",
-        f"ln -sfn {backup_dir} {NAS_PATH}/latest"
-    ], check=True)
-    
-    print(f"\nDone. Latest: {NAS_HOST}:{NAS_PATH}/latest")
+    try:
+        run_ssh_command(f"ln -sfn {backup_dir} {NAS_PATH}/latest")
+        logger.info("Done. Latest: %s:%s/latest", NAS_HOST, NAS_PATH)
+    except subprocess.CalledProcessError as e:
+        logger.error("Failed to update latest symlink: %s", e)
+
 
 if __name__ == "__main__":
     main()

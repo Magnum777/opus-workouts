@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-discover_spam_patterns.py v2.1
+discover_spam_patterns.py v2.2
 
 Scans Gmail Spam AND Inbox folders across all accounts, extracts recurring patterns
 (domains, keywords, phrases) that are NOT already in spam_sweep_v2.py,
@@ -10,18 +10,34 @@ Uses gmail_spam_sweep_v2.is_spam() for inbox filtering when available.
 
 Run this daily to stay ahead of evolving spam.
 """
-import imaplib, email, re, json, os, sys, time, collections
-from email.header import decode_header
+import collections
+import email
+import imaplib
+import json
+import logging
+import os
+import re
+import sys
+import time
 from datetime import datetime, timezone, timedelta
+from email.header import decode_header
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
 START_TIME = time.time()
 MAX_RUNTIME = 240  # 4 min max
 
-def should_exit():
+
+def should_exit() -> bool:
     return time.time() - START_TIME > MAX_RUNTIME
+
 
 LOCAL_CONFIG = os.path.join(os.path.dirname(__file__), ".gmail_accounts.json")
 
@@ -100,7 +116,7 @@ UNICODE_OBFUSCATION = re.compile(r'[\uff10-\uff19\uff21-\uff3a\uff41-\uff5a]')
 EMOJI_RE = re.compile(r'[\U0001F600-\U0001F64F\U0001F300-\U0001F5FF\U0001F680-\U0001F6FF\U0001F1E0-\U0001F1FF\U00002702-\U000027B0\U000024C2-\U0001F251]')
 
 
-def is_suspicious_domain(domain, sender_name, subject):
+def is_suspicious_domain(domain: str, sender_name: str, subject: str) -> bool:
     if domain in LEGIT:
         return False
     if any(d in domain for d in ["theladders", "indeed", "monster", "ziprecruiter", "glassdoor"]):
@@ -119,7 +135,7 @@ def is_suspicious_domain(domain, sender_name, subject):
     return any(s in combined for s in spam_signals)
 
 
-def get_password(email_addr):
+def get_password(email_addr: str) -> str:
     pass_var = ACCOUNTS.get(email_addr, "")
     if not pass_var:
         return ""
@@ -130,11 +146,12 @@ def get_password(email_addr):
         with open(LOCAL_CONFIG, "r", encoding="utf-8") as f:
             config = json.load(f)
         return config.get(email_addr, "").strip().replace(" ", "")
-    except Exception:
+    except Exception as e:
+        logger.warning("Config load failed for %s: %s", email_addr, e)
         return ""
 
 
-def decode_str(s):
+def decode_str(s: str) -> str:
     if not s:
         return ""
     parts = decode_header(s)
@@ -143,28 +160,29 @@ def decode_str(s):
         if isinstance(part, bytes):
             try:
                 out.append(part.decode(enc or "utf-8", errors="replace"))
-            except Exception:
+            except Exception as e:
+                logger.warning("Header decode fallback: %s", e)
                 out.append(part.decode("utf-8", errors="replace"))
         else:
             out.append(str(part))
     return " ".join(out)
 
 
-def extract_domain(sender):
+def extract_domain(sender: str) -> str:
     m = re.search(r'@([^\u003e\s]+)', sender)
     return m.group(1).lower() if m else ""
 
 
-def extract_sender_name(sender):
+def extract_sender_name(sender: str) -> str:
     m = re.match(r'"?([^"\u003c]+)"?\s*\u003c', sender)
     return m.group(1).strip() if m else sender
 
 
-def clean_subject(subj):
+def clean_subject(subj: str) -> str:
     return re.sub(r'[^\w\s]', ' ', subj.lower()).strip()
 
 
-def extract_phrases(subject, min_len=4, max_len=12):
+def extract_phrases(subject: str, min_len: int = 4, max_len: int = 12) -> list[str]:
     text = clean_subject(subject)
     words = text.split()
     phrases = []
@@ -180,12 +198,13 @@ def extract_phrases(subject, min_len=4, max_len=12):
     return phrases
 
 
-def load_existing_patterns():
+def load_existing_patterns() -> dict[str, set[str]]:
     existing = {"domains": set(), "keywords": set(), "phrases": set(), "regexes": set()}
     try:
         with open(SWEEP_SCRIPT, "r", encoding="utf-8") as f:
             content = f.read()
-    except Exception:
+    except Exception as e:
+        logger.warning("Failed to load existing patterns from %s: %s", SWEEP_SCRIPT, e)
         return existing
 
     dom_match = re.search(r'SPAM_DOMAINS\s*=\s*\{(.*?)\}', content, re.DOTALL)
@@ -219,7 +238,7 @@ def load_existing_patterns():
     return existing
 
 
-def discover_spam(mail, existing, label="Spam", max_msgs=150):
+def discover_spam(mail: imaplib.IMAP4_SSL, existing: dict[str, set[str]], label: str = "Spam", max_msgs: int = 150) -> dict:
     since_date = (datetime.now(timezone.utc) - timedelta(days=DAYS_BACK)).strftime("%d-%b-%Y")
     _, uids_raw = mail.uid("search", None, f'(SINCE "{since_date}")')
     uids = uids_raw[0].split() if uids_raw and uids_raw[0] else []
@@ -264,7 +283,8 @@ def discover_spam(mail, existing, label="Spam", max_msgs=150):
                 if len(word) > 3:
                     word_counter[word] += 1
 
-        except Exception:
+        except Exception as e:
+            logger.warning("Error processing spam message %s: %s", uid, e)
             continue
 
     return {
@@ -278,7 +298,7 @@ def discover_spam(mail, existing, label="Spam", max_msgs=150):
     }
 
 
-def is_inbox_spam(sender, subject):
+def is_inbox_spam(sender: str, subject: str) -> bool:
     """Check if an inbox message is actually spam (stricter than discover_spam)."""
     combined = (sender + " " + subject).lower()
 
@@ -303,7 +323,7 @@ def is_inbox_spam(sender, subject):
     return False
 
 
-def discover_inbox_spam(mail, existing, max_msgs=80):
+def discover_inbox_spam(mail: imaplib.IMAP4_SSL, existing: dict[str, set[str]], max_msgs: int = 80) -> dict:
     """Scan inbox for messages that the sweep would flag as spam."""
     since_date = (datetime.now(timezone.utc) - timedelta(days=DAYS_BACK)).strftime("%d-%b-%Y")
     _, uids_raw = mail.uid("search", None, f'(SINCE "{since_date}")')
@@ -353,7 +373,8 @@ def discover_inbox_spam(mail, existing, max_msgs=80):
                 if len(word) > 3:
                     word_counter[word] += 1
 
-        except Exception:
+        except Exception as e:
+            logger.warning("Error processing inbox message %s: %s", uid, e)
             continue
 
     return {
@@ -367,7 +388,7 @@ def discover_inbox_spam(mail, existing, max_msgs=80):
     }
 
 
-def filter_new_patterns(data, existing):
+def filter_new_patterns(data: dict, existing: dict[str, set[str]]) -> dict:
     new_domains = {}
     new_phrases = {}
     new_words = {}
@@ -398,7 +419,7 @@ def filter_new_patterns(data, existing):
     }
 
 
-def auto_update_sweep(existing, all_new):
+def auto_update_sweep(existing: dict[str, set[str]], all_new: dict) -> dict:
     changes = {"domains": [], "phrases": [], "words": [], "senders": []}
 
     with open(SWEEP_SCRIPT, "r", encoding="utf-8") as f:
@@ -485,75 +506,80 @@ def auto_update_sweep(existing, all_new):
         try:
             repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
             os.system(f'cd "{repo_root}" && git add scripts/gmail_spam_sweep_v2.py && git commit -m "spam: auto-add {total_changes} discovered signatures ({datetime.now().strftime("%Y-%m-%d")})" > nul 2>&1')
-            print("  📦 Committed changes to git.")
-        except Exception:
-            pass
+            logger.info("  Committed changes to git.")
+        except Exception as e:
+            logger.warning("Git commit failed: %s", e)
 
     return changes
 
 
-def print_report_after_update(changes):
+def print_report_after_update(changes: dict) -> None:
     total = sum(len(v) for v in changes.values())
     if total == 0:
-        print("  No changes applied (all patterns were already known or rejected).")
+        logger.info("  No changes applied (all patterns were already known or rejected).")
         return
 
-    print(f"\n  🔄 AUTO-UPDATED gmail_spam_sweep_v2.py ({total} patterns added):")
+    logger.info("  AUTO-UPDATED gmail_spam_sweep_v2.py (%d patterns added):", total)
     if changes["domains"]:
-        print(f"    +{len(changes['domains'])} domains")
+        logger.info("    +%d domains", len(changes["domains"]))
         for d in changes["domains"][:5]:
-            print(f'      "{d}"')
+            logger.info('      "%s"', d)
         if len(changes["domains"]) > 5:
-            print(f"      ... and {len(changes['domains'])-5} more")
+            logger.info("      ... and %d more", len(changes["domains"]) - 5)
     if changes["phrases"]:
-        print(f"    +{len(changes['phrases'])} phrases (DATING)")
+        logger.info("    +%d phrases (DATING)", len(changes["phrases"]))
         for p in changes["phrases"][:5]:
-            print(f'      "{p}"')
+            logger.info('      "%s"', p)
         if len(changes["phrases"]) > 5:
-            print(f"      ... and {len(changes['phrases'])-5} more")
+            logger.info("      ... and %d more", len(changes["phrases"]) - 5)
     if changes["words"]:
-        print(f"    +{len(changes['words'])} keywords (RE_SEXUAL)")
+        logger.info("    +%d keywords (RE_SEXUAL)", len(changes["words"]))
     if changes["senders"]:
-        print(f"    +{len(changes['senders'])} sender patterns (RE_FAKE_SENDER)")
-    print(f"\n  Saved record to {OUTPUT_JSON}")
+        logger.info("    +%d sender patterns (RE_FAKE_SENDER)", len(changes["senders"]))
+    logger.info("  Saved record to %s", OUTPUT_JSON)
 
 
-def print_report(account, new_patterns, data, folder="Spam"):
-    print(f"\n{'='*50}")
-    print(f"NEW PATTERNS: {account} [{folder}]")
-    print(f"{'='*50}")
-    print(f"Processed {data['processed']} messages (last {DAYS_BACK} days)")
+def print_report(account: str, new_patterns: dict, data: dict, folder: str = "Spam") -> None:
+    logger.info("")
+    logger.info("=" * 50)
+    logger.info("NEW PATTERNS: %s [%s]", account, folder)
+    logger.info("=" * 50)
+    logger.info("Processed %d messages (last %d days)", data["processed"], DAYS_BACK)
 
     has_any = any(new_patterns.get(cat) for cat in ["domains", "phrases", "words", "senders"])
     if not has_any:
-        print("  No new recurring patterns found.")
+        logger.info("  No new recurring patterns found.")
         return
 
     if new_patterns.get("domains"):
-        print(f"\n  📧 NEW DOMAINS:")
+        logger.info("")
+        logger.info("  NEW DOMAINS:")
         for domain, count in sorted(new_patterns["domains"].items(), key=lambda x: -x[1]):
-            print(f'    "{domain}",  # ({count}x)')
+            logger.info('    "%s",  # (%dx)', domain, count)
 
     if new_patterns.get("phrases"):
-        print(f"\n  💬 NEW PHRASES:")
+        logger.info("")
+        logger.info("  NEW PHRASES:")
         for phrase, count in sorted(new_patterns["phrases"].items(), key=lambda x: -x[1]):
-            print(f'    "{phrase}",  # ({count}x)')
+            logger.info('    "%s",  # (%dx)', phrase, count)
 
     if new_patterns.get("words"):
-        print(f"\n  🔤 NEW KEYWORDS:")
+        logger.info("")
+        logger.info("  NEW KEYWORDS:")
         for word, count in sorted(new_patterns["words"].items(), key=lambda x: -x[1]):
-            print(f'    "{word}",  # ({count}x)')
+            logger.info('    "%s",  # (%dx)', word, count)
 
     if new_patterns.get("senders"):
-        print(f"\n  👤 NEW SENDER NAMES:")
+        logger.info("")
+        logger.info("  NEW SENDER NAMES:")
         for sender, count in sorted(new_patterns["senders"].items(), key=lambda x: -x[1]):
-            print(f'    {sender}  # ({count}x)')
+            logger.info('    %s  # (%dx)', sender, count)
 
 
-def scan_account(email_addr, existing, all_new):
+def scan_account(email_addr: str, existing: dict[str, set[str]], all_new: dict) -> int:
     password = get_password(email_addr)
     if not password:
-        print(f"  ⚠️ No password for {email_addr}, skipping.")
+        logger.warning("  No password for %s, skipping.", email_addr)
         return 0
 
     account_processed = 0
@@ -564,7 +590,7 @@ def scan_account(email_addr, existing, all_new):
         mail.login(email_addr, password)
         mail.select("[Gmail]/Spam", readonly=True)
     except Exception as e:
-        print(f"  ❌ {email_addr}: Spam login/select failed ({e})")
+        logger.error("  %s: Spam login/select failed (%s)", email_addr, e)
         return 0
 
     data = discover_spam(mail, existing, label="Spam", max_msgs=150)
@@ -586,7 +612,7 @@ def scan_account(email_addr, existing, all_new):
         mail.login(email_addr, password)
         mail.select("INBOX", readonly=True)
     except Exception as e:
-        print(f"  ❌ {email_addr}: INBOX login/select failed ({e})")
+        logger.error("  %s: INBOX login/select failed (%s)", email_addr, e)
         return account_processed
 
     inbox_data = discover_inbox_spam(mail, existing, max_msgs=80)
@@ -603,38 +629,38 @@ def scan_account(email_addr, existing, all_new):
     return account_processed
 
 
-def main():
-    print(f"🔍 Spam Pattern Discovery — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
-    print(f"Scanning last {DAYS_BACK} days of Gmail Spam + Inbox folders...")
+def main() -> None:
+    logger.info("Spam Pattern Discovery — %s", datetime.now().strftime("%Y-%m-%d %H:%M"))
+    logger.info("Scanning last %d days of Gmail Spam + Inbox folders...", DAYS_BACK)
 
     existing = load_existing_patterns()
-    print(f"Loaded {len(existing['domains'])} known domains, "
-          f"{len(existing['keywords'])} keywords, "
-          f"{len(existing['phrases'])} phrases.")
+    logger.info("Loaded %d known domains, %d keywords, %d phrases.",
+                len(existing["domains"]), len(existing["keywords"]), len(existing["phrases"]))
 
     all_new = {"domains": {}, "phrases": {}, "words": {}, "senders": {}}
     total_processed = 0
 
     for email_addr in ACCOUNTS.keys():
         if should_exit():
-            print("  ⏱ Max runtime reached, stopping.")
+            logger.info("  Max runtime reached, stopping.")
             break
         processed = scan_account(email_addr, existing, all_new)
         if processed:
             total_processed += processed
         time.sleep(0.5)
 
-    print(f"\n{'='*50}")
-    print(f"SUMMARY: Scanned {total_processed} messages across all accounts.")
+    logger.info("")
+    logger.info("=" * 50)
+    logger.info("SUMMARY: Scanned %d messages across all accounts.", total_processed)
 
     has_any = any(all_new.get(cat) for cat in ["domains", "phrases", "words", "senders"])
     if has_any:
-        print("✅ New patterns found!")
-        print("Auto-applying to gmail_spam_sweep_v2.py...")
+        logger.info("New patterns found!")
+        logger.info("Auto-applying to gmail_spam_sweep_v2.py...")
         changes = auto_update_sweep(existing, all_new)
         print_report_after_update(changes)
     else:
-        print("✅ No new patterns. Spam filters are current.")
+        logger.info("No new patterns. Spam filters are current.")
 
 
 if __name__ == "__main__":
