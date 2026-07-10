@@ -1,5 +1,7 @@
 import requests, base64, sys
+from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent.parent))
 from vault_helper import get_credential
 sys.stdout.reconfigure(encoding='utf-8')
 

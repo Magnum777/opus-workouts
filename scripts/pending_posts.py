@@ -1,7 +1,17 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent))
+from vault_helper import get_credential
+
 import requests, base64
-auth = base64.b64encode('nova:EVEONION_APP_PASSWORD_REDACTED'.encode()).decode()
+
+EVE_URL = get_credential('wordpress', 'eveonion_url')
+EVE_USER = get_credential('wordpress', 'eveonion_user')
+EVE_PASS = get_credential('wordpress', 'eveonion_pass')
+
+auth = base64.b64encode(f'{EVE_USER}:{EVE_PASS}'.encode()).decode()
 r = requests.get(
-    'https://eveonion.com/wp-json/wp/v2/posts?per_page=20&orderby=date&order=desc',
+    f'{EVE_URL}/wp-json/wp/v2/posts?per_page=20&orderby=date&order=desc',
     headers={'Authorization': f'Basic {auth}', 'User-Agent': 'Mozilla/5.0'},
     timeout=10
 )

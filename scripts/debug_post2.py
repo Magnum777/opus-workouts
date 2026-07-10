@@ -1,6 +1,15 @@
-import requests, base64
+import requests
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent))
+from vault_helper import get_credential
 
-auth = base64.b64encode('nova:EVEONION_APP_PASSWORD_REDACTED'.encode()).decode()
+EVE_URL = get_credential('wordpress', 'eveonion_url')
+EVE_USER = get_credential('wordpress', 'eveonion_user')
+EVE_PASS = get_credential('wordpress', 'eveonion_pass')
+
+import base64
+auth = base64.b64encode(f'{EVE_USER}:{EVE_PASS}'.encode()).decode()
 headers = {
     'Authorization': f'Basic {auth}',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
@@ -19,7 +28,7 @@ posts = {
     24993: 'NOT WORKING',
 }
 for pid, status in posts.items():
-    r = requests.get(f'https://eveonion.com/wp-json/wp/v2/posts/{pid}', headers=headers)
+    r = requests.get(f'{EVE_URL}/wp-json/wp/v2/posts/{pid}', headers=headers)
     d = r.json()
     meta = d.get('meta', {})
     print(f'Post {pid} [{status}]:')

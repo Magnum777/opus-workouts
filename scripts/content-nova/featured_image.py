@@ -12,22 +12,25 @@ import base64
 from pathlib import Path
 from urllib.parse import quote
 
-# WordPress site configs (match publisher.py)
+# WordPress site configs from vault (no hardcoded passwords)
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vault_helper import get_credential
+
 SITES = {
     'aitoolalliance.com': {
-        'url': 'https://aitoolalliance.com/wp-json/wp/v2',
-        'user': 'aitoolalliance_u6cbhe',
-        'pass': 'PXop SzVQ b6wX IAyr FSig 8ZfL',
+        'url': get_credential('wordpress', 'aitoolalliance_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'aitoolalliance_user'),
+        'pass': get_credential('wordpress', 'aitoolalliance_pass'),
     },
     'aibusinessinsider.org': {
-        'url': 'https://aibusinessinsider.org/wp-json/wp/v2',
-        'user': 'nova.cofounder@gmail.com',
-        'pass': 'sDLx Ja22 YxcI QAok gu8u xRXI',
+        'url': get_credential('wordpress', 'aibusinessinsider_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'aibusinessinsider_user'),
+        'pass': get_credential('wordpress', 'aibusinessinsider_pass'),
     },
     'aicofounderstack.com': {
-        'url': 'https://aicofounderstack.com/wp-json/wp/v2',
-        'user': 'nova',
-        'pass': 'DUau yrXK 1X8k O6eH YL5v qKID',
+        'url': get_credential('wordpress', 'aicofounderstack_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'aicofounderstack_user'),
+        'pass': get_credential('wordpress', 'aicofounderstack_pass'),
     }
 }
 

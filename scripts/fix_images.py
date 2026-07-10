@@ -1,6 +1,15 @@
-import requests, base64
+import requests
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent))
+from vault_helper import get_credential
 
-auth = base64.b64encode('nova:EVEONION_APP_PASSWORD_REDACTED'.encode()).decode()
+EVE_URL = get_credential('wordpress', 'eveonion_url')
+EVE_USER = get_credential('wordpress', 'eveonion_user')
+EVE_PASS = get_credential('wordpress', 'eveonion_pass')
+
+import base64
+auth = base64.b64encode(f'{EVE_USER}:{EVE_PASS}'.encode()).decode()
 headers = {'Authorization': f'Basic {auth}', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
 
 # Re-upload each image to WordPress to get a fresh media ID
@@ -19,7 +28,7 @@ for post_id, image_path in images_map.items():
     
     fname = image_path.split('/')[-1]
     r = requests.post(
-        'https://eveonion.com/wp-json/wp/v2/media',
+        f'{EVE_URL}/wp-json/wp/v2/media',
         headers=headers,
         files={'file': (fname, image_data, 'image/jpeg')},
         data={'title': fname, 'alt_text': 'EVE Onion article feature image'}
@@ -34,5 +43,5 @@ for post_id, image_path in images_map.items():
 print()
 # Now attach each fresh media ID to the post
 for post_id, media_id in media_ids.items():
-    r = requests.post(f'https://eveonion.com/wp-json/wp/v2/posts/{post_id}', headers=headers, json={'featured_media': media_id})
+    r = requests.post(f'{EVE_URL}/wp-json/wp/v2/posts/{post_id}', headers=headers, json={'featured_media': media_id})
     print(f'Post {post_id}: set featured_media={media_id} -> {r.status_code}')

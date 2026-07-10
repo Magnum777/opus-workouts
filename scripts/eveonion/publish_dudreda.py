@@ -1,7 +1,16 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vault_helper import get_credential
+
 import requests, base64
 
-url = 'https://eveonion.com/wp-json/wp/v2/posts'
-auth = base64.b64encode(b'nova:EVEONION_APP_PASSWORD_REDACTED').decode()
+EVE_URL = get_credential('wordpress', 'eveonion_url')
+EVE_USER = get_credential('wordpress', 'eveonion_user')
+EVE_PASS = get_credential('wordpress', 'eveonion_pass')
+
+url = f'{EVE_URL}/wp-json/wp/v2/posts'
+auth = base64.b64encode(f'{EVE_USER}:{EVE_PASS}'.encode()).decode()
 headers = {
     'Authorization': f'Basic {auth}',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
@@ -19,15 +28,25 @@ for line in lines:
         continue
     if line.startswith('#') or line.startswith('---') or line.startswith('*EVE Onion'):
         continue
-    if line.strip():
-        html_parts.append(f'<p>{line.strip()}</p>')
+    if line.startswith('*'):
+        html_parts.append(f'<p><em>{line[1:].strip()}</em></p>')
+        continue
+    if line.strip() == '':
+        continue
+    html_parts.append(f'<p>{line}</p>')
 
-html_content = '\n'.join(html_parts)
-title = 'Strait of Dudreda Propaganda War Escalates; One Side Accidentally Uses CCP Promotional Video, Other Side Publishes 4,000-Word Treatise on Maritime Law'
-post_data = {'title': title, 'content': html_content, 'status': 'publish'}
-r = requests.post(url, json=post_data, headers=headers, timeout=15)
-print(f"Status: {r.status_code}")
-if r.status_code == 201:
-    print(f"URL: {r.json().get('link')}")
+title = "Propaganda War Escalates in Strait of Dudreda as Both Sides Claim Victory in 7v1 Gank"
+
+data = {
+    'title': title,
+    'content': '\n'.join(html_parts),
+    'status': 'publish',
+    'slug': 'strait-of-dudreda-propaganda-war',
+}
+
+r = requests.post(url, headers=headers, json=data, timeout=30)
+print(f'Create: {r.status_code}')
+if r.status_code in (200, 201):
+    print(f'Post ID: {r.json().get("id")}')
 else:
-    print(f"Error: {r.text[:200]}")
+    print(r.text[:300])

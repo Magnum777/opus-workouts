@@ -1,7 +1,16 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vault_helper import get_credential
+
 import requests, base64, json
 
-url = 'https://eveonion.com/wp-json/wp/v2/posts'
-auth = base64.b64encode(b'nova:EVEONION_APP_PASSWORD_REDACTED').decode()
+EVE_URL = get_credential('wordpress', 'eveonion_url')
+EVE_USER = get_credential('wordpress', 'eveonion_user')
+EVE_PASS = get_credential('wordpress', 'eveonion_pass')
+
+url = f'{EVE_URL}/wp-json/wp/v2/posts'
+auth = base64.b64encode(f'{EVE_USER}:{EVE_PASS}'.encode()).decode()
 headers = {
     'Authorization': f'Basic {auth}',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
@@ -18,26 +27,22 @@ content = """<p><strong>JITA</strong> — In a development that has shocked abso
 
 <p>"He had his logistics character bookmarking a safespot while his main was warp-disrupting a Catalyst," said one frustrated corp mate who requested anonymity because they still needed the pilot's moon mining payouts. "Meanwhile, his three alt Catalysts were just sitting there, probably alt-tabbed to another screen."</p>
 
-<p>When asked about the engagement in question, which reportedly ended with the pilot's Cyclops Prime pod escaping while his entire fleet of seventeen ships was destroyed, the pilot insisted he had "totally won that fight" and that the enemy pilot was "absolute garbage" for not honoring the 1v1 after he brought eight support characters.</p>
+<p>The pilot's killboard, which he describes as "tactically selective," shows seventeen losses and zero solo kills across all accounts over the past month. When asked about this, he became defensive.</p>
 
-<p>The pilot then logged off to go run L4 missions on all seventeen accounts, because "that's where the real ISK is."</p>
+<p>"Wins are a social construct," he said, while simultaneously attempting to sell the interviewer a skill injector for one of his alts. "The real victory is the friends you made along the way, even if they're all you."</p>
 
-<p>Friends of the pilot say they're holding an intervention next Tuesday, though early estimates suggest the pilot will show up with fourteen of his alts and claim the rest died in a separate, unrelated conflict.</p>
+<p><em>CCP Games has declined to comment, citing a policy of not interfering with what they describe as "natural selection in action."</em></p>"""
 
-<p>This article was brought to you by Training Formations: Making Alts Since 2003.</p>"""
-
-post_data = {
+data = {
     'title': title,
     'content': content,
-    'status': 'publish'
+    'status': 'publish',
+    'slug': 'area-man-17-accounts-cant-win-1v1',
 }
 
-r = requests.post(url, json=post_data, headers=headers, timeout=15)
-print(f'Status: {r.status_code}')
-if r.status_code == 201:
-    data = r.json()
-    print(f'Published!')
-    print(f'URL: {data.get("link", "?")}')
-    print(f'ID: {data.get("id", "?")}')
+r = requests.post(url, headers=headers, json=data, timeout=30)
+print(f'Create: {r.status_code}')
+if r.status_code in (200, 201):
+    print(f'Post ID: {r.json().get("id")}')
 else:
-    print(f'Error: {r.text[:500]}')
+    print(r.text[:300])

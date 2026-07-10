@@ -7,24 +7,27 @@ Supports: aitoolalliance.com | aibusinessinsider.org | aicofounderstack.com
 import requests, base64, json, sys, os
 from pathlib import Path
 
-# Site configs -- TODO: move to env vars or 1Password
+# Site configs from vault (no hardcoded passwords)
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vault_helper import get_credential
+
 SITES = {
     'aitoolalliance.com': {
-        'url': 'https://aitoolalliance.com/wp-json/wp/v2',
-        'user': 'aitoolalliance_u6cbhe',
-        'pass': 'PXop SzVQ b6wX IAyr FSig 8ZfL',
+        'url': get_credential('wordpress', 'aitoolalliance_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'aitoolalliance_user'),
+        'pass': get_credential('wordpress', 'aitoolalliance_pass'),
         'focus': 'AI tools, productivity software, automation'
     },
     'aibusinessinsider.org': {
-        'url': 'https://aibusinessinsider.org/wp-json/wp/v2',
-        'user': 'nova.cofounder@gmail.com',
-        'pass': 'sDLx Ja22 YxcI QAok gu8u xRXI',
+        'url': get_credential('wordpress', 'aibusinessinsider_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'aibusinessinsider_user'),
+        'pass': get_credential('wordpress', 'aibusinessinsider_pass'),
         'focus': 'AI business strategy, enterprise AI, market analysis'
     },
     'aicofounderstack.com': {
-        'url': 'https://aicofounderstack.com/wp-json/wp/v2',
-        'user': 'nova',
-        'pass': 'DUau yrXK 1X8k O6eH YL5v qKID',
+        'url': get_credential('wordpress', 'aicofounderstack_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'aicofounderstack_user'),
+        'pass': get_credential('wordpress', 'aicofounderstack_pass'),
         'focus': 'AI cofounders, startup tools, solopreneur resources'
     }
 }

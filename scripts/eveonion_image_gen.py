@@ -9,10 +9,16 @@ Usage:
 """
 import requests, base64, os
 from datetime import datetime
+from pathlib import Path
+import sys
 
-WP_URL = 'https://eveonion.com/wp-json/wp/v2'
-WP_USER = 'nova'
-WP_PASS = 'EVEONION_APP_PASSWORD_REDACTED'
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vault_helper import get_credential
+
+WP_BASE = get_credential('wordpress', 'eveonion_url')
+WP_USER = get_credential('wordpress', 'eveonion_user')
+WP_PASS = get_credential('wordpress', 'eveonion_pass')
+WP_URL = f'{WP_BASE}/wp-json/wp/v2'
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'media', 'generated')
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 

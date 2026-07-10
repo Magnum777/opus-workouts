@@ -1,7 +1,16 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vault_helper import get_credential
+
 import requests, base64, json
 
-url = 'https://eveonion.com/wp-json/wp/v2/posts'
-auth = base64.b64encode(b'nova:EVEONION_APP_PASSWORD_REDACTED').decode()
+EVE_URL = get_credential('wordpress', 'eveonion_url')
+EVE_USER = get_credential('wordpress', 'eveonion_user')
+EVE_PASS = get_credential('wordpress', 'eveonion_pass')
+
+url = f'{EVE_URL}/wp-json/wp/v2/posts'
+auth = base64.b64encode(f'{EVE_USER}:{EVE_PASS}'.encode()).decode()
 headers = {
     'Authorization': f'Basic {auth}',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
@@ -18,22 +27,18 @@ content = """<p><strong>REYKJAVIK</strong> - Just days after rebranding from CCP
 
 <p>Players on r/Eve responded with a mixture of dread and grim acceptance. "Finally," wrote one user, "a bot that will undock for me so I can go touch grass." The post received 4?k upvotes and was gilded three times.</p>
 
-<p>Fenris assured the community that human players would still be welcome, noting that someone needs to subscribe so the AI has enough ISK to tax.</p>
+<p><em>Fenris Creations has clarified that human players will still be permitted in New Eden "for now," and that any AI uprising will be handled through the existing war declaration system.</em></p>"""
 
-<p>The announcement comes alongside Capsuleer Day XXIII: Warpath, which disabled CONCORD protections and destroyed all seven stargates into Jita. "We wanted to give the AI a proper welcome," the spokesperson added. "Nothing says 'New Eden' like spawning into a system you can't leave."</p>"""
-
-post_data = {
+data = {
     'title': title,
     'content': content,
-    'status': 'publish'
+    'status': 'publish',
+    'slug': 'fenris-ai-capsuleers-replace-humans',
 }
 
-r = requests.post(url, json=post_data, headers=headers, timeout=15)
-print(f'Status: {r.status_code}')
-if r.status_code == 201:
-    data = r.json()
-    print(f'Published!')
-    print(f'URL: {data.get("link", "?")}')
-    print(f'ID: {data.get("id", "?")}')
+r = requests.post(url, headers=headers, json=data, timeout=30)
+print(f'Create: {r.status_code}')
+if r.status_code in (200, 201):
+    print(f'Post ID: {r.json().get("id")}')
 else:
-    print(f'Error: {r.text[:500]}')
+    print(r.text[:300])
