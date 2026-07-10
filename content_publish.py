@@ -1,8 +1,13 @@
 """
 Long-form researched content publisher for aitoolalliance.com and aibusinessinsider.org
-Loads site credentials from environment variables.
+Loads site credentials from the local SQLite vault via vault_helper.
+
+Usage:
+    python content_publish.py           # Publish all content
+    python content_publish.py --dry-run # Preview without publishing
 """
 
+import argparse
 import logging
 import os
 import xmlrpc.client
@@ -627,18 +632,28 @@ def publish_to_site(site_name: str, site_data: dict[str, str], content_list: lis
         return False
 
 
-def publish_content() -> None:
+def publish_content(dry_run: bool = False) -> None:
     """Publish all content to configured WordPress sites."""
     today = datetime.now().strftime('%Y-%m-%d')
     logger.info("Content publishing — %s", today)
+    if dry_run:
+        logger.info("[DRY RUN] No posts will be published.")
 
     for site_name, site_data in SITES.items():
         content_list = CONTENT.get(site_name, [])
         if not content_list:
             logger.warning("No content for %s", site_name)
             continue
-        publish_to_site(site_name, site_data, content_list)
+        if dry_run:
+            logger.info("[DRY RUN] Would publish %d posts to %s", len(content_list), site_name)
+            for post in content_list:
+                logger.info("  -> %s", post['title'])
+        else:
+            publish_to_site(site_name, site_data, content_list)
 
 
 if __name__ == '__main__':
-    publish_content()
+    parser = argparse.ArgumentParser(description="Publish content to WordPress sites")
+    parser.add_argument("--dry-run", action="store_true", help="Preview content without publishing")
+    args = parser.parse_args()
+    publish_content(dry_run=args.dry_run)

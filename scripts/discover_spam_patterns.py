@@ -10,6 +10,7 @@ Uses gmail_spam_sweep_v2.is_spam() for inbox filtering when available.
 
 Run this daily to stay ahead of evolving spam.
 """
+import argparse
 import collections
 import email
 import imaplib
@@ -419,7 +420,7 @@ def filter_new_patterns(data: dict, existing: dict[str, set[str]]) -> dict:
     }
 
 
-def auto_update_sweep(existing: dict[str, set[str]], all_new: dict) -> dict:
+def auto_update_sweep(existing: dict[str, set[str]], all_new: dict, dry_run: bool = False) -> dict:
     changes = {"domains": [], "phrases": [], "words": [], "senders": []}
 
     with open(SWEEP_SCRIPT, "r", encoding="utf-8") as f:
@@ -487,6 +488,10 @@ def auto_update_sweep(existing: dict[str, set[str]], all_new: dict) -> dict:
                 new_lines += f'    "{p}",\n'
             content = content[:insert_pos] + new_lines + content[insert_pos:]
             changes["phrases"] = phrases_to_add
+
+    if dry_run:
+        logger.info("[DRY RUN] Would update %s with %d changes", SWEEP_SCRIPT, sum(len(v) for v in changes.values()))
+        return changes
 
     # Write back
     with open(SWEEP_SCRIPT, "w", encoding="utf-8") as f:
@@ -629,8 +634,10 @@ def scan_account(email_addr: str, existing: dict[str, set[str]], all_new: dict) 
     return account_processed
 
 
-def main() -> None:
+def main(dry_run: bool = False) -> None:
     logger.info("Spam Pattern Discovery — %s", datetime.now().strftime("%Y-%m-%d %H:%M"))
+    if dry_run:
+        logger.info("[DRY RUN] No files will be modified.")
     logger.info("Scanning last %d days of Gmail Spam + Inbox folders...", DAYS_BACK)
 
     existing = load_existing_patterns()
@@ -657,11 +664,14 @@ def main() -> None:
     if has_any:
         logger.info("New patterns found!")
         logger.info("Auto-applying to gmail_spam_sweep_v2.py...")
-        changes = auto_update_sweep(existing, all_new)
+        changes = auto_update_sweep(existing, all_new, dry_run=dry_run)
         print_report_after_update(changes)
     else:
         logger.info("No new patterns. Spam filters are current.")
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Discover new spam patterns from Gmail")
+    parser.add_argument("--dry-run", action="store_true", help="Preview changes without modifying gmail_spam_sweep_v2.py")
+    args = parser.parse_args()
+    main(dry_run=args.dry_run)
