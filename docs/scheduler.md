@@ -12,7 +12,7 @@
 05:00 | ──── (quiet)
 06:00 | ████ Weekly-SkillUpdate (Mon only)          (deepseek-v4-flash, fast)
 06:45 | ██   spam-pattern-discovery                (deepseek-v4-flash, 300s, light)
-07:00 | ██   daily-brief-7am                      (deepseek-v4-flash, 180s, light)
+07:00 | ██   daily-brief-7am                      (kimi-k2.6, 300s, medium)
 07:15 | ██   spam-sweep-every-4h                   (deepseek-v4-flash, 480s, medium)
 07:30 | ██   Iris-all-accounts-digest            (deepseek-v4-flash, 180s, medium)
 08:00 | ██   EveOnion-NewsScan                   (deepseek-v4-flash, 300s, medium)
@@ -132,7 +132,7 @@ Checklist:
 ### Nova Ops (9 crons)
 | Name | ID | Schedule | Model | Timeout |
 |------|-----|----------|-------|---------|
-| daily-brief-7am | 0552b684 | 7am daily | deepseek-v4-flash | 180s |
+| daily-brief-7am | 0552b684 | 7am daily | kimi-k2.6 | 300s |
 | spam-sweep-every-4h | c96ff863 | every 4h | deepseek-v4-flash | 480s |
 | spam-pattern-discovery | 20a09bb0 | 6:45am daily | deepseek-v4-flash | 300s |
 | Iris-all-accounts-digest | a375126c | 7:30am daily | deepseek-v4-flash | 180s |

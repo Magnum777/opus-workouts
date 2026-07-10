@@ -1,0 +1,14 @@
+=== BODY SEARCH: "car repairs" ===
+Traceback (most recent call last):
+  File "C:\Users\compj\.openclaw\workspace\tmp\search_deep.py", line 27, in <module>
+    _, msg_ids = MAIL.search(None, 'BODY', 'car repairs')
+                 ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\imaplib.py", line 839, in search
+    typ, dat = self._simple_command(name, *criteria)
+               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\imaplib.py", line 1372, in _simple_command
+    return self._command_complete(name, self._command(name, *args))
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\imaplib.py", line 1182, in _command_complete
+    raise self.error('%s command error: %s %s' % (name, typ, data))
+imaplib.IMAP4.error: SEARCH command error: BAD [b'Could not parse command']

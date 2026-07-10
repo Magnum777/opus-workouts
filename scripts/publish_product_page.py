@@ -2,10 +2,12 @@
 """Create product page on aicofounderstack.com."""
 import requests, base64, re, os
 
+from vault_helper import get_credential
+
 site = {
-    "url": "https://aicofounderstack.com",
-    "user": "nova",
-    "pass": "DUau yrXK 1X8k O6eH YL5v qKID"
+    "url": get_credential("wordpress", "aicofounderstack_url"),
+    "user": get_credential("wordpress", "aicofounderstack_user"),
+    "pass": get_credential("wordpress", "aicofounderstack_pass")
 }
 
 def md_to_html(md_text):

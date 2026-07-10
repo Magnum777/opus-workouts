@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-26T14:13:43.456Z",
+  "updatedAt": "2026-07-10T11:43:18.260Z",
   "entries": {
     "memory:memory/2026-05-07.md:1:28": {
       "key": "memory:memory/2026-05-07.md:1:28",
@@ -2355,13 +2355,13 @@
       "endLine": 30,
       "source": "memory",
       "snippet": "# 2026-06-02 - ContentNova Cron Run ## aicofounderstack.com Article Published - **Title:** TradeBot Systems Update: Building a Safety-First Memecoin Agent That Runs Itself - **Post ID:** 545 - **URL:** https://www.aicofounderstack.com/2026/06/02/tradebot-systems-update-building-a-safety-first-memecoin-agent-that-runs-itself/ - **Type:** Product update / case study - **Focus:** TradeBot architecture, safety scoring, live portfolio data (, 4 positions), Gumroad product tie-in - **Featured image:** Uploaded temp_images/featured_ai.jpg as media ID 546 - **Status:** Published at 4:00 AM ET ## Key Data Points Used - Portfolio value: ~ (JUP, PENGU, TRUMP, ORCA at ~ each) - Free USDC: (below buy",
-      "recallCount": 14,
+      "recallCount": 15,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 14,
+      "totalScore": 15,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-05T15:11:40.592Z",
-      "lastRecalledAt": "2026-06-26T08:59:29.699Z",
+      "lastRecalledAt": "2026-07-10T11:43:18.260Z",
       "queryHashes": [
         "24daef00dd14",
         "1b10f05c2e24",
@@ -2376,7 +2376,8 @@
         "1ec13fcc2380",
         "1ad5a1607fa5",
         "4260d7ef6681",
-        "8c3b6ad0a779"
+        "8c3b6ad0a779",
+        "a25e5e76949d"
       ],
       "recallDays": [
         "2026-06-05",
@@ -2390,7 +2391,8 @@
         "2026-06-20",
         "2026-06-21",
         "2026-06-24",
-        "2026-06-26"
+        "2026-06-26",
+        "2026-07-10"
       ],
       "conceptTags": [
         "aicofounderstack.com",
@@ -3720,23 +3722,25 @@
       "endLine": 28,
       "source": "memory",
       "snippet": "# 2026-05-07 — Day 2 of restoration ## Model setup (DONE) Switched everything to Ollama cloud. Opus said cost doesn't matter ($20 flat Pro plan), so pick best model for each job. **Final aliases (all cloud except embed):** | Alias | Model | Use | |---|---|---| | `chat` | `ollama/kimi-k2.6:cloud` | Default. Discord, general convo, browsing, vision. BrowseComp 83.2%. | | `code` | `ollama/glm-5.1:cloud` | Coding/debug. Top SWE-Bench Pro. | | `creative` | `ollama/minimax-m2.7:cloud` | EveOnion satire, character writing. ELO 1495 GDPval-AA. | | `flash` | `ollama/deepseek-v4-flash:cloud` | Quick health checks, trivial tasks. | | `deep` | `ollama/deepseek-v4-pro:cloud` | Long context (1M), deep r",
-      "recallCount": 5,
+      "recallCount": 6,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 5,
+      "totalScore": 6,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-15T13:34:18.513Z",
-      "lastRecalledAt": "2026-06-26T01:54:13.349Z",
+      "lastRecalledAt": "2026-07-10T11:43:13.323Z",
       "queryHashes": [
         "dc575833d011",
         "03b8bcafe862",
         "3110c6b34a99",
         "204f9382da05",
-        "f315b8d56f9b"
+        "f315b8d56f9b",
+        "38791977edba"
       ],
       "recallDays": [
         "2026-06-15",
-        "2026-06-25"
+        "2026-06-25",
+        "2026-07-10"
       ],
       "conceptTags": [
         "ollama/kimi-k2.6",
@@ -3789,21 +3793,23 @@
       "endLine": 45,
       "source": "memory",
       "snippet": "**Action item for next session:** wire Ollama Pro as primary provider + custom provider config in `openclaw.json`. Previous attempt was interrupted by config schema mismatch (discord channels changed from `allow` → `enabled`, `fallbacks` key moved). Need to re-read current `openclaw.json` and merge carefully. ## Open Items Carryover - [ ] **HIGH:** Configure Ollama Pro as default provider in openclaw.json (Opus wants this now) - [ ] Pick best default model — recommend `ollama-pro/qwen3-coder:480b` for coding/setup, fallback to `anthropic/claude-opus-4-7` for deep reasoning, and `ollama/qwen3:14b` local for background/cron - [ ] Twitter OAuth (blocks Twitter-Propaganda + EveOnion crons) - [",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3,
+      "totalScore": 4,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-15T13:34:18.513Z",
-      "lastRecalledAt": "2026-06-26T01:44:40.107Z",
+      "lastRecalledAt": "2026-07-10T11:43:13.323Z",
       "queryHashes": [
         "dc575833d011",
         "03b8bcafe862",
-        "204f9382da05"
+        "204f9382da05",
+        "38791977edba"
       ],
       "recallDays": [
         "2026-06-15",
-        "2026-06-25"
+        "2026-06-25",
+        "2026-07-10"
       ],
       "conceptTags": [
         "openclaw.json",
@@ -3887,22 +3893,25 @@
       "endLine": 142,
       "source": "memory",
       "snippet": "- Portal now shows: \"Welcome to Sojourn Church\", terms checkbox, \"Connect to Internet\" ### Rate Limit Aware Verification Script - Created `tmp/verify_all.py`: login once, save cookies to `tmp/unifi_session.json`, reuse with 1s delays between calls, auto-relogin on 401 - Essential pattern for avoiding the auth-rate-limit storm that blocked most of the night ### Network is FLAT — Permanent Decision - Opus explicitly: \"no, we don't want vlan.. delete all vlan stuff and optimize.\" - Flat 192.168.1.0/24 confirmed. All SSIDs on Default network. - Controller bug (`api.err.WanIpOverlapped` with `0.0.0.0/0` on static WAN + USG 3P) makes API-based corporate VLAN creation impossible ### Ollama Weekl",
-      "recallCount": 4,
+      "recallCount": 6,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 4,
+      "totalScore": 6,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-15T13:54:11.067Z",
-      "lastRecalledAt": "2026-06-26T01:54:13.349Z",
+      "lastRecalledAt": "2026-07-10T11:43:18.260Z",
       "queryHashes": [
         "03b8bcafe862",
         "90060fee0315",
         "3110c6b34a99",
-        "f315b8d56f9b"
+        "f315b8d56f9b",
+        "38791977edba",
+        "a25e5e76949d"
       ],
       "recallDays": [
         "2026-06-15",
-        "2026-06-25"
+        "2026-06-25",
+        "2026-07-10"
       ],
       "conceptTags": [
         "network",
@@ -4568,18 +4577,20 @@
       "endLine": 21,
       "source": "memory",
       "snippet": "# Memory Log — June 3, 2026 ## Pre-Compaction Flush (00:12 ET) - Capturing durable memories from June 2 session before compaction. - Session ran ~12 hours non-stop with Opus on STIG evidence packages, then pivoted to cron/model troubleshooting. ## STIG Evidence Package — Final Deliverables - Built multiple PIEE-compliant packages for Appian ASD STIG V6R4 - **Final 4-item package**: `output/Appian_ASD_STIG_V6R4_Evidence_Package.pdf` — clean, human-written, PIEE template format - **17-item Admin Console Configurable package**: `output/Appian_ASD_STIG_V6R4_AdminConsole_Evidence.pdf` - **159-item Comprehensive Not a Finding package**: `output/Appian_ASD_STIG_V6R4_All_NAF_Evidence_Package.pdf`",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 2,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-18T08:43:57.835Z",
-      "lastRecalledAt": "2026-06-18T08:43:57.835Z",
+      "lastRecalledAt": "2026-07-10T11:43:18.260Z",
       "queryHashes": [
-        "56aa20660f5d"
+        "56aa20660f5d",
+        "a25e5e76949d"
       ],
       "recallDays": [
-        "2026-06-18"
+        "2026-06-18",
+        "2026-07-10"
       ],
       "conceptTags": [
         "pre-compaction",
@@ -5036,6 +5047,37 @@
         "old",
         "sales",
         "pages"
+      ]
+    },
+    "memory:memory/archive/2026-03-05.md:1:39": {
+      "key": "memory:memory/archive/2026-03-05.md:1:39",
+      "path": "memory/archive/2026-03-05.md",
+      "startLine": 1,
+      "endLine": 39,
+      "source": "memory",
+      "snippet": "# March 5, 2026 - Kybernauts SDC Work ## What We Did ### SDC Formation Document - Created Proving Grounds program documentation for Kybernauts corporation - Worked with Opus to iterate on multiple versions - Finalized colors: #231f20 (dark), #e4090c (red) - Font: Oswald + Roboto Condensed (Shentox-style) ### Key Content - **Purpose**: \"forge Kybernauts\" - transformation over just training - **5 Member Categories**: Returning Kybernauts, Vets to Pochven, Established Players, Early Career, Newbros - **SDC Responsibilities**: Corp fittings, 3 Income/PVP doctrines, New member packages, Communication channels, Activity tracking - **Standings Path**: Exit Ohnivak → 3.4 Triglavian",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-10T11:43:18.260Z",
+      "lastRecalledAt": "2026-07-10T11:43:18.260Z",
+      "queryHashes": [
+        "a25e5e76949d"
+      ],
+      "recallDays": [
+        "2026-07-10"
+      ],
+      "conceptTags": [
+        "shentox-style",
+        "income/pvp",
+        "3.4",
+        "march",
+        "kybernauts",
+        "sdc",
+        "what",
+        "did"
       ]
     }
   }

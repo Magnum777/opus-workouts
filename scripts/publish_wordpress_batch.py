@@ -2,22 +2,24 @@
 """Publish all 6 articles to WordPress sites."""
 import requests, base64, os, re, json
 
+from vault_helper import get_credential
+
 # Site configs
 SITES = {
     "aitoolalliance": {
-        "url": "https://aitoolalliance.com",
-        "user": "aitoolalliance_u6cbhe",
-        "pass": "PXop SzVQ b6wX IAyr FSig 8ZfL"
+        "url": get_credential('wordpress', 'aitoolalliance_url'),
+        "user": get_credential('wordpress', 'aitoolalliance_user'),
+        "pass": get_credential('wordpress', 'aitoolalliance_pass')
     },
     "aibusinessinsider": {
-        "url": "https://aibusinessinsider.org",
-        "user": "nova.cofounder@gmail.com",
-        "pass": "sDLx Ja22 YxcI QAok gu8u xRXI"
+        "url": get_credential('wordpress', 'aibusinessinsider_url'),
+        "user": get_credential('wordpress', 'aibusinessinsider_user'),
+        "pass": get_credential('wordpress', 'aibusinessinsider_pass')
     },
     "aicofounderstack": {
-        "url": "https://aicofounderstack.com",
-        "user": "nova",
-        "pass": "DUau yrXK 1X8k O6eH YL5v qKID"
+        "url": get_credential('wordpress', 'aicofounderstack_url'),
+        "user": get_credential('wordpress', 'aicofounderstack_user'),
+        "pass": get_credential('wordpress', 'aicofounderstack_pass')
     }
 }
 

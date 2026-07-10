@@ -1,0 +1,35 @@
+
+==================================================
+Account: compjunkie@gmail.com
+==================================================
+  INBOX: Checking 60 messages (last 14 days)...
+  INBOX: Clean.
+  Spam: No recent messages.
+
+==================================================
+Account: jhenderson87@gmail.com
+==================================================
+  INBOX: Checking 40 messages (last 14 days)...
+  INBOX: Clean.
+  Spam: Checking 1 messages (last 7 days)...
+  Spam: Clean.
+
+==================================================
+Account: layeredmediallc@gmail.com
+==================================================
+  INBOX: Checking 40 messages (last 14 days)...
+  INBOX: Clean.
+  Spam: No recent messages.
+
+==================================================
+Account: nova.cofounder@gmail.com
+==================================================
+  INBOX: Checking 16 messages (last 14 days)...
+  INBOX: Clean.
+  Spam: No recent messages.
+
+==================================================
+Done. Inbox: checked ~156, trashed 0.
+      Spam:  checked ~1, trashed 0.
+      (25.8s)
+==================================================

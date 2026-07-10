@@ -1,0 +1,40 @@
+{
+  "url": "https://magnum777.github.io/ga-parks-propagation/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "dimensions": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "windowWidth": 390
+  },
+  "viewportMeta": "width=device-width, initial-scale=1.0",
+  "issueCount": 4,
+  "issues": [
+    {
+      "severity": "medium",
+      "category": "accessibility",
+      "message": "Touch targets very close together.",
+      "element": "\"All Regions\" & \"🏔 Mountains\" ~5px; \"All Regions\" & \"🌳 Piedmont\" ~1px; \"🏔 Mountains\" & \"🌳 Piedmont\" ~0px; \"🏔 Mountains\" & \"🏝 Coast\" ~0px; \"🌳 Piedmont\" & \"🏝 Coast\" ~5px; \"🌳 Piedmont\" & \"🏛 Historic\" ~0px; \"+\" & \"−\" ~0px; \"🏞\n                 \" & \"📡\n                 \" ~0px"
+    },
+    {
+      "severity": "high",
+      "category": "images",
+      "message": "Image scaling issues.",
+      "element": "img fixed width no max-width"
+    },
+    {
+      "severity": "medium",
+      "category": "navigation",
+      "message": "Nav concerns.",
+      "element": "9 nav links"
+    },
+    {
+      "severity": "medium",
+      "category": "accessibility",
+      "message": "Tap targets smaller than 44x44px.",
+      "element": "button \"\" 40x32px; button \"All Regions\" 127x39px; button \"🏔 Mountains\" 141x42px; button \"🌳 Piedmont\" 139x42px; button \"🏝 Coast\" 108x42px; button \"🏛 Historic\" 121x42px; a \"+\" 30x30px; a \"−\" 30x30px; button \"🔄 Refresh\" 105x34px; a \"🏞\n                      \" 120x20px"
+    }
+  ]
+}

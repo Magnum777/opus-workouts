@@ -11,16 +11,18 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+from vault_helper import get_credential
+
 SITES = {
     'aitoolalliance.com': {
-        'url': os.environ.get('AITOOLALLIANCE_XMLRPC_URL', 'https://aitoolalliance.com/xmlrpc.php'),
-        'user': os.environ.get('AITOOLALLIANCE_USER', ''),
-        'pass': os.environ.get('AITOOLALLIANCE_APP_PASSWORD', '')
+        'url': get_credential('wordpress', 'aitoolalliance_url'),
+        'user': get_credential('wordpress', 'aitoolalliance_user'),
+        'pass': get_credential('wordpress', 'aitoolalliance_pass')
     },
     'aibusinessinsider.org': {
-        'url': os.environ.get('AIBUSINESSINSIDER_XMLRPC_URL', 'https://aibusinessinsider.org/xmlrpc.php'),
-        'user': os.environ.get('AIBUSINESSINSIDER_USER', ''),
-        'pass': os.environ.get('AIBUSINESSINSIDER_APP_PASSWORD', '')
+        'url': get_credential('wordpress', 'aibusinessinsider_url'),
+        'user': get_credential('wordpress', 'aibusinessinsider_user'),
+        'pass': get_credential('wordpress', 'aibusinessinsider_pass')
     }
 }
 

@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "agentId": "nova-chat",
+      "match": {
+        "channel": "discord",
+        "peer": { "kind": "channel", "id": "1524864332478021802" }
+      }
+    }
+  ]
+}

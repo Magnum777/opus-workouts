@@ -1,0 +1,27 @@
+{
+  "JUP": {
+    "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+    "category": "utility",
+    "added": "2026-07-07"
+  },
+  "ORCA": {
+    "mint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+    "category": "dex",
+    "added": "2026-07-07"
+  },
+  "RAY": {
+    "mint": "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+    "category": "utility",
+    "added": "2026-07-07"
+  },
+  "TAO": {
+    "mint": "taoC6xyv2v8tDLcev4uaGUgV4vdQsWJrGft2kcBRrBY",
+    "category": "ai",
+    "added": "2026-07-07"
+  },
+  "BONK": {
+    "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+    "category": "meme",
+    "added": "2026-07-07"
+  }
+}

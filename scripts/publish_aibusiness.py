@@ -2,11 +2,13 @@
 """Publish just the 2 aibusinessinsider articles."""
 import requests, base64, os, re
 
+from vault_helper import get_credential
+
 SITES = {
     "aibusinessinsider": {
-        "url": "https://aibusinessinsider.org",
-        "user": "nova.cofounder@gmail.com",
-        "pass": "sDLx Ja22 YxcI QAok gu8u xRXI"
+        "url": get_credential('wordpress', 'aibusinessinsider_url'),
+        "user": get_credential('wordpress', 'aibusinessinsider_user'),
+        "pass": get_credential('wordpress', 'aibusinessinsider_pass')
     }
 }
 

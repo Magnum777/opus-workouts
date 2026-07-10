@@ -2,10 +2,12 @@
 """Fix duplicate titles on 2 published aicofounderstack articles."""
 import requests, base64, re, os
 
+from vault_helper import get_credential
+
 SITE = {
     "url": "https://www.aicofounderstack.com",
-    "user": "nova",
-    "pass": "DUau yrXK 1X8k O6eH YL5v qKID"
+    "user": get_credential("wordpress", "aicofounderstack_user"),
+    "pass": get_credential("wordpress", "aicofounderstack_pass")
 }
 
 # Post IDs from URLs

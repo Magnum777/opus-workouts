@@ -12,13 +12,13 @@ SITES = {
     'aitoolalliance.com': {
         'url': 'https://aitoolalliance.com/wp-json/wp/v2',
         'user': 'aitoolalliance_u6cbhe',
-        'pass': <SCRUBBED_WORDPRESS_APP_PASSWORD>,
+        'pass': 'PXop SzVQ b6wX IAyr FSig 8ZfL',
         'focus': 'AI tools, productivity software, automation'
     },
     'aibusinessinsider.org': {
         'url': 'https://aibusinessinsider.org/wp-json/wp/v2',
         'user': 'nova.cofounder@gmail.com',
-        'pass': <SCRUBBED_WORDPRESS_APP_PASSWORD>,
+        'pass': 'sDLx Ja22 YxcI QAok gu8u xRXI',
         'focus': 'AI business strategy, enterprise AI, market analysis'
     },
     'aicofounderstack.com': {

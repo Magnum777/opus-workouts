@@ -1,10 +1,12 @@
 import requests, base64, re, sys
+
+from vault_helper import get_credential
 sys.stdout.reconfigure(encoding='utf-8')
 
 site = {
-    'url': 'https://aicofounderstack.com/wp-json/wp/v2',
-    'user': 'nova',
-    'pass': 'DUau yrXK 1X8k O6eH YL5v qKID'
+    'url': get_credential('wordpress', 'aicofounderstack_url') + '/wp-json/wp/v2',
+    'user': get_credential('wordpress', 'aicofounderstack_user'),
+    'pass': get_credential('wordpress', 'aicofounderstack_pass')
 }
 creds = f"{site['user']}:{site['pass']}".encode()
 token = base64.b64encode(creds).decode()

@@ -2,10 +2,12 @@
 """Add AI Cofounder Guide to Primary Nav menu."""
 import requests, base64
 
+from vault_helper import get_credential
+
 site = {
-    "url": "https://aicofounderstack.com",
-    "user": "nova",
-    "pass": "DUau yrXK 1X8k O6eH YL5v qKID"
+    "url": get_credential("wordpress", "aicofounderstack_url"),
+    "user": get_credential("wordpress", "aicofounderstack_user"),
+    "pass": get_credential("wordpress", "aicofounderstack_pass")
 }
 
 auth = base64.b64encode(f"{site['user']}:{site['pass']}".encode()).decode()

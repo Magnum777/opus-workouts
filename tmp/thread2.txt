@@ -1,0 +1,101 @@
+=== FOLDERS ===
+(\HasNoChildren) "/" "Blocked"
+(\HasNoChildren) "/" "Deleted Messages"
+(\HasNoChildren) "/" "INBOX"
+(\HasNoChildren) "/" "Notes"
+(\HasNoChildren) "/" "Personal"
+(\HasNoChildren) "/" "Receipts"
+(\HasNoChildren) "/" "Sent"
+(\HasNoChildren) "/" "Sent Messages"
+(\HasNoChildren) "/" "Trash"
+(\HasNoChildren) "/" "Work"
+(\HasChildren \Noselect) "/" "[Gmail]"
+(\All \HasNoChildren) "/" "[Gmail]/All Mail"
+(\Drafts \HasNoChildren) "/" "[Gmail]/Drafts"
+(\HasNoChildren \Important) "/" "[Gmail]/Important"
+(\HasNoChildren \Sent) "/" "[Gmail]/Sent Mail"
+(\HasNoChildren \Junk) "/" "[Gmail]/Spam"
+(\Flagged \HasNoChildren) "/" "[Gmail]/Starred"
+(\HasNoChildren \Trash) "/" "[Gmail]/Trash"
+(\HasNoChildren) "/" "[Notion]"
+(\HasNoChildren) "/" "nova trade"
+=== END FOLDERS ===
+
+Opened: "[Gmail]/Sent Mail"
+Total: 1643
+
+--- UID 1635 ---
+Subject: Re: We want your business!
+From: James Henderson <jhenderson87@gmail.com>
+To: Kevin Plummer <kplummer@fivestarchevywr.edealerhub.com>
+
+--- UID 1633 ---
+Subject: Re: Pricing worksheet
+From: James Henderson <jhenderson87@gmail.com>
+To: Kevin Plummer <kplummer@fivestarchevywr.edealerhub.com>
+
+--- UID 1632 ---
+Subject: Re: Pricing information on the 26 Traverse ΓÇö Please Disregard Previous
+From: jhenderson87@gmail.com
+To: kplummer@fivestarchevywr.edealerhub.com
+
+--- UID 1631 ---
+Subject: Re: Pricing information on the 26 Traverse ΓÇö Follow-up
+From: jhenderson87@gmail.com
+To: kplummer@fivestarchevywr.edealerhub.com
+
+--- UID 1630 ---
+Subject: Re: Pricing information on the 26 Traverse ΓÇö Competitive Offer Received
+From: jhenderson87@gmail.com
+To: kplummer@fivestarchevywr.edealerhub.com
+
+=== INBOX HIGHLANDER THREAD ===
+Highlander subjects in inbox: 6
+
+--- UID 8393 ---
+Subject: Back in Stock! | Springfield M1A SOCOM Kryptek Highlander Rifle
+
+ $1,499.99 Today Only!
+From: Palmetto State Armory <noreply@palmettostatearmory.com>
+To: jhenderson87@gmail.com
+Date: Tue, 10 Oct 2023 20:31:21 +0000 (UTC)
+Body: The Best Deals for Ammo, Gear and Guns & Parts Only at PSA.COM Palmetto State Armory, LLC ( https://palmettostatearmory.com/?utm_medium=email&utm_source=daily_deals&utm_campaign=header&utm_term=banner&utm_content=logo ) *AMMO* ( https://palmettostatearmory.com/shop-ammo-by-caliber.html?utm_medium=email&utm_source=daily_deals&utm_campaign=header&utm_term=link&utm_content=ammo ) *|* *AR-15* ( https://palmettostatearmory.com/ar-15.html?utm_medium=email&utm_source=daily_deals&utm_campaign=header&utm_term=link&utm_content=ar-15 ) *|* *AR-10* ( https://palmettostatearmory.com/ar-10.html?utm_medium=email&utm_source=daily_deals&utm_campaign=header&utm_term=link&utm_content=ar-10 ) *|* *AK-47* ( https://palmettostatearmory.com/ak-47.html?utm_medium=email&utm_source=daily_deals&utm_campaign=header&u
+
+--- UID 48016 ---
+Subject: Candance, Find Out All About Your New Grand Highlander Hybrid MAX
+From: "Toyota" <email@e.toyota.com>
+To: <JHENDERSON87@GMAIL.COM>
+Date: Thu, 25 Jun 2026 16:34:09 -0600
+Body:  Toyota https://view.e.toyota.com/?qs=ABB7InYiOjEsImQiOjQ5MTh9AAQAAAAAAL8z8uTJIdBJBROyLTzA_XRSU51f9tmEB0OeM0CRsYFRpoXEZNTRyhvG5YTojXyqF3s5BQ_-A9ZAQS8AcJH4Xfy47XcU63ikFvT_y56NjVzjLH-JatmT2sRIVKjRl8mKxCLx View as a Web page https://click.e.toyota.com/?qs=ABB7InYiOjEsImQiOjQ5MTh9AAQAAAAAAL8z8uTKjuooGplByi3a1s-lmCUQnSkH2Fa6FLx7nFdqG5kmIVMEZh3BWtPohFTBAzEiGIw-LPqBlmxQctHoHVy-DEw93bL-4w &zwnj; https://click.e.toyota.com/?qs=ABB7InYiOjEsImQiOjQ5MTh9AAQAAAAAAL8z8uTL9LrdVvKwem_u-FBBa7JEG-0rShK8MuMBQOM1XLRdFsDC04ZI3giwkDcrAYk8lU8asVzMmwxuqW68fqDgcDWxIKtg8Q We&#39;re glad you&#39;re part of the family Thank you for trusting us to help you go places, Candance. This is the beginning of a great adventure, and because you had so many choices, we truly appreciate that you decided to enjoy it with us. The 
+
+--- UID 48044 ---
+Subject: *FINAL REMINDER* Your Recent 2026 Grand Highlander Hybrid Purchase
+
+ Experience
+From: Toyota <Toyota@express.sea1.medallia.com>
+To: jhenderson87@gmail.com
+Date: Fri, 26 Jun 2026 09:20:54 -0700 (PDT)
+Body: Hi Candance Henderson, Toyota Motor Sales and Five Star Toyota of Milledgeville would like to thank you for choosing a certified Grand Highlander Hybrid. We appreciate your business and value you as a customer. A week ago, we sent an email requesting your feedback. The information you provide will help Toyota Motor Sales, its distributors, its affiliates, and Five Star Toyota of Milledgeville continuously improve customer experiences. If you have already shared your feedback, please disregard this email. This survey will be active through July 12, 2026. Please begin by responding to the question below. Sincerely, Toyota Customer Experience Team ------------------------------------------------------------- Please do not reply to this e-mail as we are not able to respond to messages sent to 
+
+--- UID 48048 ---
+Subject: Your Recent 2026 Grand Highlander Hybrid Service Experience
+From: Toyota <Toyota@express.sea1.medallia.com>
+To: jhenderson87@gmail.com
+Date: Fri, 26 Jun 2026 10:23:16 -0700 (PDT)
+Body: Toyota Motor Sales and Five Star Toyota of Milledgeville would like to thank you for servicing your Grand Highlander Hybrid on June 24, 2026. We appreciate your business and value you as a customer. Your feedback is important to us. The information you provide will help Toyota Motor Sales, its distributors, its affiliates, and Five Star Toyota of Milledgeville continuously improve customer experiences. This survey will be active through July 16, 2026. Please begin by responding to the question below. Sincerely, Toyota Customer Experience Team ------------------------------------------------------------- Please do not reply to this e-mail as we are not able to respond to messages sent to this address. Five Star Toyota of Milledgeville: https://www.fivestartoyotaofmilledgeville.com Phone: (4
+
+--- UID 48125 ---
+Subject: *FINAL REMINDER* Your Recent 2026 Grand Highlander Hybrid Purchase
+
+ Experience
+From: Toyota <Toyota@express.sea1.medallia.com>
+To: jhenderson87@gmail.com
+Date: Mon, 29 Jun 2026 09:24:45 -0700 (PDT)
+Body: Hi Candance Henderson, Toyota Motor Sales and Five Star Toyota of Milledgeville would like to thank you for choosing a certified Grand Highlander Hybrid. We appreciate your business and value you as a customer. A week ago, we sent an email requesting your feedback. The information you provide will help Toyota Motor Sales, its distributors, its affiliates, and Five Star Toyota of Milledgeville continuously improve customer experiences. If you have already shared your feedback, please disregard this email. This survey will be active through July 12, 2026. Please begin by responding to the question below. Sincerely, Toyota Customer Experience Team ------------------------------------------------------------- Please do not reply to this e-mail as we are not able to respond to messages sent to 
+
+--- UID 48155 ---
+Subject: Grand Highlander pickup
+From: "Alyssa Crosby" <Alyssa@FiveStarToyotaMilledgeville.eDealerhub.com>
+To: <jhenderson87@gmail.com>
+Date: Tue, 30 Jun 2026 10:03:53 -0600
+Body:  Hi Mr. Henderson, I was told to contact you about the Grand Highlander, but I am unable to find your number. As long as the paint guy gives me the thumbs-up on the scratch, you should be able to pick up the car today around 5:30/6. We have added the Crossbars, floor mats, cargo mat, and fixed the wheel. The paint should be finished this evening, and I&#39;ll give you a call if you provide your number. Thank you greatly, Alyssa ---Please Do Not Delete lTaskID=3750695389 To stop receiving these messages visit Communication Preferences 

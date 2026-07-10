@@ -203,3 +203,4 @@ p
 alpha_force_db.json
 
 scripts/content-nova/article-draft.md
+scripts/credentials/vault.db

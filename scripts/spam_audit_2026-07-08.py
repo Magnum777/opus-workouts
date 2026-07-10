@@ -1,0 +1,678 @@
+#!/usr/bin/env python
+"""Deep spam audit across all 4 Gmail accounts — INBOX + Spam cross-reference."""
+import imaplib, email, json, re, sys, os
+from email.header import decode_header
+from datetime import datetime, timedelta
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
+LOCAL_CONFIG = os.path.join(os.path.dirname(__file__), ".gmail_accounts.json")
+REPORT_PATH = os.path.join(os.path.dirname(__file__), "spam_audit_report_2026-07-08.md")
+
+ACCOUNTS = {
+    "compjunkie@gmail.com":         "GMAIL_APP_PASSWORD_COMPJUNKIE",
+    "jhenderson87@gmail.com":       "GMAIL_APP_PASSWORD_JHENDERSON",
+    "layeredmediallc@gmail.com":    "GMAIL_APP_PASSWORD_LAYEREDMEDIA",
+    "nova.cofounder@gmail.com":     "GMAIL_APP_PASSWORD_NOVA",
+}
+
+# --- Blocklist (from gmail_spam_sweep_v2.py) ---
+SPAM_DOMAINS = {
+    "foxytemptation.com", "arousingdates.com", "vallyme.com", "vovadis.vip",
+    "newpinoko.com", "freepinoko.com", "pirinoet.vip",
+    "iwhaa.com", "iflirts.com", "i-flirt-s.com",
+    "datingapphub.com", "thesoberdating.com", "carpetani.vip",
+    "teaseeasyx.com", "freeyvenas.com", "unclegus.org",
+    "somiramana.com", "mydatematches.com", "elfaroukegypt.com",
+    "gohoha.org", "uslaka.com", "truebootycall.com",
+    "wonderko.com", "youlaka.com", "paoloko.com", "arastopi.com",
+    "toproh.com", "lolyg.com", "tonyxo.com", "allroxo.com",
+    "tutigroup.org", "rokoinfo.com", "locbelowon.org", "undwer.com",
+    "monloly.com", "prayst.com", "ynarounda.com", "mybelski.org",
+    "karinsas.com", "irisermita.org", "hostermita.org", "theermita.org",
+    "xolashop.com", "roxous.com", "autoroh.com", "nilona.org",
+    "newdidi.top", "locatedwell.com", "freeynina.com",
+    "renitini.com", "sepoffa.com", "cuteyoungladies.com",
+    "faithfulfling.com", "hotrdv.com", "hornyaffairs.com",
+    "pumpyjoy.com", "locataway.org", "hostsoli.com", "tuvovana.com",
+    "dialuxas.ru",
+    "henrydixonjournal.net",
+    "poladina.com",
+    "netboni.com",
+    "pinokondo.com",
+    "flirtyynights.com",
+    "bestxdateofferings.com",
+    "hers-love.com",
+    "fckfriendfinder.com",
+    "covisianmail.com", "traveltrackerbd.com", "moe-dl.edu.my",
+    "chicagoinstituteofbusiness.com", "chicagoinstituteofbusiness.online",
+    "cibnotifications.com", "markethair", "fivv.pp.ua", "xqiyegt",
+    "hireevonline", "open-hosted.com", "vtbrpsgnrwcdulcvpq",
+    "pornhub.com", "frali.org", "hohj.org", "adultcrush.com", "bilorina.com", "sarawaka.com", "qoez.org",
+    "webvova.vip", "yninarow.com", "itvoly.com",
+    "elalina.vip", "freesapa.com", "andavtis.com", "carmenko.com",
+    "elitemarine.com.br", "mixcloudmail.com",
+    "roxoweb.com", "hostroh.com",
+    "cupidconnectnag.ru", "kisswisp.ru", "meetglownow.ru",
+    "romanticluster.ru", "greatxdatefinder.com", "hellopromo.info",
+    "soontoday.info", "freshday.info", "flirtwiththestars.com",
+    "checkoutgirlsnow.com", "heytherelab.com", "thexdate.net",
+}
+
+RE_SEXUAL = re.compile(
+    r"pornhub|on cam|cam because|totally excited|come over to my room|"
+    r"kitty owns me|until you scream|i want the way your|"
+    r"something naughty|naughty i wanted|naughty i wanted to share|"
+    r"requiring a sophisticated male opinion|sophisticated male opinion|"
+    r"sent you a wink|fun we had|remember how much fun|"
+    r"hottie|booty|nibble|bedroom|scoop|stretched|oral|fixation|"
+    r"can we make love|naked|nude|horny|porn|xxx|sexy|dtf|hookup|"
+    r"casual sex|adult dating|hot affair|sexy singles|play with me|"
+    r"available tonight|wanting a crazy night|wants a crazy night|wanting a wild night|wants a wild night|wanting some fun|wants some fun|wants to party|wanting to party|bored and lonely|looking for fun|reply for pics|"
+    r"click to see|view profile|spice it up|trouble in the best way|"
+    r"bet you.*trouble|wanna chat|feel like talking|just relocated|"
+    r"love some help|onlyfans|fansly|hot.*milf|iflirt|flirt|flirty|"
+    r"booty shorts|flirty dm|flirty note|flirty photos|flirty message|"
+    r"touching (myself|herself|himself)|is touching|"
+    r"dating|night\s*alert|tabl-|hot tonight|are you single|"
+    r"wants to chat|send pics|send nudes|meetup|hangout|get together|"
+    r"just moved|new in town|lonely|need company|waiting for you|"
+    r"thinking of you|saw your pic|cute pic|you look good|handsome man|"
+    r"snap me|snapchat|kik me|telegram me|whatsapp me|text me|txt me|"
+    r"call me|hit me up|hmu|dm me|dont be shy|no strings|nothing serious|"
+    r"down for anything|open minded|attached female|married but|discreet|"
+    r"sugar baby|sugar daddy|allowance|spoiled|send money|need \$|broke and|"
+    r"ride you until we both|light up your.*firecracker|anal virgin|"
+    r"someone wants to meet|wants to meet|meet me|let's meet|wanna meet|"
+    r"explode|cum|blow your|rock your|turn you on|turn me on|"
+    r"touch me|feel me|want you|need you|desire you|crave you|"
+    r"naughty girl|bad girl|good girl|your girl|my girl|lonely girl|"
+    r"mature woman|real woman|local woman|single woman|married woman|"
+    r"divorced|separated|unattached|looking for love|need a man|need a guy|"
+    r"younger.*older|age is just|age doesn't matter|cougar|"
+    r"picks you|picked you|selected you|chose you|chosen for you",
+    re.IGNORECASE,
+)
+
+RE_BUSINESS_SCAM = re.compile(
+    r"order verification notice|verification notice|order verification|verification required|"
+    r"your account has been|account suspended|account locked|confirm your email|urgent confirm|action required|"
+    r"suspended due to|unusual activity detected|invoice attached|invoice from|payment receipt|"
+    r"wire transfer|bank transfer|direct deposit|dear valued customer|dear sir/madam|"
+    r"kindly|urgent response needed|respond immediately|crypto investment|bitcoin investment|"
+    r"investment opportunity|double your money|guaranteed returns|risk free|earn daily|"
+    r"passive income|work from home|make money fast|financial freedom|secret method|"
+    r"exclusive offer|limited time only|act now|you have been selected|congratulations winner|"
+    r"weight loss guaranteed|lose pounds fast|miracle diet|ozempic|wegovy|glp-1|weight loss pills|"
+    r"cbd gummies|cbd oil|hemp extract|keto pills|apple cider vinegar|garcinia cambogia|"
+    r"male enhancement|testosterone booster|performance plus|credit card declined|"
+    r"update payment info|billing issue|package delivery failed|shipping address needed|"
+    r"dhl delivery|fedex tracking|ups package|customs fee|import duty|clearance required|"
+    r"irs notice|tax refund|tax settlement|social security|medicare|medicaid|"
+    r"loan approved|loan pre-approved|credit approved|debt consolidation|reduce your debt|"
+    r"debt relief|reverse mortgage|home equity|cash out|timeshare|vacation package|free cruise|"
+    r"extended warranty|vehicle warranty|car warranty|health insurance|dental insurance|"
+    r"life insurance quote|mortgage rates|refinance now|low rates|pre-approved|pre-qualified|"
+    r"special financing|gift card|free gift card|redeem now|survey reward|complete survey|"
+    r"opinion wanted|charity donation|donate now|help children|inheritance|next of kin|"
+    r"unclaimed funds|lottery winner|lucky winner|prize claim|bank of america alert|"
+    r"wells fargo alert|chase alert|suspicious login|unauthorized access|security breach|"
+    r"verify identity|identity verification|kyc required|2fa code|two factor|authentication code|"
+    r"reset password|password expired|credentials|login attempt|sign in attempt|new device|"
+    r"geek squad|norton|mcafee|renew subscription|antivirus expired|security software|tech support|"
+    r"microsoft support|apple support|amazon support|refund pending|refund processing|"
+    r"refund approved|overcharged|billing error|payment dispute",
+    re.IGNORECASE,
+)
+
+RE_NEWSLETTER_BULK = re.compile(
+    r"unsubscribe|no-reply|noreply|newsletter|digest|daily update|weekly update|"
+    r"promotional|promo|marketing|advertisement|sponsored|partner offer|"
+    r"you might like|recommended for you|based on your|personalized|tailored",
+    re.IGNORECASE,
+)
+
+RE_FAKE_SENDER = re.compile(
+    r"telegram|whatsapp|signal\s*<|discord\s*<|messenger\s*<|direct\s*<|"
+    r"missedcall|new\s*match|iwant|naughty|tabl-|hottie|porn|xxx|naughty|"
+    r"sexy|horny|booty|nibble|bedroom|scoop|hot tonight|wanting a crazy night|wants a crazy night|are you single|"
+    r"wants to chat|send pics|meetup|snapchat|kik|onlyfans|fansly|"
+    r"milf|cam|sophisticated male|wink|fun we had|eharmony|"
+    r"foxytemptation|i want hookups|faithful fling|hot.*milf|"
+    r"someone wants to meet|wants to meet|meet you|meet me|let's meet|"
+    r"localtemptation|temptation|wet emoji|wet emojis|gucciluci|"
+    r"truebootycall|true booty call",
+    re.IGNORECASE,
+)
+
+CORE_BAD = {"pornhub", "sex", "fuck", "cock", "cum", "pussy", "dick", "penis", "vagina",
+            "clit", "anal", "blowjob", "handjob", "creampie", "deepthroat",
+            "gangbang", "bukkake", "squirt", "threesome", "orgy", "swingers",
+            "bdsm", "fetish", "kink", "kinky", "dominatrix", "nudity",
+            "erotic", "erotica", "nsfw", "seductive", "passionate", "steamy",
+            "breasts", "naked", "nude"}
+
+DATING = {"wants to meet you", "likes your profile", "feels the attraction",
+          "someone likes you", "private message received", "new message from",
+          "desires you", "hookup", "dtf", "nsa", "fwb", "friends with benefits",
+          "casual sex", "adult dating", "online flirting", "meet local",
+          "local babes", "choose the girl", "start chatting",
+          "waiting to connect", "new match", "private match",
+          "feel your breasts", "soft for your fingers", "meet her before bed",
+          "get to know you", "spice it up", "hot affair", "sexy singles",
+          "i want hookups", "iflirts", "play with me", "available tonight",
+          "hot tonight", "are you single", "wants to chat", "send pics",
+          "send nudes", "trade pics", "meet up", "meetup", "hangout",
+          "get together", "just moved", "new in town", "lonely and",
+          "so lonely", "need company", "waiting for you", "thinking of you",
+          "saw your pic", "cute pic", "you look good", "handsome man",
+          "snap me", "snapchat", "kik me", "telegram me", "whatsapp me",
+          "text me", "txt me", "call me", "hit me up", "hmu", "dm me",
+          "dont be shy", "no strings", "nothing serious", "down for anything",
+          "open minded", "attached female", "married but", "discreet",
+          "sugar baby", "sugar daddy", "allowance", "spoiled",
+          "send money", "need $", "broke and",
+          "bored and lonely", "wanting a crazy night", "wants a crazy night",
+          "wanting a wild night", "wants a wild night", "wanting some fun",
+          "wants some fun", "wants to party", "wanting to party",
+          "pull me by my hair", "sexy lingerie", "dance on the pylon",
+          "stripper", "multiple orgasms", "turns me on",
+          "asking for more photos", "find someone special", "looking for fun",
+          "reply for pics", "click to see", "view profile", "claim your", "you won",
+          "free gift", "act now", "missed call", "unread message",
+          "instagram direct", "reply to an important message",
+          "friends in private chat", "she dares you", "she checked your profile",
+          "her message can't wait", "she's hoping you'll open",
+          "tonight you have a choice", "instant connections", "no filters",
+          "confirm your email", "urgent confirm",
+          "hello compjunkie", "re: compjunkie", "i finally found you",
+          "group chat", "i have a confession", "drop your pants",
+          "your name came to mind", "your body can always light my fire",
+          "coffee break", "sybian rides", "i'm easy to rev up",
+          "wait one second before you go", "eyes only",
+          "no pressure, just happy feelings", "ass fantasies",
+          "my boobs are begging", "what we'd be like", "when if not now",
+          "who's the boss", "size and proportions", "noble professions",
+          "anything you want, i can do", "down-to-earth girl wants you",
+          "don't let this mood pass you by", "i'm convinced, i love you",
+          "iz it u i saw today", "what u like in bed", "friendly wink",
+          "found something cool", "curious about what you'd like",
+          "hey stranger", "call me", "great listener",
+          "relations with alt-girl", "my heart beats faster",
+          "i like men having the upper hand", "quick fix", "milf looking for",
+          "got her snap after lunch", "someone wants to talk with you",
+          "being sweet while you rail me", "i'm fun loving and lover of fun",
+          "i'm new here", "my smile is a challenge",
+          "free option and gets results", "being 40 is perfect",
+          "you matter to someone", "is curious to see more of you",
+          "where've you been all this time",
+          "she just pinged you", "let's live a little",
+          "someone is curious to know you", "i'm looking for a great time",
+          "i want to experiment and enjoy life more",
+          "life without love", "i wish you were here",
+          "my fantasy is to be with you", "these girls have a certain pull",
+          "beautiful chinese girls want to chat",
+          "do you know how to have a good time",
+          "want to partner up and have some fun",
+          "ask me out", "message from mortar", "someone reading",
+          "lisa online near", "you ready", "straight up",
+          "you busy this week", "oral fixation", "me? an oral fixation? yes",
+          "samara is now following you", "can we make love",
+          "without any obligations", "i found you on facebook",
+          "great pic", "luv69", "the deeper truth of attraction",
+          "so about that site", "met her", "females show a lot of tricks",
+          "online spectators", "females show", "tricks to online spectators",
+          "costco meat box", "ready to ship", "your costco meat box",
+          "great steaks sampler", "omaha steaks",
+          "nationwide carry for military", "bill for nationwide carry",
+          "order verification notice", "verification notice",
+          "inquiry", "order \u2013 verification notice",
+          "nerve fresh", "relief from tingling",
+          "i'm having a break", "let's open up new frontiers",
+          "i know you want it", "lick my", "hi, wanna chat",
+          "anytime you feel like talking", "just relocated here",
+          "would love some help", "here for you", "new here and",
+          "shower together", "incredibly nice inside", "makes me incredibly",
+          "several members are trying to reach you", "just messaged you",
+          "landed in your inbox", "wondering how you look like",
+          "working out in the bedroom", "real mature woman",
+          "strip me", "from that site", "want to see what i'm doing",
+          "she's sharing something", "she made something you should see",
+          "enjoy premium access", "thanks for joining",
+          "post a comment on your wall", "compjunkie hi",
+          "you'll like this", "quick question before i disappear",
+          "passing this to you", "photos i've kept to myself",
+          "authentic platform", "did you manage to find",
+          "sent you a follow request", "notification from",
+          "she said yes", "said yes", "connected with",
+          "a new message to read",
+          "bet you're trouble", "trouble in the best way", "you're trouble",
+          "wanna chat", "feel like talking", "just relocated", "love some help",
+          "fast & flirty", "flirty flings", "flirty edition",
+          "flirty connection", "flirty dm", "flirty note",
+          "flirty photos", "flirty message", "flirty and",
+          "fun and flirty", "sent a flirty",
+          "is touching herself", "is touching himself", "touching myself",
+          "match update:", "deletes in", "sent message",
+          "local singles live", "mysterious gift", "private content",
+          "someone anonymous", "unlock to reveal",
+          "requiring a sophisticated male opinion", "sophisticated male opinion",
+          "attire for a quiet social gathering", "caught you looking",
+          "she wants your eyes on this", "sent you a private request",
+          "accept click any button",
+          "sent you a wink", "fun we had", "remember how much fun",
+          "how much fun we had", "you remind me of someone",
+          "would like to see you on cam", "see you on cam",
+          "come over to my room baby", "totally excited",
+          "one call with you is never enough", "irresistibly yours to nibble tonight",
+          "nibble tonight", "afternoon compjunkie", "compjunkie - afternoon",
+          "quick idea about our plan", "something naughty i wanted to share",
+          "naughty i wanted to share", "saved it private just for now",
+          "hot milf", "h o t m i l f",
+          "added you to private group", "private group",
+          "end-to-end encrypted", "mutual contacts",
+          "people in this chat",
+          "blocked your account", "photos and videos will be deleted",
+          "we've blocked your account",
+          "uncovered something weird", "what makes someone memorable",
+          "compjunkie?", "unexpected excitement is right around the corner",
+          "someone wants to meet you", "someone wants to meet", "wants to meet",
+          "meet you", "meet me", "let's meet", "wanna meet", "down to meet",
+          "ride you until we both", "light up your", "firecracker of",
+          "explode", "cum", "blow your", "rock your",
+          "naughty girl", "bad girl", "good girl", "your girl", "my girl", "lonely girl",
+          "mature woman", "real woman", "local woman", "single woman", "married woman",
+          "divorced", "separated", "unattached", "looking for love", "need a man", "need a guy",
+          "age is just", "age doesn't matter", "cougar",
+          "picks you", "picked you", "selected you", "chose you", "chosen for you",
+          "i adore the way your body", "our adventure together", "deeply fascinated",
+          "cherish me", "i honestly laughed waiting", "my day got better because",
+          "i need your cock", "satisfy me", "your cock to satisfy",
+          "long fors me", "body long fors",
+          }
+
+LEGIT = {"discord.com", "google.com", "microsoft.com", "apple.com", "amazon.com",
+         "github.com", "kickstarter.com", "xbox.com", "windycitycigars.com",
+         "cigarsinternational.com", "olivegarden.com", "krispykreme.com",
+         "audible.com", "spotify.com", "tubitv.com", "caswellmassey.com",
+         "zennioptical.com", "ulta.com", "marcos.com", "dunkinrewards.com",
+         "chick-fil-a.com", "starbucks.com", "texasroadhouse.com",
+         "regions.com", "steampowered.com", "borisfx.com", "ubiquiti.com",
+         "plex.tv", "googleplay.com", "myq.com", "uber.com",
+         "shoecarnival.com", "limitedrungames.com", "scentbird.com",
+         "sephora.com", "shutterfly.com", "zulily.com", "empiresofeve.com",
+         "churchcenter.com", "sojourn.church", "georgiapacking.org",
+         "cigaraficionado.com", "greentoe.com", "qalo.com", "vevor.com",
+         "chewy.com", "dominos.com", "papajohns.com", "walmart.com",
+         "bestbuy.com", "target.com", "costco.com", "lowes.com",
+         "bjswholesaleclub.com",
+         "homedepot.com", "nbc.com", "nbcsports.com", "twitch.tv",
+         "wizards.com", "experian.com", "canva.com", "lg.com",
+         "samsung.com", "disneypinnacle.com", "ifttt.com",
+         "m.starbucks.com", "e.olivegarden.com", "email.chick-fil-a.com",
+         "e-rewards.dominos.com", "dough.papajohns.com",
+         "promo.newegg.com", "microcenter.com", "email.microcenter.com",
+         "mail.scentbird.com", "updates.scentbird.com",
+         "geologia.unam.mx", "unam.mx", "ptit.edu.vn",
+         "stu.ptit.edu.vn", "correo.chapingo.mx",
+         "cosbrizal.edu.ph", "maristascomayagua.edu.hn",
+         "binus.ac.id", "moe.gov.sa", "rb.moe.gov.sa",
+         "eng.zu.edu.eg", "lcps.org.uk", "notredameacademy.org",
+         "an.em-net.ne.jp", "dolphin.ocn.ne.jp", "ocn.ne.jp",
+         "estudiantes.uv.mx", "web.de",
+         "paypal.com", "chase.com", "tiktok.com",
+         }
+
+
+def get_password(email_addr):
+    pass_var = ACCOUNTS.get(email_addr, "")
+    if not pass_var:
+        return ""
+    env = os.environ.get(pass_var, "").strip().replace(" ", "")
+    if env:
+        return env
+    try:
+        with open(LOCAL_CONFIG, "r", encoding="utf-8") as f:
+            config = json.load(f)
+        return config.get(email_addr, "").strip().replace(" ", "")
+    except Exception:
+        return ""
+
+
+def decode_field(s):
+    if not s:
+        return ""
+    parts = decode_header(s)
+    out = []
+    for part, enc in parts:
+        if isinstance(part, bytes):
+            try:
+                out.append(part.decode(enc or "utf-8", errors="replace"))
+            except Exception:
+                out.append(part.decode("utf-8", errors="replace"))
+        else:
+            out.append(str(part))
+    return " ".join(out)
+
+
+def extract_domain(sender):
+    """Extract the domain from a sender string."""
+    m = re.search(r'@([^>\s]+)', sender)
+    return m.group(1).lower() if m else ""
+
+
+def classify_spam(sender_raw, subject_raw):
+    """Classify why something is spam. Returns (is_spam, reason)."""
+    sender = sender_raw.lower()
+    subject = subject_raw.lower()
+
+    # Not spam if legit domain
+    for dom in LEGIT:
+        if dom in sender:
+            return False, "legit"
+
+    # Blocklisted domain
+    for d in SPAM_DOMAINS:
+        if d in sender:
+            return True, f"blocklisted domain: {d}"
+
+    # Fake sender patterns
+    if RE_FAKE_SENDER.search(sender):
+        return True, "fake sender name (dating/sexual)"
+
+    # Sexual content in sender or subject
+    if RE_SEXUAL.search(sender) or RE_SEXUAL.search(subject):
+        return True, "dating/sexual content"
+
+    # Business scam
+    if RE_BUSINESS_SCAM.search(subject) and not any(d in sender for d in LEGIT):
+        return True, "business scam"
+
+    # Newsletter bulk
+    if RE_NEWSLETTER_BULK.search(subject) and not any(d in sender for d in LEGIT):
+        suspicious_tld = re.search(r'\.(ru|biz|top|pp\.ua|co\.nl|org\.uk|tk|ml|cf)$', sender)
+        if suspicious_tld or re.search(r'[0-9]', sender.split('@')[-1] if '@' in sender else sender):
+            return True, "newsletter/marketing bulk (suspicious sender)"
+
+    # Aggressive patterns
+    aggressive = [
+        r"someone wants to meet", r"wants to meet you", r"ride you until we both",
+        r"light up your.*(firecracker|4th)", r"anal virgin", r"explode", r"cum\b",
+        r"blow your", r"rock your", r"turn (you|me) on", r"touch (me|you)",
+        r"desire you", r"crave you", r"naughty girl", r"bad girl", r"lonely girl",
+        r"mature woman", r"real woman", r"local woman", r"single woman", r"married woman",
+        r"divorced", r"separated", r"unattached", r"looking for love",
+        r"need a (man|guy)", r"age is just", r"age doesn't matter", r"cougar",
+        r"picks you", r"picked you", r"selected you", r"chosen for you",
+        r"let you in on her fantasy", r"wants to let you in", r"her fantasy",
+        r"truebootycall", r"true booty call",
+    ]
+    for pattern in aggressive:
+        if re.search(pattern, subject, re.IGNORECASE):
+            return True, "aggressive dating/sexual keyword"
+
+    # Emoji + dating
+    sender_name_only = sender.split("<")[0].strip() if "<" in sender else sender
+    emoji_count = len(re.findall(r"[\U0001F600-\U0001F64F\U0001F300-\U0001F5FF\U0001F680-\U0001F6FF\U0001F1E0-\U0001F1FF\U00002702-\U000027B0\U000024C2-\U0001F251\u2764\U0001F48B\U0001F4A7\U0001F351\U0001F353\U0001F364\U0001F382\U0001F3B6\U0001F4AF\U0001F495\U0001F496\U0001F497\U0001F498\U0001F499\U0001F49A\U0001F49B\U0001F49C\U0001F49D\U0001F525\U0001F336\U0001F344]", sender_name_only))
+    if emoji_count >= 1 and any(w in subject for w in DATING):
+        return True, "emoji sender + dating subject"
+    if emoji_count >= 1 and re.search(r"adore|cherish|fascinated|laugh|waiting|body|cock|satisfy", subject, re.IGNORECASE):
+        return True, "emoji sender + sexual subject"
+
+    # Combined patterns
+    combined = sender + " " + subject
+    if re.search(r"anytime you feel like talking|just relocated|would love some help", combined, re.IGNORECASE):
+        return True, "combined dating pickup line"
+    if re.search(r"key to your entry|entry now|click here|open this", subject, re.IGNORECASE):
+        return True, "suspicious CTA"
+    if "verification code" in subject:
+        legit_code_senders = {"paypal.com", "chase.com", "google.com", "microsoft.com", "amazon.com", "apple.com", "discord.com", "eveonline"}
+        if not any(s in sender for s in legit_code_senders):
+            return True, "suspicious verification code"
+    if re.search(r"claim your prize|congratulations.*won|you.*won|click to claim", subject, re.IGNORECASE):
+        return True, "prize/reward scam"
+    if re.search(r"beach reward|your .* is here|free.*gift", subject, re.IGNORECASE):
+        if not any(d in sender for d in LEGIT):
+            return True, "free gift scam"
+
+    # Core bad words
+    for w in CORE_BAD:
+        if w in subject:
+            return True, f"core bad word: {w}"
+
+    # Dating keywords
+    for w in DATING:
+        if w in subject:
+            return True, f"dating keyword: {w}"
+
+    # Fake sender names
+    fake_sender_names = {"karen", "linda", "dorothy", "mary",
+                         "h o t m i l f", "hot milf", "adultcrush"}
+    sender_name = sender.split("<")[0].strip().lower() if "<" in sender else sender.lower()
+    if any(name in sender_name for name in fake_sender_names) and any(w in subject for w in DATING):
+        return True, "fake sender name + dating subject"
+
+    fake_names = {"kyree", "kyree owen", "md mahtab", "chadeb", "amber",
+                  "allen kimberly", "nancy", "camilla", "kimberly clark", "sarah",
+                  "linda moore", "dorothy young", "karen perez"}
+    if any(name in sender_name for name in fake_names) and any(w in subject for w in DATING):
+        return True, "fake person name + dating subject"
+
+    # Free-email + dating
+    if re.search(r"@(gmail|hotmail|outlook)\.(com|co\.\w+)", sender) and any(w in subject for w in DATING):
+        return True, "free-email sender + dating subject"
+
+    return False, "clean"
+
+
+def fetch_messages(email_addr, password, folder, days=3, max_msgs=80):
+    """Fetch messages from a folder. Returns list of (sender, subject, domain) tuples."""
+    results = []
+    try:
+        mail = imaplib.IMAP4_SSL("imap.gmail.com", timeout=20)
+        mail.login(email_addr, password)
+    except Exception as e:
+        print(f"  LOGIN FAILED for {email_addr}: {e}")
+        return results
+
+    status, _ = mail.select(folder)
+    if status != "OK":
+        print(f"  SELECT FAILED for {folder}")
+        mail.logout()
+        return results
+
+    since_date = (datetime.now() - timedelta(days=days)).strftime("%d-%b-%Y")
+    _, data = mail.search(None, f"(SINCE {since_date})")
+    all_ids = data[0].split()
+    if not all_ids:
+        mail.close()
+        mail.logout()
+        return results
+
+    uids = all_ids[-max_msgs:]
+    print(f"  Fetching {len(uids)} messages from {folder}...")
+
+    for uid in uids:
+        try:
+            _, msg_data = mail.fetch(uid, "(BODY.PEEK[HEADER.FIELDS (FROM SUBJECT)])")
+            if not msg_data or not msg_data[0]:
+                continue
+            raw = msg_data[0][1]
+            msg = email.message_from_bytes(raw)
+            sender = decode_field(msg.get("From", ""))
+            subject = decode_field(msg.get("Subject", ""))
+            domain = extract_domain(sender)
+            results.append((sender, subject, domain))
+        except Exception:
+            continue
+
+    mail.close()
+    mail.logout()
+    return results
+
+
+def run_audit():
+    report_lines = []
+    report_lines.append("# Gmail Spam Audit Report")
+    report_lines.append(f"**Date:** 2026-07-08")
+    report_lines.append(f"**Accounts checked:** 4")
+    report_lines.append(f"**Window:** Last 3 days (INBOX cap: 80 emails, Spam cap: 80 emails)")
+    report_lines.append("")
+
+    all_uncaught = []      # spam in INBOX not in blocklist
+    false_negatives = []   # spam in INBOX from blocklisted domain
+    spam_folder_hits = []  # what's in Spam folder
+    new_domains = set()    # new spam domains discovered
+    blocklist_hits_in_spam = []  # blocklisted domains in Spam (expected)
+
+    for email_addr in ACCOUNTS.keys():
+        password = get_password(email_addr)
+        if not password:
+            report_lines.append(f"## {email_addr}")
+            report_lines.append("**SKIPPED:** password not found")
+            report_lines.append("")
+            continue
+
+        print(f"\n{'='*60}")
+        print(f"Account: {email_addr}")
+        print(f"{'='*60}")
+
+        report_lines.append(f"## {email_addr}")
+        report_lines.append("")
+
+        # --- INBOX ---
+        inbox_msgs = fetch_messages(email_addr, password, "INBOX", days=3, max_msgs=80)
+        inbox_spam = []
+        for sender, subject, domain in inbox_msgs:
+            is_spam, reason = classify_spam(sender, subject)
+            if is_spam:
+                inbox_spam.append({
+                    "sender": sender,
+                    "subject": subject,
+                    "domain": domain,
+                    "reason": reason,
+                    "in_blocklist": domain in SPAM_DOMAINS or any(d in sender.lower() for d in SPAM_DOMAINS)
+                })
+
+        # Categorize INBOX spam
+        account_false_neg = [s for s in inbox_spam if s["in_blocklist"]]
+        account_uncaught = [s for s in inbox_spam if not s["in_blocklist"]]
+
+        false_negatives.extend([{**s, "account": email_addr} for s in account_false_neg])
+        all_uncaught.extend([{**s, "account": email_addr} for s in account_uncaught])
+
+        # Discover new domains from uncaught
+        for s in account_uncaught:
+            if s["domain"] and s["domain"] not in SPAM_DOMAINS:
+                new_domains.add(s["domain"])
+
+        print(f"  INBOX: {len(inbox_msgs)} checked, {len(inbox_spam)} spam found")
+        print(f"    - False negatives (blocklisted but got through): {len(account_false_neg)}")
+        print(f"    - New uncaught spam: {len(account_uncaught)}")
+
+        report_lines.append(f"### INBOX (last 3 days)")
+        report_lines.append(f"- Total checked: {len(inbox_msgs)}")
+        report_lines.append(f"- Spam found: {len(inbox_spam)}")
+        report_lines.append(f"  - False negatives (blocklisted domain, still in INBOX): {len(account_false_neg)}")
+        report_lines.append(f"  - New uncaught spam: {len(account_uncaught)}")
+        report_lines.append("")
+
+        if account_false_neg:
+            report_lines.append("**False Negatives (blocklisted domain still in INBOX):**")
+            for s in account_false_neg:
+                report_lines.append(f"- `{s['domain']}` | `{s['subject'][:70]}` | {s['reason']}")
+            report_lines.append("")
+
+        if account_uncaught:
+            report_lines.append("**New Uncaught Spam (not in blocklist):**")
+            for s in account_uncaught:
+                report_lines.append(f"- `{s['domain']}` | `{s['subject'][:70]}` | {s['reason']}")
+            report_lines.append("")
+
+        # --- SPAM FOLDER ---
+        spam_msgs = fetch_messages(email_addr, password, "[Gmail]/Spam", days=3, max_msgs=80)
+        spam_hits = []
+        for sender, subject, domain in spam_msgs:
+            is_bl = domain in SPAM_DOMAINS or any(d in sender.lower() for d in SPAM_DOMAINS)
+            spam_hits.append({
+                "sender": sender,
+                "subject": subject,
+                "domain": domain,
+                "in_blocklist": is_bl
+            })
+
+        account_bl_hits = [s for s in spam_hits if s["in_blocklist"]]
+        account_nonbl_hits = [s for s in spam_hits if not s["in_blocklist"]]
+
+        spam_folder_hits.extend([{**s, "account": email_addr} for s in spam_hits])
+        blocklist_hits_in_spam.extend([{**s, "account": email_addr} for s in account_bl_hits])
+
+        print(f"  Spam folder: {len(spam_msgs)} checked")
+        print(f"    - Blocklisted domains caught: {len(account_bl_hits)}")
+        print(f"    - Non-blocklisted caught: {len(account_nonbl_hits)}")
+
+        report_lines.append(f"### Spam Folder (last 3 days)")
+        report_lines.append(f"- Total in Spam: {len(spam_msgs)}")
+        report_lines.append(f"- Blocklisted domains caught: {len(account_bl_hits)}")
+        report_lines.append(f"- Non-blocklisted caught by Gmail: {len(account_nonbl_hits)}")
+        report_lines.append("")
+
+        if account_nonbl_hits:
+            report_lines.append("**Spam caught by Gmail (not in our blocklist):**")
+            for s in account_nonbl_hits:
+                report_lines.append(f"- `{s['domain']}` | `{s['subject'][:70]}`")
+                if s["domain"] and s["domain"] not in SPAM_DOMAINS:
+                    new_domains.add(s["domain"])
+            report_lines.append("")
+
+    # --- Summary ---
+    report_lines.append("---")
+    report_lines.append("## Summary")
+    report_lines.append("")
+    report_lines.append(f"| Metric | Count |")
+    report_lines.append(f"|--------|-------|")
+    report_lines.append(f"| Total false negatives (blocklisted, in INBOX) | {len(false_negatives)} |")
+    report_lines.append(f"| Total new uncaught spam (INBOX, not blocklisted) | {len(all_uncaught)} |")
+    report_lines.append(f"| Total spam in Spam folders | {len(spam_folder_hits)} |")
+    report_lines.append(f"| Blocklist hits in Spam folder | {len(blocklist_hits_in_spam)} |")
+    report_lines.append(f"| **New spam domains discovered** | **{len(new_domains)}** |")
+    report_lines.append("")
+
+    if new_domains:
+        report_lines.append("### New Spam Domains to Add")
+        report_lines.append("```python")
+        for d in sorted(new_domains):
+            report_lines.append(f'    "{d}",')
+        report_lines.append("```")
+        report_lines.append("")
+
+    if false_negatives:
+        report_lines.append("### False Negative Details")
+        report_lines.append("These domains are in the blocklist but emails still got to INBOX:")
+        report_lines.append("")
+        for s in false_negatives:
+            report_lines.append(f"- **{s['account']}** | `{s['domain']}` | `{s['subject']}` | {s['reason']}")
+        report_lines.append("")
+
+    if all_uncaught:
+        report_lines.append("### All New Uncaught Spam")
+        report_lines.append("")
+        for s in all_uncaught:
+            report_lines.append(f"- **{s['account']}** | `{s['domain']}` | `{s['subject']}` | {s['reason']}")
+        report_lines.append("")
+
+    # Write report
+    with open(REPORT_PATH, "w", encoding="utf-8") as f:
+        f.write("\n".join(report_lines))
+
+    print(f"\n{'='*60}")
+    print(f"Report saved to: {REPORT_PATH}")
+    print(f"  False negatives: {len(false_negatives)}")
+    print(f"  New uncaught: {len(all_uncaught)}")
+    print(f"  New domains: {len(new_domains)}")
+    print(f"{'='*60}")
+
+
+if __name__ == "__main__":
+    run_audit()

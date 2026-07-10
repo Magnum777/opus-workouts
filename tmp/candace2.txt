@@ -1,0 +1,8 @@
+=== BODY SEARCH: repairs ===
+Found 186 emails
+
+Traceback (most recent call last):
+  File "C:\Users\compj\.openclaw\workspace\tmp\search_candace.py", line 29, in <module>
+    subject_str += part.decode(enc or 'utf-8', errors='replace')
+                   ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+LookupError: unknown encoding: unknown-8bit

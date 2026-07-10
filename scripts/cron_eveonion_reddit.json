@@ -1,0 +1,57 @@
+{
+  "id": "b1e52901-437f-408d-8834-d5d9c658e26b",
+  "agentId": "eveonion",
+  "sessionKey": "agent:eveonion:discord:channel:1484624659633934587",
+  "name": "EveOnion-RedditTweet-10am",
+  "enabled": true,
+  "createdAtMs": 1783453233221,
+  "schedule": {
+    "expr": "0 10 * * *",
+    "kind": "cron",
+    "tz": "America/New_York"
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "You are the EVE Onion tweet generator. Your job: find the most juicy, dramatic EVE Online reddit post from the last 24-48h and tweet it in satirical EVE Onion voice.\n\n## Step 1: Discover EVE drama via web search\nRun these searches using `web_search`:\n1. `site:reddit.com/r/Eve war OR scam OR gank OR blown up OR lost my titan 2026`\n2. `site:reddit.com/r/evecirclejerk EVE 2026`\n3. `r/Eve drama today OR this week 2026`\n\nFind 2-3 interesting posts. Pick the one with the most drama potential (war, betrayal, scam, explosive loss, hilarious situation).\n\n## Step 2: Fetch the best post\nUse `web_fetch` to pull the full content of the most promising post URL.\nExtract: title, key details from the post body, score, comment count if available.\n\n## Step 3: Generate the satirical tweet\nUse `kimi-k2.6` to generate a tweet. Prompt:\n\n\"\"\"You are the EVE Onion, a satirical EVE Online news account that covers the game's most absurd, dramatic, and hilarious moments with fictional 'journalism.'\n\nConvert this EVE Online reddit post into a satirical EVE Onion tweet. Requirements:\n- Tone: Deadpan mock-journalism, Onion-style (never ironic emojis, never 'LOL', never breaking character)\n- Output: A single tweet, 200-270 characters max\n- Structure: Treat the real drama as if it's a genuine news story. Serious headline-style opening. The humor comes from treating absurd EVE drama as completely normal news.\n- Reference the real situation but frame it as official or unexpected news\n- Include the original Reddit post URL as your source\n- NO em dashes (ΓÇö). Use commas or semicolons instead.\n- Keep it believable as fake news to someone who doesn't know EVE\n- Do NOT use: delve, landscape, significance, testament, robust, comprehensive, facilitate, leverage\n\nORIGINAL POST:\n[TITLE]\n[BODY/DETAILS]\n[SOURCE URL]\n\nWrite ONLY the tweet text, nothing else.\"\"\"\n\n## Step 4: Post to X and Bluesky via upload-post API\nAPI key is in: `C:\\Users\\compj\\.openclaw\\workspace\\credentials\\uploadpost.env` (field: `UPLOADPOST_API_KEY`)\n\nPOST to: `https://api.upload-post.com/api/upload_text`\n- Form data: `user=Eveonion`, `platform[]=x`, `platform[]=bluesky`, `title=<tweet text>`\n- Header: `Authorization: Apikey <api_key>`\n\nUse `exec` to run:\n```\npy -c \"import requests; r = requests.post('https://api.upload-post.com/api/upload_text', data={'user': 'Eveonion', 'platform[]': ['x', 'bluesky'], 'title': 'TWEET TEXT HERE'}, headers={'Authorization': 'Apikey KEY_HERE'}); print(r.status_code, r.text[:500])\"\n```\n\nReplace TWEET TEXT HERE and KEY_HERE with actual values.\n\n## Step 5: Report\nPost to #eveonion (channel 1484624659633934587):\n- The tweet text\n- The source reddit post link\n- X and Bluesky URLs if posted successfully\n\nIf you find no good drama today:\n- Post to #eveonion: \"EVE Onion daily check: no fresh reddit drama today. We'll catch tomorrow.\"\n\nUse `kimi-k2.6` for tweet generation. Use `deepseek-v4-flash` for all other steps.",
+    "model": "ollama/deepseek-v4-flash:cloud",
+    "timeoutSeconds": 480,
+    "toolsAllow": [
+      "exec",
+      "web_search",
+      "web_fetch",
+      "read"
+    ]
+  },
+  "delivery": {
+    "channel": "discord",
+    "mode": "announce",
+    "to": "channel:1484624659633934587"
+  },
+  "state": {
+    "nextRunAtMs": 1783519200000,
+    "lastRunAtMs": 1783453515529,
+    "lastRunStatus": "error",
+    "lastStatus": "error",
+    "lastDurationMs": 83124,
+    "lastDiagnostics": {
+      "summary": "500 {\"error\":\"Internal Server Error (ref: f6eceee8-d792-4d98-97f5-3b6b058dfd8c)\"}",
+      "entries": [
+        {
+          "ts": 1783453598653,
+          "source": "agent-run",
+          "severity": "error",
+          "message": "500 {\"error\":\"Internal Server Error (ref: f6eceee8-d792-4d98-97f5-3b6b058dfd8c)\"}"
+        }
+      ]
+    },
+    "lastDiagnosticSummary": "500 {\"error\":\"Internal Server Error (ref: f6eceee8-d792-4d98-97f5-3b6b058dfd8c)\"}",
+    "lastErrorReason": "timeout",
+    "lastDeliveryStatus": "unknown",
+    "consecutiveErrors": 2,
+    "consecutiveSkipped": 0,
+    "lastError": "FailoverError: 500 {\"error\":\"Internal Server Error (ref: f6eceee8-d792-4d98-97f5-3b6b058dfd8c)\"}"
+  },
+  "updatedAtMs": 1783454204528
+}

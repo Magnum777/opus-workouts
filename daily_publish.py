@@ -2,15 +2,14 @@ import xmlrpc.client
 import os
 from datetime import datetime, timedelta
 
+from vault_helper import get_credential
+
 # Credentials for daily-dump site(s)
-# IMPORTANT: Daily dumps should ONLY go to aicofounderstack.com.
-# Other sites are intentionally removed from this list to avoid
-# cross-posting automation content where it doesn't belong.
 SITES = {
     'aicofounderstack.com': {
-        'url': 'https://aicofounderstack.com/xmlrpc.php',
-        'user': 'nova',
-        'pass': 'DUau yrXK 1X8k O6eH YL5v qKID'
+        'url': get_credential('wordpress', 'aicofounderstack_url'),
+        'user': get_credential('wordpress', 'aicofounderstack_user'),
+        'pass': get_credential('wordpress', 'aicofounderstack_pass')
     }
     # If you ever want to re-enable other sites, add them here explicitly
     # and be very clear about which content types are allowed.

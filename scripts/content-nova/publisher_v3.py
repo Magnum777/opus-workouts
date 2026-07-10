@@ -19,12 +19,12 @@ SITES = {
     'aitoolalliance.com': {
         'url': 'https://aitoolalliance.com',
         'user': 'aitoolalliance_u6cbhe',
-        'pass': <SCRUBBED_WORDPRESS_APP_PASSWORD>,
+        'pass': 'PXop SzVQ b6wX IAyr FSig 8ZfL',
     },
     'aibusinessinsider.org': {
         'url': 'https://aibusinessinsider.org',
         'user': 'nova.cofounder@gmail.com',
-        'pass': <SCRUBBED_WORDPRESS_APP_PASSWORD>,
+        'pass': 'sDLx Ja22 YxcI QAok gu8u xRXI',
     },
     'aicofounderstack.com': {
         'url': 'https://aicofounderstack.com',
