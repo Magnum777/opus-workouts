@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-10T11:56:29.937Z",
+  "updatedAt": "2026-07-10T12:15:50.318Z",
   "entries": {
     "memory:memory/2026-05-07.md:1:28": {
       "key": "memory:memory/2026-05-07.md:1:28",
@@ -3562,13 +3562,13 @@
       "endLine": 54,
       "source": "memory",
       "snippet": "## Content Nova Featured Images - New script: `scripts/content-nova/featured_image.py` - Searches Unsplash, downloads, uploads to WP Media Library, attaches as featured image - Successfully tested on aitoolalliance.com post 187 - All 3 Content Nova crons updated to include Step 5: featured image after publish ## Stable Diffusion Fixed - Fresh ComfyUI v0.22.0 installed at `workspace/ComfyUI` with DirectML for AMD 9070 XT - Old WebUI had broken venv, Python 3.14 incompatibility, stale repo - Programmatic generation via `generate.py` ## LanceDB Vector Memory Restored - Copied `nova_memory/vector_memory.py` from old install - Patched for new workspace paths - Tested working with Ollama `nomic-",
-      "recallCount": 7,
+      "recallCount": 9,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 7,
+      "totalScore": 9,
       "maxScore": 1,
       "firstRecalledAt": "2026-06-15T02:10:33.633Z",
-      "lastRecalledAt": "2026-07-10T11:56:29.937Z",
+      "lastRecalledAt": "2026-07-10T12:15:50.318Z",
       "queryHashes": [
         "90945506cbac",
         "3f9ecc1b4875",
@@ -3576,7 +3576,9 @@
         "1ad5a1607fa5",
         "4260d7ef6681",
         "8c3b6ad0a779",
-        "9f982bb991f3"
+        "9f982bb991f3",
+        "4dbcbce8f48c",
+        "0dce2191f7a8"
       ],
       "recallDays": [
         "2026-06-14",
@@ -5089,6 +5091,102 @@
         "sdc",
         "what",
         "did"
+      ]
+    },
+    "memory:memory/archive/2026-05-27.md:48:71": {
+      "key": "memory:memory/archive/2026-05-27.md:48:71",
+      "path": "memory/archive/2026-05-27.md",
+      "startLine": 48,
+      "endLine": 71,
+      "source": "memory",
+      "snippet": "- Decided Gmail-based email monitoring was better than browser dashboard scraping - Opus said \"forget the affiliate stuff for now\" — dropped ## Night School Restored - Copied `docs/night-school/` (54 topics), `night-school-viewer.html`, `skippys-academy.md` - Cron: `NightSchool-8pm` (ID `3071d872...`), daily 8pm ET - Copied to NAS: `\\\\MND\\web\\night-school\\` and `night-school-viewer.html` - Accessible at `http://192.168.68.51/night-school-viewer.html` - Killed local node server on port 8080, removed `night-school-server.js` and `start-night-school-server.bat` - Sub-agent ingested all 54 playbooks + Skippy's Academy into LanceDB (31,884 words) ## aicofounderstack.com Site Revamp - Changed ho",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-10T12:15:45.211Z",
+      "lastRecalledAt": "2026-07-10T12:15:50.318Z",
+      "queryHashes": [
+        "4dbcbce8f48c",
+        "0dce2191f7a8"
+      ],
+      "recallDays": [
+        "2026-07-10"
+      ],
+      "conceptTags": [
+        "gmail-based",
+        "docs/night-school",
+        "night-school-viewer.html",
+        "skippys-academy.md",
+        "nightschool-8pm",
+        "night-school",
+        "night-school-server.js",
+        "start-night-school-server.bat"
+      ]
+    },
+    "memory:memory/archive/2026-02-24.md:1:52": {
+      "key": "memory:memory/archive/2026-02-24.md:1:52",
+      "path": "memory/archive/2026-02-24.md",
+      "startLine": 1,
+      "endLine": 52,
+      "source": "memory",
+      "snippet": "# February 24, 2026 ## Morning - System Fixes ### Issues Fixed - Updated OpenClaw from 2026.2.21-2 to 2026.2.23 - Fixed cron job announcements (added channel IDs) - Fixed sub-agent spawning (pairing required error) - Gateway restart issues resolved ### Cron Jobs Fixed All updated to use channel ID `1470836415523983630`: - Reddit-AI-Cofounder-Hourly - CRM Daily Scan - Daily WordPress Publishing - Morning Brief - Night School - 8pm ### Sub-Agent Fix The \"pairing required\" error was fixed. Sub-agents now spawn successfully. ## Previous Day - Night School Research - Found Church of Molt (fun but not income) - Discovered Nat Eliason's Felix made $14,718 in 3 weeks! -",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-10T12:15:45.211Z",
+      "lastRecalledAt": "2026-07-10T12:15:50.318Z",
+      "queryHashes": [
+        "4dbcbce8f48c",
+        "0dce2191f7a8"
+      ],
+      "recallDays": [
+        "2026-07-10"
+      ],
+      "conceptTags": [
+        "gateway",
+        "2026.2.21-2",
+        "2026.2.23",
+        "sub-agent",
+        "reddit-ai-cofounder-hourly",
+        "sub-agents",
+        "february",
+        "morning"
+      ]
+    },
+    "memory:memory/2026-06-15.md:153:164": {
+      "key": "memory:memory/2026-06-15.md:153:164",
+      "path": "memory/2026-06-15.md",
+      "startLine": 153,
+      "endLine": 164,
+      "source": "memory",
+      "snippet": "## Summary — End of Night (~5:45 AM EDT) **UniFi:** Network flat and optimized. Guest portal branded. Bandwidth enforced. VLANs abandoned permanently. All green. **TradeBot:** Research pipeline active. 4 crons moved to lighter model. Git clean. **ContentNova:** Quality gate v3 on all sites. WordPress API pro integrated. **Skills:** 23 new skills installed, vetted, partially integrated. P0 + P1 done. **Next:** Sleep. Resume 9 AM EDT for P2 integrations (task-prism, ontology+cogmem).",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-10T12:15:45.211Z",
+      "lastRecalledAt": "2026-07-10T12:15:50.318Z",
+      "queryHashes": [
+        "4dbcbce8f48c",
+        "0dce2191f7a8"
+      ],
+      "recallDays": [
+        "2026-07-10"
+      ],
+      "conceptTags": [
+        "network",
+        "vlan",
+        "task-prism",
+        "summary",
+        "end",
+        "night",
+        "edt",
+        "unifi"
       ]
     }
   }

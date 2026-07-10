@@ -1,35 +1,50 @@
 #!/usr/bin/env python3
 """WordPress REST API helper for publishing.
 Plain text output (no emojis) to avoid Unicode errors on Windows.
+
+Usage:
+    python wp_rest_api.py <site> create --title "..." --content "..."
+    python wp_rest_api.py <site> update <post_id> --status publish
 """
 
-import argparse, requests, base64, json, sys, subprocess, urllib.parse
+import argparse
+import base64
+import json
+import requests
+import subprocess
+import sys
+import urllib.parse
+from pathlib import Path
 
-# Site configs (application passwords)
+# Add scripts/ to path so vault_helper is importable when run from workspace root
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vault_helper import get_credential
+
+# Site configs loaded from vault (P0 fix applied 2026-07-10)
 SITES = {
     'aitoolalliance.com': {
-        'url': 'https://aitoolalliance.com/wp-json/wp/v2',
-        'user': 'aitoolalliance_u6cbhe',
-        'pass': <SCRUBBED_WORDPRESS_APP_PASSWORD>
+        'url': get_credential('wordpress', 'aitoolalliance_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'aitoolalliance_user'),
+        'pass': get_credential('wordpress', 'aitoolalliance_pass')
     },
     'aibusinessinsider.org': {
-        'url': 'https://aibusinessinsider.org/wp-json/wp/v2',
-        'user': 'nova.cofounder@gmail.com',
-        'pass': <SCRUBBED_WORDPRESS_APP_PASSWORD>
+        'url': get_credential('wordpress', 'aibusinessinsider_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'aibusinessinsider_user'),
+        'pass': get_credential('wordpress', 'aibusinessinsider_pass')
     },
     'aicofounderstack.com': {
-        'url': 'https://aicofounderstack.com/wp-json/wp/v2',
-        'user': 'nova',
-        'pass': 'DUau yrXK 1X8k O6eH YL5v qKID'
+        'url': get_credential('wordpress', 'aicofounderstack_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'aicofounderstack_user'),
+        'pass': get_credential('wordpress', 'aicofounderstack_pass')
     },
     'eveonion.com': {
-        'url': 'https://eveonion.com/wp-json/wp/v2',
-        'user': 'nova',
-        'pass': 'EVEONION_APP_PASSWORD_REDACTED'
+        'url': get_credential('wordpress', 'eveonion_url') + '/wp-json/wp/v2',
+        'user': get_credential('wordpress', 'eveonion_user'),
+        'pass': get_credential('wordpress', 'eveonion_pass')
     }
 }
 
-def _auth(user, password):
+def _auth(user: str, password: str) -> dict[str, str]:
     creds = f"{user}:{password}".encode()
     token = base64.b64encode(creds).decode()
     return {
@@ -38,7 +53,7 @@ def _auth(user, password):
         'Content-Type': 'application/json'
     }
 
-def list_posts(site_key, search=None, status=None, per_page=10):
+def list_posts(site_key: str, search: str = None, status: str = None, per_page: int = 10) -> list:
     site = SITES.get(site_key)
     if not site:
         print(f"Unknown site: {site_key}")
@@ -54,102 +69,87 @@ def list_posts(site_key, search=None, status=None, per_page=10):
     if r.status_code == 200:
         return r.json()
     else:
-        print(f"Error: {r.status_code} - {r.text}")
+        print(f"Error listing posts: {r.status_code} {r.text[:200]}")
         return []
 
-def update_post(site_key, post_id, title=None, content=None, status=None):
+def create_post(site_key: str, title: str, content: str, status: str = 'publish', slug: str = None) -> int:
     site = SITES.get(site_key)
     if not site:
         print(f"Unknown site: {site_key}")
-        return None
-    headers = _auth(site['user'], site['pass'])
-    url = f"{site['url']}/posts/{post_id}"
-    data = {}
-    if title: data['title'] = title
-    if content: data['content'] = content
-    if status: data['status'] = status
-    r = requests.post(url, headers=headers, json=data)
-    if r.status_code in (200, 201):
-        res = r.json()
-        print(f"[OK] Updated: {res.get('link')}")
-        return res
-    else:
-        print(f"[ERROR] {r.status_code} - {r.text}")
-        return None
-
-def _run_research(site_key):
-    """Research step for AI sites.
-    - Pulls latest topics from Reddit's r/ArtificialIntelligence.
-    - For each topic, prints a Brave search URL (placeholder for further processing).
-    Returns True on success, False on failure.
-    """
-    ai_sites = {'aitoolalliance.com', 'aibusinessinsider.org'}
-    if site_key not in ai_sites:
-        return True  # skip non‑AI sites
-    # Fetch recent Reddit posts
-    try:
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        resp = requests.get('https://www.reddit.com/r/ArtificialIntelligence/new.json?limit=5', headers=headers, timeout=10)
-        resp.raise_for_status()
-        data = resp.json()
-        posts = data.get('data', {}).get('children', [])
-        if not posts:
-            print(f"[RESEARCH] No Reddit posts found for {site_key}")
-            return True
-        print(f"[RESEARCH] Latest Reddit AI topics for {site_key}:")
-        for p in posts:
-            title = p.get('data', {}).get('title', '(no title)')
-            print(f"  - {title}")
-            query = urllib.parse.quote_plus(title)
-            search_url = f"https://search.brave.com/search?q={query}"
-            print(f"    [SEARCH] Brave results: {search_url}")
-        return True
-    except Exception as e:
-        print(f"[RESEARCH ERROR] Failed to fetch Reddit topics for {site_key}: {e}")
-        return False
-
-def create_post(site_key, title, content, status='publish'):
-    # Run research first; abort if it fails.
-    if not _run_research(site_key):
-        print(f"[ABORT] Research failed for {site_key}, not publishing.")
-        return None
-    site = SITES.get(site_key)
-    if not site:
-        print(f"Unknown site: {site_key}")
-        return None
+        return 0
     headers = _auth(site['user'], site['pass'])
     url = f"{site['url']}/posts"
     data = {'title': title, 'content': content, 'status': status}
+    if slug:
+        data['slug'] = slug
     r = requests.post(url, headers=headers, json=data)
-    if r.status_code == 201:
-        res = r.json()
-        print(f"[OK] Created: {res.get('link')}")
-        return res
+    if r.status_code in (200, 201):
+        return r.json().get('id', 0)
     else:
-        print(f"[ERROR] {r.status_code} - {r.text}")
-        return None
+        print(f"Error creating post: {r.status_code} {r.text[:200]}")
+        return 0
+
+def update_post(site_key: str, post_id: int, status: str = None, featured_media: int = None) -> bool:
+    site = SITES.get(site_key)
+    if not site:
+        print(f"Unknown site: {site_key}")
+        return False
+    headers = _auth(site['user'], site['pass'])
+    url = f"{site['url']}/posts/{post_id}"
+    data = {}
+    if status:
+        data['status'] = status
+    if featured_media is not None:
+        data['featured_media'] = featured_media
+    r = requests.post(url, headers=headers, json=data)
+    if r.status_code in (200, 201):
+        return True
+    else:
+        print(f"Error updating post: {r.status_code} {r.text[:200]}")
+        return False
+
+def upload_media(site_key: str, file_path: str, alt: str = '') -> int:
+    site = SITES.get(site_key)
+    if not site:
+        print(f"Unknown site: {site_key}")
+        return 0
+    headers = _auth(site['user'], site['pass'])
+    url = f"{site['url']}/media"
+    headers.pop('Content-Type', None)
+    with open(file_path, 'rb') as f:
+        files = {'file': (Path(file_path).name, f)}
+        r = requests.post(url, headers=headers, files=files, data={'alt_text': alt})
+    if r.status_code in (200, 201):
+        return r.json().get('id', 0)
+    else:
+        print(f"Error uploading media: {r.status_code} {r.text[:200]}")
+        return 0
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='WP REST helper')
-    parser.add_argument('site', choices=SITES.keys())
-    parser.add_argument('action', choices=['list','update','create'])
-    parser.add_argument('--search')
-    parser.add_argument('--post-id', type=int)
-    parser.add_argument('--title')
-    parser.add_argument('--content')
-    parser.add_argument('--status', choices=['publish','draft','private'])
+    from pathlib import Path
+    parser = argparse.ArgumentParser(description='WordPress REST API helper')
+    parser.add_argument('site', choices=list(SITES.keys()), help='Site to target')
+    parser.add_argument('action', choices=['list', 'create', 'update', 'upload'], help='Action to perform')
+    parser.add_argument('--title', help='Post title')
+    parser.add_argument('--content', help='Post content')
+    parser.add_argument('--status', default='publish', help='Post status')
+    parser.add_argument('--post-id', type=int, help='Post ID to update')
+    parser.add_argument('--file', help='File path for upload')
+    parser.add_argument('--alt', default='', help='Alt text for media')
+    parser.add_argument('--search', help='Search term for listing')
+    parser.add_argument('--per-page', type=int, default=10, help='Posts per page')
     args = parser.parse_args()
+
     if args.action == 'list':
-        posts = list_posts(args.site, args.search)
+        posts = list_posts(args.site, search=args.search, per_page=args.per_page)
         for p in posts:
-            print(f"ID:{p['id']} | {p['title']['rendered'][:50]}... | {p['status']}")
-    elif args.action == 'update':
-        if not args.post_id:
-            print('--post-id required')
-            sys.exit(1)
-        update_post(args.site, args.post_id, args.title, args.content, args.status)
+            print(f"{p['id']}: {p['title']['rendered']} ({p['status']})")
     elif args.action == 'create':
-        if not args.title or not args.content:
-            print('--title and --content required')
-            sys.exit(1)
-        create_post(args.site, args.title, args.content, args.status or 'publish')
+        pid = create_post(args.site, args.title, args.content, args.status)
+        print(f"Created post ID: {pid}")
+    elif args.action == 'update':
+        ok = update_post(args.site, args.post_id, args.status)
+        print(f"Update {'OK' if ok else 'FAILED'}")
+    elif args.action == 'upload':
+        mid = upload_media(args.site, args.file, args.alt)
+        print(f"Media ID: {mid}")
