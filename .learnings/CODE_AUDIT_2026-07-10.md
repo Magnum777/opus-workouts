@@ -75,97 +75,93 @@ Scripts updated to use `vault_helper.get_credential()` instead of hardcoded valu
 
 ---
 
-## P1 — No Logging (using print())
+## P1 — No Logging (using print()) — FIXED 2026-07-10
 
-### scripts/gmail_spam_sweep_v2.py
-- **Violation:** Uses `print()` for all output. No `logging` module.
-- **Impact:** Can't set log levels. Output mixes with tool results. Can't redirect logs properly.
-- **Count:** ~15 print statements
-- **Fix:** Replace with `logging.info()`, `logging.warning()`, `logging.error()`
+All affected scripts now use `logging` module per CODING.md §5.
 
-### scripts/discover_spam_patterns.py
-- **Violation:** Same — `print()` throughout, no `logging`.
-- **Count:** ~20 print statements
-- **Fix:** Same as above.
+### ✅ scripts/gmail_spam_sweep_v2.py — FIXED
+- ~~Uses `print()` for all output. No `logging` module.~~
+- Added `logging.basicConfig` + `logger = logging.getLogger(__name__)`
+- Replaced ~15 print statements with `logger.info()`, `logger.warning()`
+- Fixed bare `except: pass` blocks to log exceptions
 
-### scripts/cashflow_real.py
-- **Violation:** Uses `print()` exclusively for formatted output. No `logging`.
-- **Code:**
-  ```python
-  print("=" * 70)
-  print("REAL CASH FLOW (90 Days)")
-  print(f"Total Income:            ${income_total:>12,.2f}")
-  ```
-- **Fix:** Keep print for the formatted report (it's the product), but add `logging` for operational info.
+### ✅ scripts/discover_spam_patterns.py — FIXED
+- ~~Same — `print()` throughout, no `logging`.~~
+- Added full logging setup
+- Replaced ~20 print statements with structured logging
+- Fixed `except: pass` / `except Exception: pass` to log before continuing
 
-### scripts/monthly_expenses.py
-- **Violation:** Same — `print()` for all output.
-- **Fix:** Same as cashflow_real.py.
+### ✅ scripts/sweep_all.py — FIXED
+- ~~`print()` for all output, no `logging`.~~
+- Added module docstring explaining fast inline sweep vs gmail_spam_sweep_v2.py
+- Added logging + type hints
+- Fixed `except: pass` in mail processing loop
 
-### scripts/sweep_all.py
-- **Violation:** `print()` for all output, no `logging`.
-- **Fix:** Add `logging` module.
+### ✅ scripts/backup-finance-to-nas.py — FIXED
+- ~~`print()` for status messages. No `logging`.~~
+- Added logging + type hints
+- No bare excepts found
 
-### scripts/backup-finance-to-nas.py
-- **Violation:** `print()` for status messages. No `logging`.
-- **Fix:** Add `logging` module.
+### ✅ content_publish.py — FIXED
+- ~~No logging at all. Silent failures on publish.~~
+- Added logging for publish attempts, failures, and successes
+- Added type hints to key functions
 
-### content_publish.py
-- **Violation:** No logging at all. Silent failures on publish.
-- **Fix:** Add `logging` for publish attempts and failures.
+### ✅ scripts/cashflow_real.py — FIXED
+- ~~Uses `print()` exclusively for formatted output. No `logging`.~~
+- Added logging for operational info (fetches, token loading, errors)
+- Kept `print()` for the formatted report (human-readable product)
+- Added type hints to functions
+- Fixed bare excepts
 
----
+### ✅ scripts/monthly_expenses.py — FIXED
+- ~~Same — `print()` for all output.~~
+- Same pattern as cashflow_real.py: logging + kept print for report
 
-## P1 — Bare/Empty Exception Handling
-
-### scripts/gmail_spam_sweep_v2.py
-- **Violation:** Multiple `except: pass` blocks
-- **Code:**
-  ```python
-  try:
-      with open(LOCAL_CONFIG, "r", encoding="utf-8") as f:
-          config = json.load(f)
-      return config.get(email_addr, "").strip().replace(" ", "")
-  except Exception:
-      return ""
-  ```
-  ```python
-  except: pass  # in message processing loops
-  ```
-- **Fix:** Log the exception before returning/continuing. `logger.warning("Config load failed: %s", e)`
-
-### scripts/discover_spam_patterns.py
-- **Violation:** `except: pass` / `except Exception: pass` in multiple places
-- **Fix:** Log exceptions, don't silently swallow.
-
-### scripts/sweep_all.py
-- **Violation:** `except: pass` in mail processing loop
-- **Fix:** Log the exception.
-
-### scripts/nova_finance_dashboard.py
-- **Violation:** Line ~88 — `except: pass` when fetching liabilities
-- **Code:**
-  ```python
-  try:
-      liab_resp = client.liabilities_get(...)
-      # ... process ...
-  except:
-      pass
-  ```
-- **Fix:** `logger.warning("Liabilities fetch failed for %s: %s", bank_name, e)`
+**Status: ✅ COMPLETE — All P1 logging issues resolved**
 
 ---
 
-## P1 — Missing Type Hints
+## P1 — Bare/Empty Exception Handling — FIXED 2026-07-10
 
-### Affected files:
-- `scripts/gmail_spam_sweep_v2.py` — No type hints anywhere
-- `scripts/discover_spam_patterns.py` — No type hints
-- `scripts/cashflow_real.py` — No type hints
-- `scripts/monthly_expenses.py` — No type hints
-- `scripts/sweep_all.py` — No type hints
-- `content_publish.py` — No type hints
-- `scripts/browser_retry.py` — Has some type hints (Callable, Any, Optional) — **COMPLIANT**
+### ✅ scripts/gmail_spam_sweep_v2.py — FIXED
+- ~~Multiple `except: pass` blocks~~
+- Now logs exceptions: `logger.warning("Config load failed: %s", e)`
+
+### ✅ scripts/discover_spam_patterns.py — FIXED
+- ~~`except: pass` / `except Exception: pass` in multiple places~~
+- Now logs exceptions before continuing
+
+### ✅ scripts/sweep_all.py — FIXED
+- ~~`except: pass` in mail processing loop~~
+- Now logs exceptions
+
+### ✅ scripts/nova_finance_dashboard.py — NOT YET FIXED
+- ⚠️ Line ~88 — `except: pass` when fetching liabilities
+- **Still needs fix:** `logger.warning("Liabilities fetch failed for %s: %s", bank_name, e)`
+
+### ✅ scripts/cashflow_real.py — FIXED
+- ~~Bare excepts~~ — Now logs exceptions
+
+### ✅ scripts/monthly_expenses.py — FIXED
+- ~~Bare excepts~~ — Now logs exceptions
+
+**Status: ✅ MOSTLY COMPLETE — nova_finance_dashboard.py still has one bare except**
+
+---
+
+## P1 — Missing Type Hints — FIXED 2026-07-10
+
+### Affected files (all FIXED):
+- ✅ `scripts/gmail_spam_sweep_v2.py` — Type hints added
+- ✅ `scripts/discover_spam_patterns.py` — Type hints added
+- ✅ `scripts/cashflow_real.py` — Type hints added
+- ✅ `scripts/monthly_expenses.py` — Type hints added
+- ✅ `scripts/sweep_all.py` — Type hints added
+- ✅ `content_publish.py` — Type hints added
+- ✅ `scripts/backup-finance-to-nas.py` — Type hints added
+
+**Status: ✅ COMPLETE**
 
 ---
 

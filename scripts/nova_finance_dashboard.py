@@ -114,8 +114,8 @@ def fetch_data():
                         "min_payment": cc.get("minimum_payment_amount") or 0,
                         "next_due": str(cc.get("next_payment_due_date", "N/A")),
                     })
-        except:
-            pass
+        except Exception as e:
+            logger.warning("Liabilities fetch failed for %s: %s", bank_name, e)
 
         # Transactions (last 90 days)
         end = datetime.now().date()
