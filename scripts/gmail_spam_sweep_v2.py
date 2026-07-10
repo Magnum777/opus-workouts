@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 """IMAP Gmail spam sweep — batched fetches, fast. Scans INBOX and Spam."""
-import imaplib, email, json, re, sys, os, time
+import imaplib, email, json, re, sys, os, time, logging
 from email.header import decode_header
 from datetime import datetime, timedelta
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -37,7 +43,8 @@ def get_password(email_addr):
         with open(LOCAL_CONFIG, "r", encoding="utf-8") as f:
             config = json.load(f)
         return config.get(email_addr, "").strip().replace(" ", "")
-    except Exception:
+    except Exception as e:
+        logger.warning("Config load failed for %s: %s", email_addr, e)
         return ""
 
 
@@ -519,12 +526,12 @@ def sweep_folder(email_addr, password, folder, label, max_msgs=100):
         mail = imaplib.IMAP4_SSL("imap.gmail.com", timeout=15)
         mail.login(email_addr, password)
     except Exception as e:
-        print(f"  LOGIN FAILED: {e}")
+        logger.error("  LOGIN FAILED: %s", e)
         return 0, 0
 
     status, _ = mail.select(folder)
     if status != "OK":
-        print(f"  SELECT FAILED for {folder}")
+        logger.warning("  SELECT FAILED for %s", folder)
         mail.logout()
         return 0, 0
 
@@ -534,7 +541,7 @@ def sweep_folder(email_addr, password, folder, label, max_msgs=100):
     _, data = mail.search(None, f"(SINCE {since_date})")
     all_ids = data[0].split()
     if not all_ids:
-        print(f"  {label}: No recent messages.")
+        logger.info("  %s: No recent messages.", label)
         mail.close()
         mail.logout()
         return 0, 0
@@ -546,13 +553,13 @@ def sweep_folder(email_addr, password, folder, label, max_msgs=100):
         max_msgs = 40
     uids = all_ids[-max_msgs:]
 
-    print(f"  {label}: Checking {len(uids)} messages (last {days} days)...")
+    logger.info("  %s: Checking %d messages (last %d days)...", label, len(uids), days)
 
     spam_ids = []
     checked = 0
     for uid in uids:
         if should_exit():
-            print("  TIMEOUT")
+            logger.warning("  TIMEOUT")
             break
         try:
             _, msg_data = mail.fetch(uid, "(BODY.PEEK[HEADER.FIELDS (FROM SUBJECT)])")
@@ -565,13 +572,14 @@ def sweep_folder(email_addr, password, folder, label, max_msgs=100):
             checked += 1
             if is_spam(sender, subject):
                 spam_ids.append(uid)
-                print(f"  [SPAM] {sender[:45]:<45} | {subject[:50]}")
-        except Exception:
+                logger.info("  [SPAM] %-45s | %s", sender[:45], subject[:50])
+        except Exception as e:
+            logger.warning("Message fetch error: %s", e)
             continue
 
     trashed = 0
     if spam_ids:
-        print(f"  Trashing {len(spam_ids)}...")
+        logger.info("  Trashing %d...", len(spam_ids))
         for uid in spam_ids:
             if should_exit():
                 break
@@ -580,10 +588,10 @@ def sweep_folder(email_addr, password, folder, label, max_msgs=100):
                 mail.store(uid, "+FLAGS", "\\Deleted")
                 trashed += 1
             except Exception as e:
-                print(f"    ERR: {e}")
+                logger.error("    ERR: %s", e)
         mail.expunge()
     else:
-        print(f"  {label}: Clean.")
+        logger.info("  %s: Clean.", label)
 
     mail.close()
     mail.logout()
@@ -592,15 +600,13 @@ def sweep_folder(email_addr, password, folder, label, max_msgs=100):
 
 def sweep_one(email_addr):
     if should_exit():
-        print("  GLOBAL TIMEOUT - skipping account")
+        logger.warning("  GLOBAL TIMEOUT - skipping account")
         return 0, 0, 0, 0
-    print(f"\n{'='*50}")
-    print(f"Account: {email_addr}")
-    print(f"{'='*50}")
+    logger.info("\n%s\nAccount: %s\n%s", "="*50, email_addr, "="*50)
 
     env_pass = get_password(email_addr)
     if not env_pass:
-        print("  SKIP: password not found (env var or .gmail_accounts.json)")
+        logger.warning("  SKIP: password not found (env var or .gmail_accounts.json)")
         return 0, 0, 0, 0
 
     # Inbox: tight limits to stay under cron timeout (8 min max)
@@ -628,15 +634,13 @@ if __name__ == "__main__":
     else:
         for email_addr in ACCOUNTS.keys():
             if should_exit():
-                print("\n  GLOBAL TIMEOUT")
+                logger.warning("\n  GLOBAL TIMEOUT")
                 break
             ci, ti, cs, ts = sweep_one(email_addr)
             total_c_inbox += ci; total_t_inbox += ti
             total_c_spam += cs; total_t_spam += ts
             time.sleep(1)
 
-    print(f"\n{'='*50}")
-    print(f"Done. Inbox: checked ~{total_c_inbox}, trashed {total_t_inbox}.")
-    print(f"      Spam:  checked ~{total_c_spam}, trashed {total_t_spam}.")
-    print(f"      ({time.time()-START_TIME:.1f}s)")
-    print(f"{'='*50}")
+    logger.info("\n%s\nDone. Inbox: checked ~%d, trashed %d.\n      Spam:  checked ~%d, trashed %d.\n      (%.1fs)\n%s",
+        "="*50, total_c_inbox, total_t_inbox, total_c_spam, total_t_spam,
+        time.time()-START_TIME, "="*50)
