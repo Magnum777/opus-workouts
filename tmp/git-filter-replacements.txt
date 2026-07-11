@@ -1,0 +1,22 @@
+# Git filter-repo replacements for secret scrubbing
+# Format: old_text==>new_text
+# Lines starting with # are ignored
+# Literal newlines in text must use the newline escape sequence
+# All occurrences of old_text are replaced with new_text
+
+# Discord bot token
+MTQ3MDgzMTk2NDcyMTI1MDM5NQ.GqqvTr.oqejBsKWcOJ_cCZpbArHmeqzXjwpgkyWmjjQHE==>DISCORD_BOT_TOKEN_REDACTED
+
+# EveOnion WordPress password
+sp4B Fqlq HjEu a1Ta xAEK VQni==>EVEONION_APP_PASSWORD_REDACTED
+
+# UploadPost API key (JWT) - replace both the full key and common prefixes
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdmEuY29mb3VuZGVyQGdtYWlsLmNvbSIsImV4cCI6NDkyNjgwMzMxNSwianRpIjoiMjc2N2ViOTgtMTA0MC00OTM2LWJlOTAtNmE5MjFiMzU5Nzk2In0.ikiSzVi62W9uxU1q-35-lZ7PBH3YsaleSJ0ZRmEBsRg==>UPLOADPOST_API_KEY_REDACTED
+
+# OpenAI key (from old memory)
+sk-7dd…34fe==>OPENAI_API_KEY_REDACTED
+
+# Plaid secrets (if any in history)
+PLAID_CLIENT_ID_REDACTED==>PLAID_CLIENT_ID_REDACTED
+PLAID_SECRET_REDACTED==>PLAID_SECRET_REDACTED
+PLAID_SANDBOX_SECRET_REDACTED==>PLAID_SANDBOX_SECRET_REDACTED

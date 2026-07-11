@@ -1,10 +1,11 @@
 # Night School NAS Sync Script
-# Copies all files from local docs/night-school/ + subminds/ to NAS W:\night-school\
+# Copies all files from local docs/night-school/ + subminds/ to NAS
+# Uses UNC path (no W: drive dependency)
 # Skips unchanged files, reports what was copied
 
 $local = "C:\Users\compj\.openclaw\workspace\docs\night-school"
 $subminds = "C:\Users\compj\.openclaw\workspace\memory\subminds"
-$nas = "W:\night-school"
+$nas = "\\192.168.68.51\home\night-school"
 
 $copied = 0
 $skipped = 0

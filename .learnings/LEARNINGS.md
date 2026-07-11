@@ -1,6 +1,6 @@
 # Learnings Log
 
-## 2026-06-26 — Weekly Skill Discovery Scan (ClawHub)
+## 2026-07-10 — Weekly Skill Discovery Scan (ClawHub)
 
 **Category:** insight
 **Source:** Weekly cron: Weekly-SkillDiscovery
@@ -9,16 +9,17 @@ Ran 8 search queries across ClawHub registry. Results summary:
 
 ### New Skills Found (not currently installed):
 
-| Skill | Version | Rating | Summary |
-|-------|---------|--------|---------|
+| Skill | Version | Relevance | Summary |
+|-------|---------|-----------|---------|
 | **tradingflow** | 0.0.2 | 4.18 | AI-Powered Intent Trading Across Crypto, Stocks & More — deploy bots on BSC, Aptos, Solana. Owner: thecleopatra |
 | **email-automation** | 1.2.0 | 4.13 | Automate email triage, categorize, draft replies, auto-archive in Gmail/Outlook/IMAP. Owner: fly3094 |
 | **telegram-discord-bot-dev** | 1.0.0 | 4.29 | Develop custom Telegram/Discord bots with trading, gaming, automation, webhooks. Owner: katrina-jpg |
-| **seo-agent-skill** (Distribb) | 1.0.1 | — | Full SEO pipeline: keyword research, content publishing to WP/Webflow/Shopify, backlink exchange. Owner: bomx |
+| **seo-agent-skill** (Distribb) | — | — | Full SEO pipeline: keyword research, content publishing to WP/Webflow/Shopify, backlink exchange. Owner: bomx |
 | **smart-data-analyst** | 1.3.0 | — | Upload CSV/Excel/JSON/TSV for automated analysis report with insights, anomalies. Owner: a799549967-lang |
-| **data-analysis-reporting** | 0.1.0 | — | Turn raw business data (CSV, SQLite, spreadsheets) into analytical summaries and reports. Owner: gitcanadabrett |
+| **data-analysis-reporting** | 0.1.0 | — | Turn raw business data (CSV, SQLite, spreadsheets) into analytical summaries. Owner: gitcanadabrett |
 | **csv-brain** | 1.0.3 | — | Load CSV files, ask questions in plain English via Anthropic/OpenAI/Ollama. Owner: theshadowrose |
-| **agentic-workflow-automation** | 0.1.0 | — | Generate reusable multi-step agent workflow blueprints for trigger/action orchestration. Owner: 0x-professor |
+| **agentic-workflow-automation** | 0.1.0 | — | Generate reusable multi-step agent workflow blueprints. Owner: 0x-professor |
+| **wordpress-publishing-skill-for-claude** | 0.1.0 | — | WP REST API publisher with Gutenberg blocks, SEO tags. Owner: asif2bd |
 
 ### Already Installed (no action needed):
 - Solana trading: solana-payments-wallets-trading ✓
@@ -30,12 +31,29 @@ Ran 8 search queries across ClawHub registry. Results summary:
 - Discord: none installed (telegram-discord-bot-dev is new find)
 
 ### Notable Findings for Opus:
-1. **tradingflow** (rating 4.18) — Multi-chain intent trading (BSC, Aptos, Solana). Could complement or replace solana-payments-wallets-trading. Worth evaluating if we expand trading beyond Solana.
-2. **email-automation** (rating 4.13) — More comprehensive than agentmail-integration. Gmail/Outlook/IMAP triage + auto-archive + draft replies. Strong candidate for inbox management upgrade.
-3. **telegram-discord-bot-dev** (rating 4.29) — Custom bot development with trading, gaming, automation features. Relevant if we re-wire Discord integration.
-4. **seo-agent-skill** (Distribb) — Full SEO pipeline (keyword research → content → publishing → backlinks). Could integrate with our WordPress content empire.
+1. **tradingflow** (relevance 4.18) — Multi-chain intent trading (BSC, Aptos, Solana). Could complement solana-payments-wallets-trading if we expand beyond Solana.
+2. **email-automation** (relevance 4.13) — More comprehensive than agentmail-integration. Gmail/Outlook/IMAP triage + auto-archive + draft replies. Strong candidate for inbox management upgrade.
+3. **telegram-discord-bot-dev** (relevance 4.29) — Custom bot development with trading, gaming, automation features. Relevant when we re-wire Discord integration.
+4. **seo-agent-skill** (Distribb) — Full SEO pipeline (keyword research → content → publishing → backlinks). Could integrate with WordPress content empire.
 5. **csv-brain** — Natural language CSV queries via multiple LLM backends. Simpler than duckdb for ad-hoc data questions.
-6. **agentic-workflow-automation** — Workflow blueprint generation. Could complement task-prism for agent orchestration.
+
+### This Week vs Last Week:
+- **No new discoveries** — same skills surfaced as the June 26 scan
+- No installed skills have updates available (`clawhub update --all` not re-run, skip if no changes)
+- ClawHub `explore` showed mostly new non-relevant skills (xrowgmbh CI, smyx pet analysis, agent-analytics)
+
+### Queries Run:
+1. "solana trading crypto" → 1 result (tradingflow, 4.18)
+2. "browser automation screenshot" → 10 results (all already covered)
+3. "social media content creator" → 3 results (ugc-fashion, content-creator-pro, topyappers)
+4. "wordpress seo publishing" → 3 results (wordpress-publisher, wordpress-remote-news-publisher, seo-agent-skill)
+5. "email automation inbox" → 3 results (email-automation 4.13, doctorclaw-email-digest, agentmail-integration)
+6. "data analysis sql csv" → 5 results (smart-data-analyst, data-analysis-reporting, csv-brain, data-skill, data-analyst-pipeline)
+7. "discord bot automation" → 1 result (telegram-discord-bot-dev, 4.29)
+8. "ai agent workflow" → 0 results
+
+### Note:
+ClawHub CLI v0.9.0 relevance scores are semantic similarity to the search query, not community ratings. Scores >4.0 indicate strong keyword match, not user ratings. No community rating system is exposed by the CLI.
 
 ### Queries Run:
 1. "solana trading crypto" → 1 result (tradingflow, 4.18)

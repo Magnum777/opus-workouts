@@ -519,8 +519,8 @@ def is_spam(sender_raw: str, subject_raw: str) -> bool:
     return False
 
 
-def sweep_folder(email_addr: str, password: str, folder: str, label: str, max_msgs: int = 100) -> tuple[int, int]:
-    """Sweep a single folder. Returns (checked, trashed)."""
+def sweep_folder(email_addr: str, password: str, folder: str, label: str, max_msgs: int = 100) -> tuple[int, int, list]:
+    """Sweep a single folder. Returns (checked, trashed, details)."""
     if should_exit():
         return 0, 0
     try:
@@ -573,12 +573,14 @@ def sweep_folder(email_addr: str, password: str, folder: str, label: str, max_ms
             checked += 1
             if is_spam(sender, subject):
                 spam_ids.append(uid)
+                trashed_details.append(f"{sender} | {subject}")
                 logger.info("  [SPAM] %-45s | %s", sender[:45], subject[:50])
         except Exception as e:
             logger.warning("Message fetch error: %s", e)
             continue
 
     trashed = 0
+    trashed_details = []
     if spam_ids:
         logger.info("  Trashing %d...", len(spam_ids))
         for uid in spam_ids:
@@ -596,29 +598,32 @@ def sweep_folder(email_addr: str, password: str, folder: str, label: str, max_ms
 
     mail.close()
     mail.logout()
-    return checked, trashed
+    return checked, trashed, trashed_details
 
 
-def sweep_one(email_addr: str) -> tuple[int, int, int, int]:
+def sweep_one(email_addr: str) -> tuple[int, int, int, int, list]:
     if should_exit():
         logger.warning("  GLOBAL TIMEOUT - skipping account")
-        return 0, 0, 0, 0
+        return 0, 0, 0, 0, []
     logger.info("\n%s\nAccount: %s\n%s", "="*50, email_addr, "="*50)
 
     env_pass = get_password(email_addr)
     if not env_pass:
         logger.warning("  SKIP: password not found (env var or .gmail_accounts.json)")
-        return 0, 0, 0, 0
+        return 0, 0, 0, 0, []
 
     # Inbox: tight limits to stay under cron timeout (8 min max)
     inbox_max = 60 if "compjunkie" in email_addr else 40
-    c_inbox, t_inbox = sweep_folder(email_addr, env_pass, "INBOX", "INBOX", inbox_max)
+    c_inbox, t_inbox, inbox_details = sweep_folder(email_addr, env_pass, "INBOX", "INBOX", inbox_max)
     time.sleep(0.5)
 
     # Spam folder: smaller cap since Spam is already filtered by Gmail
-    c_spam, t_spam = sweep_folder(email_addr, env_pass, "[Gmail]/Spam", "Spam", 40)
+    c_spam, t_spam, spam_details = sweep_folder(email_addr, env_pass, "[Gmail]/Spam", "Spam", 40)
 
-    return c_inbox, t_inbox, c_spam, t_spam
+    # Tag details with account
+    details = [{"account": email_addr, "sender": d.split(" | ")[0], "subject": d.split(" | ", 1)[1]} for d in (inbox_details + spam_details)]
+
+    return c_inbox, t_inbox, c_spam, t_spam, details
 
 
 if __name__ == "__main__":
@@ -627,20 +632,35 @@ if __name__ == "__main__":
     total_t_inbox = 0
     total_c_spam = 0
     total_t_spam = 0
+    all_trashed = []  # List of dicts: {account, sender, subject}
 
     if target and target in ACCOUNTS:
-        ci, ti, cs, ts = sweep_one(target)
+        ci, ti, cs, ts, details = sweep_one(target)
         total_c_inbox += ci; total_t_inbox += ti
         total_c_spam += cs; total_t_spam += ts
+        all_trashed.extend(details)
     else:
         for email_addr in ACCOUNTS.keys():
             if should_exit():
                 logger.warning("\n  GLOBAL TIMEOUT")
                 break
-            ci, ti, cs, ts = sweep_one(email_addr)
+            ci, ti, cs, ts, details = sweep_one(email_addr)
             total_c_inbox += ci; total_t_inbox += ti
             total_c_spam += cs; total_t_spam += ts
+            all_trashed.extend(details)
             time.sleep(1)
+
+    # Write trashed details to persistent log
+    LOG_FILE = os.path.join(os.path.dirname(__file__), ".spam_sweep_trashed.json")
+    try:
+        with open(LOG_FILE, "w", encoding="utf-8") as f:
+            json.dump({
+                "timestamp": datetime.now().isoformat(),
+                "trashed_count": total_t_inbox + total_t_spam,
+                "trashed": all_trashed
+            }, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        logger.warning("Could not write trashed log: %s", e)
 
     logger.info("\n%s\nDone. Inbox: checked ~%d, trashed %d.\n      Spam:  checked ~%d, trashed %d.\n      (%.1fs)\n%s",
         "="*50, total_c_inbox, total_t_inbox, total_c_spam, total_t_spam,

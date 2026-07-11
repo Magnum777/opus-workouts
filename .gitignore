@@ -65,6 +65,10 @@ crackerbarrel_data.json
 # Sweep outputs
 spam_sweep_output.txt
 
+# Spam sweep logs
+scripts/.spam_sweep_trashed.json
+spam_sweep_output.txt
+
 # One-off artifacts
 followup_david_cole.txt
 final_result.txt

@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-10T16:37:01.921Z",
+  "entries": {
+    "memory:memory/2026-06-04.md:1:28": {
+      "key": "memory:memory/2026-06-04.md:1:28",
+      "path": "memory/2026-06-04.md",
+      "startLine": 1,
+      "endLine": 28,
+      "source": "memory",
+      "snippet": "# 2026-06-04 -- DC Trip Planning + Memory Hygiene Session ## What happened today - Planned full DC trip itinerary (July 30 - August 2, 2026) - Fixed oversized MEMORY.md (12.1K -> ~3.5K chars) - Moved operational logs to daily files + .learnings/ ## DC Trip Details - **Flights:** Delta 378 (ATL->DCA, July 30, 8:55 PM) + Delta 832 (DCA->ATL, Aug 2, 8:50 PM). Conf F9CN7E - **Hotels:** Holiday Inn Washington Capitol - Natl Mall - Night 1 (July 30-31): Delta Stays Itinerary #73339138008660 - Nights 2-3 (July 31-Aug 2): IHG Confirmation #27602579, late checkout 2 PM - **Tours:** Pentagon (July 31, 11 AM), BEP (July 31, 2 PM) - **Saturday:** Arlington Cemetery, Postal Museum, dinner at The Wh",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-10T16:37:01.921Z",
+      "lastRecalledAt": "2026-07-10T16:37:01.921Z",
+      "queryHashes": [
+        "154d0db9c7e9"
+      ],
+      "recallDays": [
+        "2026-07-10"
+      ],
+      "conceptTags": [
+        "memory.md",
+        "12.1k",
+        "3.5k",
+        "30-31",
+        "2-3",
+        "31-aug",
+        "trip",
+        "planning"
+      ]
+    },
+    "memory:memory/2026-06-14.md:1:26": {
+      "key": "memory:memory/2026-06-14.md:1:26",
+      "path": "memory/2026-06-14.md",
+      "startLine": 1,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "## 2026-06-14 ### 08:42 — Iris Dealer Reply Check (cron) - Scanned jhenderson87@gmail.com inbox - No new dealer replies since June 12 flag - Kayla Bloodworth (Auto Gallery Chevrolet GMC) thread still pending — no new responses to OTD negotiation - Flagged CarGurus emails are just automated listings, not replies ### 12:41 — Iris Dealer Reply Check (cron) - Scanned inbox again - Flag file detected two new \"dealer replies\" — both are CarGurus automated listing emails (Chevrolet from $86,248, Tahoe $49,999), not actual replies - Kayla Bloodworth thread still pending, no change since June 12 ### 22:18 — Massive Skill Discovery & Integration Session **Context:** Sunday night, pre-UniFi upgrade",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-10T16:37:01.921Z",
+      "lastRecalledAt": "2026-07-10T16:37:01.921Z",
+      "queryHashes": [
+        "154d0db9c7e9"
+      ],
+      "recallDays": [
+        "2026-07-10"
+      ],
+      "conceptTags": [
+        "gmail.com",
+        "pre-unifi",
+        "iris",
+        "dealer",
+        "reply",
+        "check",
+        "cron",
+        "scanned"
+      ]
+    },
+    "memory:memory/archive/2026-05-31.md:146:168": {
+      "key": "memory:memory/archive/2026-05-31.md:146:168",
+      "path": "memory/archive/2026-05-31.md",
+      "startLine": 146,
+      "endLine": 168,
+      "source": "memory",
+      "snippet": "3. **Product Hunt launch:** Follow `ph_launch_timeline.md` — tease 7 days before, launch on target date 4. **TradeBot guide:** Convert `tradebot_guide.md` to PDF (can use Pandoc or any markdown-to-PDF tool) 5. **Nova AI V3:** Review architecture doc, decide on Q3 commitment and resource allocation ## Multi-Account Gmail Setup (Evening session) - **4 accounts wired:** compjunkie@gmail.com, jhenderson87@gmail.com, layeredmediallc@gmail.com, nova.cofounder@gmail.com - **App passwords stored in:** `scripts/.gmail_accounts.json` (readable by isolated crons — env vars don't persist) - **New IMAP spam sweep:** `gmail_spam_sweep_v2.py` — replaces broken GOG-based version - No rate limits",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-10T16:37:01.921Z",
+      "lastRecalledAt": "2026-07-10T16:37:01.921Z",
+      "queryHashes": [
+        "154d0db9c7e9"
+      ],
+      "recallDays": [
+        "2026-07-10"
+      ],
+      "conceptTags": [
+        "ph-launch-timeline.md",
+        "tradebot-guide.md",
+        "markdown-to-pdf",
+        "multi-account",
+        "gmail.com",
+        "nova.cofounder",
+        "gmail-accounts.json",
+        "gmail-spam-sweep-v2.py"
+      ]
+    },
+    "memory:memory/2026-06-14.md:22:48": {
+      "key": "memory:memory/2026-06-14.md:22:48",
+      "path": "memory/2026-06-14.md",
+      "startLine": 22,
+      "endLine": 48,
+      "source": "memory",
+      "snippet": "- Batch 4: 6 skills (ai-social-media-content, cold-email-engine, humanized-writing-editor, openclaw-tavily-search, process-interviewer, resend-send-native-node) - Plus: wordpress-api-pro v3.8.1 upgrade from v0.1.0 **Vetting completed:** All 23 unique skills passed. Report at `tmp/skill-vetting-report-20260614.md` - 20 LOW risk - 2 HIGH risk (both false positives: wordpress-api-pro subprocess for WP CLI, doc-weaver subprocess for pandoc) - 1 MEDIUM risk (cold-email-engine — marketing but no automatic sends) **P0 Integrations (DONE):** 1. `humanizer` + `factual-claim-verifier` → `scripts/content-nova/content_quality_gate.py` - Detects AI patterns (em dashes, \"delve,\" \"landscape,\" signific",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-10T16:37:01.921Z",
+      "lastRecalledAt": "2026-07-10T16:37:01.921Z",
+      "queryHashes": [
+        "154d0db9c7e9"
+      ],
+      "recallDays": [
+        "2026-07-10"
+      ],
+      "conceptTags": [
+        "ai-social-media-content",
+        "cold-email-engine",
+        "humanized-writing-editor",
+        "openclaw-tavily-search",
+        "process-interviewer",
+        "resend-send-native-node",
+        "wordpress-api-pro",
+        "v3.8.1"
+      ]
+    },
+    "memory:memory/archive/2026-02-17.md:1:54": {
+      "key": "memory:memory/archive/2026-02-17.md:1:54",
+      "path": "memory/archive/2026-02-17.md",
+      "startLine": 1,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "# 2026-02-17 ## Session: Nova Memory Architecture + Products Update ### What Happened **Integrations Tested:** - Gmail via Maton API - WORKS (nova.cofounder@gmail.com) - Google Drive via Maton - WORKS **Skills Installed (12 total):** - email-daily-summary, google-calendar, playwright-scraper-skill - fiverr, memory-hygiene, x-twitter - elite-longterm-memory, edge-tts, upload-post - upwork, freelance-proposal-engine, prompt-guard **Memory System Upgraded:** - Created SESSION-STATE.md (WAL protocol - write before responding) - Created memory folders: decisions/, lessons/, preferences/ - Updated AGENTS.md with memory architecture - Ripped out Mem0 (deprecated) - replaced",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-10T16:37:01.921Z",
+      "lastRecalledAt": "2026-07-10T16:37:01.921Z",
+      "queryHashes": [
+        "154d0db9c7e9"
+      ],
+      "recallDays": [
+        "2026-07-10"
+      ],
+      "conceptTags": [
+        "nova.cofounder",
+        "gmail.com",
+        "email-daily-summary",
+        "google-calendar",
+        "playwright-scraper-skill",
+        "memory-hygiene",
+        "x-twitter",
+        "elite-longterm-memory"
+      ]
+    }
+  }
+}

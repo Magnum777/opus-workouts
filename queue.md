@@ -2,18 +2,11 @@
 
 ## Active Topics (prioritized)
 
-| Priority | Topic | Status | Added | Source |
-|----------|-------|--------|-------|--------|
-| 1 | ham-radio-ai | ✅ Playbook exists | Jun 27 | Opus interest |
-| 2 | eve-lore | ✅ Playbook exists | Jun 9 | EveOnion project |
-| 3 | solana-trading | ✅ Playbook exists | Feb 27 | TradeBot |
-| 4 | agentic-ai-lessons | ✅ Playbook exists | May 30 | Opus interest |
+*Empty — all topics processed*
 
 ## Recently Added (from active work)
 
-| Topic | Why Added | Date Added |
-|-------|-----------|------------|
-| Night School expansion | Systematic research pipeline | 2026-06-29 |
+*Empty — all topics processed*
 
 ## Backlog (stub folders needing research)
 
@@ -57,6 +50,7 @@
 | mem0 | Jun 30 | 58K GitHub stars, YC-backed, production AI memory layer |
 | mixpost | Jun 30 | Self-hosted social media, MIT license, 11 platforms |
 | modelrelay-auto-routing | Jun 30 | OpenClaw-compatible LLM routing, cost optimization |
+| night-school-expansion | Jul 4 | Systematic research pipeline evolution — freshness tracking, cross-referencing, proactive discovery, auto-refresh cycle |
 | nova-autonomy | Jun 30 | Self-improving agent patterns, WAL protocol, memory persistence |
 | nova-trading-bot | Jun 30 | Coinbase for Agents changes the landscape, re-evaluate approach |
 | openai-tts | Jun 30 | GPT-4o-mini-tts is most cost-effective, 11 voices |
@@ -72,14 +66,23 @@
 | workana | Jun 30 | Largest Latin American freelance platform |
 | wordpress | Jun 30 | 42.6% of web, FSE best practices, GEO optimization |
 | 99designs | Jun 30 | Design marketplace, contest model, AI comparison |
+| ham-radio-ai | Jun 27 | ✅ Playbook exists — AI + amateur radio integration |
+| eve-lore | Jun 9 | ✅ Playbook exists — EVE Online lore for EveOnion |
+| solana-trading | Feb 27 | ✅ Playbook exists — TradeBot foundation |
+| agentic-ai-lessons | May 30 | ✅ Playbook exists — agent architecture patterns |
+| personal-finance-budgeting | Jul 10 | Layered emergency fund strategy, 3-tier approach, HYSA recommendation, YNAB for tracking |
+| personal-finance-credit | Jul 10 | Balance transfer math, utilization optimization, rate negotiation, Score Nerds data |
+| personal-finance-investing | Jul 10 | Index fund basics, Roth IRA vs Traditional decision tree, Solo 401k for LLC, Morningstar hierarchy |
+| personal-finance-tax-strategy | Jul 10 | LLC deductions catalog, S-Corp election threshold, quarterly estimated payment calendar, safe harbor rules |
+| personal-finance-business-finance | Jul 10 | LLC bookkeeping separation, P&L fundamentals, monthly close checklist, business banking tools |
 
 ## Rules
 
 1. **Add to queue immediately** when Opus mentions a new topic/project
 2. **Prioritize** by active project needs
 3. **Process** 1 topic per night (cron rotates)
-4. **NAS sync** — script fixed to use UNC path `\\192.168.68.51\home\night-school` instead of W: drive
+4. **NAS sync** — script fixed to use UNC path `\\192.168.68.82\home\night-school` instead of W: drive
 5. **Update this file** after every session
 
 ---
-Last updated: 2026-07-01
+Last updated: 2026-07-10

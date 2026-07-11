@@ -1,0 +1,216 @@
+{
+  "playbooks": [
+    {
+      "name": "99designs",
+      "path": "99designs/playbook.md"
+    },
+    {
+      "name": "affiliate marketing",
+      "path": "affiliate-marketing/playbook.md"
+    },
+    {
+      "name": "agentic ai lessons",
+      "path": "agentic-ai-lessons/playbook.md"
+    },
+    {
+      "name": "ai agency income",
+      "path": "ai-agency-income/playbook.md"
+    },
+    {
+      "name": "ai coding services",
+      "path": "ai-coding-services/playbook.md"
+    },
+    {
+      "name": "ai content creation",
+      "path": "ai-content-creation/playbook.md"
+    },
+    {
+      "name": "ai data analysis",
+      "path": "ai-data-analysis/playbook.md"
+    },
+    {
+      "name": "ai ml",
+      "path": "ai-ml/playbook.md"
+    },
+    {
+      "name": "ai newsletter",
+      "path": "ai-newsletter/playbook.md"
+    },
+    {
+      "name": "ai seo services",
+      "path": "ai-seo-services/playbook.md"
+    },
+    {
+      "name": "ai social media mgmt",
+      "path": "ai-social-media-mgmt/playbook.md"
+    },
+    {
+      "name": "automation",
+      "path": "automation/playbook.md"
+    },
+    {
+      "name": "automation comparison",
+      "path": "automation-comparison/playbook.md"
+    },
+    {
+      "name": "aws",
+      "path": "aws/playbook.md"
+    },
+    {
+      "name": "aws basics",
+      "path": "aws-basics/playbook.md"
+    },
+    {
+      "name": "aws basics cloud solutions",
+      "path": "aws-basics-cloud-solutions/playbook.md"
+    },
+    {
+      "name": "aws cloud solutions",
+      "path": "aws-cloud-solutions/playbook.md"
+    },
+    {
+      "name": "bluesky",
+      "path": "bluesky/playbook.md"
+    },
+    {
+      "name": "business",
+      "path": "business/playbook.md"
+    },
+    {
+      "name": "buying used cars",
+      "path": "buying-used-cars/playbook.md"
+    },
+    {
+      "name": "coinbase agentic",
+      "path": "coinbase-agentic/playbook.md"
+    },
+    {
+      "name": "creative",
+      "path": "creative/playbook.md"
+    },
+    {
+      "name": "cron model tiering",
+      "path": "cron-model-tiering/playbook.md"
+    },
+    {
+      "name": "elevenlabs",
+      "path": "elevenlabs/playbook.md"
+    },
+    {
+      "name": "eve lore",
+      "path": "eve-lore/playbook.md"
+    },
+    {
+      "name": "free web design assets",
+      "path": "free-web-design-assets/playbook.md"
+    },
+    {
+      "name": "freelancer",
+      "path": "freelancer/playbook.md"
+    },
+    {
+      "name": "g5rv antenna",
+      "path": "g5rv-antenna/playbook.md"
+    },
+    {
+      "name": "ga company websites",
+      "path": "ga-company-websites/playbook.md"
+    },
+    {
+      "name": "guru",
+      "path": "guru/playbook.md"
+    },
+    {
+      "name": "ham radio ai",
+      "path": "ham-radio-ai/playbook.md"
+    },
+    {
+      "name": "income streams",
+      "path": "income-streams/playbook.md"
+    },
+    {
+      "name": "linkedin",
+      "path": "linkedin/playbook.md"
+    },
+    {
+      "name": "mem0",
+      "path": "mem0/playbook.md"
+    },
+    {
+      "name": "mixpost",
+      "path": "mixpost/playbook.md"
+    },
+    {
+      "name": "modelrelay auto routing",
+      "path": "modelrelay-auto-routing/playbook.md"
+    },
+    {
+      "name": "nova autonomy",
+      "path": "nova-autonomy/playbook.md"
+    },
+    {
+      "name": "nova trading bot",
+      "path": "nova-trading-bot/playbook.md"
+    },
+    {
+      "name": "openai tts",
+      "path": "openai-tts/playbook.md"
+    },
+    {
+      "name": "openclaw ecosystem",
+      "path": "openclaw-ecosystem/playbook.md"
+    },
+    {
+      "name": "openclaw subagents",
+      "path": "openclaw-subagents/playbook.md"
+    },
+    {
+      "name": "postiz",
+      "path": "postiz/playbook.md"
+    },
+    {
+      "name": "print on demand",
+      "path": "print-on-demand/playbook.md"
+    },
+    {
+      "name": "remote jobs",
+      "path": "remote-jobs/playbook.md"
+    },
+    {
+      "name": "rss reader",
+      "path": "rss-reader/playbook.md"
+    },
+    {
+      "name": "social posting automation",
+      "path": "social-posting-automation/playbook.md"
+    },
+    {
+      "name": "solana trading",
+      "path": "solana-trading/playbook.md"
+    },
+    {
+      "name": "stripe",
+      "path": "stripe/playbook.md"
+    },
+    {
+      "name": "token generation",
+      "path": "token-generation/playbook.md"
+    },
+    {
+      "name": "toptal",
+      "path": "toptal/playbook.md"
+    },
+    {
+      "name": "uptime kuma",
+      "path": "uptime-kuma/playbook.md"
+    },
+    {
+      "name": "wordpress",
+      "path": "wordpress/playbook.md"
+    },
+    {
+      "name": "workana",
+      "path": "workana/playbook.md"
+    }
+  ]
+}

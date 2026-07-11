@@ -354,7 +354,7 @@ def execute_buy_live(mint, token_name, usdc_amount):
     # Use Jupiter v2 API
     try:
         resp = requests.get(
-            f"https://api.jup.ag/swap/v2/order?inputMint={USDC}&outputMint={mint}&amount={usdc_units}&slippageBps=5000&taker={str(WALLET.pubkey())}",
+            f"https://api.jup.ag/swap/v2/order?inputMint={USDC}&outputMint={mint}&amount={usdc_units}&slippageBps=5000&taker={str(WALLET.pubkey())}&dynamicBlockhash=true",
             timeout=15
         )
         if resp.status_code != 200:
@@ -448,7 +448,7 @@ def execute_sell_live(mint, token_name, amount_raw):
     for chunk in chunks:
         try:
             resp = requests.get(
-                f"https://api.jup.ag/swap/v2/order?inputMint={mint}&outputMint={USDC}&amount={chunk}&slippageBps=5000&taker={str(WALLET.pubkey())}",
+                f"https://api.jup.ag/swap/v2/order?inputMint={mint}&outputMint={USDC}&amount={chunk}&slippageBps=5000&taker={str(WALLET.pubkey())}&dynamicBlockhash=true",
                 timeout=15
             )
             if resp.status_code != 200:
@@ -481,7 +481,7 @@ def execute_sell_live(mint, token_name, amount_raw):
                 tx_hash = result.value if hasattr(result, "value") else str(result)
                 time.sleep(5)
                 confirmed = False
-                for verify_attempt in range(30):
+                for verify_attempt in range(60):
                     try:
                         confirm = CLIENT.get_signature_statuses([str(tx_hash)])
                         if confirm and confirm.value and confirm.value[0]:
@@ -498,7 +498,7 @@ def execute_sell_live(mint, token_name, amount_raw):
                     time.sleep(1)
 
                 if not confirmed:
-                    print(f"Sell TX {str(tx_hash)[:20]}... did not confirm after ~35s - FAILING")
+                    print(f"Sell TX {str(tx_hash)[:20]}... did not confirm after ~65s - FAILING")
                     if send_attempt < 2:
                         print("Retrying...")
                         time.sleep(10)
@@ -539,7 +539,7 @@ def process_sell_signal(signal):
         try:
             test_amt = min(amount_raw, 1000000)
             r = requests.get(
-                f"https://api.jup.ag/swap/v2/order?inputMint={mint}&outputMint={USDC}&amount={test_amt}&slippageBps=5000&taker={str(WALLET.pubkey())}",
+                f"https://api.jup.ag/swap/v2/order?inputMint={mint}&outputMint={USDC}&amount={test_amt}&slippageBps=5000&taker={str(WALLET.pubkey())}&dynamicBlockhash=true",
                 timeout=8
             )
             d = r.json()
