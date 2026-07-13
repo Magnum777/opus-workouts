@@ -667,7 +667,7 @@ def determine_buy_size(signal):
 
     # Rebuild phase ($0-$150): %-based sizing
     if usdc_balance < 150.0:
-        if usdc_balance < 8.0:
+        if usdc_balance < 2.0:
             return 0  # too small to trade
         elif usdc_balance < 15.0:
             pcts = (0.60, 0.45, 0.30)  # survival
@@ -690,7 +690,7 @@ def determine_buy_size(signal):
         size = min(size, usdc_balance * 0.85)  # leave buffer
         size = round(size, 2)
 
-        MIN_BUY = max(3.0, usdc_balance * 0.10)
+        MIN_BUY = max(1.0, usdc_balance * 0.10)
         if size < MIN_BUY:
             return 0
         return size
@@ -925,8 +925,8 @@ def main():
                 continue
             # Re-check USDC balance before buying - ensure we still have funds
             current_usdc = get_usdc_balance()
-            if current_usdc < 15.0:
-                print(f"  [SKIP {token}] USDC too low after previous buys (${current_usdc:.2f}) - need >= $15 for min $20 buy")
+            if current_usdc < 3.0:
+                print(f"  [SKIP {token}] USDC too low after previous buys (${current_usdc:.2f}) - need >= $3 for min buy")
                 continue
             sig = {"token": token, "mint": mint}
             success, msg = process_buy_signal(sig)

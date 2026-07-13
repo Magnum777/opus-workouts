@@ -1,6 +1,5 @@
-$p = Start-Process -FilePath "C:\Users\compj\.openclaw\workspace\trading-bot\run_executor.cmd" -NoNewWindow -RedirectStandardOutput "C:\Users\compj\.openclaw\workspace\trading-bot\executor_output.txt" -RedirectStandardError "C:\Users\compj\.openclaw\workspace\trading-bot\executor_err.txt" -PassThru
-Wait-Process -Id $p.Id -Timeout 120
-$out = Get-Content "C:\Users\compj\.openclaw\workspace\trading-bot\executor_output.txt" -Raw
-Write-Host $out
-$err = Get-Content "C:\Users\compj\.openclaw\workspace\trading-bot\executor_err.txt" -Raw
-if ($err -ne "") { Write-Host "STDERR:"; Write-Host $err }
+cd C:\Users\compj\.openclaw\workspace\trading-bot
+ = & 'C:\ProgramData\chocolatey\bin\python3.14.exe' C:\Users\compj\.openclaw\workspace\trading-bot\run_executor.py 2>&1
+Write-Host '---OUTPUT-START---'
+
+Write-Host '---OUTPUT-END---'
