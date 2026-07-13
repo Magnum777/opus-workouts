@@ -364,7 +364,7 @@ LEGIT = {"discord.com", "google.com", "microsoft.com", "apple.com", "amazon.com"
          "estudiantes.uv.mx", "web.de",
          "paypal.com", "chase.com", "tiktok.com", "tiktokshop.com",
          "rakuten.com", "rakuten_com", "ladders.com",
-         "privaterelay.appleid.com",
+         "privaterelay.appleid.com", "echosign.com", "adobe.com",
          }
 
 
