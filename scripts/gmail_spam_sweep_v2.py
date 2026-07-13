@@ -362,7 +362,8 @@ LEGIT = {"discord.com", "google.com", "microsoft.com", "apple.com", "amazon.com"
          "eng.zu.edu.eg", "lcps.org.uk", "notredameacademy.org",
          "an.em-net.ne.jp", "dolphin.ocn.ne.jp", "ocn.ne.jp",
          "estudiantes.uv.mx", "web.de",
-         "paypal.com", "chase.com", "tiktok.com",
+         "paypal.com", "chase.com", "tiktok.com", "tiktokshop.com",
+         "rakuten.com", "ladders.com",
          }
 
 
@@ -386,6 +387,12 @@ def decode_field(s: str) -> str:
 def is_spam(sender_raw: str, subject_raw: str) -> bool:
     sender = sender_raw.lower()
     subject = subject_raw.lower()
+
+    # Subject whitelist: never flag legitimate hotel/travel agreements
+    SAFE_SUBJECTS = ["guest agreement", "reservation confirmed", "booking confirmed", "check-in instructions", "welcome to"]
+    for safe in SAFE_SUBJECTS:
+        if safe in subject:
+            return False
 
     for dom in LEGIT:
         if dom in sender:
@@ -522,19 +529,19 @@ def is_spam(sender_raw: str, subject_raw: str) -> bool:
 def sweep_folder(email_addr: str, password: str, folder: str, label: str, max_msgs: int = 100) -> tuple[int, int, list]:
     """Sweep a single folder. Returns (checked, trashed, details)."""
     if should_exit():
-        return 0, 0
+        return 0, 0, []
     try:
         mail = imaplib.IMAP4_SSL("imap.gmail.com", timeout=15)
         mail.login(email_addr, password)
     except Exception as e:
         logger.error("  LOGIN FAILED: %s", e)
-        return 0, 0
+        return 0, 0, []
 
     status, _ = mail.select(folder)
     if status != "OK":
         logger.warning("  SELECT FAILED for %s", folder)
         mail.logout()
-        return 0, 0
+        return 0, 0, []
 
     # Check last 7 days for spam folder, 14 days for inbox (tighter = faster)
     days = 14 if "INBOX" in folder else 7
@@ -545,7 +552,7 @@ def sweep_folder(email_addr: str, password: str, folder: str, label: str, max_ms
         logger.info("  %s: No recent messages.", label)
         mail.close()
         mail.logout()
-        return 0, 0
+        return 0, 0, []
 
     # Take last N UIDs - keep it lean to stay under cron timeout
     if "INBOX" in folder:
@@ -558,6 +565,7 @@ def sweep_folder(email_addr: str, password: str, folder: str, label: str, max_ms
 
     spam_ids = []
     checked = 0
+    trashed_details = []
     for uid in uids:
         if should_exit():
             logger.warning("  TIMEOUT")
@@ -580,7 +588,6 @@ def sweep_folder(email_addr: str, password: str, folder: str, label: str, max_ms
             continue
 
     trashed = 0
-    trashed_details = []
     if spam_ids:
         logger.info("  Trashing %d...", len(spam_ids))
         for uid in spam_ids:
