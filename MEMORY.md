@@ -60,18 +60,19 @@ Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY
 
 ## Key Rules (non-negotiable)
 - "Mental notes" don't survive restart. WRITE IT DOWN.
-- Act first, report after; quiet mode; short direct answers
+- Quiet mode; short direct answers
 - No em dashes in text for Opus (see .learnings/NO_EM_DASHES.md)
 - Sub-agent timeout ~120s hard limit -- long-form writing stays in main session
 - Isolated crons can't read Windows env vars -- use config files
 - Recursive file scans through exec block the Node.js event loop and get me killed
+- Spam sweep must report EVERY trashed email (sender, subject, account) to #nova for false positive spot-checking
 
 ## Channels
 - Discord: bot Nova `1470831964721250395`, guild Layered Media LLC `1425600872938995714`
 - Wired: #nova, #clawincome, #tradebot, #wordpress, #eveonion, #kybernauts
 
 ## Last Updated
-2026-06-21 -- weekly compact: read 12 daily logs, 0 files archived (already done), 10 new learnings logged.
+2026-07-12 -- weekly compact: read 16 daily logs, 0 files archived (already done), 5 new learnings logged.
 
 ## Recent Learnings (Auto-compacted)
 
@@ -113,3 +114,10 @@ Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY
 - **Bug:** Unsplash API returning 401 consistently — featured image generation for Content-Nova is broken. Needs API key refresh or alternative source. Source: 2026-06-13.md
 - **Content strategy:** 4 TradeBot case studies published in June (JUP position, 2-week PnL, 30-day PnL + safety architecture, 62B ISK asset tracker build). Real PnL data driving sales content. Source: 2026-06-08.md, 2026-06-10.md, 2026-06-11.md, 2026-06-13.md
 - **EveOnion:** Opus confirmed no pride-related event stories for creative fiction. Source: 2026-06-19.md
+
+### Week of 2026-06-22 through 2026-07-12
+- **Decision:** EveOnion NEVER target list finalized — Fern Kitsuen, Lorumerth, James Cunningham are real people, never target them in fiction. Fictional characters only, inspired by patterns not named individuals. Source: 2026-06-22.md, 2026-06-23.md
+- **Project update:** Kybernauts Anti-Yagas campaign transitioned from Phase 1 (neutral observer) to Phase 2 (Pattern Recognition) on July 5. Phase 3 (Direct Confrontation) scheduled July 19, Phase 4 (Sustained Pressure) August 2. Phase 2 uses data-driven posts with indirect naming. Source: 2026-07-05.md
+- **Security:** Made opus-workouts repo private, rewrote git history with git-filter-repo to scrub hardcoded secrets. Force-pushed clean history. Source: 2026-07-10.md
+- **Rule:** Spam sweep must now report EVERY trashed email (sender, subject, account) to #nova for false positive spot-checking. Source: 2026-07-10.md
+- **Correction:** "Act first, report after" rule removed from MEMORY.md — was already removed from SOUL.md at Opus's request (caused running off without checking).

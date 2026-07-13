@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-10T16:37:01.921Z",
+  "updatedAt": "2026-07-11T19:44:11.758Z",
   "entries": {
     "memory:memory/2026-06-04.md:1:28": {
       "key": "memory:memory/2026-06-04.md:1:28",
@@ -155,6 +155,286 @@
         "memory-hygiene",
         "x-twitter",
         "elite-longterm-memory"
+      ]
+    },
+    "memory:memory/archive/2026-02-15.md:1:45": {
+      "key": "memory:memory/archive/2026-02-15.md:1:45",
+      "path": "memory/archive/2026-02-15.md",
+      "startLine": 1,
+      "endLine": 45,
+      "source": "memory",
+      "snippet": "# 2026-02-15 ## Summary - Consolidated old workspace (C:\\my-ai-cofounder) into new workspace - Created organized files: IDENTITY.md, SOUL.md, USER.md, PROJECTS.md, STACK.md, CREDENTIALS.md - Tried to set up self-hosted Mem0 on Synology - Docker permission issues - User frustrated with circling - decided to move to new box - Password for Synology SSH: NAS_PASSWORD_REDACTED (working) - SMB share password: xXhFXH ## Files Created/Updated | File | Purpose | |------|---------| | IDENTITY.md | My identity | | SOUL.md | My principles | | USER.md | Opus info | | PROJECTS.md | Active projects | | STACK.md | Tech config | | CREDENTIALS.md | All secrets | | memory/2026-02-15.md",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-11T07:41:33.459Z",
+      "lastRecalledAt": "2026-07-11T07:41:44.419Z",
+      "queryHashes": [
+        "17f78cb18d35",
+        "159642883c28"
+      ],
+      "recallDays": [
+        "2026-07-11"
+      ],
+      "conceptTags": [
+        "my-ai-cofounder",
+        "identity.md",
+        "soul.md",
+        "user.md",
+        "projects.md",
+        "stack.md",
+        "credentials.md",
+        "self-hosted"
+      ]
+    },
+    "memory:memory/2026-06-10.md:1:28": {
+      "key": "memory:memory/2026-06-10.md:1:28",
+      "path": "memory/2026-06-10.md",
+      "startLine": 1,
+      "endLine": 28,
+      "source": "memory",
+      "snippet": "## EVE Assets Viewer - LIVE 2026-06-10 21:34 - **URL:** https://magnum777.github.io/kybernauts-assets/ - **Passphrase:** `u^w%dEUq!$_&E5l++oGjXT%5UYqlSWZEiASjtTdd_Cbn&ob5w6e9Y8v` - **Data:** 14,782 assets, 749 locations, 62.08B ISK, 4 systems - **ESI:** 3 Director alts authed (OpusMagnum, Friend of Matterall, Brax Thiel) - **Sync:** Node.js script pulls ESI → encrypts → pushes to GitHub Pages - **Rate limit:** 500ms delays, batched parallel type/location resolution - **NAS setup:** `scripts/NAS-SETUP.md` for Synology Task Scheduler (30 min cron) - **Repo:** https://github.com/Magnum777/kybernauts-assets - **Files:** `scripts/esi-auth.js`, `scripts/esi-sync.js`, `scripts/setup.js` ## Conte",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-11T07:41:50.127Z",
+      "lastRecalledAt": "2026-07-11T07:41:50.127Z",
+      "queryHashes": [
+        "605558582296"
+      ],
+      "recallDays": [
+        "2026-07-11"
+      ],
+      "conceptTags": [
+        "5uyqlswzeiasjttdd-cbn",
+        "62.08b",
+        "node.js",
+        "type/location",
+        "scripts/nas-setup.md",
+        "scripts/esi-auth.js",
+        "scripts/esi-sync.js",
+        "scripts/setup.js"
+      ]
+    },
+    "memory:memory/archive/2026-05-31.md:219:250": {
+      "key": "memory:memory/archive/2026-05-31.md:219:250",
+      "path": "memory/archive/2026-05-31.md",
+      "startLine": 219,
+      "endLine": 250,
+      "source": "memory",
+      "snippet": "- **Created as WordPress page** (not post) using `publish_product_page.py` - **Added to nav menu:** \"AI Cofounder Guide\" in Primary Nav ## Products Page Published ✅ - **Published on aicofounderstack.com:** https://www.aicofounderstack.com/products/ - **Content:** AI Cofounder Guide ($25) + Solana Memecoin Bot ($49) - **Gumroad buttons:** Styled red CTA buttons linking to both products - **Added to nav menu:** \"Products\" in Primary Nav - **Both products now discoverable** from homepage nav ## NAS Backup Completed (Evening) - **Backup file:** `workspace-backup-2026-05-31-2012.zip` (4.9 MB) - **Location:** `\\\\192.168.68.51\\home\\backups\\` - **Method:** Z: drive mapped, `Compress-A",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-11T07:41:50.127Z",
+      "lastRecalledAt": "2026-07-11T07:41:50.127Z",
+      "queryHashes": [
+        "605558582296"
+      ],
+      "recallDays": [
+        "2026-07-11"
+      ],
+      "conceptTags": [
+        "backup",
+        "backups",
+        "publish-product-page.py",
+        "aicofounderstack.com",
+        "4.9",
+        "192.168.68.51",
+        "compress-a",
+        "created"
+      ]
+    },
+    "memory:memory/2026-06-09.md:1:25": {
+      "key": "memory:memory/2026-06-09.md:1:25",
+      "path": "memory/2026-06-09.md",
+      "startLine": 1,
+      "endLine": 25,
+      "source": "memory",
+      "snippet": "### 2026-06-10 04:02 UTC — Cleanup Complete **Deleted temp/duplicate files:** - 22 eve-lore batch MD files (appended to KB, no longer needed) - 3 JSON test files (test_deepseek, test_ollama_pro, test_qwen) - 25 Python temp/duplicate scripts: - research_eveonion2/3.py (duplicates of research_eveonion.py) - _temp_*.py (4 temp inbox/debug scripts) - _eveonion_*.py (7 SEO/inspect scripts) - _rankmath_*.py (5 Rank Math probe scripts) - _sitemap_*.py (2 sitemap fix scripts) - check_post_*.py (4 post verification scripts) **Remaining data files (intentional):** - `.gmail_accounts.json` — spam sweep config - `.spam_patterns_found.json` — auto-discovery output - `ollama_test.json` — m",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-11T07:41:50.127Z",
+      "lastRecalledAt": "2026-07-11T07:41:50.127Z",
+      "queryHashes": [
+        "605558582296"
+      ],
+      "recallDays": [
+        "2026-07-11"
+      ],
+      "conceptTags": [
+        "temp/duplicate",
+        "eve-lore",
+        "test-deepseek",
+        "test-ollama-pro",
+        "test-qwen",
+        "research-eveonion2/3.py",
+        "research-eveonion.py",
+        "inbox/debug"
+      ]
+    },
+    "memory:memory/archive/2026-05-27.md:66:85": {
+      "key": "memory:memory/archive/2026-05-27.md:66:85",
+      "path": "memory/archive/2026-05-27.md",
+      "startLine": 66,
+      "endLine": 85,
+      "source": "memory",
+      "snippet": "- Updated nav: removed old sales pages (Build Your AI Cofounder, Packages), added Case Studies / Systems / Operations category links via redirect pages - Rewrote About page for blog focus - Updated Contact page for blog focus - Categorized all posts correctly - Created content calendar: `scripts/content-nova/aicofounderstack/content-calendar.md` - BUG: Post titles with `$` symbols get stripped by PowerShell variable interpolation (posts 367 and 370) - **FIXED**: Used `Invoke-RestMethod` with file-based JSON body (absolute paths) to update titles. Post 367 now reads \"My AI Runs on $0 Compute\", Post 370 now reads \"From $0 to $56 Realized PnL\". Lesson: never pass `$` through PowerShell command-",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-11T07:41:50.127Z",
+      "lastRecalledAt": "2026-07-11T07:41:50.127Z",
+      "queryHashes": [
+        "605558582296"
+      ],
+      "recallDays": [
+        "2026-07-11"
+      ],
+      "conceptTags": [
+        "invoke-restmethod",
+        "file-based",
+        "updated",
+        "nav",
+        "removed",
+        "old",
+        "sales",
+        "pages"
+      ]
+    },
+    "memory:memory/archive/2026-02-27.md:24:35": {
+      "key": "memory:memory/archive/2026-02-27.md:24:35",
+      "path": "memory/archive/2026-02-27.md",
+      "startLine": 24,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "2. Creating automated income streams - passive income ideas 3. Follow-up research on todo items ### Trading Bot Critical Update (4:51 AM) - **BIRB:** Now at -77.5% loss (~$0.00016), stop loss sells STILL failing with error 0x1788 - **SKR:** Now at -39.6% loss (~$0.000021), stop loss sells ALSO failing with same error - **Root cause suspected:** Token-2022 compatibility issue with Jupiter aggregator - these tokens may not be routable via Jupiter's standard swap API - **PUMP:** Bot bought additional 0.15 SOL worth (~$0.0019/token), tx signature: `4bsrV7kzZm...` - **SOL Balance:** 0.3019 SOL remaining after PUMP buy - **Action needed:** Opus must manually sell BIRB and SKR via Phantom",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-11T15:50:36.353Z",
+      "lastRecalledAt": "2026-07-11T15:50:36.353Z",
+      "queryHashes": [
+        "66fbb2e8d678"
+      ],
+      "recallDays": [
+        "2026-07-11"
+      ],
+      "conceptTags": [
+        "follow-up",
+        "77.5",
+        "0.00016",
+        "39.6",
+        "0.000021",
+        "token-2022",
+        "0.15",
+        "0.0019/token"
+      ]
+    },
+    "memory:memory/archive/2026-04-19.md:28:41": {
+      "key": "memory:memory/archive/2026-04-19.md:28:41",
+      "path": "memory/archive/2026-04-19.md",
+      "startLine": 28,
+      "endLine": 41,
+      "source": "memory",
+      "snippet": "- Security (4 CRITICAL items open) ### Carryover - Ollama subagent bug may still exist (models fail with \"does not support tools\"). Subagents now fall through to the default model instead. ### Evening Follow-up (23:00–23:15) - Ran full wake checklist. Gateway OK (loopback, 27ms). Security down to 0 CRITICAL / 3 WARN. - Rebuilt `openclaw.json` from backup: restored Discord channel config (groupPolicy: open, allowFrom: [\"*\"], guild 1425600872938995714 channel allowlist), browser.enabled, messages ackReactionScope, commands, skills secrets (notion/openai-image-gen/whisper/sag), plugin entries. Kept new gateway auth token + port 18789. - Imported 7 essential cron jobs. Dropped explicit `model:",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-11T15:50:36.353Z",
+      "lastRecalledAt": "2026-07-11T15:50:36.353Z",
+      "queryHashes": [
+        "66fbb2e8d678"
+      ],
+      "recallDays": [
+        "2026-07-11"
+      ],
+      "conceptTags": [
+        "backup",
+        "gateway",
+        "openai",
+        "follow-up",
+        "openclaw.json",
+        "browser.enabled",
+        "security",
+        "critical"
+      ]
+    },
+    "memory:memory/archive/2026-03-05.md:1:39": {
+      "key": "memory:memory/archive/2026-03-05.md:1:39",
+      "path": "memory/archive/2026-03-05.md",
+      "startLine": 1,
+      "endLine": 39,
+      "source": "memory",
+      "snippet": "# March 5, 2026 - Kybernauts SDC Work ## What We Did ### SDC Formation Document - Created Proving Grounds program documentation for Kybernauts corporation - Worked with Opus to iterate on multiple versions - Finalized colors: #231f20 (dark), #e4090c (red) - Font: Oswald + Roboto Condensed (Shentox-style) ### Key Content - **Purpose**: \"forge Kybernauts\" - transformation over just training - **5 Member Categories**: Returning Kybernauts, Vets to Pochven, Established Players, Early Career, Newbros - **SDC Responsibilities**: Corp fittings, 3 Income/PVP doctrines, New member packages, Communication channels, Activity tracking - **Standings Path**: Exit Ohnivak → 3.4 Triglavian",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-11T19:44:11.758Z",
+      "lastRecalledAt": "2026-07-11T19:44:11.758Z",
+      "queryHashes": [
+        "a76cec149703"
+      ],
+      "recallDays": [
+        "2026-07-11"
+      ],
+      "conceptTags": [
+        "shentox-style",
+        "income/pvp",
+        "3.4",
+        "march",
+        "kybernauts",
+        "sdc",
+        "what",
+        "did"
+      ]
+    },
+    "memory:memory/archive/2026-05-08.md:68:87": {
+      "key": "memory:memory/archive/2026-05-08.md:68:87",
+      "path": "memory/archive/2026-05-08.md",
+      "startLine": 68,
+      "endLine": 87,
+      "source": "memory",
+      "snippet": "- **Agent**: `kybernauts` (🛡️, model: kimi-k2.6:cloud) — already existed in config - **Discord channel**: `#kybernauts` (1479156871641436265) — wired up via gateway config - **Files copied from archive**: - Knowledge base: `memory/subminds/kybernauts-knowledge.md` - 4 recruitment docs (Monroe Doctrine, recruitment, SDC formation, skill plan) - 8 scripts (bump scripts, poster generator, health check, avatar generator) - 2 propaganda images (Pochven Awaits, Singularity is a Lie) - EVE Forum credentials (opusmagnum) - **Cron jobs created**: - Kybernauts-HealthCheck: Daily 8am ET → #kybernauts — **DELETED** per Opus request - Kybernauts-Propaganda: Every 2 days 6pm ET → #kybernaut",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-07-11T19:44:11.758Z",
+      "lastRecalledAt": "2026-07-11T19:44:11.758Z",
+      "queryHashes": [
+        "a76cec149703"
+      ],
+      "recallDays": [
+        "2026-07-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "kimi-k2.6",
+        "kybernauts-healthcheck",
+        "kybernauts-propaganda",
+        "kybernauts",
+        "model",
+        "kimi",
+        "k2.6"
       ]
     }
   }
