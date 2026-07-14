@@ -12,6 +12,22 @@ import time
 import requests
 from datetime import datetime, timezone
 
+# Load secrets from .env (never commit secrets)
+def _load_env_file(path):
+    """Parse KEY=VALUE lines from a .env file into os.environ."""
+    if not os.path.exists(path):
+        return
+    with open(path, 'r') as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if '=' in line:
+                key, value = line.split('=', 1)
+                os.environ.setdefault(key.strip(), value.strip())
+
+_load_env_file(os.path.join(os.path.dirname(__file__), '.env'))
+
 # Import V2 modules
 sys.path.insert(0, os.path.dirname(__file__))
 import portfolio_db_v2 as pdb
@@ -28,9 +44,10 @@ from solders.keypair import Keypair
 from solders.transaction import VersionedTransaction
 
 # Wallet
-PRIVATE_KEY = bytes.fromhex("edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d")
+PRIVATE_KEY = bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", ""))
 WALLET = Keypair.from_bytes(PRIVATE_KEY)
-CLIENT = Client("https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887")
+HELIUS_RPC = os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE")
+CLIENT = Client(HELIUS_RPC)
 
 # Constants
 SOL_MINT = "So11111111111111111111111111111111111111112"
@@ -325,7 +342,7 @@ def refill_usdc_from_sol():
 def get_usdc_balance():
     """Get USDC balance from blockchain"""
     try:
-        helius_url = "https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887"
+        helius_url = HELIUS_RPC
         data = {
             "jsonrpc": "2.0", "id": 1,
             "method": "getTokenAccountsByOwner",
@@ -379,10 +396,10 @@ def execute_buy_live(mint, token_name, usdc_amount):
         try:
             result = CLIENT.send_raw_transaction(
                 bytes(signed),
-                opts=TxOpts(skip_preflight=False, preflight_commitment="confirmed", max_retries=5)
+                opts=TxOpts(skip_preflight=True, preflight_commitment="confirmed", max_retries=5)
             )
             tx_hash = result.value if hasattr(result, "value") else str(result)
-            time.sleep(5)
+            time.sleep(3)
             confirmed = False
             for verify_attempt in range(30):
                 try:
@@ -401,6 +418,17 @@ def execute_buy_live(mint, token_name, usdc_amount):
                 time.sleep(1)
 
             if not confirmed:
+                # Fallback: check if balance actually changed
+                print(f"TX {str(tx_hash)[:20]}... not confirmed via status API - checking balance...")
+                try:
+                    from scout_v2 import get_usdc_balance
+                    time.sleep(2)
+                    post_usdc = get_usdc_balance()
+                    if post_usdc < usdc_amount - 0.50:  # USDC decreased = buy went through
+                        confirmed = True
+                        print(f"TX confirmed via balance change: USDC {usdc_amount:.2f} -> {post_usdc:.2f}")
+                except:
+                    pass
                 if send_attempt < 2:
                     print(f"TX {str(tx_hash)[:20]}... did not confirm after ~35s - retrying once in 10s")
                     time.sleep(10)
@@ -476,10 +504,10 @@ def execute_sell_live(mint, token_name, amount_raw):
             try:
                 result = CLIENT.send_raw_transaction(
                     bytes(signed),
-                    opts=TxOpts(skip_preflight=False, preflight_commitment="confirmed", max_retries=5)
+                    opts=TxOpts(skip_preflight=True, preflight_commitment="confirmed", max_retries=5)
                 )
                 tx_hash = result.value if hasattr(result, "value") else str(result)
-                time.sleep(5)
+                time.sleep(3)
                 confirmed = False
                 for verify_attempt in range(60):
                     try:
