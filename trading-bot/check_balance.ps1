@@ -5,5 +5,5 @@ $body = @{
     params = @("7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA")
 } | ConvertTo-Json
 
-$response = Invoke-RestMethod -Uri "https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887" -Method Post -ContentType "application/json" -Body $body
+$response = Invoke-RestMethod -Uri $env:HELIUS_RPC_URL -Method Post -ContentType "application/json" -Body $body
 $response | ConvertTo-Json -Depth 10

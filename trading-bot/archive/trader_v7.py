@@ -2,6 +2,7 @@
 Trading Bot v7 - WITH BUY SCANNING
 Scans for new opportunities and executes buys
 """
+import os
 import requests
 import json
 import base64
@@ -11,9 +12,9 @@ from solders.keypair import Keypair
 from solders.transaction import VersionedTransaction
 
 # WALLET
-PRIVATE_KEY = bytes.fromhex("edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d")
+PRIVATE_KEY = bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", ""))
 WALLET = Keypair.from_bytes(PRIVATE_KEY)
-CLIENT = Client("https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887")
+CLIENT = Client(os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE"))
 
 USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 SOL = "So11111111111111111111111111111111111111112"

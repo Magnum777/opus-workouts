@@ -14,8 +14,8 @@ import time
 
 # Configuration
 RPC_URL = "https://base.llamarpc.com"
-WALLET_ADDRESS = "0x4d2049F1e4a1d34FF458944c13E4720d2BAbc6A8"
-PRIVATE_KEY = "297fbd842e76349299847b3f8d6d688b0403ebdea14ac3c289654c182d796d1d"
+WALLET_ADDRESS = os.environ.get("BASE_WALLET_ADDRESS", "")
+PRIVATE_KEY = os.environ.get("BASE_PRIVATE_KEY", "")
 
 # Trading config
 TRADE_SIZE_ETH = 0.001

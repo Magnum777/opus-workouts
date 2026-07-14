@@ -1,15 +1,16 @@
 """
 Swap USDC to SOL via lite-api.jup.ag - Fixed signing
 """
+import os
 import requests, base64, json
 from solders.keypair import Keypair
 from solders.transaction import VersionedTransaction
 from solana.rpc.api import Client
 from solana.rpc.commitment import Confirmed
 
-PRIVATE_KEY = bytes.fromhex("edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d")
+PRIVATE_KEY = bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", ""))
 WALLET = Keypair.from_bytes(PRIVATE_KEY)
-CLIENT = Client("https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887")
+CLIENT = Client(os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE"))
 
 USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 SOL_MINT = "So11111111111111111111111111111111111111112"
@@ -64,7 +65,7 @@ except Exception as e:
         tx_b64 = tx_base64
         # Use solana CLI or direct RPC
         cmd = f'''
-        curl -s -X POST https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887 -H "Content-Type: application/json" -d '{{"jsonrpc":"2.0","id":1,"method":"sendTransaction","params":["{tx_b64}",{{"encoding":"base64","skipPreflight":true}}]}}'
+        curl -s -X POST {os.environ.get('HELIUS_RPC_URL', 'https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE')} -H "Content-Type: application/json" -d '{{"jsonrpc":"2.0","id":1,"method":"sendTransaction","params":["{tx_b64}",{{"encoding":"base64","skipPreflight":true}}]}}'
         '''
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=30)
         print(f"CLI result: {result.stdout}")

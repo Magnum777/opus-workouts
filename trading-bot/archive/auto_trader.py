@@ -2,15 +2,16 @@
 Nova's Automated Trading Bot
 Monitors positions and executes stop-loss/take-profit
 """
+import os
 import requests, json, time, base64
 from solana.rpc.api import Client
 from solders.keypair import Keypair
 from solders.transaction import VersionedTransaction
 
 # Config
-PRIVATE_KEY = bytes.fromhex('edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d')
+PRIVATE_KEY = bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", ""))
 WALLET = Keypair.from_bytes(PRIVATE_KEY)
-HELIUS_API_KEY = '2e3fb808-0c5f-4101-8c2b-82b4c4aa0887'
+HELIUS_API_KEY = os.environ.get("HELIUS_API_KEY", "")
 CLIENT = Client(f'https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}')
 
 USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'

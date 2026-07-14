@@ -5,7 +5,7 @@ Auto-falls back to public RPC if Helius is unresponsive.
 import os
 import requests
 
-HELIUS_RPC = 'https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887'
+HELIUS_RPC = os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE")
 PUBLIC_RPC = 'https://api.mainnet-beta.solana.com'
 
 _ACTIVE_RPC = HELIUS_RPC

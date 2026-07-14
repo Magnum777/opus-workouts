@@ -15,9 +15,9 @@ from solders.keypair import Keypair
 import portfolio_db as pdb
 
 # Wallet configuration - MUST match executor and old script
-PRIVATE_KEY = bytes.fromhex("edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d")
+PRIVATE_KEY = bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", ""))
 WALLET = Keypair.from_bytes(PRIVATE_KEY)
-CLIENT = Client("https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887")
+CLIENT = Client(os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE"))
 
 # Trading parameters
 TAKE_PROFIT_PCT = 1.0     # 1% take profit
@@ -80,7 +80,7 @@ def get_all_holdings():
     """Get ALL token holdings from BOTH Token programs - FROM BLOCKCHAIN via Helius"""
     holdings = {}
     # Use Helius RPC instead of public API to avoid rate limits
-    helius_url = "https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887"
+    helius_url = os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE")
     
     for prog in ["TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA", TOKEN2022_PROGRAM]:
         try:

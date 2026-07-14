@@ -22,9 +22,9 @@ from solana.rpc.api import Client
 from solders.keypair import Keypair
 
 # Wallet
-PRIVATE_KEY = bytes.fromhex("edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d")
+PRIVATE_KEY = bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", ""))
 WALLET = Keypair.from_bytes(PRIVATE_KEY)
-CLIENT = Client("https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887")
+CLIENT = Client(os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE"))
 
 # Constants
 SOL_MINT = "So11111111111111111111111111111111111111112"
@@ -55,7 +55,7 @@ def get_sol_balance():
 def get_usdc_balance():
     """Get USDC balance from blockchain"""
     try:
-        helius_url = "https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887"
+        helius_url = os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE")
         data = {
             "jsonrpc": "2.0", "id": 1,
             "method": "getTokenAccountsByOwner",
@@ -107,7 +107,7 @@ def get_jupiter_price(mint, decimals=None):
 def get_all_holdings():
     """Get token holdings from blockchain"""
     holdings = {}  # mint -> {"raw": int, "amount": float, "decimals": int}
-    helius_url = "https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887"
+    helius_url = os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE")
     
     for prog in ["TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA", TOKEN2022_PROGRAM]:
         try:

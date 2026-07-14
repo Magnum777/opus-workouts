@@ -1,13 +1,13 @@
-"""
-Nova's Trading Bot - Complete Edition
-Features: Notion, Price Alerts, Portfolio, Strategies, Stop Loss, Take Profit, Daily Reports
-"""
-
 import os
 import json
 import asyncio
 from datetime import datetime, timedelta
 from web3 import Web3
+
+# Configuration
+RPC_URL = "https://base.llamarpc.com"
+WALLET_ADDRESS = os.environ.get("BASE_WALLET_ADDRESS", "")
+PRIVATE_KEY = os.environ.get("BASE_PRIVATE_KEY", "")
 from eth_account import Account
 import requests
 import time
@@ -16,8 +16,8 @@ from api_tracker import track, usage
 
 # Configuration
 RPC_URL = "https://base.llamarpc.com"
-WALLET_ADDRESS = "0x4d2049F1e4a1d34FF458944c13E4720d2BAbc6A8"
-# PRIVATE_KEY is now read from the environment variable WALLET_PRIVATE_KEY for security
+WALLET_ADDRESS = os.environ.get("BASE_WALLET_ADDRESS", "")
+# PRIVATE_KEY is now read from the environment variable BASE_PRIVATE_KEY for security
 
 # Trading config
 TRADE_SIZE_ETH = 0.001
@@ -32,9 +32,9 @@ USDC_ADDRESS = "0x4ed4e862860bed51a9570b96d89af5e1b0efefed"  # Wrapped USDC on B
 class NovaTrader:
     def __init__(self):
         self.w3 = Web3(Web3.HTTPProvider(RPC_URL))
-        self.private_key = os.getenv("WALLET_PRIVATE_KEY")
+        self.private_key = os.environ.get("BASE_PRIVATE_KEY", "")
         if not self.private_key:
-            raise EnvironmentError("WALLET_PRIVATE_KEY not set in environment")
+            raise EnvironmentError("BASE_PRIVATE_KEY not set in environment")
         self.account = Account.from_key(self.private_key)
         self.wallet = self.account.address
         self.trades = []

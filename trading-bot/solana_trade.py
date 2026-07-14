@@ -1,12 +1,13 @@
 """
 Solana DEX Trading via Jupiter
 """
+import os
 import requests, json, time
 from solders.keypair import Keypair
 from solders.pubkey import Pubkey
 
 # Wallet
-PRIVATE_KEY = bytes.fromhex("edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d")
+PRIVATE_KEY = bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", ""))
 WALLET = Keypair.from_bytes(PRIVATE_KEY)
 print("Wallet:", str(WALLET.pubkey()))
 

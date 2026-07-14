@@ -6,7 +6,7 @@ $body = @{
 } | ConvertTo-Json
 
 $headers = @{
-    "x-api-key" = "2e3fb808-0c5f-4101-8c2b-82b4c4aa0887"
+    "x-api-key" = $env:HELIUS_API_KEY
 }
 
 $response = Invoke-RestMethod -Uri "https://mainnet.helius-rpc.com" -Method Post -ContentType "application/json" -Body $body -Headers $headers

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+import os
 import json, requests
 from solders.keypair import Keypair
 from solana.rpc.api import Client
 
-WALLET = Keypair.from_bytes(bytes.fromhex("edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d"))
-H = "https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887"
+WALLET = Keypair.from_bytes(bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", "")))
+H = os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE")
 C = Client(H)
 
 sol_raw = C.get_balance(WALLET.pubkey()).value

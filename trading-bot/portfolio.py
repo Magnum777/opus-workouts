@@ -23,7 +23,7 @@ from datetime import datetime, timezone
 
 WALLET_ADDRESS = "7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA"
 RPC_URL = "https://api.mainnet-beta.solana.com"
-HELIUS_RPC = "https://mainnet.helius-rpc.com/?api-key=2e3fb808-0c5f-4101-8c2b-82b4c4aa0887"
+HELIUS_RPC = os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE")
 
 # Token program IDs
 TOKEN_PROGRAM = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"

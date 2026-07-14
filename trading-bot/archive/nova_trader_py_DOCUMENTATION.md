@@ -9,7 +9,7 @@
 Original trading bot for Ethereum/Base network using:
 - **Chain:** Ethereum (Base L2)
 - **DEX:** Uniswap V3 (planned)
-- **Wallet:** `0x4d2049F1e4a1d34FF458944c13E4720d2BAbc6A8`
+- **Wallet:** `[REDACTED - see trading-bot/.env]`
 - **Assets:** ETH, USDC (wrapped on Base)
 - **Features:** Notion integration, price alerts, portfolio tracking
 

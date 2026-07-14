@@ -1,3 +1,4 @@
+import os
 import sys, json, time, base64, requests
 sys.path.insert(0, 'trading-bot')
 
@@ -6,7 +7,7 @@ from solders.transaction import VersionedTransaction
 from solana.rpc.api import Client
 from solana.rpc.types import TxOpts
 
-PK = bytes.fromhex('edd8b3aa4b029112f8d55c8d5daa344bdd0b105c2809c4ddb9f1908625b0cdee5cd4608fc059d034abd87d3724de879417cc23eb7a9fe40d607de6d991cb473d')
+PK = bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", ""))
 WALLET = Keypair.from_bytes(PK)
 CLIENT = Client("https://api.mainnet-beta.solana.com")
 

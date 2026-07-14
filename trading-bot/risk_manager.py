@@ -14,13 +14,13 @@ MAX_POSITION_PCT = 0.40    # Max 40% of portfolio in one position
 MAX_OPEN_POSITIONS = 6     # Up to 6 concurrent positions — diversified, not degenerate
 MAX_TOTAL_EXPOSURE_PCT = 0.70  # Never have more than 70% of portfolio in positions
 STOP_LOSS_PCT = -0.08      # -8% stop loss (gave the 1-pos tightness; let runners breathe)
-TRIM_PCT = 0.12           # +12% partial trim
-TRIM_FRACTION = 0.5       # Sell half at trim threshold
-TAKE_PROFIT_PCT = 0.25     # +25% full take profit (let winners run further)
+TRIM_PCT = 99.0            # Disabled — trim never triggers at this level
+TRIM_FRACTION = 0.5        # Kept for import compatibility, never used
+TAKE_PROFIT_PCT = 0.20     # +20% full take profit — quick flips, small account
 
 # Trailing stop — locks in gains as price rises
-TRAILING_ACTIVATE_PCT = 0.15   # Trailing stop activates after +15% profit
-TRAILING_DISTANCE_PCT = 0.05   # Trail 5% below the highest price seen
+TRAILING_ACTIVATE_PCT = 0.12   # Trailing stop activates after +12% profit
+TRAILING_DISTANCE_PCT = 0.04   # Trail 4% below the highest price seen
 # Once active, the effective stop loss becomes: max(original -8%, highest_price - 5%)
 # So if a position goes up 67%, the stop is at ~62% profit — you keep most of the gain.
 REBUY_COOLDOWN_HOURS = 48  # 48h cooldown — no rebuying tokens you just sold

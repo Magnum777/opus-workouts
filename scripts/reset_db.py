@@ -8,9 +8,9 @@ import json, urllib.request, datetime, os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'trading-bot'))
 import portfolio_db_v2 as pdb
 
-helius_key = '2e3fb808-0c5f-4101-8c2b-82b4c4aa0887'
+helius_key = os.environ.get('HELIUS_API_KEY', '')
 base = 'https://mainnet.helius-rpc.com/?api-key=' + helius_key
-wallet = '7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA'
+wallet = os.environ.get('TRADING_BOT_WALLET', '7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA')
 USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
 SOL_MINT = 'So11111111111111111111111111111111111111112'
 TOKEN_LEGACY = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'

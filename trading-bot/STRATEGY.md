@@ -38,9 +38,8 @@ The bot was buying $3-5 positions and getting stopped out at -5% over and over, 
 - Max 40% of portfolio in one position
 - Max 70% total exposure
 - Stop loss: -8%
-- Take profit: +25%
-- Trim: +12% (sell 50%)
-- Trailing stop: activates at +15%, trails 5% below peak
+- Take profit: +20% — quick flips, no trim, full exit
+- Trailing stop: activates at +12%, trails 4% below peak
 - Min hold: 1 hour
 - Re-buy cooldown: 48 hours
 - Consecutive loss pause: 3 losses (decays 1 every 6h)

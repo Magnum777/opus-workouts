@@ -1,8 +1,12 @@
 # Trading Bot Research - Feb 24, 2026
 
 ## Current Status
-- Wallet created on Base: 0x4d2049F1e4a1d34FF458944c13E4720d2BAbc6A8
+- Wallet configured via env vars
 - Balance: ~0.056 ETH (~$106)
+
+## Notes
+- Old Base wallet address removed from repo for security
+- Keys now stored in trading-bot/.env
 - USDC sent back to Coinbase (~$100)
 
 ## What Works

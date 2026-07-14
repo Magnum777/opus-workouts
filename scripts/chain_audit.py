@@ -2,9 +2,10 @@ import json
 import urllib.request
 import datetime
 import sys
+import os
 
-helius_key = '2e3fb808-0c5f-4101-8c2b-82b4c4aa0887'
-wallet = '7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA'
+helius_key = os.environ.get('HELIUS_API_KEY', '')
+wallet = os.environ.get('TRADING_BOT_WALLET', '7FNLUAQQd2NY88mG1ZqU8EDuNBVwvf2cWufxSnjwcgqA')
 base = 'https://mainnet.helius-rpc.com/?api-key=' + helius_key
 
 def rpc_call(method, params):

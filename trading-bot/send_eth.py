@@ -1,9 +1,10 @@
 from web3 import Web3
+import os
 
 w3 = Web3(Web3.HTTPProvider('https://mainnet.base.org'))
 
-private_key = '297fbd842e76349299847b3f8d6d688b0403ebdea14ac3c289654c182d796d1d'
-from_addr = '0x4d2049F1e4a1d34FF458944c13E4720d2BAbc6A8'
+private_key = os.environ.get('BASE_PRIVATE_KEY', '')
+from_addr = os.environ.get('BASE_WALLET_ADDRESS', '')
 to_addr = '0x706afBE8675e4748F75b4bF80326Be33a22a01F0'
 
 balance_wei = w3.eth.get_balance(from_addr)
