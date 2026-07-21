@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "skill-vetter",
   "installedVersion": "1.0.0",
-  "installedAt": 1781485209494
+  "installedAt": 1784220289336,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "b89a72d67a97453317c372790b349c973a20126ab31a1dbb7936d009612ff9c9",
+    "integrity": "sha256-uJpy1nqXRTMXw3J5CzSclzogEmqzGh27eTbQCWEv+ck="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "e8eb7583355c2ae78a79187dca6a1ec448d9c8360e91652871392179f7ffb8bf"
+  }
 }

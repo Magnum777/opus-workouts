@@ -2,6 +2,15 @@
   "version": 1,
   "registry": "https://clawhub.ai",
   "slug": "resend-send-native-node",
-  "installedVersion": "1.0.12",
-  "installedAt": 1781483836803
+  "installedVersion": "1.0.15",
+  "installedAt": 1784218551647,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "f798ebe482c19b122f60da2f67f8cfd717beb3c715135ed1a1526cb07d5b6dd4",
+    "integrity": "sha256-95jr5ILBmxIvYNovZ/jP1xe+s8cVE17RoVJssH1bbdQ="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "3222932552035d3bd01a9ec38112e4b111257cb439f0d7c3ca148e3bb42e3239"
+  }
 }

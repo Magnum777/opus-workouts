@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "szzg007-web-deep-research",
   "installedVersion": "1.0.0",
-  "installedAt": 1781446722122
+  "installedAt": 1784220026173,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "5d655398d9cbec2d2f05e446dafe368a28f5f73e62eece168ba6cf4642945d14",
+    "integrity": "sha256-XWVTmNnL7C0vBeRG2v42iij19z5i7s4Wi6bPRkKUXRQ="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "759d8a4817832ad415f4be8fb095ad189094d240cb6c0dfb62190ad48b0969f5"
+  }
 }

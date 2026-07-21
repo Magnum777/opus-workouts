@@ -26,7 +26,7 @@
 
 ## Hardware / Infra
 - 9800X3D + 9070 XT, 32 GB RAM, Windows 10.0.26200
-- Synology NAS: 192.168.68.51 (MND / nova-home)
+- Synology NAS: 192.168.68.91 (MND / nova-home)
 
 ## Projects (snapshot -- verify before acting)
 
@@ -35,8 +35,9 @@
 | Nova AI V1-V2 | Released | V3 spec complete, awaiting Opus Q3 decision |
 | TradeBot | Active | ~$103 portfolio, 3 crons running. See trading-bot/ for details |
 | EveOnion | Active | 2 crons (news scan + article publish). No pride-related event stories. REAL PEOPLE off-limits: Fern Kitsuen, Lorumerth, James Cunningham — never target them. Fictional only. |
-| Kybernauts | Active | 3 crons (health, propaganda, forum bump) |
-| WordPress Empire | Active (aicofounderstack only) | aitoolalliance fixed (new app password), aibusinessinsider still 403 Cloudflare. aicofounderstack revamped as blog May 27. |
+| KyberAPM | Active | Forked from EVE-APM-Preview, fully rebranded to Magnum777/kyber-apm. Harv [KYBR] testing with feedback. |
+| Kybernauts | Active | 3 crons (health, propaganda, forum bump). Phase 2 (Pattern Recognition) running since July 5. Phase 3 (Direct Confrontation) scheduled July 19. |
+| WordPress Empire | Active (aicofounderstack + aitoolalliance) | aitoolalliance publishing (July 14 article). aibusinessinsider still 403 Cloudflare. aicofounderstack revamped as blog May 27. |
 | Affiliate Pipeline | Dropped | Opus said to forget it (May 27). Not tracking. |
 
 ## Spam Defense System (2026-06-07)
@@ -72,7 +73,7 @@ Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY
 - Wired: #nova, #clawincome, #tradebot, #wordpress, #eveonion, #kybernauts
 
 ## Last Updated
-2026-07-12 -- weekly compact: read 16 daily logs, 0 files archived (already done), 5 new learnings logged.
+2026-07-19 -- weekly compact: read 9 daily logs, 0 files archived (already done), 0 new learnings added (week already covered).
 
 ## Recent Learnings (Auto-compacted)
 
@@ -121,3 +122,11 @@ Auto-commits changes with message: `spam: auto-add N discovered signatures (YYYY
 - **Security:** Made opus-workouts repo private, rewrote git history with git-filter-repo to scrub hardcoded secrets. Force-pushed clean history. Source: 2026-07-10.md
 - **Rule:** Spam sweep must now report EVERY trashed email (sender, subject, account) to #nova for false positive spot-checking. Source: 2026-07-10.md
 - **Correction:** "Act first, report after" rule removed from MEMORY.md — was already removed from SOUL.md at Opus's request (caused running off without checking).
+
+### Week of 2026-07-13 through 2026-07-19
+- **Project update:** KyberAPM forked from EVE-APM-Preview and fully rebranded. Old repo references scrubbed from all source files (Thanks section removed, GitHub URLs updated to Magnum777/kyber-apm, IPC socket renamed, User-Agent changed). New build pushed. Source: 2026-07-17.md
+- **User feedback:** Harv [KYBR] tested KyberAPM — wants: readme, Always on Top toggle, window position/size memory, confirmation on settings apply, test button for events, scroll-wheel disable on fields. Red flash on rat attacks not working (gate/system jumps work). Source: 2026-07-18.md
+- **Bug:** Night School NAS sync failing — `\\192.168.68.51\home\night-school` unreachable (network path not found). Queue was empty anyway (all 60+ topics processed). Source: 2026-07-17.md
+- **Content:** One article published on aitoolalliance.com (July 14): "No-Code AI Platforms in 2026: The Complete Guide". Source: 2026-07-14.md
+- **Infra:** Opus attempted to set `compaction.reserveTokensFloor: 50000` in gateway config but sessions kept crashing from context overflow. Source: 2026-07-17-0143-2.md
+- **Project update:** Kybernauts Phase 3 (Direct Confrontation) started July 19 as scheduled. Phase 4 (Sustained Pressure) due August 2. Source: 2026-07-05.md

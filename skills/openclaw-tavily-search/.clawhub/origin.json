@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "openclaw-tavily-search",
   "installedVersion": "0.1.0",
-  "installedAt": 1780308089656
+  "installedAt": 1784219877760,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "7709dc138e991f5b6bf6fddc8b44fc801006ce738a5c8741c998905c3f618d9d",
+    "integrity": "sha256-dwncE46ZH1tr9v3ci0T8gBAGznOKXIdByZiQXD9hjZ0="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "490da2ad7c928df0418dd113b1d35544865c413db62e1f820a80afa0c6857dba"
+  }
 }

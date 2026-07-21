@@ -1,29 +1,32 @@
 ## Description: <br>
-DuckDB CLI specialist for SQL analysis, data processing, and file conversion with CSV, Parquet, JSON, and DuckDB databases. <br>
+DuckDB CLI specialist for SQL analysis, data processing, and file conversion across CSV, Parquet, JSON, and database workflows. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
 ## Publisher: <br>
-[CamelSprout](https://clawhub.ai/user/CamelSprout) <br>
+[camelsprout](https://clawhub.ai/user/camelsprout) <br>
 
 ### License/Terms of Use: <br>
 MIT <br>
 
 
 ## Use Case: <br>
-Developers, data analysts, and engineers use this skill to ask an agent for DuckDB CLI commands, SQL examples, data conversion steps, output formatting guidance, and safer inspection patterns for local data files and DuckDB databases. <br>
+Developers and data practitioners use this skill to have an agent propose DuckDB CLI commands, SQL examples, output-format choices, and configuration guidance for local data analysis and file conversion. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Generated DuckDB commands may read local files or write exports to unintended destinations through paths, globs, COPY targets, or output directives. <br>
-Mitigation: Review generated commands before running them, especially input paths, globs, COPY/export destinations, .output targets, and editor commands. <br>
-Risk: Inspection tasks against existing DuckDB databases can become write-capable if commands omit read-only mode. <br>
-Mitigation: Prefer read-only mode for existing databases when the task only requires inspection. <br>
+Risk: Generated DuckDB commands may read broad file globs or write to unintended export paths. <br>
+Mitigation: Review file globs, COPY targets, .output and .once destinations before running generated commands. <br>
+Risk: Generated SQL may mutate a database through CREATE or INSERT statements. <br>
+Mitigation: Use read-only mode when inspecting existing databases and review mutating SQL before execution. <br>
+Risk: Editor-based workflows may open local files or execute editor behavior outside the agent response. <br>
+Mitigation: Review .edit/editor use and environment-selected editors before applying generated workflows. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub skill page](https://clawhub.ai/camelsprout/skills/duckdb-cli-ai-skills) <br>
 - [DuckDB CLI Overview](https://duckdb.org/docs/stable/clients/cli/overview) <br>
 - [DuckDB CLI Arguments](https://duckdb.org/docs/stable/clients/cli/arguments) <br>
 - [DuckDB CLI Dot Commands](https://duckdb.org/docs/stable/clients/cli/dot_commands) <br>
@@ -35,13 +38,13 @@ Mitigation: Prefer read-only mode for existing databases when the task only requ
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline SQL and bash code blocks] <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown guidance with SQL and bash command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+**Other Properties Related to Output:** [Includes DuckDB CLI flags, SQL snippets, data conversion examples, and safety guidance such as read-only or safe mode where applicable.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+1.0.0 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

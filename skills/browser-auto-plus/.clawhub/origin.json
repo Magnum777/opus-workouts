@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "browser-auto-plus",
   "installedVersion": "2.0.0",
-  "installedAt": 1781483793349
+  "installedAt": 1784220070542,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "da4d9b768dc0a7a47aac1f7b07249e9559a3474d05707b289edacaaef9bfaee7",
+    "integrity": "sha256-2k2bdo3Ap6R6rB97BySelVmjR00FcHsontrKrvm/ruc="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "ba7d8b28b1562ea19876a100d041f4e5e326bb3fe4d80c88772f246f2a2926fc"
+  }
 }

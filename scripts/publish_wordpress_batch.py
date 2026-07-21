@@ -114,7 +114,7 @@ def md_to_html(md_text):
     html = '\n'.join(new_lines)
     return html
 
-def publish_article(site_key, title, content_html):
+def publish_article(site_key, title, content_html, md_text=""):
     site = SITES[site_key]
     auth = base64.b64encode(f"{site['user']}:{site['pass']}".encode()).decode()
     headers = {
@@ -124,20 +124,67 @@ def publish_article(site_key, title, content_html):
         'Content-Type': 'application/json'
     }
     url = f"{site['url']}/wp-json/wp/v2/posts"
+    # Extract meta description from content (first paragraph or explicit meta tag)
+    meta_desc = ""
+    # Look for meta description in HTML comments
+    meta_match = re.search(r'&lt;!--\s*Meta Description:\s*(.+?)\s*--&gt;', md_text)
+    if meta_match:
+        meta_desc = meta_match.group(1).strip()
+    else:
+        # Use first substantial paragraph
+        paragraphs = re.findall(r'&lt;p&gt;(.{50,300}?)&lt;/p&gt;', content_html)
+        if paragraphs:
+            meta_desc = paragraphs[0].replace('&lt;', '').replace('&gt;', '')[:160]
+    
+    # Generate focus keyword from title
+    focus_kw = title.lower().replace(':', '').replace(',', '').split()[:3]
+    focus_keyword = ' '.join(focus_kw)
+    
     data = {
         'title': title,
         'content': content_html,
-        'status': 'publish'
+        'status': 'publish',
+        'meta': {
+            'rank_math_title': title + ' | ' + site_key.replace('_', ' ').title(),
+            'rank_math_description': meta_desc,
+            'rank_math_focus_keyword': focus_keyword
+        }
     }
     try:
         r = requests.post(url, json=data, headers=headers, timeout=30)
         if r.status_code in [200, 201]:
             result = r.json()
-            return True, result.get('link', 'unknown')
+            post_id = result.get('id')
+            post_link = result.get('link', 'unknown')
+            
+            # Auto-share to social media after successful publish
+            try:
+                share_to_social(site_key, post_id, title, post_link, md_text)
+            except Exception as e:
+                print(f"  Social share error: {e}")
+            
+            return True, post_link
         else:
             return False, f"HTTP {r.status_code}: {r.text[:200]}"
     except Exception as e:
         return False, str(e)
+
+def share_to_social(site_key, post_id, title, post_link, md_text=""):
+    """Share published post to X, Bluesky, and Pinterest via upload-post."""
+    import subprocess, sys
+    
+    # Build the social sharing script call
+    script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'share_to_social.py')
+    if os.path.exists(script_path):
+        result = subprocess.run(
+            [sys.executable, script_path, site_key, str(post_id)],
+            capture_output=True, text=True, timeout=60
+        )
+        print(f"  Social: {result.stdout.strip()}")
+        if result.returncode != 0:
+            print(f"  Social ERR: {result.stderr.strip()[:200]}")
+    else:
+        print(f"  Social: share_to_social.py not found, skipping")
 
 if __name__ == "__main__":
     import sys
@@ -159,7 +206,7 @@ if __name__ == "__main__":
         title = article['title']
         
         print(f"Publishing: {title} -> {site_key}...")
-        success, result = publish_article(site_key, title, html_content)
+        success, result = publish_article(site_key, title, html_content, md_content)
         
         if success:
             print(f"  OK Published: {result}")

@@ -1,5 +1,5 @@
 ## Description: <br>
-Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations. <br>
+Guides users through creating or updating effective skills that extend Claude's capabilities with specialized knowledge, workflows, or tool integrations. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,28 +11,28 @@ Apache 2.0 <br>
 
 
 ## Use Case: <br>
-Developers and skill authors use Skill Creator to design, validate, package, and iterate on skills with reusable instructions, scripts, references, and assets. <br>
+Developers and agent builders use this skill to create or update modular skills, plan bundled resources, write skill instructions, validate structure, and package distributable .skill archives. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Helper scripts can create or package files in unintended locations if run on the wrong path. <br>
-Mitigation: Run scripts only on intentional skill directories and review generated files before using or sharing them. <br>
-Risk: A packaged skill archive could include credentials, private notes, build outputs, or unrelated files left in the skill folder. <br>
-Mitigation: Inspect the skill folder or .skill archive and delete unnecessary or sensitive files before sharing. <br>
+Risk: Generated or modified skill files may contain incorrect, overly broad, or unsafe guidance. <br>
+Mitigation: Review generated SKILL.md content and bundled scripts before installing, publishing, or sharing the skill. <br>
+Risk: Packaged .skill archives may accidentally include private notes, credentials, build outputs, or unrelated files. <br>
+Mitigation: Use a dedicated target directory and inspect the archive contents before distribution. <br>
 
 
 ## Reference(s): <br>
+- [Workflow Patterns](references/workflows.md) <br>
 - [Output Patterns](references/output-patterns.md) <br>
-- [Workflows](references/workflows.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
+**Output Format:** [Markdown guidance with optional code blocks and generated skill files] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated skill directories, validation results, and packaged .skill archives when helper scripts are run.] <br>
+**Other Properties Related to Output:** [Includes local helper scripts for initializing, validating, and packaging skill directories.] <br>
 
 ## Skill Version(s): <br>
 0.1.0 (source: server release metadata) <br>

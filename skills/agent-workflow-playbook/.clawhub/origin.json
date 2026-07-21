@@ -2,6 +2,15 @@
   "version": 1,
   "registry": "https://clawhub.ai",
   "slug": "agent-workflow-playbook",
-  "installedVersion": "1.1.2",
-  "installedAt": 1781446722344
+  "installedVersion": "1.2.0",
+  "installedAt": 1784220035297,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "9cfa6790a80c03c58d65c29aa0e1e575b068b310eebecc843e73b37380f71827",
+    "integrity": "sha256-nPpnkKgMA8WNZcKaoOHldbBosxDuvsyEPnOzc4D3GCc="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "5a7eae206650ed40e738a63ba22c44c407ed9a814d28f72ec5a64a7a9e1f8f99"
+  }
 }

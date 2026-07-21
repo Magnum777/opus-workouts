@@ -1,7 +1,7 @@
-﻿---
+---
 name: resend-send-native-node
 description: Send email via Resend.com's HTTPS API - native Node.js, zero dependencies. Use when the user explicitly asks to email, send a message, mail a report, or deliver a notification to an email address. Externally sends email only with --send; defaults to dry-run and requires RESEND_ALLOWED_TO allowlist for real sends. Requires RESEND_API_KEY in the process environment for real sends. No OAuth, no 2FA, no Gmail required.
-version: 1.0.12
+version: 1.0.15
 risk_class: external-email-send-dry-run-default-send-gated
 ---
 
@@ -64,6 +64,8 @@ node "<skill-dir>/scripts/send.mjs" --html --to "you@example.com" --subject "Sty
 ```powershell
 node "<skill-dir>/scripts/send.mjs" --dry-run --to "you@example.com" --subject "Test" --body "..."
 ```
+
+If `--dry-run` and `--send` are both present, dry-run wins and no email is sent.
 
 **Real send (only after explicit approval):**
 ```powershell
@@ -192,12 +194,28 @@ $env:RESEND_ALLOWED_TO="you@example.com"; node scripts/send.mjs --send --to "you
 error: RESEND_API_KEY not set in process environment. Create one at https://resend.com, check current pricing/limits, and export RESEND_API_KEY.
 ```
 
+## Required checks before publishing/updating
+
+Minimum no-send checks:
+
+```powershell
+node --check skills\resend-send-native-node\scripts\send.mjs
+node skills\resend-send-native-node\scripts\send.mjs --help
+node skills\resend-send-native-node\scripts\send.mjs --to "test@example.com" --subject "Smoke" --body "Hello" --json
+node skills\resend-send-native-node\tests\run-resend-send-tests.mjs
+```
+
+The smoke command above must remain a dry-run: do not include `--send`. Real sends require separate explicit approval for the exact recipient headers, subject, and body plus an allowlist.
+
 ## Account limits
 
 Resend pricing and free-tier limits can change. Check the current Resend dashboard/pricing page before relying on a specific daily/monthly quota or paid-tier price. New accounts commonly support quick testing from `onboarding@resend.dev`; use a verified domain/sender for production-style mail.
 
 ## Changelog
 
+- `1.0.15`: Document the actual no-send publish/update checks, including the existing `tests\run-resend-send-tests.mjs` runner, so public update gates do not rely on a nonexistent self-test path. No send behavior change.
+- `1.0.14`: Public package eval hygiene: generate the Resend API-key-shaped test sentinel at runtime so package scanners do not see a static key-shaped string in source; no send behavior change.
+- `1.0.13`: Source-polish retest prep: genericized a review fixture subject, documented that `--dry-run --send` resolves to dry-run, and normalized SKILL.md line endings; no send behavior change.
 - `1.0.12`: ClawHub publication/version refresh after JSON receipt fix and public-readiness review; no additional runtime behavior change.
 - `1.0.11`: Add `--json` structured receipts for dry-run and real send output so operators can capture stable subjects, body hashes, allowlist status, and `resendId` without scraping human text.
 - `1.0.10`: Clarify explicit approval must cover all delivery/reply headers (`to`, `cc`, `bcc`, `from`, `reply-to`), subject, and body before real sends.

@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "humanized-writing-editor",
   "installedVersion": "1.0.0",
-  "installedAt": 1781483799548
+  "installedAt": 1784220259924,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "8492275fbb6b81bd9b185b5640f7867f7d4f1e08fe4b9d7c697db9bb3bd3ec42",
+    "integrity": "sha256-hJInX7trgb2bGFtWQPeGf31PHgj+S518aX25uzvT7EI="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "47b5565688a489d327e005dafd43b648b359df4e9a230847fe330b86c16d001e"
+  }
 }

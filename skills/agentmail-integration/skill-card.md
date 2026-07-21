@@ -1,5 +1,5 @@
 ## Description: <br>
-Integrates the AgentMail API so agents can create and manage dedicated inboxes, send and receive email, and handle webhook-driven email workflows. <br>
+Integrates the AgentMail API so agents can create and manage inboxes, send and receive email, and handle webhook-driven email workflows. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -10,18 +10,18 @@ This skill is ready for commercial/non-commercial use. <br>
 
 
 ## Use Case: <br>
-Developers and agents use this skill to add AgentMail-based email identity, inbox management, sending, receiving, webhook handling, and common email automation workflows to agent projects. <br>
+Developers and agent builders use this skill to connect agents to AgentMail for inbox provisioning, outbound messages, inbound mail checks, and webhook-based email automation. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill uses an AgentMail API key with permissions to send email, manage inboxes, and register webhooks. <br>
-Mitigation: Use a scoped or dedicated key when available, restrict access to trusted deployments, and require human approval for outbound replies or forwarding. <br>
-Risk: Incoming email and webhook payloads can contain prompt injection or unsafe instructions. <br>
-Mitigation: Use sender allowlists, treat message content as untrusted context, filter suspicious content, and queue risky messages for human review. <br>
-Risk: Received attachments may be untrusted and can be saved to local files by helper scripts or documented workflows. <br>
-Mitigation: Do not automatically process attachments from untrusted senders; sanitize filenames, scan files, and limit download locations before use. <br>
+Risk: The skill can enable high-impact email actions such as sending messages, forwarding content, managing inboxes, and configuring webhooks. <br>
+Mitigation: Require approval before outbound replies or forwarding, avoid bulk or unsolicited sending, and grant AgentMail authority only for intended workflows. <br>
+Risk: Incoming email and webhook payloads can contain prompt injection attempts or malicious instructions. <br>
+Mitigation: Use sender allowlists, content filtering, untrusted-context prompts, human review for suspicious messages, and trusted webhook endpoints. <br>
+Risk: Downloaded email attachments may be unsafe or may overwrite unexpected paths if saved carelessly. <br>
+Mitigation: Save attachments only to a restricted directory, sanitize filenames, and scan files before opening or processing them. <br>
 
 
 ## Reference(s): <br>
@@ -30,13 +30,14 @@ Mitigation: Do not automatically process attachments from untrusted senders; san
 - [AgentMail Common Patterns](references/patterns.md) <br>
 - [AgentMail Examples](references/EXAMPLES.md) <br>
 - [AgentMail Console](https://console.agentmail.to) <br>
+- [ClawHub Skill Release](https://clawhub.ai/synesthesia-wav/skills/agentmail-integration) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and configuration steps] <br>
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
+**Output Format:** [Markdown guidance with Python code examples and shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AgentMail API calls and local helper script usage that require an AGENTMAIL_API_KEY.] <br>
+**Other Properties Related to Output:** [Requires AGENTMAIL_API_KEY and the AgentMail Python SDK for live API operations.] <br>
 
 ## Skill Version(s): <br>
 1.1.0 (source: server release metadata) <br>

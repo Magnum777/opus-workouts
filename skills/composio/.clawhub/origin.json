@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "composio",
   "installedVersion": "1.0.0",
-  "installedAt": 1780308075545
+  "installedAt": 1784219842573,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "055a2a0d20de34220a3bc37680e527932a26ac1bfd9718bf40fbe7f75223f5d9",
+    "integrity": "sha256-BVoqDSDeNCIKO8N2gOUnkyomrBv9lxi/QPvn91Ij9dk="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "12ea022ea0fbd233b3ff4e0024cc197d7a5654af92f72100644b240d1f94ed4a"
+  }
 }

@@ -14,12 +14,19 @@ node "<skill-dir>\scripts\fetch.mjs" --url "https://www.youtube.com/watch?v=VIDE
 node "<skill-dir>\scripts\fetch.mjs" --help
 ```
 
+POSIX shell examples:
+
+```sh
+node "<skill-dir>/scripts/fetch.mjs" --url "https://www.youtube.com/watch?v=VIDEO_ID"
+node "<skill-dir>/scripts/fetch.mjs" --url "https://www.youtube.com/watch?v=VIDEO_ID" --json
+```
+
 ## Flags
 
 | Flag | Values | Default | Purpose |
 |---|---|---|---|
 | `--url` | YouTube URL | required | Video to fetch captions for |
-| `--lang` | language code | `en` | Subtitle language, e.g. `en`, `es`, `de` |
+| `--lang` | language code beginning with alphanumeric | `en` | Subtitle language, e.g. `en`, `es`, `de`, `en-US` |
 | `--timestamps` | flag | off | Keep `[hh:mm:ss]` prefixes in plain-text or JSON transcript output |
 | `--json` | flag | off | Output `{ url, title, lang, auto, timestamps, transcript }` |
 | `--no-dedup` | flag | off | Disable rolling-window dedup for auto-captions |
@@ -126,12 +133,14 @@ Errors are CLI-style by design: success prints plain text or JSON to stdout; fai
 
 ## Changelog
 
+- `1.1.5`: Input/docs polish: require `--lang` to begin with an alphanumeric, add POSIX command examples, sync this reference changelog, and neutralize process wording. No categories, topics, topic tags, tags, keywords, or ClawHub catalog metadata added to source.
+- `1.1.4`: Version refresh; no runtime behavior change.
 - `1.1.3`: Add stubbed offline yt-dlp fixture tests for dependency-missing, nonzero-exit-with-VTT, 429 hint, temp/home path scrubbing, output-size guard, timeout, and output modes; gate self-test hooks behind `YOUTUBE_TRANSCRIPT_SELFTEST=1`; continue when usable VTT subtitles are produced despite nonzero yt-dlp exit; kill active yt-dlp child on SIGINT/SIGTERM; broaden local-path scrubbing and scrub unexpected/read-error paths.
 - `1.1.2`: Add offline self-test fixtures, export parser/allowlist helpers for tests, pass `--ignore-config`, remove subtitle conversion postprocessor to avoid ffmpeg ambiguity, scrub temp path from yt-dlp error tails, and surface 429 retry guidance.
-- `1.1.1`: Public docs cleanup: normalized input/output packet wording, structured handoff wording, and changelog language; no runtime behavior change.
+- `1.1.1`: Docs cleanup: normalized input/output packet wording, structured handoff wording, and changelog language; no runtime behavior change.
 - `1.1.0`: Auto-caption cleanup update: timestamped output now trims 3+ word rolling cue overlap, non-timestamp output retains rolling phrase dedup, docs clarify JSON timestamp behavior/copyright posture/error behavior, and VTT timing parsing accepts short `mm:ss.mmm` cues.
-- `1.0.5`: Review-date metadata refresh after public release audit; no runtime behavior change.
-- `1.0.4`: Public release audit/rescan metadata refresh; no runtime behavior change.
-- `1.0.3`: Public docs update with explicit `yt-dlp` trust boundary, YouTube host allowlist, temp-file behavior, and publish/update checks.
-- `1.0.2`: Public-release hardening: 120-second `yt-dlp` timeout and 2,000,000-character output guard.
+- `1.0.5`: Metadata refresh; no runtime behavior change.
+- `1.0.4`: Audit/rescan metadata refresh; no runtime behavior change.
+- `1.0.3`: Docs update with explicit `yt-dlp` trust boundary, YouTube host allowlist, temp-file behavior, and update checks.
+- `1.0.2`: Runtime hardening: 120-second `yt-dlp` timeout and 2,000,000-character output guard.
 - `1.0.1`: Security/audit polish: documented trust boundary, host allowlist, no-shell spawn, language validation.

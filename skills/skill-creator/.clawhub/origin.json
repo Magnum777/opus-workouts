@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "skill-creator",
   "installedVersion": "0.1.0",
-  "installedAt": 1780308100245
+  "installedAt": 1784219343689,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "891929818c7ec51570b2085b003ac8f2bc2308f76a5edb6f96d63d1ffec788ae",
+    "integrity": "sha256-iRkpgYx+xRVwsghbADrI8rwjCPdqXttvltY9H/7HiK4="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "b2e3d83f60425c2d0b9d4162efb8f9aa322b45843497340f2289f42be422801c"
+  }
 }

@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "car-buying-assistant",
   "installedVersion": "1.0.0",
-  "installedAt": 1781148759245
+  "installedAt": 1784220015608,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "8a7e967a205dae91af7be7a7f96cfd761478d6b30760a623a997ebaa05b6432d",
+    "integrity": "sha256-in6WeiBdrpGve+en+Wz9dhR41rMHYKYjqZfrqgW2Qy0="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "a440e47f7f16c39f9dc422b688e27658e8e0e98a7070eabcf48e7f1142f8c920"
+  }
 }

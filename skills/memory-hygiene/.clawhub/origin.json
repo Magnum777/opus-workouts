@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "memory-hygiene",
   "installedVersion": "1.0.0",
-  "installedAt": 1780308087677
+  "installedAt": 1784219870510,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "dc02fc434bdefd8b51c968cd4313043180298775a2f0441a36a9381bc8c3e072",
+    "integrity": "sha256-3AL8Q0ve/YtRyWjNQxMEMYAph3Wi8EQaNqk4G8jD4HI="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "58d9e56da3f96b4191179d092385ccf06335cec615f44d32d9a593f88b126f44"
+  }
 }

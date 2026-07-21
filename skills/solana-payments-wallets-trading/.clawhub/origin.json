@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "solana-payments-wallets-trading",
   "installedVersion": "0.3.4",
-  "installedAt": 1780308056520
+  "installedAt": 1784220866660,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "9c7bb1fe5b3de3a2e02d72c4145a703f5b5c3c2c252e9cb8030af6ecd0842810",
+    "integrity": "sha256-nHux/ls946LgLXLEFFpwP1tcPCwlLpy4Awr27NCEKBA="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "af2c5c0982e8540d7e3671359904717c7868b3ff5c72e40f5ac8803aac6c40da"
+  }
 }

@@ -4,35 +4,34 @@ Headless browser automation CLI optimized for AI agents with accessibility tree 
 This skill is ready for commercial/non-commercial use. <br>
 
 ## Publisher: <br>
-[MaTriXy](https://clawhub.ai/user/MaTriXy) <br>
+[matrixy](https://clawhub.ai/user/matrixy) <br>
 
 ### License/Terms of Use: <br>
 
 
 ## Use Case: <br>
-Developers and AI agents use this skill to automate browser workflows, inspect accessibility snapshots, select elements deterministically by reference, and extract page data through the agent-browser CLI. <br>
+Developers and AI agents use this skill to automate browser workflows through the agent-browser CLI, including navigation, accessibility-tree snapshots, ref-based interactions, data extraction, session isolation, and browser state persistence. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Saved browser state and cookies can represent sensitive account access. <br>
-Mitigation: Keep saved authentication files out of source control and logs, and use isolated sessions or test accounts for automation. <br>
-Risk: The skill depends on the external agent-browser package source. <br>
-Mitigation: Install only when the package source is trusted and review commands before running them on logged-in websites. <br>
+Risk: The skill depends on an external agent-browser package source. <br>
+Mitigation: Install it only when the package source is trusted and keep the CLI installation under normal software supply-chain controls. <br>
+Risk: Saved browser state, cookies, and storage can expose sensitive account data. <br>
+Mitigation: Use isolated sessions or test accounts where possible, keep auth files out of source control and logs, restrict file permissions, and avoid dumping or changing production or personal account cookies and storage unless necessary. <br>
 
 
 ## Reference(s): <br>
-- [Agent Browser upstream repository](https://github.com/vercel-labs/agent-browser) <br>
-- [ClawHub skill page](https://clawhub.ai/MaTriXy/agent-browser-clawdbot) <br>
-- [Publisher profile](https://clawhub.ai/user/MaTriXy) <br>
+- [Agent Browser project homepage](https://github.com/vercel-labs/agent-browser) <br>
+- [ClawHub skill page](https://clawhub.ai/matrixy/skills/agent-browser-clawdbot) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
+**Output Type(s):** [Shell commands, Guidance, JSON, Files] <br>
+**Output Format:** [Markdown guidance with bash command examples and JSON browser snapshot examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide browser state persistence, session isolation, navigation, interaction, data extraction, screenshots, PDFs, network control, cookies, and storage workflows.] <br>
+**Other Properties Related to Output:** [Can produce or manipulate browser state files, screenshots, PDFs, cookies, storage values, and network request data through the external CLI.] <br>
 
 ## Skill Version(s): <br>
 0.1.0 (source: server release metadata) <br>

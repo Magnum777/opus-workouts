@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "process-interviewer",
   "installedVersion": "1.0.0",
-  "installedAt": 1781483827789
+  "installedAt": 1784218517172,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "c20783aa871eada9718948b69d3d2ac7f77b0f7725b91b0f703033542a048282",
+    "integrity": "sha256-wgeDqoceralxiUi2nT0qx/d7D3cluRsPcDAzVCoEgoI="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "97796d3253e36cf2b92c5ae1648e92f5325eabb5ba6816e6d8d6c86a78ee112d"
+  }
 }

@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "task-prism",
   "installedVersion": "4.1.0",
-  "installedAt": 1781485540533
+  "installedAt": 1784220312686,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "0e6bc737f5b3dca70818616d804692cdf4a85038a82c574e0f22f1a22a000c3a",
+    "integrity": "sha256-DmvHN/Wz3KcIGGFtgEaSzfSoUDioLFdODyLxoioADDo="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "29beae00a9e582870e44aa93a1caf314ca0e1f3e28625a52d1a09d50cdb5bead"
+  }
 }

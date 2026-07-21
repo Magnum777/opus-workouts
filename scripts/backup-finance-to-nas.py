@@ -17,7 +17,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-NAS_HOST = "192.168.68.51"
+NAS_HOST = "192.168.68.91"
 NAS_USER = "Nova"
 NAS_PATH = "/volume1/homes/Nova/nova-backups/finance"
 LOCAL_DIR = Path("C:/Users/compj/.openclaw/workspace")

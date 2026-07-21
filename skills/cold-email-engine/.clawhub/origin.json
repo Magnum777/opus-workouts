@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "cold-email-engine",
   "installedVersion": "1.0.0",
-  "installedAt": 1781483836998
+  "installedAt": 1784219682096,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "fc979a63c8c97cf095562c03749ede7aacb83e8c8a1b18d7e81a5a12fc9735b6",
+    "integrity": "sha256-/JeaY8jJfPCVViwDdJ7eeqy4PoyKGxjX6BpaEvyXNbY="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "d9edf198ab57942acb3893bb3a732152ceb9b6839fab9886c3dfaa44c230c8eb"
+  }
 }

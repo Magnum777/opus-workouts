@@ -1,8 +1,8 @@
 ---
 name: Car Buying Assistant
 slug: car-buying-assistant
-version: 0.2.0
-description: "Help research, compare, and decide on new/used cars using structured workflows, web research, auto.dev VIN API data, and local files. Focus on budget, family needs, rebates, fair value, red flags, and negotiation drafts. Never send money or share payment details."
+version: 0.1.0
+description: "Help Justin research, compare, and decide on new/used cars in Ontario, Canada (and nearby markets) using structured workflows, web research, and local files. Focus on budget, family needs, rebates, fair value, red flags, and negotiation drafts. Never send money or share payment details."
 metadata:
   openclaw:
     emoji: "🚗"
@@ -15,11 +15,10 @@ metadata:
 
 # Car Buying Assistant Skill
 
-This skill turns the agent into a **car-buying analyst**, with a focus on **Ontario, Canada** and neighbouring markets.
+This skill turns the agent into a **car-buying analyst** for Justin, with a focus on **Ontario, Canada** and neighbouring markets.
 
 It does **not** automate logins, purchases, or payments. It works by:
 
-- **VIN decoding & vehicle data via auto.dev API** - specs, build data, recalls, photos, listings, pricing
 - searching public listings (AutoTrader, Kijiji, CarGurus, dealer sites, optionally Facebook Marketplace via manual links)
 - structuring and comparing options
 - spotting red flags
@@ -40,11 +39,11 @@ This skill MUST obey the following:
 
 3. **No automated logins.**
    - Do NOT attempt to log in to AutoTrader, Kijiji, Facebook, dealer portals, or any personal account.
-   - Work with **public listings** and URLs that the user shares or are visible without login.
+   - Work with **public listings** and URLs that Justin shares or are visible without login.
 
 4. **Always ask before contacting dealers or sellers.**
    - Draft emails/texts/messages as needed.
-   - Ask the user to confirm recipient + content before anything is sent (they send manually).
+   - Ask Justin to confirm recipient + content before anything is sent (he sends manually).
 
 5. **Treat all scraped data as approximate.**
    - Never guarantee that a car is accident-free or mechanically sound.
@@ -58,9 +57,8 @@ This skill writes reports under:
 ~/Documents/CarSearch/
   sessions/
     YYYY-MM-DD-<slug>/
-      criteria.md         # what we're looking for
+      criteria.md         # what we’re looking for
       listings.json       # normalized candidates
-      vehicle_data.json   # auto.dev VIN decode data
       comparison.md       # ranked options + reasoning
       negotiation.md      # draft emails / negotiation notes
       notes.md            # scratchpad / follow-ups
@@ -74,15 +72,15 @@ The agent should create the `sessions/` subfolder for each new search and use a 
 
 Use this workflow whenever Justin asks for car-buying help, e.g.:
 
-> "Help me find a used Xterra under $7k in Vancouver"
-> "Find a safe, fuel-efficient family car under $25k in Ontario"
+> "Help me find a used Xterra under $7k in Vancouver"  
+> "Find a safe, fuel-efficient family car under $25k in Ontario"  
 > "Compare these three listings and tell me whether to buy one or keep looking"
 
 ### 1. Clarify Criteria
 
 Ask a few quick questions and record the answers in `criteria.md`:
 
-- **Budget:** cash vs financed range (e.g., `<= $7k`, `$15-25k`).
+- **Budget:** cash vs financed range (e.g., `<= $7k`, `$15–25k`).
 - **Use case:** daily commute, family trips, towing, city vs highway.
 - **Location focus:** e.g., GTA, Ottawa, Thunder Bay, Vancouver, within X km.
 - **Body type:** SUV, hatchback, sedan, minivan, truck, etc.
@@ -97,12 +95,12 @@ The skill should **summarize criteria** in a short block at the top of `criteria
 
 Sources (always via public pages or links Justin provides):
 
-- **AutoTrader.ca** - main inventory for dealers and some private sellers.
-- **Kijiji Autos** - private sales + some dealers.
-- **CarGurus.ca** - pricing insights and dealer inventory.
-- **Dealer websites** - local franchised dealers, used lots.
-- **Facebook Marketplace** - only via **links or screenshots** Justin shares, or simple search results pages. Do NOT log in.
-- **Reddit** - for anecdotal pricing, model issues, and owner feedback.
+- **AutoTrader.ca** – main inventory for dealers and some private sellers.
+- **Kijiji Autos** – private sales + some dealers.
+- **CarGurus.ca** – pricing insights and dealer inventory.
+- **Dealer websites** – local franchised dealers, used lots.
+- **Facebook Marketplace** – only via **links or screenshots** Justin shares, or simple search results pages. Do NOT log in.
+- **Reddit** – for anecdotal pricing, model issues, and owner feedback.
 
 For each candidate Justin is interested in (or that looks promising), extract:
 
@@ -121,60 +119,24 @@ For each candidate Justin is interested in (or that looks promising), extract:
 
 Store these in `listings.json` as an array of objects. The helper script `scripts/normalize_listings.py` can be used to clean up this JSON if needed.
 
-### 3. VIN Decode & Vehicle Data (auto.dev)
+### 3. Fair Market Value & Model Research
 
-When a VIN is available (from a listing or shared by the user), use the **auto.dev API** to pull structured vehicle data:
+Use web research (Reddit, Canadian Black Book, forums, YouTube reviews) to answer:
 
-**Authentication** (Starter plan - 100 requests/day):
-- Header: `Authorization: Bearer sk_ad_x0vn9TqrdvQxJ8Ceql8PWU3S`
-- OR query param: `?apiKey=sk_ad_x0vn9TqrdvQxJ8Ceql8PWU3S`
-
-**Core endpoint:** `GET https://api.auto.dev/vin/{VIN}`
-
-Returns:
-- `vinValid`, `make`, `model`, `trim`, `year`, `style`, `body`
-- `engine`, `transmission`, `drive`
-- `origin`, `type`
-- Links to: `specs`, `build`, `listings`, `photos`, `recalls`, `openrecalls`, `apr`, `payments`, `taxes`, `tco`
-
-**Related lookups** (follow `discover` links from VIN response):
-- `GET /specs/{VIN}` - detailed specifications
-- `GET /build/{VIN}` - OEM build data
-- `GET /recalls/{VIN}` - all recalls
-- `GET /openrecalls/{VIN}` - open/unfixed recalls
-- `GET /listings/{VIN}` - current marketplace listings
-- `GET /photos/{VIN}` - vehicle photos
-- `GET /apr/{VIN}` - current interest rates
-- `GET /payments/{VIN}` - estimated payments
-- `GET /taxes/{VIN}` - taxes & fees by state
-- `GET /tco/{VIN}` - total cost of ownership
-
-Run these via the helper script `scripts/auto_dev_lookup.py` or curl directly. Store results in `vehicle_data.json` in the session folder.
-
-**Caveats:**
-- Starter plan = ~100 requests/day. Use efficiently - batch related lookups only for serious contenders.
-- Not all VINs have photos or live listings.
-- Data is reference only; always verify with seller + inspection.
-
-### 4. Fair Market Value & Model Research
-
-Use web research (Reddit, Canadian Black Book, forums, YouTube reviews) + auto.dev `listings`/`tco` data to answer:
-
-- What's the **normal price range** for this model/year/mileage in Ontario / nearby markets?
+- What’s the **normal price range** for this model/year/mileage in Ontario / nearby markets?
 - Common **issues** (rust spots, transmission problems, timing chains, etc.).
 - Owner reports on fuel economy, reliability, comfort.
 - Any **recalls** or specific years to avoid.
-- **auto.dev data** on specs, MSRP/build info, and marketplace listings.
 
 Summarize this per model in `comparison.md` under a "Model Notes" section.
 
-### 5. Compare Options
+### 4. Compare Options
 
 For the current `listings.json`, produce a ranked comparison in `comparison.md`:
 
 For each candidate, include:
 
-- **Summary line:** `Year Make Model - $price - km - city - dealer/private`
+- **Summary line:** `Year Make Model – $price – km – city – dealer/private`
 - **Pros:** price vs market, mileage, features, condition notes.
 - **Cons / risks:** high mileage, rust, unclear history, old tires, etc.
 - **Rough value call:** `good deal`, `fair`, or `overpriced` based on research.
@@ -188,7 +150,7 @@ Also include a high-level table if helpful:
 | 1 | 2011 Xterra Pro-4X | $6,900 | 220k | Vancouver | Private | Fair | Some rust, older tires |
 ```
 
-### 6. Red Flags
+### 5. Red Flags
 
 Explicitly flag red flags for each candidate (in `comparison.md`):
 
@@ -201,11 +163,11 @@ Explicitly flag red flags for each candidate (in `comparison.md`):
 
 Recommend **pre-purchase inspection** and **Carfax or equivalent** for any serious contender.
 
-### 7. Negotiation & Communication
+### 6. Negotiation & Communication
 
 In `negotiation.md`, help Justin prepare to talk to sellers/dealers:
 
-- draft **initial inquiry emails** (or messages) for top 1-3 vehicles, including:
+- draft **initial inquiry emails** (or messages) for top 1–3 vehicles, including:
   - questions about service history,
   - reason for sale,
   - accident history,
@@ -214,61 +176,25 @@ In `negotiation.md`, help Justin prepare to talk to sellers/dealers:
 
 Always include a clear disclaimer in drafts:
 
-> "I'm still evaluating my options and not ready to commit today, just gathering info."
+> "I’m still evaluating my options and not ready to commit today, just gathering info."
 
-Never send messages directly; the user sends them via their own email/phone.
+Never send messages directly; Justin sends them via his own email/phone.
 
-### 8. Decision: Buy vs Keep Looking
+### 7. Decision: Buy vs Keep Looking
 
 Finally, provide a **clear recommendation** in `comparison.md`:
 
-- **"Buy this one"** - if one candidate clearly stands out and meets criteria.
-- **"Shortlist these and proceed to inspection"** - if 2-3 are viable.
+- **"Buy this one"** – if one candidate clearly stands out and meets criteria.
+- **"Shortlist these and proceed to inspection"** – if 2–3 are viable.
 - **"Keep looking"** – if all current options have significant drawbacks.
 
 Include a short reasoning block:
 
 - why you prefer a specific vehicle (or why none are good enough),
-- what additional info you'd want (inspection, Carfax, more photos),
+- what additional info you’d want (inspection, Carfax, more photos),
 - whether to widen search (increase budget, expand radius, relax criteria).
 
-## auto.dev Plan Reference
-
-| Plan | Price | Limits | What's Included |
-|------|-------|--------|----------------|
-| **Starter** (current) | Free / included | ~100 requests/day | VIN decode only — make, model, year, trim, engine, transmission, drive, origin |
-| **Growth** | $299/mo | 10 req/s | VIN + specs, build, recalls, marketvalue, TCO, payments, listings |
-| **Scale** | $599/mo | 50 req/s | All Growth + openrecalls, plate lookup, taxes |
-
-**On Starter:** Only the `/vin/{VIN}` endpoint returns data. All related lookups (`/specs`, `/recalls`, `/listings`, etc.) return 402 Payment Required. The script handles this gracefully — it still shows the discover links so you know what's available.
-
-**When to upgrade:** If you're doing frequent car searches and want automated recall checks, build sheets, or live listings by VIN. For occasional searches, the free VIN decode + web research is usually enough.
-
 ## Helper Scripts (in this skill)
-
-### `scripts/auto_dev_lookup.py`
-
-Helper to query auto.dev API for VIN data and related lookups.
-
-**Usage:**
-
-```bash
-# Decode a VIN
-python3 scripts/auto_dev_lookup.py --vin WP0AF2A99KS165242 --output ~/Documents/CarSearch/sessions/2026-06-11-porsche-gt3/vehicle_data.json
-
-# Decode + fetch related data (specs, recalls, listings, tco)
-python3 scripts/auto_dev_lookup.py --vin WP0AF2A99KS165242 --full --output ~/Documents/CarSearch/sessions/2026-06-11-porsche-gt3/vehicle_data.json
-```
-
-**What it does:**
-- Calls `https://api.auto.dev/vin/{VIN}` with Bearer auth
-- Optionally follows `discover` links for `--full` mode
-- Writes clean JSON with `vin_decode` + optional `specs`, `recalls`, `open_recalls`, `listings`, `photos`, `apr`, `payments`, `taxes`, `tco`
-- Prints a summary to stdout
-
-**Config:**
-- API key is hardcoded in the script (Starter plan key for James).
-- If you need to rotate keys, edit the script or pass `--api-key`.
 
 ### `scripts/normalize_listings.py`
 
@@ -302,9 +228,9 @@ The agent can copy this template into each new session folder and fill it in.
 
 ## Example: Used Xterra Under $7k in Vancouver
 
-When the user says:
+When Justin says:
 
-> "Help me find a used Xterra under $7k in Vancouver"
+> "adapt your general research and email skills to help me find and buy a used Xterra under $7k in Vancouver"
 
 The flow should be:
 
@@ -322,7 +248,7 @@ The flow should be:
    - max km: e.g. `<= 250,000 km`
    - deal-breakers: no rebuild/salvage, no severe rust.
 
-3. Search AutoTrader.ca, Kijiji, CarGurus, dealer sites, and any Xterra links the user shares (including FB Marketplace URLs). For ~5-10 promising listings, extract fields into `listings.json`.
+3. Search AutoTrader.ca, Kijiji, CarGurus, dealer sites, and any Xterra links Justin shares (including FB Marketplace URLs). For ~5–10 promising listings, extract fields into `listings.json`.
 
 4. Research Xterra ownership in Canada via Reddit and forums:
    - typical price range by year/mileage,
@@ -333,7 +259,7 @@ The flow should be:
    - flag rust-prone years,
    - highlight any that look fairly priced vs market.
 
-6. Draft 1-2 inquiry emails in `negotiation.md` for the best candidate(s), asking about:
+6. Draft 1–2 inquiry emails in `negotiation.md` for the best candidate(s), asking about:
    - frame/underbody rust,
    - maintenance history,
    - any accidents,
@@ -350,4 +276,4 @@ The flow should be:
 - Does not guarantee mechanical condition or legal status.
 - Does not store or process bank/payment information.
 
-All actions involving purchases, messaging sellers, or sharing personal details remain under the user's direct control.
+All actions involving purchases, messaging sellers, or sharing personal details remain under Justin’s direct control.

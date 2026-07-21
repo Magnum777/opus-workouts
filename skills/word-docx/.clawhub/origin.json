@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "word-docx",
   "installedVersion": "1.0.2",
-  "installedAt": 1780308105045
+  "installedAt": 1784219937443,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "ab6e9f40e8a31e1c4b749d37b798ffbf88944e4afdbaa3256ee8729eb16ec0d8",
+    "integrity": "sha256-q26fQOijHhxLdJ03t5j/v4iUTkr9uqMlbuhynrFuwNg="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "c766da489810acf03290283780ba9d3be798678d689255ace34477caeb6d7541"
+  }
 }

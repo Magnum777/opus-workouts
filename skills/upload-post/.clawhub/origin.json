@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "upload-post",
   "installedVersion": "1.0.0",
-  "installedAt": 1780308065295
+  "installedAt": 1784219824609,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "fee182945145990b36d013f4770ea89704d0abbd3647ca2e2928ff87175dd81d",
+    "integrity": "sha256-/uGClFFFmQs20BP0dw6olwTQq702R8ouKSj/hxdd2B0="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "ea3c2ea404d406252628a860af995912029b0a5082f9622a3400cb3b3d7ef3af"
+  }
 }

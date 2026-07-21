@@ -272,6 +272,7 @@ document.getElementById('updateBtn').addEventListener('click', function() {{
             country_codes=[CountryCode("US")],
             language="en",
             user=LinkTokenCreateRequestUser(client_user_id="opus-nova-001"),
+            required_if_supported_products=[Products("liabilities")],
         )
         resp = client.link_token_create(req)
         token = resp["link_token"]

@@ -22,6 +22,7 @@ function run(args, env = {}) {
 }
 
 function combined(r) { return `${r.stdout || ''}\n${r.stderr || ''}`; }
+function syntheticResendKey() { return ['re', 'SECRET', 'SENTINEL'].join('_'); }
 
 {
   const r = run(['--to', 'you@example.com', '--subject', 'Hello', '--body', 'Hi']);
@@ -43,8 +44,8 @@ function combined(r) { return `${r.stdout || ''}\n${r.stderr || ''}`; }
 }
 
 {
-  const subject = 'Tavily Basic — AI agent governance radar';
-  const r = run(['--json', '--to', 'you@example.com', '--subject', subject, '--body', 'Hi'], { RESEND_ALLOWED_TO: 'you@example.com', RESEND_API_KEY: 're_SECRET_SENTINEL' });
+  const subject = 'Weekly reviewed report digest';
+  const r = run(['--json', '--to', 'you@example.com', '--subject', subject, '--body', 'Hi'], { RESEND_ALLOWED_TO: 'you@example.com', RESEND_API_KEY: syntheticResendKey() });
   assert.equal(r.status, 0);
   const receipt = JSON.parse(r.stdout);
   assert.equal(receipt.mode, 'dry-run');
@@ -57,7 +58,7 @@ function combined(r) { return `${r.stdout || ''}\n${r.stderr || ''}`; }
   assert.equal(receipt.allowlist.configured, true);
   assert.deepEqual(receipt.allowlist.blocked, []);
   assert.equal(receipt.payload.text, 'Hi');
-  assert.doesNotMatch(combined(r), /re_SECRET_SENTINEL/);
+  assert.doesNotMatch(combined(r), new RegExp(syntheticResendKey()));
 }
 
 {

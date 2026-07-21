@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "agentmail-integration",
   "installedVersion": "1.1.0",
-  "installedAt": 1781483828381
+  "installedAt": 1784220941352,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "146232ca8f2ccc0f4bfec0fce9eaff82e607dbbe3f89c29b454fd8d26770bbdc",
+    "integrity": "sha256-FGIyyo8szA9L/sD86er/guYH274/icKbRU/Y0mdwu9w="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "1035420efdbab81fd00695bd071a4d313f4e5c3a0f6913ef6f42ddb15cc8a9b0"
+  }
 }

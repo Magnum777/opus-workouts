@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "factual-claim-verifier",
   "installedVersion": "1.0.0",
-  "installedAt": 1781483799193
+  "installedAt": 1784220232409,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "e73b388724af29e6e03f542b78bf597dfe2f9750e79c499216652a23f7978908",
+    "integrity": "sha256-5zs4hySvKebgP1QreL9Zff4vl1DnnEmSFmUqI/eXiQg="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "e50463f73f11064915c541df0a1125531d43bd0689578265ed8ea57c7a1962a3"
+  }
 }

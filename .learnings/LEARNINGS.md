@@ -1,6 +1,6 @@
 # Learnings Log
 
-## 2026-07-10 — Weekly Skill Discovery Scan (ClawHub)
+## 2026-07-17 — Weekly Skill Discovery Scan (ClawHub)
 
 **Category:** insight
 **Source:** Weekly cron: Weekly-SkillDiscovery
@@ -9,15 +9,49 @@ Ran 8 search queries across ClawHub registry. Results summary:
 
 ### New Skills Found (not currently installed):
 
-| Skill | Version | Relevance | Summary |
-|-------|---------|-----------|---------|
-| **tradingflow** | 0.0.2 | 4.18 | AI-Powered Intent Trading Across Crypto, Stocks & More — deploy bots on BSC, Aptos, Solana. Owner: thecleopatra |
-| **email-automation** | 1.2.0 | 4.13 | Automate email triage, categorize, draft replies, auto-archive in Gmail/Outlook/IMAP. Owner: fly3094 |
-| **telegram-discord-bot-dev** | 1.0.0 | 4.29 | Develop custom Telegram/Discord bots with trading, gaming, automation, webhooks. Owner: katrina-jpg |
-| **seo-agent-skill** (Distribb) | — | — | Full SEO pipeline: keyword research, content publishing to WP/Webflow/Shopify, backlink exchange. Owner: bomx |
-| **smart-data-analyst** | 1.3.0 | — | Upload CSV/Excel/JSON/TSV for automated analysis report with insights, anomalies. Owner: a799549967-lang |
-| **data-analysis-reporting** | 0.1.0 | — | Turn raw business data (CSV, SQLite, spreadsheets) into analytical summaries. Owner: gitcanadabrett |
-| **csv-brain** | 1.0.3 | — | Load CSV files, ask questions in plain English via Anthropic/OpenAI/Ollama. Owner: theshadowrose |
+| Skill | Version | Stars | Downloads | Installs | Summary |
+|-------|---------|-------|-----------|----------|---------|
+| **tradingflow** | 0.0.2 | 1 | 581 | 17 | AI-Powered Intent Trading Across Crypto, Stocks & More — deploy bots on BSC, Aptos, Solana. Owner: thecleopatra |
+| **agent-browser-assistant** | 1.0.0 | 0 | 715 | 26 | Browser automation: open pages, click, type, scroll, screenshot, form fill, data scraping. Owner: openlark |
+| **email-automation** | 1.2.0 | 0 | 1672 | 58 | Automate email triage, categorize, draft replies, auto-archive in Gmail/Outlook/IMAP. Owner: fly3094 |
+| **telegram-discord-bot-dev** | 1.0.0 | 2 | 1042 | 35 | Develop custom Telegram/Discord bots with trading, gaming, automation, webhooks. Owner: katrina-jpg |
+| **seo-agent-skill** (Distribb) | 1.0.1 | 0 | 672 | 19 | Full SEO pipeline: keyword research, content publishing to WP/Webflow/Shopify, backlink exchange network. Owner: bomx |
+| **smart-data-analyst** | 1.3.0 | 0 | 828 | 26 | Upload CSV/Excel/JSON/TSV for automated analysis report with insights, anomalies. Owner: a799549967-lang |
+| **content-creator-pro-berzaf** | 1.0.0 | 0 | 520 | 15 | YouTube scripts, titles, hooks, thumbnail concepts, social captions. Owner: beraiautomation |
+| **ugc-fashion-activewear-product-video-generator** | 1.0.0 | 0 | 694 | 21 | Generate TikTok/Reels UGC product videos from outfit images. Owner: dai-shuo |
+| **neo1307-browser-agent** | 1.0.0 | 0 | 761 | 23 | Playwright browser automation: screenshots, DOM extraction, form fill, cookies. Owner: neo1307 |
+| **doctorclaw-email-digest** | — | — | — | — | Email digest skill (partial data) |
+| **wordpress-publishing-skill-for-claude** | — | — | — | — | WordPress publisher skill |
+| **topyappers** | — | — | — | — | Creators & Viral Content Skills |
+| **data-analysis-reporting** | — | — | — | — | Turn raw business data into analytical summaries |
+| **csv-brain** | — | — | — | — | Load CSV files, ask questions in plain English |
+
+### Already Have (no action needed):
+- **solana-payments-wallets-trading** (0.3.4) — already installed
+- **browser-auto-plus** (2.0.0) — already installed
+- **playwright-browser-automation** (2.0.0) — already installed
+- **agent-browser-clawdbot** (0.1.0) — already installed
+- **ai-social-media-content** (0.1.5) — already installed
+- **upload-post** (1.0.0) — already installed
+- **wordpress-pro** (0.1.0) — already installed
+- **wordpress-api-pro** (3.8.1) — already installed
+- **wordpress-remote-news-publisher** (1.0.0) — already installed
+- **agentmail-integration** (1.1.0) — already installed
+- **duckdb-cli-ai-skills** (1.0.0) — already installed
+- **discord-chat** (1.0.0) — already installed
+- **discord-server-admin** (1.0.0) — already installed
+- **programmatic-seo** (1.0.0) — already installed
+
+### Flags for Opus:
+1. **tradingflow** — Could enhance/replace our solana-payments-wallets-trading with multi-chain (BSC, Aptos, Solana) + strategy deployment. Worth evaluating if TradeBot comes back.
+2. **email-automation** (fly3094) — 58 installs, 1672 downloads. Could complement agentmail-integration with AI triage + auto-categorization.
+3. **seo-agent-skill (Distribb)** — Full SEO pipeline with backlink exchange network. Could complement programmatic-seo + wordpress-api-pro for content empire.
+4. **smart-data-analyst** — Could complement duckdb-cli-ai-skills for natural language CSV analysis.
+
+### Notes:
+- ClawHub doesn't expose a numeric rating/score in the inspect output. Using installs + downloads as proxy for popularity.
+- No `--json` flag on `clawhub search`; text output only with relevance scores.
+- `clawhub inspect --json` works but stderr includes "- Fetching skill" prefix that breaks JSON parsing.
 | **agentic-workflow-automation** | 0.1.0 | — | Generate reusable multi-step agent workflow blueprints. Owner: 0x-professor |
 | **wordpress-publishing-skill-for-claude** | 0.1.0 | — | WP REST API publisher with Gutenberg blocks, SEO tags. Owner: asif2bd |
 

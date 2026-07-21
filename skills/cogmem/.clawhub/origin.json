@@ -2,6 +2,15 @@
   "version": 1,
   "registry": "https://clawhub.ai",
   "slug": "cogmem",
-  "installedVersion": "2.0.3",
-  "installedAt": 1781485540516
+  "installedVersion": "2.5.1",
+  "installedAt": 1784219665204,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "c17acee8e7b8d6200007346d7d64ceec52112cf68bc3af6b7409188a65405092",
+    "integrity": "sha256-wXrO6Oe41iAABzRtfWTO7FIRLPaLw69rdAkYimVAUJI="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "7247b195e5af2ad6cb0398f5db522acd22d69553f5ccf1ad3d5f28834c57ab21"
+  }
 }

@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "iris",
   "installedVersion": "1.0.4",
-  "installedAt": 1780308107501
+  "installedAt": 1784219953501,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "1055eb835334a68dd613d4af7a178bbf79dc06be08a313c02f39259483ebd4e1",
+    "integrity": "sha256-EFXrg1M0po3WE9SveheLv3ncBr4IoxPALzkllIPr1OE="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "2cd1075d68acb705bcd5b797108ff3352406f9b2a50503ff444de0f4b608c549"
+  }
 }

@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "ontology",
   "installedVersion": "1.0.4",
-  "installedAt": 1781485209858
+  "installedAt": 1784220999458,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "2f35ba7c260d9da80066d516b9a40c308e4aed1a9d7cb763383cb90ebf28f469",
+    "integrity": "sha256-LzW6fCYNnagAZtUWuaQMMI5K7RqdfLdjODy5Dr8o9Gk="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "669830c58a0caa4b977229a79e3723c09e5c2fdd74da84007f125891aa0c7488"
+  }
 }

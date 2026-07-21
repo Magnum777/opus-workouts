@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "duckdb-cli-ai-skills",
   "installedVersion": "1.0.0",
-  "installedAt": 1780308080910
+  "installedAt": 1784219852419,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "0861bc59fc26eb8d309dba1940165ca97f7040af5708c2d7e63cf3b601728b8e",
+    "integrity": "sha256-CGG8Wfwm640wnboZQBZcqX9wQK9XCMLX5jzztgFyi44="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "abfa85cbbc2be6483990f4a73358ad5ed44fa4ae9a1bd5b89893d8f2cd135a90"
+  }
 }

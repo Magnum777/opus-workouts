@@ -1,41 +1,42 @@
 ## Description: <br>
-AI Agent Workflow & Skill Architecture Guide - Design patterns for building autonomous AI agent systems, plugin marketplaces, and multi-agent orchestration. <br>
+Agent Workflow Playbook helps developers design AI agent skills, multi-agent workflows, marketplace distribution, monetization, and production deployment checklists. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
 ## Publisher: <br>
-[gingiris](https://clawhub.ai/user/gingiris) <br>
+[gingiris-1031](https://clawhub.ai/user/gingiris-1031) <br>
 
 ### License/Terms of Use: <br>
 MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, teams, and product managers use this playbook to design AI agent systems, publish skills or plugins, and plan multi-agent orchestration workflows. <br>
+Developers, teams, and product managers use this skill as a playbook for structuring AI agent skills, coordinating multi-agent systems, and preparing skills for marketplace distribution and production deployment. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Workflow recommendations may be applied to systems that access sensitive data or perform real-world actions without sufficient review. <br>
-Mitigation: Treat the skill as reference guidance and independently review any workflow pattern before using it in sensitive or action-taking systems. <br>
+Risk: Broad AI-agent or plugin-marketplace trigger phrases may route the skill into conversations where a narrower specialist skill would be more appropriate. <br>
+Mitigation: Use narrower invocation phrases or confirm the user is asking for agent architecture, orchestration, marketplace distribution, monetization, or deployment checklist guidance before applying the playbook. <br>
+Risk: The skill provides reference guidance rather than executable validation, so architecture or marketplace recommendations may not match a specific product, compliance environment, or deployment plan. <br>
+Mitigation: Treat recommendations as planning guidance and review them against project requirements before production use. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gingiris/agent-workflow-playbook) <br>
-- [English reference guide](references/en/README.md) <br>
-- [Japanese reference guide](references/ja/README.md) <br>
-- [Korean reference guide](references/ko/README.md) <br>
+- [English Reference Guide](references/en/README.md) <br>
+- [Japanese Reference Guide](references/ja/README.md) <br>
+- [Korean Reference Guide](references/ko/README.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
+**Output Format:** [Markdown guidance with lists, tables, and inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only content; no executable automation or credential handling was identified in the security evidence.] <br>
+**Other Properties Related to Output:** [Documentation-only reference content; no executable code or hidden access behavior found in security evidence.] <br>
 
 ## Skill Version(s): <br>
-1.1.2 (source: server-resolved release metadata) <br>
+1.2.0 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

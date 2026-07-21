@@ -2,6 +2,15 @@
   "version": 1,
   "registry": "https://clawhub.ai",
   "slug": "youtube-transcript-native-node",
-  "installedVersion": "1.1.4",
-  "installedAt": 1781483793728
+  "installedVersion": "1.1.5",
+  "installedAt": 1784220082353,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "24383de36afc0d8b28faf685dd7525f519404750a5ef158f1e283a67a160798b",
+    "integrity": "sha256-JDg942r8DYso+vaF3XUl9RlAR1Cl7xWPHig6Z6FgeYs="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "6bed33ee23f9943b4c44370c3206ff1c67ae95c25f9210c8a64aaf7d74ffe431"
+  }
 }

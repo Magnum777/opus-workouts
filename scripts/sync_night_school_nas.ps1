@@ -5,7 +5,7 @@
 
 $local = "C:\Users\compj\.openclaw\workspace\docs\night-school"
 $subminds = "C:\Users\compj\.openclaw\workspace\memory\subminds"
-$nas = "\\192.168.68.51\home\night-school"
+$nas = "\\192.168.68.91\home\night-school"
 
 $copied = 0
 $skipped = 0

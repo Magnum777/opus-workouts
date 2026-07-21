@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "pdf-pro",
   "installedVersion": "1.0.1",
-  "installedAt": 1780308092275
+  "installedAt": 1784219885660,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "3290990772f204af62a7bd0e75a9f1ded12b46dc055cb0d1b0fc954fd7aa9dfa",
+    "integrity": "sha256-MpCZB3LyBK9ip70Odanx3tErRtwFXLDRsPyVT9eqnfo="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "a538eb3c274c07634d8bd3b9a23812de2cc50976e4748afdc5389c3c237d295b"
+  }
 }

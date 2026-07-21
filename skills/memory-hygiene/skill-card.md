@@ -1,5 +1,5 @@
 ## Description: <br>
-Audit, clean, and optimize Clawdbot's vector memory (LanceDB) when memory is bloated with junk, token usage is high from irrelevant auto-recalls, or memory maintenance automation is needed. <br>
+Memory Hygiene audits, cleans, and optimizes Clawdbot's LanceDB vector memory when memory is bloated, token usage is high from irrelevant auto-recalls, or memory maintenance automation is needed. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -10,27 +10,30 @@ This skill is ready for commercial/non-commercial use. <br>
 
 
 ## Use Case: <br>
-Developers and operators use this skill to inspect Clawdbot LanceDB memory, disable noisy auto-capture, wipe and reseed memory, and configure recurring memory maintenance. <br>
+Developers and Clawdbot operators use this skill to audit vector memory, remove unwanted LanceDB memory data, reseed selected facts, and configure memory capture behavior. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill includes wipe instructions that can delete all Clawdbot LanceDB vector memory. <br>
-Mitigation: Back up or export memory first, confirm the exact path, and keep a rollback plan before running wipe instructions. <br>
-Risk: The skill includes recurring cron guidance that can reset memory unattended. <br>
-Mitigation: Enable scheduled maintenance only after review and only when recurring memory resets are acceptable for the environment. <br>
+Risk: Wipe instructions can permanently delete Clawdbot vector memory. <br>
+Mitigation: Back up or export memory, confirm the target path, and keep a rollback plan before running wipe commands. <br>
+Risk: Monthly maintenance automation can repeatedly reset memory without direct review. <br>
+Mitigation: Use cron-based maintenance only when recurring unattended resets are acceptable; otherwise run maintenance manually. <br>
+Risk: Reseeding can omit important facts or reintroduce sensitive material. <br>
+Mitigation: Review source facts before storing them, keep each memory concise, and avoid OAuth URLs, tokens, raw logs, and transient status messages. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dylanbaker24/memory-hygiene) <br>
+- [Memory Hygiene ClawHub page](https://clawhub.ai/dylanbaker24/skills/memory-hygiene) <br>
+- [Declared homepage](https://github.com/xdylanbaker/memory-hygiene) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
+**Output Format:** [Markdown with inline shell and JSON code blocks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes memory audit, wipe, reseed, auto-capture configuration, and cron maintenance guidance.] <br>
+**Other Properties Related to Output:** [Includes wipe and cron examples that should be reviewed before execution.] <br>
 
 ## Skill Version(s): <br>
 1.0.0 (source: server release metadata) <br>

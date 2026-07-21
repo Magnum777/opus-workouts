@@ -10,31 +10,28 @@ This skill is ready for commercial/non-commercial use. <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill for practical guidance on choosing test frameworks, setting up test commands, applying test patterns, and managing coverage across TypeScript, Python, and Swift projects. <br>
+Developers and engineers use this skill for practical guidance on selecting test frameworks, setting up test tooling, writing common test patterns, running coverage, and executing unit, integration, and end-to-end tests. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Example install and test commands may affect the wrong project if run from an unintended working directory. <br>
-Mitigation: Confirm the target project directory before running commands. <br>
-Risk: Example dependency installation commands may add packages that have not been reviewed through the user's normal process. <br>
-Mitigation: Review new dependencies through the normal package-management and security process before installing them. <br>
-Risk: Running tests from untrusted codebases can execute code the user has not reviewed. <br>
-Mitigation: Run tests only from codebases the user trusts. <br>
+Risk: Example commands may install development dependencies or run tests in the wrong project if copied without review. <br>
+Mitigation: Confirm the intended project directory, review new dependencies through the normal package-review process, and run tests only from trusted codebases. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub skill page](https://clawhub.ai/cmanfre7/skills/test-runner) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, and configuration examples] <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
+**Output Format:** [Markdown with inline bash, TypeScript, Python, and configuration code blocks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; command examples are intended for user-directed execution in an appropriate project.] <br>
+**Other Properties Related to Output:** [Includes example commands and snippets for Vitest, Jest, pytest, XCTest, Playwright, coverage, TDD, mocking, async tests, API endpoints, and React components.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+1.0.0 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

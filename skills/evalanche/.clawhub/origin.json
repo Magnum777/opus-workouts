@@ -2,6 +2,15 @@
   "version": 1,
   "registry": "https://clawhub.ai",
   "slug": "evalanche",
-  "installedVersion": "1.11.0",
-  "installedAt": 1781483827832
+  "installedVersion": "1.12.0",
+  "installedAt": 1784219721786,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "70f5b026fd04bfb5c8ee51b70b1ba4fcab1b1370da7fbdd31f7d037654e8c8c8",
+    "integrity": "sha256-cPWwJv0Ev7XI7lG3Cxuk/KsbE3Daf73TH30DdlToyMg="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "a352d9157f954fec503c0927d38b3b2bb29d23e9dcd2dec4f69d3a0053a8507c"
+  }
 }

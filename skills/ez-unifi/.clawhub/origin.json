@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "ez-unifi",
   "installedVersion": "1.0.1",
-  "installedAt": 1781447629945
+  "installedAt": 1784220044518,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "5331fd2f91c5d5281417e098740da2791ea89e79d6d6ecd12fcac9385c6c0e2e",
+    "integrity": "sha256-UzH9L5HF1SgUF+CYdA2ieR6onnnW1uzRL8rJOFxsDi4="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "320031fcd9c77a3a038624bec6bbccd848fcc6cd08e26d2c4550f4106cc43503"
+  }
 }

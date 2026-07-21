@@ -16,8 +16,8 @@ Skills define _how_ tools work. This file is for _my_ specifics.
 - `C:\Users\compj\.openclawold\` — Apr 6 2026
 
 ## Network / Home
-- Synology NAS: `192.168.68.51` (MND / nova-home) — was .82, updated 2026-05-27
-- Credentials: SMB user `Nova`, pass `NAS_PASSWORD_REDACTED`
+- Synology NAS: `192.168.68.91` (MND / nova-home)
+- Credentials: SMB user `Nova`, pass `D0ngaYHRuthV93qD`
 
 ## Skills installed (this fresh install)
 - 1password

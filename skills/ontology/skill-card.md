@@ -11,31 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agents use this skill to maintain a typed local knowledge graph for people, projects, tasks, events, documents, and related objects. It supports entity and relation CRUD, graph traversal, schema constraints, validation, and shared state across composable skills. <br>
+Developers and agents use this skill to keep durable structured memory as a typed, constraint-validated graph. It supports creating, querying, linking, and validating entities such as people, projects, tasks, events, documents, credentials, actions, and policies. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill stores durable local knowledge graph data that may include sensitive workspace context. <br>
-Mitigation: Control what agents are allowed to remember and periodically inspect memory/ontology/graph.jsonl and memory/ontology/schema.yaml. <br>
-Risk: Passwords, tokens, or raw secrets could be placed into ontology records if a user or agent ignores the documented credential pattern. <br>
-Mitigation: Do not store raw secrets; store references to a separate secret store and validate schemas that forbid secret-like credential properties. <br>
-Risk: Updates and deletes are append-only, so prior values can remain in graph history. <br>
-Mitigation: Avoid recording information that must be erased from local history, and review the append-only graph file before sharing or retaining it. <br>
+Risk: The skill intentionally persists user-supplied structured memory in local ontology files. <br>
+Mitigation: Use it only when durable local memory is desired and periodically review memory/ontology/graph.jsonl and memory/ontology/schema.yaml. <br>
+Risk: Secrets or sensitive credentials could be captured if users store raw values in ontology entities. <br>
+Mitigation: Store secret references only, not passwords, tokens, API keys, or raw secret values. <br>
+Risk: Append-only history can retain information even after update or delete operations are represented later in the log. <br>
+Mitigation: Treat the graph log as persistent history and sanitize or rotate the file when retained data should no longer remain in the workspace. <br>
+Risk: Shared ontology state may be read or reused by other skills in the same workspace. <br>
+Mitigation: Keep the graph scoped to data appropriate for cross-skill access and inspect it before sharing or packaging the workspace. <br>
 
 
 ## Reference(s): <br>
-- [Ontology Schema Reference](artifact/references/schema.md) <br>
-- [Query Reference](artifact/references/queries.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/oswalpalash/ontology) <br>
+- [ClawHub Skill Page](https://clawhub.ai/oswalpalash/skills/ontology) <br>
+- [Ontology Schema Reference](references/schema.md) <br>
+- [Query Reference](references/queries.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON, YAML, Python, and shell command examples] <br>
+**Output Format:** [Markdown guidance with JSON, YAML, Python, and shell command examples; CLI operations emit JSON or plain status text.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local workspace files under memory/ontology, including graph.jsonl and schema.yaml.] <br>
+**Other Properties Related to Output:** [Creates and updates local JSONL graph data and YAML schema files under memory/ontology by default.] <br>
 
 ## Skill Version(s): <br>
 1.0.4 (source: server release evidence) <br>

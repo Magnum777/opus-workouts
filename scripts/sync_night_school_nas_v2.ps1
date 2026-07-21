@@ -1,9 +1,18 @@
+# NAS connectivity check
+$nasIP = '192.168.68.91'
+$smbTest = Test-NetConnection -ComputerName $nasIP -Port 445 -WarningAction SilentlyContinue
+if (!$smbTest.TcpTestSucceeded) {
+    Write-Host "[ERROR] NAS at $nasIP:445 is unreachable. Skipping backup." -ForegroundColor Red
+    Write-Host "[INFO] Please check DSM: Control Panel > File Services > SMB > Enable SMB service" -ForegroundColor Yellow
+    exit 1
+}
+Write-Host "[OK] NAS connectivity verified" -ForegroundColor Green
 # Night School NAS Sync v2
 # Maps drive with credentials, then syncs
 
-$pass = ConvertTo-SecureString 'NAS_PASSWORD_REDACTED' -AsPlainText -Force
+$pass = ConvertTo-SecureString 'Kjn`B]' -AsPlainText -Force
 $cred = New-Object System.Management.Automation.PSCredential('Nova', $pass)
-New-PSDrive -Name 'Z' -PSProvider FileSystem -Root '\\192.168.68.51\home' -Credential $cred | Out-Null
+New-PSDrive -Name 'Z' -PSProvider FileSystem -Root '\\192.168.68.91\home' -Credential $cred | Out-Null
 
 $local = 'C:\Users\compj\.openclaw\workspace\docs\night-school'
 $subminds = 'C:\Users\compj\.openclaw\workspace\memory\subminds'

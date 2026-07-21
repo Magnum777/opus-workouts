@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "ai-social-media-content",
   "installedVersion": "0.1.5",
-  "installedAt": 1780308063007
+  "installedAt": 1784219815150,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "01891435074e2b5cbf423a4b2c7ba769aed512b0f253c85ae07ad4a80e17788a",
+    "integrity": "sha256-AYkUNQdOK1y/QjpLLHunaa7VErDyU8ha4HrUqA4XeIo="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "2ae02b6ad6849aab6de5ab8583c4dae5e9e4ffa24a6f456cc7237eb5de147c0a"
+  }
 }

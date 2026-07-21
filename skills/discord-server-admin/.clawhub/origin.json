@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "discord-server-admin",
   "installedVersion": "1.0.0",
-  "installedAt": 1783627322001
+  "installedAt": 1784221149488,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "672cc1c246d196fabdfc75cb811f1ae4ccd228e1d2036ef3a6a4e49ac554fb14",
+    "integrity": "sha256-ZyzBwkbRlvq9/HXLgR8a5MzSKOHSA27zpqTkmsVU+xQ="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "77cb9300d667c61549a655e3c2774b400e5d2fcf2f885f16188077d5e694a636"
+  }
 }

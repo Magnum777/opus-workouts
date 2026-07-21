@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "reflection",
   "installedVersion": "1.1.0",
-  "installedAt": 1780308097961
+  "installedAt": 1784219896168,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "8f5084d7f80d10bb17835af056b637a06edb5b9ce69e43a4074dc34c53005317",
+    "integrity": "sha256-j1CE1/gNELsXg1rwVrY3oG7bW5zmnkOkB03DTFMAUxc="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "01ff30ac7e126faed101b9290c8ae955cd538e198c9154ca3d7c6858e590bb86"
+  }
 }

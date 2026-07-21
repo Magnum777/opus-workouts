@@ -128,7 +128,7 @@ export function parseArgs(argv) {
   if (!out.url) die("--url is required. Try --help.");
   if (!isAllowedYouTubeUrl(out.url)) die(`--url must be a YouTube URL on youtube.com or youtu.be, got: ${out.url}`);
   if (!out.lang) die("--lang must not be empty");
-  if (!/^[A-Za-z0-9._-]{1,32}$/.test(out.lang)) die("--lang must be a simple subtitle language code, e.g. en or en-US");
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,31}$/.test(out.lang)) die("--lang must be a simple subtitle language code beginning with a letter or number, e.g. en or en-US");
   return out;
 }
 

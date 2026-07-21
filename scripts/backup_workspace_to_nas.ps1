@@ -1,9 +1,18 @@
+# NAS connectivity check
+$nasIP = '192.168.68.91'
+$smbTest = Test-NetConnection -ComputerName $nasIP -Port 445 -WarningAction SilentlyContinue
+if (!$smbTest.TcpTestSucceeded) {
+    Write-Host "[ERROR] NAS at $nasIP:445 is unreachable. Skipping backup." -ForegroundColor Red
+    Write-Host "[INFO] Please check DSM: Control Panel > File Services > SMB > Enable SMB service" -ForegroundColor Yellow
+    exit 1
+}
+Write-Host "[OK] NAS connectivity verified" -ForegroundColor Green
 # Workspace NAS Backup Script v2
 # Fast backup using robocopy mirror + zip, no staging
 # Excludes: node_modules, .git, __pycache__, runtime dirs, temp files
 
 $workspace = "C:\Users\compj\.openclaw\workspace"
-$nasPath = "\\192.168.68.51\home\backups"
+$nasPath = "\\192.168.68.91\home\backups"
 $timestamp = Get-Date -Format "yyyy-MM-dd-HHmm"
 $zipName = "workspace-backup-$timestamp.zip"
 $zipPath = Join-Path $env:TEMP $zipName
@@ -20,8 +29,8 @@ if (-not (Test-Path $nasPath)) {
     Write-Host "ERROR: NAS path not accessible: $nasPath"
     Write-Host "Attempting to map..."
     try {
-        $cred = New-Object System.Management.Automation.PSCredential("Nova", (ConvertTo-SecureString "NAS_PASSWORD_REDACTED" -AsPlainText -Force))
-        New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\192.168.68.51\home" -Credential $cred -ErrorAction Stop | Out-Null
+        $cred = New-Object System.Management.Automation.PSCredential("Nova", (ConvertTo-SecureString 'D0ngaYHRuthV93qD' -AsPlainText -Force))
+        New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\192.168.68.91\home" -Credential $cred -ErrorAction Stop | Out-Null
         $nasPath = "Z:\backups"
         $nasDest = Join-Path $nasPath $zipName
         Write-Host "Mapped NAS to Z: successfully"

@@ -10,30 +10,30 @@ This skill is ready for commercial/non-commercial use. <br>
 
 
 ## Use Case: <br>
-Developers and agent users use this skill to review unknown or third-party agent skills before installation, checking source reputation, file behavior, permissions, and suspicious patterns. <br>
+Developers and agents use this skill before installing or running third-party skills to review source, permissions, risk signals, and produce a structured vetting report. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill includes example commands for fetching repository metadata and skill files from GitHub. <br>
-Mitigation: Only run fetch commands against repositories you intend to review, verify placeholders before execution, and treat downloaded skill text as untrusted content. <br>
-Risk: Manual vetting can miss suspicious behavior if reviewers skip files or rely on incomplete source information. <br>
-Mitigation: Review every skill file, document permissions and red flags, and require human approval for high-risk behaviors such as credential access, elevated permissions, or system changes. <br>
+Risk: Users may fetch or review skill content from unintended repositories if they copy placeholder GitHub commands without checking the target. <br>
+Mitigation: Fetch only repositories intentionally selected for review and replace placeholders carefully before running lookup commands. <br>
+Risk: Downloaded skill text may contain misleading or unsafe instructions. <br>
+Mitigation: Treat downloaded skill text as untrusted content and review it before installation or execution. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/spclaudehome/skill-vetter) <br>
+- [ClawHub skill page](https://clawhub.ai/spclaudehome/skills/skill-vetter) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown checklist and vetting report with optional shell command examples] <br>
+**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
+**Output Format:** [Markdown report with checklist items and optional bash examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured security review with risk level, verdict, permissions, red flags, and notes.] <br>
+**Other Properties Related to Output:** [Produces a manual vetting report; downloaded skill text should be treated as untrusted.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+1.0.0 (source: frontmatter and server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,13 +1,13 @@
-﻿---
+---
 name: youtube-transcript-native-node
 description: Extract a clean plain-text transcript from existing YouTube captions - native Node.js, zero npm dependencies. Use when the user asks to summarize, quote, or extract captions/transcript text from a YouTube URL. Wraps the `yt-dlp` binary on PATH; writes subtitles to a temp dir, parses .vtt captions, strips timestamps/HTML tags, and prints clean text or JSON. No API keys required.
-version: 1.1.4
+version: 1.1.5
 risk_class: external-binary-youtube-network-third-party-content
 ---
 
 # YouTube Transcript (Native Node)
 
-Version: 1.1.4 / publishable utility.
+Version: 1.1.5 / public ClawHub utility candidate with external binary and YouTube access.
 
 Minimal YouTube caption extractor. Native Node.js, zero npm dependencies, wraps the external `yt-dlp` binary.
 
@@ -50,7 +50,7 @@ Return compactly:
 ## Security behavior
 
 - Accepts only `http(s)` YouTube URLs on `youtube.com`, `www.youtube.com`, `m.youtube.com`, or `youtu.be`.
-- Validates `--lang` as a simple subtitle language code before invoking `yt-dlp`.
+- Validates `--lang` as a simple subtitle language code beginning with an alphanumeric before invoking `yt-dlp`.
 - Spawns `yt-dlp` with an argv array and no shell; it does not execute user-provided commands.
 - Bounds the subprocess with a 120-second timeout.
 - Creates and removes a temporary subtitle directory under the OS temp path.
@@ -85,6 +85,13 @@ node "<skill-dir>\scripts\fetch.mjs" --url "https://www.youtube.com/watch?v=VIDE
 node "<skill-dir>\scripts\fetch.mjs" --url "https://www.youtube.com/watch?v=VIDEO_ID" --timestamps
 node "<skill-dir>\scripts\fetch.mjs" --url "https://www.youtube.com/watch?v=VIDEO_ID" --json
 node "<skill-dir>\scripts\fetch.mjs" --help
+```
+
+POSIX shell examples:
+
+```sh
+node "<skill-dir>/scripts/fetch.mjs" --url "https://www.youtube.com/watch?v=VIDEO_ID"
+node "<skill-dir>/scripts/fetch.mjs" --url "https://www.youtube.com/watch?v=VIDEO_ID" --json
 ```
 
 For all flags, dedup details, output formats, dependency notes, and troubleshooting, load `references/youtube-transcript-contract.md`.
@@ -125,7 +132,7 @@ Do not install/update `yt-dlp` as part of this skill without explicit approval.
 
 ## Public registry exposure
 
-Classification: **publishable utility with external binary + YouTube access**.
+Classification: **public ClawHub utility candidate with external binary + YouTube access**.
 
 Before public update, run sanitizer/static checks and ensure docs clearly disclose:
 
@@ -143,8 +150,9 @@ Do not include private/internal/client strategy, operator-specific operational n
 
 ## Changelog
 
-- `1.1.4`: ClawHub publication/version refresh after public-readiness review; no runtime behavior change.
+- `1.1.5`: Input/docs polish: require `--lang` to begin with an alphanumeric, add POSIX command examples, sync reference changelog, and neutralize process wording. No categories, topics, topic tags, tags, keywords, or ClawHub catalog metadata added to source.
+- `1.1.4`: Version refresh; no runtime behavior change.
 - `1.1.3`: Add stubbed offline yt-dlp fixture tests for dependency-missing, nonzero-exit-with-VTT, 429 hint, temp/home path scrubbing, output-size guard, timeout, and output modes; gate self-test hooks behind `YOUTUBE_TRANSCRIPT_SELFTEST=1`; continue when usable VTT subtitles are produced despite nonzero yt-dlp exit; kill active yt-dlp child on SIGINT/SIGTERM; broaden local-path scrubbing and scrub unexpected/read-error paths.
 - `1.1.2`: Add offline self-test fixtures, export parser/allowlist helpers for tests, pass `--ignore-config`, remove subtitle conversion postprocessor to avoid ffmpeg ambiguity, scrub temp path from yt-dlp error tails, and surface 429 retry guidance.
-- `1.1.1`: Public docs cleanup: normalized input/output packet wording, structured handoff wording, and changelog language; no runtime behavior change.
+- `1.1.1`: Docs cleanup: normalized input/output packet wording, structured handoff wording, and changelog language; no runtime behavior change.
 

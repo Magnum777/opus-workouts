@@ -14,6 +14,16 @@ from solana.rpc.types import TxOpts
 from solders.keypair import Keypair
 from solders.transaction import VersionedTransaction
 
+import re, os
+env_path = os.path.join(os.path.dirname(__file__), ".env")
+if os.path.exists(env_path):
+    with open(env_path) as f:
+        content = f.read()
+    for m in re.finditer(r"^([A-Z_]+)=(.*)$", content, re.MULTILINE):
+        key, val = m.group(1), m.group(2).strip()
+        if key not in os.environ:
+            os.environ[key] = val
+
 PRIVATE_KEY = bytes.fromhex(os.environ.get("TRADING_BOT_PRIVATE_KEY", ""))
 WALLET = Keypair.from_bytes(PRIVATE_KEY)
 CLIENT = Client(os.environ.get("HELIUS_RPC_URL", "https://mainnet.helius-rpc.com/?api-key=YOUR_KEY_HERE"))
@@ -274,3 +284,4 @@ else:
     save_state(state)
     if trades:
         print(f"\nTrades: {trades}")
+

@@ -1,5 +1,5 @@
 ## Description: <br>
-Create AI-powered social media content for TikTok, Instagram, YouTube, and Twitter/X, including images, videos, reels, shorts, thumbnails, captions, and hashtags. <br>
+Creates AI-powered social media images, videos, thumbnails, captions, hashtags, and platform-specific content workflows for TikTok, Instagram, YouTube, and Twitter/X. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -10,30 +10,29 @@ This skill is ready for commercial/non-commercial use. <br>
 
 
 ## Use Case: <br>
-Creators, social media managers, influencers, brands, and developers use this skill to generate AI-assisted social posts and media production commands across major social platforms. It helps produce platform-specific prompts, captions, hashtags, thumbnails, videos, voiceovers, and repurposed content workflows. <br>
+Content creators, social media managers, influencers, and brands use this skill to draft platform-specific prompts and CLI workflows for generating social posts, short-form videos, thumbnails, captions, hashtags, and repurposed campaign assets. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that can post content to Twitter/X as a live public action. <br>
-Mitigation: Require manual review and explicit user confirmation before running any social posting command. <br>
-Risk: The skill relies on an external CLI and login session. <br>
-Mitigation: Install and authenticate only in trusted environments, and use least-privilege credentials for connected accounts. <br>
+Risk: The skill includes a Twitter/X posting command that could publish generated content as a live public action. <br>
+Mitigation: Review all generated text and media before posting, require explicit confirmation before publishing, and use least-privilege credentials for the intended account. <br>
+Risk: The skill depends on inference.sh CLI installation and login for external app execution. <br>
+Mitigation: Install only if you trust inference.sh and are comfortable with its CLI login session. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/okaris/ai-social-media-content) <br>
+- [ClawHub skill page](https://clawhub.ai/okaris/skills/ai-social-media-content) <br>
 - [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI](https://cli.inference.sh) <br>
 - [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON input examples] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON inputs] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands that may call external inference.sh apps and may produce generated media URLs or JSON files.] <br>
+**Other Properties Related to Output:** [Produces prompts and command examples for external inference.sh apps; generated media or posts require user review before use.] <br>
 
 ## Skill Version(s): <br>
 0.1.5 (source: server release metadata) <br>

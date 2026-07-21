@@ -3,5 +3,14 @@
   "registry": "https://clawhub.ai",
   "slug": "agent-browser-clawdbot",
   "installedVersion": "0.1.0",
-  "installedAt": 1780308070801
+  "installedAt": 1784219833295,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "4b50b44244e5d57d11221f2fd3be7e1ee4df5206e4047073ae83fb635e73e79d",
+    "integrity": "sha256-S1C0QkTl1X0RIh8v075+HuTfUgbkBHBzroP7Y15z550="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "9643b9c65476eedd5ab353956c31a4d4ce9ad225f9a786d23376a43893f59979"
+  }
 }

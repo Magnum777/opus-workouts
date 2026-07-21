@@ -115,7 +115,7 @@ for (const url of [
   "file:///tmp/video",
 ]) assert.equal(isAllowedYouTubeUrl(url), false, `${url} should fail`);
 
-for (const lang of ["../../etc", "en;rm-rf", "", "a".repeat(33)]) {
+for (const lang of ["../../etc", "en;rm-rf", "", "a".repeat(33), "-o", "_en", ".en"]) {
   const r = runFetch(["--url", "https://youtu.be/abc123", "--lang", lang]);
   assert.notEqual(r.status, 0, `${lang} should be rejected`);
   assert.match(r.stderr, /--lang must/);
