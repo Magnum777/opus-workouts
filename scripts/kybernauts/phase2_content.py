@@ -176,9 +176,9 @@ def main():
     state["day"] += 1
     day = state["day"]
 
-    # Pick and post tweet (X + Bluesky)
+    # Pick tweet text for Discord review ONLY — do NOT auto-post
     tweet_text = pick_next_tweet(state)
-    result = post_social(tweet_text)
+    result = {"discord_only": True, "text": tweet_text}
 
     # Generate Reddit and Forum drafts
     reddit_post = pick_next_reddit(state)
@@ -187,31 +187,10 @@ def main():
     # Save state
     save_state(state)
 
-    # Parse upload-post response
-    if isinstance(result, dict):
-        if result.get("success"):
-            x_url = result.get("results", {}).get("x", {}).get("url", "N/A")
-            bsky_url = result.get("results", {}).get("bluesky", {}).get("url", "N/A")
-            x_status = f"X: {x_url}"
-            bsky_status = f"Bluesky: {bsky_url}"
-        elif "error" in result:
-            x_status = f"FAILED: {result['error']}"
-            bsky_status = "N/A"
-        else:
-            x_status = f"Response: {json.dumps(result, indent=2)[:200]}"
-            bsky_status = "N/A"
-    else:
-        x_status = "FAILED: unexpected response type"
-        bsky_status = "N/A"
-
+    # Build Discord-only report (no auto-posting)
     report = f"""**Phase 2 — Day {day} Complete**
 
-**Twitter/X (auto-posted):**
-{x_status}
-
-**Bluesky (auto-posted):**
-{bsky_status}
-
+**Twitter/X Draft (NOT posted — review before posting):**
 > {tweet_text}
 
 **Reddit Draft (manual — post to r/eve):**
@@ -223,7 +202,9 @@ Body: {reddit_post['body'][:120]}...
 Title: *{forum_post['title']}*
 Body: {forum_post['body'][:120]}...
 
-**Phase 2 approach:** Data-driven posts, indirect naming, letting community connect dots."""
+**Phase 2 approach:** Data-driven posts, indirect naming, letting community connect dots.
+
+**Status:** Social media auto-posting DISABLED. All drafts require manual approval."""
 
     print(report)
     return report

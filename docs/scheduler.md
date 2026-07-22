@@ -109,11 +109,17 @@
 |------|-----|----------|-------|---------|-------|
 | Social-Share-Auto | *new* | Every 30 min | deepseek-v4-flash | 60s | Auto-shares new WordPress posts to X, Bluesky, Pinterest via upload-post |
 
-### Amazon Affiliate (2 crons)
+### Social Media (1 cron)
 | Name | ID | Schedule | Model | Timeout | Notes |
 |------|-----|----------|-------|---------|-------|
-| Amazon-Tracker-Weekly | cf11c261 | Mon 12pm | deepseek-v4-flash | 120s | Reports sales progress to #wordpress |
-| Amazon-Tracker-Urgent | 614da3c4 | Daily 12pm | deepseek-v4-flash | 120s | Silent unless <=30 days remaining |
+| Social-Share-Auto | 4dc2f313 | 5:30am daily | deepseek-v4-flash | 60s | Auto-shares new WordPress posts to X, Bluesky, Pinterest via upload-post |
+
+### Amazon Affiliate (3 crons)
+| Name | ID | Schedule | Model | Timeout | Notes |
+|------|-----|----------|-------|---------|-------|
+| Amazon-Tracker-Urgent | 614da3c4 | Daily 12pm | deepseek-v4-flash | 120s | Reports days remaining + sales progress |
+| Amazon-Tracker-Weekly | cf11c261 | Mon 12pm | deepseek-v4-flash | 120s | Full weekly report to #wordpress |
+| Amazon-Affiliate-Injector | 0cdfe3d8 | Daily 5am | deepseek-v4-flash | 120s | Scans posts + auto-injects Amazon affiliate links |
 
 ### Nova Ops (11 crons)
 | Name | ID | Schedule | Model | Timeout |
