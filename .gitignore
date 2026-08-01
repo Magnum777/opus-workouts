@@ -295,6 +295,24 @@ memory/manual_publish.py
 memory/run_orchestrator.ps1
 memory/spam-pattern-analysis-2026-07-24.md
 memory/.dreams/
+memory/backup-finance-20260716.md
+memory/2026-07-*.md
+
+# Remaining one-off scripts
+scripts/audit_aitoolalliance.py
+scripts/check_backup.ps1
+scripts/disk_cleanup.ps1
+scripts/fetch_nav_html.py
+scripts/finish_all_updates.py
+scripts/fix_aib_resources.py
+scripts/fix_all_bad_asins.py
+scripts/fix_bad_asins.py
+scripts/get_page_content.py
+scripts/pinterest_affiliate_bot.py
+scripts/publishing/eveonion_article_publish.py
+scripts/quick_test_social.py
+scripts/run_backup.ps1
+scripts/sync_nightschool_v2.ps1
 
 # Docs local overrides
 /docs/docs/
