@@ -301,3 +301,11 @@ memory/.dreams/
 /docs/pinterest-setup.md
 /docs/social-profiles.md
 /docs/affiliate-pitches.md
+
+# Runtime state files (change constantly, not source)
+eveonion/tweet_history.json
+memory/eveonion-post-log.json
+scripts/.spam_patterns_found.json
+scripts/content-nova/content-nova-state.json
+nova-config-patch.json
+nova-discord-agents.json
