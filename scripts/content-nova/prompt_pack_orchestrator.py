@@ -25,6 +25,9 @@ Usage:
   python prompt_pack_orchestrator.py \
       --site aitoolalliance.com \
       --content-json '{"title":"...", "excerpt":"...", "prompts":[...], "intro_html":"...", "footer_html":"..."}'
+  python prompt_pack_orchestrator.py \
+      --site aitoolalliance.com \
+      --content-json-file /path/to/content.json
 """
 
 import argparse
@@ -132,12 +135,19 @@ def run(site_key, content_json, dry_run=False):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--site", required=True, choices=list(SITES.keys()))
-    p.add_argument("--content-json", required=True,
+    p.add_argument("--content-json",
                    help="JSON string with title, excerpt, prompts, intro_html, footer_html")
+    p.add_argument("--content-json-file", dest="content_json_file",
+                   help="Path to JSON file containing the content (alternative to --content-json)")
     p.add_argument("--dry-run", action="store_true")
     args = p.parse_args()
 
-    content = json.loads(args.content_json)
+    if args.content_json_file:
+        content = json.load(open(args.content_json_file, "r", encoding="utf-8"))
+    elif args.content_json:
+        content = json.loads(args.content_json)
+    else:
+        p.error("One of --content-json or --content-json-file is required")
     out = run(args.site, content, dry_run=args.dry_run)
     print(json.dumps(out, indent=2))
 

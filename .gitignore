@@ -249,3 +249,55 @@ memory/eveonion-state.json
 memory/eveonion-tweet-draft.txt
 eveonion/tweet_history.json
 memory/eveonion-post-log.json
+
+# === 2026-08-01 git cleanup additions ===
+
+# Local project dirs (keep on disk, not in git)
+/kyber-apm/
+/eve-settings-manager/
+/ratemyfc/
+/night-school/
+/backups/
+/agents/
+
+# Finance (personal data)
+/finance/
+
+# Articles (generated content)
+/articles/
+
+# Kiro IDE
+/.kiro/
+
+# Secrets
+/.secrets/
+
+# Trading bot runtime
+/trading-bot/positions_enforced.json
+
+# Misc local state
+/openclaw-workspace-state.json
+
+# Script runtime state files
+scripts/.social_shared.json
+scripts/affiliate_inject_state.json
+scripts/populate_output.txt
+scripts/temp_torrents/
+scripts/test_x_image.py
+
+# Memory prompt-pack runtime artifacts
+memory/prompt-pack-content-humanized.json
+memory/prompt-pack-draft.json
+memory/prompt-pack-final.json
+memory/prompt-pack-min.json
+memory/prompt-pack-oneline.json
+memory/manual_publish.py
+memory/run_orchestrator.ps1
+memory/spam-pattern-analysis-2026-07-24.md
+memory/.dreams/
+
+# Docs local overrides
+/docs/docs/
+/docs/pinterest-setup.md
+/docs/social-profiles.md
+/docs/affiliate-pitches.md

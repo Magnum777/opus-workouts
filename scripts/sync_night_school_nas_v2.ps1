@@ -1,5 +1,5 @@
 # NAS connectivity check
-$nasIP = '192.168.68.91'
+$nasIP = 'MND'
 $smbTest = Test-NetConnection -ComputerName $nasIP -Port 445 -WarningAction SilentlyContinue
 if (!$smbTest.TcpTestSucceeded) {
     Write-Host "[ERROR] NAS at $nasIP:445 is unreachable. Skipping backup." -ForegroundColor Red
@@ -12,7 +12,7 @@ Write-Host "[OK] NAS connectivity verified" -ForegroundColor Green
 
 $pass = ConvertTo-SecureString 'Kjn`B]' -AsPlainText -Force
 $cred = New-Object System.Management.Automation.PSCredential('Nova', $pass)
-New-PSDrive -Name 'Z' -PSProvider FileSystem -Root '\\192.168.68.91\home' -Credential $cred | Out-Null
+New-PSDrive -Name 'Z' -PSProvider FileSystem -Root '\\MND\home' -Credential $cred | Out-Null
 
 $local = 'C:\Users\compj\.openclaw\workspace\docs\night-school'
 $subminds = 'C:\Users\compj\.openclaw\workspace\memory\subminds'

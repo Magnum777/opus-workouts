@@ -5,11 +5,43 @@
 
 $local = "C:\Users\compj\.openclaw\workspace\docs\night-school"
 $subminds = "C:\Users\compj\.openclaw\workspace\memory\subminds"
-$nas = "\\192.168.68.91\home\night-school"
+$nas = "\\MND\home\night-school"
 
 $copied = 0
 $skipped = 0
 $missingDirs = 0
+$authFailed = $false
+
+# Authenticate to NAS first
+$nasUser = "Nova"
+$nasPass = "D0ngaYHRuthV93qD"
+try {
+    $driveLetter = "N:"
+    # Remove existing mapping if any
+    if (Test-Path $driveLetter) {
+        net use $driveLetter /delete 2>$null
+    }
+    # Create new mapped drive with credentials
+    $result = net use $driveLetter "\\MND\home" $nasPass /user:$nasUser /persistent:no 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "ERROR: Failed to authenticate to NAS. $result" -ForegroundColor Red
+        $authFailed = $true
+    } else {
+        Write-Host "Authenticated to NAS via $driveLetter" -ForegroundColor Green
+    }
+} catch {
+    Write-Host "ERROR: Failed to connect to NAS: $_" -ForegroundColor Red
+    $authFailed = $true
+}
+
+if ($authFailed) {
+    Write-Host ""
+    Write-Host "Done. Copied 0 files, skipped 0 unchanged, created 0 directories. AUTH FAILED."
+    exit 1
+}
+
+# Use mapped drive for NAS path
+$nas = "N:\night-school"
 
 # Sync playbooks from docs/night-school/
 $localFiles = Get-ChildItem $local -Recurse -File | Select-Object FullName, Length, LastWriteTime
@@ -63,3 +95,6 @@ foreach ($kfile in $knowledgeFiles) {
 
 Write-Host ""
 Write-Host "Done. Copied $copied files, skipped $skipped unchanged, created $missingDirs directories."
+
+# Cleanup mapped drive
+net use N: /delete 2>$null

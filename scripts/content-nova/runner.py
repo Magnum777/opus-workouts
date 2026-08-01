@@ -11,7 +11,8 @@ from generator import pick_next_topic, generate_article
 from publisher import create_post, list_posts, get_latest_post_date
 
 def run_pipeline(site_key, dry_run=False):
-    """Full pipeline: pick topic -> generate content -> publish draft."""
+    """Full pipeline: pick topic -> generate content -> publish draft -> inject affiliate links."""
+    import subprocess
     print(f"[ContentNova] Starting pipeline for {site_key}")
 
     # 1. Pick topic
@@ -34,6 +35,16 @@ def run_pipeline(site_key, dry_run=False):
     res = create_post(site_key, title=f"DRAFT: {topic}", content="<p>Content pending generation.</p>", status='draft')
     if res.get('ok'):
         print(f"[OK] Draft created: {res['link']} (ID: {res['id']})")
+        
+        # 4. Auto-run affiliate injector after publish
+        print("[AFFILIATE] Running link injector...")
+        try:
+            injector_path = os.path.join(os.path.dirname(__file__), '..', 'amazon_affiliate_injector.py')
+            subprocess.run([sys.executable, injector_path], timeout=120, check=False)
+            print("[AFFILIATE] Injector completed")
+        except Exception as e:
+            print(f"[AFFILIATE] Injector failed (non-fatal): {e}")
+        
         return res
     else:
         print(f"[ERROR] Publish failed: {res}")

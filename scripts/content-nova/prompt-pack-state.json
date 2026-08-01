@@ -17,9 +17,13 @@
         {
           "date": "2026-07-31",
           "topic": "investor updates"
+        },
+        {
+          "date": "2026-08-01",
+          "topic": "founder productivity"
         }
       ],
-      "pointer": 4
+      "pointer": 5
     },
     "aitoolalliance.com": {
       "history": [
@@ -34,9 +38,13 @@
         {
           "date": "2026-07-31",
           "topic": "voice and audio"
+        },
+        {
+          "date": "2026-08-01",
+          "topic": "research and search"
         }
       ],
-      "pointer": 3
+      "pointer": 4
     },
     "aibusinessinsider.org": {
       "history": [
@@ -47,9 +55,17 @@
         {
           "date": "2026-07-31",
           "topic": "customer support"
+        },
+        {
+          "date": "2026-07-31",
+          "topic": "finance and accounting"
+        },
+        {
+          "date": "2026-08-01",
+          "topic": "weekly status updates"
         }
       ],
-      "pointer": 2
+      "pointer": 4
     }
   }
 }

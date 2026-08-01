@@ -2,12 +2,13 @@
 """
 Backup finance data to Synology NAS.
 
-Run manually or via cron. Uses SSH/SCP to copy finance-related files
-from the local workspace to the NAS backup directory.
+Run manually or via cron. Prefers SMB (reliable) over SSH/SCP (often hangs).
+Falls back to SMB copy if SSH is unavailable.
 """
 
 import logging
 import subprocess
+import shutil
 from pathlib import Path
 from datetime import datetime
 
@@ -17,10 +18,13 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-NAS_HOST = "192.168.68.91"
+NAS_HOST = "MND"
 NAS_USER = "Nova"
-NAS_PATH = "/volume1/homes/Nova/nova-backups/finance"
+NAS_PASS = "D0ngaYHRuthV93qD"
+NAS_SSH_PATH = "/volume1/homes/Nova/nova-backups/finance"
+NAS_SMB_PATH = "\\\\MND\\home\\Nova\\nova-backups\\finance"
 LOCAL_DIR = Path("C:/Users/compj/.openclaw/workspace")
+SSH_TIMEOUT = 10  # seconds — fail fast if SSH hangs
 
 # What to back up
 BACKUP_ITEMS = [
@@ -34,48 +38,160 @@ BACKUP_ITEMS = [
 ]
 
 
+def ssh_available() -> bool:
+    """Quick check if SSH responds within timeout."""
+    try:
+        result = subprocess.run(
+            ["ssh", "-o", f"ConnectTimeout={SSH_TIMEOUT}", "-o", "BatchMode=yes",
+             f"{NAS_USER}@{NAS_HOST}", "echo ok"],
+            capture_output=True, text=True, timeout=SSH_TIMEOUT + 2
+        )
+        return result.returncode == 0 and "ok" in result.stdout
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        return False
+
+
 def run_ssh_command(cmd: str) -> None:
-    """Run a command on the NAS via SSH."""
-    subprocess.run(["ssh", f"{NAS_USER}@{NAS_HOST}", cmd], check=True)
+    """Run a command on the NAS via SSH with timeout."""
+    subprocess.run(
+        ["ssh", "-o", f"ConnectTimeout={SSH_TIMEOUT}", f"{NAS_USER}@{NAS_HOST}", cmd],
+        check=True, timeout=SSH_TIMEOUT + 5
+    )
 
 
-def copy_to_nas(src: Path, dest_dir: str) -> None:
+def copy_via_scp(src: Path, dest_dir: str) -> None:
     """Copy a file or directory to the NAS via SCP."""
     dest = f"{NAS_USER}@{NAS_HOST}:{dest_dir}/"
     if src.is_dir():
-        subprocess.run(["scp", "-r", str(src), dest], check=True)
+        subprocess.run(
+            ["scp", "-o", f"ConnectTimeout={SSH_TIMEOUT}", "-r", str(src), dest],
+            check=True, timeout=300
+        )
     else:
-        subprocess.run(["scp", str(src), dest], check=True)
+        subprocess.run(
+            ["scp", "-o", f"ConnectTimeout={SSH_TIMEOUT}", str(src), dest],
+            check=True, timeout=60
+        )
 
 
-def main() -> None:
-    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    backup_dir = f"{NAS_PATH}/{timestamp}"
+def ensure_smb_dir(path: Path) -> None:
+    """Ensure directory exists via SMB path."""
+    path.mkdir(parents=True, exist_ok=True)
 
-    logger.info("Backing up to %s:%s", NAS_HOST, backup_dir)
 
-    # Create remote dir via SSH
-    run_ssh_command(f"mkdir -p {backup_dir}")
+def copy_via_smb(src: Path, dest_dir: Path) -> None:
+    """Copy a file or directory via SMB (network path)."""
+    if src.is_dir():
+        dest = dest_dir / src.name
+        if dest.exists():
+            shutil.rmtree(dest)
+        shutil.copytree(src, dest)
+    else:
+        shutil.copy2(src, dest_dir)
 
-    # Copy each item
+
+def smb_backup(timestamp: str) -> tuple[int, int]:
+    """Perform backup via SMB. Returns (files_backed_up, total_bytes)."""
+    backup_dir = Path(NAS_SMB_PATH) / timestamp
+    ensure_smb_dir(backup_dir)
+
+    files_backed = 0
+    total_bytes = 0
+
     for item in BACKUP_ITEMS:
         src = LOCAL_DIR / item
-        if src.exists():
-            try:
-                copy_to_nas(src, backup_dir)
-                logger.info("  [OK] %s", item)
-            except subprocess.CalledProcessError as e:
-                logger.error("  [FAIL] %s: %s", item, e)
-        else:
+        if not src.exists():
             logger.warning("  [MISSING] %s", item)
+            continue
+        try:
+            copy_via_smb(src, backup_dir)
+            size = src.stat().st_size if src.is_file() else sum(
+                f.stat().st_size for f in src.rglob("*") if f.is_file()
+            )
+            files_backed += 1
+            total_bytes += size
+            logger.info("  [OK] %s (%s bytes)", item, size)
+        except Exception as e:
+            logger.error("  [FAIL] %s: %s", item, e)
+
+    # Update latest symlink by writing a marker file
+    latest_marker = Path(NAS_SMB_PATH) / "latest.txt"
+    try:
+        latest_marker.write_text(str(backup_dir), encoding="utf-8")
+    except Exception as e:
+        logger.error("Failed to write latest marker: %s", e)
+
+    return files_backed, total_bytes
+
+
+def ssh_backup(timestamp: str) -> tuple[int, int]:
+    """Perform backup via SSH/SCP. Returns (files_backed_up, total_bytes)."""
+    backup_dir = f"{NAS_SSH_PATH}/{timestamp}"
+    run_ssh_command(f"mkdir -p {backup_dir}")
+
+    files_backed = 0
+    total_bytes = 0
+
+    for item in BACKUP_ITEMS:
+        src = LOCAL_DIR / item
+        if not src.exists():
+            logger.warning("  [MISSING] %s", item)
+            continue
+        try:
+            copy_via_scp(src, backup_dir)
+            size = src.stat().st_size if src.is_file() else sum(
+                f.stat().st_size for f in src.rglob("*") if f.is_file()
+            )
+            files_backed += 1
+            total_bytes += size
+            logger.info("  [OK] %s (%s bytes)", item, size)
+        except subprocess.CalledProcessError as e:
+            logger.error("  [FAIL] %s: %s", item, e)
 
     # Update latest symlink
     try:
-        run_ssh_command(f"ln -sfn {backup_dir} {NAS_PATH}/latest")
-        logger.info("Done. Latest: %s:%s/latest", NAS_HOST, NAS_PATH)
+        run_ssh_command(f"ln -sfn {backup_dir} {NAS_SSH_PATH}/latest")
     except subprocess.CalledProcessError as e:
         logger.error("Failed to update latest symlink: %s", e)
 
+    return files_backed, total_bytes
+
+
+def main() -> dict:
+    """Run backup. Returns result dict for cron reporting."""
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    logger.info("Starting finance backup at %s", timestamp)
+
+    # Test SSH first, but with short timeout
+    use_ssh = ssh_available()
+    method = "SSH" if use_ssh else "SMB"
+    logger.info("Using %s method (SSH available: %s)", method, use_ssh)
+
+    try:
+        if use_ssh:
+            files_backed, total_bytes = ssh_backup(timestamp)
+        else:
+            files_backed, total_bytes = smb_backup(timestamp)
+
+        logger.info("Done. Files: %d, Total: %d bytes", files_backed, total_bytes)
+        return {
+            "status": "success",
+            "method": method,
+            "timestamp": timestamp,
+            "files_backed_up": files_backed,
+            "total_bytes": total_bytes,
+        }
+    except Exception as e:
+        logger.error("Backup failed: %s", e)
+        return {
+            "status": "failure",
+            "method": method,
+            "timestamp": timestamp,
+            "error": str(e),
+        }
+
 
 if __name__ == "__main__":
-    main()
+    import json
+    result = main()
+    print(json.dumps(result, indent=2))

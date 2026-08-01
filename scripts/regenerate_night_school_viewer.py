@@ -4,7 +4,7 @@ import json, os
 
 BASE_DIR = r"C:\Users\compj\.openclaw\workspace\docs\night-school"
 OUTPUT = r"C:\Users\compj\.openclaw\workspace\docs\night-school-viewer.html"
-OUTPUT_NAS = "//192.168.68.91/web/night-school-viewer.html"
+OUTPUT_NAS = "//MND/web/night-school-viewer.html"
 
 def discover(base_dir):
     pbs = []

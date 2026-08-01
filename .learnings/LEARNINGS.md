@@ -1,5 +1,125 @@
 # Learnings Log
 
+## 2026-07-31 — Weekly Skill Discovery Scan (ClawHub)
+
+**Category:** insight
+**Source:** Weekly cron: Weekly-SkillDiscovery
+
+Ran 8 search queries across ClawHub registry. Results summary:
+
+### New Skills Found (not currently installed):
+
+| Skill | Version | Downloads | Installs | Summary |
+|-------|---------|-----------|----------|---------|
+| **tradingflow** | 0.0.2 | 638 | 17 | AI-Powered Intent Trading Across Crypto, Stocks & More — deploy bots on BSC, Aptos, Solana. Owner: thecleopatra |
+| **email-automation** | 1.2.0 | 1737 | 59 | Automate email triage, categorize, draft replies, auto-archive in Gmail/Outlook/IMAP. Owner: fly3094 |
+| **doctorclaw-email-digest** | 1.0.0 | — | — | Smart email digest — categorize unread by priority, draft replies for urgent. Owner: ceobotson-bot |
+| **telegram-discord-bot-dev** | 1.0.0 | — | — | Develop custom Telegram/Discord bots with trading, gaming, automation, webhooks. Owner: katrina-jpg |
+| **seo-agent-skill (Distribb)** | 1.0.1 | — | — | Full SEO pipeline: keyword research, content publishing to WP/Webflow/Shopify, backlink exchange. Owner: bomx |
+| **wordpress-publishing-skill-for-claude** | 0.1.0 | — | — | WP REST API publisher with Gutenberg blocks, SEO tags. Owner: asif2bd |
+| **content-creator-pro-berzaf** | 1.0.0 | — | — | AI content creation for YouTube/social: scripts, titles, hooks, thumbnails, captions. Owner: beraiautomation |
+| **ugc-fashion-activewear-product-video-generator** | 1.0.0 | — | — | Generate TikTok/Reels UGC product videos from outfit images. Owner: dai-shuo |
+| **smart-data-analyst** | 1.3.0 | — | — | Upload CSV/Excel/JSON/TSV for automated analysis report with insights, anomalies. Owner: a799549967-lang |
+| **data-analysis-reporting** | 0.1.0 | — | — | Turn raw business data (CSV, SQLite, spreadsheets) into analytical summaries and reports. Owner: gitcanadabrett |
+| **csv-brain** | 1.0.3 | 900 | 28 | Load CSV files, ask questions in plain English via Anthropic/OpenAI/Ollama. Owner: theshadowrose |
+| **vexpath** | 1.0.0 | — | — | Turn any OpenClaw instance into a VEX-powered ops engine: email triage, inbox monitoring, lead classification, workflow automation. Owner: smithbrock02-cmyk |
+| **data-skill** | 1.0.0 | — | — | Chinese-language data analysis assistant: SQL/Python + SQLite for import, cleaning, query, merge, report generation. Owner: lgwanai |
+| **data-analyst-pipeline** | 1.0.0 | — | — | Full data analysis pipeline: load, quality audit, cleaning, EDA, statistical modeling, HTML report. Owner: bettermen |
+| **topyappers** | 1.0.0 | — | — | Social media intelligence: discover viral TikTok content, search 30M+ creators across TikTok/IG/YT. Owner: tadasgedgaudas |
+
+### Already Installed (no action needed):
+- Solana trading: solana-payments-wallets-trading ✓
+- Browser automation: browser-auto-plus, playwright-browser-automation, agent-browser-clawdbot, browser-use ✓
+- Social media: ai-social-media-content, upload-post ✓
+- WordPress: wordpress-pro, wordpress-api-pro, wordpress-remote-news-publisher ✓
+- Email: agentmail-integration ✓
+- Data: duckdb-cli-ai-skills, excel-xlsx ✓
+- Discord: discord-chat, discord-server-admin ✓
+
+### Notable Findings for Opus:
+1. **tradingflow** (v0.0.2) — Multi-chain intent trading (BSC, Aptos, Solana). Could complement solana-payments-wallets-trading if we expand beyond Solana. 638 downloads, 17 installs.
+2. **email-automation** (v1.2.0) — Most popular new find: 1737 downloads, 59 installs. More comprehensive than agentmail-integration. Gmail/Outlook/IMAP triage + auto-archive + draft replies.
+3. **vexpath** (v1.0.0) — New this week! VEX-powered ops engine: email triage, inbox monitoring, lead classification, workflow automation. Could be a unified ops layer.
+4. **data-analyst-pipeline** (v1.0.0) — New this week! Full EDA pipeline with HTML report generation. Could complement duckdb for automated reporting.
+5. **seo-agent-skill (Distribb)** (v1.0.1) — Full SEO pipeline (keyword research → content → publishing → backlinks). Could integrate with WordPress content empire.
+6. **csv-brain** (v1.0.3) — 900 downloads, 28 installs. Natural language CSV queries via multiple LLM backends. Simpler than duckdb for ad-hoc data questions.
+
+### This Week vs Last Week:
+- **New discoveries this week:** vexpath (VEX-powered ops engine), data-analyst-pipeline (full EDA pipeline)
+- **Persistent finds** (same as last 3+ weeks): tradingflow, email-automation, seo-agent-skill, smart-data-analyst, csv-brain, content-creator-pro, ugc-fashion-video-generator
+- **No installed skills have updates available** — registry stable
+- ClawHub CLI v0.9.0 still doesn't expose community ratings; using downloads + installs as popularity proxy
+- `clawhub explore` command is broken (API response parsing error) — can't browse latest skills
+
+### Queries Run:
+1. "solana trading crypto" → 1 result (tradingflow)
+2. "browser automation screenshot" → 10 results (all already covered)
+3. "social media content creator" → 5 results (ugc-fashion, content-creator-pro, topyappers, owl-content-creator, social-media-caption-generator)
+4. "wordpress seo publishing" → 3 results (wordpress-publisher, wordpress-remote-news-publisher, seo-agent-skill)
+5. "email automation inbox" → 4 results (email-automation, doctorclaw-email-digest, agentmail-integration, vexpath)
+6. "data analysis sql csv" → 5 results (data-analysis-reporting, csv-brain, smart-data-analyst, data-skill, data-analyst-pipeline)
+7. "discord bot automation" → 1 result (telegram-discord-bot-dev)
+8. "ai agent workflow" → 0 results
+
+### Note:
+ClawHub CLI v0.9.0 does not expose user ratings. Relevance scores from search are semantic similarity, not community ratings. Downloads + installs used as popularity proxy where available.
+
+## 2026-07-24 — Weekly Skill Discovery Scan (ClawHub)
+
+**Category:** insight
+**Source:** Weekly cron: Weekly-SkillDiscovery
+
+Ran 8 search queries across ClawHub registry. Results summary:
+
+### New Skills Found (not currently installed):
+
+| Skill | Version | Security | Summary |
+|-------|---------|----------|---------|
+| **tradingflow** | 0.0.2 | SUSPICIOUS | AI-Powered Intent Trading Across Crypto, Stocks & More — deploy bots on BSC, Aptos, Solana. Owner: thecleopatra |
+| **email-automation** | 1.2.0 | SUSPICIOUS | Automate email triage, categorize, draft replies, auto-archive in Gmail/Outlook/IMAP. Owner: fly3094 |
+| **doctorclaw-email-digest** | 1.0.0 | CLEAN | Smart email digest — categorize unread by priority, draft replies for urgent. Owner: ceobotson-bot |
+| **telegram-discord-bot-dev** | 1.0.0 | CLEAN | Develop custom Telegram/Discord bots with trading, gaming, automation, webhooks. Owner: katrina-jpg |
+| **seo-agent-skill** (Distribb) | 1.0.1 | SUSPICIOUS | Full SEO pipeline: keyword research, content publishing to WP/Webflow/Shopify, backlink exchange. Owner: bomx |
+| **wordpress-publishing-skill-for-claude** | 0.1.0 | — | WP REST API publisher with Gutenberg blocks, SEO tags. Owner: asif2bd |
+| **content-creator-pro-berzaf** | 1.0.0 | CLEAN | AI content creation for YouTube/social: scripts, titles, hooks, thumbnails, captions. Owner: beraiautomation |
+| **ugc-fashion-activewear-product-video-generator** | 1.0.0 | CLEAN | Generate TikTok/Reels UGC product videos from outfit images. Owner: dai-shuo |
+| **smart-data-analyst** | 1.3.0 | SUSPICIOUS | Upload CSV/Excel/JSON/TSV for automated analysis report with insights, anomalies. Owner: a799549967-lang |
+| **neo1307-browser-agent** | 1.0.0 | CLEAN | Playwright browser automation: screenshots, DOM extraction, form fill, cookies. Owner: neo1307 |
+
+### Already Installed (no action needed):
+- Solana trading: solana-payments-wallets-trading ✓
+- Browser automation: browser-auto-plus, playwright-browser-automation, agent-browser-clawdbot, browser-use ✓
+- Social media: ai-social-media-content, upload-post ✓
+- WordPress: wordpress-pro, wordpress-api-pro, wordpress-remote-news-publisher ✓
+- Email: agentmail-integration ✓
+- Data: duckdb-cli-ai-skills, excel-xlsx ✓
+- Discord: discord-chat, discord-server-admin ✓
+
+### Notable Findings for Opus:
+1. **tradingflow** (v0.0.2) — Multi-chain intent trading (BSC, Aptos, Solana). Could complement solana-payments-wallets-trading if we expand beyond Solana. Security: SUSPICIOUS — needs review before install.
+2. **email-automation** (v1.2.0) — More comprehensive than agentmail-integration. Gmail/Outlook/IMAP triage + auto-archive + draft replies. Security: SUSPICIOUS.
+3. **telegram-discord-bot-dev** (v1.0.0) — Custom bot development with trading, gaming, automation. Security: CLEAN. Worth evaluating when we re-wire Discord integration.
+4. **seo-agent-skill (Distribb)** (v1.0.1) — Full SEO pipeline (keyword research → content → publishing → backlinks). Could integrate with WordPress content empire. Security: SUSPICIOUS.
+5. **doctorclaw-email-digest** (v1.0.0) — Smart email digest with priority categorization. Security: CLEAN. Simpler alternative to email-automation.
+
+### This Week vs Last Week:
+- **No new discoveries** — same skills surfaced as previous scans. Registry appears stable.
+- Security scans now available: several interesting skills flagged SUSPICIOUS (tradingflow, email-automation, seo-agent-skill, smart-data-analyst). Only CLEAN-rated new finds: doctorclaw-email-digest, telegram-discord-bot-dev, content-creator-pro, ugc-fashion-video-generator, neo1307-browser-agent.
+- No installed skills have updates available.
+
+### Queries Run:
+1. "solana trading crypto" → 1 result (tradingflow)
+2. "browser automation screenshot" → 10 results (all already covered)
+3. "social media content creator" → 3 results (ugc-fashion, content-creator-pro, topyappers)
+4. "wordpress seo publishing" → 3 results (wordpress-publisher, wordpress-remote-news-publisher, seo-agent-skill)
+5. "email automation inbox" → 3 results (email-automation, doctorclaw-email-digest, agentmail-integration)
+6. "data analysis sql csv" → 5 results (smart-data-analyst, data-analysis-reporting, csv-brain, data-skill, data-analyst-pipeline)
+7. "discord bot automation" → 1 result (telegram-discord-bot-dev)
+8. "ai agent workflow" → 0 results
+
+### Note:
+ClawHub CLI v0.9.0 does not expose user ratings. Relevance scores from search are semantic similarity, not community ratings. Security flags (CLEAN/SUSPICIOUS) are now available via `clawhub inspect`.
+
 ## 2026-07-17 — Weekly Skill Discovery Scan (ClawHub)
 
 **Category:** insight

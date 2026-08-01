@@ -239,43 +239,24 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
 
-## Active Skill Workflow (2026-05-31)
+## Active Skill Workflow (updated 2026-07-24)
 
-All 21 ClawHub skills are installed, updated, and registered. Use them proactively.
+30+ skills installed. Use proactively. Full list in TOOLS.md.
 
-| Skill | When to Trigger |
-|-------|----------------|
-| self-improving-agent | After any failure, correction, insight, or "oh shit" moment. Auto-log to `.learnings/`. |
-| memory-hygiene | When memory feels bloated or auto-recall pulls junk. Run audit → clean → optimize. |
-| reflection | Before shipping complex deliverables. Self-critique for quality. |
-| duckdb-cli-ai-skills | CSV/Parquet/JSON analysis, SQL queries, data conversion. |
-| excel-xlsx | Excel workbooks: formulas, formatting, bulk edits. |
-| word-docx | Word docs: styles, tables, tracked changes, templates. |
-| pdf-pro | PDF merge/split/rotate/compress/encrypt. |
-| github | Issues, PRs, CI runs, repo queries via `gh` CLI. |
-| browser-use | Multi-step browser automation: forms, screenshots, extraction. |
-| agent-browser-clawdbot | Headless browser with accessibility tree snapshots. |
-| programmatic-seo | Bulk SEO page generation from templates + data. |
-| ai-social-media-content | Generate images, videos, captions for social posts. |
-| upload-post | Post to TikTok, IG, YouTube, X, LinkedIn, etc. |
-| wordpress-pro | WordPress theme/plugin dev, WooCommerce, Gutenberg. |
-| solana-payments-wallets-trading | Solana trading, swaps, wallet mgmt, DeFi. |
-| composio | Connect to 500+ apps (Gmail, Slack, Notion, etc.). |
-| task-prism | Task decomposition, WBS, PERT estimates, sprint planning. |
-| ontology | Typed knowledge graph: entities, relations, structured queries. |
-| myknowledge | Knowledge bases, requirements tracking, project status snapshots. |
-| humanizer | Strip AI signals from content before publishing. |
-| humanized-writing-editor | Rewrite stiff text to natural prose. |
-| factual-claim-verifier | Verify claims before publishing. |
-| wordpress-api-pro | Production-grade WordPress REST API (replaces wordpress-pro). |
-| youtube-transcript-native-node | Extract YouTube captions for research. |
-| browser-auto-plus | Browser automation with retry logic and error recovery. |
-| playwright-browser-automation | Playwright API fallback for browser tasks. |
-| proactive-agent | WAL protocol, autonomous cron patterns, failure recovery. |
-| debug-pro | 7-step debugging protocol for systematic bug fixing. |
-| test-runner | Write/run unit, integration, E2E tests. |
-| skill-creator | Create or update custom skills. |
-| openclaw-tavily-search | Web search when Brave is unavailable. |
+**Core triggers:**
+- `self-improving-agent` — After any failure, correction, or insight. Auto-log to `.learnings/`.
+- `memory-hygiene` — When memory feels bloated. Audit → clean → optimize.
+- `reflection` — Before shipping complex deliverables.
+- `proactive-agent` — WAL protocol, autonomous cron patterns, failure recovery.
+- `ontology` — Structured queries (projects, tasks, people).
+- `duckdb-en` — CSV/Parquet/JSON analysis, SQL.
+- `wordpress-api-pro` — Production WordPress REST API.
+- `browser-use` / `browser-auto-plus` / `playwright-browser-automation` — Browser automation.
+- `ai-social-media-content` + `upload-post` — Social content creation + posting.
+- `humanizer` + `humanized-writing-editor` — Strip AI signals before publishing.
+- `factual-claim-verifier` — Verify claims before publishing.
+- `task-prism` — Task decomposition, WBS, PERT.
+- `skill-creator` — Create or update custom skills.
 
 ### Self-Improvement Protocol
 

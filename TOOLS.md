@@ -9,37 +9,63 @@ Skills define _how_ tools work. This file is for _my_ specifics.
 - CPU/GPU: Ryzen 9800X3D + Radeon 9070 XT, 32 GB RAM
 - Shell: pwsh
 
-## Old configs (reference only — do NOT auto-import)
-- `C:\Users\compj\.openclaw.newest\` — most recent (broken install before this rebuild, last edit May 6 2026)
-- `C:\Users\compj\.openclawbackup\` — older snapshot
-- `C:\Users\compj\.openclaw-backup-2026-04-07\` — has a `RESTORE.md` + cron list
-- `C:\Users\compj\.openclawold\` — Apr 6 2026
-
 ## Network / Home
-- Synology NAS: `192.168.68.91` (MND / nova-home)
+- Synology NAS: `MND` hostname (auto-resolves via DNS, currently 192.168.68.70)
 - Credentials: SMB user `Nova`, pass `D0ngaYHRuthV93qD`
 
-## Skills installed (this fresh install)
-- 1password
-- browser-automation
-- clawhub
-- gog (Google Workspace)
-- healthcheck
-- node-connect
-- skill-creator
-- taskflow, taskflow-inbox-triage
-- weather
+## Discord
+- Bot Nova `1470831964721250315`, guild `1425600872938995714`
+- Channels: #nova, #tradebot, #wordpress, #eveonion, #kybernauts, #finance
+- WhatsApp / Signal / Telegram: none wired
 
-_(Old install also had: agent-browser-clawdbot, ai-social-media-content, composio, debug-pro, discord-chat, duckdb, github, in-depth-research, memory-hygiene, n8n, notion, obsidian, pdf-pro, programmatic-seo, reflection, replicate, self-improving-agent, solana-payments-wallets-trading, wordpress-pro, etc. Re-install case-by-case.)_
+## Model Aliases (2026-07-31)
+- `chat` → kimi-k3:cloud (1M ctx, vision, tools) — main chat model
+- `code` → glm-5.2:cloud (976K ctx, tools) — code tasks
+- `agent` → mimo-v2.5-pro:cloud — agentic coding
+- `flash` → deepseek-v4-flash:cloud (1M ctx, tools) — ops/scans workhorse
+- `deep` → deepseek-v4-pro:cloud (1M ctx, tools) — deep reasoning
+- `embed` → nomic-embed-text — vector embeddings
 
-## Channels (not yet wired in this install)
-- Discord: bot Nova `1470831964721250395`, guild `1425600872938995714` — needs reconnect
-- WhatsApp / Signal / Telegram: none
+## Ollama Cloud Models Available
+| Model | Context | Vision | Tools | Best For |
+|-------|---------|--------|-------|----------|
+| kimi-k3:cloud | 1M | Yes | Yes | Flagship chat/creative (alias: chat) |
+| kimi-k2.6:cloud | 262K | Yes | Yes | Proven creative fallback |
+| kimi-k2.7-code:cloud | 262K | Yes | Yes | Dedicated coding |
+| glm-5.2:cloud | 976K | No | Yes | Code, upgrade from 5.1 (alias: code) |
+| glm-5.1:cloud | 200K | No | Yes | Code fallback |
+| minimax-m3:cloud | 512K | Yes+video | Yes | Creative, agentic, social |
+| minimax-m2.7:cloud | 128K | No | No | Legacy creative |
+| deepseek-v4-flash:cloud | 1M | No | Yes | Ops/scans workhorse (alias: flash) |
+| deepseek-v4-pro:cloud | 1M | No | Yes | Deep reasoning (alias: deep) |
+| qwen3.5:397b | 262K | Yes | Yes | Reasoning + vision |
+| nemotron-3-ultra | 262K | No | Yes | Agentic reasoning |
+| gpt-oss:120b-cloud | 131K | No | Yes | Local reasoning |
+| gemma4 | 128K | No | No | Local small model |
 
-## TTS (old — re-wire on demand)
-- edge-tts was preferred (multiple voices)
+## Skills installed (current)
+- 1password, agent-browser, agent-workflow-playbook, agentmail, agentmail-integration
+- ai-social-media-content, browser-auto-plus, browser-use
+- Car Buying Assistant (US), clawhub, cogmem, cold-email-engine
+- desktop-control, diagram-maker, discord-chat, discord-server-admin
+- doc-weaver, duckdb-en, evalanche
+- Excel / XLSX, ez-unifi
+- factual-claim-verifier, freeride, gog, healthcheck
+- humanized-writing-editor, humanizer
+- iris, meme-maker, memory-hygiene, myknowledge
+- node-connect, node-inspect-debugger, ontology
+- playwright-browser-automation, proactive-agent, process-interviewer
+- programmatic-seo, python-debugpy
+- resend-send-native-node
+- Self Reflection, self-improving-agent, skill-creator, skill-vetter
+- solana-payments-wallets-trading, spike
+- task-prism, taskflow, taskflow-inbox-triage, tavily, tavily-search
+- upload-post
+- weather, Word / DOCX, wordpress-api-pro, wordpress-pro
+- youtube-transcript-native-node
+- spec-driven
 
-## Structured Memory (P2 Integration — 2026-06-15)
+## Structured Memory
 
 ### Ontology — Typed Knowledge Graph
 **Skill:** `ontology` v1.0.4
@@ -51,27 +77,18 @@ python skills/ontology/scripts/ontology.py query --type Project --where '{"statu
 python skills/ontology/scripts/ontology.py list --type Task
 python skills/ontology/scripts/ontology.py validate
 ```
-**Guide:** `.myknowledge/templates/ontology-usage.md`
 
 ### Cogmem — Bio-Inspired Memory Kernel
-**Skill:** `cogmem` v2.0.3
 **Status:** NOT INSTALLED — requires Ollama `qwen3-embedding:0.6b` + `qwen2.5:7b`
-**Use for:** Semantic recall across conversation history (weeks/months)
 **Blocker:** Windows — needs WSL or manual setup. Opus to decide.
-**Alternative:** Ontology + daily logs already cover structured + temporal memory.
 
 ### Task-Prism — Task Decomposition
 **Skill:** `task-prism` v4.1.0
 **Use for:** WBS generation, PERT estimates, skill mapping, RACI, sprint planning
-**Trigger:** "Break this down", "Plan this project", "How should we approach X?"
-**Integration:** WBS → ontology Tasks + myknowledge requirements
-**Guide:** `.myknowledge/templates/task-prism-integration.md`
 
 ### MyKnowledge — Knowledge Base Manager
 **Skill:** `myknowledge` v1.4.89
 **Storage:** `.myknowledge/global/` and per-project `.myknowledge/`
-**Use for:** Project docs, requirements tracking, status snapshots, session resume
-**Guide:** `.myknowledge/global/README.md`
 
 ---
 - `rm` → prefer `trash` / recycle bin
@@ -85,4 +102,4 @@ python skills/ontology/scripts/ontology.py validate
 
 ---
 
-Updated 2026-05-06 after restore from `.openclaw.newest`.
+Updated 2026-07-24 — full audit. Removed stale old-install refs, updated skills list, simplified.

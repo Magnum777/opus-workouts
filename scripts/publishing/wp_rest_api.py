@@ -109,6 +109,20 @@ def update_post(site_key: str, post_id: int, status: str = None, featured_media:
         print(f"Error updating post: {r.status_code} {r.text[:200]}")
         return False
 
+def get_media_by_filename(site_key: str, filename: str) -> int:
+    """Look up a media item by filename. Returns media ID or 0 if not found."""
+    site = SITES.get(site_key)
+    if not site:
+        return 0
+    headers = _auth(site['user'], site['pass'])
+    url = f"{site['url']}/media"
+    r = requests.get(url, headers=headers, params={'search': filename, 'per_page': 100})
+    if r.status_code == 200:
+        for item in r.json():
+            if item.get('source_url', '').endswith(filename):
+                return item['id']
+    return 0
+
 def upload_media(site_key: str, file_path: str, alt: str = '') -> int:
     site = SITES.get(site_key)
     if not site:
@@ -136,7 +150,7 @@ if __name__ == '__main__':
     parser.add_argument('--content', help='Post content')
     parser.add_argument('--status', default='publish', help='Post status')
     parser.add_argument('--post-id', type=int, help='Post ID to update')
-    parser.add_argument('--file', help='File path for upload')
+    parser.add_argument('--file', help='File path for upload (local file or WordPress media filename)')
     parser.add_argument('--alt', default='', help='Alt text for media')
     parser.add_argument('--search', help='Search term for listing')
     parser.add_argument('--per-page', type=int, default=10, help='Posts per page')
@@ -150,7 +164,22 @@ if __name__ == '__main__':
         pid = create_post(args.site, args.title, args.content, args.status)
         print(f"Created post ID: {pid}")
     elif args.action == 'update':
-        ok = update_post(args.site, args.post_id, args.status)
+        if args.file:
+            local_path = Path(args.file)
+            if local_path.exists():
+                # Local file — upload it to WordPress media library
+                mid = upload_media(args.site, args.file, args.alt)
+            else:
+                # WordPress media filename — look it up by name
+                mid = get_media_by_filename(args.site, args.file)
+                if not mid:
+                    print(f"Media not found in library: {args.file}")
+            if mid:
+                ok = update_post(args.site, args.post_id, args.status, featured_media=mid)
+            else:
+                ok = False
+        else:
+            ok = update_post(args.site, args.post_id, args.status)
         print(f"Update {'OK' if ok else 'FAILED'}")
     elif args.action == 'upload':
         mid = upload_media(args.site, args.file, args.alt)
