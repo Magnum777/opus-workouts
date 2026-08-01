@@ -1,0 +1,55 @@
+{
+  "sites": {
+    "aicofounderstack.com": {
+      "history": [
+        {
+          "date": "2026-07-31",
+          "topic": "ideation and validation"
+        },
+        {
+          "date": "2026-07-31",
+          "topic": "MVP scoping"
+        },
+        {
+          "date": "2026-07-31",
+          "topic": "pricing strategy"
+        },
+        {
+          "date": "2026-07-31",
+          "topic": "investor updates"
+        }
+      ],
+      "pointer": 4
+    },
+    "aitoolalliance.com": {
+      "history": [
+        {
+          "date": "2026-07-31",
+          "topic": "writing assistants"
+        },
+        {
+          "date": "2026-07-31",
+          "topic": "video generation"
+        },
+        {
+          "date": "2026-07-31",
+          "topic": "voice and audio"
+        }
+      ],
+      "pointer": 3
+    },
+    "aibusinessinsider.org": {
+      "history": [
+        {
+          "date": "2026-07-31",
+          "topic": "marketing operations"
+        },
+        {
+          "date": "2026-07-31",
+          "topic": "customer support"
+        }
+      ],
+      "pointer": 2
+    }
+  }
+}

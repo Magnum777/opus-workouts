@@ -208,3 +208,10 @@ alpha_force_db.json
 
 scripts/content-nova/article-draft.md
 scripts/credentials/vault.db
+
+# Prompt Pack runtime queues (fail-soft + 403 fallback)
+# Committed: prompt-pack-state.json (source of truth for topic rotation)
+# Committed: prompt_pack_cron*.json (cron specs)
+# Gitignored: runtime queue dirs
+memory/prompt-pack-social-drafts/
+memory/prompt-pack-aibusinessinsider-queue/
