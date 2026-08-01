@@ -215,3 +215,37 @@ scripts/credentials/vault.db
 # Gitignored: runtime queue dirs
 memory/prompt-pack-social-drafts/
 memory/prompt-pack-aibusinessinsider-queue/
+
+# Workspace debris scrub (2026-07-31) - protects repo from accidental commits
+# of transient artifacts that shouldn't be tracked
+
+# Staged inbound media from other agents (ephemeral, not source)
+media/inbound/
+
+# Bundled binaries (we don't ship these in source)
+ffmpeg.exe
+ffprobe.exe
+
+# Local vault copies (NEVER commit, NEVER share)
+/vault.db
+
+# Skill install backups
+skills/.openclaw-install-backups/
+
+# Agent scratch / setup notes
+nova-setup-overview.txt
+schema-dump.json
+
+# Pre-existing prompt-pack temp artifacts (leftover from before the real pipeline)
+memory/prompt-pack-temp/
+memory/prompt-pack-content.json
+memory/prompt-pack-pre-humanize.json
+memory/prompt-pack-humanized.json
+memory/prompt-pack-run.py
+
+# EveOnion runtime state (lives in cron-managed workflow, not source)
+memory/eveonion-last-post.md
+memory/eveonion-state.json
+memory/eveonion-tweet-draft.txt
+eveonion/tweet_history.json
+memory/eveonion-post-log.json
