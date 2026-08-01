@@ -4,6 +4,7 @@
     "csv-stringify": "^6.7.0",
     "pdf-lib": "^1.17.1",
     "playwright": "^1.60.0",
+    "puppeteer": "^25.4.0",
     "ws": "^8.18.0"
   }
 }
