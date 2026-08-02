@@ -13,8 +13,21 @@ $missingDirs = 0
 $authFailed = $false
 
 # Authenticate to NAS first
+# NAS credentials loaded from .secrets file
+$secretsPath = "C:\Users\compj\.openclaw\workspace\.secrets"
 $nasUser = "Nova"
-$nasPass = "D0ngaYHRuthV93qD"
+$nasPass = ""
+if (Test-Path $secretsPath) {
+    $nasPass = (Get-Content $secretsPath | Where-Object { $_ -match '^password=' } | ForEach-Object { $_ -replace '^password=', '' })[0]
+}
+if (-not $nasPass) {
+    # Fallback to env var
+    $nasPass = $env:NAS_PASSWORD
+}
+if (-not $nasPass) {
+    Write-Host "ERROR: NAS password not found in .secrets or env" -ForegroundColor Red
+    exit 1
+}
 try {
     $driveLetter = "N:"
     # Remove existing mapping if any

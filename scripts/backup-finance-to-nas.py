@@ -7,6 +7,7 @@ Falls back to SMB copy if SSH is unavailable.
 """
 
 import logging
+import os
 import subprocess
 import shutil
 from pathlib import Path
@@ -20,7 +21,22 @@ logger = logging.getLogger(__name__)
 
 NAS_HOST = "MND"
 NAS_USER = "Nova"
-NAS_PASS = "D0ngaYHRuthV93qD"
+
+
+def _load_nas_password():
+    """Load NAS password from .secrets file."""
+    secrets_path = Path(__file__).resolve().parent.parent / ".secrets"
+    try:
+        with open(secrets_path, "r") as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("password="):
+                    return line.split("=", 1)[1]
+    except Exception:
+        pass
+    return os.environ.get("NAS_PASSWORD", "")
+
+NAS_PASS = _load_nas_password()
 NAS_SSH_PATH = "/volume1/homes/Nova/nova-backups/finance"
 NAS_SMB_PATH = "\\\\MND\\home\\Nova\\nova-backups\\finance"
 LOCAL_DIR = Path("C:/Users/compj/.openclaw/workspace")

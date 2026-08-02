@@ -577,7 +577,7 @@ def add_to_ds(session, sid, torrent_url, nas_creds, torrent_title=""):
     stuck in 'waiting' because DS can't auth with TorrentDay.
     
     Instead: download .torrent files ourselves (with TD cookies), copy to
-    \\MND\video\torrents\ via SMB, and DS auto-adds from the watch folder.
+    \\MND\video\torrents via SMB, and DS auto-adds from the watch folder.
     """
     import subprocess
     

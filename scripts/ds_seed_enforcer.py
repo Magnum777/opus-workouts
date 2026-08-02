@@ -28,6 +28,7 @@ def main():
     
     session = requests.Session()
     session.verify = False
+    session.timeout = 15  # Default timeout for all requests
     
     # Login
     r = session.get("https://{}:5001/webapi/auth.cgi".format(nas["hostname"]), params={

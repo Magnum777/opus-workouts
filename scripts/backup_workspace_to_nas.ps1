@@ -1,8 +1,21 @@
+# Load NAS credentials from .secrets file (no hardcoded passwords)
+$secretsPath = "C:\Users\compj\.openclaw\workspace\.secrets"
+$nasUser = "Nova"
+$nasPass = ""
+if (Test-Path $secretsPath) {
+    $nasPass = (Get-Content $secretsPath | Where-Object { $_ -match '^password=' } | ForEach-Object { $_ -replace '^password=', '' })[0]
+}
+if (-not $nasPass) { $nasPass = $env:NAS_PASSWORD }
+if (-not $nasPass) {
+    Write-Host "ERROR: NAS password not found in .secrets or env" -ForegroundColor Red
+    exit 1
+}
+
 # NAS connectivity check
 $nasIP = 'MND'
 $smbTest = Test-NetConnection -ComputerName $nasIP -Port 445 -WarningAction SilentlyContinue
 if (!$smbTest.TcpTestSucceeded) {
-    Write-Host "[ERROR] NAS at $nasIP:445 is unreachable. Skipping backup." -ForegroundColor Red
+    Write-Host "[ERROR] NAS at $nasIP`:445 is unreachable. Skipping backup." -ForegroundColor Red
     Write-Host "[INFO] Please check DSM: Control Panel > File Services > SMB > Enable SMB service" -ForegroundColor Yellow
     exit 1
 }
@@ -29,7 +42,7 @@ if (-not (Test-Path $nasPath)) {
     Write-Host "ERROR: NAS path not accessible: $nasPath"
     Write-Host "Attempting to map..."
     try {
-        $cred = New-Object System.Management.Automation.PSCredential("Nova", (ConvertTo-SecureString 'D0ngaYHRuthV93qD' -AsPlainText -Force))
+        $cred = New-Object System.Management.Automation.PSCredential($nasUser, (ConvertTo-SecureString $nasPass -AsPlainText -Force))
         New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\MND\home" -Credential $cred -ErrorAction Stop | Out-Null
         $nasPath = "Z:\backups"
         $nasDest = Join-Path $nasPath $zipName
