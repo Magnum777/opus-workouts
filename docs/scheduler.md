@@ -21,8 +21,8 @@
 09:30 | ██   EveOnion-Article (Tue/Fri only)       (kimi-k2.6, 480s)
 10:00 | ██   EveOnion-RedditTweet                  (minimax-m3, 480s)
 10:00 | ░░   EveOnion-PersonaScan (every 3 days)   (deepseek-v4-flash, 300s)
-10:15 | ░░   Amazon-Affiliate-Publish (Tue/Fri)   (deepseek-v4-flash, 180s)
-11:00 | ░░   Amazon-Affiliate-Injector (daily)     (deepseek-v4-flash, 180s)
+10:15 | ░░   Amazon-Affiliate-Publish (Tue/Fri)      (deepseek-v4-flash, 180s)
+11:00 | ░░   Amazon-Affiliate-Injector              (deepseek-v4-flash, 180s)
 14:00 | ░░   Yagas-Intel-Collect                   (minimax-m3, 120s)
 17:00 | ░░   Yagas-Propaganda-Post                 (minimax-m3, 180s)
 18:15 | ██   Kybernauts-Propaganda (Sun only)       (minimax-m3, 180s)
@@ -59,7 +59,7 @@
 | deepseek-v4-flash | **16** | 1 (night school) | Ops/scans/continuous. Workhorse |
 | minimax-m3 | **6** | 0 | EveOnion (2) + ContentNova (3) + Kybernauts/Yagas (3) |
 
-## Total: 23 enabled + 6 disabled
+## Total: 29 enabled + 6 disabled
 
 ### Disabled Crons (TradeBot — all stale, broken paths)
 
@@ -81,12 +81,12 @@
 | ContentNova-aibusinessinsider | 38c57c58 | 3am daily | minimax-m3 | 600s | Quality gate v3 |
 | ContentNova-aicofounderstack | b44776e2 | 4am daily | minimax-m3 | 600s | Quality gate v3 |
 
-### Amazon Affiliate (2 crons)
+### Amazon Affiliate (3 crons)
 | Name | ID | Schedule | Model | Timeout | Notes |
 |------|-----|----------|-------|---------|-------|
-| Amazon-Affiliate-Publish | 0b4757e7 | 10:15am Tue/Fri | deepseek-v4-flash | 180s | Publishes next affiliate article from queue |
-| Amazon-Affiliate-Injector | 8b7e7792 | 11am daily | deepseek-v4-flash | 180s | Injects links into recent posts across all sites |
-| Amazon-Tracker-Weekly | cf11c261 | Mon 12pm | deepseek-v4-flash | 120s | Weekly Amazon dashboard check + injection |
+| Amazon-Affiliate-Publish | 5aec02c7 | 10:15am Tue/Fri | deepseek-v4-flash | 180s | Publishes next affiliate article, post log enabled |
+| Amazon-Affiliate-Injector | 895f97ba | 11am daily | deepseek-v4-flash | 180s | Injects links into recent posts, post log enabled |
+| Amazon-Tracker-Weekly | 53f0d707 | Mon 12pm | deepseek-v4-flash | 120s | Weekly dashboard check, post log enabled |
 
 ### EveOnion (4 crons)
 | Name | ID | Schedule | Model | Timeout |
@@ -101,11 +101,11 @@
 |------|-----|----------|-------|---------|
 | Kybernauts-Propaganda | 788bb86f | Sun 6:15pm | minimax-m3 | 180s |
 
-### Yagas (2 crons)
-| Name | ID | Schedule | Model | Timeout |
-|------|-----|----------|-------|---------|
-| Yagas-Intel-Collect | b36f7baa | 2pm daily | minimax-m3 | 120s |
-| Yagas-Propaganda-Post | 231a270e | 5pm daily | minimax-m3 | 180s |
+### Yagas / Anti-Yagas (2 crons)
+| Name | ID | Schedule | Model | Timeout | Notes |
+|------|-----|----------|-------|---------|-------|
+| Yagas-Intel-Collect | f146de70 | 2pm daily | minimax-m3 | 120s | Discord-only, post log enabled |
+| Yagas-Propaganda-Post | f52721ee | 5pm daily | minimax-m3 | 180s | Discord-only, Phase 4, post log enabled |
 
 ### Nova Ops (15 crons)
 | Name | ID | Schedule | Model | Timeout |
@@ -190,7 +190,21 @@ Checklist:
 
 ## Changelog
 
-### 2026-08-02 — Memory Hygiene Cron Hardening
+### 2026-08-02 — Post Log, Missing Crons, Ops Health Check
+- **Added:** Unified post log system (scripts/post_log.py + memory/post-log/posts.jsonl)
+- **All content crons now log** to post_log.py after publishing/drafting (7 crons updated)
+- **Recreated:** Yagas-Intel-Collect (2pm daily, minimax-m3, #kybernauts)
+- **Recreated:** Yagas-Propaganda-Post (5pm daily, minimax-m3, #kybernauts, Discord-only)
+- **Recreated:** Amazon-Affiliate-Publish (10:15am Tue/Fri, deepseek-v4-flash, #wordpress)
+- **Recreated:** Amazon-Affiliate-Injector (11am daily, deepseek-v4-flash, #wordpress)
+- **Recreated:** Amazon-Tracker-Weekly (Mon noon, deepseek-v4-flash, #finance)
+- **Upgraded:** Nova-Ops-Assessment now includes content pipeline health check
+  - Checks post log for missing cron entries (blocked/failed flags)
+  - Runs dedup on titles
+  - Flags content crons that didn't log in 48h
+- **Added:** Content type to ontology schema
+- **Added:** docs/infrastructure.md — full system architecture, cron registry, known issues, processes
+- **Total enabled crons:** 29 (was 23, added 5 recreated + 1 Daily-MemorySweep)
 - **Upgraded model:** deepseek-v4-flash → kimi-k2.6 (flash kept using Edit despite explicit instructions)
 - **Increased timeout:** 600s → 900s (reading 7+ daily files + rewriting MEMORY.md)
 - **Rewrote prompt:** 9 explicit numbered steps, CRITICAL: WRITE only, no Edit/apply_patch
