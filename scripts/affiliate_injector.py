@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
 """
-AgentFuse-style Affiliate Link Integration for ContentNova Pipeline
+Affiliate Link Injector for ContentNova Pipeline
 
-Automatically injects tracked affiliate links into WordPress content
-before publishing. Scans article text for product mentions and replaces
-them with affiliate-tagged links pointing to our review articles.
+Hybrid linking strategy:
+- SaaS tools → link to product website with rel="sponsored nofollow"
+- If product has an internal_slug → link to our own article instead (higher value)
+- Amazon products → link to Amazon with ?tag=AITOOLALLIANCE-20
 
-This is the integration layer between ContentNova/PromptPack articles
-and our affiliate monetization strategy.
+Rules:
+- First mention only per product
+- Max 8 links per post
+- Min 100 words between links
+- Skip headings and existing links
 
 Usage:
-    python affiliate_injector.py scan <site>              # Scan recent posts for link opportunities
-    python affiliate_injector.py inject <site> <post_id>   # Inject links into a specific post
-    python affiliate_injector.py inject-all <site>          # Inject links into all recent posts
-    python affiliate_injector.py stats                      # Show injection stats
-    python affiliate_injector.py products add <name> <url>   # Add a product to the registry
-    python affiliate_injector.py products list               # List all tracked products
+    python affiliate_injector.py scan <site>
+    python affiliate_injector.py inject <site> <post_id> [--dry-run]
+    python affiliate_injector.py inject-all <site> [--dry-run]
+    python affiliate_injector.py stats
+    python affiliate_injector.py products list
 """
 
 import argparse
@@ -29,191 +32,193 @@ WORKSPACE = Path("C:/Users/compj/.openclaw/workspace")
 PRODUCTS_FILE = WORKSPACE / "scripts" / "affiliate_products.json"
 INJECTION_LOG = WORKSPACE / "memory" / "post-log" / "affiliate_injections.jsonl"
 
-# Affiliate tags per site
 AFFILIATE_TAGS = {
     "aitoolalliance": "aitoolalliance-20",
     "aicofounderstack": "aicofounderstack-20",
     "aibusinessinsider": "aibusinessinsider-20",
 }
 
-# Product registry: product names -> site review URLs
-# When content mentions these products, we link to our review article
-DEFAULT_PRODUCTS = {
-    # AI Writing & Content
-    "Jasper": {"url": "/best-ai-writing-tools/", "site": "aitoolalliance", "category": "ai_software"},
-    "Copy.ai": {"url": "/best-ai-copywriting-tools/", "site": "aitoolalliance", "category": "ai_software"},
-    "Grammarly": {"url": "/grammarly-review/", "site": "aitoolalliance", "category": "ai_software"},
-    "Surfer SEO": {"url": "/surfer-seo-review/", "site": "aitoolalliance", "category": "ai_software"},
-    "Writesonic": {"url": "/writesonic-review/", "site": "aitoolalliance", "category": "ai_software"},
-    
-    # AI Automation
-    "Zapier": {"url": "/zapier-review/", "site": "aitoolalliance", "category": "automation"},
-    "Make": {"url": "/make-review/", "site": "aitoolalliance", "category": "automation"},
-    "n8n": {"url": "/n8n-review/", "site": "aitoolalliance", "category": "automation"},
-    "Bardeen": {"url": "/bardeen-review/", "site": "aitoolalliance", "category": "automation"},
-    
-    # AI Coding
-    "Cursor": {"url": "/cursor-review/", "site": "aitoolalliance", "category": "ai_software"},
-    "Replit": {"url": "/replit-review/", "site": "aitoolalliance", "category": "ai_software"},
-    "GitHub Copilot": {"url": "/github-copilot-review/", "site": "aitoolalliance", "category": "ai_software"},
-    
-    # SEO & Marketing
-    "Semrush": {"url": "/semrush-review/", "site": "aitoolalliance", "category": "seo"},
-    "Ahrefs": {"url": "/ahrefs-review/", "site": "aitoolalliance", "category": "seo"},
-    "Mailchimp": {"url": "/mailchimp-review/", "site": "aitoolalliance", "category": "email"},
-    
-    # Productivity
-    "Notion": {"url": "/notion-review/", "site": "aitoolalliance", "category": "productivity"},
-    "Asana": {"url": "/asana-review/", "site": "aitoolalliance", "category": "productivity"},
-    "Otter.ai": {"url": "/otter-ai-review/", "site": "aitoolalliance", "category": "productivity"},
-    "Loom": {"url": "/loom-review/", "site": "aitoolalliance", "category": "productivity"},
-    
-    # AI Business Tools (aibusinessinsider)
-    "Salesforce": {"url": "/salesforce-ai-review/", "site": "aibusinessinsider", "category": "enterprise"},
-    "HubSpot": {"url": "/hubspot-ai-review/", "site": "aibusinessinsider", "category": "enterprise"},
-    "Tableau": {"url": "/tableau-review/", "site": "aibusinessinsider", "category": "analytics"},
-    
-    # Founder Tools (aicofounderstack)
-    "Stripe": {"url": "/stripe-review/", "site": "aicofounderstack", "category": "payments"},
-    "Vercel": {"url": "/vercel-review/", "site": "aicofounderstack", "category": "hosting"},
-    "Supabase": {"url": "/supabase-review/", "site": "aicofounderstack", "category": "backend"},
+SITE_BASE_URLS = {
+    "aitoolalliance": "https://aitoolalliance.com",
+    "aicofounderstack": "https://aicofounderstack.com",
+    "aibusinessinsider": "https://aibusinessinsider.org",
 }
 
-# Link insertion rules
-MAX_LINKS_PER_POST = 8          # Don't over-stuff
-MIN_WORDS_BETWEEN_LINKS = 100   # At least 100 words between affiliate links
-FIRST_LINK_ONLY = True          # Only link the first mention of each product
-LINK_PHRASES = [
-    # Patterns where we should NOT add links (inside existing links)
-    r'<a[^>]*>.*?</a>',
-    # Patterns inside headings
-    r'<h[1-6][^>]*>.*?</h[1-6]>',
-]
+MAX_LINKS_PER_POST = 8
+MIN_WORDS_BETWEEN_LINKS = 100
 
 
 def load_products():
-    """Load product registry, creating default if needed."""
+    """Load product registry from JSON."""
     if PRODUCTS_FILE.exists():
         try:
-            return json.loads(PRODUCTS_FILE.read_text(encoding='utf-8'))
+            data = json.loads(PRODUCTS_FILE.read_text(encoding='utf-8'))
+            # Support both old dict format and new list format
+            if isinstance(data, dict) and 'products' in data:
+                return data
+            return data
         except (json.JSONDecodeError, ValueError):
             pass
-    
-    # Save defaults
-    PRODUCTS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    PRODUCTS_FILE.write_text(
-        json.dumps(DEFAULT_PRODUCTS, indent=2, ensure_ascii=False),
-        encoding='utf-8'
-    )
-    return DEFAULT_PRODUCTS
+    return {"products": [], "amazon_products": [], "affiliate_tags": AFFILIATE_TAGS}
 
 
-def save_products(products):
+def save_products(data):
     """Save product registry."""
     PRODUCTS_FILE.parent.mkdir(parents=True, exist_ok=True)
     PRODUCTS_FILE.write_text(
-        json.dumps(products, indent=2, ensure_ascii=False),
+        json.dumps(data, indent=2, ensure_ascii=False),
         encoding='utf-8'
     )
 
 
-def log_injection(post_id, site, products_injected, links_added, status="success"):
+def log_injection(post_id, site, links_added, details, status="success"):
     """Log an injection to the JSONL log."""
     INJECTION_LOG.parent.mkdir(parents=True, exist_ok=True)
     entry = {
         "timestamp": datetime.now().isoformat(),
         "post_id": post_id,
         "site": site,
-        "products_injected": products_injected,
         "links_added": links_added,
+        "details": details,
         "status": status,
+        "version": "2.0",
     }
     with open(INJECTION_LOG, 'a', encoding='utf-8') as f:
         f.write(json.dumps(entry, ensure_ascii=False) + '\n')
 
 
-def inject_links(html_content, site, products=None, max_links=MAX_LINKS_PER_POST):
+def build_affiliate_link(product_name, product_info, site, tags):
+    """
+    Build the affiliate link based on product type.
+    
+    Strategy:
+    1. If product has an internal_slug and it belongs to this site → link to our article
+    2. If product is SaaS → link to product website (rel=sponsored nofollow)
+    3. If product is Amazon → link to Amazon with affiliate tag
+    """
+    product_type = product_info.get("type", "saas")
+    product_site = product_info.get("site", site)
+    tag = tags.get(site, "aitoolalliance-20")
+    
+    # Strategy 1: Internal link (prefer our own content when available)
+    internal_slug = product_info.get("internal_slug")
+    if internal_slug and product_site == site:
+        base = SITE_BASE_URLS.get(site, f"https://{site}.com")
+        url = f"{base}{internal_slug}"
+        return url, "internal"
+    
+    # Strategy 2: SaaS product → link to product website
+    if product_type == "saas":
+        url = product_info.get("url", product_info.get("affiliate_url", ""))
+        if not url:
+            return None, None
+        # Add UTM params for tracking
+        separator = "&" if "?" in url else "?"
+        url = f"{url}{separator}utm_source={site}&utm_medium=affiliate&utm_campaign=content"
+        return url, "saas_direct"
+    
+    # Strategy 3: Amazon product → direct Amazon link with affiliate tag
+    if product_type == "amazon":
+        asin = product_info.get("asin", "")
+        if not asin:
+            return None, None
+        url = f"https://www.amazon.com/dp/{asin}/?tag={tag}&linkCode=ll1&ie=UTF8"
+        return url, "amazon"
+    
+    return None, None
+
+
+def inject_links(html_content, site, products_data=None, max_links=MAX_LINKS_PER_POST):
     """
     Scan HTML content for product mentions and inject affiliate links.
     
-    Rules:
-    - Only link the FIRST mention of each product (FIRST_LINK_ONLY)
-    - Don't link inside existing <a> tags
-    - Don't link inside headings
-    - Space links at least MIN_WORDS_BETWEEN_LINKS apart
-    - Cap at max_links total
-    - Use the site's affiliate tag
+    Uses hybrid strategy: internal links > SaaS direct > Amazon.
     """
-    if products is None:
-        products = load_products()
+    if products_data is None:
+        products_data = load_products()
     
-    tag = AFFILIATE_TAGS.get(site, "aitoolalliance-20")
-    base_url = f"https://{site}.com" if site != "aibusinessinsider" else "https://aibusinessinsider.org"
+    tags = products_data.get("affiliate_tags", AFFILIATE_TAGS)
+    saas_products = products_data.get("products", [])
+    amazon_products = products_data.get("amazon_products", [])
+    
+    # Combine all matchable products
+    all_products = []
+    for p in saas_products:
+        all_products.append({**p, "_type": "saas"})
+    for p in amazon_products:
+        all_products.append({**p, "_type": "amazon"})
+    
+    # Sort by name length (longest first) to avoid partial matches
+    all_products.sort(key=lambda x: max(len(m) for m in x.get("match", [x["name"]])), reverse=True)
+    
     links_added = 0
-    products_injected = []
-    last_link_position = 0
-    
-    # Sort products by name length (longest first) to avoid partial matches
-    sorted_products = sorted(products.items(), key=lambda x: len(x[0]), reverse=True)
-    
-    # Track positions where we've added links to enforce spacing
+    details = []
     link_positions = []
     
-    for product_name, product_info in sorted_products:
+    for product in all_products:
         if links_added >= max_links:
             break
         
-        # Skip if product doesn't belong to this site
-        if product_info.get("site") != site:
-            # Still allow cross-site links, but use the product's site URL
-            pass
+        matches = product.get("match", [product["name"]])
+        # Build regex pattern for all match terms
+        pattern_str = r'\b(' + '|'.join(re.escape(m) for m in matches) + r')\b'
+        pattern = re.compile(pattern_str, re.IGNORECASE)
         
-        # Build the affiliate URL
-        product_site = product_info.get("site", site)
-        product_base = f"https://{product_site}.com" if product_site != "aibusinessinsider" else "https://aibusinessinsider.org"
-        product_tag = AFFILIATE_TAGS.get(product_site, "aitoolalliance-20")
-        affiliate_url = f"{product_base}{product_info['url']}?tag={product_tag}"
+        # Build the affiliate link
+        url, link_type = build_affiliate_link(product["name"], product, site, tags)
+        if not url:
+            continue
         
-        # Search for the product name in text (not inside tags)
-        # Pattern: find product name that's NOT inside an <a> tag or heading
-        pattern = re.compile(
-            r'(?<!<a[^>]*>[^<]*)'  # Not inside an <a> tag (approximation)
-            r'(?<!<h[1-6][^>]*>[^<]*)'  # Not inside a heading (approximation)
-            r'\b' + re.escape(product_name) + r'\b',
-            re.IGNORECASE
-        )
-        
-        # Find the first valid position
         for match in pattern.finditer(html_content):
             pos = match.start()
             
             # Check if we're inside an existing link or heading
-            # Look backwards for unclosed tags
             before = html_content[max(0, pos - 500):pos]
-            if re.search(r'<a[^>]*>[^<]*$', before, re.IGNORECASE):
-                continue  # Inside an <a> tag
-            if re.search(r'<h[1-6][^>]*>[^<]*$', before, re.IGNORECASE):
-                continue  # Inside a heading
             
-            # Check minimum spacing from last link
-            text_between = html_content[last_link_position:pos]
-            word_count = len(text_between.split())
-            if link_positions and word_count < MIN_WORDS_BETWEEN_LINKS:
+            # Inside an <a> tag?
+            preceding_a_close = before.rfind('</a>')
+            preceding_a_open = before.rfind('<a ')
+            if preceding_a_open > preceding_a_close:
                 continue
+            
+            # Inside a heading?
+            if re.search(r'<h[1-6][^>]*>[^<]*$', before, re.IGNORECASE):
+                continue
+            
+            # Minimum spacing from last link
+            if link_positions:
+                text_between = html_content[link_positions[-1]:pos]
+                word_count = len(text_between.split())
+                if word_count < MIN_WORDS_BETWEEN_LINKS:
+                    continue
+            
+            # Determine rel attribute based on link type
+            if link_type == "internal":
+                rel = 'rel="noopener"'
+            elif link_type == "saas_direct":
+                rel = 'rel="sponsored noopener"'
+            elif link_type == "amazon":
+                rel = 'rel="noopener nofollow"'
+            else:
+                rel = 'rel="noopener nofollow"'
             
             # Inject the link
             original = match.group()
-            replacement = f'<a href="{affiliate_url}" target="_blank" rel="noopener noreferrer nofollow">{original}</a>'
+            replacement = f'<a href="{url}" {rel} target="_blank">{original}</a>'
             html_content = html_content[:pos] + replacement + html_content[match.end():]
             
             links_added += 1
-            products_injected.append(product_name)
-            link_positions.append(pos)
-            last_link_position = pos + len(replacement)
+            details.append({
+                "product": product["name"],
+                "type": link_type,
+                "url": url,
+                "position": pos,
+            })
+            link_positions.append(pos + len(replacement))
             
-            break  # FIRST_LINK_ONLY
+            break  # First mention only
     
-    return html_content, products_injected, links_added
+    return html_content, details, links_added
 
 
 def cmd_scan(args):
@@ -244,7 +249,9 @@ def cmd_scan(args):
             return
         
         posts = resp.json()
-        products = load_products()
+        products_data = load_products()
+        saas_products = products_data.get("products", [])
+        amazon_products = products_data.get("amazon_products", [])
         
         print(f"\nFound {len(posts)} recent posts.\n")
         print(f"{'Post ID':<10} {'Title':<50} {'Products Found':<30}")
@@ -255,22 +262,40 @@ def cmd_scan(args):
             title = post['title']['rendered'][:48]
             content = post['content']['rendered']
             
-            # Find product mentions
-            found = []
-            for product_name in products:
-                if re.search(r'\b' + re.escape(product_name) + r'\b', content, re.IGNORECASE):
-                    found.append(product_name)
+            # Find all product mentions
+            found_saas = []
+            found_amazon = []
+            
+            for p in saas_products:
+                for m in p.get("match", [p["name"]]):
+                    if re.search(r'\b' + re.escape(m) + r'\b', content, re.IGNORECASE):
+                        found_saas.append(p["name"])
+                        break
+            
+            for p in amazon_products:
+                for m in p.get("match", [p["name"]]):
+                    if re.search(r'\b' + re.escape(m) + r'\b', content, re.IGNORECASE):
+                        found_amazon.append(p["name"])
+                        break
             
             # Check which are already linked
+            all_found = found_saas + found_amazon
             already_linked = []
-            for product_name in found:
-                if f'>{product_name}</a>' in content or f'>{product_name.lower()}</a>' in content:
-                    already_linked.append(product_name)
+            for name in all_found:
+                if f'>{name}</a>' in content or f'>{name.lower()}</a>' in content:
+                    already_linked.append(name)
             
-            unlinked = [p for p in found if p not in already_linked]
+            unlinked = [p for p in all_found if p not in already_linked]
             status = f"{len(unlinked)} unlinked" if unlinked else "all linked"
-            print(f"{post_id:<10} {title:<50} {status:<30}")
+            detail = ""
+            if found_saas:
+                detail += f"{len(found_saas)}S "
+            if found_amazon:
+                detail += f"{len(found_amazon)}A "
+            print(f"{post_id:<10} {title:<50} {status:<30} {detail}")
         
+        print(f"\nS = SaaS products, A = Amazon products")
+    
     except Exception as e:
         print(f"ERROR: {e}")
 
@@ -311,23 +336,21 @@ def cmd_inject(args):
         print(f"Title: {title}")
         print(f"Content length: {len(content)} chars")
         
-        # Inject links
-        new_content, products_injected, links_added = inject_links(content, site)
+        new_content, details, links_added = inject_links(content, site)
         
         if links_added == 0:
             print("No affiliate links injected (no matching products found or all already linked).")
             return
         
         print(f"\nInjected {links_added} affiliate links:")
-        for product in products_injected:
-            print(f"  - {product}")
+        for d in details:
+            print(f"  - {d['product']} ({d['type']}) -> {d['url'][:80]}...")
         
         if args.dry_run:
             print("\n[DRY RUN] Not updating the post.")
-            log_injection(post_id, site, products_injected, links_added, status="dry_run")
+            log_injection(post_id, site, links_added, details, status="dry_run")
             return
         
-        # Update the post
         print(f"\nUpdating post {post_id}...")
         update_resp = requests.post(
             f"{base_url}/wp-json/wp/v2/posts/{post_id}",
@@ -338,10 +361,10 @@ def cmd_inject(args):
         
         if update_resp.status_code in (200, 201):
             print(f"Post {post_id} updated successfully.")
-            log_injection(post_id, site, products_injected, links_added, status="success")
+            log_injection(post_id, site, links_added, details, status="success")
         else:
             print(f"ERROR updating post: {update_resp.status_code} {update_resp.text[:200]}")
-            log_injection(post_id, site, products_injected, links_added, status="error")
+            log_injection(post_id, site, links_added, details, status="error")
     
     except Exception as e:
         print(f"ERROR: {e}")
@@ -377,19 +400,26 @@ def cmd_inject_all(args):
         posts = resp.json()
         total_links = 0
         total_posts = 0
+        type_counts = {"internal": 0, "saas_direct": 0, "amazon": 0}
         
         for post in posts:
             post_id = post['id']
             content = post['content']['rendered']
             
-            new_content, products_injected, links_added = inject_links(content, site)
+            new_content, details, links_added = inject_links(content, site)
             
             if links_added == 0:
                 continue
             
+            # Count link types
+            for d in details:
+                type_counts[d['type']] = type_counts.get(d['type'], 0) + 1
+            
             if args.dry_run:
-                print(f"  Post {post_id}: {links_added} links (dry run) - {', '.join(products_injected)}")
-                log_injection(post_id, site, products_injected, links_added, status="dry_run")
+                print(f"  Post {post_id}: {links_added} links (dry run)")
+                for d in details:
+                    print(f"    {d['product']} ({d['type']}) -> {d['url'][:70]}...")
+                log_injection(post_id, site, links_added, details, status="dry_run")
             else:
                 update_resp = requests.post(
                     f"{base_url}/wp-json/wp/v2/posts/{post_id}",
@@ -398,16 +428,19 @@ def cmd_inject_all(args):
                     timeout=30
                 )
                 if update_resp.status_code in (200, 201):
-                    print(f"  Post {post_id}: {links_added} links injected - {', '.join(products_injected)}")
-                    log_injection(post_id, site, products_injected, links_added, status="success")
+                    print(f"  Post {post_id}: {links_added} links injected")
+                    for d in details:
+                        print(f"    {d['product']} ({d['type']})")
+                    log_injection(post_id, site, links_added, details, status="success")
                 else:
                     print(f"  Post {post_id}: ERROR - {update_resp.status_code}")
-                    log_injection(post_id, site, products_injected, links_added, status="error")
+                    log_injection(post_id, site, links_added, details, status="error")
             
             total_links += links_added
             total_posts += 1
         
-        print(f"\nTotal: {total_links} links injected across {total_posts} posts.")
+        print(f"\nTotal: {total_links} links across {total_posts} posts")
+        print(f"  Internal: {type_counts.get('internal', 0)}, SaaS direct: {type_counts.get('saas_direct', 0)}, Amazon: {type_counts.get('amazon', 0)}")
     
     except Exception as e:
         print(f"ERROR: {e}")
@@ -431,61 +464,67 @@ def cmd_stats(args):
         print("No injection entries found.")
         return
     
-    total_links = sum(e.get('links_added', 0) for e in entries)
-    total_posts = len(set(e.get('post_id') for e in entries if e.get('status') == 'success'))
+    # Filter to v2 entries only (after the fix)
+    v2_entries = [e for e in entries if e.get('version') == '2.0']
+    v1_entries = [e for e in entries if e.get('version') != '2.0']
     
-    # Products injected frequency
-    product_counts = {}
-    for entry in entries:
-        for product in entry.get('products_injected', []):
-            product_counts[product] = product_counts.get(product, 0) + 1
+    if v2_entries:
+        total_links = sum(e.get('links_added', 0) for e in v2_entries)
+        total_posts = len(set(e.get('post_id') for e in v2_entries if e.get('status') == 'success'))
+        
+        # Count by link type
+        type_counts = {"internal": 0, "saas_direct": 0, "amazon": 0}
+        product_counts = {}
+        for entry in v2_entries:
+            for d in entry.get('details', []):
+                t = d.get('type', 'unknown')
+                type_counts[t] = type_counts.get(t, 0) + 1
+                product_counts[d['product']] = product_counts.get(d['product'], 0) + 1
+        
+        print("Affiliate Injection Stats (v2 - Hybrid Strategy)")
+        print("=" * 50)
+        print(f"Total v2 injections: {len(v2_entries)}")
+        print(f"Total posts modified: {total_posts}")
+        print(f"Total links added: {total_links}")
+        print(f"\nBy link type:")
+        for t, c in type_counts.items():
+            print(f"  {t}: {c}")
+        print(f"\nTop products linked:")
+        for product, count in sorted(product_counts.items(), key=lambda x: -x[1])[:10]:
+            print(f"  {product}: {count}x")
     
-    print(f"Affiliate Injection Stats")
-    print(f"{'='*40}")
-    print(f"Total injections: {len(entries)}")
-    print(f"Total posts modified: {total_posts}")
-    print(f"Total links added: {total_links}")
-    print(f"\nTop products linked:")
-    for product, count in sorted(product_counts.items(), key=lambda x: -x[1])[:10]:
-        print(f"  {product}: {count}x")
+    if v1_entries:
+        print(f"\n(Legacy v1 entries: {len(v1_entries)} — these were reverted)")
 
 
 def cmd_products(args):
     """Manage product registry."""
-    products = load_products()
+    data = load_products()
     
     if args.action == "list":
-        print(f"Product Registry ({len(products)} products)")
-        print(f"{'='*60}")
-        for name, info in sorted(products.items()):
-            site = info.get('site', 'unknown')
-            category = info.get('category', 'unknown')
-            print(f"  {name:<25} -> {site}/{category} {info['url']}")
+        saas = data.get("products", [])
+        amazon = data.get("amazon_products", [])
+        
+        print(f"SaaS Products ({len(saas)}):")
+        print("=" * 70)
+        for p in saas:
+            slug = p.get('internal_slug', 'none')
+            print(f"  {p['name']:<25} {p.get('type','saas'):<8} {p['site']:<20} slug: {slug}")
+        
+        print(f"\nAmazon Products ({len(amazon)}):")
+        print("=" * 70)
+        for p in amazon:
+            print(f"  {p['name']:<25} ASIN: {p.get('asin','N/A'):<15} {p['category']}")
     
     elif args.action == "add":
-        if len(args.params) < 3:
-            print("Usage: products add <name> <url> <site> [category]")
-            return
-        
-        name, url, site = args.params[0], args.params[1], args.params[2]
-        category = args.params[3] if len(args.params) > 3 else "general"
-        
-        products[name] = {"url": url, "site": site, "category": category}
-        save_products(products)
-        print(f"Added: {name} -> {site}{url} [{category}]")
+        print("Edit scripts/affiliate_products.json directly to add products.")
     
     elif args.action == "remove":
-        name = args.params[0]
-        if name in products:
-            del products[name]
-            save_products(products)
-            print(f"Removed: {name}")
-        else:
-            print(f"Product not found: {name}")
+        print("Edit scripts/affiliate_products.json directly to remove products.")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Affiliate Link Injector for ContentNova")
+    parser = argparse.ArgumentParser(description="Affiliate Link Injector v2 (Hybrid Strategy)")
     subparsers = parser.add_subparsers(dest="command", help="Command")
     
     # Scan
@@ -509,7 +548,6 @@ def main():
     # Products
     products_parser = subparsers.add_parser("products", help="Manage product registry")
     products_parser.add_argument("action", choices=["add", "remove", "list"])
-    products_parser.add_argument("params", nargs="*")
     
     args = parser.parse_args()
     
