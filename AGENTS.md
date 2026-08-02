@@ -332,6 +332,7 @@ Context window is finite. Every token you read is a token you can't use later. F
 - After any tool output >50 lines, write a 3-line summary to `memory/working-buffer.md` and stop referencing the raw output.
 - After completing a multi-step task, write the result to the daily memory file. Future-you (or a compacted-you) doesn't need the full trace.
 - If context compaction fires, check `memory/working-buffer.md` first — it should have what you lost.
+- **Log all script outputs and cron changes to `memory/error-log.md`** — not just successes, but errors, config changes, and decisions. If it ran, it gets logged. No "I ran it but lost the output."
 
 ### 4. Compact Proactively
 - Before compaction forces it on you: if you notice you're holding >10k tokens of tool output, summarize it to a file and reference the file instead.
