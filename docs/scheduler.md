@@ -21,7 +21,7 @@
 09:30 | ██   EveOnion-Article (Tue/Fri only)       (kimi-k2.6, 480s)
 10:00 | ██   EveOnion-RedditTweet                  (minimax-m3, 480s)
 10:00 | ░░   EveOnion-PersonaScan (every 3 days)   (deepseek-v4-flash, 300s)
-10:15 | ░░   Amazon-Affiliate-Publish (Tue/Fri)      (deepseek-v4-flash, 180s)
+10:15 | ██   Amazon-Affiliate-Publish (Tue/Fri)      (minimax-m3, 480s)
 11:00 | ░░   Amazon-Affiliate-Injector              (deepseek-v4-flash, 180s)
 14:00 | ░░   Yagas-Intel-Collect                   (minimax-m3, 120s)
 17:00 | ░░   Yagas-Propaganda-Post                 (minimax-m3, 180s)
@@ -84,8 +84,8 @@
 ### Amazon Affiliate (3 crons)
 | Name | ID | Schedule | Model | Timeout | Notes |
 |------|-----|----------|-------|---------|-------|
-| Amazon-Affiliate-Publish | 5aec02c7 | 10:15am Tue/Fri | deepseek-v4-flash | 180s | Publishes next affiliate article, post log enabled |
-| Amazon-Affiliate-Injector | 895f97ba | 11am daily | deepseek-v4-flash | 180s | Injects links into recent posts, post log enabled |
+| Amazon-Affiliate-Publish | 5aec02c7 | 10:15am Tue/Fri | minimax-m3 | 480s | Dynamic queue: generates topics, researches, writes, publishes |
+| Amazon-Affiliate-Injector | 895f97ba | 11am daily | deepseek-v4-flash | 180s | Injects links + replenishes topic queue if low |
 | Amazon-Tracker-Weekly | 53f0d707 | Mon 12pm | deepseek-v4-flash | 120s | Weekly dashboard check, post log enabled |
 
 ### EveOnion (4 crons)
@@ -189,6 +189,14 @@ Checklist:
 | 1524864332478021802 | #finance |
 
 ## Changelog
+
+### 2026-08-02 — Amazon Affiliate Dynamic Queue
+- **Added:** amazon_topic_generator.py v2 - topic generation with site-specific templates, 6 categories, dedup
+- **Added:** amazon_publish_from_queue.py - queue-based publisher (replaces hardcoded list)
+- **Queue:** 15 topics seeded across 3 sites, auto-replenishes when low
+- **Upgraded:** Amazon-Affiliate-Publish cron - now generates topics, researches products via web_search, writes HTML articles, publishes from queue. Model deepseek-v4-flash -> minimax-m3, timeout 180s -> 480s
+- **Upgraded:** Amazon-Affiliate-Injector cron - now also checks queue and replenishes if <5 topics
+- **Old scripts:** amazon_content_pipeline.py still exists for manual use, queue system replaces it for automated publishing
 
 ### 2026-08-02 — Post Log, Missing Crons, Ops Health Check
 - **Added:** Unified post log system (scripts/post_log.py + memory/post-log/posts.jsonl)
