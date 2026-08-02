@@ -59,7 +59,8 @@ def recent_entries(project: str = None, days: int = 7, entry_type: str = None):
         for line in f:
             try:
                 entry = json.loads(line.strip())
-            except json.JSONDecodeError:
+            except json.JSONDecodeError as e:
+                logger.warning("Skipping malformed log line: %s", line[:100])
                 continue
             ts = datetime.fromisoformat(entry.get("timestamp", ""))
             if ts < cutoff:
@@ -95,7 +96,8 @@ def stats():
         for line in f:
             try:
                 entry = json.loads(line.strip())
-            except json.JSONDecodeError:
+            except json.JSONDecodeError as e:
+                logger.warning("Skipping malformed log line in stats: %s", line[:100])
                 continue
             proj = entry.get("project", "unknown")
             st = entry.get("status", "unknown")
@@ -120,7 +122,8 @@ def dedup(days: int = 30):
         for line in f:
             try:
                 entry = json.loads(line.strip())
-            except json.JSONDecodeError:
+            except json.JSONDecodeError as e:
+                logger.warning("Skipping malformed log line in dedup: %s", line[:100])
                 continue
             ts = datetime.fromisoformat(entry.get("timestamp", ""))
             if ts < cutoff:

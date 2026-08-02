@@ -664,8 +664,8 @@ def get_td_stats(session, secrets):
     if ratio_match:
         try:
             ratio_val = float(ratio_match.group(1).strip())
-        except:
-            pass
+        except Exception as e:
+            logger.warning("Failed to parse ratio: %s", e)
 
     return {
         "ratio": ratio_val,
@@ -846,8 +846,8 @@ def cmd_prune(min_ratio=2.0, min_seed_hours=72):
             try:
                 added_time = datetime.fromisoformat(added_times[title_key])
                 seed_hours = (datetime.now() - added_time).total_seconds() / 3600
-            except:
-                pass
+            except Exception as e:
+                logger.warning("Failed to parse added_time for %s: %s", title_key, e)
 
         # Only prune if we know seed time and it exceeds minimum
         # If we don't have the timestamp, err on the side of keeping it

@@ -139,8 +139,8 @@ def load_queue():
             data = json.loads(QUEUE_FILE.read_text(encoding='utf-8'))
             if isinstance(data, dict) and "topics" in data:
                 return data
-        except (json.JSONDecodeError, ValueError):
-            pass
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"WARN: Corrupted queue file, using defaults: {e}", file=sys.stderr)
     return {"version": 2, "created": datetime.now().isoformat(), "topics": [], "published": [], "failed": []}
 
 
@@ -152,8 +152,8 @@ def load_state():
     if STATE_FILE.exists():
         try:
             return json.loads(STATE_FILE.read_text(encoding='utf-8'))
-        except (json.JSONDecodeError, ValueError):
-            pass
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"WARN: Corrupted state file, using defaults: {e}", file=sys.stderr)
     return {"published": {}, "queue": [], "last_run": None}
 
 

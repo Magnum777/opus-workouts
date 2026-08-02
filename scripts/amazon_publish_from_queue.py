@@ -33,7 +33,8 @@ def load_queue():
         return {"version": 1, "topics": [], "published": [], "failed": []}
     try:
         return json.loads(QUEUE_FILE.read_text(encoding='utf-8'))
-    except (json.JSONDecodeError, ValueError):
+    except (json.JSONDecodeError, ValueError) as e:
+        print(f"WARN: Corrupted queue file, using defaults: {e}", file=sys.stderr)
         return {"version": 1, "topics": [], "published": [], "failed": []}
 
 

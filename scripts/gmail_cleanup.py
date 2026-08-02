@@ -33,7 +33,8 @@ def get_password(email_addr):
         with open(LOCAL_CONFIG, "r", encoding="utf-8") as f:
             config = json.load(f)
         return config.get(email_addr, "").strip().replace(" ", "")
-    except Exception:
+    except Exception as e:
+        print(f"WARN: Config load failed: {e}", file=sys.stderr)
         return ""
 
 

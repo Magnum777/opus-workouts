@@ -32,8 +32,8 @@ def _load_nas_password():
                 line = line.strip()
                 if line.startswith("password="):
                     return line.split("=", 1)[1]
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"WARN: Failed to load NAS password from .secrets: {e}", file=sys.stderr)
     return os.environ.get("NAS_PASSWORD", "")
 
 NAS_PASS = _load_nas_password()

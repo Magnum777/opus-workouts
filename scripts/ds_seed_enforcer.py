@@ -23,6 +23,13 @@ def load_secrets():
     return secrets
 
 def main():
+    try:
+        _main()
+    except Exception as e:
+        print(f"FATAL: ds_seed_enforcer crashed: {e}", file=sys.stderr)
+        sys.exit(1)
+
+def _main():
     secrets = load_secrets()
     nas = secrets["nas"]
     
