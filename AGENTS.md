@@ -312,3 +312,40 @@ Surface ideas before he asks. Create leverage without being asked.
 
 **Resourcefulness:**
 Try 10 approaches before asking for help. Check memory, search docs, try alternate tools, fall back to simpler methods.
+
+## Context Compaction Discipline
+
+Context window is finite. Every token you read is a token you can't use later. Follow these rules:
+
+### 1. Read Less, Search More
+- **Never read an entire file when you only need specific lines.** Use `Select-String` / `grep` / `rg` to pull just what you need.
+- Use `offset` + `limit` on file reads. Grab 20 lines, not 500.
+- If you read a file >50 lines, ask yourself: "Could I have gotten this with a search?" The answer is almost always yes.
+- Exception: reading config files, skill files, or docs you need to understand holistically.
+
+### 2. Sub-Agent Delegation
+- **Reading 3+ files for an investigation?** Spawn a sub-agent. Only the conclusion comes back (~200 tokens vs ~2000+ in context).
+- Sub-agents have their own context. Their output is your answer, not their whole investigation.
+- Rule of thumb: if the task is "figure out X" and requires reading multiple files, delegate it.
+
+### 3. Summarize After Big Operations
+- After any tool output >50 lines, write a 3-line summary to `memory/working-buffer.md` and stop referencing the raw output.
+- After completing a multi-step task, write the result to the daily memory file. Future-you (or a compacted-you) doesn't need the full trace.
+- If context compaction fires, check `memory/working-buffer.md` first — it should have what you lost.
+
+### 4. Compact Proactively
+- Before compaction forces it on you: if you notice you're holding >10k tokens of tool output, summarize it to a file and reference the file instead.
+- Daily memory files should be append-only during the day, then compacted into MEMORY.md during hygiene runs.
+- Keep AGENTS.md, TOOLS.md, SOUL.md lean — they load every session.
+
+### 5. One-Shot Over Multi-Turn
+- When asking a question about a file, get the answer in one read/search, not multiple.
+- Batch file reads when possible (read multiple files in one tool call).
+- Prefer `exec` with `Select-String` over `read` when you need specific patterns from multiple files.
+
+### 6. Search Before Answering
+- **Before answering any question about prior work, decisions, preferences, or people** — run `memory_search` first.
+- It's a 200ms check that catches things you've forgotten between sessions.
+- Don't rely on startup MEMORY.md alone — it's a summary, not the full picture.
+- **After completing significant work** — write a short entry to the daily memory file. Not "I'll remember this" — write it down.
+- During heartbeats, search memory for related context before deciding what to surface.
