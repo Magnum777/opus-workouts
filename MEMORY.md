@@ -91,6 +91,13 @@
 - Spam sweep must report EVERY trashed email to #nova
 - No hardcoded passwords in any script — all read from `.secrets` or env vars
 
+## Communication Protocol (Opus-approved 2026-08-02)
+1. **Check in at 5 minutes.** If I'm mid-task and it's been 5+ min, send a progress ping. No going dark for 30 minutes. Even just "still working, halfway done."
+2. **Keep finishes short.** One-line result, not a bullet-point resume. Opus is busy. The one thing that matters, not everything I did.
+3. **Surface forks, don't bury them.** When there's a decision point (rebuild vs patch, approach A vs B), say so and ask briefly. Don't just pick one and report back.
+4. **Heartbeat check-ins surface decisions and anomalies.** Not weather or calendar data Opus can get anywhere. Decisions that need input, things that are broken or off, stuff worth knowing.
+5. **Push back on low-value work.** Say "skip it" before Opus has to. Surface when something isn't worth the time, not just execute and report.
+
 ## Channels
 - Discord: bot Nova, guild Layered Media LLC
 - Wired: #nova, #tradebot, #wordpress, #eveonion, #kybernauts, #finance
@@ -107,6 +114,12 @@
 - **Infra:** Content pipeline health check added to ops-assessment: post log gap detection, blocked/failed flags, title dedup. (2026-08-02)
 - **Security:** Repo privatized, git history rewritten with git-filter-repo, all hardcoded secrets scrubbed from tracked files. (2026-07-10)
 - **Infra:** Code standards audit completed — td_manager.py SyntaxError fixed (Python 3.14 strict mode), ds_seed_enforcer.py 15s timeout added, grep_context.py created for efficient searching. Commit `0d74db2`. (2026-08-02)
+- **Infra:** Error handling audit completed — 10 scripts fixed (silent except:pass replaced with logged warnings). P0: backup-finance-to-nas, gmail_cleanup, amazon_affiliate_injector. P1: gmail_spam_sweep, discover_spam_patterns, td_manager. P2: ds_seed_enforcer, post_log, amazon_topic_generator. Commit `a01a2b4`. (2026-08-02)
+- **Infra:** Unified credential helper created (scripts/creds.py) — consolidates vault.db, .secrets, and env vars into single interface. get_cred(), get_wp_site(), get_wp_auth_header(), has_cred(). (2026-08-02)
+- **Infra:** Content analytics dashboard (scripts/content_analytics.py) — pulls WordPress posts across 3 sites, cross-references with post log, detects content gaps. (2026-08-02)
+- **Infra:** Cron health monitor (scripts/cron_health.py) — checks cron config drift against expected models/timeouts, staleness, failures. Integrated into ops-assessment. (2026-08-02)
+- **Infra:** Amazon affiliate queue system — topic generator, queue-based publisher, auto-replenish. Amazon-Affiliate-Publish cron upgraded to minimax-m3 with web_search. (2026-08-02)
+- **Decision:** Communication Protocol added to MEMORY.md and AGENTS.md — check in at 5 min, keep finishes short, surface forks, heartbeat surfaces decisions, push back on low-value work. (2026-08-02)
 - **Lesson:** OpenAI billing hard limit reached — gpt-image-2 image generation fails. Kybernauts-Propaganda fell back to existing image. Need alternative provider (gemini/minimax) or top-up. (2026-07-26)
 - **Lesson:** aibusinessinsider 403 was a false alarm — bare curl gets 403 from Cloudflare, but proper browser UA gets 200. Cron was working fine all along. (2026-08-02)
 - **Lesson:** Unsplash API 401 resolved — no key set, script falls back to curated CDN image pool (all return 200). Featured images working via fallback path. (2026-08-02)
@@ -132,4 +145,4 @@
 - **Infra:** NAS audit freed ~1,173 GB. Workspace backup 5.97 GB / 82,823 files. All 21 crons updated to minimax-m3:cloud or deepseek-v4-flash:cloud. (2026-07-26)
 
 ## Last Updated
-2026-08-02 — weekly memory hygiene: added learnings from 2026-07-27 through 2026-08-02. Archived June dailies.
+2026-08-02 — infrastructure upgrades: error handling audit, credential helper, analytics dashboard, cron health monitor, Amazon queue system, communication protocol.
