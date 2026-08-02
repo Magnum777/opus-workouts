@@ -33,14 +33,17 @@
 - **New models available:** kimi-k3, glm-5.2, kimi-k2.7-code, qwen3.5:397b, nemotron-3-ultra
 - **Vision note:** kimi-k3 has vision. kimi-k2.6 vision was broken (returned no text). Anthropic credits depleted, OpenAI auth expired.
 
-## Active Crons (22 enabled, 6 disabled)
+## Active Crons (29 enabled, 6 disabled)
 
-**Content Empire (3):** ContentNova x3 (2am/3am/4am daily, minimax-m3)
+**Content Empire (6):** ContentNova x3 (2am/3am/4am daily, minimax-m3) + PromptPack x3 (5am daily, kimi-k2.6)
 **EveOnion (4):** NewsScan (8:15am, minimax-m3), Article (Tue/Fri 9:30am, kimi-k2.6), RedditTweet (10am, minimax-m3), PersonaScan (every 3 days, deepseek-v4-flash)
 **Kybernauts (1):** Propaganda (Sun 6:15pm, minimax-m3)
 **Yagas (2):** Intel-Collect (2pm daily, minimax-m3), Propaganda-Post (5pm daily, minimax-m3)
-**Amazon Affiliate (3):** Publish (Tue/Fri 10:15am), Injector (11am daily), Tracker-Weekly (Mon noon)
-**Nova Ops (13):** spam-sweep (every 2h), spam-pattern-discovery (6:45am), daily-brief (7am, kimi-k2.6), gmail-cleanup (7:15am), Iris-digest (7:30am), ops-assessment (9am), finance-NAS-backup (3:38am, **deepseek-v4-flash** — fixed from minimax-m3), night-school (8pm), night-school-NAS-sync (8:15pm), workspace-NAS-backup (11pm), memory-hygiene (Sun 10pm), skill-update (Mon 6am), skill-discovery (Fri 6pm)
+**Amazon Affiliate (3):** Publish (Tue/Fri 10:15am, minimax-m3), Injector (11am daily, deepseek-v4-flash), Tracker-Weekly (Mon noon, deepseek-v4-flash)
+**Nova Ops (13):** spam-sweep (every 4h), spam-pattern-discovery (6:45am), daily-brief (7am, kimi-k2.6), gmail-cleanup (7:15am), Iris-digest (7:30am), ops-assessment (9am), finance-NAS-backup (3:38am), night-school (8pm), night-school-NAS-sync (8:15pm), workspace-NAS-backup (11pm), memory-hygiene (Sun 10pm), skill-update (Mon 6am), skill-discovery (Fri 6pm)
+**Daily Memory (1):** memory-sweep (6:45am, deepseek-v4-flash)
+
+**All crons have failure alerts** (after 2 errors, 1h cooldown). 5 duplicate crons removed Aug 2.
 
 **Disabled (6 TradeBot — stale, broken paths):** GasCheck, Research, DailyResearch, Analytics, Executor, WeeklyReview
 
@@ -117,7 +120,8 @@
 - **Infra:** Error handling audit completed — 10 scripts fixed (silent except:pass replaced with logged warnings). P0: backup-finance-to-nas, gmail_cleanup, amazon_affiliate_injector. P1: gmail_spam_sweep, discover_spam_patterns, td_manager. P2: ds_seed_enforcer, post_log, amazon_topic_generator. Commit `a01a2b4`. (2026-08-02)
 - **Infra:** Unified credential helper created (scripts/creds.py) — consolidates vault.db, .secrets, and env vars into single interface. get_cred(), get_wp_site(), get_wp_auth_header(), has_cred(). (2026-08-02)
 - **Infra:** Content analytics dashboard (scripts/content_analytics.py) — pulls WordPress posts across 3 sites, cross-references with post log, detects content gaps. (2026-08-02)
-- **Infra:** Cron health monitor (scripts/cron_health.py) — checks cron config drift against expected models/timeouts, staleness, failures. Integrated into ops-assessment. (2026-08-02)
+- **Infra:** Cron audit completed — 5 duplicate crons deleted, Finance-NAS-Backup timeout fixed (60s->300s) and channel fixed (#finance->#nova), failure alerts added to spam-sweep, spam-pattern-discovery, gmail-cleanup, NightSchool-8pm. All 29 crons now have failure alerts. (2026-08-02)
+- **Decision:** ContentNova crons use minimax-m3 (not deepseek-v4-flash) — intentional for creative writing quality. Updated expected config. (2026-08-02)
 - **Infra:** Amazon affiliate queue system — topic generator, queue-based publisher, auto-replenish. Amazon-Affiliate-Publish cron upgraded to minimax-m3 with web_search. (2026-08-02)
 - **Decision:** Communication Protocol added to MEMORY.md and AGENTS.md — check in at 5 min, keep finishes short, surface forks, heartbeat surfaces decisions, push back on low-value work. (2026-08-02)
 - **Lesson:** OpenAI billing hard limit reached — gpt-image-2 image generation fails. Kybernauts-Propaganda fell back to existing image. Need alternative provider (gemini/minimax) or top-up. (2026-07-26)
