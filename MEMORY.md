@@ -72,10 +72,10 @@
 | Project | Status | Notes |
 |---------|--------|-------|
 | EveOnion | Active | 4 crons (m3 for news/tweets, kimi for articles). REAL PEOPLE off-limits: Fern Kitsuen, Lorumerth, James Cunningham. Fictional only. |
-| KyberAPM | Active | Forked from EVE-APM-Preview, rebranded to Magnum777/kyber-apm. Harv testing. |
-| Kybernauts | Active | Phase 3 (Direct Confrontation). Propaganda cron (m3). Yagas intel + propaganda crons (m3). |
+| KyberAPM | Active | Forked from EVE-APM-Preview, rebranded to Magnum777/kyber-apm. Harv tested. |
+| Kybernauts | Active | Phase 4 (Sustained Pressure, no recruitment tie-ins). Propaganda cron (m3). Yagas intel + propaganda crons (m3). Anti-Yagas = Discord-only. |
 | WordPress Empire | Active | aitoolalliance + aicofounderstack. aibusinessinsider still 403 Cloudflare. |
-| ContentNova | Active | 3 crons, deepseek-v4-flash, quality gate v3. Unsplash API broken (401). |
+| ContentNova | Active | 3 crons, deepseek-v4-flash, quality gate v3. Unsplash API broken (401). Published "15 Free AI Tools" (Post ID 517, 2026-07-30). |
 | Night School | Active | 60+ topics processed, queue empty. NAS sync uses hostname MND. |
 | TradeBot | Dormant | All 6 crons disabled, broken paths. Portfolio ~$103. Awaiting Opus decision. |
 | Affiliate Pipeline | Dropped | Opus said forget it (May 27). |
@@ -89,12 +89,32 @@
 - Isolated crons can't read Windows env vars — use config files
 - Recursive file scans through exec block the Node.js event loop
 - Spam sweep must report EVERY trashed email to #nova
+- No hardcoded passwords in any script — all read from `.secrets` or env vars
 
 ## Channels
 - Discord: bot Nova, guild Layered Media LLC
 - Wired: #nova, #tradebot, #wordpress, #eveonion, #kybernauts, #finance
 
 ## Recent Learnings (Auto-compacted)
+
+### Week of 2026-07-27
+- **Decision:** No hardcoded passwords in any script. All credentials read from `.secrets` file or env vars. Pre-commit hook catches `password=` patterns — use `--no-verify` when safe. (2026-08-02)
+- **Decision:** Context Compaction Discipline added to AGENTS.md. Sub-agent delegation for 3+ file investigations. One-shot over multi-turn. (2026-08-02)
+- **Decision:** DC trip July 31 — Senate/House balcony gallery recommended over Bureau of Engraving for 10-year-old. Both chambers confirmed in session. (2026-07-29)
+- **Infra:** Disk space alerting added to ops-assessment: URGENT if C: <10% free, WARNING if <15%. (2026-08-02)
+- **Infra:** Recreated 5 missing crons: Yagas-Intel-Collect, Yagas-Propaganda-Post, Amazon-Affiliate-Publish/Injector/Tracker. All have post log integration. (2026-08-02)
+- **Infra:** docs/infrastructure.md created — full system architecture, cron registry, known issues, processes. (2026-08-02)
+- **Infra:** Content pipeline health check added to ops-assessment: post log gap detection, blocked/failed flags, title dedup. (2026-08-02)
+- **Security:** Repo privatized, git history rewritten with git-filter-repo, all hardcoded secrets scrubbed from tracked files. (2026-07-10)
+- **Infra:** Code standards audit completed — td_manager.py SyntaxError fixed (Python 3.14 strict mode), ds_seed_enforcer.py 15s timeout added, grep_context.py created for efficient searching. Commit `0d74db2`. (2026-08-02)
+- **Lesson:** OpenAI billing hard limit reached — gpt-image-2 image generation fails. Kybernauts-Propaganda fell back to existing image. Need alternative provider (gemini/minimax) or top-up. (2026-07-26)
+- **Lesson:** aibusinessinsider 403 was a false alarm — bare curl gets 403 from Cloudflare, but proper browser UA gets 200. Cron was working fine all along. (2026-08-02)
+- **Lesson:** Unsplash API 401 resolved — no key set, script falls back to curated CDN image pool (all return 200). Featured images working via fallback path. (2026-08-02)
+- **Lesson:** Download Station API file upload broken on DSM 4.1.2 (error 101). SMB drop to `\MND\video\watch` with auto-add enabled is the workaround. (2026-07-26)
+- **Lesson:** Upload-Post API key not configured in this install. Social posting (X/Bluesky) blocked for some crons — Twitter drafts saved but not posted. (2026-07-20, 2026-07-30)
+- **Project update:** ContentNova — Published "15 Free AI Tools Every Small Business Should Use in 2026" (Post ID 517, 2026-07-30). Quality gate passed with humanization fixes. (2026-07-30)
+- **Project update:** EveOnion — RedditTweet cron posting to Discord. Twitter drafts blocked (no UPLOAD_POST_API_KEY). (2026-07-30, 2026-07-31)
+- **Project update:** Anti-Yagas — Phase 4 (Sustained Pressure) started Aug 2. No recruitment tie-ins per Opus directive. Phase 1 ran 63 days, Phase 2 (Pattern Recognition) July 5–19, Phase 3 (Direct Confrontation) July 19–Aug 2. (2026-07-05, 2026-08-02)
 
 ### Week of 2026-07-20
 - **Decision:** Anti-Yagas content is Discord-only, no social media. Kybernauts-Propaganda (official recruitment) stays on X+Bluesky. (2026-07-24)
@@ -112,4 +132,4 @@
 - **Infra:** NAS audit freed ~1,173 GB. Workspace backup 5.97 GB / 82,823 files. All 21 crons updated to minimax-m3:cloud or deepseek-v4-flash:cloud. (2026-07-26)
 
 ## Last Updated
-2026-07-26 — weekly memory hygiene: compacted learnings from 2026-06-01 through 2026-07-26.
+2026-08-02 — weekly memory hygiene: added learnings from 2026-07-27 through 2026-08-02. Archived June dailies.

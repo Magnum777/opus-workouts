@@ -110,10 +110,8 @@ The Daily-MemorySweep cron also updates the ontology when project statuses or fa
 | Issue | Status | Impact |
 |-------|--------|--------|
 | UPLOAD_POST_API_KEY not configured | Open | Twitter/Bluesky posting blocked for all crons. EveOnion tweets stay drafts. Kybernauts propaganda can't post to X. |
-| aibusinessinsider 403 Cloudflare | Open | ContentNova cron runs daily but site rejects with 403. Articles likely failing. |
-| Unsplash API broken (401) | Open | Featured images not generating for ContentNova articles. |
 | DS API file upload broken (101) | Workaround | Using SMB drop to `\\MND\video\watch` instead. |
-| C: drive 9.5% free | Monitor | ~163 GB free of 1.7 TB. No alerting set up yet. |
+| C: drive 9.5% free | Monitored | ~163 GB free of 1.7 TB. Ops-assessment flags URGENT if <10%, WARNING if <15%. |
 
 ## Security
 
