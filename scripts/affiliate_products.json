@@ -1,127 +1,125 @@
 {
-  "Jasper": {
-    "url": "/best-ai-writing-tools/",
-    "site": "aitoolalliance",
-    "category": "ai_software"
+  "products": [
+    {"name": "Cursor", "match": ["Cursor", "Cursor AI", "Cursor IDE"], "type": "saas", "url": "https://www.cursor.com/", "site": "aitoolalliance", "category": "ai_coding", "internal_slug": "/ai-code-assistants-in-2026-a-practical-buyers-guide/", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "GitHub Copilot", "match": ["GitHub Copilot", "Copilot"], "type": "saas", "url": "https://github.com/features/copilot", "site": "aitoolalliance", "category": "ai_coding", "internal_slug": "/ai-code-assistants-in-2026-a-practical-buyers-guide/", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Replit", "match": ["Replit"], "type": "saas", "url": "https://replit.com/", "site": "aitoolalliance", "category": "ai_coding", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Jasper", "match": ["Jasper", "Jasper AI"], "type": "saas", "url": "https://www.jasper.ai/", "site": "aitoolalliance", "category": "ai_writing", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Copy.ai", "match": ["Copy.ai"], "type": "saas", "url": "https://www.copy.ai/", "site": "aitoolalliance", "category": "ai_writing", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Grammarly", "match": ["Grammarly"], "type": "saas", "url": "https://www.grammarly.com/", "site": "aitoolalliance", "category": "ai_writing", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Surfer SEO", "match": ["Surfer SEO", "Surfer"], "type": "saas", "url": "https://surferseo.com/", "site": "aitoolalliance", "category": "seo", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Writesonic", "match": ["Writesonic"], "type": "saas", "url": "https://writesonic.com/", "site": "aitoolalliance", "category": "ai_writing", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Zapier", "match": ["Zapier"], "type": "saas", "url": "https://zapier.com/", "site": "aitoolalliance", "category": "automation", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Make", "match": ["Make", "Make.com", "Integromat"], "type": "saas", "url": "https://www.make.com/", "site": "aitoolalliance", "category": "automation", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "n8n", "match": ["n8n"], "type": "saas", "url": "https://n8n.io/", "site": "aitoolalliance", "category": "automation", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Bardeen", "match": ["Bardeen", "Bardeen.ai"], "type": "saas", "url": "https://www.bardeen.ai/", "site": "aitoolalliance", "category": "automation", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Semrush", "match": ["Semrush"], "type": "saas", "url": "https://www.semrush.com/", "site": "aitoolalliance", "category": "seo", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Ahrefs", "match": ["Ahrefs"], "type": "saas", "url": "https://ahrefs.com/", "site": "aitoolalliance", "category": "seo", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Mailchimp", "match": ["Mailchimp"], "type": "saas", "url": "https://mailchimp.com/", "site": "aitoolalliance", "category": "email", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Notion", "match": ["Notion", "Notion AI"], "type": "saas", "url": "https://www.notion.so/", "site": "aitoolalliance", "category": "productivity", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Asana", "match": ["Asana"], "type": "saas", "url": "https://asana.com/", "site": "aitoolalliance", "category": "productivity", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Otter.ai", "match": ["Otter.ai", "Otter"], "type": "saas", "url": "https://otter.ai/", "site": "aitoolalliance", "category": "productivity", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Loom", "match": ["Loom"], "type": "saas", "url": "https://www.loom.com/", "site": "aitoolalliance", "category": "productivity", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Descript", "match": ["Descript"], "type": "saas", "url": "https://www.descript.com/", "site": "aitoolalliance", "category": "video_editing", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "ElevenLabs", "match": ["ElevenLabs", "Eleven Labs"], "type": "saas", "url": "https://elevenlabs.io/", "site": "aitoolalliance", "category": "ai_voice", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Runway", "match": ["Runway", "Runway ML"], "type": "saas", "url": "https://runwayml.com/", "site": "aitoolalliance", "category": "ai_video", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Canva", "match": ["Canva"], "type": "saas", "url": "https://www.canva.com/", "site": "aitoolalliance", "category": "design", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Webflow", "match": ["Webflow"], "type": "saas", "url": "https://webflow.com/", "site": "aitoolalliance", "category": "web_design", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "ConvertKit", "match": ["ConvertKit", "Kit"], "type": "saas", "url": "https://convertkit.com/", "site": "aicofounderstack", "category": "email", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Beehiiv", "match": ["Beehiiv"], "type": "saas", "url": "https://www.beehiiv.com/", "site": "aicofounderstack", "category": "newsletter", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "HubSpot", "match": ["HubSpot"], "type": "saas", "url": "https://www.hubspot.com/", "site": "aibusinessinsider", "category": "enterprise", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Salesforce", "match": ["Salesforce"], "type": "saas", "url": "https://www.salesforce.com/", "site": "aibusinessinsider", "category": "enterprise", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Tableau", "match": ["Tableau"], "type": "saas", "url": "https://www.tableau.com/", "site": "aibusinessinsider", "category": "analytics", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Intercom", "match": ["Intercom"], "type": "saas", "url": "https://www.intercom.com/", "site": "aibusinessinsider", "category": "customer_support", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Zendesk", "match": ["Zendesk"], "type": "saas", "url": "https://www.zendesk.com/", "site": "aibusinessinsider", "category": "customer_support", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Calendly", "match": ["Calendly"], "type": "saas", "url": "https://calendly.com/", "site": "aicofounderstack", "category": "scheduling", "affiliate_url": null, "affiliate_status": "pending"},
+    {"name": "Stripe", "match": ["Stripe"], "type": "saas", "url": "https://stripe.com/", "site": "aicofounderstack", "category": "payments", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Vercel", "match": ["Vercel"], "type": "saas", "url": "https://vercel.com/", "site": "aicofounderstack", "category": "hosting", "affiliate_url": null, "affiliate_status": "none"},
+    {"name": "Supabase", "match": ["Supabase"], "type": "saas", "url": "https://supabase.com/", "site": "aicofounderstack", "category": "backend", "affiliate_url": null, "affiliate_status": "none"}
+  ],
+  "amazon_products": [
+    {"name": "Echo Dot (5th Gen)", "match": ["Echo Dot", "Amazon Echo Dot"], "asin": "B0D1TJ1TY3", "category": "smart_home", "content_angle": "Smart home office companion"},
+    {"name": "Ring Video Doorbell", "match": ["Ring Doorbell", "Ring Video Doorbell"], "asin": "B0BWVZ8F3Q", "category": "smart_home", "content_angle": "Home office security"},
+    {"name": "Fire TV Stick 4K", "match": ["Fire TV Stick", "Fire Stick"], "asin": "B0C3HJ7SBL", "category": "streaming", "content_angle": "Entertainment setups"},
+    {"name": "Kindle Paperwhite", "match": ["Kindle Paperwhite", "Kindle"], "asin": "B0D3HJ5S5Q", "category": "reading", "content_angle": "Best e-readers for tech professionals"},
+    {"name": "Logitech MX Master 3S", "match": ["MX Master", "Logitech MX Master", "MX Master 3S"], "asin": "B0BR5FF5KT", "category": "peripherals", "content_angle": "Best mouse for developers"},
+    {"name": "Keychron K2 Wireless", "match": ["Keychron K2", "Keychron"], "asin": "B08R21V6YJ", "category": "peripherals", "content_angle": "Best mechanical keyboards for coding"},
+    {"name": "Sony WH-1000XM5", "match": ["WH-1000XM5", "Sony WH-1000XM5", "Sony XM5"], "asin": "B09XS7JWHH", "category": "audio", "content_angle": "Best noise-cancelling headphones for remote work"},
+    {"name": "Apple AirPods Pro 2", "match": ["AirPods Pro", "Apple AirPods Pro"], "asin": "B0D1VJ1R2S", "category": "audio", "content_angle": "Best earbuds for video calls"},
+    {"name": "Samsung T7 Portable SSD 1TB", "match": ["Samsung T7", "T7 SSD"], "asin": "B0874XN4D8", "category": "storage", "content_angle": "Best portable SSD for developers"},
+    {"name": "Elgato Stream Deck", "match": ["Stream Deck", "Elgato Stream Deck"], "asin": "B0BP9V5TZ8", "category": "streaming", "content_angle": "Best tools for content creators"}
+  ],
+  "affiliate_tags": {
+    "aitoolalliance": "aitoolalliance-20",
+    "aicofounderstack": "aicofounderstack-20",
+    "aibusinessinsider": "aibusinessinsider-20"
   },
-  "Copy.ai": {
-    "url": "/best-ai-copywriting-tools/",
-    "site": "aitoolalliance",
-    "category": "ai_software"
+  "affiliate_programs": {
+    "tier1_applied": {
+      "Make": {"url": "https://www.make.com/en/affiliate", "network": "Direct", "commission": "Recurring", "status": "not_applied"},
+      "Cursor": {"url": "https://cursor.com/?ref=affiliates", "network": "Direct", "commission": "20% recurring 12mo", "status": "not_applied"},
+      "Descript": {"url": "https://www.descript.com/affiliates", "network": "Direct", "commission": "20% recurring", "status": "not_applied"},
+      "Semrush": {"url": "https://www.semrush.com/lp/affiliate-program/", "network": "Impact", "commission": "$200/sale", "status": "not_applied"},
+      "HubSpot": {"url": "https://www.hubspot.com/partners/affiliate", "network": "Impact", "commission": "Up to $1,000/sale", "status": "not_applied"},
+      "Jasper": {"url": "https://www.jasper.ai/affiliates", "network": "Direct", "commission": "25-30% recurring", "status": "not_applied"},
+      "Notion": {"url": "https://notion.partnerstack.com/", "network": "PartnerStack", "commission": "$50/activation + 20% yr1", "status": "not_applied"},
+      "Zapier": {"url": "https://zapier.com/l/partners", "network": "Direct", "commission": "One-time", "status": "not_applied"}
+    },
+    "tier2_next": {
+      "Loom": {"url": "https://www.loom.com/affiliate", "commission": "20% recurring 12mo", "status": "not_applied"},
+      "Grammarly": {"url": "https://www.grammarly.com/affiliate", "commission": "$25/sale", "status": "not_applied"},
+      "Copy.ai": {"url": "https://www.copy.ai/affiliate", "commission": "25% recurring", "status": "not_applied"},
+      "Surfer SEO": {"url": "https://www.surferseo.com/affiliate/", "commission": "25% recurring", "status": "not_applied"},
+      "Ahrefs": {"url": "https://www.ahrefs.com/affiliate", "commission": "Recurring", "status": "not_applied"},
+      "ElevenLabs": {"url": "https://elevenlabs.io/affiliate", "commission": "25% recurring", "status": "not_applied"},
+      "Runway": {"url": "https://runwayml.com/affiliate", "commission": "20% recurring", "status": "not_applied"},
+      "Canva": {"url": "https://www.canva.com/affiliate", "commission": "$36/sale", "status": "not_applied"},
+      "Webflow": {"url": "https://webflow.com/affiliates", "commission": "50% first payment", "status": "not_applied"},
+      "ConvertKit": {"url": "https://convertkit.com/affiliate", "commission": "30% recurring", "status": "not_applied"},
+      "Beehiiv": {"url": "https://www.beehiiv.com/affiliate", "commission": "50% recurring", "status": "not_applied"},
+      "Intercom": {"url": "https://www.intercom.com/partners", "commission": "Recurring", "status": "not_applied"},
+      "Zendesk": {"url": "https://www.zendesk.com/affiliate/", "commission": "Varies", "status": "not_applied"},
+      "Calendly": {"url": "https://calendly.com/affiliate", "commission": "$8-12/sale", "status": "not_applied"},
+      "Mailchimp": {"url": "https://mailchimp.com/affiliate/", "commission": "Varies", "status": "not_applied"}
+    },
+    "no_program": ["ChatGPT", "OpenAI", "Claude", "Anthropic", "Gemini", "Copilot", "Midjourney", "Slack", "Zoom", "Stripe", "Replit", "n8n", "Bardeen", "Vercel", "Supabase", "Tableau", "Windsurf", "Bolt", "DALL-E", "Stable Diffusion"]
   },
-  "Grammarly": {
-    "url": "/grammarly-review/",
-    "site": "aitoolalliance",
-    "category": "ai_software"
+  "linking_rules": {
+    "max_links_per_post": 8,
+    "min_words_between_links": 100,
+    "first_mention_only": true,
+    "skip_headings": true,
+    "skip_existing_links": true,
+    "strategy": "hybrid",
+    "hybrid_description": "SaaS tools: direct to product site with UTM tracking (rel='sponsored noopener'). Replace with affiliate links as programs approve. Amazon products: direct to Amazon with affiliate tag (rel='noopener nofollow'). Internal links: prefer our own articles when internal_slug exists (rel='noopener').",
+    "priority": "affiliate_url > internal_slug > product_url"
   },
-  "Surfer SEO": {
-    "url": "/surfer-seo-review/",
-    "site": "aitoolalliance",
-    "category": "ai_software"
-  },
-  "Writesonic": {
-    "url": "/writesonic-review/",
-    "site": "aitoolalliance",
-    "category": "ai_software"
-  },
-  "Zapier": {
-    "url": "/zapier-review/",
-    "site": "aitoolalliance",
-    "category": "automation"
-  },
-  "Make": {
-    "url": "/make-review/",
-    "site": "aitoolalliance",
-    "category": "automation"
-  },
-  "n8n": {
-    "url": "/n8n-review/",
-    "site": "aitoolalliance",
-    "category": "automation"
-  },
-  "Bardeen": {
-    "url": "/bardeen-review/",
-    "site": "aitoolalliance",
-    "category": "automation"
-  },
-  "Cursor": {
-    "url": "/cursor-review/",
-    "site": "aitoolalliance",
-    "category": "ai_software"
-  },
-  "Replit": {
-    "url": "/replit-review/",
-    "site": "aitoolalliance",
-    "category": "ai_software"
-  },
-  "GitHub Copilot": {
-    "url": "/github-copilot-review/",
-    "site": "aitoolalliance",
-    "category": "ai_software"
-  },
-  "Semrush": {
-    "url": "/semrush-review/",
-    "site": "aitoolalliance",
-    "category": "seo"
-  },
-  "Ahrefs": {
-    "url": "/ahrefs-review/",
-    "site": "aitoolalliance",
-    "category": "seo"
-  },
-  "Mailchimp": {
-    "url": "/mailchimp-review/",
-    "site": "aitoolalliance",
-    "category": "email"
-  },
-  "Notion": {
-    "url": "/notion-review/",
-    "site": "aitoolalliance",
-    "category": "productivity"
-  },
-  "Asana": {
-    "url": "/asana-review/",
-    "site": "aitoolalliance",
-    "category": "productivity"
-  },
-  "Otter.ai": {
-    "url": "/otter-ai-review/",
-    "site": "aitoolalliance",
-    "category": "productivity"
-  },
-  "Loom": {
-    "url": "/loom-review/",
-    "site": "aitoolalliance",
-    "category": "productivity"
-  },
-  "Salesforce": {
-    "url": "/salesforce-ai-review/",
-    "site": "aibusinessinsider",
-    "category": "enterprise"
-  },
-  "HubSpot": {
-    "url": "/hubspot-ai-review/",
-    "site": "aibusinessinsider",
-    "category": "enterprise"
-  },
-  "Tableau": {
-    "url": "/tableau-review/",
-    "site": "aibusinessinsider",
-    "category": "analytics"
-  },
-  "Stripe": {
-    "url": "/stripe-review/",
-    "site": "aicofounderstack",
-    "category": "payments"
-  },
-  "Vercel": {
-    "url": "/vercel-review/",
-    "site": "aicofounderstack",
-    "category": "hosting"
-  },
-  "Supabase": {
-    "url": "/supabase-review/",
-    "site": "aicofounderstack",
-    "category": "backend"
+  "content_strategy": {
+    "pillars": {
+      "saas_affiliate": "Comparison articles, buyer's guides, deep reviews featuring products with affiliate programs",
+      "amazon_products": "Developer desk setups, home office gear, streaming setups, holiday gift guides",
+      "upgrade_existing": "Replace UTM-only links with real affiliate links as programs approve, expand internal linking",
+      "interlocking": "Comparison articles link to deep reviews, Amazon gear articles link to buyer's guides, newsletter summarizes with affiliate links"
+    },
+    "site_mapping": {
+      "aitoolalliance": "Tool comparisons, buyer's guides, developer gear roundups, 'best X for Y'",
+      "aibusinessinsider": "Enterprise tool reviews, HubSpot/Semrush/Salesforce deep dives, ROI analyses",
+      "aicofounderstack": "Startup stack recommendations, productivity comparisons, founder tool roundups"
+    },
+    "article_types": {
+      "comparison": "Make vs Zapier vs n8n, Cursor vs Copilot, Notion vs Asana",
+      "buying_guide": "Best AI writing tools, Best automation tools, Best developer desk setup",
+      "deep_review": "Semrush Review 2026, HubSpot Review, Make Review",
+      "amazon_roundup": "Developer desk setups, noise-cancelling headphones, mechanical keyboards, streaming gear"
+    },
+    "priority_articles": [
+      {"title": "The Ultimate Developer Desk Setup in 2026", "site": "aitoolalliance", "type": "amazon_roundup", "status": "writing"},
+      {"title": "Best Noise-Cancelling Headphones for Remote Workers", "site": "aitoolalliance", "type": "amazon_roundup", "status": "writing"},
+      {"title": "Best Mechanical Keyboards for Coding", "site": "aitoolalliance", "type": "amazon_roundup", "status": "writing"},
+      {"title": "Make vs Zapier vs n8n: Which Automation Tool Is Best?", "site": "aitoolalliance", "type": "comparison", "status": "planned"},
+      {"title": "Best AI Writing Tools in 2026: Jasper vs Copy.ai vs Grammarly", "site": "aitoolalliance", "type": "comparison", "status": "planned"},
+      {"title": "Semrush Review 2026: Is It Worth the Price?", "site": "aibusinessinsider", "type": "deep_review", "status": "planned"},
+      {"title": "Best Productivity Tools for Startup Founders", "site": "aicofounderstack", "type": "buying_guide", "status": "planned"},
+      {"title": "HubSpot vs Salesforce for Small Business", "site": "aibusinessinsider", "type": "comparison", "status": "planned"}
+    ]
   }
 }
