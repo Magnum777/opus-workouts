@@ -165,7 +165,11 @@ def fetch_recent_posts(site_key, days=3):
     try:
         r = requests.get(url, timeout=30)
         if r.status_code == 200:
-            return r.json()
+            try:
+                return r.json()
+            except:
+                print(f"  WARN: Non-JSON response from {site_key}")
+                return []
     except Exception as e:
         print(f"ERROR fetching {site_key}: {e}")
 

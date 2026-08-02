@@ -21,9 +21,13 @@
         {
           "date": "2026-08-01",
           "topic": "founder productivity"
+        },
+        {
+          "date": "2026-08-02",
+          "topic": "churn rescue"
         }
       ],
-      "pointer": 5
+      "pointer": 6
     },
     "aitoolalliance.com": {
       "history": [
@@ -42,9 +46,13 @@
         {
           "date": "2026-08-01",
           "topic": "research and search"
+        },
+        {
+          "date": "2026-08-02",
+          "topic": "browser tools"
         }
       ],
-      "pointer": 4
+      "pointer": 5
     },
     "aibusinessinsider.org": {
       "history": [
@@ -63,9 +71,13 @@
         {
           "date": "2026-08-01",
           "topic": "weekly status updates"
+        },
+        {
+          "date": "2026-08-02",
+          "topic": "vendor RFPs"
         }
       ],
-      "pointer": 4
+      "pointer": 5
     }
   }
 }
