@@ -13,11 +13,12 @@ types:
   Project:
     required: [name, status]
     properties:
-      status: { type: string, enum: [active, paused, dropped, completed] }
+      status: { type: string, enum: [active, paused, dormant, dropped, completed] }
       goals: { type: array, items: { type: string } }
       owner: { type: string, ref: Person }
       notes: { type: string }
       last_updated: { type: string }
+      crons: { type: array, items: { type: string } }
   Task:
     required: [title, status]
     properties:
@@ -27,6 +28,17 @@ types:
       assignee: { type: string, ref: Person }
       blockers: { type: array, items: { type: string } }
       project: { type: string, ref: Project }
+  CronJob:
+    required: [name, schedule, model]
+    properties:
+      schedule: { type: string }
+      model: { type: string }
+      timeout_seconds: { type: integer }
+      session_target: { type: string }
+      delivery_channel: { type: string }
+      notes: { type: string }
+      last_status: { type: string, enum: [ok, error, skipped] }
+      last_run: { type: string }
   Event:
     required: [title, start]
     properties:
@@ -38,11 +50,18 @@ types:
     properties:
       identifiers: { type: array, items: { type: string } }
       specs: { type: string }
+      notes: { type: string }
   Credential:
     required: [service]
     properties:
       secret_ref: { type: string }
       username: { type: string }
+  ServiceAccount:
+    required: [service, username]
+    properties:
+      purpose: { type: string }
+      notes: { type: string }
+      credential_ref: { type: string }
   Note:
     required: [content]
     properties:
@@ -52,11 +71,11 @@ types:
 
 relations:
   has_owner:
-    from_types: [Project, Task]
+    from_types: [Project, Task, CronJob]
     to_types: [Person]
     cardinality: many_to_one
   belongs_to:
-    from_types: [Task, Note]
+    from_types: [Task, Note, CronJob]
     to_types: [Project]
     cardinality: many_to_one
   blocks:
@@ -69,7 +88,7 @@ relations:
     cardinality: many_to_many
   located_at:
     from_types: [Device]
-    to_types: [Location]
+    to_types: [Device]
     cardinality: many_to_one
   created_by:
     from_types: [Project, Task, Note, Device]
@@ -79,3 +98,7 @@ relations:
     from_types: [Person]
     to_types: [Organization]
     cardinality: many_to_many
+  runs_on:
+    from_types: [CronJob]
+    to_types: [Device]
+    cardinality: many_to_one
