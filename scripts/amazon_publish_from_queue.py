@@ -16,9 +16,12 @@ import argparse
 import json
 import os
 import sys
-import base64
 from datetime import datetime
 from pathlib import Path
+
+# Add creds.py to import path
+sys.path.insert(0, str(Path(__file__).parent))
+from creds import get_wp_site, get_wp_auth_header
 
 WORKSPACE = Path("C:/Users/compj/.openclaw/workspace")
 QUEUE_FILE = WORKSPACE / "scripts" / "amazon_queue.json"
@@ -43,49 +46,15 @@ def save_queue(queue):
     QUEUE_FILE.write_text(json.dumps(queue, indent=2, ensure_ascii=False), encoding='utf-8')
 
 
-def get_wp_credentials(site_key):
-    """Load WordPress credentials from vault."""
-    import sqlite3
-    vault_path = WORKSPACE / "scripts" / "credentials" / "vault.db"
-    if not vault_path.exists():
-        return None
-    try:
-        conn = sqlite3.connect(str(vault_path))
-        row = conn.execute(
-            "SELECT value FROM credentials WHERE service = 'wordpress' AND key = ?",
-            (f"{site_key}_pass",)
-        ).fetchone()
-        user_row = conn.execute(
-            "SELECT value FROM credentials WHERE service = 'wordpress' AND key = ?",
-            (f"{site_key}_user",)
-        ).fetchone()
-        url_row = conn.execute(
-            "SELECT value FROM credentials WHERE service = 'wordpress' AND key = ?",
-            (f"{site_key}_url",)
-        ).fetchone()
-        conn.close()
-        if row and user_row and url_row:
-            return {"url": url_row[0], "user": user_row[0], "pass": row[0]}
-    except Exception as e:
-        print(f"Vault error: {e}")
-    return None
-
-
 def publish_to_wordpress(site_key, title, content_html, slug=None, post_type="post"):
     """Publish or update a post on WordPress."""
     import requests
     
-    creds = get_wp_credentials(site_key)
+    creds = get_wp_site(site_key)
     if not creds:
         return False, f"No credentials for {site_key}"
     
-    auth = base64.b64encode(f"{creds['user']}:{creds['pass']}".encode()).decode()
-    headers = {
-        'Authorization': f'Basic {auth}',
-        'User-Agent': 'ContentNovaBot/2.0',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    }
+    headers = get_wp_auth_header(site_key)
     
     endpoint = "pages" if post_type == "page" else "posts"
     api_url = f"{creds['url']}/wp-json/wp/v2/{endpoint}"

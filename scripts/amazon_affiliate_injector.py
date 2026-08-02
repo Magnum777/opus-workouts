@@ -7,13 +7,15 @@ Usage: python amazon_affiliate_injector.py [--dry-run]
 """
 
 import requests
-import base64
 import json
 import re
-import sqlite3
 import argparse
 from datetime import datetime, timedelta
 from pathlib import Path
+
+# Add creds.py to import path
+sys.path.insert(0, str(Path(__file__).parent))
+from creds import get_wp_site, get_wp_auth_header
 
 WORKSPACE = Path("C:/Users/compj/.openclaw/workspace")
 STATE_FILE = WORKSPACE / "scripts" / "affiliate_inject_state.json"
@@ -107,39 +109,6 @@ PRODUCTS = {
     "Insta360": "B0B7GJ1ZQ1",
     "Insta360 X3": "B0B7GJ1ZQ1",
 }
-
-
-def get_wp_credentials(site_key):
-    """Fetch WordPress credentials from the local vault database."""
-    vault_path = WORKSPACE / "scripts" / "credentials" / "vault.db"
-    if not vault_path.exists():
-        return None
-
-    try:
-        conn = sqlite3.connect(str(vault_path))
-        row = conn.execute(
-            "SELECT value FROM credentials WHERE service = 'wordpress' AND key = ?",
-            (f"{site_key}_pass",),
-        ).fetchone()
-        user_row = conn.execute(
-            "SELECT value FROM credentials WHERE service = 'wordpress' AND key = ?",
-            (f"{site_key}_user",),
-        ).fetchone()
-        url_row = conn.execute(
-            "SELECT value FROM credentials WHERE service = 'wordpress' AND key = ?",
-            (f"{site_key}_url",),
-        ).fetchone()
-        conn.close()
-
-        if row and user_row and url_row:
-            return {
-                "url": url_row[0],
-                "user": user_row[0],
-                "pass": row[0],
-            }
-    except Exception as e:
-        print(f"WARN: Vault error: {e}", file=sys.stderr)
-    return None
 
 
 def load_state():
@@ -275,19 +244,11 @@ def inject_affiliate_links(content, mentions):
 
 def update_post(site_key, post_id, new_content):
     """Update a WordPress post with new content via REST API."""
-    creds = get_wp_credentials(site_key)
+    creds = get_wp_site(site_key)
     if not creds:
         return False, "No credentials"
 
-    auth = base64.b64encode(
-        f"{creds['user']}:{creds['pass']}".encode()
-    ).decode()
-
-    headers = {
-        "Authorization": f"Basic {auth}",
-        "Content-Type": "application/json",
-        "User-Agent": "ContentNovaBot/2.0",
-    }
+    headers = get_wp_auth_header(site_key)
 
     url = f"{creds['url']}/wp-json/wp/v2/posts/{post_id}"
     data = {"content": new_content}
