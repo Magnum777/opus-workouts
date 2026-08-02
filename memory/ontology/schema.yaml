@@ -62,6 +62,16 @@ types:
       purpose: { type: string }
       notes: { type: string }
       credential_ref: { type: string }
+  Content:
+    required: [title, project, content_type]
+    properties:
+      content_type: { type: string, enum: [article, propaganda, tweet, news-scan, reddit, forum-bump, affiliate] }
+      project: { type: string, ref: Project }
+      status: { type: string, enum: [published, draft, blocked, failed] }
+      url: { type: string }
+      channel: { type: string }
+      post_id: { type: string }
+      published_at: { type: string }
   Note:
     required: [content]
     properties:
@@ -98,6 +108,14 @@ relations:
     from_types: [Person]
     to_types: [Organization]
     cardinality: many_to_many
+  published_by:
+    from_types: [Content]
+    to_types: [CronJob]
+    cardinality: many_to_one
+  produced_by:
+    from_types: [Content]
+    to_types: [Project]
+    cardinality: many_to_one
   runs_on:
     from_types: [CronJob]
     to_types: [Device]
