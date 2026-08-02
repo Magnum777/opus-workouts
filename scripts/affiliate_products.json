@@ -1,0 +1,127 @@
+{
+  "Jasper": {
+    "url": "/best-ai-writing-tools/",
+    "site": "aitoolalliance",
+    "category": "ai_software"
+  },
+  "Copy.ai": {
+    "url": "/best-ai-copywriting-tools/",
+    "site": "aitoolalliance",
+    "category": "ai_software"
+  },
+  "Grammarly": {
+    "url": "/grammarly-review/",
+    "site": "aitoolalliance",
+    "category": "ai_software"
+  },
+  "Surfer SEO": {
+    "url": "/surfer-seo-review/",
+    "site": "aitoolalliance",
+    "category": "ai_software"
+  },
+  "Writesonic": {
+    "url": "/writesonic-review/",
+    "site": "aitoolalliance",
+    "category": "ai_software"
+  },
+  "Zapier": {
+    "url": "/zapier-review/",
+    "site": "aitoolalliance",
+    "category": "automation"
+  },
+  "Make": {
+    "url": "/make-review/",
+    "site": "aitoolalliance",
+    "category": "automation"
+  },
+  "n8n": {
+    "url": "/n8n-review/",
+    "site": "aitoolalliance",
+    "category": "automation"
+  },
+  "Bardeen": {
+    "url": "/bardeen-review/",
+    "site": "aitoolalliance",
+    "category": "automation"
+  },
+  "Cursor": {
+    "url": "/cursor-review/",
+    "site": "aitoolalliance",
+    "category": "ai_software"
+  },
+  "Replit": {
+    "url": "/replit-review/",
+    "site": "aitoolalliance",
+    "category": "ai_software"
+  },
+  "GitHub Copilot": {
+    "url": "/github-copilot-review/",
+    "site": "aitoolalliance",
+    "category": "ai_software"
+  },
+  "Semrush": {
+    "url": "/semrush-review/",
+    "site": "aitoolalliance",
+    "category": "seo"
+  },
+  "Ahrefs": {
+    "url": "/ahrefs-review/",
+    "site": "aitoolalliance",
+    "category": "seo"
+  },
+  "Mailchimp": {
+    "url": "/mailchimp-review/",
+    "site": "aitoolalliance",
+    "category": "email"
+  },
+  "Notion": {
+    "url": "/notion-review/",
+    "site": "aitoolalliance",
+    "category": "productivity"
+  },
+  "Asana": {
+    "url": "/asana-review/",
+    "site": "aitoolalliance",
+    "category": "productivity"
+  },
+  "Otter.ai": {
+    "url": "/otter-ai-review/",
+    "site": "aitoolalliance",
+    "category": "productivity"
+  },
+  "Loom": {
+    "url": "/loom-review/",
+    "site": "aitoolalliance",
+    "category": "productivity"
+  },
+  "Salesforce": {
+    "url": "/salesforce-ai-review/",
+    "site": "aibusinessinsider",
+    "category": "enterprise"
+  },
+  "HubSpot": {
+    "url": "/hubspot-ai-review/",
+    "site": "aibusinessinsider",
+    "category": "enterprise"
+  },
+  "Tableau": {
+    "url": "/tableau-review/",
+    "site": "aibusinessinsider",
+    "category": "analytics"
+  },
+  "Stripe": {
+    "url": "/stripe-review/",
+    "site": "aicofounderstack",
+    "category": "payments"
+  },
+  "Vercel": {
+    "url": "/vercel-review/",
+    "site": "aicofounderstack",
+    "category": "hosting"
+  },
+  "Supabase": {
+    "url": "/supabase-review/",
+    "site": "aicofounderstack",
+    "category": "backend"
+  }
+}

@@ -1,0 +1,187 @@
+/* AI Tool Recommender Widget Styles */
+#ai-tool-recommender {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    max-width: 720px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #f8f9fb;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+}
+
+.rec-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+}
+
+.rec-subtitle {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin: 0 0 1.25rem 0;
+}
+
+.rec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.rec-card {
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.rec-card:hover {
+    border-color: #6366f1;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+    transform: translateY(-2px);
+}
+
+.rec-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.rec-card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.rec-subcategories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.rec-sub-item {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.rec-sub-item:hover {
+    background: #6366f1;
+    color: #fff;
+    border-color: #6366f1;
+}
+
+.rec-back {
+    background: none;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.rec-back:hover {
+    background: #f3f4f6;
+}
+
+.rec-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.rec-tool-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+.rec-tool-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.rec-tool-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+
+.rec-tool-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #111827;
+}
+
+.rec-tool-price {
+    font-size: 0.8rem;
+    color: #6366f1;
+    font-weight: 600;
+}
+
+.rec-tool-tagline {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin: 0.3rem 0 0.5rem 0;
+}
+
+.rec-tool-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rec-tool-best {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.rec-tool-link {
+    font-size: 0.85rem;
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.rec-tool-link:hover {
+    text-decoration: underline;
+}
+
+.rec-cta {
+    text-align: center;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.rec-cta a {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.rec-cta a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .rec-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .rec-tool-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+}

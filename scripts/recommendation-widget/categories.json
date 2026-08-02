@@ -1,0 +1,376 @@
+{
+  "write-content": {
+    "label": "Write & Create Content",
+    "icon": "✍️",
+    "question": "What kind of content are you creating?",
+    "subcategories": [
+      {
+        "id": "blog-posts",
+        "label": "Blog Posts & Articles"
+      },
+      {
+        "id": "social-media",
+        "label": "Social Media Posts"
+      },
+      {
+        "id": "email-marketing",
+        "label": "Email Marketing"
+      },
+      {
+        "id": "seo-content",
+        "label": "SEO Content"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Jasper",
+        "tagline": "AI writing assistant for marketing teams",
+        "url": "/best-ai-writing-tools/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "$49/mo+",
+        "best_for": "Marketing teams"
+      },
+      {
+        "name": "Copy.ai",
+        "tagline": "Quick AI copy for any channel",
+        "url": "/best-ai-copywriting-tools/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free plan",
+        "best_for": "Quick copy"
+      },
+      {
+        "name": "Grammarly",
+        "tagline": "AI-powered writing assistant",
+        "url": "/grammarly-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $12/mo",
+        "best_for": "Editing & polish"
+      },
+      {
+        "name": "Surfer SEO",
+        "tagline": "Content optimization for search",
+        "url": "/surfer-seo-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "$89/mo+",
+        "best_for": "SEO content"
+      },
+      {
+        "name": "Writesonic",
+        "tagline": "Budget-friendly AI writer",
+        "url": "/writesonic-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "$16/mo+",
+        "best_for": "Budget writers"
+      }
+    ]
+  },
+  "automate-work": {
+    "label": "Automate My Work",
+    "icon": "🤖",
+    "question": "What are you trying to automate?",
+    "subcategories": [
+      {
+        "id": "workflows",
+        "label": "Workflows & Processes"
+      },
+      {
+        "id": "data-entry",
+        "label": "Data Entry & Processing"
+      },
+      {
+        "id": "customer-support",
+        "label": "Customer Support"
+      },
+      {
+        "id": "scheduling",
+        "label": "Scheduling & Booking"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Zapier",
+        "tagline": "Connect 6000+ apps, automate anything",
+        "url": "/zapier-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $19.99/mo+",
+        "best_for": "App automation"
+      },
+      {
+        "name": "Make",
+        "tagline": "Visual workflow automation",
+        "url": "/make-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $9/mo+",
+        "best_for": "Complex flows"
+      },
+      {
+        "name": "n8n",
+        "tagline": "Open-source automation you self-host",
+        "url": "/n8n-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free (self-host)",
+        "best_for": "Tech-savvy"
+      },
+      {
+        "name": "Bardeen",
+        "tagline": "AI-powered browser automation",
+        "url": "/bardeen-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $15/mo",
+        "best_for": "Browser tasks"
+      },
+      {
+        "name": "Relevance AI",
+        "tagline": "Build AI agents for your workflows",
+        "url": "/best-ai-agent-platforms/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free trial",
+        "best_for": "AI agents"
+      }
+    ]
+  },
+  "build-product": {
+    "label": "Build a Product",
+    "icon": "💻",
+    "question": "What are you building?",
+    "subcategories": [
+      {
+        "id": "saas",
+        "label": "SaaS App"
+      },
+      {
+        "id": "website",
+        "label": "Website or Landing Page"
+      },
+      {
+        "id": "mobile-app",
+        "label": "Mobile App"
+      },
+      {
+        "id": "api",
+        "label": "API or Integration"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Cursor",
+        "tagline": "AI-first code editor",
+        "url": "/cursor-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $20/mo",
+        "best_for": "Coding"
+      },
+      {
+        "name": "V0",
+        "tagline": "Generate React components from text",
+        "url": "/best-ai-ui-generators/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free tier",
+        "best_for": "Frontend"
+      },
+      {
+        "name": "Replit",
+        "tagline": "Code, deploy, collaborate in browser",
+        "url": "/replit-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $25/mo",
+        "best_for": "Quick protos"
+      },
+      {
+        "name": "Framer",
+        "tagline": "Design and publish websites with AI",
+        "url": "/framer-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $5/mo",
+        "best_for": "No-code sites"
+      },
+      {
+        "name": "Supabase",
+        "tagline": "Open-source Firebase alternative",
+        "url": "/supabase-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free tier",
+        "best_for": "Backend"
+      }
+    ]
+  },
+  "analyze-data": {
+    "label": "Analyze Data",
+    "icon": "📊",
+    "question": "What kind of data are you working with?",
+    "subcategories": [
+      {
+        "id": "spreadsheets",
+        "label": "Spreadsheets & Reports"
+      },
+      {
+        "id": "customer-data",
+        "label": "Customer & Sales Data"
+      },
+      {
+        "id": "market-research",
+        "label": "Market Research"
+      },
+      {
+        "id": "financial",
+        "label": "Financial Analysis"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Julius AI",
+        "tagline": "Chat with your data, get instant analysis",
+        "url": "/julius-ai-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $20/mo",
+        "best_for": "Quick analysis"
+      },
+      {
+        "name": "Rows",
+        "tagline": "Spreadsheet + AI + integrations",
+        "url": "/rows-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $9/mo",
+        "best_for": "Spreadsheets"
+      },
+      {
+        "name": "Obviously AI",
+        "tagline": "Predictive analytics without code",
+        "url": "/obviously-ai-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "$99/mo",
+        "best_for": "Predictions"
+      },
+      {
+        "name": "Power BI",
+        "tagline": "Microsoft's business intelligence platform",
+        "url": "/power-bi-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "$10/user/mo",
+        "best_for": "Enterprise reporting"
+      }
+    ]
+  },
+  "grow-business": {
+    "label": "Grow My Business",
+    "icon": "📈",
+    "question": "What area needs growth?",
+    "subcategories": [
+      {
+        "id": "seo",
+        "label": "SEO & Traffic"
+      },
+      {
+        "id": "social",
+        "label": "Social Media"
+      },
+      {
+        "id": "ads",
+        "label": "Paid Advertising"
+      },
+      {
+        "id": "email",
+        "label": "Email Marketing"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Semrush",
+        "tagline": "All-in-one SEO and marketing toolkit",
+        "url": "/semrush-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "$129/mo+",
+        "best_for": "SEO suite"
+      },
+      {
+        "name": "Ahrefs",
+        "tagline": "Backlinks, keywords, and content explorer",
+        "url": "/ahrefs-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "$99/mo+",
+        "best_for": "Link building"
+      },
+      {
+        "name": "Mailchimp",
+        "tagline": "Email marketing with AI features",
+        "url": "/mailchimp-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $13/mo",
+        "best_for": "Email"
+      },
+      {
+        "name": "Predis.ai",
+        "tagline": "AI social media content generator",
+        "url": "/predis-ai-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $32/mo",
+        "best_for": "Social posts"
+      },
+      {
+        "name": "Google Analytics",
+        "tagline": "Free analytics for every website",
+        "url": "/google-analytics-setup-guide/",
+        "affiliate_id": "",
+        "price": "Free",
+        "best_for": "Analytics"
+      }
+    ]
+  },
+  "manage-team": {
+    "label": "Manage My Team",
+    "icon": "👥",
+    "question": "What do you need help managing?",
+    "subcategories": [
+      {
+        "id": "projects",
+        "label": "Projects & Tasks"
+      },
+      {
+        "id": "communication",
+        "label": "Team Communication"
+      },
+      {
+        "id": "hiring",
+        "label": "Hiring & HR"
+      },
+      {
+        "id": "meetings",
+        "label": "Meetings & Notes"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Notion",
+        "tagline": "All-in-one workspace with AI",
+        "url": "/notion-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $10/mo",
+        "best_for": "Docs + projects"
+      },
+      {
+        "name": "Asana",
+        "tagline": "Project management with AI suggestions",
+        "url": "/asana-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $10.99/mo",
+        "best_for": "Task management"
+      },
+      {
+        "name": "Otter.ai",
+        "tagline": "AI meeting notes and summaries",
+        "url": "/otter-ai-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $16.99/mo",
+        "best_for": "Meeting notes"
+      },
+      {
+        "name": "Loom",
+        "tagline": "Record quick videos instead of meetings",
+        "url": "/loom-review/",
+        "affiliate_id": "aitoolalliance-20",
+        "price": "Free / $12.50/mo",
+        "best_for": "Async comms"
+      }
+    ]
+  }
+}
