@@ -11,7 +11,7 @@
 03:38 | ░░   Finance-NAS-Backup                   (deepseek-v4-flash, 300s)
 04:00 | ██   ContentNova-aicofounderstack          (minimax-m3, 600s)
 06:30 | ░░   TD-Scanner                            (deepseek-v4-flash, 300s)
-06:45 | ░░   spam-pattern-discovery                (deepseek-v4-flash, 300s)
+06:45 | ░░   Daily-MemorySweep + spam-pattern-discovery (deepseek-v4-flash ×2, 300s each)
 07:00 | ██   daily-brief-7am                      (kimi-k2.6, 300s)
 07:15 | ░░   gmail-cleanup-daily                   (deepseek-v4-flash, 120s)
 07:30 | ██   Iris-all-accounts-digest             (deepseek-v4-flash, 900s)
@@ -122,7 +122,9 @@
 | NightSchool-8pm | 3071d872 | 8pm daily | deepseek-v4-flash | 3600s |
 | NightSchool-NAS-Sync | 845e7dac | 8:15pm daily | deepseek-v4-flash | 300s |
 | Workspace-NAS-Backup | cec8b2ad | 11pm daily | deepseek-v4-flash | 1800s |
-| Weekly-MemoryHygiene | 10d4c1a3 | Sun 10pm | deepseek-v4-flash | 600s |
+| Daily-MemorySweep | 80014d37 | 6:45am daily | deepseek-v4-flash | 300s | Light sweep — yesterday's daily, new facts only |
+| Daily-MemorySweep | 80014d37 | 6:45am daily | deepseek-v4-flash | 300s | Light sweep: yesterday's daily, new facts only |
+| Weekly-MemoryHygiene | 10d4c1a3 | Sun 10pm | kimi-k2.6 | 900s | Deep clean: archive, dedup, full rewrite |
 | Weekly-SkillUpdate | ac9ba7e1 | Mon 6am | deepseek-v4-flash | 120s |
 | Weekly-SkillDiscovery | 0b0873dc | Fri 6pm | deepseek-v4-flash | 300s |
 
@@ -187,6 +189,17 @@ Checklist:
 | 1524864332478021802 | #finance |
 
 ## Changelog
+
+### 2026-08-02 — Memory Hygiene Cron Hardening
+- **Upgraded model:** deepseek-v4-flash → kimi-k2.6 (flash kept using Edit despite explicit instructions)
+- **Increased timeout:** 600s → 900s (reading 7+ daily files + rewriting MEMORY.md)
+- **Rewrote prompt:** 9 explicit numbered steps, CRITICAL: WRITE only, no Edit/apply_patch
+- **Removed apply_patch from toolsAllow:** Prompt forbids it, model should comply
+- **Added verification step:** Step 7 reads back first 5 lines to confirm save
+- **Added memory_search steps:** Steps 1 and 5 use semantic search to catch facts daily files miss
+- **Pulled nomic-embed-text:** Memory search was broken for weeks — model wasn't installed
+- **Added Context Compaction Discipline to AGENTS.md:** 6 rules for context hygiene
+- **Added Search Before Answering rule:** Always memory_search before answering about prior work
 
 ### 2026-07-31 — Model Refresh & Audit
 - **Added models:** kimi-k3:cloud (1M ctx, vision, tools), glm-5.2:cloud (976K ctx, tools), kimi-k2.7-code:cloud (262K, vision+tools), qwen3.5:397b (262K, vision+tools), nemotron-3-ultra (262K, tools), minimax-m3 (updated to 512K ctx, video+vision+tools)
