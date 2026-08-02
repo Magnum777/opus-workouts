@@ -1,0 +1,304 @@
+{
+  "topics": {
+    "99designs": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\99designs\\playbook.md"
+    },
+    "affiliate-marketing": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\affiliate-marketing\\playbook.md"
+    },
+    "agentic-ai-lessons": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\agentic-ai-lessons\\playbook.md"
+    },
+    "ai-agency-income": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\ai-agency-income\\playbook.md"
+    },
+    "ai-coding-services": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\ai-coding-services\\playbook.md"
+    },
+    "ai-content-creation": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\ai-content-creation\\playbook.md"
+    },
+    "ai-data-analysis": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\ai-data-analysis\\playbook.md"
+    },
+    "ai-ml": {
+      "status": "completed",
+      "date": "2026-02-15",
+      "playbook": "docs\\night-school\\ai-ml\\playbook.md"
+    },
+    "ai-newsletter": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\ai-newsletter\\playbook.md"
+    },
+    "ai-seo-services": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\ai-seo-services\\playbook.md"
+    },
+    "ai-social-media-mgmt": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\ai-social-media-mgmt\\playbook.md"
+    },
+    "automation": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\automation\\playbook.md"
+    },
+    "automation-comparison": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\automation-comparison\\playbook.md"
+    },
+    "aws": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\aws\\playbook.md"
+    },
+    "aws-basics": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\aws-basics\\playbook.md"
+    },
+    "aws-basics-cloud-solutions": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\aws-basics-cloud-solutions\\playbook.md"
+    },
+    "aws-cloud-solutions": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\aws-cloud-solutions\\playbook.md"
+    },
+    "bluesky": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\bluesky\\playbook.md"
+    },
+    "business": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\business\\playbook.md"
+    },
+    "buying-used-cars": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\buying-used-cars\\playbook.md"
+    },
+    "coinbase-agentic": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\coinbase-agentic\\playbook.md"
+    },
+    "creative": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\creative\\playbook.md"
+    },
+    "cron-model-tiering": {
+      "status": "completed",
+      "date": "2026-02-27",
+      "playbook": "docs\\night-school\\cron-model-tiering\\playbook.md"
+    },
+    "elevenlabs": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\elevenlabs\\playbook.md"
+    },
+    "eve-lore": {
+      "status": "completed",
+      "date": "2026-06-09",
+      "playbook": "docs\\night-school\\eve-lore\\playbook.md"
+    },
+    "free-web-design-assets": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\free-web-design-assets\\playbook.md"
+    },
+    "freelancer": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\freelancer\\playbook.md"
+    },
+    "g5rv-antenna": {
+      "status": "completed",
+      "date": "2026-06-29",
+      "playbook": "docs\\night-school\\g5rv-antenna\\playbook.md"
+    },
+    "ga-company-websites": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\ga-company-websites\\playbook.md"
+    },
+    "guru": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\guru\\playbook.md"
+    },
+    "ham-radio-ai": {
+      "status": "completed",
+      "date": "2026-06-27",
+      "playbook": "docs\\night-school\\ham-radio-ai\\playbook.md"
+    },
+    "income-streams": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\income-streams\\playbook.md"
+    },
+    "linkedin": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\linkedin\\playbook.md"
+    },
+    "mem0": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\mem0\\playbook.md"
+    },
+    "mixpost": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\mixpost\\playbook.md"
+    },
+    "modelrelay-auto-routing": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\modelrelay-auto-routing\\playbook.md"
+    },
+    "night-school-expansion": {
+      "status": "completed",
+      "date": "2026-07-04",
+      "playbook": "docs\\night-school\\night-school-expansion\\playbook.md"
+    },
+    "nova-autonomy": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\nova-autonomy\\playbook.md"
+    },
+    "nova-trading-bot": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\nova-trading-bot\\playbook.md"
+    },
+    "openai-tts": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\openai-tts\\playbook.md"
+    },
+    "openclaw-ecosystem": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\openclaw-ecosystem\\playbook.md"
+    },
+    "openclaw-subagents": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\openclaw-subagents\\playbook.md"
+    },
+    "personal-finance-budgeting": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\personal-finance-budgeting\\playbook.md"
+    },
+    "personal-finance-business-finance": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\personal-finance-business-finance\\playbook.md"
+    },
+    "personal-finance-credit": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\personal-finance-credit\\playbook.md"
+    },
+    "personal-finance-investing": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\personal-finance-investing\\playbook.md"
+    },
+    "personal-finance-tax-strategy": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\personal-finance-tax-strategy\\playbook.md"
+    },
+    "postiz": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\postiz\\playbook.md"
+    },
+    "print-on-demand": {
+      "status": "completed",
+      "date": "2026-05-29",
+      "playbook": "docs\\night-school\\print-on-demand\\playbook.md"
+    },
+    "remote-jobs": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\remote-jobs\\playbook.md"
+    },
+    "rss-reader": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\rss-reader\\playbook.md"
+    },
+    "social-posting-automation": {
+      "status": "completed",
+      "date": "2026-05-28",
+      "playbook": "docs\\night-school\\social-posting-automation\\playbook.md"
+    },
+    "solana-trading": {
+      "status": "completed",
+      "date": "2026-02-27",
+      "playbook": "docs\\night-school\\solana-trading\\playbook.md"
+    },
+    "stripe": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\stripe\\playbook.md"
+    },
+    "token-generation": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\token-generation\\playbook.md"
+    },
+    "toptal": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\toptal\\playbook.md"
+    },
+    "uptime-kuma": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\uptime-kuma\\playbook.md"
+    },
+    "wordpress": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\wordpress\\playbook.md"
+    },
+    "workana": {
+      "status": "completed",
+      "date": "2026-07-10",
+      "playbook": "docs\\night-school\\workana\\playbook.md"
+    }
+  },
+  "stats": {
+    "completed": 0,
+    "skipped": 0,
+    "pending": 0
+  }
+}
