@@ -24,13 +24,20 @@ NAS_USER = "Nova"
 
 
 def _load_nas_password():
-    """Load NAS password from .secrets file."""
+    """Load NAS password from .secrets file ([nas] section)."""
     secrets_path = Path(__file__).resolve().parent.parent / ".secrets"
     try:
         with open(secrets_path, "r") as f:
+            in_nas = False
             for line in f:
                 line = line.strip()
-                if line.startswith("password="):
+                if line == "[nas]":
+                    in_nas = True
+                    continue
+                if line.startswith("[") and line.endswith("]"):
+                    in_nas = False
+                    continue
+                if in_nas and line.startswith("password="):
                     return line.split("=", 1)[1]
     except Exception as e:
         print(f"WARN: Failed to load NAS password from .secrets: {e}", file=sys.stderr)

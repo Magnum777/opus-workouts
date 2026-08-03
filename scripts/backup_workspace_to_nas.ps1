@@ -3,7 +3,13 @@ $secretsPath = "C:\Users\compj\.openclaw\workspace\.secrets"
 $nasUser = "Nova"
 $nasPass = ""
 if (Test-Path $secretsPath) {
-    $nasPass = (Get-Content $secretsPath | Where-Object { $_ -match '^password=' } | ForEach-Object { $_ -replace '^password=', '' })[0]
+    # Parse .secrets as INI — find [nas] section, then get password=
+    $inNas = $false
+    foreach ($line in Get-Content $secretsPath) {
+        if ($line -match '^\[nas\]') { $inNas = $true; continue }
+        if ($line -match '^\[') { $inNas = $false; continue }
+        if ($inNas -and $line -match '^password=(.+)$') { $nasPass = $Matches[1]; break }
+    }
 }
 if (-not $nasPass) { $nasPass = $env:NAS_PASSWORD }
 if (-not $nasPass) {
@@ -37,10 +43,29 @@ Write-Host "Destination: $nasDest"
 Write-Host "Timestamp: $timestamp"
 Write-Host ""
 
-# Check if NAS is reachable
+# Ensure NAS SMB session is authenticated before accessing paths
+Write-Host "Authenticating to NAS..."
+try {
+    # Remove any stale sessions first
+    net use "\\MND\home" /d /y 2>$null | Out-Null
+    $netOut = net use "\\MND\home" /user:$nasUser $nasPass 2>&1
+    if ($LASTEXITCODE -ne 0 -and $netOut -notmatch "already") {
+        Write-Host "FATAL: Cannot authenticate to NAS. $netOut"
+        exit 1
+    }
+    Write-Host "NAS authenticated OK"
+} catch {
+    Write-Host "FATAL: NAS auth failed: $_"
+    exit 1
+}
+
+# Brief pause to let SMB session settle
+Start-Sleep -Seconds 2
+
+# Check if NAS backup path is reachable
 if (-not (Test-Path $nasPath)) {
     Write-Host "ERROR: NAS path not accessible: $nasPath"
-    Write-Host "Attempting to map..."
+    Write-Host "Attempting to map Z: drive..."
     try {
         $cred = New-Object System.Management.Automation.PSCredential($nasUser, (ConvertTo-SecureString $nasPass -AsPlainText -Force))
         New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\MND\home" -Credential $cred -ErrorAction Stop | Out-Null

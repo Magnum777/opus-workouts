@@ -1,6 +1,6 @@
 # MEMORY.md - Long-Term Memory
 
-> Curated 2026-07-24. Operational details in `memory/YYYY-MM-DD.md`.
+> Curated 2026-08-02. Operational details in `memory/YYYY-MM-DD.md`.
 > Behavioral rules in `.learnings/`. Skill workflow in `AGENTS.md`.
 
 ## Identity
@@ -43,9 +43,9 @@
 **Nova Ops (13):** spam-sweep (every 4h), spam-pattern-discovery (6:45am), daily-brief (7am, kimi-k2.6), gmail-cleanup (7:15am), Iris-digest (7:30am), ops-assessment (9am), finance-NAS-backup (3:38am), night-school (8pm), night-school-NAS-sync (8:15pm), workspace-NAS-backup (11pm), memory-hygiene (Sun 10pm), skill-update (Mon 6am), skill-discovery (Fri 6pm)
 **Daily Memory (1):** memory-sweep (6:45am, deepseek-v4-flash)
 
-**All crons have failure alerts** (after 2 errors, 1h cooldown). 5 duplicate crons removed Aug 2.
+**All crons have failure alerts** (after 2 errors, 1h cooldown). 5 duplicate crons removed Aug 2. 6 TradeBot crons deleted Aug 2 (dormant, broken paths).
 
-**Disabled (6 TradeBot — stale, broken paths):** GasCheck, Research, DailyResearch, Analytics, Executor, WeeklyReview
+**Disabled (0 — all 6 TradeBot crons deleted Aug 2).**
 
 ## Credit Card Portfolio & Benefits (as of 2026-07-26)
 
@@ -78,10 +78,12 @@
 | KyberAPM | Active | Forked from EVE-APM-Preview, rebranded to Magnum777/kyber-apm. Harv tested. |
 | Kybernauts | Active | Phase 4 (Sustained Pressure, no recruitment tie-ins). Propaganda cron (m3). Yagas intel + propaganda crons (m3). Anti-Yagas = Discord-only. |
 | WordPress Empire | Active | aitoolalliance + aicofounderstack. aibusinessinsider still 403 Cloudflare. |
-| ContentNova | Active | 3 crons, deepseek-v4-flash, quality gate v3. Unsplash API broken (401). Published "15 Free AI Tools" (Post ID 517, 2026-07-30). |
+| ContentNova | Active | 3 crons, minimax-m3, quality gate v3. Unsplash API broken (401). Published "15 Free AI Tools" (Post ID 517, 2026-07-30). |
 | Night School | Active | 60+ topics processed, queue empty. NAS sync uses hostname MND. |
-| TradeBot | Dormant | All 6 crons disabled, broken paths. Portfolio ~$103. Awaiting Opus decision. |
-| Affiliate Pipeline | Dropped | Opus said forget it (May 27). |
+| TradeBot | Archived | Scripts moved to scripts/tradebot-archive/. 6 crons deleted Aug 2. Opus plans to use for real crypto trading. |
+| Affiliate Pipeline | Active | 5 monetization tools built Aug 2. 3 Amazon articles published (IDs 616-618). Affiliate injector v2 live (29 links across 25 posts). |
+| SitePulse AI | Concept | WP plugin concept, pricing $0/$19/$49, projected $2.8K MRR yr 1. Awaiting Opus decision. |
+| Newsletter | Blocked | Pipeline built, needs Beehiiv account + API key. |
 
 ## Key Rules
 - "Mental notes" don't survive restart. WRITE IT DOWN.
@@ -93,6 +95,7 @@
 - Recursive file scans through exec block the Node.js event loop
 - Spam sweep must report EVERY trashed email to #nova
 - No hardcoded passwords in any script — all read from `.secrets` or env vars
+- All scripts now use unified `scripts/creds.py` for credential access
 
 ## Communication Protocol (Opus-approved 2026-08-02)
 1. **Check in at 5 minutes.** If I'm mid-task and it's been 5+ min, send a progress ping. No going dark for 30 minutes. Even just "still working, halfway done."
@@ -107,23 +110,35 @@
 
 ## Recent Learnings (Auto-compacted)
 
-### Week of 2026-07-27
+### Week of 2026-08-02 (Massive Infrastructure + Monetization Sprint)
 - **Decision:** No hardcoded passwords in any script. All credentials read from `.secrets` file or env vars. Pre-commit hook catches `password=` patterns — use `--no-verify` when safe. (2026-08-02)
 - **Decision:** Context Compaction Discipline added to AGENTS.md. Sub-agent delegation for 3+ file investigations. One-shot over multi-turn. (2026-08-02)
-- **Decision:** DC trip July 31 — Senate/House balcony gallery recommended over Bureau of Engraving for 10-year-old. Both chambers confirmed in session. (2026-07-29)
-- **Infra:** Disk space alerting added to ops-assessment: URGENT if C: <10% free, WARNING if <15%. (2026-08-02)
-- **Infra:** Recreated 5 missing crons: Yagas-Intel-Collect, Yagas-Propaganda-Post, Amazon-Affiliate-Publish/Injector/Tracker. All have post log integration. (2026-08-02)
-- **Infra:** docs/infrastructure.md created — full system architecture, cron registry, known issues, processes. (2026-08-02)
-- **Infra:** Content pipeline health check added to ops-assessment: post log gap detection, blocked/failed flags, title dedup. (2026-08-02)
-- **Security:** Repo privatized, git history rewritten with git-filter-repo, all hardcoded secrets scrubbed from tracked files. (2026-07-10)
-- **Infra:** Code standards audit completed — td_manager.py SyntaxError fixed (Python 3.14 strict mode), ds_seed_enforcer.py 15s timeout added, grep_context.py created for efficient searching. Commit `0d74db2`. (2026-08-02)
+- **Decision:** Communication Protocol added to MEMORY.md and AGENTS.md — check in at 5 min, keep finishes short, surface forks, heartbeat surfaces decisions, push back on low-value work. (2026-08-02)
+- **Decision:** ContentNova crons use minimax-m3 (not deepseek-v4-flash) — intentional for creative writing quality. (2026-08-02)
+- **Decision:** ContentNova cron prompts rewritten — removed all local script references (runner.py, publish_with_quality_gate.py, featured_image.py), replaced with direct WordPress REST API instructions. (2026-08-02)
+- **Decision:** 6 TradeBot crons deleted (dormant, broken paths). Awaiting Opus on revival. (2026-08-02)
+- **Decision:** Affiliate injector v1 reverted (created 404 links to non-existent review pages). v2 uses hybrid strategy: SaaS direct links, Amazon product links, internal links to our own content. (2026-08-02)
 - **Infra:** Error handling audit completed — 10 scripts fixed (silent except:pass replaced with logged warnings). P0: backup-finance-to-nas, gmail_cleanup, amazon_affiliate_injector. P1: gmail_spam_sweep, discover_spam_patterns, td_manager. P2: ds_seed_enforcer, post_log, amazon_topic_generator. Commit `a01a2b4`. (2026-08-02)
 - **Infra:** Unified credential helper created (scripts/creds.py) — consolidates vault.db, .secrets, and env vars into single interface. get_cred(), get_wp_site(), get_wp_auth_header(), has_cred(). (2026-08-02)
 - **Infra:** Content analytics dashboard (scripts/content_analytics.py) — pulls WordPress posts across 3 sites, cross-references with post log, detects content gaps. (2026-08-02)
-- **Infra:** Cron audit completed — 5 duplicate crons deleted, Finance-NAS-Backup timeout fixed (60s->300s) and channel fixed (#finance->#nova), failure alerts added to spam-sweep, spam-pattern-discovery, gmail-cleanup, NightSchool-8pm. All 29 crons now have failure alerts. (2026-08-02)
-- **Decision:** ContentNova crons use minimax-m3 (not deepseek-v4-flash) — intentional for creative writing quality. Updated expected config. (2026-08-02)
-- **Infra:** Amazon affiliate queue system — topic generator, queue-based publisher, auto-replenish. Amazon-Affiliate-Publish cron upgraded to minimax-m3 with web_search. (2026-08-02)
-- **Decision:** Communication Protocol added to MEMORY.md and AGENTS.md — check in at 5 min, keep finishes short, surface forks, heartbeat surfaces decisions, push back on low-value work. (2026-08-02)
+- **Infra:** Cron health monitor (scripts/cron_health.py) — checks model drift, timeout mismatches, stale/never-run crons. (2026-08-02)
+- **Infra:** Cron audit completed — 5 duplicate crons deleted, Finance-NAS-Backup timeout fixed (60s->300s) and channel fixed (#finance->#nova), failure alerts added to 4 crons. All 29 crons now have uniform failure alerts. (2026-08-02)
+- **Infra:** Amazon affiliate queue system — topic generator v2 (6 categories, 135+ title templates), queue-based publisher, auto-replenish. Amazon-Affiliate-Publish cron upgraded to minimax-m3 with web_search. (2026-08-02)
+- **Infra:** Proactive monitoring — site_monitor.py (uptime, SSL, response time) + content_quality_validator.py (word count, headings, links, em dashes, SEO, featured images). Both wired into ops-assessment and ContentNova crons. (2026-08-02)
+- **Infra:** Incident response process created (docs/incident-response.md) — P0-P3 severity levels, escalation protocol. P0 wakes Opus, P1 surfaces in heartbeat, P2 fixes in maintenance window, P3 batches weekly. (2026-08-02)
+- **Infra:** Night school tracker (scripts/night_school_tracker.py) — 59 completed playbooks auto-detected. 10 new topics + 5 backlog topics loaded. (2026-08-02)
+- **Infra:** Daily brief overhaul — emoji format, weather, local news, tech news, to-do list, Nova status. Timeout 420s. (2026-08-02)
+- **Infra:** Git gc --aggressive — .git directory 835MB -> 99MB, disk free 8.6% -> 8.7%. (2026-08-02)
+- **Infra:** docs/infrastructure.md created — full system architecture, cron registry, known issues, processes. (2026-08-02)
+- **Monetization:** 5 tools built Aug 2: affiliate_content_upgrade.py (3 article types, 28 topics queued), recommendation_widget.py (6 categories, 28 tools, GA4 tracking), wp_audit_plugin.py (SitePulse AI concept), newsletter_pipeline.py (Beehiiv pipeline, blocked), affiliate_injector.py (25-product registry, v2 hybrid linking). (2026-08-02)
+- **Monetization:** 3 Amazon product articles published to aitoolalliance — Developer Desk Setup (ID 616), Noise-Cancelling Headphones (ID 617), Mechanical Keyboards (ID 618). All with Amazon affiliate tags. (2026-08-02)
+- **Monetization:** Affiliate injector v2 live — 29 links across 25 posts (SaaS direct + Amazon + internal links). Logged to memory/post-log/affiliate_injections.jsonl. (2026-08-02)
+- **Monetization:** Affiliate strategy docs created — docs/affiliate-wishlist.md (34 products), docs/affiliate-tracker.md (application status). (2026-08-02)
+- **Tooling gap:** Yagas intel + propaganda crons produce content but can't auto-push to Discord — cron sessions lack message tool. Content staged, not published. (2026-08-02)
+- **Blocked:** AdSense deployment (needs ca-pub-XXXXXXX from Opus), GA4 measurement IDs for 2 sites, Beehiiv account for newsletter, UPLOAD_POST_API_KEY for Twitter/Bluesky, recommendation widget deploy approval, affiliate program applications (10 Tier 1 programs need manual signup). (2026-08-02)
+- **Disk space:** 8.6% free. ComfyUI (6.3GB) + TradeBot sessions (1.5GB) are biggest recovery opportunities. Awaiting Opus decision. (2026-08-02)
+- **Security:** Repo privatized, git history rewritten with git-filter-repo, all hardcoded secrets scrubbed from tracked files. (2026-07-10)
+- **Lesson:** Amazon affiliate tags only work on Amazon.com URLs, not on arbitrary websites. SaaS tools need direct product links or referral links. Internal links to our own content are highest value. (2026-08-02)
 - **Lesson:** OpenAI billing hard limit reached — gpt-image-2 image generation fails. Kybernauts-Propaganda fell back to existing image. Need alternative provider (gemini/minimax) or top-up. (2026-07-26)
 - **Lesson:** aibusinessinsider 403 was a false alarm — bare curl gets 403 from Cloudflare, but proper browser UA gets 200. Cron was working fine all along. (2026-08-02)
 - **Lesson:** Unsplash API 401 resolved — no key set, script falls back to curated CDN image pool (all return 200). Featured images working via fallback path. (2026-08-02)
@@ -133,9 +148,11 @@
 - **Project update:** EveOnion — RedditTweet cron posting to Discord. Twitter drafts blocked (no UPLOAD_POST_API_KEY). (2026-07-30, 2026-07-31)
 - **Project update:** Anti-Yagas — Phase 4 (Sustained Pressure) started Aug 2. No recruitment tie-ins per Opus directive. Phase 1 ran 63 days, Phase 2 (Pattern Recognition) July 5–19, Phase 3 (Direct Confrontation) July 19–Aug 2. (2026-07-05, 2026-08-02)
 
-### Week of 2026-07-20
-- **Decision:** Anti-Yagas content is Discord-only, no social media. Kybernauts-Propaganda (official recruitment) stays on X+Bluesky. (2026-07-24)
-- **Decision:** NAS IP replaced with hostname MND across 23 files. DS API file upload broken on DSM 4.1.2 — SMB write to `\\MND\video\watch` is the workaround. (2026-07-26)
+### Week of 2026-07-27
+- **Decision:** DC trip July 31 — Senate/House balcony gallery recommended over Bureau of Engraving for 10-year-old. Both chambers confirmed in session. (2026-07-29)
+- **Infra:** Disk space alerting added to ops-assessment: URGENT if C: <10% free, WARNING if <15%. (2026-08-02)
+- **Infra:** Recreated 5 missing crons: Yagas-Intel-Collect, Yagas-Propaganda-Post, Amazon-Affiliate-Publish/Injector/Tracker. All have post log integration. (2026-08-02)
+- **Infra:** Code standards audit completed — td_manager.py SyntaxError fixed (Python 3.14 strict mode), ds_seed_enforcer.py 15s timeout added, grep_context.py created for efficient searching. Commit `0d74db2`. (2026-08-02)
 - **Lesson:** Voice matching > dramatic AI writing. Opus rejects anything not in his actual voice. Monument announcement needs rebuild from verbatim Discord quotes. (2026-07-24)
 - **CRITICAL:** TD-Scanner/cleanup must ONLY manage torrents added by the scanner (tracked in `td_state.json` `added_torrents`). Never touch user's own downloads. The `cmd_cleanup` function was deleting ALL zero-upload torrents including 233 of Opus's personal downloads. Fix: filter by `added_torrents` state before any deletion. (2026-07-28)
 - **Lesson:** UniFi VLAN creation via API has `WanIpOverlapped` bug with static WAN + USG 3P. Two-step workaround (vlan-only → PATCH) works for tag creation but corporate VLANs still fail. Flat network is permanent decision. (2026-06-15)
@@ -149,4 +166,4 @@
 - **Infra:** NAS audit freed ~1,173 GB. Workspace backup 5.97 GB / 82,823 files. All 21 crons updated to minimax-m3:cloud or deepseek-v4-flash:cloud. (2026-07-26)
 
 ## Last Updated
-2026-08-02 — infrastructure upgrades: error handling audit, credential helper, analytics dashboard, cron health monitor, Amazon queue system, communication protocol.
+2026-08-02 — massive infrastructure + monetization sprint. Error handling audit, creds helper, cron health, proactive monitoring, incident response, 5 monetization tools, 3 Amazon articles, affiliate injector v2, git gc, TradeBot crons deleted, Yagas tooling gap documented.
