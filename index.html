@@ -292,7 +292,7 @@
 <body>
 
 <div class="header">
-  <h1>🦝 Kybernaut Fitness Tracker</h1>
+  <h1>🦝 Nova Fitness Tracker</h1>
   <p>Opus's 5-Day Strength Program | Knee-Safe | 75 min/day</p>
 </div>
 
@@ -328,420 +328,47 @@
   <div class="knee-note">
     <strong>⚠️ Knee-Safe Protocol:</strong> No squats, no lunges, no box jumps. All leg work is machine-based or lying down. Start with weights you can control for 12 reps. Focus on slow controlled movement, not heavy weight. If your knees bark, drop weight or skip the exercise.
   </div>
-
-  <!-- MONDAY: LEGS -->
-  <div class="day-card">
+  <div class="day-card" data-day="monday">
     <div class="day-title">
       Monday — Leg Day
       <span class="badge badge-legs">Knee-Safe</span>
     </div>
     <div class="day-subtitle">75 min | Sauna + Elliptical + Machines + Glutes + Sauna | No squats, no lunges</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10 minutes to loosen up joints and get blood flowing before lifting.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace, get heart rate up without knee stress.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Low resistance, steady pace.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Leg Press (Machine)</div>
-          <div class="exercise-note">Feet HIGH on plate, shoulder width. Drives through glutes/hams, less knee stress.</div>
-        </td>
-        <td>3 x 12</td>
-        <td>Start light. Control the negative.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Hip Thrust / Glute Bridge</div>
-          <div class="exercise-note">Back on bench, barbell or dumbbell on hips. Squeeze glutes hard at top.</div>
-        </td>
-        <td>3 x 12</td>
-        <td>Knee-friendly leg builder.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Leg Curl (Machine)</div>
-          <div class="exercise-note">Lying or seated. Isolates hamstrings, zero knee load.</div>
-        </td>
-        <td>3 x 12</td>
-        <td>Don't swing the weight.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Leg Extension (Machine)</div>
-          <div class="exercise-note">Light weight only. Builds quad strength to support knee. Stop if pain.</div>
-        </td>
-        <td>2 x 15</td>
-        <td>Very light. Stop if knee hurts.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Calf Raises (Machine or Seated)</div>
-          <div class="exercise-note">Slow tempo. Full stretch at bottom, squeeze at top.</div>
-        </td>
-        <td>3 x 15</td>
-        <td>Seated takes pressure off knee.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Seated Abductor / Adductor</div>
-          <div class="exercise-note">Inner/outer thigh machine. Good for hip stability.</div>
-        </td>
-        <td>2 x 15 each</td>
-        <td>Light, controlled.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🧊 Sauna Cool-down</div>
-          <div class="exercise-note">10 minutes to relax muscles and recover post-workout.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate. Great for recovery.</td>
-      </tr>
-    </table>
+    <div class="program-table" id="program-monday"></div>
   </div>
-
-  <!-- TUESDAY: PUSH -->
-  <div class="day-card">
+  <div class="day-card" data-day="tuesday">
     <div class="day-title">
       Tuesday — Push Day
       <span class="badge badge-push">Chest/Shoulders/Triceps</span>
     </div>
-    <div class="day-subtitle">75 min | Sauna + Elliptical + All machine or dumbbell based + Sauna</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10 minutes to loosen up joints and get blood flowing before lifting.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace, get heart rate up.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Low resistance, steady pace.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Chest Press (Machine)</div>
-          <div class="exercise-note">Seated machine press. Safer than bench at your weight. Full range of motion.</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Keep shoulder blades pinned.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Incline Chest Press (Machine or Smith)</div>
-          <div class="exercise-note">Hits upper chest. Low incline angle (15-30 degrees).</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Slow and controlled.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Shoulder Press (Machine)</div>
-          <div class="exercise-note">Seated overhead press machine. Better stability than dumbbells.</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Don't let elbows flare.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Lateral Raise (Machine or Cable)</div>
-          <div class="exercise-note">Builds shoulder width. Light weight, focus on squeeze at top.</div>
-        </td>
-        <td>3 x 12-15</td>
-        <td>Lead with elbows, not hands.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Tricep Pushdown (Cable)</div>
-          <div class="exercise-note">Rope or straight bar. Keep elbows at sides.</div>
-        </td>
-        <td>3 x 12-15</td>
-        <td>Full extension at bottom.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Tricep Extension (Machine or Overhead)</div>
-          <div class="exercise-note">Overhead or cable extension for long head.</div>
-        </td>
-        <td>2 x 12</td>
-        <td>Keep elbows in.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🧊 Sauna Cool-down</div>
-          <div class="exercise-note">10 minutes to relax muscles and recover post-workout.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate. Great for recovery.</td>
-      </tr>
-    </table>
+    <div class="day-subtitle">75 min | Sauna + Elliptical + Push muscles + Sauna</div>
+    <div class="program-table" id="program-tuesday"></div>
   </div>
-
-  <!-- WEDNESDAY: LIGHT / CORE -->
-  <div class="day-card">
+  <div class="day-card" data-day="wednesday">
     <div class="day-title">
       Wednesday — VR Day
       <span class="badge badge-light">Active Recovery</span>
     </div>
-    <div class="day-subtitle">75 min | Sauna + VR cardio/games at home | Low impact, high fun</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps/Time</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10 minutes to loosen up joints before VR.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">VR Cardio / Rhythm Games</div>
-          <div class="exercise-note">Beat Saber, Synth Riders, or similar. Moderate intensity.</div>
-        </td>
-        <td>3 x 15 min</td>
-        <td>Keep headset tight, stay aware of surroundings.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">VR Boxing / Fitness App</div>
-          <div class="exercise-note">Thrill of the Fight, Creed, or similar boxing/cardio app.</div>
-        </td>
-        <td>2 x 10 min</td>
-        <td>Punch through, don't snap elbows.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Plank</div>
-          <div class="exercise-note">On forearms. Keep body straight. VR can be core-intensive.</div>
-        </td>
-        <td>3 x 20-45 sec</td>
-        <td>Build up time each week.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Dead Bug</div>
-          <div class="exercise-note">Lying on back. Opposite arm/leg extend. Keep lower back flat.</div>
-        </td>
-        <td>3 x 10 each</td>
-        <td>Slow and controlled.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Foam Roll / Stretch</div>
-          <div class="exercise-note">Quads, hamstrings, shoulders, neck. VR can tighten upper body.</div>
-        </td>
-        <td>5-10 min</td>
-        <td>Recovery is the point today.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🧊 Sauna Cool-down</div>
-          <div class="exercise-note">10 minutes to relax muscles and recover post-VR.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate. Great for recovery.</td>
-      </tr>
-    </table>
+    <div class="day-subtitle">VR cardio/games at home | Log total minutes</div>
+    <div class="program-table" id="program-wednesday"></div>
   </div>
-
-  <!-- THURSDAY: PULL -->
-  <div class="day-card">
+  <div class="day-card" data-day="thursday">
     <div class="day-title">
       Thursday — Pull Day
       <span class="badge badge-pull">Back/Biceps</span>
     </div>
     <div class="day-subtitle">75 min | Sauna + Elliptical + Build that back + Sauna</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10 minutes to loosen up joints and get blood flowing.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Low resistance, steady pace.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Lat Pulldown (Machine)</div>
-          <div class="exercise-note">Wide grip. Pull to upper chest. Squeeze shoulder blades together.</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Don't use momentum.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Seated Row (Machine)</div>
-          <div class="exercise-note">Chest supported if available. Pull to lower ribs. Squeeze.</div>
-        </td>
-        <td>3 x 10-12</td>
-        <td>Keep chest against pad.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Straight Arm Pulldown (Cable)</div>
-          <div class="exercise-note">Arms straight, pull bar down to thighs. Isolates lats.</div>
-        </td>
-        <td>3 x 12-15</td>
-        <td>Light weight, feel the lat stretch.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Face Pulls (Cable)</div>
-          <div class="exercise-note">Rope attachment. Pull to face height, external rotation at end.</div>
-        </td>
-        <td>3 x 15</td>
-        <td>Great for shoulder health.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Bicep Curl (Machine or Cable)</div>
-          <div class="exercise-note">Preacher curl machine or cable curl. Full range of motion.</div>
-        </td>
-        <td>3 x 12</td>
-        <td>No swinging.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Hammer Curl (Dumbbell or Cable)</div>
-          <div class="exercise-note">Neutral grip. Hits brachialis and forearms.</div>
-        </td>
-        <td>2 x 12</td>
-        <td>Control the negative.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🧊 Sauna Cool-down</div>
-          <div class="exercise-note">10 minutes to relax muscles and recover post-workout.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate. Great for recovery.</td>
-      </tr>
-    </table>
+    <div class="program-table" id="program-thursday"></div>
   </div>
-
-  <!-- FRIDAY: FULL BODY -->
-  <div class="day-card">
+  <div class="day-card" data-day="friday">
     <div class="day-title">
-      Friday — Full Body + Cardio
+      Friday — Full Body
       <span class="badge badge-full">Compound</span>
     </div>
     <div class="day-subtitle">75 min | Sauna + Elliptical + Hit everything + Sauna</div>
-    <table class="exercise-table">
-      <tr><th>Exercise</th><th>Sets x Reps</th><th>Note</th></tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10 minutes to loosen up joints and get blood flowing.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate before and after.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Low resistance, steady pace.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Leg Press (Machine)</div>
-          <div class="exercise-note">High foot placement again. Moderate weight. Control every rep.</div>
-        </td>
-        <td>2 x 12</td>
-        <td>Not max effort today.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Chest Press (Machine)</div>
-          <div class="exercise-note">One compound push movement. Moderate weight.</div>
-        </td>
-        <td>2 x 10</td>
-        <td>Full range.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Lat Pulldown (Machine)</div>
-          <div class="exercise-note">One compound pull. Moderate weight.</div>
-        </td>
-        <td>2 x 10</td>
-        <td>Squeeze at bottom.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Shoulder Press (Machine)</div>
-          <div class="exercise-note">Overhead press. Moderate weight.</div>
-        </td>
-        <td>2 x 10</td>
-        <td>Core tight.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Glute Bridge / Hip Thrust</div>
-          <div class="exercise-note">Bodyweight or light load. Burn out the glutes.</div>
-        </td>
-        <td>2 x 20</td>
-        <td>Hold at top.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Bicep Curl + Tricep Pushdown (Superset)</div>
-          <div class="exercise-note">One set curls, immediately to tricep pushdown. No rest between.</div>
-        </td>
-        <td>2 x 12 each</td>
-        <td>Superset = arms finished.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Plank</div>
-          <div class="exercise-note">Core finisher. Hold as long as good form allows.</div>
-        </td>
-        <td>2 x max time</td>
-        <td>Form > time.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">🧊 Sauna Cool-down</div>
-          <div class="exercise-note">10 minutes to relax muscles and recover post-workout.</div>
-        </td>
-        <td>1 x 10 min</td>
-        <td>Hydrate. Great for recovery.</td>
-      </tr>
-    </table>
+    <div class="program-table" id="program-friday"></div>
   </div>
 </div>
-
 <!-- TRACKER TAB -->
 <div id="tracker" class="content-section">
   <div class="day-card">
@@ -836,60 +463,54 @@
 // ── DATA ──
 const EXERCISES = {
   monday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Leg Press (Machine)", sets: 3, reps: 12 },
-    { name: "Hip Thrust / Glute Bridge", sets: 3, reps: 12 },
-    { name: "Leg Curl (Machine)", sets: 3, reps: 12 },
-    { name: "Leg Extension (Machine)", sets: 2, reps: 15 },
+    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to loosen up joints and get blood flowing." },
+    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Low-impact warm-up. Moderate pace." },
+    { name: "Leg Press (Machine)", sets: 3, reps: 12, note: "High foot placement again. Moderate weight. Control every rep." },
+    { name: "Hip Thrust / Glute Bridge", sets: 3, reps: 12, note: "Back on bench, barbell or dumbbell on hips. Squeeze glutes hard at top." },
+    { name: "Leg Curl (Machine)", sets: 3, reps: 12, note: "Lying or seated. Isolates hamstrings, zero knee load." },
+    { name: "Leg Extension (Machine)", sets: 2, reps: 15, note: "Light weight only. Builds quad strength to support knee. Stop if pain." },
     { name: "Calf Raises (Machine)", sets: 3, reps: 15 },
-    { name: "Seated Abductor / Adductor", sets: 2, reps: 15 },
-    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true },
+    { name: "Seated Abductor / Adductor", sets: 2, reps: 15, note: "Inner/outer thigh machine. Good for hip stability." },
+    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to relax muscles and recover post-workout." },
   ],
   tuesday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Chest Press (Machine)", sets: 3, reps: 12 },
+    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to loosen up joints and get blood flowing." },
+    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Low-impact warm-up. Moderate pace." },
+    { name: "Chest Press (Machine)", sets: 3, reps: 12, note: "One compound push movement. Moderate weight." },
     { name: "Incline Chest Press (Machine)", sets: 3, reps: 12 },
-    { name: "Shoulder Press (Machine)", sets: 3, reps: 12 },
+    { name: "Shoulder Press (Machine)", sets: 3, reps: 12, note: "Overhead press. Moderate weight." },
     { name: "Lateral Raise (Machine)", sets: 3, reps: 15 },
-    { name: "Tricep Pushdown (Cable)", sets: 3, reps: 15 },
+    { name: "Tricep Pushdown (Cable)", sets: 3, reps: 15, note: "Rope or straight bar. Keep elbows at sides." },
     { name: "Tricep Extension (Overhead)", sets: 2, reps: 12 },
-    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true },
+    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to relax muscles and recover post-workout." },
   ],
   wednesday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "VR Cardio / Rhythm Games", sets: 3, reps: 15, unit: "min", noInput: true },
-    { name: "VR Boxing / Fitness App", sets: 2, reps: 10, unit: "min", noInput: true },
-    { name: "Plank", sets: 3, reps: 30, unit: "sec" },
-    { name: "Dead Bug", sets: 3, reps: 10 },
-    { name: "Foam Roll / Stretch", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true },
+    { name: "VR Session", sets: 1, reps: 45, unit: "min", noInput: false, note: "Beat Saber, Synth Riders, boxing, or any VR fitness app. Just move." },
   ],
   thursday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Lat Pulldown (Machine)", sets: 3, reps: 12 },
-    { name: "Seated Row (Machine)", sets: 3, reps: 12 },
-    { name: "Straight Arm Pulldown (Cable)", sets: 3, reps: 15 },
-    { name: "Face Pulls (Cable)", sets: 3, reps: 15 },
+    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to loosen up joints and get blood flowing." },
+    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Low-impact warm-up. Moderate pace." },
+    { name: "Lat Pulldown (Machine)", sets: 3, reps: 12, note: "One compound pull. Moderate weight." },
+    { name: "Seated Row (Machine)", sets: 3, reps: 12, note: "Chest supported if available. Pull to lower ribs. Squeeze." },
+    { name: "Straight Arm Pulldown (Cable)", sets: 3, reps: 15, note: "Arms straight, pull bar down to thighs. Isolates lats." },
+    { name: "Face Pulls (Cable)", sets: 3, reps: 15, note: "Rope attachment. Pull to face height, external rotation at end." },
     { name: "Bicep Curl (Machine)", sets: 3, reps: 12 },
     { name: "Hammer Curl (Cable)", sets: 2, reps: 12 },
-    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true },
+    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to relax muscles and recover post-workout." },
   ],
   friday: [
-    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Leg Press (Machine)", sets: 2, reps: 12 },
-    { name: "Chest Press (Machine)", sets: 2, reps: 10 },
-    { name: "Lat Pulldown (Machine)", sets: 2, reps: 10 },
-    { name: "Shoulder Press (Machine)", sets: 2, reps: 10 },
-    { name: "Glute Bridge / Hip Thrust", sets: 2, reps: 20 },
+    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to loosen up joints and get blood flowing." },
+    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Low-impact warm-up. Moderate pace." },
+    { name: "Leg Press (Machine)", sets: 2, reps: 12, note: "High foot placement again. Moderate weight. Control every rep." },
+    { name: "Chest Press (Machine)", sets: 2, reps: 10, note: "One compound push movement. Moderate weight." },
+    { name: "Lat Pulldown (Machine)", sets: 2, reps: 10, note: "One compound pull. Moderate weight." },
+    { name: "Shoulder Press (Machine)", sets: 2, reps: 10, note: "Overhead press. Moderate weight." },
+    { name: "Glute Bridge / Hip Thrust", sets: 2, reps: 20, note: "Bodyweight or light load. Burn out the glutes." },
     { name: "Bicep Curl + Tricep Pushdown", sets: 2, reps: 12 },
-    { name: "Plank", sets: 2, reps: 30, unit: "sec" },
-    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true },
+    { name: "Plank", sets: 2, reps: 30, unit: "sec", note: "Core finisher. Hold as long as good form allows." },
+    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to relax muscles and recover post-workout." },
   ],
-};
+};;
 
 // ── STORAGE ──
 function getLogs() {
@@ -953,6 +574,7 @@ function applyDefaultReps() {
   recordSettingsChange(oldValue, newValue);
   document.getElementById('applyFeedback').textContent = '✅ Default reps updated to ' + newValue + ' for all exercises';
   setTimeout(() => { document.getElementById('applyFeedback').textContent = ''; }, 3000);
+  renderProgramTables();
   loadTracker();
 }
 
@@ -986,6 +608,58 @@ function initSettingsUI() {
   const input = document.getElementById('defaultRepsInput');
   if (input) input.value = settings.defaultReps || 12;
   renderSettingsHistory();
+}
+
+
+// ── PROGRAM TABLE RENDERER ──
+function getEffectiveReps(exercise) {
+  const settings = getSettings();
+  const defaultReps = settings.defaultReps || 12;
+  // For time-based exercises, keep their original reps (duration)
+  if (exercise.unit === 'min' || exercise.unit === 'sec') {
+    return exercise.reps;
+  }
+  // For weight-based exercises, use global default
+  return defaultReps;
+}
+
+function renderProgramTables() {
+  const dayNames = {
+    monday: 'Monday — Leg Day',
+    tuesday: 'Tuesday — Push Day', 
+    wednesday: 'Wednesday — VR Day',
+    thursday: 'Thursday — Pull Day',
+    friday: 'Friday — Full Body'
+  };
+
+  Object.keys(EXERCISES).forEach(day => {
+    const exercises = EXERCISES[day];
+    const container = document.getElementById('program-' + day);
+    if (!container) return;
+
+    let html = '<table class="exercise-table">';
+    html += '<tr><th>Exercise</th><th>Sets x Reps</th><th>Note</th></tr>';
+
+    exercises.forEach(ex => {
+      const effectiveReps = getEffectiveReps(ex);
+      const unit = ex.unit || 'reps';
+      const unitLabel = unit === 'min' ? 'min' : unit === 'sec' ? 'sec' : '';
+      const repsDisplay = unitLabel ? `${effectiveReps} ${unitLabel}` : effectiveReps;
+      const note = ex.note || '';
+      
+      html += `<tr>
+        <td>
+          <div class="exercise-name">${ex.name}</div>
+          ${note ? `<div class="exercise-note">${note}</div>` : ''}
+        </td>
+        <td>${ex.sets} x ${repsDisplay}</td>
+        <td>${note ? note.split('.')[0] + '.' : '—'}</td>
+      </tr>`;
+    });
+
+    html += '</table>';
+    container.innerHTML = html;
+  });
 }
 
 // ── TRACKER UI ──
@@ -1357,6 +1031,7 @@ loadTracker();
 updateStats();
 updateHistory();
 initSettingsUI();
+  renderProgramTables();
 </script>
 
 </body>
