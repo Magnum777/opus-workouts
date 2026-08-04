@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nova's Kybernaut Fitness Tracker - Opus Edition</title>
+<title>Nova Fitness Tracker - Opus Edition</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
   :root {
@@ -213,6 +213,74 @@
   }
   .knee-note strong { color: var(--red); }
 
+  .settings-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid #1a1a2e;
+  }
+  .settings-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: var(--accent);
+  }
+  .settings-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .settings-row label {
+    color: var(--text2);
+    font-size: 0.9rem;
+  }
+  .settings-row input[type="number"] {
+    width: 80px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #0f0f1a;
+    color: var(--text);
+    text-align: center;
+    font-size: 1rem;
+  }
+  .settings-row input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .default-badge {
+    background: rgba(0, 229, 255, 0.15);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .history-item {
+    background: #0f0f1a;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    border: 1px solid #1a1a2e;
+    font-size: 0.85rem;
+    color: var(--text2);
+  }
+  .history-item .timestamp {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .tracker-default-banner {
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: var(--accent);
+  }
+
   @media (max-width: 600px) {
     .header h1 { font-size: 1.5rem; }
     .exercise-table th:nth-child(3),
@@ -252,6 +320,7 @@
   <div class="tab" onclick="showTab('tracker')">Tracker</div>
   <div class="tab" onclick="showTab('charts')">Progress</div>
   <div class="tab" onclick="showTab('history')">History</div>
+  <div class="tab" onclick="showTab('settings')">Settings</div>
 </div>
 
 <!-- PROGRAM TAB -->
@@ -431,32 +500,40 @@
   <!-- WEDNESDAY: LIGHT / CORE -->
   <div class="day-card">
     <div class="day-title">
-      Wednesday — Active Recovery / Core
-      <span class="badge badge-light">Light Day</span>
+      Wednesday — VR Day
+      <span class="badge badge-light">Active Recovery</span>
     </div>
-    <div class="day-subtitle">75 min | Sauna + Elliptical + Core + Mobility + Sauna | Easy on knees</div>
+    <div class="day-subtitle">75 min | Sauna + VR cardio/games at home | Low impact, high fun</div>
     <table class="exercise-table">
       <tr><th>Exercise</th><th>Sets x Reps/Time</th><th>Note</th></tr>
       <tr>
         <td>
           <div class="exercise-name">🔥 Sauna Warm-up</div>
-          <div class="exercise-note">10 minutes to loosen up joints and get blood flowing.</div>
+          <div class="exercise-note">10 minutes to loosen up joints before VR.</div>
         </td>
         <td>1 x 10 min</td>
         <td>Hydrate before and after.</td>
       </tr>
       <tr>
         <td>
-          <div class="exercise-name">Elliptical Cardio</div>
-          <div class="exercise-note">Low-impact warm-up. Moderate pace.</div>
+          <div class="exercise-name">VR Cardio / Rhythm Games</div>
+          <div class="exercise-note">Beat Saber, Synth Riders, or similar. Moderate intensity.</div>
         </td>
-        <td>1 x 10 min</td>
-        <td>Low resistance, steady pace.</td>
+        <td>3 x 15 min</td>
+        <td>Keep headset tight, stay aware of surroundings.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="exercise-name">VR Boxing / Fitness App</div>
+          <div class="exercise-note">Thrill of the Fight, Creed, or similar boxing/cardio app.</div>
+        </td>
+        <td>2 x 10 min</td>
+        <td>Punch through, don't snap elbows.</td>
       </tr>
       <tr>
         <td>
           <div class="exercise-name">Plank</div>
-          <div class="exercise-note">On forearms. Keep body straight. Start with what you can hold.</div>
+          <div class="exercise-note">On forearms. Keep body straight. VR can be core-intensive.</div>
         </td>
         <td>3 x 20-45 sec</td>
         <td>Build up time each week.</td>
@@ -471,40 +548,8 @@
       </tr>
       <tr>
         <td>
-          <div class="exercise-name">Bird Dog</div>
-          <div class="exercise-note">On hands and knees. Opposite arm/leg extend. Balance + core.</div>
-        </td>
-        <td>3 x 10 each</td>
-        <td>Hold each rep 2 seconds.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Side Plank</div>
-          <div class="exercise-note">On forearm. Stack hips. Modified version: knees on ground.</div>
-        </td>
-        <td>2 x 20-30 sec each</td>
-        <td>Knee modification is fine.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Seated Torso Twist</div>
-          <div class="exercise-note">Seated on floor or bench. Twist with light medicine ball or bodyweight.</div>
-        </td>
-        <td>3 x 15 each</td>
-        <td>Control the twist.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="exercise-name">Glute Bridge (Bodyweight)</div>
-          <div class="exercise-note">Lying on back. Squeeze glutes at top. No weight today.</div>
-        </td>
-        <td>3 x 20</td>
-        <td>Hold 2 seconds at top.</td>
-      </tr>
-      <tr>
-        <td>
           <div class="exercise-name">Foam Roll / Stretch</div>
-          <div class="exercise-note">Quads, hamstrings, hips, lower back. 5-10 min total.</div>
+          <div class="exercise-note">Quads, hamstrings, shoulders, neck. VR can tighten upper body.</div>
         </td>
         <td>5-10 min</td>
         <td>Recovery is the point today.</td>
@@ -512,7 +557,7 @@
       <tr>
         <td>
           <div class="exercise-name">🧊 Sauna Cool-down</div>
-          <div class="exercise-note">10 minutes to relax muscles and recover post-workout.</div>
+          <div class="exercise-note">10 minutes to relax muscles and recover post-VR.</div>
         </td>
         <td>1 x 10 min</td>
         <td>Hydrate. Great for recovery.</td>
@@ -761,6 +806,32 @@
   </div>
 </div>
 
+<!-- SETTINGS TAB -->
+<div id="settings" class="content-section">
+  <div class="settings-card">
+    <div class="day-title">⚙️ Workout Settings</div>
+    <div class="day-subtitle">Configure defaults for your training</div>
+
+    <div class="settings-row">
+      <label for="defaultRepsInput">Default Reps per Set:</label>
+      <input type="number" id="defaultRepsInput" value="12" min="1" max="100">
+      <button class="btn btn-log" onclick="applyDefaultReps()">Apply to All Exercises</button>
+    </div>
+
+    <div id="applyFeedback" style="color: var(--green); font-size: 0.85rem; margin-bottom: 20px; min-height: 20px;"></div>
+  </div>
+
+  <div class="settings-card">
+    <h3>📋 Settings History</h3>
+    <div id="settingsHistoryList">
+      <div class="empty-state">No settings changes yet.</div>
+    </div>
+    <div style="margin-top: 15px;">
+      <button class="btn" style="background: #333; color: var(--text2);" onclick="clearSettingsHistory()">🗑️ Clear History</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ── DATA ──
 const EXERCISES = {
@@ -788,13 +859,10 @@ const EXERCISES = {
   ],
   wednesday: [
     { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true },
-    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true },
+    { name: "VR Cardio / Rhythm Games", sets: 3, reps: 15, unit: "min", noInput: true },
+    { name: "VR Boxing / Fitness App", sets: 2, reps: 10, unit: "min", noInput: true },
     { name: "Plank", sets: 3, reps: 30, unit: "sec" },
     { name: "Dead Bug", sets: 3, reps: 10 },
-    { name: "Bird Dog", sets: 3, reps: 10 },
-    { name: "Side Plank", sets: 2, reps: 25, unit: "sec" },
-    { name: "Seated Torso Twist", sets: 3, reps: 15 },
-    { name: "Glute Bridge (Bodyweight)", sets: 3, reps: 20 },
     { name: "Foam Roll / Stretch", sets: 1, reps: 10, unit: "min", noInput: true },
     { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true },
   ],
@@ -833,11 +901,104 @@ function saveLogs(logs) {
   localStorage.setItem('opusWorkouts', JSON.stringify(logs));
 }
 
+// ── SETTINGS STORAGE ──
+const SETTINGS_KEY = 'opusWorkoutSettings';
+
+function getSettings() {
+  const data = localStorage.getItem(SETTINGS_KEY);
+  if (data) {
+    return JSON.parse(data);
+  }
+  return { defaultReps: 12, settingsHistory: [] };
+}
+
+function saveSettings(settings) {
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+}
+
+function getExerciseReps(exercise) {
+  const settings = getSettings();
+  return settings.defaultReps || 12;
+}
+
+function recordSettingsChange(oldValue, newValue) {
+  const settings = getSettings();
+  const now = new Date();
+  const timestamp = now.toISOString().replace('T', ' ').substring(0, 16);
+  settings.settingsHistory.unshift({
+    date: timestamp,
+    oldValue: oldValue,
+    newValue: newValue
+  });
+  saveSettings(settings);
+  renderSettingsHistory();
+}
+
+function applyDefaultReps() {
+  const input = document.getElementById('defaultRepsInput');
+  const newValue = parseInt(input.value, 10);
+  if (isNaN(newValue) || newValue < 1 || newValue > 100) {
+    alert('Please enter a valid number between 1 and 100.');
+    return;
+  }
+  const settings = getSettings();
+  const oldValue = settings.defaultReps || 12;
+  if (oldValue === newValue) {
+    document.getElementById('applyFeedback').textContent = 'No change — default reps already set to ' + newValue;
+    setTimeout(() => { document.getElementById('applyFeedback').textContent = ''; }, 3000);
+    return;
+  }
+  settings.defaultReps = newValue;
+  saveSettings(settings);
+  recordSettingsChange(oldValue, newValue);
+  document.getElementById('applyFeedback').textContent = '✅ Default reps updated to ' + newValue + ' for all exercises';
+  setTimeout(() => { document.getElementById('applyFeedback').textContent = ''; }, 3000);
+  loadTracker();
+}
+
+function renderSettingsHistory() {
+  const settings = getSettings();
+  const container = document.getElementById('settingsHistoryList');
+  if (!container) return;
+  if (!settings.settingsHistory || settings.settingsHistory.length === 0) {
+    container.innerHTML = '<div class="empty-state">No settings changes yet.</div>';
+    return;
+  }
+  let html = '';
+  settings.settingsHistory.forEach(item => {
+    html += `<div class="history-item">
+      <span class="timestamp">${item.date}</span>: changed default reps from <strong>${item.oldValue}</strong> to <strong>${item.newValue}</strong>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function clearSettingsHistory() {
+  if (!confirm('Clear all settings history?')) return;
+  const settings = getSettings();
+  settings.settingsHistory = [];
+  saveSettings(settings);
+  renderSettingsHistory();
+}
+
+function initSettingsUI() {
+  const settings = getSettings();
+  const input = document.getElementById('defaultRepsInput');
+  if (input) input.value = settings.defaultReps || 12;
+  renderSettingsHistory();
+}
+
 // ── TRACKER UI ──
 function loadTracker() {
   const day = document.getElementById('workoutDay').value;
   const exercises = EXERCISES[day];
   const container = document.getElementById('trackerExercises');
+  const defaultReps = getExerciseReps();
+
+  // Show global default banner
+  let html = `<div class="tracker-default-banner">
+    🎯 Global default reps: <strong>${defaultReps}</strong> per set (edit per exercise below)
+  </div>`;
 
   // Determine header based on units in this day's exercises
   const units = exercises.map(ex => ex.unit || 'lbs');
@@ -845,18 +1006,29 @@ function loadTracker() {
   const allWeight = units.every(u => u === 'lbs' || u === 'kg');
   const header = allTime ? 'Duration' : allWeight ? 'Weight (lbs)' : 'Value';
 
-  let html = '<table class="exercise-table">';
-  html += `<tr><th>Exercise</th><th>Sets</th><th>${header}</th></tr>`;
+  html += '<table class="exercise-table">';
+  html += `<tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>${header}</th></tr>`;
 
   exercises.forEach((ex, i) => {
     const unit = ex.unit || 'lbs';
     const noInput = ex.noInput || false;
+    // Use exercise-specific reps if defined and different from global, else global default
+    const displayReps = ex.reps || defaultReps;
     html += `<tr>
       <td>
         <div class="exercise-name">${ex.name}</div>
-        <div class="exercise-note">${ex.sets} sets x ${ex.reps} ${unit}</div>
+        <div class="exercise-note">${ex.sets} sets x ${displayReps} ${unit}</div>
       </td>
       <td>${ex.sets}</td>
+      <td>
+        ${noInput
+          ? `<span style="color: var(--text2); font-size: 0.85rem;">${displayReps} ${unit}</span>`
+          : `<div class="input-group">
+               <input type="number" id="r-${i}" value="${displayReps}" min="1" max="100" style="width: 55px;">
+               <span style="color: var(--text2); font-size: 0.85rem;">${unit}</span>
+             </div>`
+        }
+      </td>
       <td>
         ${noInput
           ? '<span style="color: var(--green); font-size: 0.85rem;">Auto-logged</span>'
@@ -886,17 +1058,19 @@ function logWorkout() {
         exercise: ex.name,
         weight: 0,
         sets: ex.sets,
-        reps: ex.reps,
+        reps: ex.reps || getExerciseReps(),
         unit: ex.unit || 'min'
       });
     } else {
       const val = document.getElementById(`w-${i}`)?.value;
+      const repsVal = document.getElementById(`r-${i}`)?.value;
+      const actualReps = repsVal ? parseInt(repsVal, 10) : (ex.reps || getExerciseReps());
       if (val && val > 0) {
         entries.push({
           exercise: ex.name,
           weight: parseFloat(val),
           sets: ex.sets,
-          reps: ex.reps,
+          reps: actualReps,
           unit: ex.unit || 'lbs'
         });
       }
@@ -981,12 +1155,21 @@ function updateHistory() {
       .filter(e => e.unit === 'lbs')
       .reduce((s, e) => s + (e.weight * e.sets * e.reps), 0);
 
+    let entriesHtml = '';
+    log.entries.forEach(e => {
+      const unitLabel = e.unit === 'lbs' ? 'lbs' : e.unit === 'min' ? 'min' : e.unit === 'sec' ? 'sec' : '';
+      const weightDisplay = e.unit === 'lbs' && e.weight > 0 ? `${e.weight} ${unitLabel}` : '';
+      const repsDisplay = `${e.sets}x${e.reps}`;
+      entriesHtml += `<div style="font-size: 0.8rem; color: var(--text2); margin-top: 3px;">• ${e.exercise}: ${repsDisplay}${weightDisplay ? ' @ ' + weightDisplay : ''}</div>`;
+    });
+
     html += `<div class="log-entry">
-      <div>
+      <div style="flex: 1;">
         <span class="date">${log.date} — ${dayNames[log.day] || log.day}</span>
         <div class="info">${log.entries.length} exercises${totalWeight > 0 ? ` | Volume: ${totalWeight.toLocaleString()} lbs` : ''}</div>
+        <div style="margin-top: 6px;">${entriesHtml}</div>
       </div>
-      <button class="btn" style="background: #333; color: var(--text2);" onclick="deleteLog('${log.date}')">Delete</button>
+      <button class="btn" style="background: #333; color: var(--text2); margin-left: 10px;" onclick="deleteLog('${log.date}')">Delete</button>
     </div>`;
   });
 
@@ -1103,12 +1286,15 @@ function showTab(tab) {
     populateExerciseSelect();
   }
   if (tab === 'history') updateHistory();
+  if (tab === 'settings') initSettingsUI();
 }
 
 // ── EXPORT / IMPORT / CLEAR ──
 function exportData() {
   const logs = getLogs();
-  const json = JSON.stringify(logs, null, 2);
+  const settings = getSettings();
+  const exportObj = { workouts: logs, settings: settings };
+  const json = JSON.stringify(exportObj, null, 2);
   document.getElementById('exportJson').value = json;
   document.getElementById('exportArea').style.display = 'block';
   document.getElementById('importArea').style.display = 'none';
@@ -1131,8 +1317,18 @@ function doImport() {
   if (!raw) return;
   try {
     const data = JSON.parse(raw);
-    if (!Array.isArray(data)) throw new Error('Invalid format');
-    saveLogs(data);
+    // Support both old format (array of logs) and new format ({ workouts, settings })
+    if (Array.isArray(data)) {
+      saveLogs(data);
+    } else if (data.workouts && Array.isArray(data.workouts)) {
+      saveLogs(data.workouts);
+      if (data.settings) {
+        saveSettings(data.settings);
+        initSettingsUI();
+      }
+    } else {
+      throw new Error('Invalid format');
+    }
     updateStats();
     updateHistory();
     updateCharts();
@@ -1160,6 +1356,7 @@ function clearAll() {
 loadTracker();
 updateStats();
 updateHistory();
+initSettingsUI();
 </script>
 
 </body>
