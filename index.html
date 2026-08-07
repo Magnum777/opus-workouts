@@ -293,7 +293,7 @@
 
 <div class="header">
   <h1>🦝 Nova Fitness Tracker</h1>
-  <p>Opus's 5-Day Machine Program | Upper/Lower Split | ~60 min/day</p>
+  <p>Opus's 5-Day Strength Program | Knee-Safe | 75 min/day</p>
 </div>
 
 <div class="stats-bar">
@@ -325,44 +325,47 @@
 
 <!-- PROGRAM TAB -->
 <div id="program" class="content-section active">
+  <div class="knee-note">
+    <strong>⚠️ Knee-Safe Protocol:</strong> No squats, no lunges, no box jumps. All leg work is machine-based or lying down. Start with weights you can control for 12 reps. Focus on slow controlled movement, not heavy weight. If your knees bark, drop weight or skip the exercise.
+  </div>
   <div class="day-card" data-day="monday">
     <div class="day-title">
-      Monday — Upper Body Strength
-      <span class="badge badge-push">Machines</span>
+      Monday — Leg Day
+      <span class="badge badge-legs">Knee-Safe</span>
     </div>
-    <div class="day-subtitle">Warm-up cardio + 5 machine exercises + cool down</div>
+    <div class="day-subtitle">75 min | Sauna + Elliptical + Machines + Glutes + Sauna | No squats, no lunges</div>
     <div class="program-table" id="program-monday"></div>
   </div>
   <div class="day-card" data-day="tuesday">
     <div class="day-title">
-      Tuesday — Lower Body Strength
-      <span class="badge badge-legs">Machines</span>
+      Tuesday — Push Day
+      <span class="badge badge-push">Chest/Shoulders/Triceps</span>
     </div>
-    <div class="day-subtitle">Warm-up cardio + 5 machine exercises + cool down</div>
+    <div class="day-subtitle">75 min | Sauna + Elliptical + Push muscles + Sauna</div>
     <div class="program-table" id="program-tuesday"></div>
   </div>
   <div class="day-card" data-day="wednesday">
     <div class="day-title">
-      Wednesday — Cardio and Core
+      Wednesday — VR Day
       <span class="badge badge-light">Active Recovery</span>
     </div>
-    <div class="day-subtitle">30 min cardio + 3 core exercises + cool down</div>
+    <div class="day-subtitle">VR cardio/games at home | Log total minutes</div>
     <div class="program-table" id="program-wednesday"></div>
   </div>
   <div class="day-card" data-day="thursday">
     <div class="day-title">
-      Thursday — Upper Body Strength
-      <span class="badge badge-push">Machines</span>
+      Thursday — Pull Day
+      <span class="badge badge-pull">Back/Biceps</span>
     </div>
-    <div class="day-subtitle">Warm-up cardio + 5 machine exercises + cool down</div>
+    <div class="day-subtitle">75 min | Sauna + Elliptical + Build that back + Sauna</div>
     <div class="program-table" id="program-thursday"></div>
   </div>
   <div class="day-card" data-day="friday">
     <div class="day-title">
-      Friday — Lower Body Strength
-      <span class="badge badge-legs">Machines</span>
+      Friday — Full Body
+      <span class="badge badge-full">Compound</span>
     </div>
-    <div class="day-subtitle">Warm-up cardio + 5 machine exercises + cool down</div>
+    <div class="day-subtitle">75 min | Sauna + Elliptical + Hit everything + Sauna</div>
     <div class="program-table" id="program-friday"></div>
   </div>
 </div>
@@ -460,48 +463,52 @@
 // ── DATA ──
 const EXERCISES = {
   monday: [
-    { name: "Warm-up Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Light cardio to get blood flowing. Treadmill or cycling." },
-    { name: "Chest Press (Machine)", sets: 3, reps: 12, note: "Grip handles, push away from chest. Moderate weight." },
-    { name: "Shoulder Press (Machine)", sets: 3, reps: 12, note: "Grip at shoulder height, press overhead." },
-    { name: "Lat Pulldown (Machine)", sets: 3, reps: 12, note: "Grip wider than shoulder-width, pull down to chest." },
-    { name: "Bicep Curl (Machine)", sets: 3, reps: 15, note: "Grip handles, curl toward shoulders." },
-    { name: "Tricep Extension (Machine)", sets: 3, reps: 15, note: "Grip handles, push down to extend arms." },
-    { name: "Cool Down & Stretch", sets: 1, reps: 5, unit: "min", noInput: true, note: "Stretch chest, shoulders, back, arms." },
+    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to loosen up joints and get blood flowing." },
+    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Low-impact warm-up. Moderate pace." },
+    { name: "Leg Press (Machine)", sets: 3, reps: 12, note: "High foot placement again. Moderate weight. Control every rep." },
+    { name: "Hip Thrust / Glute Bridge", sets: 3, reps: 12, note: "Back on bench, barbell or dumbbell on hips. Squeeze glutes hard at top." },
+    { name: "Leg Curl (Machine)", sets: 3, reps: 12, note: "Lying or seated. Isolates hamstrings, zero knee load." },
+    { name: "Leg Extension (Machine)", sets: 2, reps: 15, note: "Light weight only. Builds quad strength to support knee. Stop if pain." },
+    { name: "Calf Raises (Machine)", sets: 3, reps: 15 },
+    { name: "Seated Abductor / Adductor", sets: 2, reps: 15, note: "Inner/outer thigh machine. Good for hip stability." },
+    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to relax muscles and recover post-workout." },
   ],
   tuesday: [
-    { name: "Warm-up Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Light cardio to get blood flowing." },
-    { name: "Leg Press (Machine)", sets: 3, reps: 12, note: "Feet shoulder-width on platform, push away." },
-    { name: "Leg Curl (Machine)", sets: 3, reps: 12, note: "Ankles under pad, curl legs up." },
-    { name: "Leg Extension (Machine)", sets: 3, reps: 12, note: "Ankles under pad, extend legs." },
-    { name: "Calf Raise (Machine)", sets: 3, reps: 15, note: "Shoulders under pads, lift heels." },
-    { name: "Hip Abductor (Machine)", sets: 3, reps: 12, note: "Legs on pads, push outward." },
-    { name: "Cool Down & Stretch", sets: 1, reps: 5, unit: "min", noInput: true, note: "Stretch quads, hamstrings, glutes, calves." },
+    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to loosen up joints and get blood flowing." },
+    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Low-impact warm-up. Moderate pace." },
+    { name: "Chest Press (Machine)", sets: 3, reps: 12, note: "One compound push movement. Moderate weight." },
+    { name: "Incline Chest Press (Machine)", sets: 3, reps: 12 },
+    { name: "Shoulder Press (Machine)", sets: 3, reps: 12, note: "Overhead press. Moderate weight." },
+    { name: "Lateral Raise (Machine)", sets: 3, reps: 15 },
+    { name: "Tricep Dip (Machine)", sets: 3, reps: 15, note: "Assisted dip machine or bench dip. Keep elbows tucked." },
+    { name: "Overhead Tricep Extension (Dumbbell)", sets: 2, reps: 12, note: "One dumbbell, both hands. Behind head, extend up. Slow and controlled." },
+    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to relax muscles and recover post-workout." },
   ],
   wednesday: [
-    { name: "Warm-up Cardio", sets: 1, reps: 5, unit: "min", noInput: true, note: "Light cardio to get blood flowing." },
-    { name: "Running or Cycling", sets: 1, reps: 30, unit: "min", note: "Moderate pace you can sustain for 30 min." },
-    { name: "Planks", sets: 3, reps: 60, unit: "sec", note: "Forearms and toes, straight line. Hold." },
-    { name: "Russian Twists", sets: 3, reps: 15, note: "Lean back, feet off ground, twist side to side with weight." },
-    { name: "Leg Raises", sets: 3, reps: 15, note: "Lie on back, lift legs to 90 degrees, lower without touching floor." },
-    { name: "Cool Down & Stretch", sets: 1, reps: 5, unit: "min", noInput: true, note: "Stretch core, hips, legs." },
+    { name: "VR Session", sets: 1, reps: 45, unit: "min", noInput: false, note: "Beat Saber, Synth Riders, boxing, or any VR fitness app. Just move." },
   ],
   thursday: [
-    { name: "Warm-up Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Light cardio to get blood flowing." },
-    { name: "Incline Chest Press (Machine)", sets: 3, reps: 12, note: "Grip handles, push away at an incline." },
-    { name: "Seated Row (Machine)", sets: 3, reps: 12, note: "Grip handles, pull toward torso." },
-    { name: "Pec Deck (Machine)", sets: 3, reps: 12, note: "Grip handles, bring together in front of chest." },
-    { name: "Preacher Curl (Machine)", sets: 3, reps: 15, note: "Arms on pad, curl handles toward shoulders." },
-    { name: "Tricep Pressdown (Machine)", sets: 3, reps: 15, note: "Grip handles, push down to extend arms." },
-    { name: "Cool Down & Stretch", sets: 1, reps: 5, unit: "min", noInput: true, note: "Stretch chest, back, arms." },
+    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to loosen up joints and get blood flowing." },
+    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Low-impact warm-up. Moderate pace." },
+    { name: "Lat Pulldown (Machine)", sets: 3, reps: 12, note: "One compound pull. Moderate weight." },
+    { name: "Seated Row (Machine)", sets: 3, reps: 12, note: "Chest supported if available. Pull to lower ribs. Squeeze." },
+    { name: "Dumbbell Pullover", sets: 3, reps: 15, note: "Lie on bench, one dumbbell, arms straight. Lower behind head and pull back to chest. Isolates lats." },
+    { name: "Reverse Fly (Machine)", sets: 3, reps: 15, note: "Pec deck reversed. Targets rear delts and upper back. Squeeze at the back." },
+    { name: "Bicep Curl (Machine)", sets: 3, reps: 12 },
+    { name: "Hammer Curl (Dumbbell)", sets: 2, reps: 12, note: "Neutral grip, palms facing each other. Keep elbows pinned to sides." },
+    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to relax muscles and recover post-workout." },
   ],
   friday: [
-    { name: "Warm-up Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Light cardio to get blood flowing." },
-    { name: "Smith Machine Squats", sets: 3, reps: 12, note: "Bar on Smith machine, feet shoulder-width, lower and stand back up." },
-    { name: "Hack Squat (Machine)", sets: 3, reps: 12, note: "Stand on platform, lower by bending knees." },
-    { name: "Leg Press (Machine)", sets: 3, reps: 12, note: "Feet shoulder-width, push platform away." },
-    { name: "Glute Bridge (Machine)", sets: 3, reps: 15, note: "Pads on hips, lift hips toward ceiling." },
-    { name: "Seated Calf Raise (Machine)", sets: 3, reps: 15, note: "Knees under pads, lift heels." },
-    { name: "Cool Down & Stretch", sets: 1, reps: 5, unit: "min", noInput: true, note: "Stretch quads, hamstrings, glutes, calves." },
+    { name: "Sauna Warm-up", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to loosen up joints and get blood flowing." },
+    { name: "Elliptical Cardio", sets: 1, reps: 10, unit: "min", noInput: true, note: "Low-impact warm-up. Moderate pace." },
+    { name: "Leg Press (Machine)", sets: 2, reps: 12, note: "High foot placement again. Moderate weight. Control every rep." },
+    { name: "Chest Press (Machine)", sets: 2, reps: 10, note: "One compound push movement. Moderate weight." },
+    { name: "Lat Pulldown (Machine)", sets: 2, reps: 10, note: "One compound pull. Moderate weight." },
+    { name: "Shoulder Press (Machine)", sets: 2, reps: 10, note: "Overhead press. Moderate weight." },
+    { name: "Glute Bridge / Hip Thrust", sets: 2, reps: 20, note: "Bodyweight or light load. Burn out the glutes." },
+    { name: "Bicep Curl (Dumbbell) + Tricep Dip (Machine)", sets: 2, reps: 12, note: "Superset. Curl dumbbells, then hit the dip machine. Minimal rest between." },
+    { name: "Plank", sets: 2, reps: 30, unit: "sec", note: "Core finisher. Hold as long as good form allows." },
+    { name: "Sauna Cool-down", sets: 1, reps: 10, unit: "min", noInput: true, note: "10 minutes to relax muscles and recover post-workout." },
   ],
 };;
 
